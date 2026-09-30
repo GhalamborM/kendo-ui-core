@@ -5,9 +5,9 @@ description: "Learn how to create a template for the Drawing API and use it for 
 previous_url: /controls/editors/editor/how-to/export-pdf-header-footer, /controls/editors/editor/how-to/export/export-pdf-header-footer
 slug: howto_export_pdf_header_footer
 tags: telerik, kendo, jquery, editor, export, headers, footers, in, pdf
-component: editor
 type: how-to
 res_type: kb
+components: ["editor"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Editor for jQuery</td>
+  <td>Progress® Kendo UI® Editor for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -41,7 +41,7 @@ The following example demonstrates how to use the Template feature of the [Drawi
 
 To style the header and footer elements:
 * Use an inline style tag as in the following example.
-* If the Editor is in its [classic mode]({% slug overview_kendoui_editor_widget %}#classic-mode), add an external CSS file to the [`options.stylesheets` array](/api/javascript/ui/editor/configuration/stylesheets) and apply the needed decoration.
+* If the Editor is in its [classic mode]({% slug overview_kendoui_editor_widget %}#classic-mode), add an external CSS file to the [`options.stylesheets` array](/api/ui/editor/configuration/stylesheets) and apply the needed decoration.
 * If the Editor is in its [inline mode]({%slug overview_kendoui_editor_widget%}#inline-mode), directly reference the implemented CSS file to the page.
 
 ```dojo
@@ -111,4 +111,4 @@ To style the header and footer elements:
 
 * [Basic Usage of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/index)
 * [Using the API of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/api)
-* [JavaScript API Reference of the Editor](/api/javascript/ui/editor)
+* [JavaScript API Reference of the Editor](/api/ui/editor)

@@ -7,7 +7,7 @@ capital_casing_redirects: true
 
 # Exclude files which should not be in the output
 exclude: [README.md, Gemfile, Gemfile.lock,api_sort.rb, all-pages.md, Dockerfile, bs-config.js, build-docs.sh, copy_content.sh, copy_local.sh, docs-watcher/*, exclude_files.txt, install-npm.sh, start-docs.sh, watch.sh]
-exclude_navigation: ["knowledge-base/*"]
+exclude_navigation: ["knowledge-base/*", contribution.html, "third-party/webforms/*", "php/*", "jsp/*"]
 navigation:
 ## List your directory names and order here, like this:
     "api":
@@ -27,98 +27,94 @@ navigation:
     "intro/installation":
         title: "Download and Installation"
         position: 2
+    "intro/installation/licensing":
+        title: "Licensing"
+        position: 1
     "intro/widget-basics":
-        title: "Working with Widgets"
+        title: "Working with Components"
         position: 3
-    "intro/scripts":
-        title: "Widget Script Dependencies"
-        position: 4
     "controls":
-        title: "Widgets"
+        title: "Components"
         position: 4
-    "controls/data-management":
-        title: "Data Management"
-    "controls/data-management/listview/binding":
+    "controls/listview/binding":
         title: "Data Binding"
         position: 2
-    "controls/data-management/listview/export":
+    "controls/listview/export":
         title: "Export"
         position: 5
-    "controls/data-management/filemanager/binding":
+    "controls/filemanager/binding":
         title: "Data Binding"
         position: 2
-    "controls/data-management/grid/binding":
+    "controls/grid/binding":
         title: "Data Binding"
         position: 4
-    "controls/data-management/grid/editing":
+    "controls/grid/editing":
         title: "Editing"
         position: 5
-    "controls/data-management/grid/grouping":
+    "controls/grid/grouping":
         title: "Grouping"
         position: 7
-    "controls/data-management/grid/columns":
+    "controls/grid/columns":
         title: "Columns"
         position: 13
-    "controls/data-management/grid/scrolling":
+    "controls/grid/scrolling":
         title: "Scroll Modes"
         position: 14
-    "controls/data-management/grid/export":
+    "controls/grid/export":
         title: "Export"
         position: 15
-    "controls/data-management/grid/Templates":
+    "controls/grid/Templates":
         title: "Templates"
         position: 16
-    "controls/data-management/grid/appearance":
+    "controls/grid/appearance":
         title: "Appearance"
         position: 17
-    "controls/data-management/grid/performance":
+    "controls/grid/performance":
         title: "Performance Tips"
         position: 18
-    "controls/data-management/pivotgrid/binding":
+    "controls/pivotgrid/binding":
         title: "Data Binding"
         position: 2
-    "controls/data-management/pivotgrid/export":
+    "controls/pivotgrid/export":
         title: "Export"
         position: 5
-    "controls/data-management/pivotgrid/how-to":
+    "controls/pivotgrid/how-to":
         title: "How To"
         position: 70
-    "controls/data-management/pivotgridv2/binding":
+    "controls/pivotgridv2/binding":
         title: "Data Binding"
         position: 2
-    "controls/data-management/pivotgridv2/export":
+    "controls/pivotgridv2/export":
         title: "Export"
         position: 5
-    "controls/data-management/spreadsheet/import-and-export-data":
+    "controls/spreadsheet/import-and-export-data":
         title: "Data Import and Export"
         position: 7
-    "controls/data-management/spreadsheet/localization-spreadsh":
+    "controls/spreadsheet/localization-spreadsh":
         title: "Localization"
         position: 8
-    "controls/data-management/spreadsheet/end-user":
+    "controls/spreadsheet/end-user":
         title: "End User"
         position: 9
-    "controls/data-management/treelist/editing":
+    "controls/treelist/editing":
         title: "Editing"
         position: 3
-    "controls/editors":
-        title: "Editors"
-    "controls/editors/datepicker/how-to":
+    "controls/datepicker/how-to":
         title: "How To"
         position: 70
-    "controls/editors/dropdowntree/binding":
+    "controls/dropdowntree/binding":
         title: "Data Binding"
         position: 2
-    "controls/editors/dropdownlist/how-to":
+    "controls/dropdownlist/how-to":
         title: "How To"
         position: 70
-    "controls/editors/multiselect/how-to":
+    "controls/multiselect/how-to":
         title: "How To"
         position: 70
-    "controls/editors/numerictextbox/how-to":
+    "controls/numerictextbox/how-to":
         title: "How To"
         position: 70
-    "controls/editors/upload/how-to":
+    "controls/upload/how-to":
         title: "How To"
         position: 70
     "controls/charts":
@@ -132,158 +128,85 @@ navigation:
     "controls/charts/elements":
         title: "Elements"
         position: 6
+    "controls/charts/sankey":
+        title: "Sankey"
+        position: 7
     "controls/charts/sparkline":
         title: "Sparkline"
-        position: 7
+        position: 8
     "controls/charts/stockchart":
         title: "StockChart"
-        position: 8
+        position: 9
     "controls/charts/treemap":
         title: "TreeMap"
-        position: 9
-    "controls/gauges":
-        title: "Gauges"
-    "controls/barcodes":
-        title: "Barcodes"
-    "controls/diagrams-and-maps":
-        title: "Diagrams and Maps"
-    "controls/diagrams-and-maps/orgchart":
+        position: 10
+    "controls/orgchart":
         title: "OrgChart"
-    "controls/scheduling":
-        title: "Scheduling"
-    "controls/layout":
-        title: "Layout"
-    "controls/layout/window/how-to":
+    "controls/window/how-to":
         title: "How To"
         position: 70
-    "controls/navigation":
-        title: "Navigation"
-    "controls/navigation/appbar":
+    "controls/appbar":
         title: "AppBar"
-    "controls/navigation/bottomnavigation":
+    "controls/bottomnavigation":
         title: "BottomNavigation"
-    "controls/navigation/breadcrumb":
+    "controls/breadcrumb":
         title: "Breadcrumb"
-    "controls/navigation/buttongroup":
+    "controls/buttongroup":
         title: "ButtonGroup"
-    "controls/navigation/drawer":
+    "controls/drawer":
         title: "Drawer"
-    "controls/navigation/dropdownbutton":
+    "controls/dropdownbutton":
         title: "DropDownButton"
-    "controls/navigation/menu/contextmenu":
+    "controls/menu/contextmenu":
         title: "ContextMenu"
         position: 6
-    "controls/navigation/splitbutton":
+    "controls/splitbutton":
         title: "SplitButton"
-    "controls/navigation/stepper":
+    "controls/stepper":
         title: "Stepper"
-    "controls/navigation/wizard":
+    "controls/wizard":
         title: "Wizard"
-    "controls/navigation/tabstrip/how-to":
+    "controls/tabstrip/how-to":
         title: "How To"
         position: 70
-    "controls/navigation/toolbar/command-types":
+    "controls/toolbar/command-types":
         title: "Command Types"
         position: 2
-    "controls/navigation/treeview/binding":
+    "controls/treeview/binding":
         title: "Data Binding"
         position: 2
-    "controls/editors/colorgradient":
+    "controls/colorgradient":
         title: "ColorGradient"
-    "controls/editors/imageeditor":
+    "controls/imageeditor":
         title: "Image Editor"
-    "controls/conversational-ui":
-        title: "Conversational UI"
-    "controls/conversational-ui/chat":
+    "controls/chartwizard":
+        title: "ChartWizard"
+    "controls/chat":
         title: "Chat"
-    "controls/conversational-ui/chat/integrations":
+    "controls/chat/integrations":
         title: "Integrations"
         position: 4
-    "controls/interactivity":
-        title: "Interactivity and UX"
-    "controls/interactivity/fx":
+    "controls/promptbox":
+        title: "PromptBox"
+        isNew: true
+    "controls/fx":
         title: "FX"
-    "controls/interactivity/draganddrop":
+    "controls/draganddrop":
         title: "Drag and Drop"
-    "controls/interactivity/loader":
+    "controls/loader":
         title: "Loader"
-    "controls/interactivity/skeletoncontainer":
+    "controls/skeletoncontainer":
         title: "SkeletonContainer"
-    "controls/interactivity/ripplecontainer":
+    "controls/ripplecontainer":
         title: "RippleContainer"
-    "controls/editors/captcha":
+    "controls/captcha":
         title: "Captcha"
-    "controls/interactivity/sortable/integration":
+    "controls/sortable/integration":
         title: "Integration"
         position: 6
-    "controls/media":
-        title: "Media"
-    "controls/pdf":
-        title: "PDF"
-    "controls/hybrid":
-        title: "Hybrid UI"
-    "controls/hybrid/styles":
-        title: "Styles and Appearance"
+    "ai-assistant":
+        title: "AI Coding Assistant"
         position: 5
-    "controls/hybrid/support":
-        title: "Support and Integration"
-        position: 6
-    "controls/hybrid/actionsheet":
-        title: "ActionSheet"
-        position: 7
-    "controls/hybrid/button":
-        title: "Button"
-        position: 8
-    "controls/hybrid/buttongroup":
-        title: "ButtonGroup"
-        position: 9
-    "controls/hybrid/collapsible":
-        title: "Collapsible"
-        position: 10
-    "controls/hybrid/drawer":
-        title: "Drawer"
-        position: 11
-    "controls/hybrid/listview":
-        title: "ListView"
-        position: 12
-    "controls/hybrid/modalview":
-        title: "ModalView"
-        position: 13
-    "controls/hybrid/navbar":
-        title: "NavBar"
-        position: 14
-    "controls/hybrid/pane":
-        title: "Pane"
-        position: 15
-    "controls/hybrid/popover":
-        title: "PopOver"
-        position: 16
-    "controls/hybrid/scroller":
-        title: "Scroller"
-        position: 17
-    "controls/hybrid/scrollview":
-        title: "ScrollView"
-        position: 18
-    "controls/hybrid/splitview":
-        title: "SplitView"
-        position: 19
-    "controls/hybrid/switch":
-        title: "Switch"
-        position: 20
-    "controls/hybrid/tabstrip":
-        title: "TabStrip"
-        position: 21
-    "controls/hybrid/view":
-        title: "View"
-        position: 22
-    "controls/hybrid/how-to":
-        title: "How To"
-        position: 23
-    "controls/hybrid/how-to/application":
-        title: "Application"
-    "controls/hybrid/faq":
-        title: "Frequently Asked Questions"
-        position: 24
     "framework":
         title: "Shared Utilities"
         position: 5
@@ -321,7 +244,7 @@ navigation:
         title: "AngularJS Directives"
         position: 8
     "framework/AngularJS/widget-basics":
-        title: "Working with Widgets"
+        title: "Working with Components"
         position: 2
     "framework/AngularJS/how-to":
         title: "How To"
@@ -341,38 +264,30 @@ navigation:
     "styles-and-layout/less-themes":
         title: "Less Themes"
         position: 2
-    "third-party":
-        title: "Third-Party Libraries"
+    "kendo-in-the-cloud":
+        title: "Cloud Integration"
         position: 7
+    "third-party":
+        title: "Third-Party Integration"
+        position: 8
     "third-party/webforms":
         title: "ASP.NET Web Forms"
         position: 20
-    "kendo-in-the-cloud":
-        title: "Cloud Integration"
-        position: 8
     "globalization":
         title: "Globalization"
-        position: 9
+        position: 10
     "globalization/intl":
         title: "Internationalization"
         position: 2
     "accessibility":
         title: "Accessibility"
-        position: 10
-    "jsp":
-        title: "Progress<sup>®</sup> Telerik<sup>®</sup> UI for JSP"
         position: 11
-    "php":
-        title: "Progress<sup>®</sup> Telerik<sup>®</sup> UI for PHP"
+    "security":
+        title: "Security"
         position: 12
-    "php/widgets":
-        title: "Classes"
     "backwards-compatibility":
         title: "Breaking Changes"
-        position: 20
-    "troubleshoot":
-        title: "Troubleshooting"
-        position: 30
+        position: 40
     "*how-to":
         title: "How To"
         position: 200
@@ -428,47 +343,15 @@ navigation:
         title: "Troubleshooting"
         position: 201
     "*widgets":
-        title: "Widgets"
+        title: "Components"
     "*tags":
         title: "Tags"
     "*excel":
         title: "Excel"
     "*pdf-export":
         title: "PDF Export"
-    "*mobileactionsheet":
-        title: "ActionSheet"
-    "*mobileapplication":
-        title: "Application"
-    "*mobilebuttongroup":
-        title: "ButtonGroup"
-    "*mobilelayout":
-        title: "Layout"
-    "*mobilemodalview":
-        title: "ModalView"
-    "*mobilepopover":
-        title: "PopOver"
-    "*mobilesplitview":
-        title: "SplitView"
-    "*mobileswitch":
-        title: "Switch"
-    "*mobiletabstrip":
-        title: "TabStrip"
-    "*mobilelistview":
-        title: "ListView"
-    "*mobileview":
-        title: "View"
-    "*mobilebutton":
-        title: "Button"
-    "*mobiledrawer":
-        title: "Drawer"
-    "*mobilenavbar":
-        title: "NavBar"
-    "*mobilescrollview":
-        title: "ScrollView"
     "*barcode":
         title: "Barcode"
-    "*stockchart":
-        title: "Stock Chart"
     "*chart":
         title: "Chart"
     "*chart-types":
@@ -488,6 +371,8 @@ navigation:
         title: "CircularGauge"
     "*radialgauge":
         title: "RadialGauge"
+    "*sankey":
+        title: "Sankey"
     "*sparkline":
         title: "Sparkline"
     "*stockchart":
@@ -543,7 +428,11 @@ navigation:
         title: "Calendar"
     "*captcha":
         title: "Captcha"
-    "controls/scheduling/multiviewcalendar":
+    "*chip":
+        title: "Chip"
+    "*chiplist":
+        title: "ChipList"
+    "controls/multiviewcalendar":
         title: "MultiViewCalendar"
     "*colorpalette":
         title: "ColorPalette"
@@ -585,6 +474,8 @@ navigation:
         title: "Gantt"
     "*imageeditor":
         title: "Image Editor"
+    "*propertygrid":
+        title: "PropertyGrid"
     "*pivotgrid":
         title: "PivotGrid"
     "*pivotgridv2":
@@ -625,6 +516,9 @@ navigation:
     "*orgchart":
         isNew: true
         title: "OrgChart"
+    "*otpinput":
+        isNew: true 
+        title: "OTPInput"
     "*radiobutton":
         title: "RadioButton"
     "*radiogroup":
@@ -666,6 +560,8 @@ navigation:
         title: "Sortable"
     "*splitter":
         title: "Splitter"
+    "*dockmanager":
+        title: "DockManager"
     "*tabstrip":
         title: "TabStrip"
     "*taskboard":
@@ -678,8 +574,12 @@ navigation:
         title: "TimeLine"
     "*timepicker":
         title: "TimePicker"
+    "*timedurationpicker":
+        title: "TimeDurationPicker"
     "*tooltip":
         title: "Tooltip"
+    "*togglebutton":
+        title: "ToggleButton"
     "*toolbar":
         title: "ToolBar"
     "*treelist":
@@ -690,6 +590,10 @@ navigation:
         title: "Upload"
     "*window":
         title: "Window"
+    "*aiprompt":
+        title: "AIPrompt"
+    "*promptbox":
+        title: "PromptBox"
     "*hello-kendo-ui":
         title: "Hello Kendo UI"
     "*home-page":
@@ -707,12 +611,6 @@ navigation:
     "api/javascript":
         title: "JavaScript"
         position: 2
-    "api/jsp":
-        title: "JSP"
-        position: 3
-    "api/php":
-        title: "PHP"
-        position: 4
     "all-pages":
         title: "All Pages GSA"
 
@@ -720,10 +618,16 @@ navigation:
 baseurl: /kendo-ui
 
 ## The Kendo UI version used
-cdnVersion: "2022.3.913"
+cdnVersion: "2026.3.811"
+
+## The themes CDN used
+themesCdnVersion: "14.5.0"
+
+## The Pdfjs CDN version used
+pdfjsCdnVersion: "5.5.207"
 
 ## The MVC Core version used
-mvcCoreVersion: "2022.3.913"
+mvcCoreVersion: "2026.3.811"
 
 ## Progress NPM Registry
 registry_url: 'https://registry.npm.telerik.com/'
@@ -1198,24 +1102,6 @@ api:
     group_parents:
       - "tooltip.animation"
 -
-    file: "api/javascript/mobile/ui/actionsheet"
-    group_parents:
-      - "popup"
--
-    file: "api/javascript/mobile/ui/listview"
-    group_parents:
-      - "messages"
-      - "filterable"
--
-    file: "api/javascript/mobile/ui/popover"
-    group_parents:
-      - "pane"
-      - "popup"
--
-    file: "api/javascript/mobile/ui/scroller"
-    group_parents:
-      - "messages"
--
     file: "api/javascript/ooxml/workbook"
     group_parents:
       - "sheets.columns"
@@ -1534,30 +1420,6 @@ defaults:
         editable: true
 -
     scope:
-        path: "php"
-    values:
-        product: "php-ui"
--
-    scope:
-        path: "api/php"
-    values:
-        product: "php-ui"
-        editable: false
-        has_api_toc: true
--
-    scope:
-        path: "api/jsp"
-    values:
-        product: "jsp-ui"
-        editable: false
-        has_api_toc: true
--
-    scope:
-        path: "jsp"
-    values:
-        product: "jsp-ui"
--
-    scope:
         path: "api"
     values:
         res_type: api
@@ -1577,43 +1439,43 @@ defaults:
     ## Component Tags
 -
     scope:
-        path: "controls/gauges/lineargauge"
+        path: "controls/lineargauge"
     values:
         component: "gauges"
 
 -
     scope:
-        path: "controls/gauges/radialgauge"
+        path: "controls/radialgauge"
     values:
         component: "gauges"
 
 -
     scope:
-        path: "controls/editors/autocomplete"
+        path: "controls/autocomplete"
     values:
         component: "autocomplete"
 
 -
     scope:
-        path: "controls/layout/avatar"
+        path: "controls/avatar"
     values:
         component: "avatar"
 
 -
     scope:
-        path: "controls/barcodes/barcode"
+        path: "controls/barcode"
     values:
         component: "barcode"
 
 -
     scope:
-        path: "controls/navigation/button"
+        path: "controls/button"
     values:
         component: "button"
 
 -
     scope:
-        path: "controls/scheduling/calendar"
+        path: "controls/calendar"
     values:
         component: "calendar"
 
@@ -1622,28 +1484,34 @@ defaults:
         path: "controls/charts"
     values:
         component: "charts"
-        
+
 -
     scope:
-        path: "controls/editors/checkbox"
+        path: "controls/chartwizard"
+    values:
+        component: "chartwizard"
+
+-
+    scope:
+        path: "controls/checkbox"
     values:
         component: "checkbox"
 
 -
     scope:
-        path: "controls/editors/checkboxgroup"
+        path: "controls/checkboxgroup"
     values:
         component: "checkboxgroup"
 
 -
     scope:
-        path: "controls/editors/colorpicker"
+        path: "controls/colorpicker"
     values:
         component: "color-picker"
 
 -
     scope:
-        path: "controls/editors/combobox"
+        path: "controls/combobox"
     values:
         component: "combobox"
 
@@ -1655,37 +1523,43 @@ defaults:
 
 -
     scope:
-        path: "controls/editors/datepicker"
+        path: "controls/datepicker"
     values:
         component: "date-time-pickers"
 
 -
     scope:
-        path: "controls/editors/timepicker"
+        path: "controls/timepicker"
     values:
         component: "date-time-pickers"
 
 -
     scope:
-        path: "controls/editors/dateinput"
+        path: "controls/timedurationpicker"
+    values:
+        component: "date-time-pickers"
+
+-
+    scope:
+        path: "controls/dateinput"
     values:
         component: "dateinput"
 
 -
     scope:
-        path: "controls/diagrams-and-maps/diagram"
+        path: "controls/diagram"
     values:
         component: "diagram"
 
 -
     scope:
-        path: "controls/layout/dialog"
+        path: "controls/dialog"
     values:
         component: "dialog"
 
 -
     scope:
-        path: "controls/interactivity/draganddrop"
+        path: "controls/draganddrop"
     values:
         component: "drag-and-drop"
 
@@ -1697,31 +1571,31 @@ defaults:
 
 -
     scope:
-        path: "controls/editors/dropdownlist"
+        path: "controls/dropdownlist"
     values:
         component: "dropdownlist"
 
-
+-
     scope:
-        path: "controls/editors/editor"
+        path: "controls/editor"
     values:
         component: "editor"
 
 -
     scope:
-        path: "controls/interactivity/fx"
+        path: "controls/fx"
     values:
         component: "effects"
 
 -
     scope:
-        path: "controls/interactivity/ripplecontainer"
+        path: "controls/ripplecontainer"
     values:
         component: "ripple-container"
 
 -
     scope:
-        path: "controls/scheduling/gantt"
+        path: "controls/gantt"
     values:
         component: "gantt"
 
@@ -1733,13 +1607,13 @@ defaults:
 
 -
     scope:
-        path: "controls/data-management/filemanager"
+        path: "controls/filemanager"
     values:
         component: "filemanager"
 
 -
     scope:
-        path: "controls/data-management/grid"
+        path: "controls/grid"
     values:
         component: "grid"
 
@@ -1751,21 +1625,15 @@ defaults:
 
 -
     scope:
-        path: "controls/editors/listbox"
+        path: "controls/listbox"
     values:
         component: "listbox"
 
 -
     scope:
-        path: "controls/data-management/listview"
+        path: "controls/listview"
     values:
         component: "listview"
-
--
-    scope:
-        path: "controls/hybrid/listview"
-    values:
-        component: "mobile-listview"
 
 -
     scope:
@@ -1775,151 +1643,168 @@ defaults:
 
 -
     scope:
-        path: "controls/diagrams-and-maps/map"
+        path: "controls/map"
     values:
         component: "map"
 
 -
     scope:
-        path: "controls/editors/maskedtextbox"
+        path: "controls/maskedtextbox"
     values:
         component: "maskedtextbox"
 
 -
     scope:
-        path: "controls/media/mediaplayer"
+        path: "controls/mediaplayer"
     values:
         component: "mediaplayer"
 
 -
     scope:
-        path: "controls/navigation/menu"
+        path: "controls/menu"
     values:
         component: "menu"
 
 -
     scope:
-        path: "controls/navigation/actionsheet"
+        path: "controls/actionsheet"
     values:
         component: "ActionSheet"
 
 -
     scope:
-        path: "controls/editors/multiselect"
+        path: "controls/multiselect"
     values:
         component: "multi-select"
 
 -
     scope:
-        path: "controls/editors/multicolumncombobox"
+        path: "controls/multicolumncombobox"
     values:
         component: "multicolumn-combobox"
 
 -
     scope:
-        path: "controls/layout/form"
+        path: "controls/form"
     values:
         component: "form"
 
 -
     scope:
-        path: "controls/navigation/floatingactionbutton"
+        path: "controls/floatingactionbutton"
     values:
         component: "floatingactionbutton"
-        
+
 -
     scope:
-        path: "controls/layout/expansionpanel"
+        path: "controls/expansionpanel"
     values:
         component: "expansionpanel"
 
 -
     scope:
-        path: "controls/layout/notification"
+        path: "controls/notification"
     values:
         component: "notification"
 
 -
     scope:
-        path: "controls/editors/numerictextbox"
+        path: "controls/numerictextbox"
     values:
         component: "numeric-textbox"
 
 -
     scope:
-        path: "controls/editors/radiobutton"
+        path: "controls/radiobutton"
     values:
         component: "radiobutton"
 
 -
     scope:
-        path: "controls/editors/radiogroup"
+        path: "controls/radiogroup"
     values:
         component: "radiogroup"
 
 -
     scope:
-        path: "controls/editors/rating"
+        path: "controls/rating"
     values:
         component: "rating"
 
 -
     scope:
-        path: "controls/editors/signature"
+        path: "controls/signature"
     values:
         component: "signature"
 
 -
     scope:
-        path: "controls/diagrams-and-maps/orgchart"
+        path: "controls/otpinput"
+    values:
+        component: "otpinput"
+
+-
+    scope:
+        path: "controls/orgchart"
     values:
         component: "orgchart"
 -
     scope:
-        path: "controls/navigation/panelbar"
+        path: "controls/panelbar"
     values:
         component: "panelbar"
 
 -
     scope:
-        path: "controls/data-management/pivotgrid"
+        path: "controls/pivotgrid"
     values:
         component: "pivotgrid"
 
 -
     scope:
-        path: "controls/data-management/pivotgridv2"
+        path: "controls/pivotgridv2"
     values:
         component: "pivotgridv2"
 
+-
+    scope:
+        path: "controls/propertygrid"
+    values:
+        component: "propertygrid"
 
 -
     scope:
-        path: "controls/layout/popover"
+        path: "controls/promptbox"
+    values:
+        component: "promptbox"
+
+-
+    scope:
+        path: "controls/popover"
     values:
         component: "popover"
 
 -
     scope:
-        path: "controls/interactivity/progressbar"
+        path: "controls/progressbar"
     values:
         component: "progressbar"
 
 -
     scope:
-        path: "controls/interactivity/circularprogressbar"
+        path: "controls/circularprogressbar"
     values:
         component: "circularprogressbar"
 
 -
     scope:
-        path: "controls/barcodes/qrcode"
+        path: "controls/qrcode"
     values:
         component: "qrcode"
 
 -
     scope:
-        path: "controls/layout/responsivepanel"
+        path: "controls/responsivepanel"
     values:
         component: "responsivepanel"
 
@@ -1931,27 +1816,27 @@ defaults:
 
 -
     scope:
-        path: "controls/scheduling/scheduler"
+        path: "controls/scheduler"
     values:
         component: "scheduler"
 
 -
     scope:
-        path: "controls/hybrid/scrollview"
-    values:
-        component: "scrollview"
-
--
-    scope:
-        path: "controls/editors/slider"
+        path: "controls/slider"
     values:
         component: "slider"
 
 -
     scope:
-        path: "controls/interactivity/sortable"
+        path: "controls/sortable"
     values:
         component: "sortable"
+
+-
+    scope:
+        path: "controls/charts/sankey"
+    values:
+        component: "sankey"
 
 -
     scope:
@@ -1961,48 +1846,49 @@ defaults:
 
 -
     scope:
-        path: "controls/layout/splitter"
+        path: "controls/splitter"
     values:
         component: "splitter"
 
 -
     scope:
-        path: "controls/data-management/spreadsheet"
+        path: "controls/spreadsheet"
     values:
         component: "spreadsheet"
 
 -
     scope:
-        path: "controls/editors/switch"
+        path: "controls/switch"
     values:
         component: "switch"
 
+-
     scope:
-        path: "controls/navigation/tabstrip"
+        path: "controls/tabstrip"
     values:
         component: "tabstrip"
 
 -
     scope:
-        path: "controls/data-management/taskboard"
+        path: "controls/taskboard"
     values:
         component: "taskboard"
 
 -
     scope:
-        path: "controls/editors/textarea"
+        path: "controls/textarea"
     values:
         component: "textarea"
 
 -
     scope:
-        path: "controls/editors/textbox"
+        path: "controls/textbox"
     values:
         component: "textbox"
 
 -
     scope:
-        path: "controls/editors/textarea"
+        path: "controls/textarea"
     values:
         component: "textarea"
 
@@ -2020,24 +1906,25 @@ defaults:
 
 -
     scope:
-        path: "controls/navigation/toolbar"
+        path: "controls/toolbar"
     values:
         component: "toolbar"
 
 -
     scope:
-        path: "controls/layout/tooltip"
+        path: "controls/tooltip"
     values:
         component: "tooltip"
 
+-
     scope:
-        path: "controls/layout/tilelayout"
+        path: "controls/tilelayout"
     values:
         component: "tilelayout"
 
 -
     scope:
-        path: "controls/data-management/treelist"
+        path: "controls/treelist"
     values:
         component: "treelist"
 
@@ -2049,25 +1936,25 @@ defaults:
 
 -
     scope:
-        path: "controls/navigation/treeview"
+        path: "controls/treeview"
     values:
         component: "treeview"
 
 -
     scope:
-        path: "controls/editors/upload"
+        path: "controls/upload"
     values:
         component: "upload"
 
 -
     scope:
-        path: "controls/editors/validator"
+        path: "controls/validator"
     values:
         component: "validation"
 
 -
     scope:
-        path: "controls/layout/window"
+        path: "controls/window"
     values:
         component: "window"
 
@@ -2075,8 +1962,8 @@ defaults:
 
 
 type_links:
-    "kendo.Class": "/api/javascript/class"
-    "kendo.data.DataSource": "/api/javascript/data/datasource"
+    "kendo.Class": "/api/class"
+    "kendo.data.DataSource": "/api/data/datasource"
     "Array": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
     "Blob": "https://developer.mozilla.org/en/docs/Web/API/Blob"
     "File": "https://developer.mozilla.org/en-US/docs/Web/API/File"
@@ -2105,6 +1992,7 @@ intro_columns:
     title: "Charts"
     items:
       "Charts": "overview_kendoui_charts_widget"
+      "ChartWizard": "overview_kendoui_chartwizard_widget"
   -
     title: "Data Management"
     items:
@@ -2115,6 +2003,7 @@ intro_columns:
       "Pager": "overview_kendoui_pager_widget"
       "PivotGrid": "overview_kendoui_pivotgrid_widget"
       "PivotGridV2": "overview_kendoui_pivotgridv2_widget"
+      "PropertyGrid": "overview_kendoui_propertygrid"
       "Spreadsheet": "overview_spreadsheet_widget"
       "TaskBoard": "overview_kendoui_taskboard_widget"
       "TreeList": "overview_kendoui_treelist_widget"
@@ -2174,6 +2063,7 @@ intro_columns:
       "TextArea": "overview_kendoui_textarea_widget"
       "TextBox": "overview_kendoui_textbox_widget"
       "TimePicker": "overview_kendoui_timepicker_widget"
+      "TimeDurationPicker": "overview_kendoui_timedurationpicker_widget"
       "Upload": "overview_kendoui_upload_widget"
       "Validator": "overview_kendoui_validator_widget"
 
@@ -2182,7 +2072,9 @@ intro_columns:
   -
     title: "Conversational UI"
     items:
+      "AIPrompt": "overview_kendoui_aiprompt_component"
       "Chat": "overview_kendoui_chat_widget"
+      "PromptBox": "overview_kendoui_promptbox"
   -
     title: "PDF"
     items:
@@ -2209,16 +2101,13 @@ intro_columns:
       "Menu": "overview_kendoui_menu_widget"
       "PanelBar": "overview_kendoui_panelbar_widget"
       "SplitButton": "overview_kendoui_splitbutton_widget"
+      "ToggleButton": "overview_kendoui_togglebutton"
       "Stepper": "overview_stepper_widget"
       "TabStrip": "overview_kendoui_tabstrip_widget"
       "Timeline": "overview_kendoui_timeline_widget"
       "ToolBar": "overview_kendoui_toolbar_widget"
       "TreeView": "overview_kendoui_treeview_widget"
       "Wizard": "overview_wizard_widget"
-  -
-    title: "Hybrid UI"
-    items:
-      "Hybrid": "overview_hybridkendoui"
 -
   categories:
   -
@@ -2239,6 +2128,7 @@ intro_columns:
       "Avatar": "overview_kendoui_avatar_widget"
       "Badge": "overview_kendoui_badge_widget"
       "Dialog": "overview_kendoui_dialog_widget"
+      "DockManager": "overview_kendoui_dockmanager_widget"
       "ExpansionPanel": "overview_kendoui_expansionpanel_widget"
       "Form": "overview_kendoui_form_widget"
       "Notification": "overview_kendoui_notification_widget"
@@ -2250,7 +2140,7 @@ intro_columns:
       "TileLayout": "overview_kendoui_tilelayout_widget"
       "Window": "overview_kendoui_window_widget"
 
-ff-sheet-id: 14zzclhdh7dMLpg0iq4-2hweCdEiuxxqP3tHdr42-_Cs
+productCode: KENDOUICOMPLETE
 
 # The google services configuration
 google_tag_manager: GTM-6X92
@@ -2265,7 +2155,7 @@ code_lang: true
 has_kb_portal: true
 has_cta_panels: true
 edit_repo_url: https://github.com/telerik/kendo-ui-core/edit/master/docs
-download: https://www.telerik.com/download/kendo-ui
+download: https://www.telerik.com/try/kendo-ui
 nav:
   "Demos": https://demos.telerik.com/kendo-ui/
   "Release History": https://www.telerik.com/support/whats-new/kendo-ui/release-history
@@ -2278,14 +2168,15 @@ footer:
   links:
     "Getting Started": https://docs.telerik.com/kendo-ui/intro/first-steps
     "Demos": https://demos.telerik.com/kendo-ui/
-    "Whats New": "https://www.telerik.com/support/whats-new/kendo-ui"
-    "Roadmap": https://www.telerik.com/support/whats-new/kendo-ui/roadmap
+    "Whats New": "https://www.telerik.com/support/whats-new/kendo-jquery-ui"
+    "Roadmap": https://www.telerik.com/support/whats-new/kendo-jquery-ui/roadmap
 -
   title: "Community"
   links:
     "Forums": https://www.telerik.com/forums/kendo-ui
     "Blogs": https://www.telerik.com/blogs/kendo-ui
     "Feedback Portal": https://feedback.telerik.com/kendo-jquery-ui
+    "Doc Contribution": https://docs.telerik.com/kendo-ui/contribution
 -
   title: "Frameworks"
   links:

@@ -1,4 +1,5 @@
 (function($, undefined) {
+
 /* FlatColorPicker messages */
 
 if (kendo.ui.FlatColorPicker) {
@@ -355,6 +356,7 @@ $.extend(true, kendo.ui.Grid.prototype.options.messages,{
     "cancel": "Módosítások elvetése",
     "canceledit": "Mégse",
     "create": "Új elem",
+    "add": "Új elem",
     "destroy": "Törlés",
     "edit": "Szerkesztés",
     "excel": "Exportálás Excel-be",
@@ -508,6 +510,10 @@ $.extend(true, kendo.ui.PivotFieldMenu.prototype.options.messages,{
 if (kendo.ui.RecurrenceEditor) {
 kendo.ui.RecurrenceEditor.prototype.options.messages =
 $.extend(true, kendo.ui.RecurrenceEditor.prototype.options.messages,{
+  "recurrenceEditorTitle": "Ismétlődés-szerkesztő",
+  "removeRecurrence": "Ismétlődés eltávolítása",
+  "cancel": "Mégse",
+  "update": "Mentés",
   "frequencies": {
     "never": "Soha",
     "hourly": "Óránként",
@@ -560,6 +566,13 @@ $.extend(true, kendo.ui.RecurrenceEditor.prototype.options.messages,{
     "day": "nap",
     "weekday": "munkanap",
     "weekend": "pihenőnap"
+  },
+  "makeRecurring": "Ismétlővé tétel",
+  "summary": {
+    "on": "napján",
+    "onThe": "napján",
+    "onDay": "a napon",
+    "until": "ig"
   }
 });
 }
@@ -576,9 +589,11 @@ $.extend(true, kendo.ui.Scheduler.prototype.options.messages,{
   "showFullDay": "Teljes nap mutatása",
   "showWorkDay": "Munkaórák mutatása",
   "today": "Ma",
+  "create": "Új esemény",
   "save": "Mentés",
   "cancel": "Mégse",
   "destroy": "Törlés",
+  "resetSeries": "Sorozat visszaállítása",
   "deleteWindowTitle": "Esemény törlése",
   "ariaSlotLabel": "Kiválasztva {0:t}-tól {1:t}-ig",
   "ariaEventLabel": "{0} {1:D} {2:t}",
@@ -598,6 +613,7 @@ $.extend(true, kendo.ui.Scheduler.prototype.options.messages,{
     "deleteWindowSeries": "Összes ismétlődés törlése",
     "deleteRecurringConfirmation": "Biztos, hogy törölni akarja ezt az alakalmat?",
     "deleteSeriesConfirmation": "Biztos, hogy törölni akarja az összes ismétlődést?",
+    "resetSeriesConfirmation": "Biztosan visszaállítja a teljes sorozatot?",
     "editWindowTitle": "Ismétlődő elem szerkesztése",
     "editWindowOccurrence": "Alkalom szerkesztése",
     "editWindowSeries": "Összes ismétlődés szerkesztése",
@@ -610,6 +626,13 @@ $.extend(true, kendo.ui.Scheduler.prototype.options.messages,{
     "end": "Befejezés",
     "allDayEvent": "Egész napos esemény",
     "description": "Leírás",
+    "descriptionPlaceholder": "Leírás hozzáadása",
+    "from": "ettől",
+    "to": "eddig",
+    "cancelTimezoneReset": "Nem",
+    "resetTimezone": "Igen",
+    "resetTimezoneConfirmation": "Biztosan visszaállítja az időzónát?",
+    "resetTimezoneWindowTitle": "Időzóna visszaállítása",
     "repeat": "Ismétlődés",
     "timezone": " ",
     "startTimezone": "Kezdés időzónája",
@@ -619,7 +642,9 @@ $.extend(true, kendo.ui.Scheduler.prototype.options.messages,{
     "timezoneEditorButton": "Időzóna",
     "timezoneTitle": "Időzónák",
     "noTimezone": "Nincs időzóna",
-    "editorTitle": "Esemény"
+    "editorTitle": "Esemény",
+    "newEvent": "Új esemény",
+    "editEvent": "Esemény szerkesztése"
   }
 });
 }
@@ -676,7 +701,7 @@ $.extend(true, kendo.spreadsheet.messages.dialogs,{
   "alignmentDialog": {
     "title": "Igazítás",
     "buttons": {
-     "justtifyLeft": "Balra igazítás",
+     "justifyLeft": "Balra igazítás",
      "justifyCenter": "Középre igazítás",
      "justifyRight": "Jobbra igazítás",
      "justifyFull": "Sorkizárás",
@@ -706,6 +731,9 @@ $.extend(true, kendo.spreadsheet.messages.dialogs,{
   "confirmationDialog": {
     "text": "Biztos, hogy törli ezt a munkalapot?",
     "title": "Munkalap törlése"
+  },
+  "overflowDialog": {
+    "errorMessage": 'Nem illeszthető be, mert a másolási és a beillesztési terület nem azonos méretű és alakú.'
   },
   "validationDialog": {
     "title": "Adatellenőrzés",
@@ -854,7 +882,7 @@ $.extend(true, kendo.spreadsheet.messages.toolbar,{
   "addRowBelow": "Sor hozzáadása alá",
   "alignment": "Igazítás",
   "alignmentButtons": {
-    "justtifyLeft": "Balra igazítás",
+    "justifyLeft": "Balra igazítás",
     "justifyCenter": "Középre igazítás",
     "justifyRight": "Jobbra igazítás",
     "justifyFull": "Sorkizárás",
@@ -935,7 +963,8 @@ $.extend(true, kendo.spreadsheet.messages.view,{
   "errors": {
     "shiftingNonblankCells": "Adatvesztés nélkül nem lehet a cellákat beszúrni. Válasszon másik beszúrási pozíciót, vagy törölje az adatokat a munkalap végéről.",
     "filterRangeContainingMerges": "Nem lehet szűrőt készíteni összevonásokat tartalmazó tartományon belül",
-    "validationError": "A beírt érték megsérti a cellára beállított adatellenőrzési szabályokat."
+    "validationError": "A beírt érték megsérti a cellára beállított adatellenőrzési szabályokat.",
+	"cannotModifyDisabled": 'Nem lehet módosítani a letiltott cellákat.'
   },
   "tabs": {
     "home": "Elejére",
@@ -969,6 +998,22 @@ $.extend(true, kendo.ui.ListBox.prototype.options.messages,{
     "transferAllTo": "Összes felvétele",
     "transferAllFrom": "Összes eltávolítása"
   }
+});
+}
+
+/* DateTimePicker messages */
+if (kendo.ui.DateTimePicker) {
+kendo.ui.DateTimePicker.prototype.options.messages =
+$.extend(true, kendo.ui.DateTimePicker.prototype.options.messages, {
+  "set": "Beállít",
+  "cancel": "Mégse",
+  "hour": "Óra",
+  "minute": "Perc",
+  "second": "Másodperc",
+  "milisecond": "Millisec",
+  "now": "Most",
+  "date": "Dátum",
+  "time": "Idő"
 });
 }
 
@@ -1067,7 +1112,8 @@ $.extend(true, kendo.ui.Dialog.prototype.options.localization, {
 if (kendo.ui.Calendar) {
 kendo.ui.Calendar.prototype.options.messages =
 $.extend(true, kendo.ui.Calendar.prototype.options.messages, {
-  "weekColumnHeader": ""
+  "weekColumnHeader": "",
+  "today": "Ma"
 });
 }
 
@@ -1111,6 +1157,534 @@ if (kendo.ui.DateInput) {
       "minute": "prcek",
       "second": "másodpercek",
       "dayperiod": "DE/DU"
+    });
+}
+
+/* DropDownList messages */
+
+if (kendo.ui.DropDownList) {
+
+    kendo.ui.DropDownList.prototype.options.messages =
+        $.extend(true, kendo.ui.DropDownList.prototype.options.messages, kendo.ui.List.prototype.options.messages);
+
+}
+
+/* ComboBox messages */
+
+if (kendo.ui.ComboBox) {
+
+    kendo.ui.ComboBox.prototype.options.messages =
+        $.extend(true, kendo.ui.ComboBox.prototype.options.messages, kendo.ui.List.prototype.options.messages);
+
+}
+
+/* AutoComplete messages */
+
+if (kendo.ui.AutoComplete) {
+
+    kendo.ui.AutoComplete.prototype.options.messages =
+        $.extend(true, kendo.ui.AutoComplete.prototype.options.messages, kendo.ui.List.prototype.options.messages);
+
+}
+
+/* MultiColumnComboBox messages */
+
+if (kendo.ui.MultiColumnComboBox) {
+
+    kendo.ui.MultiColumnComboBox.prototype.options.messages =
+        $.extend(true, kendo.ui.MultiColumnComboBox.prototype.options.messages, kendo.ui.List.prototype.options.messages);
+
+}
+
+/* ColorGradient messages */
+
+if (kendo.ui.ColorGradient) {
+
+    kendo.ui.ColorGradient.prototype.options.messages =
+        $.extend(true, kendo.ui.ColorGradient.prototype.options.messages, {
+            "contrastRatio": "Kontrasztarany:",
+            "fail": "Sikertelen",
+            "pass": "Megfelelt",
+            "hex": "HEX",
+            "toggleFormat": "Formatum valtasa",
+            "red": "Piros",
+            "green": "Zold",
+            "blue": "Kek",
+            "alpha": "Alfa"
+        });
+
+}
+
+/* DateRangePicker messages */
+
+if (kendo.ui.DateRangePicker) {
+
+    kendo.ui.DateRangePicker.prototype.options.messages =
+        $.extend(true, kendo.ui.DateRangePicker.prototype.options.messages, {
+            "startLabel": "Kezdet",
+            "endLabel": "Veg"
+        });
+
+}
+
+/* FileManager messages */
+
+if (kendo.ui.FileManager) {
+
+    kendo.ui.FileManager.prototype.options.messages =
+        $.extend(true, kendo.ui.FileManager.prototype.options.messages, {
+            "toolbar": {
+                "createFolder": "Uj mappa",
+                "upload": "Feltoltes",
+                "sortDirection": "Rendezesi irany",
+                "sortDirectionAsc": "Novekvo",
+                "sortDirectionDesc": "Csokkeno",
+                "sortField": "Rendezes",
+                "nameField": "Nev",
+                "sizeField": "Meret",
+                "typeField": "Tipus",
+                "dateModifiedField": "Modositas datuma",
+                "dateCreatedField": "Letrehozas datuma",
+                "listView": "Lista nezet",
+                "gridView": "Racs nezet",
+                "search": "Kereses",
+                "details": "Reszletek",
+                "detailsChecked": "Igen",
+                "detailsUnchecked": "Nem",
+                "Delete": "Torles",
+                "Rename": "Atnevezes"
+            },
+            "views": {
+                "nameField": "Nev",
+                "sizeField": "Meret",
+                "typeField": "Tipus",
+                "dateModifiedField": "Modositas datuma",
+                "dateCreatedField": "Letrehozas datuma",
+                "items": "elem"
+            },
+            "dialogs": {
+                "upload": {
+                    "title": "Fajlok feltoltese",
+                    "clear": "Torles",
+                    "done": "Kesz"
+                },
+                "moveConfirm": {
+                    "title": " ",
+                    "content": "<p class='k-text-center'>Atherlyezni vagy masolni szeretne a kivalasztott fajlokat?</p>",
+                    "okText": "Masolas",
+                    "cancel": "Athelyezes",
+                    "close": "Bezaras"
+                },
+                "deleteConfirm": {
+                    "title": "Torles megerositese",
+                    "content": "<p class='k-text-center'>Biztosan torolni szeretne a kivalasztott fajlokat?<br/>Ez a muvelet nem vonhato vissza.</p>",
+                    "okText": "Torles",
+                    "cancel": "Megse",
+                    "close": "Bezaras"
+                },
+                "renamePrompt": {
+                    "title": "Atnevezes",
+                    "content": "<p class='k-text-center'>Adja meg az uj fajlnevet</p>",
+                    "okText": "Atnevezes",
+                    "cancel": "Megse",
+                    "close": "Bezaras"
+                }
+            },
+            "previewPane": {
+                "noFileSelected": "Nincs kivalasztott fajl",
+                "extension": "Tipus",
+                "size": "Meret",
+                "created": "Letrehozas datuma",
+                "createdUtc": "Letrehozas datuma (UTC)",
+                "modified": "Modositas datuma",
+                "modifiedUtc": "Modositas datuma (UTC)",
+                "items": "elem"
+            }
+        });
+
+}
+
+/* TaskBoard messages */
+
+if (kendo.ui.TaskBoard) {
+
+    kendo.ui.TaskBoard.prototype.options.messages =
+        $.extend(true, kendo.ui.TaskBoard.prototype.options.messages, {
+            "edit": "Szerkesztes",
+            "createNewCard": "Uj kartya",
+            "create": "Letrehozas",
+            "search": "Kereses",
+            "previewCard": "Kartya elonezet",
+            "addCard": "Kartya hozzaadasa",
+            "editCard": "Kartya szerkesztese",
+            "deleteCard": "Kartya torlese",
+            "addColumn": "Oszlop hozzaadasa",
+            "editColumn": "Oszlop szerkesztese",
+            "deleteColumn": "Oszlop torlese",
+            "close": "Bezaras",
+            "cancel": "Megse",
+            "delete": "Torles",
+            "saveChanges": "Valtozasok mentese",
+            "title": "Cim:",
+            "description": "Leiras:",
+            "newColumn": "Uj oszlop",
+            "deleteColumnConfirm": "Biztosan torolni szeretne ezt az oszlopot?",
+            "deleteCardConfirm": "Biztosan torolni szeretne ezt a kartyat?"
+        });
+
+}
+
+/* PivotConfiguratorV2 messages */
+
+if (kendo.ui.PivotConfiguratorV2) {
+
+    kendo.ui.PivotConfiguratorV2.prototype.options.messages =
+        $.extend(true, kendo.ui.PivotConfiguratorV2.prototype.options.messages, {
+            "title": "Beallitasok",
+            "cancelButtonText": "Megse",
+            "applyButtonText": "Alkalmaz",
+            "measures": "Valasszon mezoket a kezdeshez",
+            "columns": "Valasszon mezoket a kezdeshez",
+            "rows": "Valasszon mezoket a kezdeshez"
+        });
+
+}
+
+/* PivotFieldMenuV2 messages */
+
+if (kendo.ui.PivotFieldMenuV2) {
+
+    kendo.ui.PivotFieldMenuV2.prototype.options.messages =
+        $.extend(true, kendo.ui.PivotFieldMenuV2.prototype.options.messages, {
+            "apply": "Alkalmaz",
+            "sortAscending": "Novekvo",
+            "sortDescending": "Csokkeno",
+            "filterFields": "Mezoszuro",
+            "filter": "Szuro",
+            "include": "Mezok beallitasa...",
+            "clear": "Torles",
+            "reset": "Visszaallitas",
+            "moveToColumns": "Athelyezes oszlopokba",
+            "moveToRows": "Athelyezes sorokba",
+            "movePrevious": "Vissza",
+            "moveNext": "Elore",
+            "filterOperatorsDropDownLabel": "Szurooperatorok",
+            "filterValueTextBoxLabel": "Szuroertek",
+            "operators": {
+                "contains": "Tartalmazza",
+                "doesnotcontain": "Nem tartalmazza",
+                "startswith": "Kezdodik",
+                "endswith": "Vegzodik",
+                "eq": "Egyenlo",
+                "neq": "Nem egyenlo"
+            }
+        });
+
+}
+
+/* MobileRecurrenceEditor messages */
+
+if (kendo.ui.MobileRecurrenceEditor) {
+
+    kendo.ui.MobileRecurrenceEditor.prototype.options.messages =
+        $.extend(true, kendo.ui.MobileRecurrenceEditor.prototype.options.messages, {
+            "cancel": "Megse",
+            "update": "Mentes",
+            "endTitle": "Ismetles vege",
+            "repeatTitle": "Ismetlesi minta",
+            "headerTitle": "Esemeny ismetlese",
+            "end": {
+                "never": "Soha",
+                "after": "Utan",
+                "on": "Datum"
+            },
+            "daily": {
+                "interval": "nap"
+            },
+            "weekly": {
+                "interval": "het"
+            },
+            "monthly": {
+                "interval": "honap",
+                "repeatBy": "Ismetles: ",
+                "dayOfMonth": "Honap napja",
+                "dayOfWeek": "Het napja"
+            },
+            "yearly": {
+                "interval": "ev",
+                "repeatBy": "Ismetles: ",
+                "dayOfMonth": "Honap napja",
+                "dayOfWeek": "Het napja",
+                "of": " / "
+            },
+            "endRule": {
+                "after": " alkalommal",
+                "on": "Datum "
+            }
+        });
+
+}
+
+/* TimePicker */
+
+if (kendo.ui.TimePicker) {
+
+    kendo.ui.TimePicker.prototype.options.messages =
+        $.extend(true, kendo.ui.TimePicker.prototype.options.messages, {
+            "set": "Beallitas",
+            "cancel": "Megse",
+            "hour": "ora",
+            "minute": "perc",
+            "second": "masodperc",
+            "millisecond": "ezredmasodperc",
+            "now": "Most"
+        });
+
+}
+
+/* DateTimePicker */
+
+if (kendo.ui.DateTimePicker) {
+
+    kendo.ui.DateTimePicker.prototype.options.messages =
+        $.extend(true, kendo.ui.DateTimePicker.prototype.options.messages, {
+            "set": "Beallitas",
+            "cancel": "Megse",
+            "hour": "ora",
+            "minute": "perc",
+            "second": "masodperc",
+            "millisecond": "ezredmasodperc",
+            "now": "Most",
+            "date": "Datum",
+            "time": "Ido",
+            "today": "Ma",
+            "weekColumnHeader": ""
+        });
+
+}
+
+/* List messages */
+
+if (kendo.ui.List) {
+
+    kendo.ui.List.prototype.options.messages =
+        $.extend(true, kendo.ui.List.prototype.options.messages, {
+            "clear": "torles",
+            "noData": "Nincs adat."
+        });
+
+}
+
+/* DropDownTree messages */
+
+if (kendo.ui.DropDownTree) {
+
+    kendo.ui.DropDownTree.prototype.options.messages =
+        $.extend(true, kendo.ui.DropDownTree.prototype.options.messages, {
+            "clear": "torles",
+            "noData": "Nincs adat.",
+            "singleTag": "kivalasztott elem"
+        });
+
+}
+
+/* MultiSelect messages */
+
+if (kendo.ui.MultiSelect) {
+
+    kendo.ui.MultiSelect.prototype.options.messages =
+        $.extend(true, kendo.ui.MultiSelect.prototype.options.messages, {
+            "clear": "torles",
+            "noData": "Nincs adat.",
+            "singleTag": "kivalasztott elem"
+        });
+
+}
+
+/* Chat messages */
+
+if (kendo.ui.Chat) {
+
+    kendo.ui.Chat.prototype.options.messages =
+        $.extend(true, kendo.ui.Chat.prototype.options.messages, {
+            "placeholder": "Irjon uzenetet...",
+            "toggleButton": "Eszkoztar",
+            "sendButton": "Kuldes"
+        });
+
+}
+
+/* Wizard messages */
+
+if (kendo.ui.Wizard) {
+
+    kendo.ui.Wizard.prototype.options.messages =
+        $.extend(true, kendo.ui.Wizard.prototype.options.messages, {
+            "reset": "Visszaallitas",
+            "previous": "Elozo",
+            "next": "Kovetkezo",
+            "done": "Kesz",
+            "step": "Lepes",
+            "of": "/"
+        });
+
+}
+
+/* PDFViewer messages */
+
+if (kendo.ui.PDFViewer) {
+
+    kendo.ui.PDFViewer.prototype.options.messages =
+        $.extend(true, kendo.ui.PDFViewer.prototype.options.messages, {
+            "defaultFileName": "Dokumentum",
+            "toolbar": {
+                "zoom": {
+                    "zoomLevel": "Nagyitasi szint",
+                    "zoomOut": "Kicsinyites",
+                    "zoomIn": "Nagyitas",
+                    "actualWidth": "Valos szelesseg",
+                    "autoWidth": "Automatikus szelesseg",
+                    "fitToWidth": "Szelesseghez igazitas",
+                    "fitToPage": "Oldalhoz igazitas"
+                },
+                "open": "Megnyitas",
+                "exportAs": "Exportalas",
+                "download": "Letoltes",
+                "pager": {
+                    "first": "Elso oldalra",
+                    "previous": "Elozo oldalra",
+                    "next": "Kovetkezo oldalra",
+                    "last": "Utolso oldalra",
+                    "of": "/",
+                    "page": "oldal",
+                    "pages": "oldal"
+                },
+                "print": "Nyomtatas",
+                "toggleSelection": "Kivalasztas",
+                "togglePan": "Gorgetes",
+                "search": "Kereses"
+            },
+            "errorMessages": {
+                "notSupported": "Csak PDF fajlok tamogatottak.",
+                "parseError": "A PDF fajl feldolgozasa sikertelen.",
+                "notFound": "A fajl nem talalhato.",
+                "popupBlocked": "A felugro ablakot a bongeszo blokkolta."
+            }
+        });
+
+}
+
+/* Captcha messages */
+
+if (kendo.ui.Captcha) {
+
+    kendo.ui.Captcha.prototype.options.messages =
+        $.extend(true, kendo.ui.Captcha.prototype.options.messages, {
+            "reset": "Captcha ujrageneralasa",
+            "audio": "Captcha hang lejatszasa",
+            "imageAlt": "Irja be a keprol a szoveget",
+            "success": "Az ellenorzes sikeres"
+        });
+
+}
+
+/* OrgChart messages */
+
+if (kendo.ui.OrgChart) {
+
+    kendo.ui.OrgChart.prototype.options.messages =
+        $.extend(true, kendo.ui.OrgChart.prototype.options.messages, {
+            "label": "Szervezeti diagram",
+            "edit": "Szerkesztes",
+            "create": "Letrehozas",
+            "destroy": "Torles",
+            "destroyContent": "Biztosan torolni szeretne ezt az elemet es az alarendeltjeit?",
+            "destroyTitle": "Elem torlese",
+            "cancel": "Megse",
+            "save": "Mentes",
+            "menuLabel": "Szerkesztes menu",
+            "uploadAvatar": "Uj kep feltoltese",
+            "parent": "Szulo",
+            "name": "Nev",
+            "title": "Cim",
+            "none": "--Nincs--",
+            "expand": "Kibontas",
+            "collapse": "Osszecsukas"
+        });
+
+}
+
+/* Map messages */
+
+if (kendo.dataviz.ui.Map) {
+
+    kendo.dataviz.ui.Map.prototype.options.messages =
+        $.extend(true, kendo.dataviz.ui.Map.prototype.options.messages, {
+            "tileTitle": "Terkep cim"
+        });
+
+}
+
+/* Sankey messages */
+
+if (kendo.dataviz.ui.Sankey) {
+
+    kendo.dataviz.ui.Sankey.prototype.options.messages =
+        $.extend(true, kendo.dataviz.ui.Sankey.prototype.options.messages, {
+            "tooltipUnits": "{0} Egyseg"
+        });
+
+}
+
+/* Chart messages */
+
+if (kendo.dataviz.ui.Chart) {
+
+    kendo.dataviz.ui.Chart.prototype.options.messages =
+        $.extend(true, kendo.dataviz.ui.Chart.prototype.options.messages, {
+            "noData": "Nincs elerheto adat"
+        });
+
+}
+
+
+/* ToolCall messages */
+
+if (kendo.ui.ToolCall) {
+    kendo.ui.ToolCall.prototype.options.messages =
+    $.extend(true, kendo.ui.ToolCall.prototype.options.messages,{
+        "states": {
+            "active": "Aktív",
+            "completed": "Befejezve",
+            "awaitingApproval": "Jóváhagyásra vár",
+            "error": "Hiba"
+        },
+        "approve": "Jóváhagyás",
+        "reject": "Elutasítás",
+        "parametersLabel": "Paraméterek",
+        "resultLabel": "Eredmény"
+    });
+}
+
+/* Citation messages */
+
+if (kendo.ui.Citation) {
+    kendo.ui.Citation.prototype.options.messages =
+    $.extend(true, kendo.ui.Citation.prototype.options.messages,{
+        "previousSourceAction": "Előző forrás",
+        "nextSourceAction": "Következő forrás"
+    });
+}
+
+/* Checkpoint messages */
+
+if (kendo.ui.Checkpoint) {
+    kendo.ui.Checkpoint.prototype.options.messages =
+    $.extend(true, kendo.ui.Checkpoint.prototype.options.messages,{
+        "startOver": "Újrakezdés",
+        "restore": "Ellenőrzési pont visszaállítása",
+        "redo": "Újra",
+        "checkpointRestoredText": "Ellenőrzési pont visszaállítva"
     });
 }
 

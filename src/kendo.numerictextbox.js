@@ -1,13 +1,16 @@
-(function(f, define) {
-    define([ "./kendo.core", "./kendo.userevents", "./kendo.floatinglabel", "./kendo.html.button" ], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.userevents.js";
+import "./kendo.floatinglabel.js";
+import "./kendo.html.button.js";
+import "./kendo.icons.js";
+import { addInputPrefixSuffixContainers } from "./utils/prefix-suffix-containers.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "numerictextbox",
     name: "NumericTextBox",
     category: "web",
     description: "The NumericTextBox widget can format and display numeric, percentage or currency textbox.",
-    depends: [ "core", "userevents", "floatinglabel", "html.button" ]
+    depends: [ "core", "userevents", "floatinglabel", "html.button", "icons" ]
 };
 
 (function($, undefined) {
@@ -20,13 +23,13 @@ var __meta__ = {
         activeElement = kendo._activeElement,
         extractFormat = kendo._extractFormat,
         parse = kendo.parseFloat,
-        placeholderSupported = kendo.support.placeholder,
         getCulture = kendo.getCulture,
         CHANGE = "change",
         DISABLED = "disabled",
         READONLY = "readonly",
         INPUT = "k-input-inner",
         SPIN = "spin",
+        KENDO_KEYDOWN = "kendoKeydown",
         ns = ".kendoNumericTextBox",
         TOUCHEND = "touchend",
         MOUSELEAVE = "mouseleave" + ns,
@@ -36,12 +39,11 @@ var __meta__ = {
         FOCUS = "focus",
         POINT = ".",
         SYMBOL = "symbol",
-        CLASS_ICON = "k-icon",
         LABELCLASSES = "k-label k-input-label",
+        FLOATINGLABELCLASS = "k-floating-label",
         SELECTED = "k-selected",
         STATEDISABLED = "k-disabled",
         STATEINVALID = "k-invalid",
-        ARIA_DISABLED = "aria-disabled",
         INTEGER_REGEXP = /^(-)?(\d*)$/,
         NULL = null,
         isPlainObject = $.isPlainObject,
@@ -58,10 +60,10 @@ var __meta__ = {
 
              options = that.options;
              element = that.element
-                           .on("focusout" + ns, that._focusout.bind(that))
-                           .attr("role", "spinbutton");
+                           .on("focusout" + ns, that._focusout.bind(that));
 
              options.placeholder = options.placeholder || element.attr("placeholder");
+             options.inputMode = options.inputMode || element.attr("inputmode") || "text";
 
              min = that.min(element.attr("min"));
              max = that.max(element.attr("max"));
@@ -129,22 +131,23 @@ var __meta__ = {
                  that.readonly(element.is("[readonly]"));
              }
 
-             that.angular("compile", function() {
-                 return {
-                     elements: that._text.get()
-                 };
-             });
-
              that._label();
              that._ariaLabel(that._text);
              that._applyCssClasses();
 
+             addInputPrefixSuffixContainers({ widget: that, wrapper: that.wrapper, options: that.options, prefixInsertBefore: that._text, suffixInsertAfter: that._validationIcon });
+             if (that.floatingLabel) {
+                 that.floatingLabel.refresh();
+             }
+
              kendo.notify(that);
-         },
+             Widget.fn.endInit.call(this);
+},
 
         options: {
             name: "NumericTextBox",
             decimals: NULL,
+            autoAdjust: true,
             enable: true,
             restrictDecimals: false,
             min: NULL,
@@ -161,13 +164,20 @@ var __meta__ = {
             upArrowText: "Increase value",
             downArrowText: "Decrease value",
             label: null,
-            size: "medium",
-            fillMode: "solid",
-            rounded: "medium"
+            size: undefined,
+            fillMode: undefined,
+            rounded: undefined,
+            prefixOptions: {
+                separator: true
+            },
+            suffixOptions: {
+                separator: true
+            }
         },
         events: [
             CHANGE,
-            SPIN
+            SPIN,
+            KENDO_KEYDOWN
         ],
 
         _editable: function(options) {
@@ -197,9 +207,13 @@ var __meta__ = {
                     .removeClass(STATEDISABLED)
                     .on(HOVEREVENTS, that._toggleHover);
 
+                that._upArrow
+                    .add(that._downArrow)
+                    .removeClass(STATEDISABLED)
+                    .prop(DISABLED, false);
+
                 text.prop(DISABLED, false)
-                    .prop(READONLY, false)
-                    .attr(ARIA_DISABLED, false);
+                    .prop(READONLY, false);
 
                 that._upArrowEventHandler.bind("press", function(e) {
                     e.preventDefault();
@@ -214,7 +228,7 @@ var __meta__ = {
                 });
 
                 that.element
-                    .on("keydown" + ns, that._keydown.bind(that))
+                    .on("keydown" + ns, that, that._keydown.bind(that))
                     .on("keyup" + ns, that._keyup.bind(that))
                     .on("paste" + ns, that._paste.bind(that))
                     .on("input" + ns, that._inputHandler.bind(that));
@@ -228,9 +242,13 @@ var __meta__ = {
                     .addClass(disable ? STATEDISABLED : "")
                     .removeClass(disable ? "" : STATEDISABLED);
 
+                that._upArrow
+                    .add(that._downArrow)
+                    .toggleClass(STATEDISABLED, !!disable)
+                    .prop(DISABLED, !!disable);
+
                 text.attr(DISABLED, disable)
-                    .attr(READONLY, readonly)
-                    .attr(ARIA_DISABLED, disable);
+                    .attr(READONLY, readonly);
             }
         },
 
@@ -256,7 +274,7 @@ var __meta__ = {
             });
 
             if (that.floatingLabel) {
-                that.floatingLabel.enable(enable = enable === undefined ? true : enable);
+                that.floatingLabel.enable(enable);
             }
         },
 
@@ -264,7 +282,6 @@ var __meta__ = {
             var that = this;
             Widget.fn.setOptions.call(that, options);
 
-            that.wrapper.toggleClass("k-expand-padding", !that.options.spinners);
             that._text.prop("placeholder", that.options.placeholder);
             that._placeholder(that.options.placeholder);
             that.element.attr({
@@ -296,13 +313,22 @@ var __meta__ = {
 
             that._label();
 
-            that._editable({
-                readonly: that.options.readonly,
-                disable: !that.options.enable
-            });
+            if (options.enable !== undefined || options.readonly !== undefined) {
+                that._editable({
+                    readonly: options.readonly,
+                    disable: !options.enable
+                });
+            } else {
+                that._editable({
+                    readonly: that.element.attr("readonly") !== undefined ? Boolean(that.element.attr("readonly")) : that.options.readonly,
+                    disable: that.element.attr("disabled") !== undefined ? Boolean(that.element.attr("disabled")) : !that.options.enable
+                });
+            }
 
             if (options.value !== undefined) {
                 that.value(options.value);
+            } else if (that._value !== undefined) {
+                that.value(that._value);
             }
         },
 
@@ -356,24 +382,30 @@ var __meta__ = {
             adjusted = that._adjust(value);
 
             if (value !== adjusted) {
-                return;
+                value = NULL;
             }
 
             that._update(value);
             that._old = that._value;
+
+            if (that.floatingLabel) {
+                that.floatingLabel.refresh();
+            }
         },
 
         focus: function() {
             this._focusin();
+            this.selectValue();
         },
 
         _adjust: function(value) {
-            var that = this,
-            options = that.options,
-            min = options.min,
-            max = options.max;
+            let that = this,
+                options = that.options,
+                min = options.min,
+                max = options.max,
+                autoAdjust = options.autoAdjust;
 
-            if (value === NULL) {
+            if (value === NULL || !autoAdjust) {
                 return value;
             }
 
@@ -408,7 +440,6 @@ var __meta__ = {
 
             if (!spinners) {
                 arrows.parent().toggle(spinners);
-                that.wrapper.addClass("k-expand-padding");
             }
 
             that._upArrow = arrows.eq(0);
@@ -421,7 +452,7 @@ var __meta__ = {
             var that = this;
             var element = that.element;
 
-            that._validationIcon = $("<span class='k-input-validation-icon " + CLASS_ICON + " k-i-warning k-hidden'></span>").insertAfter(element);
+            that._validationIcon = $(kendo.ui.icon({ icon: "exclamation-circle", iconClass: "k-input-validation-icon k-hidden" })).insertAfter(element);
         },
 
         _blur: function() {
@@ -518,7 +549,7 @@ var __meta__ = {
             var that = this;
             that.wrapper.addClass(FOCUSED);
             that._toggleText(false);
-            that.element[0].focus();
+            that.element.trigger("focus");
         },
 
         _focusout: function() {
@@ -527,7 +558,9 @@ var __meta__ = {
             clearTimeout(that._focusing);
             that.wrapper.removeClass(FOCUSED).removeClass(HOVER);
             that._blur();
-            that._removeInvalidState();
+            if (that._invalidStateTimeout) {
+                that._removeInvalidState();
+            }
         },
 
         _format: function(format, culture) {
@@ -553,11 +586,13 @@ var __meta__ = {
                 inputs = wrapper.find(POINT + INPUT),
                 text;
 
+            that.element.attr("inputmode", options.inputMode);
+
             text = inputs.first();
 
             if (text.length < 2) {
                 text = $('<input type="text"/>')
-                        .attr(kendo.attr("validate"), false)
+                        .attr(kendo.attr("validate"), "false")
                         .insertBefore(element);
             }
 
@@ -585,6 +620,8 @@ var __meta__ = {
                                  "aria-valuemax": options.max !== NULL ? options.max * options.factor : options.max,
                                  "autocomplete": "off"
                              });
+
+            that.element.attr("role", "spinbutton");
         },
 
         _keydown: function(e) {
@@ -597,9 +634,11 @@ var __meta__ = {
 
             if (key == keys.DOWN) {
                 that._step(-1);
+                e.stopPropagation();
                 return;
             } else if (key == keys.UP) {
                 that._step(1);
+                e.stopPropagation();
                 return;
             } else if (key == keys.ENTER) {
                 that._change(that.element.val());
@@ -613,7 +652,9 @@ var __meta__ = {
         },
 
         _keyup: function() {
-            this._removeInvalidState();
+            if (this._invalidStateTimeout) {
+                this._removeInvalidState();
+            }
         },
 
         _inputHandler: function() {
@@ -623,6 +664,7 @@ var __meta__ = {
             var numberFormat = this._format(this.options.format);
             var decimalSeparator = numberFormat[POINT];
             var minInvalid = (min !== null && min >= 0 && value.charAt(0) === "-");
+            var parsedValue;
 
             if (this._numPadDot && decimalSeparator !== POINT) {
                 value = value.replace(POINT, decimalSeparator);
@@ -630,10 +672,12 @@ var __meta__ = {
                 this._numPadDot = false;
             }
 
-            if (this._isPasted && this._parse(value)) {
-                value = this._parse(value)
-                    .toString()
-                    .replace(POINT, numberFormat[POINT]);
+            if (this._isPasted) {
+                parsedValue = this._parse(value);
+
+                if (parsedValue) {
+                    value = this._normalizePasteValue(parsedValue, numberFormat);
+                }
             }
 
             if (this._numericRegex(numberFormat).test(value) && !minInvalid) {
@@ -648,6 +692,21 @@ var __meta__ = {
             }
 
             this._isPasted = false;
+        },
+
+        _normalizePasteValue: function(value, numberFormat) {
+            var precision = this.options.decimals;
+            var normalizedValue = value.toString();
+
+            if (precision === NULL) {
+                precision = numberFormat.decimals;
+            }
+
+            if (normalizedValue.indexOf("e") !== -1) {
+                normalizedValue = this._round(value, precision);
+            }
+
+            return normalizedValue.replace(POINT, numberFormat[POINT]);
         },
 
         _blinkInvalidState: function() {
@@ -695,9 +754,10 @@ var __meta__ = {
                 fractionRule = "{0," + precision + "}";
             }
 
-            if (that._separator !== separator) {
+            if (that._separator !== separator || that._oldPrecision !== precision) {
                 that._separator = separator;
                 that._floatRegExp = new RegExp("^(-)?(((\\d+(" + separator + "\\d" + fractionRule + ")?)|(" + separator + "\\d" + fractionRule + ")))?$");
+                that._oldPrecision = precision;
             }
 
             return that._floatRegExp;
@@ -711,13 +771,13 @@ var __meta__ = {
 
             that._isPasted = true;
 
-           setTimeout(function() {
+            setTimeout(function() {
                 var result = that._parse(element.value);
 
                 if (result === NULL) {
                     that._update(value);
                 } else {
-                    element.value = result.toString().replace(POINT, numberFormat[POINT]);
+                    element.value = that._normalizePasteValue(result, numberFormat);
                     if (that._adjust(result) !== result || !that._numericRegex(numberFormat).test(element.value)) {
                         value = that._getFactorValue(element.value);
                         that._update(value);
@@ -863,9 +923,6 @@ var __meta__ = {
             var input = this._text;
 
             input.val(value);
-            if (!placeholderSupported && !value) {
-                input.val(this.options.placeholder);
-            }
 
             input.attr("title", this.element.attr("title") || input.val());
         },
@@ -900,7 +957,7 @@ var __meta__ = {
                     element.attr("id", id);
                 }
 
-                that._inputLabel = $("<label class='" + LABELCLASSES + "' for='" + id + "'>" + labelText + "</label>'").insertBefore(that.wrapper);
+                that._inputLabel = $("<label class='" + (floating ? FLOATINGLABELCLASS : LABELCLASSES) + "' for='" + id + "'>" + labelText + "</label>'")[floating ? "insertAfter" : "insertBefore"](that.wrapper);
 
                 if ((that.element.attr("disabled") === undefined) && (that.element.attr("readonly") === undefined)) {
                     that._inputLabel.on("click" + ns, that.focus.bind(that));
@@ -956,10 +1013,10 @@ var __meta__ = {
     }]);
 
     function buttonHtml(direction, text, options) {
-        var className = direction === "increase" ? "arrow-n" : "arrow-s";
+        var className = direction === "increase" ? "chevron-up" : "chevron-down";
         var dir = direction === "increase" ? "increase" : "decrease";
 
-        return html.renderButton('<button role="button" tabindex="-1" unselectable="on" class="k-spinner-' + dir + '" aria-label="' + text + '" title="' + text + '"></button>', extend({}, options, {
+        return html.renderButton('<button tabindex="-1" unselectable="on" class="k-spinner-' + dir + '" aria-label="' + text + '" title="' + text + '"></button>', extend({}, options, {
             icon: className,
             shape: null,
             rounded: null
@@ -979,7 +1036,4 @@ var __meta__ = {
 
     ui.plugin(NumericTextBox);
 })(window.kendo.jQuery);
-
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });
+export default kendo;

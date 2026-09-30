@@ -1,13 +1,14 @@
 ---
 title: Overview
 page_title: Overview
-description: "Learn the basics when working with the Telerik UI SplitButton component for {{ site.framework }}."
+description: "The Telerik UI SplitButton component for {{ site.framework }} provides a styled UI button with the functionality of a dropdown element."
+components: ["splitbutton"]
 previous_url: /helpers/navigation/splitbutton/overview
 slug: htmlhelpers_splitbutton_aspnetcore
-position: 1
+position: 0
 ---
 
-# SplitButton Overview
+# {{ site.framework }} SplitButton Overview
 
 {% if site.core %}
 The Telerik UI SplitButton TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI SplitButton widget.
@@ -27,22 +28,22 @@ The following example demonstrates how to define the SplitButton.
     @(Html.Kendo().SplitButton()
         .Name("splitButton")
         .Text("Paste")
-        .Icon("paste")
+        .Icon("clipboard")
         .Items(items => {
-            items.Add().Id("keep-text").Text("Keep Text Only").Icon("paste-plain-text");
-            items.Add().Id("paste-html").Text("Paste as HTML").Icon("paste-as-html");
-            items.Add().Id("paste-markdown").Text("Paste Markdown").Icon("paste-markdown");
+            items.Add().Id("keep-text").Text("Keep Text Only").Icon("clipboard-text");
+            items.Add().Id("paste-html").Text("Paste as HTML").Icon("clipboard-code");
+            items.Add().Id("paste-markdown").Text("Paste Markdown").Icon("clipboard-markdown");
             items.Add().Id("paste-default").Text("Set Default Paste");
         })
     )
 ```
 {% if site.core %}
 ```TagHelper
-    <kendo-splitbutton name="splitButton" text="Paste" icon="paste">
+    <kendo-splitbutton name="splitButton" text="Paste" icon="clipboard">
         <splitbutton-items>
-            <item id="keep-text" text="Keep Text Only" icon="paste-plain-text"></item>
-            <item id="paste-html" text="Paste as HTML" icon="paste-as-html"></item>
-            <item id="paste-markdown" text="Paste Markdown" icon="paste-markdown"></item>
+            <item id="keep-text" text="Keep Text Only" icon="clipboard-text"></item>
+            <item id="paste-html" text="Paste as HTML" icon="clipboard-code"></item>
+            <item id="paste-markdown" text="Paste Markdown" icon="clipboard-markdown"></item>
             <item id="paste-default" text="Set Default Paste"></item>
         </splitbutton-items>
     </kendo-splitbutton>
@@ -54,13 +55,16 @@ The following example demonstrates how to define the SplitButton.
 * [Items]({% slug htmlhelpers_splitbutton_aspnetcore_items %})&mdash;You can configure the SplitButton by adding items to the popup.
 * [Appearance]({% slug htmlhelpers_splitbutton_aspnetcore_appearance %})&mdash;You can control the appearance of the SplitButton by configuring its styling options.
 * [Icons]({% slug htmlhelpers_splitbutton_aspnetcore_icons %})&mdash;You can enchance the SplitButton's textual content by adding icons.
-* [Accessibility]({% slug accessibility_aspnetcore_splitbutton %})&mdash;You can access the SplitButton by different screen readers.
+* [Accessibility]({% slug htmlhelpers_splitbutton_accessibility %})&mdash;The SplitButton is accessible by screen readers and provides WAI-ARIA, Section 508, WCAG 2.2, and keyboard support.
+
+>tip To learn more about the appearance, anatomy, and accessibility of the SplitButton, visit the [Progress Design System documentation](https://www.telerik.com/design-system/docs/components/splitbutton/)—an information portal offering rich component usage guidelines, descriptions of the available style variables, and globalization support details.
+
+## Next Steps
+
+* [Getting Started with the SplitButton]({% slug aspnetcore_splitbutton_getting_started %})
+* [Basic Usage of the SplitButton for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/splitbutton/index)
 
 ## See Also
 
-* [Overview of the SplitButton for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/splitbutton/index)
-* [Using the Basic Events of the SplitButton for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/splitbutton/events)
-* [Applying the SplitButton API (Demo)](https://demos.telerik.com/{{ site.platform }}/splitbutton/api)
-* [Server-Side API](/api/splitbutton)
-* [Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/splitbutton)
-
+* [Using the API of the SplitButton (Demo)](https://demos.telerik.com/{{ site.platform }}/splitbutton/api)
+* [Knowledge Base Section](/knowledge-base)

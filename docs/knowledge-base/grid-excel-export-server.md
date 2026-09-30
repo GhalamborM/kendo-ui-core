@@ -1,12 +1,13 @@
 ---
 title: Export Grid to Excel with the RadSpreadStreamProcessing Library
-description: An example on how to export a Kendo UI Grid for jQuery on the server with the RadSpreadStreamProcessing library
+description: Learn how to export a Kendo UI Grid for jQuery on the server with the RadSpreadStreamProcessing library
 type: how-to
-page_title: Server-side Excel Export of Grid Data | Kendo UI Grid for jQuery
+page_title: Server-side Excel Export of Grid Data - Kendo UI for jQuery Data Grid
 slug: grid-excel-export-server
 ticketid: 1107641
 tags: grid, excel, export, RadSpreadStreamProcessing, server, server-side, large, data set
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Product</td>
@@ -111,7 +112,7 @@ As one of our DevCraft Complete clients, you could take advantage of the `DataSo
         return false;
     }
 ```
-```tab-ColumnSettings.cs
+```ColumnSettings.cs
     public class ColumnSettings
     {
         public string Title { get; set; }
@@ -121,7 +122,7 @@ As one of our DevCraft Complete clients, you could take advantage of the `DataSo
         public bool Hidden { get; set; }
     }
 ```
-```tab-Export
+```Controller
     public JsonResult Export([DataSourceRequest]DataSourceRequest request, string columns, string title, string format)
         {
             var data = Enumerable.Range(1, 50).Select(i => new OrderViewModel
@@ -183,7 +184,7 @@ As one of our DevCraft Complete clients, you could take advantage of the `DataSo
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 ```
-```tab-Download
+```Download
     public FileResult Download(string title, string format)
     {
         string mimeType = format == "CSV" ? "text/csv" : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";

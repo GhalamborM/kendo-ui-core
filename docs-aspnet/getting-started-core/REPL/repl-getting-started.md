@@ -2,6 +2,7 @@
 title: Getting Started with Telerik REPL
 page_title: Getting Started with Telerik REPL
 description: "Explore the features of the Telerik REPL server playground tool and learn how to use them when experimenting with the Telerik UI components."
+components: ["general"]
 slug: getting_started_repl_aspnetcore
 permalink: /getting-started/repl/repl-getting-started
 position: 2
@@ -13,30 +14,41 @@ By using the Telerik REPL for ASP.NET Core, you can write razor code that contai
 
 * [Adding static assets](#adding-static-assets)
 * [Customizing the visual theme](#customizing-the-theme)
+* [Adding snippets](#adding-snippets)
 * [Rendering HTML](#rendering-html)
 * [Using Razor code blocks](#using-razor-code-blocks)
 * [Using Razor local methods](#using-razor-local-methods)
-* [Using Razor `@functions` directive](#using-razor-funcitons-directive)
+* [Using Razor `@functions` directive](#using-razor-the-functions-directive)
+
+To get a grasp of runnable examples that tackle different use-cases, see the [Starting Fast with Pre-Built Examples](https://www.telerik.com/aspnet-core-ui/repl/getting-started) article.
 
 ## Adding Static Assets
 
-In the Telerik REPL for ASP.NET Core, you can define your own script and style tags that reference static assets and add them to the `.cshtml` file that you are editing. 
+In the Telerik REPL for ASP.NET Core, you can define your own script and style tags that reference static assets and add them to the `.cshtml` file that you are editing.
 
 To add js or CSS files as static assets, click the Static Asset Manager icon and provide the url to files that you want to add.
 
-   ![{{ site.product_short }} Static Asset Manager](../../getting-started-core/repl/images/repl-static-asset-manager.png)
+   ![{{ site.product_short }} REPL Static Asset Manager](../../getting-started-core/REPL/images/repl-static-asset-manager.png)
 
 ## Customizing the Theme
 
 To change the theme for the {{site.product}} components, select a new theme from the theme selection dropdown.
 
-   ![{{ site.product_short }} Theme Manager](../../getting-started-core/repl/images/repl-theme-manager.png)
+   ![{{ site.product_short }} REPL Theme Manager](../../getting-started-core/REPL/images/repl-theme-manager.png)
+
+## Adding Snippets
+
+The Telerik REPL for ASP.NET Core provides a list of predefined code snippets for fast UI component reference and configuration.
+
+The basic snippets are listed in the Snippets section of the REPL Sidebar. You can browse to find the desired snippet and use both the `HtmlHelper` or `TagHelper` flavour of the snippet.
+
+   ![{{ site.product_short }} REPL Snippets](../../getting-started-core/REPL/images/repl-built-in-snippets.png)
 
 ## Rendering HTML
 
 By using the Telerik REPL for ASP.NET Core, you can render plain HTML:
 
-```
+```HTML
     <table>
     <tr>
         <th>Position</th>
@@ -60,7 +72,7 @@ By using the Telerik REPL for ASP.NET Core, you can render plain HTML:
 
 Razor code blocks start with `@` and are enclosed by `{}`:
 
-```
+```Razor
     @using System;
     @using System.Globalization;
 
@@ -76,7 +88,7 @@ Razor code blocks start with `@` and are enclosed by `{}`:
 
 In code blocks, you can declare local functions with markup to serve as templating methods:
 
-```
+```Razor
     @{
         void RenderName(string name)
         {
@@ -92,7 +104,7 @@ In code blocks, you can declare local functions with markup to serve as templati
 
 The `@functions` directive enables you to add C# members (fields, properties, and methods) to the generated class. The following example demonstrates how to generate an HTML table from a collection by using the Telerik REPL for ASP.NET Core:
 
-```
+```Razor
     @using System.Linq.Expressions
     @using System.Text
     @using System.Reflection
@@ -100,11 +112,11 @@ The `@functions` directive enables you to add C# members (fields, properties, an
     @functions {
 
         public class Contact {
-            public string Name { get; set; }  
-            public string Position { get; set; }      
-            public string Country { get; set; }      
+            public string Name { get; set; }
+            public string Position { get; set; }
+            public string Country { get; set; }
         }
-        
+
         public string GenerateHtmlTable<T, Tproperty>(IEnumerable<T> list, params Expression<Func<T, Tproperty>>[] columns)
         {
             var sb = new StringBuilder();
@@ -181,6 +193,6 @@ The `@functions` directive enables you to add C# members (fields, properties, an
 
 ## See Also
 
-* [Getting Started with UI for ASP.NET Core]({% slug gettingstarted_aspnetmvc6_aspnetmvc %})
+* [Getting Started with UI for ASP.NET Core]({% slug gettingstartedtelerik_aspnetcore %})
 * [Using Telerik REPL with UI for ASP.NET Core]({% slug using_repl_with_demos_aspnetcore %})
 * [Using Predefined Models]({% slug using_predefined_models_repl_aspnetcore %})

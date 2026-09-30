@@ -5,9 +5,9 @@ description: "Learn how to show a context menu for the Kendo UI TreeList rows."
 slug: howto_showcontextmenu_treelist
 previous_url: /controls/data-management/treelist/how-to/show-context-menu, /controls/navigation/menu/how-to/show-context-menu-in-treelist
 tags: kendo, jquery, treelist, show, context, menu
-component: treelist
 type: how-to
 res_type: kb
+components: ["treelist"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI TreeList for jQuery</td>
+  <td>Progress® Kendo UI® TreeList for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -49,29 +49,31 @@ The following example demonstrates how to show a context menu for the TreeList r
 
   <script>
     $(document).ready(function () {
-      var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service";
+      var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core";
 
       var dataSource = new kendo.data.TreeListDataSource({
         transport: {
           read:  {
-            url: crudServiceBaseUrl + "/EmployeeDirectory/All",
-            dataType: "jsonp"
+            url: crudServiceBaseUrl + "/EmployeeDirectory/All"
           },
           update: {
             url: crudServiceBaseUrl + "/EmployeeDirectory/Update",
-            dataType: "jsonp"
+             type: "POST",
+                 contentType: "application/json"
           },
           destroy: {
             url: crudServiceBaseUrl + "/EmployeeDirectory/Destroy",
-            dataType: "jsonp"
+             type: "POST",
+                 contentType: "application/json"
           },
           create: {
             url: crudServiceBaseUrl + "/EmployeeDirectory/Create",
-            dataType: "jsonp"
+             type: "POST",
+                 contentType: "application/json"
           },
           parameterMap: function(options, operation) {
             if (operation !== "read" && options.models) {
-              return {models: kendo.stringify(options.models)};
+              return kendo.stringify(options.models);
             }
           }
         },
@@ -136,4 +138,4 @@ The following example demonstrates how to show a context menu for the TreeList r
 
 * [Basic Usage of the TreeList (Demo)](https://demos.telerik.com/kendo-ui/treelist/index)
 * [Using the API of the TreeList (Demo)](https://demos.telerik.com/kendo-ui/treelist/api)
-* [TreeList JavaScript API Reference](/api/javascript/ui/treelist)
+* [TreeList JavaScript API Reference](/api/ui/treelist)

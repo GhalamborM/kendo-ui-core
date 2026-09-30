@@ -1,12 +1,12 @@
 ---
 title: Persist Custom Filters in Grid
-description: An example on how to persist a custom filter when restoring the state of a Kendo UI Grid.
+description: Learn how to persist a custom filter when restoring the state of a Kendo UI Grid.
 type: how-to
-page_title: Persist the State of Custom Filters | Kendo UI Grid for jQuery
+page_title: Persist the State of Custom Filters - Kendo UI for jQuery Data Grid
 slug: grid-persist-customized-filter
 tags: grid, filtering, persist, state, custom, filter, template, restore, session, localstorage
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2017.3.913</td>
  </tr>
 </table>
@@ -30,7 +30,7 @@ How can I persist the customized Grid filters when I save and restore the Grid s
 
 The `JSON.stringify()` method is not able to serialize function references. As a result and because, generally, stringification is used for the retrieved Grid state, all configuration fields which represent function references are lost and the custom filters are not restored.
 
-Add the function references back to the de-serialized configuration object before passing it to the [`setOptions`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/setoptions) method.
+Add the function references back to the de-serialized configuration object before passing it to the [`setOptions`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/setoptions) method.
 
 ```dojo
 <script src="https://demos.telerik.com/kendo-ui/content/shared/js/people.js"></script>

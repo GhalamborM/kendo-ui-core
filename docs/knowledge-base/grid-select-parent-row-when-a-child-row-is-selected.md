@@ -1,13 +1,13 @@
 ---
 title: Select a parent row if any of the child rows are selected in the Grid
-description: An example on how to select a parent row when any row of the child is selected in the Grid.
+description: Learn how to select a parent row when any row of the child is selected in the Grid.
 type: how-to
-page_title: Select Parent Row when any Child Grid Row is Selected | Kendo UI Grid
+page_title: Select Parent Row when any Child Grid Row is Selected - Kendo UI Grid
 slug: grid-select-parent-row-when-a-child-row-is-selected
 tags: grid, selection, parent, master, child, hierarchy, checkbox, select, row, any
 ticketid: 1147793
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
 </table>
 
@@ -26,8 +26,8 @@ I have a hierarchical Kendo Grid with checkboxes for selection. On selection of 
 
 ## Solution
 
-1. Add an event handler to the [`change`](/api/javascript/ui/grid/events/change) event of the child grid.
-1. Use the [`select()`](/api/javascript/ui/grid/methods/select) method to check if there are any selected rows
+1. Add an event handler to the [`change`](/api/ui/grid/events/change) event of the child grid.
+1. Use the [`select()`](/api/ui/grid/methods/select) method to check if there are any selected rows
 1. Get a reference to the master row and add or remove the `k-selected` class if there are any selected rows in the child grid.
 
 ```
@@ -50,9 +50,9 @@ I have a hierarchical Kendo Grid with checkboxes for selection. On selection of 
                 $(document).ready(function() {
                     var element = $("#grid").kendoGrid({
                         dataSource: {
-                            type: "odata",
+                            type: "odata-v4",
                             transport: {
-                                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                                read: "https://demos.telerik.com/service/v2/odata/Employees"
                             },
                             pageSize: 6,
                             serverPaging: true,
@@ -88,9 +88,9 @@ I have a hierarchical Kendo Grid with checkboxes for selection. On selection of 
                 function detailInit(e) {                  
                     $("<div/>").appendTo(e.detailCell).kendoGrid({
                         dataSource: {
-                            type: "odata",
+                            type: "odata-v4",
                             transport: {
-                                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                                read: "https://demos.telerik.com/service/v2/odata/Orders"
                             },
                             serverPaging: true,
                             serverSorting: true,

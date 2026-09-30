@@ -1,13 +1,13 @@
 ---
 title: Add New Item When Filter Is Applied
-description: An example on how to show the inserted item when the Grid data is filtered.
+description: Learn how to show the inserted item when the Grid data is filtered.
 type: how-to
-page_title: Show Inserted Items When Filter Is Applied | Kendo UI Grid for jQuery
+page_title: Show Inserted Items When Filter Is Applied - Kendo UI for jQuery Data Grid
 slug: grid-add-new-item-when-filter-applied
 tags: grid, insert, add, new, item, filter, visible, record
 ticketid: 1141908
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Made with version</td>
+  <td>Product Version</td>
   <td>2020.3.1021</td>
  </tr>
 </table>
@@ -64,28 +64,30 @@ The following example demonstrates how to implement the suggested approach.
 
 <script>
     $(document).ready(function () {
-        var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-            dataSource = new kendo.data.DataSource({
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+                dataSource = new kendo.data.DataSource({
                 transport: {
-                    read: {
-                        url: crudServiceBaseUrl + "/Products",
-                        dataType: "jsonp"
+                    read:  {
+                        url: crudServiceBaseUrl + "/Products"
                     },
                     update: {
                         url: crudServiceBaseUrl + "/Products/Update",
-                        dataType: "jsonp"
+                        type: "POST",
+                		contentType: "application/json"
                     },
                     destroy: {
                         url: crudServiceBaseUrl + "/Products/Destroy",
-                        dataType: "jsonp"
+                        type: "POST",
+                		contentType: "application/json"
                     },
                     create: {
                         url: crudServiceBaseUrl + "/Products/Create",
-                        dataType: "jsonp"
+                        type: "POST",
+                		contentType: "application/json"
                     },
-                    parameterMap: function (options, operation) {
+                    parameterMap: function(options, operation) {
                         if (operation !== "read" && options.models) {
-                            return { models: kendo.stringify(options.models) };
+                            return kendo.stringify(options.models);
                         }
                     }
                 },
@@ -172,28 +174,30 @@ The following example demonstrates how to implement the suggested approach.
 
 <script>
     $(document).ready(function () {
-        var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-            dataSource = new kendo.data.DataSource({
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+                dataSource = new kendo.data.DataSource({
                 transport: {
-                    read: {
-                        url: crudServiceBaseUrl + "/Products",
-                        dataType: "jsonp"
+                    read:  {
+                        url: crudServiceBaseUrl + "/Products"
                     },
                     update: {
                         url: crudServiceBaseUrl + "/Products/Update",
-                        dataType: "jsonp"
+                        type: "POST",
+                		contentType: "application/json"
                     },
                     destroy: {
                         url: crudServiceBaseUrl + "/Products/Destroy",
-                        dataType: "jsonp"
+                        type: "POST",
+                		contentType: "application/json"
                     },
                     create: {
                         url: crudServiceBaseUrl + "/Products/Create",
-                        dataType: "jsonp"
+                        type: "POST",
+                		contentType: "application/json"
                     },
-                    parameterMap: function (options, operation) {
+                    parameterMap: function(options, operation) {
                         if (operation !== "read" && options.models) {
-                            return { models: kendo.stringify(options.models) };
+                            return kendo.stringify(options.models);
                         }
                     }
                 },

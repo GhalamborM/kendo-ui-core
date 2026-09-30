@@ -2,6 +2,7 @@
 title: Templates
 page_title: Templates
 description: "Use the available templates of the Telerik UI Drawer component for {{ site.framework }}."
+components: ["drawer"]
 previous_url: /helpers/navigation/drawer/templates
 slug: templates_drawer_aspnetcore
 position: 4
@@ -25,6 +26,35 @@ You can add icons with a span with the `k-icon` class combined with the desired 
           <span class='k-item-text'>See More</span>
         </li>
     </ul>"
+
+  {% if site.core %}
+  ## Navigating to Another Page
+
+  To navigate with a regular link, keep the `data-role="drawer-item"` attribute on the `<li>` and place the anchor inside the item. Set `auto-collapse` to `false` so the Drawer does not prevent the browser from following the link.
+
+  ```TagHelper
+  <kendo-drawer name="appNav"
+          mode="overlay"
+          position="left"
+          template-id="appNavTemplate"
+          auto-collapse="false">
+    <content>
+    </content>
+  </kendo-drawer>
+
+  <script id="appNavTemplate" type="text/x-kendo-template">
+    <ul>
+      <li data-role="drawer-item">
+        <a class="k-link" href="@webApiCredentialsUrl">
+          <span class="k-item-text">Web API Credentials</span>
+        </a>
+      </li>
+    </ul>
+  </script>
+  ```
+
+  The browser performs the navigation through the `href` attribute, and the Drawer applies its selection state to the `<li>`. After the page loads, render the item for the current route with the `k-selected` class to preserve the selected state across pages.
+  {% endif %}
 
 ## See Also
 

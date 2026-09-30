@@ -1,20 +1,38 @@
 ---
 title: 2022 Releases
-page_title: 2022 Releases | Kendo UI Backwards Compatibility
+page_title: 2022 Releases - Kendo UI Backwards Compatibility
 description: "Learn about the breaking changes and backwards compatibility released by Kendo UI in 2022."
 slug: breakingchanges2022_kendoui
-position: 0
+components: ["general"]
+position: 4
 ---
 
 # 2022 Releases
 
 This article lists the breaking or important changes in the 2022 releases of Kendo UI.
 
+## Kendo UI 2022 R3
+
+**Selectable**
+
+As of the 2022 R3 release, the `Selectable` events mechanism is altered for a variety of the components. The `change` event will now be fired only when selection/deselection is performed. Invoking the client-side API methods would not fire the event as well. 
+
+Below you can find a list of the impacted components:
+
+* `Grid`
+* `Calendar`
+* `MultiViewCalendar`
+* `ListBox`
+* `ListView`
+* `TreeList`
+* `FileManager`
+* `Gantt`
+
 ## Kendo UI 2022 R2 SP1
 
 **Toolbar**
 
-As of 2022 R2 SP1, the Toolbar's SplitButton is replaced with the [standalone SplitButton widget](../api/javascript/ui/splitbutton.md).
+As of 2022 R2 SP1, the Toolbar's SplitButton is replaced with the [standalone SplitButton widget](/api/ui/splitbutton).
 
 ### Old vs New Rendering of the SplitButton in the Toolbar
 
@@ -71,7 +89,7 @@ New
 </div>
 ```
 
-## Kendo UI R1 2022 SP2
+## Kendo UI 2022 R1 SP2
 
 **Button**
 
@@ -81,7 +99,7 @@ As of the 2022 R1 SP2 release the `shape` configuration option of the Button com
 
 **Scheduler**
 
-As of the 2022 R1 SP1 release the Scheduler exposes a modified keyboard navigation behavior. The main reason behind the change is to make the widget a single Tab stop element on the page. This allows for easier navigation to and away from the Scheduler. For further details on the new keyboard navigation behavior, refer to the [Keyboard Navigation demo](https://demos.telerik.com/kendo-ui/scheduler/selection).
+As of the 2022 R1 SP1 release the Scheduler exposes a modified keyboard navigation behavior. The main reason behind the change is to make the widget a single Tab stop element on the page. This allows for easier navigation to and away from the Scheduler. For further details on the new keyboard navigation behavior, refer to the [Keyboard Navigation demo](https://demos.telerik.com/kendo-ui/scheduler/keyboard-navigation).
 
 ## Kendo UI 2022 R1
 
@@ -123,3 +141,9 @@ The following table lists the first part of the updated components.
 | TextBox | [TextBox Appearance Documentation]({% slug appearance_kendoui_textbox_widget %})
 | TimePicker | [TimePicker Appearance Documentation]({% slug appearance_kendoui_timepicker_widget %})
 | TreeView | [TreeView Appearance Documentation]({% slug appearance_kendoui_treeview_widget %})`
+
+**Button**
+
+All button variables in SASS themes are changed and have prefix `$kendo-`. For example, `$button-*` is changed to  `$kendo-button-*`. The reason behind this change is to  to prevent overwriting custom variables.
+
+The state variables `$button-focused` and `$button-hovered` are changed to `$kendo-button-focus` and `$kendo-button-hover`. 

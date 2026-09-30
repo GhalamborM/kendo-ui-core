@@ -2,10 +2,11 @@
 title: Restore filters applied through the Grid's UI when the Search input is cleared
 description: An example demonstrating how to restore the filters applied through the Grid's UI when the search panel's value is cleared.
 type: how-to
-page_title: Grid restore filters when search input is cleared | Kendo UI Grid for jQuery
+page_title: Grid restore filters when search input is cleared - Kendo UI for jQuery Data Grid
 slug: grid-clear-search-restores-previously-applied-filters
 tags: grid, search, input, panel, filters, clear, persist, restore
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -13,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -27,7 +28,7 @@ When I clear the Grid's search panel, all of my filters are deleted. How can I r
 
 ## Solution
 
-Utilize the Grid's [`filter`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/filter) event and save the filters applied through the UI.
+Utilize the Grid's [`filter`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/filter) event and save the filters applied through the UI.
 
 ```dojo
     <div id="grid"></div>
@@ -38,9 +39,8 @@ Utilize the Grid's [`filter`](https://docs.telerik.com/kendo-ui/api/javascript/u
         $(document).ready(function () {
             $("#grid").kendoGrid({
                 dataSource: {
-                    type: "odata",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                        read: "https://demos.telerik.com/service/v2/core/Customers"
                     },
                     pageSize: 20
                 },

@@ -1,7 +1,8 @@
 ---
 title: Appearance
-page_title: Appearance | Kendo UI Excel Export
+page_title: Appearance - Kendo UI Excel Export
 description: "Learn how to change the look and feel of the cells while exporting Kendo UI components to Excel."
+components: ["general"]
 slug: appearance_excelexport_kendoui
 position: 2
 ---
@@ -12,15 +13,15 @@ By default, Excel shows all cells according to their default color, font name, a
 
 Kendo UI allows you to change the appearance of the cells by using the following configuration options:
 
-* [`background`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.background)&mdash;This option sets the background color of the cell.
-* [`bold`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.bold)&mdash;Displays the cell value in bold.
-* [`color`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.color)&mdash;Sets the cell text color.
-* [`fontName`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.fontname)&mdash;Sets the font used to display the cell value.
-* [`fontSize`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.fontsize)&mdash;Sets the font size of the cell value.
-* [`hAlign`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.halign)&mdash;Sets the horizontal text alignment.
-* [`italic`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.italic)&mdash;Displays the cell value in italic.
-* [`underline`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.underline)&mdash;Displays the cell value as underlined.
-* [`vAlign`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.valign)&mdash;Sets the vertical text alignment.
+* [`background`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellsbackground)&mdash;This option sets the background color of the cell.
+* [`bold`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellsbold)&mdash;Displays the cell value in bold.
+* [`color`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellscolor)&mdash;Sets the cell text color.
+* [`fontName`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellsfontname)&mdash;Sets the font used to display the cell value.
+* [`fontSize`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellsfontsize)&mdash;Sets the font size of the cell value.
+* [`hAlign`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellshalign)&mdash;Sets the horizontal text alignment.
+* [`italic`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellsitalic)&mdash;Displays the cell value in italic.
+* [`underline`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellsunderline)&mdash;Displays the cell value as underlined.
+* [`vAlign`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellsvalign)&mdash;Sets the vertical text alignment.
 
 ```dojo
 <script>
@@ -78,9 +79,11 @@ var workbook = new kendo.ooxml.Workbook({
     }
   ]
 });
-kendo.saveAs({
-    dataURI: workbook.toDataURL(),
-    fileName: "Test.xlsx"
+workbook.toDataURLAsync().then(function (dataURL) {
+  kendo.saveAs({
+    dataURI: dataURL,
+    fileName: "Test.xlsx",
+  });
 });
 </script>
 ```

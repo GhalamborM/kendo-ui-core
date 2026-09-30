@@ -2,6 +2,7 @@
 title: Items
 page_title: Items
 description: "Disable, filter, and drag items within containers and between lists when working with the Telerik UI Sortable component for {{ site.framework }}."
+components: ["sortable"]
 slug: htmlhelpers_sortable_aspnetcore_items
 position: 3
 ---
@@ -48,7 +49,7 @@ To prevent items both from being dragged and being sort targets, specify a filte
 
 By default, the Sortable uses the mouse cursor to determine the place of the drop placeholder. This means that if the mouse cursor is not over a sortable item, the placeholder will not be re-positioned.
 
-If the axis is set to `"x"` or `"y"`, the Sortable will start operating in an axis movement mode and will use only the `x` or `y` coordinate of the mouse cursor to determine the position of the placeholder. The axis mode is useful when dragging is restricted in a container.
+If the axis is set to `x` or `y`, the Sortable will start operating in an axis movement mode and will use only the `x` or `y` coordinate of the mouse cursor to determine the position of the placeholder. The axis mode is useful when dragging is restricted in a container.
 
 ## Dragging Items between Lists
 

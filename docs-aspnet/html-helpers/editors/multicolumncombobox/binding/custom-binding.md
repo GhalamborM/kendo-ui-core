@@ -2,6 +2,7 @@
 title: Custom Binding
 page_title: Custom Binding
 description: "Learn how to implement custom binding with Telerik UI MultiColumnComboBox component for {{ site.framework }}."
+components: ["multicolumncombobox"]
 previous_url: /helpers/editors/multicolumncombobox/binding/custom-binding
 slug: custombinding_multicolumncombobox_aspnetmvc
 position: 5
@@ -53,8 +54,8 @@ You can use a custom DataSource and bind the MultiColumnComboBox to a `ToDataSou
                     })
                     .Schema(schema =>
                     {
-                        schema.Data("Data") // Define the [data](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource#configuration-schema.data) option.
-                            .Total("Total"); // Define the [total](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource#configuration-schema.total) option.
+                        schema.Data("Data") // Define the [data](https://docs.telerik.com/kendo-ui/api/data/datasource#configuration-schema.data) option.
+                            .Total("Total"); // Define the [total](https://docs.telerik.com/kendo-ui/api/data/datasource#configuration-schema.total) option.
                     });
             })
         )
@@ -185,5 +186,5 @@ The MultiColumnComboBox has a default event handler for the `Data` callback of t
 ## See Also
 
 * [Basic Usage of the MultiColumnComboBox HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/multicolumncombobox/index)
-* [MultiColumnComboBoxBuilder Server-Side API](/api/Kendo.Mvc.UI.Fluent/MultiColumnComboBoxBuilder)
+* [MultiColumnComboBoxBuilder Server-Side API](/api/kendo.mvc.ui.fluent/multicolumncomboboxbuilder)
 * [MultiColumnComboBox Server-Side API](/api/multicolumncombobox)

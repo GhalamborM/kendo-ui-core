@@ -1,13 +1,15 @@
-(function(f, define) {
-    define([ "./kendo.core", "./kendo.popup", "./kendo.fx" ], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.popup.js";
+import "./kendo.fx.js";
+import "./kendo.icons.js";
+import { htmlService } from "./core/services/html.service";
 
-var __meta__ = {
+export const __meta__ = {
     id: "tooltip",
     name: "Tooltip",
     category: "web",
     description: "The Tooltip widget displays a popup hint for a given html element.",
-    depends: [ "core", "popup" ],
+    depends: [ "core", "popup", "icons" ],
     features: [ {
         id: "tooltip-fx",
         name: "Animation",
@@ -33,13 +35,14 @@ var __meta__ = {
         CONTENTLOAD = "contentLoad",
         REQUESTSTART = "requestStart",
         KCONTENTFRAME = "k-content-frame",
-        TEMPLATE = '<div role="tooltip" class="k-widget k-tooltip#if (!autoHide) {# k-tooltip-closable#}#">' +
-            '<div class="k-tooltip-content"></div>' +
-            '#if (!autoHide) {# <div class="k-tooltip-button"><a href="\\#" class="k-icon k-i-close" title="Close"></a></div> #}#' +
-            '#if (callout){ #<div class="k-callout k-callout-#=dir#"></div>#}#' +
-        '</div>',
-        IFRAMETEMPLATE = kendo.template(
-            "<iframe frameborder='0' class='" + KCONTENTFRAME + "' src='#= content.url #'>" +
+        TEMPLATE = ({ autoHide, callout, dir }) =>
+            `<div role="tooltip" class="k-tooltip${!autoHide ? ' k-tooltip-closable' : ''}">` +
+                '<div class="k-tooltip-content"></div>' +
+                (!autoHide ? `<div class="k-tooltip-button" role="button" aria-label="Close" tabindex="0">${kendo.ui.icon($("<span></span>"), { icon: "x" })}</div>` : '') +
+                (callout ? `<div class="k-callout k-callout-${dir}"></div>` : '') +
+            '</div>',
+        IFRAMETEMPLATE = kendo.template(({ content }) =>
+            `<iframe frameborder='0' class='${KCONTENTFRAME}' src='${htmlService.sanitizeIframeUrl(content.url)}'>` +
                 "This page requires frames in order to show content" +
             "</iframe>"
         ),
@@ -87,7 +90,8 @@ var __meta__ = {
             "vertical": { offset: "left", size: "outerWidth" }
         },
         DEFAULTCONTENT = function(e) {
-            return e.target.data(kendo.ns + "title");
+            var title = e.target.data(kendo.ns + "title");
+            return title ? kendo.htmlEncode(title) : title;
         };
 
     function restoreTitle(element) {
@@ -142,7 +146,12 @@ var __meta__ = {
             }
 
             that.element.on(that.options.showOn + NS, that.options.filter, that._showOn.bind(that));
-        },
+
+            if (that.options.showOn === "click") {
+                that.element.on("keydown" + NS, that.options.filter, that._keydown.bind(that));
+            }
+            Widget.fn.endInit.call(that);
+},
 
         options: {
             name: "TooltipBase",
@@ -180,6 +189,7 @@ var __meta__ = {
 
         hide: function() {
             if (this.popup) {
+                this._shown = false;
                 this.popup.close();
             }
         },
@@ -198,10 +208,18 @@ var __meta__ = {
             return null;
         },
 
-        _showOn: function(e) {
-            var that = this;
-
+        _keydown: function(e) {
             var currentTarget = $(e.currentTarget);
+
+            if (e.keyCode == kendo.keys.ENTER) {
+                this._show(currentTarget);
+            }
+        },
+
+        _showOn: function(e) {
+            const that = this;
+            const currentTarget = $(e.currentTarget);
+
             if (that._isShownOnClick() && !that._isShownOnMouseEnter()) {
                 that._show(currentTarget);
             } else if (that._isShownOnFocus()) {
@@ -226,6 +244,23 @@ var __meta__ = {
 
         _isShownOnClick: function() {
             return this.options.showOn && this.options.showOn.match(/click/);
+        },
+
+        _recalculatePopupDimensions: function() {
+            var that = this;
+            that.popup.wrapper.css("height", kendo._outerHeight(that.popup.element) + "px");
+            that.popup.wrapper.css("width", kendo._outerWidth(that.popup.element) + "px");
+            that.popup.position();
+            that._positionCallout();
+        },
+
+        _resetPopupDimensions: function() {
+            const that = this,
+                popup = that.popup;
+
+            popup.element.css({ width: that.options.width, height: that.options.height });
+            popup.element.parent().css({ width: "", height: "" });
+            popup.wrapper.css({ width: "", height: "" });
         },
 
         _positionCallout: function() {
@@ -306,9 +341,15 @@ var __meta__ = {
             if (!this.popup) {
                 return;
             }
-
-            this.popup._hovered = true;
+            if (!this.popup.visible()) {
+                this.popup._hovered = true;
+            }
+            this.popup._shouldCorrectWidth = false;
             this.popup.open();
+
+            if (this.options.callout) {
+                this._offset(this.options.position, this.options.offset);
+            }
         }
     });
     kendo.ui.plugin(TooltipBase);
@@ -341,7 +382,8 @@ var __meta__ = {
             if (kendo.support.touch) {
                 that.element.on(kendo.support.mousedown + NS, that.options.filter, that._mouseenter.bind(that));
             }
-        },
+            Widget.fn.endInit.call(this);
+},
 
         options: {
             name: "Tooltip",
@@ -355,6 +397,7 @@ var __meta__ = {
             autoHide: true,
             width: null,
             height: null,
+            themeColor: null,
             animation: {
                 open: {
                     effects: "fade:in",
@@ -404,7 +447,7 @@ var __meta__ = {
 
                     if (iframe) {
                         // refresh existing iframe
-                        iframe.src = contentOptions.url || iframe.src;
+                        iframe.src = htmlService.sanitizeIframeUrl(contentOptions.url, false);
                     } else {
                         element.html(IFRAMETEMPLATE({ content: contentOptions }));
                     }
@@ -422,10 +465,27 @@ var __meta__ = {
             } else {
                 element.html(contentOptions);
             }
+        },
 
-            that.angular("compile", function() {
-                return { elements: element };
-            });
+        _verifyContentLoaded() {
+            var that = this,
+                content = that.content,
+                resources = content.find('[src]'),
+                length = resources.length,
+                loaded = 0;
+
+                if (length === 0) {
+                    that._recalculatePopupDimensions();
+                    return;
+                }
+
+                resources.on('load', function() {
+                    loaded++;
+
+                  if (length === loaded) {
+                    that._recalculatePopupDimensions();
+                  }
+                });
         },
 
         _ajaxRequest: function(options) {
@@ -435,11 +495,7 @@ var __meta__ = {
 
                     that.content.html(data);
 
-                    if (kendo._outerHeight(that.popup.element) > kendo._outerHeight(that.popup.wrapper)) {
-                        that.popup.wrapper.css("height", kendo._outerHeight(that.popup.element) + "px");
-                        that.popup.position();
-                        that._positionCallout();
-                    }
+                    that._verifyContentLoaded();
 
                     that.trigger(CONTENTLOAD);
                 };
@@ -450,6 +506,8 @@ var __meta__ = {
                 cache: false,
                 error: function(xhr, status) {
                     kendo.ui.progress(that.content, false);
+
+                    that._recalculatePopupDimensions();
 
                     that.trigger(ERROR, { status: status, xhr: xhr });
                 },
@@ -469,20 +527,28 @@ var __meta__ = {
 
             if (popup && popup.options.anchor) {
                 that._appendContent(popup.options.anchor);
+
+                if (popup.visible()) {
+                    that._resetPopupDimensions();
+                    that._recalculatePopupDimensions();
+                }
             }
         },
 
         _show: function(target) {
             var that = this,
                 current = that.target();
+            let shouldBindPopup = false;
 
             if (!that.popup) {
                 that._initPopup();
+                shouldBindPopup = true;
             }
 
             if (current && current[0] != target[0]) {
-                that.popup.close();
+                that.popup.close(true);
                 that.popup.element.kendoStop(true, true);// animation can be too long to hide the element before it is shown again
+                that._resetPopupDimensions();
             }
 
             if (!current || current[0] != target[0]) {
@@ -503,6 +569,15 @@ var __meta__ = {
             });
 
             that._openPopup();
+
+            if (shouldBindPopup) {
+                if (that.options.autoHide && this._isShownOnMouseEnter()) {
+                    that.popup.wrapper.on("mouseleave" + NS, that._mouseleave.bind(that));
+                } else {
+                    that.popup.element.on("click" + NS, ".k-tooltip-button", that._closeButtonClick.bind(that));
+                    that.popup.element.on("keydown" + NS, ".k-tooltip-button", that._closeButtonKeyDown.bind(that));
+                }
+            }
         },
 
         _initPopup: function() {
@@ -544,14 +619,12 @@ var __meta__ = {
                 height: options.height
             });
 
+            if (options.themeColor) {
+                wrapper.addClass(kendo.cssProperties.getValidClass({ widget: "Tooltip", propName: "themeColor", value: options.themeColor }));
+            }
+
             that.content = wrapper.find(".k-tooltip-content");
             that.arrow = wrapper.find(".k-callout");
-
-            if (options.autoHide && this._isShownOnMouseEnter()) {
-                wrapper.on("mouseleave" + NS, that._mouseleave.bind(that));
-            } else {
-                wrapper.on("click" + NS, ".k-tooltip-button", that._closeButtonClick.bind(that));
-            }
         },
 
         _closeButtonClick: function(e) {
@@ -559,14 +632,32 @@ var __meta__ = {
             this.hide();
         },
 
+        _closeButtonKeyDown: function(e) {
+            if (e.keyCode === kendo.keys.ENTER || e.keyCode === kendo.keys.SPACEBAR) {
+                this._closeButtonClick(e);
+            }
+        },
+
         _mouseleave: function(e) {
-            var that = this;
+            const that = this;
+            const fromTooltip = $(e.relatedTarget).closest('.k-animation-container').length > 0;
+            let closeOnRelatedTarget = !$(e.relatedTarget).is(that.element);
 
+            if (that.options.filter) {
+                if (closeOnRelatedTarget) {
+                    closeOnRelatedTarget = !that.element.find(e.relatedTarget).length > 0;
+                } else {
+                    closeOnRelatedTarget = !closeOnRelatedTarget;
+                }
+            }
+
+            const shouldClose = that.options.position === "center" ? (closeOnRelatedTarget && !fromTooltip) : true;
             clearTimeout(that.timeout);
-
-            that.timeout = setTimeout(function() {
-                that._closePopup(e.currentTarget);
-            }, that.options.hideAfter);
+            if (shouldClose) {
+                that.timeout = setTimeout(function() {
+                        that._closePopup(e.currentTarget);
+                }, that.options.hideAfter);
+            }
         },
 
         _blur: function(e) {
@@ -591,8 +682,13 @@ var __meta__ = {
     });
 
     kendo.ui.plugin(Tooltip);
+
+    kendo.cssProperties.registerPrefix("Tooltip", "k-tooltip-");
+
+    kendo.cssProperties.registerValues("Tooltip", [{
+        prop: "themeColor",
+        values: ['base', 'inverse', 'info', 'success', 'warning', 'error']
+    }]);
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

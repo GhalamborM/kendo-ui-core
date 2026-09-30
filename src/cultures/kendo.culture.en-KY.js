@@ -1,4 +1,4 @@
-(function( window, undefined ) {
+﻿(function( window, undefined ) {
     kendo.cultures["en-KY"] = {
         name: "en-KY",
         numberFormat: {
@@ -60,4 +60,4 @@
             }
         }
     };
-})(this);
+})();

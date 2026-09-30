@@ -2,12 +2,13 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI ToolBar component for {{ site.framework }}."
+components: ["toolbar"]
 previous_url: /helpers/html-helpers/toolbar, /helpers/navigation/toolbar/overview
 slug: htmlhelpers_toolbar_aspnetcore
-position: 1
+position: 0
 ---
 
-# ToolBar Overview
+# {{ site.framework }} ToolBar Overview
 
 {% if site.core %}
 The Telerik UI ToolBar TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI ToolBar widget.
@@ -34,9 +35,9 @@ The following example demonstrates how to define the ToolBar.
             items.Add().Type(CommandType.Button).Text("Toggle Button").Togglable(true);
             items.Add().Type(CommandType.SplitButton).Text("Insert").MenuButtons(menuButtons =>
             {
-                menuButtons.Add().Text("Insert above").Icon("insert-up");
+                menuButtons.Add().Text("Insert above").Icon("insert-top");
                 menuButtons.Add().Text("Insert between").Icon("insert-middle");
-                menuButtons.Add().Text("Insert below").Icon("insert-down");
+                menuButtons.Add().Text("Insert below").Icon("insert-bottom");
             });
         })
     )
@@ -125,9 +126,9 @@ The following example demonstrates the basic configuration of the ToolBar.
             <item type="CommandType.Button" text="Toggle Button" togglable="true" />
             <item type="CommandType.SplitButton" text="Insert">
                 <menu-buttons>
-                    <toolbar-button text="Insert above" icon="insert-up" />
+                    <toolbar-button text="Insert above" icon="insert-top" />
                     <toolbar-button text="Insert between" icon="insert-middle" />
-                    <toolbar-button text="Insert below" icon="insert-down" />
+                    <toolbar-button text="Insert below" icon="insert-bottom" />
                 </menu-buttons>
             </item>
             <item type="CommandType.Separator" />
@@ -172,24 +173,27 @@ The following example demonstrates the basic configuration of the ToolBar.
 
 ## Functionality and Features
 
-The ToolBar component provides the .NavigateOnTab() property which can be used to control [its Keyboard Navigation](https://demos.telerik.com/{{ site.platform }}/toolbar/keyboard-navigation).
+|Feature|Description|
+|-------|-----------|
+| [Appearance]({% slug toolbar_appearance %})| The component provides convenient built-in settings for changing its size and overflow options. |
+| [Command Types]({% slug htmlhelpers_toolbar_button_aspnetcore %})| The ToolBar supports various button command types. |
+| [Manual Closing]({% slug htmlhelpers_toolbar_popup_manual_close_aspnetcore %})| You can configure the ToolBar to close its popup through a button `click` event. |
+| [FontAwesome Icons]({% slug htmlhelpers_use_fontawesome_icons_aspnetcore %})| The ToolBar enables you to use <a href="https://fontawesome.com/icons" target="_blank">FontAwesome icons</a> through its `SpriteCssClass()` configuration option. |
+| [Resizing]({% slug toolbar_resizing %})| The ToolBar supports adaptive resizing functionality. |
+| [Integration with Editors]({% slug toolbar_integration %})| The component can be integrated with various form editors to provide an interactive layout to the user. |
+| [Events]({% slug toolbar_events %})| Explore the various ToolBar events that allow you to control what happens when the user interacts with the component. |
+| [Accessibility]({% slug htmlhelpers_toolbar_accessibility %})| The ToolBar is accessible for screen readers, supports WAI-ARIA attributes, and delivers [keyboard shortcuts]({% slug keynav_aspnetcore_toolbar %}) for faster navigation. |
 
-For more advanced configuration options you can check:
+## Next Steps
 
-* [Spacer]({% slug spacer_toolbar_aspnetcore %})
-* [Manual closing]({% slug htmlhelpers_toolbar_popup_manual_close_aspnetcore %})
-* [Using FontAwesome icons]({% slug htmlhelpers_use_fontawesome_icons_aspnetcore %})
-
-## Events
-
-For a complete example on basic ToolBar events, refer to the [demo on using the events of the ToolBar](https://demos.telerik.com/{{ site.platform }}/toolbar/events).
+* [Getting Started with the ToolBar]({% slug toolbar_getting_started %})
+* [Basic Usage of the ToolBar HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/toolbar/index)
+{% if site.core %}
+* [Basic Usage of the ToolBar TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/toolbar/tag-helper)
+* [ToolBar in Razor Pages]({% slug htmlhelpers_toolbar_aspnetcore_razor_page %})
+{% endif %}
 
 ## See Also
 
-* [Basic Usage of the ToolBar HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/toolbar)
-{% if site.core %}
-* [Basic Usage of the ToolBar Tag lHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/toolbar/tag-helper)
-{% endif %}
 * [Using the API of the ToolBar HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/toolbar/api)
-* [ToolBar Server-Side API](/api/toolbar)
-* [ToolBar Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/toolbar)
+* [Knowledge Base Section](/knowledge-base)

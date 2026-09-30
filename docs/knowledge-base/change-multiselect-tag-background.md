@@ -1,12 +1,12 @@
 ---
-title: Change MultiSelect's tag background from a ToolTip with ColorPalette
-page_title: Change MultiSelect's tag background from a ToolTip with ColorPalette | Kendo UI MultiSelect for jQuery
-description: An example on how to Change MultiSelect's tag background using a ToolTip with ColorPalette.
+title: Change the Background of the MultiSelect Tag from a Tooltip with a ColorPalette
+page_title: Change the Tag Background from a Tooltip with ColorPalette - Kendo UI MultiSelect for jQuery
+description: Learn how to change the tag background of the Kendo UI for jQuery MultiSelect by using a Tooltip with a ColorPalette component.
 type: how-to
 slug: change-multiselect-tag-background
 tags: multiselect, tag, change, background, tooltip, colorpalette
 res_type: kb
-component: multi-select
+components: ["multiselect"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: multi-select
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI MultiSelect</td>
+  <td>Progress® Kendo UI® MultiSelect for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -36,6 +36,8 @@ How can I change the background of the tags in the MultiSelect by picking a colo
 
 ## Solution
 
+To change the background color of a MultiSelect tag, use a Tooltip that contains a ColorPalette component. When a user clicks on a tag, the Tooltip opens and displays the palette. Selecting a color from the palette applies it as the tag's background color.
+
 ```dojo
 <div id="container">
     <select id="products"></select>
@@ -48,11 +50,11 @@ How can I change the background of the tags in the MultiSelect by picking a colo
         dataValueField: "ProductID",
         autoBind: false,
         dataSource: {
-        type: "odata",
+        type: "odata-v4",
         serverFiltering: true,
         transport: {
             read: {
-            url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products",
+            url: "https://demos.telerik.com/service/v2/odata/Products",
             }
         }
         },

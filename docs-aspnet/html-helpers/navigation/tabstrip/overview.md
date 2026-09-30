@@ -1,13 +1,14 @@
 ---
 title: Overview
 page_title: Overview
-description: "Learn the basics when working with the Telerik UI TabStrip component for {{ site.framework }}."
+description: "The Telerik UI TabStrip component for {{ site.framework }} enables users to categorize content in different views for tidier visualization."
+components: ["tabstrip"]
 previous_url: /helpers/html-helpers/tabstrip, /helpers/navigation/tabstrip/overview
 slug: htmlhelpers_tabstrip_aspnetcore
-position: 1
+position: 0
 ---
 
-# TabStrip Overview
+# {{ site.framework }} TabStrip Overview
 {% if site.core %}
 The Telerik UI TabStrip TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI TabStrip widget.
 {% else %}
@@ -101,7 +102,7 @@ The following example demonstrates how to define the TabStrip.
 ```Controller
 public class TabStripController : Controller
 {
-    public IActionResult Index()
+    public ActionResult Index()
     {
         return View();
     }
@@ -182,86 +183,31 @@ The following example demonstrates the basic configuration of the TabStrip.
 
 ## Functionality and Features
 
-* [Tabs]({% slug htmlhelpers_tabstrip_aspnetcore_tabs %})
-* [Tab content]({% slug htmlhelpers_tabstrip_aspnetcore_content %})
-* [Animation Effects]({% slug htmlhelpers_tabstrip_animations_aspnetcore %})
-* [Images]({% slug htmlhelpers_tabstrip_images_aspnetcore %})
-
-## Events
-
-The following example demonstrates the available TabStrip events and how an event handler could be implemented for each of them. For a complete example on basic TabStrip events, refer to the [demo on using the events of the TabStrip](https://demos.telerik.com/{{ site.platform }}/tabstrip/events).
-
-```HtmlHelper
-@(Html.Kendo().TabStrip()
-    .Name("tabstrip")
-    .Items(tabstrip =>
-    {
-        tabstrip.Add().Text("Paris")
-            .LoadContentFrom(Url.Action("Paris", "Home"));
-
-        tabstrip.Add().Text("Sofia")
-            .LoadContentFrom(Url.Action("Sofia", "Home"));
-    })
-    .Events(events => events
-        .Show("onShow")
-        .Select("onSelect")
-        .Activate("onActivate")
-        .ContentLoad("onContentLoad")
-        .Error("onError")
-    )
-)
-```
-{% if site.core %}
-```TagHelper
-<kendo-tabstrip name="tabstrip"
-                on-show="onShow"
-                on-select="onSelect"
-                on-activate="onActivate"
-                on-content-load="onContentLoad"
-                on-error="onError">
-    <items>
-        <tabstrip-item text="Paris"
-                       content-url="@Url.Action("Paris", "Home")">
-            
-        </tabstrip-item>
-        <tabstrip-item text="Sofia"
-                        content-url="@Url.Action("Sofia", "Home")">
-           
-        </tabstrip-item>
-    </items>
-</kendo-tabstrip>
-
-```
+|Feature|Description|
+|-------|-----------|
+| [Appearance]({% slug tabstrip_appearance %})| The TabStrip provides various settings to control the appearance of the tabs. |
+| [Data Binding]({% slug tabstrip_databinding_aspnetmvc %})| The component supports various data binding approaches including items binding, model binding, and remote data binding for loading tab content dynamically. |
+| [Tabs]({% slug htmlhelpers_tabstrip_aspnetcore_tabs %})| The TabStrip supports various built-in options for the tabs that allow you to organize the content into different views. |
+| [Tab content]({% slug htmlhelpers_tabstrip_aspnetcore_content %})| You can customize each tab's contnet. |
+{% if site.mvc %}
+| [Forms]({% slug forms_tabstrip_aspnetmvc %})| You can render forms inside the TabStrip and let users submit data. |
 {% endif %}
-```script
-<script type="text/javascript">
-    function onShow(e) {
-        console.log("Shown: " + $(e.item).find("> .k-link").text());
-    }
+| [Images]({% slug htmlhelpers_tabstrip_images_aspnetcore %})| Include images or icons in the tabs.  |
+| [Animation effects]({% slug htmlhelpers_tabstrip_animations_aspnetcore %})| The animation options help you to configure the desired switch transitions between the different tabs. |
+| [Events]({% slug events_tabstrip_aspnetcore %})| The component emits a variety of events that allow you to implement custom functionality. |
+| [Accessibility]({% slug htmlhelpers_tabstrip_accessibility %})| The TabStrip is accessible by screen readers and provides WAI-ARIA attributes, and delivers [keyboard shortcuts]({% slug keynav_aspnetcore_tabstrip%}) for faster navigation. |
 
-    function onSelect(e) {
-        console.log("Selected: " + $(e.item).find("> .k-link").text());
-    }
+## Next Steps
 
-    function onActivate(e) {
-        console.log("Activated: " + $(e.item).find("> .k-link").text());
-    }
-
-    function onContentLoad(e) {
-        console.log("Content loaded in <b>"+ $(e.item).find("> .k-link").text() + "</b>");
-    }
-
-    function onError(e) {
-        console.error("Loading failed with " + e.xhr.statusText + " " + e.xhr.status);
-    }
-</script>
-```
+* [Getting Started with the TabStrip]({% slug aspnetcore_tabstrip_getting_started %})
+* [Basic Usage of the TabStrip HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/tabstrip/index)
+{% if site.core %}
+* [Basic Usage of the TabStrip TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/tabstrip/tag-helper)
+* [TabStrip in Razor Pages]({% slug htmlhelpers_tabstrip_aspnetcore_razor_page %})
+{% endif %}
 
 ## See Also
 
-* [Basic Usage of the TabStrip HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/tabstrip)
-{% if site.core %}
-* [Basic Usage of the TabStrip TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/tabstrip/tag-helper)
-{% endif %}
-* [Using the API of the TabStrip HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/tabstrip/api)
-* [Server-Side API](/api/tabstrip)
+* [Using the API of the TabStrip for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/tabstrip/api)
+* [Knowledge Base Section](/knowledge-base)
+

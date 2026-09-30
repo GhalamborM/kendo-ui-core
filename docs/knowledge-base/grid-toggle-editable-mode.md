@@ -2,10 +2,11 @@
 title: Toggle the grid's editable mode on and off
 description: An example demonstrating how to toggle the editable mode of the Kendo UI Grid using a ToolBar button
 type: how-to
-page_title: Toggle Grid's editable mode | Kendo UI Grid for jQuery
+page_title: Toggle Grid's editable mode - Kendo UI for jQuery Data Grid
 slug: grid-toggle-editable-mode
 tags: grid, toolbar, editable, toggle, edit
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -13,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -27,7 +28,7 @@ How can I toggle the editable mode of the Grid using a button in the ToolBar?
 
 ## Solution
 
-The Kendo UI Grid's options can be modified through the [`setOptions`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/setoptions) method.
+The Kendo UI Grid's options can be modified through the [`setOptions`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/setoptions) method.
 
 1. Create a custom button in the grid's toolbar.
 1. Inside the grid's `dataBound` event obtain a reference to the button.
@@ -74,28 +75,30 @@ toolbar: [{
     <div id="grid"></div>
     <script>
         $(document).ready(function () {
-            var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+            var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
                 dataSource = new kendo.data.DataSource({
                     transport: {
-                        read: {
-                            url: crudServiceBaseUrl + "/Products",
-                            dataType: "jsonp"
+                        read:  {
+                            url: crudServiceBaseUrl + "/Products"
                         },
                         update: {
                             url: crudServiceBaseUrl + "/Products/Update",
-                            dataType: "jsonp"
+                            type: "POST",
+                    		contentType: "application/json"
                         },
                         destroy: {
                             url: crudServiceBaseUrl + "/Products/Destroy",
-                            dataType: "jsonp"
+                            type: "POST",
+                    		contentType: "application/json"
                         },
                         create: {
                             url: crudServiceBaseUrl + "/Products/Create",
-                            dataType: "jsonp"
+                            type: "POST",
+                    		contentType: "application/json"
                         },
                         parameterMap: function (options, operation) {
                             if (operation !== "read" && options.models) {
-                                return { models: kendo.stringify(options.models) };
+                                return kendo.stringify(options.models);
                             }
                         }
                     },

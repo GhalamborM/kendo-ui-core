@@ -1,13 +1,13 @@
 ---
-title: Adjust Row Heights When Columns Are Locked
-page_title: Row Heights of Locked Columns | Kendo UI Grid for jQuery
-description: "An example on how to adjust the height of the Kendo UI Grid for jQuery rows when columns are locked."
+title: Adjust Row Heights When Data Grid Columns Are Locked
+page_title: Adjust the Row Heights of the Locked Columns - jQuery Data Grid
+description: "Learn how to adjust the height of the rows when the columns are locked in the Kendo UI Data Grid for jQuery control."
 previous_url: /controls/data-management/grid/how-to/AngularJS/adjust-row-heights-for-grid-with-locked-columns
 slug: howto_adjust_row_heights_template_locked_columns_grid
 tags: grid, adjust, row, height, locked
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Preferred Language</td>
@@ -27,13 +27,13 @@ res_type: kb
 
 You might have to handle a scenario with locked columns where the content of the column template is initially hidden through the `ng-if` directive.
 
-In such cases, if you show the content later, you might cause issues related to the proper calculation of the row heights for the locked and unlocked parts of the Grid. To avoid such possible issues, conditionally call the [`resize()`](/api/javascript/kendo/methods/resize) and [`refresh()`](/api/javascript/ui/grid/methods/refresh) methods of the Grid in its [`dataBound`](/api/javascript/ui/grid/events/databound) event when the scope value that controls the visibility of the template content is changed.
+In such cases, if you show the content later, you might cause issues related to the proper calculation of the row heights for the locked and unlocked parts of the Grid. To avoid such possible issues, conditionally call the [`resize()`](/api/kendo/methods/resize) and [`refresh()`](/api/ui/grid/methods/refresh) methods of the Grid in its [`dataBound`](/api/ui/grid/events/databound) event when the scope value that controls the visibility of the template content is changed.
 
 ## Solution
 
 The following example demonstrates how to adjust the row heights in a Kendo UI Grid with locked columns and with a column template that uses the `ng-if` directive.
 
-```dojo
+```
     <div id="example" ng-app="KendoDemos">
       <div ng-controller="MyCtrl">
         <kendo-grid k-scope-field="grid" options="mainGridOptions"></kendo-grid>
@@ -66,9 +66,9 @@ The following example demonstrates how to adjust the row heights in a Kendo UI G
         $scope.visible = false;
         $scope.mainGridOptions = {
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             transport: {
-              read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+              read: "https://demos.telerik.com/service/v2/odata/Employees"
             },
             pageSize: 5,
             serverPaging: true,
@@ -111,4 +111,7 @@ The following example demonstrates how to adjust the row heights in a Kendo UI G
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)
+* [Product Page of the jQuery Data Grid](https://www.telerik.com/kendo-jquery-ui/data-grid-(table))
+* [jQuery Data Grid Overview (Demo)](https://demos.telerik.com/kendo-ui/grid/index)
+* [Data Grid Overview (Documentation)]({% slug overview_kendoui_grid_widget %})

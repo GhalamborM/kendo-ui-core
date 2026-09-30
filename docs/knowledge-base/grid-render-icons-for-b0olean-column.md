@@ -1,0 +1,105 @@
+---
+title: Rendering Icons in Boolean Columns in the Grid
+description: Learn how to render icons in a boolean column in the Kendo UI for jQuery Grid.
+type: how-to
+page_title: Rendering Icons in a Boolean Column - Kendo UI for jQuery Data Grid
+slug: grid-render-icons-boolean-column
+tags: grid, template, icons, boolean, columns
+res_type: kb
+components: ["grid"]
+ticketid: 1589622
+---
+
+## Environment
+
+<table>
+ <tr>
+  <td>Product</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
+  <td>Progress® Kendo UI® MultiSelect for jQuery</td>
+ </tr>
+</table>
+
+## Description
+
+How can I render icons for a boolean column in the Kendo UI for jQuery Grid?
+
+## Solution
+
+To achieve this, use a [`column template`](/api/ui/grid/configuration/columns#columnstemplate) function and render the desired icons.
+  
+The following example demonstrates how to replace the `yes` value with `.k-i-check` and the `no` value with `.k-i-x` [`Kendo UI Web Font Icons`](https://docs.telerik.com/kendo-ui/styles-and-layout/sass-themes/font-icons). 
+
+```dojo
+      <div id="grid"></div>
+      <script>
+        $(document).ready(function () {
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+              dataSource = new kendo.data.DataSource({
+                  transport: {
+                      read:  {
+                          url: crudServiceBaseUrl + "/Products"
+                      },
+                      update: {
+                          url: crudServiceBaseUrl + "/Products/Update",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      destroy: {
+                          url: crudServiceBaseUrl + "/Products/Destroy",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      create: {
+                          url: crudServiceBaseUrl + "/Products/Create",
+                          type: "POST",
+                  		    contentType: "application/json"
+                  },
+                  parameterMap: function(options, operation) {
+                    if (operation !== "read" && options.models) {
+                      return kendo.stringify(options.models);
+                    }
+                  }
+                },
+                batch: true,
+                pageSize: 20,
+                schema: {
+                  model: {
+                    id: "ProductID",
+                    fields: {
+                      ProductID: { editable: false, nullable: true },
+                      ProductName: { validation: { required: true } },
+                      UnitPrice: { type: "number", validation: { required: true, min: 1} },
+                      Discontinued: { type: "boolean" },
+                      UnitsInStock: { type: "number", validation: { min: 0, required: true } }
+                    }
+                  }
+                }
+              });
+
+          $("#grid").kendoGrid({
+            dataSource: dataSource,
+            navigatable: true,
+            pageable: true,
+            height: 550,
+            toolbar: ["create", "save", "cancel"],
+            columns: [
+              "ProductName",
+              { field: "UnitPrice", title: "Unit Price", format: "{0:c}", width: 120 },
+              { field: "UnitsInStock", title: "Units In Stock", width: 120 },
+              { field: "Discontinued", template: discTemplate, attributes: { style: "text-align: center" }, width: 80 },
+              { command: "destroy", title: "&nbsp;", width: 150 }],
+            editable: true
+          });
+        });
+
+        function discTemplate(data) {
+          return data.Discontinued ? "<span class='k-icon k-i-check'></span>" : "<span class='k-icon k-i-x'></span>"
+        }
+      </script>
+```
+
+## See Also
+
+* [JavaScript API Reference of the jQuery Grid](/api/ui/grid)
+* [jQuery Grid Overview Demo](https://demos.telerik.com/kendo-ui/grid/index)

@@ -2,12 +2,18 @@
 title: Global Events
 page_title: Global Events | AngularJS Directives
 description: "Learn more about the Kendo UI global events in AngularJS to take full advantage of AngularJS integration into Kendo UI controls."
+components: ["general"]
 previous_url: /AngularJS/global-events
 slug: global_events_angularjs_directives
 position: 3
 ---
 
 # Global Events
+
+> Starting with R2 2022, the Kendo UI team officially drops the support for AngularJS 1.x through Kendo UI for jQuery. The AngularJS related files and functionality are removed from the bundles and distribution in R3 SP1 2023. The last version that contains the files is R3 2023.
+> This does not impact [Kendo UI for Angular (2+)](https://www.telerik.com/kendo-angular-ui) suite.
+> If you still need to use AngularJS in your project, check [this article]({% slug angularjs_legacy_files_kendoui %}) that explains how to get the legacy files.
+>For information regarding extended support for AngularJS, please visit [Extended Long Term Support]({% slug supportedversions_kendoui %}#extended-long-term-support)
 
 Kendo UI for jQuery provides the `kendoWidgetCreated` and ``kendoRendered`` global events.
 
@@ -19,7 +25,12 @@ For example, your project requires you to create a TreeView widget that automati
 
 The following example demonstrates how to listen to the `kendoWidgetCreated` event.
 
-```dojo
+```
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/angular.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/kendo.all.min.js"></script>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/7.0.1/default/default-ocean-blue.css">
+
 <div ng-app="app" ng-controller="MyCtrl">
   <div kendo-tree-view="treeWidget" k-options="treeOptions"></div>
 </div>
@@ -96,7 +107,12 @@ Browsers render data asynchronously and, therefore, the `kendoRendered` event is
 
 The following example demonstrates how to listen to the `kendoRendered` event.
 
-```dojo
+```
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/angular.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/kendo.all.min.js"></script>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/7.0.1/default/default-ocean-blue.css">
+
 <div ng-app="app" ng-controller="MyCtrl">
   <input kendo-datepicker="datePicker">
 </div>

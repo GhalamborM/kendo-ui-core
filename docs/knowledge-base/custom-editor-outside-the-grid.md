@@ -1,13 +1,13 @@
 ---
 title: Show Custom Editor Using the Selected Item outside the Grid
-page_title: Custom Editor Outside the Grid | Kendo UI Grid for jQuery
-description: "An example on how to show a custom editor, which uses the currently selected item, outside the Kendo UI Grid for jQuery."
+page_title: Custom Editor Outside the Grid - Kendo UI for jQuery Data Grid
+description: "Learn how to show a custom editor, which uses the currently selected item, outside the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/Editing/custom-editor-outside-the-grid
 slug: howto_use_show_custom_editor_selected_item_outside_grid
 tags: grid, custom, editor, selected, item, outside
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -58,30 +58,32 @@ The following example demonstrates how to use a custom editor, which uses the cu
 
       <script>
         $(document).ready(function () {
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
               dataSource = new kendo.data.DataSource({
                 transport: {
-                  read:  {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
-                  },
-                  update: {
-                    url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
-                  },
-                  destroy: {
-                    url: crudServiceBaseUrl + "/Products/Destroy",
-                    dataType: "jsonp"
-                  },
-                  create: {
-                    url: crudServiceBaseUrl + "/Products/Create",
-                    dataType: "jsonp"
-                  },
-                  parameterMap: function(options, operation) {
-                    if (operation !== "read" && options.models) {
-                      return {models: kendo.stringify(options.models)};
+                    read:  {
+                        url: crudServiceBaseUrl + "/Products"
+                    },
+                    update: {
+                        url: crudServiceBaseUrl + "/Products/Update",
+                        type: "POST",
+                		contentType: "application/json"
+                    },
+                    destroy: {
+                        url: crudServiceBaseUrl + "/Products/Destroy",
+                        type: "POST",
+                		contentType: "application/json"
+                    },
+                    create: {
+                        url: crudServiceBaseUrl + "/Products/Create",
+                        type: "POST",
+                		contentType: "application/json"
+                    },
+                    parameterMap: function(options, operation) {
+                        if (operation !== "read" && options.models) {
+                            return kendo.stringify(options.models);
+                        }
                     }
-                  }
                 },
                 batch: true,
                 pageSize: 10,
@@ -148,4 +150,4 @@ The following example demonstrates how to use a custom editor, which uses the cu
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

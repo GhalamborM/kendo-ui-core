@@ -2,6 +2,7 @@
 title:  Keyboard Navigation
 page_title: Keyboard Navigation
 description: "Learn how to use the keyboard navigation functionality of the Telerik UI Menu component for {{ site.framework }}."
+components: ["menu"]
 previous_url: /html-helpers/navigation/menu/keyboard-navigation
 slug: htmlhelpers_menu_keyboardnavigation_aspnetcore
 position: 2
@@ -30,5 +31,6 @@ The Menu supports the following keyboard shortcuts:
 
 ## See Also
 
+* [Custom Keyboard Navigation in the Menu for {{ site.framework }}]({% slug custom_keyboard_navigation_menu_htmlhelper %})
 * [Keyboard Navigation by the Menu HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/menu/keyboard-navigation)
 * [Server-Side API](/api/menu)

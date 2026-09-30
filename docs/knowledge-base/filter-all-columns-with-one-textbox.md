@@ -1,12 +1,12 @@
 ---
 title: Filter All Grid Columns with Single Textbox
-description: An example on how to filter all columns with a single textbox in the Kendo UI Grid.
+description: Learn how to filter all columns with a single textbox in the Kendo UI Grid.
 type: how-to
-page_title: Filter All Columns with Single Textbox | Kendo UI Grid for jQuery
+page_title: Filter All Columns with Single Textbox - Kendo UI for jQuery Data Grid
 slug: filter-all-columns-with-one-textbox
 tags: grid, filter, all, columns, single, input, textbox, one, global, search, entire, whole
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2017.3.1026</td>
  </tr>
 </table>
@@ -29,16 +29,16 @@ How can I implement a global Grid search and enable the users to search through 
 ## Solution
 
 1. Within the [`input`](https://developer.mozilla.org/en-US/docs/Web/Events/input) event handler of the textbox, build a filter query by using the value of the textbox.
-1. Filter the data source by using the [`filter`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/filter) method.
+1. Filter the data source by using the [`filter`](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/filter) method.
 
 ```dojo
 
     <div id="example">
       Filter all fields:
-      <span style="width: 30%;" class="k-input k-textbox k-input-solid k-input-md k-rounded-md"><input id='filter' class='k-input-inner'/></span>
+      <span style="width: 30%;" class="k-input k-textbox"><input id='filter' class='k-input-inner'/></span>
       <div id="grid"></div>
 
-      <script>        
+      <script>
         function isNumeric(n) {
           return !isNaN(parseFloat(n)) && isFinite(n);
         }
@@ -50,7 +50,7 @@ How can I implement a global Grid search and enable the users to search through 
             return false;
           } else {
             return null;
-          }          
+          }
         }
 
         $(document).ready(function () {
@@ -99,7 +99,7 @@ How can I implement a global Grid search and enable the users to search through 
                       operator: 'eq',
                       value: e.target.value
                     });
-                  }    
+                  }
 
                 } else if (type == 'date') {
                   var data = grid.dataSource.data();
@@ -121,7 +121,7 @@ How can I implement a global Grid search and enable the users to search through 
                     operator: 'eq',
                     value: bool
                   });
-                }               
+                }
               }
             });
             grid.dataSource.filter(filter);

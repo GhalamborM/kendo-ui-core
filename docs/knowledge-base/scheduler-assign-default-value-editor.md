@@ -2,12 +2,13 @@
 title: Remove 'None' option in DropdownList of Kendo UI Scheduler Popup Editor
 description: Learn how to hide 'None' as an option and as a default value in the DropdownList of the Popup Editor Form in the Kendo UI Scheduler.
 type: how-to
-page_title: Hide the built-in option from the Editor | Kendo UI Scheduler 
+page_title: Hide the built-in option from the Editor - Kendo UI Scheduler 
 slug: scheduler-assign-default-value-editor
 position: 
 tags: scheduler, assign, default, value, dropdownlist, popup, editor, form, none, remove, hide, nullable, defaultvalue, schema, model
 ticketid: 1426081
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Scheduler for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Scheduler for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -38,7 +39,7 @@ How can I prevent having 'None' as an option and as a default value in the Dropd
 		}
 	```
 
-1. Set the 'defaultValue' in the [schema.model.fields.fieldName](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/configuration/schema#schemamodel).
+1. Set the 'defaultValue' in the [schema.model.fields.fieldName](https://docs.telerik.com/kendo-ui/api/data/datasource/configuration/schema#schemamodel).
 
 	```javascript
 		schema: {
@@ -49,7 +50,7 @@ How can I prevent having 'None' as an option and as a default value in the Dropd
 	```
 
 
-1. By default, the 'nullable' parameter is set to false as seen in the [Model.define](https://docs.telerik.com/kendo-ui/api/javascript/data/model/methods/define) method. You can also set the 'nullable' parameter to false.
+1. By default, the 'nullable' parameter is set to false as seen in the [Model.define](https://docs.telerik.com/kendo-ui/api/data/model/methods/define) method. You can also set the 'nullable' parameter to false.
 
 	```javascript
 		schema: {
@@ -59,6 +60,8 @@ How can I prevent having 'None' as an option and as a default value in the Dropd
 		}
 	```
 #### Example
+
+The following example initializes a Scheduler with remote data, sets `defaultValue: 1` on the `roomId` field, and hides the **None** option from the resource DropDownList using the `.k-list-optionlabel` CSS rule.
 
 ```dojo
 	<style>
@@ -74,8 +77,8 @@ How can I prevent having 'None' as an option and as a default value in the Dropd
 	<script>
 	$(function() {
 	    $("#scheduler").kendoScheduler({
-		date: new Date("2013/6/13"),
-		startTime: new Date("2013/6/13 07:00 AM"),
+		date: new Date("2025/6/13"),
+		startTime: new Date("2025/6/13 07:00 AM"),
 		height: 600,
 		views: [
 		    "day",
@@ -89,24 +92,26 @@ How can I prevent having 'None' as an option and as a default value in the Dropd
 		    batch: true,
 		    transport: {
 			read: {
-			    url: "https://demos.telerik.com/kendo-ui/service/meetings",
-			    dataType: "jsonp"
+			    url: "https://demos.telerik.com/service/v2/core/meetings"
 			},
 			update: {
-			    url: "https://demos.telerik.com/kendo-ui/service/meetings/update",
-			    dataType: "jsonp"
+			    url: "https://demos.telerik.com/service/v2/core/meetings/update",
+			     type: "POST",
+                 contentType: "application/json"
 			},
 			create: {
-			    url: "https://demos.telerik.com/kendo-ui/service/meetings/create",
-			    dataType: "jsonp"
+			    url: "https://demos.telerik.com/service/v2/core/meetings/create",
+			     type: "POST",
+                 contentType: "application/json"
 			},
 			destroy: {
-			    url: "https://demos.telerik.com/kendo-ui/service/meetings/destroy",
-			    dataType: "jsonp"
+			    url: "https://demos.telerik.com/service/v2/core/meetings/destroy",
+			     type: "POST",
+                 contentType: "application/json"
 			},
 			parameterMap: function(options, operation) {
 			    if (operation !== "read" && options.models) {
-				return {models: kendo.stringify(options.models)};
+				return kendo.stringify(options.models);
 			    }
 			}
 		    },
@@ -148,5 +153,5 @@ How can I prevent having 'None' as an option and as a default value in the Dropd
 
 ## See Also
 
-- [schema.model - Documentation and API Reference](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/configuration/schema#schemamodel)
-- [Model.define - Documentation and API Reference](https://docs.telerik.com/kendo-ui/api/javascript/data/model/methods/define)
+- [schema.model - Documentation and API Reference](https://docs.telerik.com/kendo-ui/api/data/datasource/configuration/schema#schemamodel)
+- [Model.define - Documentation and API Reference](https://docs.telerik.com/kendo-ui/api/data/model/methods/define)

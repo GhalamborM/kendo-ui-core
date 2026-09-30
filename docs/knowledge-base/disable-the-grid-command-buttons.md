@@ -1,14 +1,14 @@
 ---
 title: Disable the Command Button in Grids
-description: An example on how to disable the command buttons in Kendo UI Grids.
+description: Learn how to disable the command buttons in Kendo UI Grids.
 type: how-to
-page_title: Disable the Command Button | Kendo UI Grid for jQuery
+page_title: Disable the Command Button - Kendo UI for jQuery Data Grid
 slug: disable-the-grid-command-buttons
 previous_url: /knowledge-base/how-to-disable-the-grid-command-buttons
 tags: grid, command, disable, buttons
 ticketid: 1133355
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -16,10 +16,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
   <tr>
-  <td>Made with version</td>
+  <td>Product Version</td>
   <td>2017.3.913</td>
  </tr>
 </table>
@@ -33,7 +33,7 @@ How can I disable the `command.Edit()` or the `command.Destroy()` button?
 
 ## Solution
 
-Apply the logic on the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound) event and use jQuery.
+Apply the logic on the [`dataBound`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound) event and use jQuery.
 
 1. Set the `k-disabled` class.
 1. Only on the disabled buttons, remove the `delete` and `edit` specific classes.
@@ -44,8 +44,8 @@ Apply the logic on the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javas
       $("#grid").kendoGrid({
         dataBound:function(e){
           $( ".k-disabled" ).each(function( index ) {
-            $(this).removeClass('k-grid-delete')
-            $(this).removeClass('k-grid-edit')
+            $(this).removeClass('k-grid-remove-command')
+            $(this).removeClass('k-grid-edit-command')
           });
         },
         columns: [

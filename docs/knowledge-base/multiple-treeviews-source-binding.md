@@ -5,9 +5,9 @@ description: "Learn how to render multiple Kendo UI for jQuery TreeView widgets 
 slug: howto_rendermultipleusing_htmlsourcebinding_mvvm_treeview
 previous_url: /controls/navigation/treeview/how-to/MVVM/multiple-treeviews-source-binding
 tags: telerik, kendo, jquery, treeview, render, show, multiple, widgets, with, using, html, binding
-component: treeview
 type: how-to
 res_type: kb
+components: ["treeview"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI TreeView for jQuery</td>
+  <td>Progress® Kendo UI® TreeView for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -109,4 +109,4 @@ The following example demonstrates how to achieve the desired scenario.
 
 * [Basic Usage of the TreeView (Demo)](https://demos.telerik.com/kendo-ui/treeview/index)
 * [Using the API of the TreeView (Demo)](https://demos.telerik.com/kendo-ui/treeview/api)
-* [JavaScript API Reference of the TreeView](/api/javascript/ui/treeview)
+* [JavaScript API Reference of the TreeView](/api/ui/treeview)

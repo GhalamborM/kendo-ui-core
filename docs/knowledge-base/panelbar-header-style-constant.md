@@ -2,12 +2,13 @@
 title: Keep the PanelBar Header Style Constant
 description: Set the CSS property of the Header in the Kendo UI PanelBar for all the states
 type: how-to
-page_title: Persistent Header Style | Kendo UI PanelBar
+page_title: Persistent Header Style - Kendo UI PanelBar
 slug: panelbar-header-style-constant
-position: 
+position:
 tags: panelbar, header, style, state, hover, selected, focused, css, background
 ticketid: 1445766
 res_type: kb
+components: ["panelbar"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>PanelBar for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® PanelBar for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -36,7 +37,7 @@ In order to keep the CSS property of the Kendo UI PanelBar Header constant regar
 Set the CSS property of the following classes using a selector to add styling to a particular PanelBar:
 
 ```css
-  #panelbar.k-panelbar>.k-item>.k-link, 
+  #panelbar.k-panelbar>.k-item>.k-link,
   #panelbar.k-panelbar>.k-item>.k-link .k-icon,
   #panelbar.k-panelbar>.k-item>.k-link:hover {
     background-color: blue;
@@ -46,9 +47,12 @@ Set the CSS property of the following classes using a selector to add styling to
   }
 ```
 #### Example
+
+The following example applies the ID-scoped CSS rule to two PanelBar instances. Only the one with `id="panelbar"` receives the custom header color; the second instance is unaffected.
+
 ```dojo
 <style>
-  #panelbar.k-panelbar>.k-item>.k-link, 
+  #panelbar.k-panelbar>.k-item>.k-link,
   #panelbar.k-panelbar>.k-item>.k-link .k-icon,
   #panelbar.k-panelbar>.k-item>.k-link:hover {
     background-color: blue;
@@ -72,7 +76,7 @@ Set the CSS property of the following classes using a selector to add styling to
       ] }
     ]
   });
-  
+
   $("#panelbar1").kendoPanelBar({
     dataSource: [
       { text: "foo", items: [
@@ -94,7 +98,7 @@ Set the CSS property of the following classes using a selector to add styling to
 Set the CSS property of the following classes using 'div' to add styling globally:
 
 ```css
-  div.k-panelbar>.k-item>.k-link, 
+  div.k-panelbar>.k-item>.k-link,
   div.k-panelbar>.k-item>.k-link .k-icon,
   div.k-panelbar>.k-item>.k-link:hover {
     background-color: blue;
@@ -105,9 +109,11 @@ Set the CSS property of the following classes using 'div' to add styling globall
 ```
 #### Example
 
+The following example applies the global `div`-scoped CSS rule so both PanelBar instances on the page receive the same persistent header color.
+
 ``` dojo
 <style>
-  div.k-panelbar>.k-item>.k-link, 
+  div.k-panelbar>.k-item>.k-link,
   div.k-panelbar>.k-item>.k-link .k-icon,
   div.k-panelbar>.k-item>.k-link:hover {
     background-color: blue;
@@ -131,7 +137,7 @@ Set the CSS property of the following classes using 'div' to add styling globall
       ] }
     ]
   });
-  
+
   $("#panelbar1").kendoPanelBar({
     dataSource: [
       { text: "foo", items: [

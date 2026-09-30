@@ -1,4 +1,4 @@
-(function( window, undefined ) {
+﻿(function( window, undefined ) {
     kendo.cultures["ibb-NG"] = {
         name: "ibb-NG",
         numberFormat: {
@@ -60,4 +60,4 @@
             }
         }
     };
-})(this);
+})();

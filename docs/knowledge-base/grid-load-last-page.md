@@ -1,12 +1,13 @@
 ---
 title: Load the Last Grid Page by Default
-description: An example on how to show the last page in the Kendo UI Grid.
+description: Learn how to show the last page in the Kendo UI Grid.
 type: how-to
-page_title: Show Last Page by Default | Kendo UI Grid for jQuery
+page_title: Show Last Page by Default - Kendo UI for jQuery Data Grid
 slug: grid-load-last-page
 tags: grid, pager, page
 ticketid: 1149264
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Grid</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td> 
 	</tr>
 </table>
 
@@ -29,10 +30,10 @@ How can I make the Grid show its last page by default?
 
 ## Solution
 
-1. Handle the first [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound) event of the Grid.
+1. Handle the first [`dataBound`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound) event of the Grid.
 1. In the event handler:
-	1. Get the length of the items by using the [`data`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/data) method of the `dataSource`.
-	1. Get the current page size by using the [`pageSize`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/pagesize) method of the `dataSource`.
+	1. Get the length of the items by using the [`data`](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/data) method of the `dataSource`.
+	1. Get the current page size by using the [`pageSize`](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/pagesize) method of the `dataSource`.
 	1. Divide these numbers, parse, and increment the result. Use the final result to set the new `pageSize`.
 
 	    ```dojo
@@ -42,9 +43,8 @@ How can I make the Grid show its last page by default?
 	            $(document).ready(function() {
 	                $("#grid").kendoGrid({
 	                    dataSource: {
-	                        type: "odata",
 	                        transport: {
-	                            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+	                            read: "https://demos.telerik.com/service/v2/core/Customers"
 	                        },
 	                        pageSize: 20
 	                    },

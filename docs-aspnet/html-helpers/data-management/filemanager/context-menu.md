@@ -2,6 +2,7 @@
 title: Context Menu
 page_title: Context Menu
 description: "Get familiar with the ContextMenu usage in the {{ site.product }} FileManager component, in order to delete add or move files" 
+components: ["filemanager"]
 slug: htmlhelpers_filemanager_aspnetcore_contextmenu
 position: 3
 ---
@@ -10,7 +11,7 @@ position: 3
 # ContextMenu in FileManager
 The {{ site.product }} FileManager's ContextMenu enables you to easily execute FileManager commands on the selected file or folder. 
 
-The component uses the {{ site.product }} ContextMenu, enabling you to get full advantage of its [Client API](https://docs.telerik.com/kendo-ui/api/javascript/ui/filemanager). Once an item is selected, the corresponding command is executed. 
+The component uses the {{ site.product }} ContextMenu, enabling you to get full advantage of its [Client API](https://docs.telerik.com/kendo-ui/api/ui/filemanager). Once an item is selected, the corresponding command is executed. 
 
 The built-in items in the ContextMenu are `rename` and `delete`. You can define your custom items which can execute custom commands. You can also manage what items should be visible, by enumerating the needed ones in the initialization of the component (see Example below)
 
@@ -22,7 +23,25 @@ The built-in items in the ContextMenu are `rename` and `delete`. You can define 
             items.Add("rename");
             items.Add("delete");
         })) 
-        ...
+        .DataSource(ds =>
+        {
+            ds.Read(operation => operation
+                .Type(HttpVerbs.Post)
+                .Action("Read", "FileManagerData")
+            );
+            ds.Destroy(operation => operation
+                .Type(HttpVerbs.Post)
+                .Action("Destroy", "FileManagerData")
+            );
+            ds.Create(operation => operation
+                .Type(HttpVerbs.Post)
+                .Action("Create", "FileManagerData")
+            );
+            ds.Update(operation => operation
+                .Type(HttpVerbs.Post)
+                .Action("Update", "FileManagerData")
+            );
+        })
     )
 ```
 {% if site.core %}
@@ -80,7 +99,7 @@ To add a custom command to the context menu of the FileManager, follow the instu
 
 1. Create the command for the FileManager:
 
-    ```
+    ```JS
         $(function(){
             var filemanagerNS = kendo.ui.filemanager;
 
@@ -99,6 +118,37 @@ To add a custom command to the context menu of the FileManager, follow the instu
         }); 
     ```
 
+## ContextMenu Icons
+
+The ContextMenu enables you to add the traditional [Kendo Web Font Icons](https://docs.telerik.com/aspnet-core/styles-and-layout/sass-themes/font-icons#list-of-font-icons) in order to enhance the look and feel of the incorporated ContextMenu items.
+
+> If the built-in `Rename` and `Delete` commands are to be added, it is mandatory to configure all the required `Text()`, `Command()` and `Icon()` configurations.
+
+```HtmlHelper
+    .ContextMenu(context =>
+    {
+        context.Items(items =>
+        {
+            items.Add("rename");
+            items.Add("delete").Text("Delete").Command("DeleteCommand").Icon("x");
+            items.Add("custom").Text("Files Selected").Command("CustomCommand").Icon("info-circle");
+        });
+    })
+```
+{% if site.core %}
+```TagHelper
+    <context-menu enabled="true">
+         <items>
+             <item name="rename">
+             </item>
+             <item name="delete" command="DeleteCommand" text="Delete" icon="x">
+             </item>
+             <item name="custom" command="CustomCommand" text="Files Selected" icon="info-circle">
+             </item>
+         </items>
+    </context-menu>
+```
+{% endif %}
 
 ## See Also
 

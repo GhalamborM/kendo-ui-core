@@ -5,9 +5,9 @@ description: "Learn how to create RegExp-based validation rules in a Kendo UI Sp
 slug: howto_regexp_based_validation
 previous_url: /controls/data-management/spreadsheet/how-to/regexp-validation
 tags: kendo, jquery, spreadsheet, create, custom, regexp, based, validation, rules
-component: spreadsheet
 type: how-to
 res_type: kb
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet for jQuery</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I use RegExp-based rules with the validation of the Kendo UI for jQuery 
 
 ## Solution
 
-The [validation types](/api/javascript/spreadsheet/range/methods/validation) of the Spreadsheet do not directly support RegExp-based rules.
+The [validation types](/api/spreadsheet/range/methods/validation) of the Spreadsheet do not directly support RegExp-based rules.
 
 To work around this issue, use a `custom` validation type that allows you to pass any formula. The validation will pass when the formula returns a non-false value. Though the built-in functions do not include a RegExp-matching function, a custom function is easy to create. For more information, refer to the article on [defining custom functions]({% slug custom_functions_spreadsheet_widget %}).
 
@@ -96,4 +96,4 @@ To work around this issue, use a `custom` validation type that allows you to pas
 ## See Also
 
 * [Basic Usage of the Spreadsheet (Demo)](https://demos.telerik.com/kendo-ui/spreadsheet/index)
-* [Spreadsheet JavaScript API Reference](/api/javascript/ui/spreadsheet)
+* [Spreadsheet JavaScript API Reference](/api/ui/spreadsheet)

@@ -1,12 +1,13 @@
 ---
 title: Bind Two Schedulers Together to Display the Same View and Date
-description: An example on how to bind two Schedulers together so that they always display the same view and date.
+description: Learn how to bind two Schedulers together so that they always display the same view and date.
 type: how-to
-page_title: Bind Two Schedulers Together to Display Same View and Date | Kendo UI Scheduler for jQuery
+page_title: Bind Two Schedulers Together to Display Same View and Date - Kendo UI Scheduler for jQuery
 slug: scheduler-bind-two-same-view-date
 tags: scheduler, bind, two, same, view, date
 ticketid: 1156354
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Scheduler for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -54,8 +55,8 @@ My application displays two Kendo UI Schedulers on the same page. How can I bind
 <script>
   $(function() {
     $("#scheduler").kendoScheduler({
-      date: new Date("2013/6/13"),
-      startTime: new Date("2013/6/13 07:00 AM"),
+      date: new Date("2025/6/13"),
+      startTime: new Date("2025/6/13 07:00 AM"),
       height: 600,
       views: [
         "day",
@@ -76,26 +77,26 @@ My application displays two Kendo UI Schedulers on the same page. How can I bind
         batch: true,
         transport: {
           read: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/tasks"
           },
           update: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/tasks/update",
+             type: "POST",
+                 contentType: "application/json"
           },
           create: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/tasks/create",
+             type: "POST",
+                 contentType: "application/json"
           },
           destroy: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+             type: "POST",
+                 contentType: "application/json"
           },
           parameterMap: function(options, operation) {
             if (operation !== "read" && options.models) {
-              return {
-                models: kendo.stringify(options.models)
-              };
+              return kendo.stringify(options.models);
             }
           }
         },
@@ -198,8 +199,8 @@ My application displays two Kendo UI Schedulers on the same page. How can I bind
     });
 
     $("#schedulerTwo").kendoScheduler({
-      date: new Date("2013/6/13"),
-      startTime: new Date("2013/6/13 07:00 AM"),
+      date: new Date("2025/6/13"),
+      startTime: new Date("2025/6/13 07:00 AM"),
       height: 600,
       views: [
         "day",
@@ -220,26 +221,28 @@ My application displays two Kendo UI Schedulers on the same page. How can I bind
         batch: true,
         transport: {
           read: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/tasks",
+             type: "POST",
+                 contentType: "application/json"
           },
           update: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/tasks/update",
+             type: "POST",
+                 contentType: "application/json"
           },
           create: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/tasks/create",
+             type: "POST",
+                 contentType: "application/json"
           },
           destroy: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+             type: "POST",
+                 contentType: "application/json"
           },
           parameterMap: function(options, operation) {
             if (operation !== "read" && options.models) {
-              return {
-                models: kendo.stringify(options.models)
-              };
+              return kendo.stringify(options.models);
             }
           }
         },
@@ -370,13 +373,13 @@ My application displays two Kendo UI Schedulers on the same page. How can I bind
   }
 
   #team-schedule {
-    background: url('../content/web/scheduler/team-schedule.png') transparent no-repeat;
+    background: url('https://demos.telerik.com/kendo-ui/content/web/scheduler/team-schedule.png') transparent no-repeat;
     height: 115px;
     position: relative;
   }
 
   #people {
-    background: url('../content/web/scheduler/scheduler-people.png') no-repeat;
+    background: url('https://demos.telerik.com/kendo-ui/content/web/scheduler/scheduler-people.png') no-repeat;
     width: 345px;
     height: 115px;
     position: absolute;
@@ -405,6 +408,6 @@ My application displays two Kendo UI Schedulers on the same page. How can I bind
 
 ## See Also
 
-* [API Reference of the navigate Event](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler/events/navigate)
-* [API Reference of the view Method](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler/methods/view)
-* [API Reference of the date Method](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler/methods/date)
+* [API Reference of the navigate Event](https://docs.telerik.com/kendo-ui/api/ui/scheduler/events/navigate)
+* [API Reference of the view Method](https://docs.telerik.com/kendo-ui/api/ui/scheduler/methods/view)
+* [API Reference of the date Method](https://docs.telerik.com/kendo-ui/api/ui/scheduler/methods/date)

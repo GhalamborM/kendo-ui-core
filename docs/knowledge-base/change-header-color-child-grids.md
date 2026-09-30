@@ -1,13 +1,13 @@
 ---
 title: Set Different Colors to Every Child Grid Header
-page_title: Change Header Colors of Child Grids | Kendo UI Grid for jQuery
-description: An example on how to change the color of every child Grid header in a hierarchical Kendo UI Grid.
+page_title: Change Header Colors of Child Grids - Kendo UI for jQuery Data Grid
+description: Learn how to change the color of every child Grid header in a hierarchical Kendo UI Grid.
 type: how-to
 slug: change-header-color-child-grids
 tags: kendo ui, mvc, grid, hierarchy, child grids, header colors
 ticketid: 1101311
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
-   <td>Progress Kendo UI version</td>
+   <td>Product Version</td>
    <td>Tested up to version 2017.2 504</td>
   </tr>
 </table>
@@ -38,9 +38,9 @@ Conditionally change the background color of the header cells in the `dataBound`
     $(document).ready(function() {
         var element = $("#grid").kendoGrid({
             dataSource: {
-                type: "odata",
+                type: "odata-v4",
                 transport: {
-                    read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                    read: "https://demos.telerik.com/service/v2/odata/Employees"
                 },
                 pageSize: 6,
                 serverPaging: true,
@@ -81,9 +81,9 @@ Conditionally change the background color of the header cells in the `dataBound`
     function detailInit(e) {
         $("<div id='grid_" + e.data.EmployeeID + "'/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-                type: "odata",
+                type: "odata-v4",
                 transport: {
-                    read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                    read: "https://demos.telerik.com/service/v2/odata/Orders"
                 },
                 serverPaging: true,
                 serverSorting: true,

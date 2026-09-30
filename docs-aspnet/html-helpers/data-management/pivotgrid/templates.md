@@ -2,6 +2,7 @@
 title: Templates
 page_title: Templates
 description: "Get started with the Telerik UI PivotGrid component for {{ site.framework }} and learn about the provided templating options."
+components: ["pivotgrid"]
 slug: htmlhelpers_pivotgrid_aspnetcore_templates
 position: 5
 ---
@@ -19,7 +20,7 @@ To use templates in the PivotGrid, apply any of the available template options:
 
 ## Data Cell Template
 
-The data cell template is the [template](https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/template) which renders the content of the data cell. By default, it renders the `fmtValue` formatted value of the data item.
+The data cell template is the [template](https://docs.telerik.com/kendo-ui/api/kendo/methods/template) which renders the content of the data cell. By default, it renders the `fmtValue` formatted value of the data item.
 
 In the data cell template, you can use the following fields:
 * `columnTuple`&mdash;The tuple of the corresponding column header cell.
@@ -73,7 +74,7 @@ In the data cell template, you can use the following fields:
 
 ## Column Header Template
 
-The column header template is the [template](https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/template) which renders the content of the column header cell. By default, it renders the caption of the tuple member.
+The column header template is the [template](https://docs.telerik.com/kendo-ui/api/kendo/methods/template) which renders the content of the column header cell. By default, it renders the caption of the tuple member.
 
 In the column header template, you can use the following fields:
 * `member`&mdash;The member of the corresponding column header cell.
@@ -117,7 +118,7 @@ In the column header template, you can use the following fields:
 
 ## Row Header Template
 
-The row header template is the [template](https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/template) which renders the content of the row header cell. By default, it renders the caption of the tuple member.
+The row header template is the [template](https://docs.telerik.com/kendo-ui/api/kendo/methods/template) which renders the content of the row header cell. By default, it renders the caption of the tuple member.
 
 In the row header template, you can use the following fields:
 * `member`&mdash;The member of the corresponding column header cell.

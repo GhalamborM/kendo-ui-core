@@ -5,9 +5,9 @@ description: "Learn how to use an inline Kendo UI Editor inside a window."
 previous_url: /controls/editors/editor/how-to/inline-editor-inside-window, /controls/editors/editor/how-to/integration/inline-editor-inside-window
 slug: howto_use_inline_editor_inside_windows_editor
 tags: telerik, kendo, jquery, editor, use, inline, inside, window
-component: editor
 type: how-to
 res_type: kb
+components: ["editor"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Editor for jQuery</td>
+  <td>Progress® Kendo UI® Editor for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -94,4 +94,4 @@ $(function() {
 
 * [Basic Usage of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/index)
 * [Using the API of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/api)
-* [JavaScript API Reference of the Editor](/api/javascript/ui/editor)
+* [JavaScript API Reference of the Editor](/api/ui/editor)

@@ -1,13 +1,13 @@
 ---
-title: Access Editor Controls in edit Events
-page_title: Access Editor Controls in edit Events | Kendo UI Grid for jQuery
-description: "An example on how to access an editor control in the edit event handler of the Kendo UI Grid for jQuery."
+title: Access the Editor Control in the edit Event of the Grid
+page_title: Access Editor Controls in edit Events - jQuery Data Grid
+description: "Learn how to access an editor control in the edit event handler of the Kendo UI Data Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/Editing/access-editor-control
 slug: howto_access_editor_controlsin_edit_events_grid
 tags: grid, editor, edit, events
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -38,7 +38,7 @@ How can I access an editor in the `edit` event handler of the Grid?
 ## Solution
 
 The functionality relies on the following concepts:
-* The [`edit`](/api/javascript/ui/grid/events/edit) event handler of the Grid provides a reference to the DOM element of the edit container.
+* The [`edit`](/api/ui/grid/events/edit) event handler of the Grid provides a reference to the DOM element of the edit container.
 * The Kendo UI widgets have a `data-role` HTML attribute rendered for the DOM element. This attribute holds the widget object.
 
 For brevity, the following demo does not include the configuration for the Data Source transport. However, for the [CRUD operations]({% slug cruddataoperations_kendoui_datasourcecomponent %}) to work properly, they require a transport configuration.
@@ -79,22 +79,24 @@ For brevity, the following demo does not include the configuration for the Data 
                     { command: "edit", title: " ", width: "150px" }],
                 editable: "inline",
                 edit: function(e) {
-                  var model = e.model; //reference to the model that is about the be edited
+                  var model = e.model; //Reference to the model that is about the be edited.
 
-                  var container = e.container; //reference to the editor container
+                  var container = e.container; //Reference to the editor container.
 
-                  var categoryDropDownList = container.find("[data-role=dropdownlist]").data("kendoDropDownList"); //find widget element and then get the widget instance
-                  // if DropDownListwidget is found
+                  var categoryDropDownList = container.find("[data-role=dropdownlist]").data("kendoDropDownList");
+                  //Find the widget element and then get the widget instance
+                  // if the DropDownListwidget is found.
                   if (categoryDropDownList) {
-                    //use DropDownList API based on the model values to accomplish your bussiness requirement.
-                    //link: https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdownlist
+                    // Use the DropDownList API based on the model values to accomplish your business requirement.
+                    // Link: https://docs.telerik.com/kendo-ui/api/ui/dropdownlist
                     console.log("DropDownList", categoryDropDownList);
                   }
 
-                  var priceNumericTextBox = container.find("[data-role=numerictextbox]").data("kendoNumericTextBox"); //find widget element and then the widget instance
+                  var priceNumericTextBox = container.find("[data-role=numerictextbox]").data("kendoNumericTextBox");
+                  // Find the widget element and then the widget instance.
                   if (priceNumericTextBox) {
-                    //use NumericTextBox API
-                    //link: https://docs.telerik.com/kendo-ui/api/javascript/ui/numerictextbox
+                    // Use the NumericTextBox API.
+                    // Link: https://docs.telerik.com/kendo-ui/api/ui/numerictextbox
                     console.log("NumericTextBox", priceNumericTextBox);
                   }
                 }
@@ -107,9 +109,8 @@ For brevity, the following demo does not include the configuration for the Data 
                 .kendoDropDownList({
                     autoBind: false,
                     dataSource: {
-                        type: "odata",
                         transport: {
-                            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
+                            read: "https://demos.telerik.com/service/v2/core/Categories"
                         }
                     }
                 });
@@ -121,4 +122,4 @@ For brevity, the following demo does not include the configuration for the Data 
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

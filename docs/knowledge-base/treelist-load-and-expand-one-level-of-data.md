@@ -1,12 +1,13 @@
 ---
 title: Load and expand only the first level data in the TreeList
-description: An example on how to load the Kendo UI TreeList expanded initially up to a certain point (level in the hierarchy).
+description: Learn how to load the Kendo UI TreeList expanded initially up to a certain point (level in the hierarchy).
 type: how-to
-page_title: Partially expand the TreeList | Kendo UI TreeList for jQuery
+page_title: Partially expand the TreeList - Kendo UI TreeList for jQuery
 slug: treelist-load-and-expand-one-level-of-data
 ticketid: 1148152
 tags: treelist, expand, partial, read, request, node, root, level, initially, load, only
 res_type: kb
+components: ["treelist"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI TreeList</td>
+		<td>Progress® Kendo UI® TreeList for jQuery</td>
 	</tr>
 	<tr>
-		<td>Created with Product Version</td>
+		<td>Product Version</td>
 		<td>2017.3.1026</td>
 	</tr>
 </table>
@@ -33,10 +34,10 @@ How do I turn off the transport read from firing when I need to expand the first
 
 To load the Kendo UI TreeList expanded initially up to a certain point(level in the hierarchy) the following steps will help you achieve it:
 
-1. Set the Kendo UI TreeList [`autoBind`](/api/javascript/ui/treelist/configuration/autobind) property to `false` initially
-1. Make a read request (the custom call which will return the initial data) using the dataSource [`read()`](/api/javascript/data/datasource/methods/read) method
-1. Use the Kendo UI TreeListDataSource [`load()`](/api/javascript/data/treelistdatasource/methods/load) method to load the root
-1. Use the Kendo UI TreeList [`expand()`](/api/javascript/ui/treelist/methods/expand) method to expand only the items which are in the view() - this will not make a request for non-loaded items
+1. Set the Kendo UI TreeList [`autoBind`](/api/ui/treelist/configuration/autobind) property to `false` initially
+1. Make a read request (the custom call which will return the initial data) using the dataSource [`read()`](/api/data/datasource/methods/read) method
+1. Use the Kendo UI TreeListDataSource [`load()`](/api/data/treelistdatasource/methods/load) method to load the root
+1. Use the Kendo UI TreeList [`expand()`](/api/ui/treelist/methods/expand) method to expand only the items which are in the view() - this will not make a request for non-loaded items
 
 ```
     dataSource.read().then(function() {
@@ -56,13 +57,12 @@ To load the Kendo UI TreeList expanded initially up to a certain point(level in 
       <script>
         $(document).ready(function () {
 
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service";
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core";
 
                     var dataSource = new kendo.data.TreeListDataSource({
                             transport: {
                                 read: {
-                                    url: crudServiceBaseUrl + "/EmployeeDirectory",
-                                    dataType: "jsonp"
+                                    url: crudServiceBaseUrl + "/EmployeeDirectory"
                                 }
                             },
                             schema: {

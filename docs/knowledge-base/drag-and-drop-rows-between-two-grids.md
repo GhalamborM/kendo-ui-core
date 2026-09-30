@@ -1,13 +1,13 @@
 ---
 title: Drag and Drop Rows between Grids
-page_title: Drag and Drop Rows Between Grids | Kendo UI Grid for jQuery
-description: "An example on how to drag and drop rows between two Kendo UI Grids for jQuery."
+page_title: Drag and Drop Rows Between Grids - Kendo UI for jQuery Data Grid
+description: "Learn how to drag and drop rows between two Kendo UI Grids for jQuery."
 previous_url: /controls/data-management/grid/how-to/drag-and-drop-rows-between-two-grids, /aspne-mvc/controls/data-management/grid/how-to/drag-and-drop-rows-between-two-grids, /controls/data-management/grid/how-to/various/drag-and-drop-rows-between-two-grids
 slug: howto_dragand_drop_rows_between_twogrids_grid
 tags: grid, drag, drop, rows, between
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -32,6 +32,12 @@ res_type: kb
 How can I drag and drop rows between two Kendo UI Grids for jQuery?
 
 ## Solution
+
+In order to achieve the requirement, you can utilize the [Kendo Draggable](https://docs.telerik.com/kendo-ui/api/ui/draggable) and the [Kendo DropTarget](https://docs.telerik.com/kendo-ui/api/ui/droptarget) components. Here you will find a small summary of the example below:
+
+* Create `Kendo Draggable` components from the same `div` elements which are used to create the two Grids. Make sure to configure the [group](/api/ui/draggable/configuration/group) option.
+* Select the wrapper elements of the Grids in order to create a `Kendo DropTarget`. Configuring the [group](/api/ui/droptarget/configuration/group) here as well will let the `DropTarget` component know that there's a `Draggable` component with the same group. That will allow the `DropTarget` to accept items which are being dragged from the `Draggable` instance. 
+* In the [drop](/api/ui/droptarget/events/drop) event, you can use the [DataSource API](/api/data/datasource) to remove the dropped item from one dataSource and add it in the other.
 
 The following example demonstrates how to drag and drop rows between two Kendo UI Grids.
 
@@ -119,4 +125,4 @@ The following example demonstrates how to drag and drop rows between two Kendo U
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

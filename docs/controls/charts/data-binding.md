@@ -1,7 +1,8 @@
 ---
 title: Data Binding
-page_title: jQuery Chart Documentation | Data Binding
+page_title: jQuery Chart Documentation - Data Binding
 description: "Get started with the jQuery Chart by Kendo UI and learn how to bind it to inline data and to a data source."
+components: ["chart"]
 previous_url: /controls/charts/chart/data-binding
 slug: databinding_charts_widget
 position: 2
@@ -348,4 +349,4 @@ To bind the scatter series to a data source, use the fields that are specified a
 ## See Also
 
 * [Using the API of the Chart (Demo)](https://demos.telerik.com/kendo-ui/chart-api/index)
-* [JavaScript API Reference of the Chart](/api/javascript/dataviz/ui/chart)
+* [JavaScript API Reference of the Chart](/api/dataviz/ui/chart)

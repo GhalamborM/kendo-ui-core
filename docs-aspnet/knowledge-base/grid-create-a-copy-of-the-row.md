@@ -1,11 +1,12 @@
 ---
-title: Create Duplicate Grid Rows
+title: Creating Duplicate Grid Rows
 description: An example on how to create a copy of a row in the Telerik UI Grid for {{ site.framework }}.
 type: how-to
 page_title: Create Copies of Grid Rows
 slug: grid-create-a-copy-of-the-row
 tags: grid, copy, row
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -27,12 +28,12 @@ How can I create a copy of a Grid row when the user clicks a button?
 
 ## Solution
 
-1. Create a [`custom command button`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.command#columnscommand) and provide a handler inside the [`click`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.command#columnscommandclick) method.
+1. Create a [`custom command button`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns.command#columnscommand) and provide a handler inside the [`click`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns.command#columnscommandclick) method.
 1. Initialize the `click` handler.
-1. In the `click` handler, get the current table row and the data item bound to it through the [`dataitem`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/dataitem) method.
-1. Add a new record to the grid [`dataSource`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/datasource) with the corresponding properties of the current data item. 
+1. In the `click` handler, get the current table row and the data item bound to it through the [`dataitem`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/dataitem) method.
+1. Add a new record to the grid [`dataSource`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/datasource) with the corresponding properties of the current data item. 
 
-```Index.cshtml
+```Razor Index.cshtml
 	@(Html.Kendo().Grid<Kendo.Mvc.Examples.Models.ProductViewModel>()
 	    .Name("grid")
 	    .Columns(columns =>
@@ -62,7 +63,7 @@ How can I create a copy of a Grid row when the user clicks a button?
 	    )
 	)
 ```
-```script.js
+```JS script.js
 <script type="text/javascript">
 	function onClickHandler(e){
 	   // prevent page scroll position change
@@ -82,3 +83,32 @@ How can I create a copy of a Grid row when the user clicks a button?
 </script>
 ```
 For more information on how to implement the suggested approach, refer to the following [Telerik REPL](https://netcorerepl.telerik.com/mFvcYAaB11ZFNfF510) example.
+
+## More {{ site.framework }} Grid Resources
+
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+
+{% if site.core %}
+* [{{ site.framework }} DataGrid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Telerik REPL: Creating Copies of Grid Rows](https://netcorerepl.telerik.com/mFvcYAaB11ZFNfF510)
+* [Client-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

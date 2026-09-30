@@ -1,12 +1,13 @@
 ---
 title: Prevent Adding New Events And Deleting The Exisitng Ones In Scheduler
-description: An example on how to prevent adding new events and deleting the existing ones Kendo UI Scheduler.
+description: Learn how to prevent adding new events and deleting the existing ones Kendo UI Scheduler.
 type: how-to
-page_title: Prevent Adding New Events And Deleting The Exisitng Ones | Kendo UI Scheduler for jQuery
+page_title: Prevent Adding New Events And Deleting The Exisitng Ones - Kendo UI Scheduler for jQuery
 slug: scheduler-prevent-adding-new-events
 tags: kendo, kendo-ui, scheduler
 ticketid: 1110078
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
 </table>
 
@@ -24,8 +25,8 @@ I want to allow user to edit the existing events, but I want to prevent adding n
 
 ## Solution
 
-1. Handle the [`add`](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler/events/add) event of the Scheduler and prevent the default behavior.
-1. Set [`editable.destroy`](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler/configuration/editable.destroy) option to `false`.
+1. Handle the [`add`](https://docs.telerik.com/kendo-ui/api/ui/scheduler/events/add) event of the Scheduler and prevent the default behavior.
+1. Set [`editable.destroy`](https://docs.telerik.com/kendo-ui/api/ui/scheduler/configuration/editable#editabledestroy) option to `false`.
 
 ```dojo
 	<div id="scheduler"></div>
@@ -69,4 +70,4 @@ I want to allow user to edit the existing events, but I want to prevent adding n
 
 ## See Also
 
-* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler)
+* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/ui/scheduler)

@@ -1,13 +1,13 @@
 ---
 title: Grid with dynamic aggregates column menu
-description: An example on how to create an aggregates menu in a dynamic Kendo UI Grid, calculate user selected values and update the footers
+description: Learn how to create an aggregates menu in a dynamic Kendo UI Grid, calculate user selected values and update the footers
 type: how-to
-page_title: Dynamically Calculate Aggregates in the Grid | Kendo UI Grid for jQuery
+page_title: Dynamically Calculate Aggregates in the Grid - Kendo UI for jQuery Data Grid
 slug: grid-dynamic-aggregates
 tags: grid, dynamically, column, header, dynamic, aggregate, menu, footer, update, refresh, calculate
 res_type: kb
+components: ["grid"]
 ticketid: 1471295
-component: grid
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Created with version</td>
@@ -31,17 +31,17 @@ I have created a dynamic grid as shown in [this article]({% slug howto_createdyn
 
 There a different options to choose from when it comes to the UI of the aggregate column menu. This example is created with the FilterMultiCheck menu as a proof of concept. Here are the important steps:
 
-1. Initialize a header menu with dynamic aggregates dependent on the field type by using the [`headerTemplate`](/api/javascript/ui/grid/configuration/columns.headertemplate) in the grid `dataBound` event. If the grid has aggregates previously selected, reflect that in the UI.
+1. Initialize a header menu with dynamic aggregates dependent on the field type by using the [`headerTemplate`](/api/ui/grid/configuration/columns#columnsheadertemplate) in the grid `dataBound` event. If the grid has aggregates previously selected, reflect that in the UI.
 1. When the selection in the menu changes, generate a `footerTemplate` and assign it to the respective grid columns. Use the `setOptions()` method to update the grid with the new column configuration or refresh the grid if using static footer templates
-1. Apply the aggregates dynamically by using the data source [`aggregate()`](/api/javascript/data/datasource/methods/aggregate) method on selection change in the menu. 
+1. Apply the aggregates dynamically by using the data source [`aggregate()`](/api/data/datasource/methods/aggregate) method on selection change in the menu. 
 
-```dojo
+```
     <style>
       .aggregate-selector {
         display: flex;
       }
 
-      .aggregate-selector > .k-grid-filter {
+      .aggregate-selector > .k-grid-filter-menu {
         right: 30px;
       }
     </style>
@@ -53,8 +53,7 @@ There a different options to choose from when it comes to the UI of the aggregat
       var model;
       var columns;
       $.ajax({
-        url: "https://www.mocky.io/v2/5835e736110000020e0c003c",
-        dataType: "jsonp",
+        url: "https://runner.telerik.io/fullscreen/DEUMgSey.json",
         success: function (result) {
           generateGrid(result);
         }

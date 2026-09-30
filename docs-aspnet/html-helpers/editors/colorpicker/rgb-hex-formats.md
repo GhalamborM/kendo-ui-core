@@ -2,15 +2,16 @@
 title: RGB and HEX Formats
 page_title: RGB and HEX Formats
 description: "Learn more about the input formats of the Telerik UI ColorPicker component for {{ site.framework }}."
+components: ["colorpicker"]
 slug: htmlhelpers_formats_colorpickerhelper_aspnetcore
 position: 5
 ---
 
 # RGB and HEX Input Formats
 
-With R3 SP1 of 2021 release support for both RGB and HEX formats for the {{ site.product }} ColorPicker was introduced. The available input formats for the component can be specified through [`.Formats()`](/api/Kendo.Mvc.UI.Fluent/ColorPickerBuilder#formatssystemstring) configuration. To choose the default format, use the [`.Format()`](/api/Kendo.Mvc.UI.Fluent/ColorPickerBuilder#formatkendomvcuicolorpickerformat) option.
+With R3 SP1 of 2021 release support for both RGB and HEX formats for the {{ site.product }} ColorPicker was introduced. The available input formats for the component can be specified through [`.Formats()`](/api/kendo.mvc.ui.fluent/colorpickerbuilder#formatssystemstring) configuration. to choose the default format, use the [`.Format()`](/api/kendo.mvc.ui.fluent/colorpickerbuilder#formatkendomvcuicolorpickerformat) option.
 
-The example below demonstrates thow to configure the {{ site.product }} ColorPicker with a different default view:
+The example below demonstrates how to configure the {{ site.product }} ColorPicker with a different default view:
 
 ```HtmlHelper
     <div>
@@ -55,4 +56,4 @@ The example below demonstrates thow to configure the {{ site.product }} ColorPic
 
 * [RGB and HEX formats of the {{ site.product }} ColorPicker (Demo)](https://demos.telerik.com/{{ site.platform }}/colorpicker/rgb-hex)
 * [Server-Side API](/api/colorpicker)
-* [Client-Side API](/api/javascript/ui/colorpicker)
+* [Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/colorpicker)

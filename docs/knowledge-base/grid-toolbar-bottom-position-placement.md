@@ -1,12 +1,13 @@
 ---
 title: Display Toolbar at the Bottom of the Grid
-description: An example on how to display a toolbar at the bottom of the Kendo UI Grid.
+description: Learn how to display a toolbar at the bottom of the Kendo UI Grid.
 type: how-to
-page_title: Position a Toolbar under the Table | Kendo UI Grid for jQuery
+page_title: Position a Toolbar under the Table - Kendo UI for jQuery Data Grid
 slug: grid-toolbar-bottom-position-placement
 tags: grid, toolbar, bottom, position, placement
 ticketid: 1120199
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -28,7 +29,7 @@ How can I change the position of the toolbar and place it at the bottom of the G
 
 ## Solution
 
-Use the `$("#grid").find(".k-grid-toolbar").insertAfter($("#grid .k-grid-content"));` jQuery configuration to place the toolbar under the content of the Grid.
+Use the `$("#grid").find(".k-grid-toolbar").insertAfter($("#grid .k-grid-container"));` jQuery configuration to place the toolbar under the content of the Grid.
 
 The following example demonstrates how to display a toolbar above the pager and at the bottom of a Grid which uses batch editing.
 
@@ -37,28 +38,30 @@ The following example demonstrates how to display a toolbar above the pager and 
       <div id="grid"></div>
       <script>
         $(document).ready(function () {
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+         var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
               dataSource = new kendo.data.DataSource({
-                transport: {
-                  read:  {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
-                  },
-                  update: {
-                    url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
-                  },
-                  destroy: {
-                    url: crudServiceBaseUrl + "/Products/Destroy",
-                    dataType: "jsonp"
-                  },
-                  create: {
-                    url: crudServiceBaseUrl + "/Products/Create",
-                    dataType: "jsonp"
+                  transport: {
+                      read:  {
+                          url: crudServiceBaseUrl + "/Products"
+                      },
+                      update: {
+                          url: crudServiceBaseUrl + "/Products/Update",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      destroy: {
+                          url: crudServiceBaseUrl + "/Products/Destroy",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      create: {
+                          url: crudServiceBaseUrl + "/Products/Create",
+                          type: "POST",
+                  		    contentType: "application/json"
                   },
                   parameterMap: function(options, operation) {
                     if (operation !== "read" && options.models) {
-                      return {models: kendo.stringify(options.models)};
+                      return kendo.stringify(options.models);
                     }
                   }
                 },
@@ -92,7 +95,7 @@ The following example demonstrates how to display a toolbar above the pager and 
           });
 
           // Sets toolbar under the Grid body
-          $("#grid").find(".k-grid-toolbar").insertAfter($("#grid .k-grid-content"));
+          $("#grid").find(".k-grid-toolbar").insertAfter($("#grid .k-grid-container"));
         });
       </script>
     </div>

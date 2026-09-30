@@ -1,12 +1,13 @@
 ---
 title: Display Hidden Column Values in Detail Template
-description: An example on how to show the values of the hidden column in the detail template of the Kendo UI Grid.
+description: Learn how to show the values of the hidden column in the detail template of the Kendo UI Grid.
 type: how-to
-page_title: Implement Responsive Value Display | Kendo UI Grid for jQuery
+page_title: Implement Responsive Value Display - Kendo UI for jQuery Data Grid
 slug: grid-display-hidden-values-in-details
 tags: grid, responsive, details
 ticketid: 1180379
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -28,7 +29,7 @@ How can I display the hidden columns values in the detail template of the rows i
 
 ## Solution
 
-1. Implement a [`detailTemplate`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/detailtemplate).
+1. Implement a [`detailTemplate`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/detailtemplate).
 1. Use [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) to show and hide the desired data in the detail template.
 
 ```dojo

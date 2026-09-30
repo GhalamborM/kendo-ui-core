@@ -1,13 +1,13 @@
 ---
 title: Prevent Grid Filter Menu from Closing on Browser Scroll
-description: An example on how to prevent the Kendo UI Grid filter menu from closing when the browser scrolls.
+description: Learn how to prevent the Kendo UI Grid filter menu from closing when the browser scrolls.
 type: how-to
-page_title: Prevent Closing the Filter Popup on Browser Scroll | Kendo UI Grid for jQuery
+page_title: Prevent Closing the Filter Popup on Browser Scroll - Kendo UI for jQuery Data Grid
 slug: grid-filter-menu-prevent-close-browser-scroll
 tags: grid, filtering, menu, popup, prevent, close, scroll
 ticketid: 1147708
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -19,7 +19,7 @@ component: grid
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Grid</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td> 
 	</tr>
 </table>
 
@@ -32,7 +32,7 @@ How can I prevent the filter popup from closing when the user scrolls the page o
 
 1. Handle the [`scroll`](https://api.jquery.com/scroll/) event of the `window`.
 1. In the event handler, set a global variable to `true`.
-1. In the [`filterMenuInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/filtermenuinit) event handler of the Grid, bind the [`close`](https://docs.telerik.com/kendo-ui/api/javascript/ui/popup/events/close) event to the Popup widget.
+1. In the [`filterMenuInit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/filtermenuinit) event handler of the Grid, bind the [`close`](https://docs.telerik.com/kendo-ui/api/ui/popup/events/close) event to the Popup widget.
 1. Based on the global variable, prevent the default behavior in the `close` event handler.
 
 ```dojo
@@ -47,31 +47,31 @@ How can I prevent the filter popup from closing when the user scrolls the page o
 <script>
     var scroll = false;
     $(document).ready(function() {
-        var telerikWebServiceBase = "https://demos.telerik.com/kendo-ui/service/";
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core/";
         $("#client").kendoGrid({
             dataSource: {
                 transport: {
-                    read: {
-                        url: telerikWebServiceBase + "/Products",
-                        dataType: "jsonp"
+                    read:  {
+                        url: crudServiceBaseUrl + "/Products"
                     },
                     update: {
-                        url: telerikWebServiceBase + "/Products/Update",
-                        dataType: "jsonp"
+                        url: crudServiceBaseUrl + "/Products/Update",
+                        type: "POST",
+                		contentType: "application/json"
                     },
                     destroy: {
-                        url: telerikWebServiceBase + "/Products/Destroy",
-                        dataType: "jsonp"
+                        url: crudServiceBaseUrl + "/Products/Destroy",
+                        type: "POST",
+                		contentType: "application/json"
                     },
                     create: {
-                        url: telerikWebServiceBase + "/Products/Create",
-                        dataType: "jsonp"
+                        url: crudServiceBaseUrl + "/Products/Create",
+                        type: "POST",
+                		contentType: "application/json"
                     },
                     parameterMap: function(options, operation) {
                         if (operation !== "read" && options.models) {
-                            return {
-                                models: kendo.stringify(options.models)
-                            };
+                            return kendo.stringify(options.models);
                         }
                     }
                 },

@@ -1,11 +1,12 @@
 ---
 title: Validate Required Conditional Fields
-description: An example on how to implement required conditional field validation based on the value of another input on the form when working with the Kendo UI Validator.
-page_title: Validate Required Conditional Fields | Kendo UI Validator for jQuery
+description: Learn how to implement required conditional field validation based on the value of another input on the form when working with the Kendo UI Validator.
+page_title: Validate Required Conditional Fields - Kendo UI Validator for jQuery
 slug: validator-required-if-rule
 tags: validator, required, required if, required-if, validation, conditional
 ticketid: 1384728
 res_type: kb
+components: ["validator"]
 ---
 
 ## Environment
@@ -13,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Validator</td>
+  <td>Progress® Kendo UI® Validator for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -35,7 +36,7 @@ How can I create a "required if" validation that only demands an input if anothe
 
 ## Solution
 
-Denote the desired input in an attribute on the validated element and implement a [custom validation rule](https://docs.telerik.com/kendo-ui/controls/editors/validator/overview#custom-rules-for-validation).
+Denote the desired input in an attribute on the validated element and implement a [custom validation rule](https://docs.telerik.com/kendo-ui/controls/validator/overview#custom-rules-for-validation).
 
 The code comments contain tips for the suggested implementation. For more information, refer to the following key points:
 
@@ -45,7 +46,7 @@ The code comments contain tips for the suggested implementation. For more inform
 
 ```dojo
 <form id="myform">
-	<span style="width: 250px" class="k-input k-textbox k-input-solid k-input-md k-rounded-md"><input type="text" id="input1" name="input1" placeholder="type something here and click Validate" class='k-input-inner'/></span>
+	<span style="width: 250px" class="k-input k-textbox"><input type="text" id="input1" name="input1" placeholder="type something here and click Validate" class='k-input-inner'/></span>
 
 	<br /><br />
 
@@ -73,11 +74,11 @@ The code comments contain tips for the suggested implementation. For more inform
 
 	<br /><br />
 
-	<span style="width: 250px" class="k-input k-textbox k-input-solid k-input-md k-rounded-md"><input type="text" id="secondInput" requiredIf="input1" name="secondInput" class='k-input-inner'/></span>
+	<span style="width: 250px" class="k-input k-textbox"><input type="text" id="secondInput" requiredIf="input1" name="secondInput" class='k-input-inner'/></span>
 
 	<br /><br />
 
-	<button id="save" class="k-button k-button-md k-rounded-md k-button-solid k-button-solid-base" id="noButton"><span class="k-button-text">Validate</span></button>
+	<button id="save" class="k-button" id="noButton"><span class="k-button-text">Validate</span></button>
 
 </form>
 
@@ -99,7 +100,7 @@ The code comments contain tips for the suggested implementation. For more inform
 							var targetVal = targetInput.first().val();
 
 							//get current element value. To make it more generic you can use the kendo.widgetInstance(element) method
-							//https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/widgetinstance
+							//https://docs.telerik.com/kendo-ui/api/kendo/methods/widgetinstance
 							var currVal = "";
 							var widget = kendo.widgetInstance(input);
 							if (widget && widget.value) {
@@ -143,6 +144,6 @@ The code comments contain tips for the suggested implementation. For more inform
 
 ## See Also
 
-* [Custom Validator Rules](https://docs.telerik.com/kendo-ui/controls/editors/validator/overview#custom-rules-for-validation)
+* [Custom Validator Rules](https://docs.telerik.com/kendo-ui/controls/validator/overview#custom-rules-for-validation)
 * [Demo on Custom Validation Rules](https://demos.telerik.com/kendo-ui/validator/custom-validation)
-* [API Reference of the kendo.widgetInstance() Method](https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/widgetinstance)
+* [API Reference of the kendo.widgetInstance() Method](https://docs.telerik.com/kendo-ui/api/kendo/methods/widgetinstance)

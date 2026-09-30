@@ -2,9 +2,10 @@
 title: Data Binding
 page_title: Data Binding
 description: "Learn the basics about binding the Telerik UI Chart component for {{ site.framework }} (MVC 6 or {{ site.framework }} MVC) to data."
+components: ["chart"]
 previous_url: /helpers/html-helpers/charts/chart/data-binding, /helpers/charts/data-binding
 slug: htmlhelpers_charts_databinding_aspnetcore
-position: 2
+position: 1
 ---
 
 # Data Binding
@@ -222,7 +223,8 @@ A more flexible alternative is to provide the series with an array of objects. T
 
 You can bind the Chart to a data set in the view model or to items that are stored in `ViewBag`/`ViewData`.
 
-```tab-Controller
+{% if site.core %}
+```Controller
         public IActionResult Local_Data_Binding()
         {
             var internetUsers = new InternetUsers[] {
@@ -242,7 +244,29 @@ You can bind the Chart to a data set in the view model or to items that are stor
             return View(internetUsers);
         }
 ```
-```tab-Model
+{% else %}
+```Controller
+        public ActionResult Local_Data_Binding()
+        {
+            var internetUsers = new InternetUsers[] {
+                new InternetUsers(2000,43.1,"United States"),
+                new InternetUsers(2001,49.2,"United States"),
+                new InternetUsers(2002,59.0,"United States"),
+                new InternetUsers(2003,61.9,"United States"),
+                new InternetUsers(2004,65,"United States"),
+                new InternetUsers(2005,68.3,"United States"),
+                new InternetUsers(2006,69.2,"United States"),
+                new InternetUsers(2007,75.3,"United States"),
+                new InternetUsers(2008,74.2,"United States"),
+                new InternetUsers(2009,71.2,"United States"),
+                new InternetUsers(2010,74.2,"United States"),
+                new InternetUsers(2011,78.2,"United States")
+            };
+            return View(internetUsers);
+        }
+```
+{% endif %}
+```Model
     public class InternetUsers
     {
         public InternetUsers()
@@ -307,7 +331,7 @@ You can bind the Chart to a data set in the view model or to items that are stor
             </value-axis-item>
         </value-axis>
     </kendo-chart>
-```    
+```
 {% endif %}
 
 ## Remote Data
@@ -318,7 +342,8 @@ To bind to remote data by using the DataSource component:
 
 1. Add a new action method in your controller that returns the data set.
 
-    ```tab-Controller
+    {% if site.core %}
+    ```Controller
             [HttpPost]
             public IActionResult _SpainElectricityProduction()
             {
@@ -341,7 +366,32 @@ To bind to remote data by using the DataSource component:
                 return Json(result);
             }
     ```
-    ```tab-Model
+    {% else %}
+    ```Controller
+            [HttpPost]
+            public ActionResult _SpainElectricityProduction()
+            {
+                // Data is usually read from a service that communicates with the an instance of the DbContext. 
+                // Refer to the MSDN documentation for further details on connecting to a data base and using a DBContext:
+                // https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext?view=efcore-5.0
+                //
+                // For clarity, in this example static data is generated and returned from the remote-endpoint.
+                var result = new ElectricityProduction[] {
+                    new ElectricityProduction("2000", 18, 31807, 4727, 62206),
+                    new ElectricityProduction("2001", 24, 43864, 6759, 63708),
+                    new ElectricityProduction("2002", 30, 26270, 9342, 63016),
+                    new ElectricityProduction("2003", 41, 43897, 12075, 61875),
+                    new ElectricityProduction("2004", 56, 34439, 15700, 63606),
+                    new ElectricityProduction("2005", 41, 23025, 21176, 57539),
+                    new ElectricityProduction("2006", 119, 29831, 23297, 60126),
+                    new ElectricityProduction("2007", 508, 30522, 27568, 55103),
+                    new ElectricityProduction("2008", 2578, 26112, 32203, 58973)
+                };
+                return Json(result);
+            }
+    ```
+    {% endif %}
+    ```Model
         public class ElectricityProduction
         {
             public ElectricityProduction()
@@ -433,12 +483,21 @@ To bind to remote data by using the DataSource component:
 
     Unlike the Grid, the Chart is configured to read a flat data response by default. If you have custom logic that requires the usage of the `ToDataSourceResult()` extension method when returning data for the Chart, configure a custom DataSource with a schema that can correctly parse the response. For further details on the DataSource configuration refer to the [DataSource section of the documentation]({% slug htmlhelpers_datasource_aspnetcore %}).
 
-    ```tab-Controller
+    {% if site.core %}
+    ```Controller
         public IActionResult Products_Read([DataSourceRequest] DataSourceRequest request)
         {
             return Json(productService.Read().ToDataSourceResult(request));
         }
     ```
+    {% else %}
+    ```Controller
+        public ActionResult Products_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            return Json(productService.Read().ToDataSourceResult(request));
+        }
+    ```
+    {% endif %}
     ```HtmlHelper
         @(Html.Kendo().Chart<Kendo.Mvc.Examples.Models.ProductViewModel>()
             .Name("chart")
@@ -469,7 +528,9 @@ To bind to remote data by using the DataSource component:
 
 ## See Also
 
+{% if site.core %}
+* [Chart in Razor Pages]({% slug htmlhelper_chart_razorpages_aspnetcore %})
+{% endif %}
 * [Using the API of the Chart HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/chart-api/index)
-* [Basic Usage of the Area Chart HtmlHelper for {{ site.framework }} (Demos)](https://demos.telerik.com/{{ site.platform }}/area-charts/index)
-* [Basic Usage of the Area Chart TagHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/area-charts/tag-helper)
+* [Basic Usage of the Area Chart for {{ site.framework }} (Demos)](https://demos.telerik.com/{{ site.platform }}/area-charts/index)
 * [Server-Side API](/api/chart)

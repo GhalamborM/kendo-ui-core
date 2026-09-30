@@ -1,13 +1,13 @@
 ---
 title: Prevent Sorting with Checkbox in Header
-description: An example on how to implement a sortable column with a checkbox in the Kendo UI Grid header.
+description: Learn how to implement a sortable column with a checkbox in the Kendo UI Grid header.
 type: how-to
-page_title: Implement Sortable Columns with Checkboxes in the Headers | Kendo UI Grid for jQuery
+page_title: Implement Sortable Columns with Checkboxes in the Headers - Kendo UI for jQuery Data Grid
 slug: grid-sort-column-checkbox-header
 tags: grid, sort, header, checkbox, template, prevent, enable
 ticketid: 1141908
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Created with version</td>
@@ -43,9 +43,8 @@ To allow the selection and deselection of the checkbox only and prevent the [eve
         $(document).ready(function () {
             $("#grid").kendoGrid({
                 dataSource: {
-                    type: "odata",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                        read: "https://demos.telerik.com/service/v2/core/Customers"
                     },
                     pageSize: 20
                 },
@@ -60,7 +59,7 @@ To allow the selection and deselection of the checkbox only and prevent the [eve
                 columns: [{
                     headerTemplate: 'Recommendations & Status Details <br/><input type="checkbox" id="chkStatusDtls" /> Show all Status Details',
                     template: "<div class='customer-photo'" +
-                        "style='background-image: url(../content/web/Customers/#:data.CustomerID#.jpg);'></div>" +
+                        "style='background-image: url(https://demos.telerik.com/kendo-ui/content/web/Customers/#:data.CustomerID#.jpg);'></div>" +
                         "<div class='customer-name'>#: ContactName #</div>",
                     field: "ContactName",
                     title: "Contact Name",

@@ -2,6 +2,7 @@
 title: Selection & Export
 page_title: Selection & Export
 description: "With Telerik UI Grid for {{ site.framework }} you can enable users to select specific cells and export them to Excel or Telerik UI Chart"
+components: ["grid"]
 slug: exportingselection_gridhelper_aspnetcore
 position: 6
 ---
@@ -21,14 +22,14 @@ The following sections provide step-by-step instructions and examples on getting
 ### Enabling Excel Export
 
 1. Configure the [Selectable]({% slug htmlhelpers_grid_aspnetcore_selection %}) property and apply the following settings:
-    * Set the [Selection Mode]({% slug htmlhelpers_grid_aspnetcore_selection %}#select-modes) to [Multiple](/api/Kendo.Mvc.UI.Fluent/GridSelectionSettingsBuilder#modekendomvcuigridselectionmode).
-    * Set the [Selection Type]({% slug htmlhelpers_grid_aspnetcore_selection %}#select-modes) to [Cell](/api/Kendo.Mvc.UI.Fluent/GridSelectionSettingsBuilder#typekendomvcuigridselectiontype).
+    * Set the [Selection Mode]({% slug htmlhelpers_grid_aspnetcore_selection %}#select-modes) to [Multiple](/api/kendo.mvc.ui.fluent/gridselectionsettingsbuilder#modekendomvcuigridselectionmode).
+    * Set the [Selection Type]({% slug htmlhelpers_grid_aspnetcore_selection %}#select-modes) to [Cell](/api/kendo.mvc.ui.fluent/gridselectionsettingsbuilder#typekendomvcuigridselectiontype).
 
 1. To take full advantage of the Excel export feature, download the [JSZip library](https://stuk.github.io/jszip/) and include the file before the Kendo UI JavaScript files in the `Layout.cshtml`. For more information, refer to the article with the [requirements]({% slug exportsupport_core %}#jszip-library).
 
     ```HtmlHelper
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.js"></script>
+        <script src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
         <script src="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/kendo.all.min.js"></script>
 
         @(Html.Kendo().Grid<OrderViewModel>()
@@ -135,7 +136,7 @@ The following sections provide step-by-step instructions and examples on getting
 
 ### Copying Selected Data
 
-To enable users to copy the selected data, call the [`copySelectionToClipboard`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/copyselectiontoclipboard) method.
+To enable users to copy the selected data, call the [`copySelectionToClipboard`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/copyselectiontoclipboard) method.
 
 ```javascript
     function copySelected() {
@@ -163,7 +164,7 @@ To enable users to copy the selected data, call the [`copySelectionToClipboard`]
 
 ### Exporting Selected Data to Excel
 
-To enable users to export the selected data, call the [`exportSelectedToExcel`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/exportselectedtoexcel) method.
+To enable users to export the selected data, call the [`exportSelectedToExcel`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/exportselectedtoexcel) method.
 
 ```javascript
     function exportSelected() {
@@ -190,7 +191,7 @@ To enable users to export the selected data, call the [`exportSelectedToExcel`](
 
 ### Exporting Selected Data to Chart
 
-To enable users to export the selected data to a Kendo UI Chart, call the [`getSelectedData`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/getselecteddata) method and initialize a Chart widget with the data.
+To enable users to export the selected data to a Kendo UI Chart, call the [`getSelectedData`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/getselecteddata) method and initialize a Chart widget with the data.
 
 1. Add an empty div before initializing the Grid.
 
@@ -266,5 +267,8 @@ The following selection types are supported:
 
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
 * [Selection Copy/Export by the Grid HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/grid/selection-export)
 * [Server-Side API](/api/grid)

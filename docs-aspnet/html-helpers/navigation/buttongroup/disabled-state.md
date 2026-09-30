@@ -2,6 +2,7 @@
 title: Disabled ButtonGroup
 page_title: Disabled ButtonGroup
 description: "Enable or disable the Telerik UI ButtonGroup component for {{ site.framework }}."
+components: ["buttongroup"]
 previous_url: /helpers/navigation/buttongroup/disabled-state
 slug: disabled_buttongroup_aspnetcore
 position: 2
@@ -41,4 +42,4 @@ The following example demonstrates how to enable and disable the ButtonGroup ove
 
 ## See Also
 
-* [Server-Side API](/api/buttongroup)
+* [Server-Side API of the ButtonGroup for {{ site.framework }}](/api/buttongroup)

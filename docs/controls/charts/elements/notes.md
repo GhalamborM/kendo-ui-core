@@ -1,7 +1,8 @@
 ---
 title: Notes
-page_title: jQuery Chart Documentation | Notes
+page_title: jQuery Chart Documentation - Notes
 description: "Get started with the jQuery Chart by Kendo UI and learn how to configure its notes."
+components: ["chart"]
 previous_url: /controls/charts/notes
 slug: chartnotes_charts_widget
 ---
@@ -10,7 +11,7 @@ slug: chartnotes_charts_widget
 
 The Kendo UI Chart enables you to display the metadata of a point or a specific part of the axis.
 
-![Notes displayed in a chart](../chart-notes.png)
+![Kendo UI for jQuery Chart Notes](../chart-notes.png)
 
 ## Getting Started
 
@@ -112,4 +113,4 @@ In the axis configuration, you have only `value` which represents the value of t
 ## See Also
 
 * [Using the API of the Chart (Demo)](https://demos.telerik.com/kendo-ui/chart-api/index)
-* [JavaScript API Reference of the Chart](/api/javascript/dataviz/ui/chart)
+* [JavaScript API Reference of the Chart](/api/dataviz/ui/chart)

@@ -5,9 +5,9 @@ description: "Learn how to show a Kendo UI Tooltip only if the target text overf
 slug: howto_showonlyiftextoverflowswithellipsis_tooltip
 previous_url: /controls/layout/tooltip/how-to/show-on-ellipsis
 tags: telerik, kendo, jquery, tooltip, show, only, if, text, overflows, with, ellipsis
-component: tooltip
 type: how-to
 res_type: kb
+components: ["tooltip"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Tooltip for jQuery</td>
+  <td>Progress® Kendo UI® Tooltip for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -89,4 +89,4 @@ The following example demonstrates how to achieve the desired scenario.
 
 * [Basic Usage of the Tooltip (Demo)](https://demos.telerik.com/kendo-ui/tooltip/index)
 * [Using the API of the Tooltip (Demo)](https://demos.telerik.com/kendo-ui/tooltip/api)
-* [JavaScript API Reference of the Tooltip](/api/javascript/ui/tooltip)
+* [JavaScript API Reference of the Tooltip](/api/ui/tooltip)

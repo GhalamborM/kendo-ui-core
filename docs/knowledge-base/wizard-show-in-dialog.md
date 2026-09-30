@@ -1,14 +1,16 @@
 ---
-title: Display a Kendo UI Wizard widget in a Dialog component
-description: Initialize a Kendo UI Wizard in a Kendo UI Dialog.
+title: Display a Wizard Component in a Dialog Component
+description: Learn how to initialize a Kendo UI for jQuery Wizard in a Kendo UI for jQuery Dialog component.
 type: how-to
-page_title: Display a Kendo UI Wizard in a Dialog component
+page_title: Display a Kendo UI for jQuery Wizard in a Dialog Component
 slug: wizard-show-in-dialog
-tags: wizard, dialog
+tags: wizard, dialog, kendoui, jquery, display
 res_type: kb
+components: ["dialog"]
 ---
 
 ## Environment
+
 <table>
 	<tbody>
 		<tr>
@@ -17,7 +19,8 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Wizard for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Dialog for jQuery</td>
+			<td>Progress® Kendo UI® Wizard for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -27,6 +30,8 @@ res_type: kb
 How can I show a Kendo UI Wizard in a Dialog?
 
 ## Solution
+
+The following example initializes a Dialog with a form inside it and creates the Wizard in the `open` event handler. The Wizard collects attendee and user details across four steps and closes the Dialog when the user completes the **Done** step.
 
 ```dojo
     <div id="dialog">
@@ -99,5 +104,5 @@ How can I show a Kendo UI Wizard in a Dialog?
 ```
 
 ## See Also
-* [Wizard Configuration - API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/wizard)
-* [open Event - API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/dialog/events/open)
+* [Wizard Configuration - API Reference](https://docs.telerik.com/kendo-ui/api/ui/wizard)
+* [open Event - API Reference](https://docs.telerik.com/kendo-ui/api/ui/dialog/events/open)

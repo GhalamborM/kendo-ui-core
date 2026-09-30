@@ -2,12 +2,13 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI Barcode component for {{ site.framework }}"
+components: ["barcode"]
 previous_url: /helpers/barcodes/barcode/overview
 slug: overview_barcodehelper_aspnetcore
-position: 1
+position: 0
 ---
 
-# Barcode Overview
+# {{ site.framework }} Barcode Overview
 
 {% if site.core %}
 The Barcode TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI Barcode widget. To add the component to your ASP.NET Core app, you can use either.
@@ -48,7 +49,7 @@ To configure the Barcode, pass the configuration options as attributes:
 
 * The name of the Barcode is mandatory. It specifies the "id" attribute of the widget.
 
-* You can select the appropriate encoding (symbology) from the [available options](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/barcode/configuration/type). Specify it by passing an `enum` value to the encoding method.
+* You can select the appropriate encoding (symbology) from the [available options](https://docs.telerik.com/kendo-ui/api/dataviz/ui/barcode/configuration/type). Specify it by passing an `enum` value to the encoding method.
 
 ```HtmlHelper
     @(Html.Kendo().Barcode()
@@ -70,20 +71,12 @@ To configure the Barcode, pass the configuration options as attributes:
 
 ## Functionality and Features  
 
-The Barcode supports a set of [encoding types]({% slug encodings_aspnetcore_barcode_widget %}).
+The Barcode supports a set of [encoding types]({% slug encodings_aspnetcore_barcode_widget %})
 
-## Referencing Existing Instances
+## Next Steps
 
-To reference an existing Barcode instance, use the [`jQuery.data()`](https://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [Barcode client-side API](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/barcode#methods) to control its behavior.
-
-      // Place the following after the declaration of the Barcode for {{ site.framework }}.
-      <script>
-      $(function() {
-          // The Name() of the Barcode is used to get its client-side instance.
-          var barcode = $("#barcode").data("kendoBarcode");
-          barcode.value("foo") // Supply a valid value for that encoding. Then, the Barcode will redraw automatically.
-      });
-      </script>
+* [Getting Started with the Barcode ]({% slug barcode_getting_started %})
+* [Basic Usage of the Barcode for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/barcode/index)
 
 ## See Also
 

@@ -2,6 +2,7 @@
 title: Icon ButtonGroup
 page_title: Icon ButtonGroup
 description: "Accommodate an icon and enhance the meaning of the text content of the Telerik UI ButtonGroup component for {{ site.framework }}."
+components: ["buttongroup"]
 previous_url: /helpers/navigation/buttongroup/icons
 slug: icons_buttongroup_aspnetcore
 position: 3
@@ -37,19 +38,21 @@ You can configure the icons by using the `.Icon()` method of the ButtonGroup.
 
 This ButtonGroup configuration is expected to produce the following HTML output:
 
-    <div class="k-button-group k-widget" data-role="buttongroup" id="player" role="group" tabindex="0">
-        <span data-icon="play" aria-pressed="false" role="button" class="k-button k-button-icon">
-            <span class="k-icon k-i-play"></span>
-        </span>
-        <span data-icon="pause" aria-pressed="false" role="button" class="k-button k-button-icon">
-            <span class="k-icon k-i-pause"></span>
-        </span>
-        <span data-icon="stop" aria-pressed="false" role="button" class="k-button k-button-icon">
-            <span class="k-icon k-i-stop"></span>
-        </span>
-    </div>
+```HTML
+<div class="k-button-group k-widget" data-role="buttongroup" id="player" role="group" tabindex="0">
+    <span data-icon="play" aria-pressed="false" role="button" class="k-button k-button-icon">
+        <span class="k-icon k-i-play"></span>
+    </span>
+    <span data-icon="pause" aria-pressed="false" role="button" class="k-button k-button-icon">
+        <span class="k-icon k-i-pause"></span>
+    </span>
+    <span data-icon="stop" aria-pressed="false" role="button" class="k-button k-button-icon">
+        <span class="k-icon k-i-stop"></span>
+    </span>
+</div>
+```
 
 ## See Also
 
 * [Adding Images to the ButtonGroup HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/buttongroup/icons)
-* [Server-Side API](/api/buttongroup)
+* [Server-Side API of the ButtonGroup for {{ site.framework }}](/api/buttongroup)

@@ -1,11 +1,12 @@
 ---
-title: Use DropDownList as Boolean Filter in Grid
-description: How can I set up a custom filter for a Boolean column in the Grid and have a DropDownList which lists true, false, all?
+title: Using DropDownList as Boolean Filter in Grid
+description: How can I set up a custom filter for a Boolean column in the {{ site.product }} Grid and have a DropDownList which lists true, false, all?
 type: how-to
-page_title: Filter Boolean Grid Column with DropDownList
+page_title: Filtering Boolean Grid Column with DropDownList
 slug: grid-boolean-dropdownlist-filter
 tags: grid, dropdownlist, filter, boolean, column, true, false
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -26,7 +27,7 @@ How can I set up a custom filter for a Boolean column in the Grid and have a Dro
 ## Solution
 
 1. Create a template function to initialize the DropDownList.
-```
+```JS
 function boolFilterTemplate(input) {
             input.kendoDropDownList({
                 dataSource: {
@@ -43,9 +44,9 @@ function boolFilterTemplate(input) {
         }
 ```
 
-2. Use the [filterMenuInit](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/filtermenuinit) event of the Grid to replace the default filter label with more appropriate text.
+2. Use the [`filterMenuInit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/filtermenuinit) event of the Grid to replace the default filter label with more appropriate text.
 
-```
+```JS
 function onFilterMenuInit(e) {
             if (e.field == "Discontinued") {
                 // replace default text in filter menu
@@ -54,9 +55,9 @@ function onFilterMenuInit(e) {
         }
 ```
 
-3. Use the [filter](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/filter) event of the Grid to replace the string value in the generated filter expression with its Boolean equivalent.
+3. Use the [`filter`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/filter) event of the Grid to replace the string value in the generated filter expression with its Boolean equivalent.
 
-```
+```JS
 function onFilter(e) {
             if (e.field === "Discontinued") {
                 var filter = e.filter;
@@ -92,7 +93,7 @@ Example:
     )
 )
 ```
-```script.js
+```JS script.js
         $(document).ready(function () {
         var grid = $("#grid").data('kendoGrid');
         var options = grid.getOptions();
@@ -167,3 +168,31 @@ public partial class GridController : Controller
   
     }
 ```
+
+## More {{ site.framework }} Grid Resources
+
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+
+{% if site.core %}
+* [{{ site.framework }} DataGrid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Client-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

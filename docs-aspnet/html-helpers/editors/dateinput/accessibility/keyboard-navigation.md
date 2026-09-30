@@ -2,7 +2,8 @@
 title: Keyboard Navigation
 page_title: Keyboard Navigation
 description: "Learn about the accessibility support that the {{ site.product }} DateInput component provides through its keyboard navigation functionality."
-slug: htmlhelpers_dateinput_aspnetcore_accessibility_keyboardnavigation
+components: ["dateinput"]
+slug: htmlhelpers_dateinput_accessibility_keyboardnavigation
 position: 2
 ---
 
@@ -29,5 +30,6 @@ For a complete example, refer to the [demo on keyboard navigation of the DateInp
 
 ## See Also
 
+* [Custom Keyboard Navigation in the DateInput for {{ site.framework }}]({% slug custom_keyboard_navigation_dateinput_htmlhelper %})
 * [Keyboard Navigation in the DateInput HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/dateinput/keyboard-navigation)
-* [Accessibility in the DateInput HtmlHelper for {{ site.framework }}]({% slug htmlhelpers_dateinput_aspnetcore_accessibility %})
+* [Accessibility in the DateInput HtmlHelper for {{ site.framework }}]({% slug htmlhelpers_dateinput_accessibility %})

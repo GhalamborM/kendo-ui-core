@@ -2,6 +2,7 @@
 title: Badge Button
 page_title: Badge Button
 description: "Include a badge and enhance the meaning of the text content of the Telerik UI Button component for {{ site.framework }}."
+components: ["button"]
 slug: badges_button_aspnetcore
 position: 4
 ---
@@ -10,7 +11,7 @@ position: 4
 
 The Button can accommodate a [Badge](https://docs.telerik.com/{{ site.platform }}/html-helpers/layout/badge/overview) to enhance the meaning of the text content.
 
-The Button provides the `Badge()` configuration method for configuring the Button's Badge. The [API](/api/Kendo.Mvc.UI.Fluent/ButtonBadgeSettingsBuilder) exposes methods you can use, including `Shape()`, `Size()`, `ThemeColor()`, `Position()`, `Fill()`,`Visible()` and `Align()` to customize the appearance of the Badge:
+The Button provides the `Badge()` configuration method for configuring the Button's Badge. The [API](/api/kendo.mvc.ui.fluent/buttonbadgesettingsbuilder) exposes methods you can use, including `shape()`, `size()`, `themecolor()`, `position()`, `fill()`,`visible()` and `align()` to customize the appearance of the Badge:
 
 ```HtmlHelper
     @(Html.Kendo().Button()

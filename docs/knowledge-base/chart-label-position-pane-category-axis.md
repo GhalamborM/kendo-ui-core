@@ -1,12 +1,13 @@
 ---
-title: Place Labels under Panes in CategoryAxis
-description: An example on how to position the CategoryAxis labels of the Kendo UI Chart below each series in a pane.
+title: Place Labels under Panes in the CategoryAxis of the Chart
+description: Learn how to position the CategoryAxis labels of the Kendo UI Chart below each series in a pane.
 type: how-to
-page_title: Position CategoryAxis Labels under Multiple Panes | Kendo UI Chart
+page_title: Position CategoryAxis Labels under Multiple Panes - Kendo UI Chart
 slug: chart-label-position-pane-category-axis
 tags: chart, label, position, pane, category, axis
 ticketid: 1411207
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Chart for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
 
   <td>Product Version</td>
@@ -28,7 +29,7 @@ How can I position the `categoryAxis` labels below multiple panes in a Kendo UI 
 
 ## Solution
 
-Set the [`categoryAxis.labels.position` configuration](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryaxislabelsposition) to `start`.
+Set the [`categoryAxis.labels.position` configuration](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryaxislabelsposition) to `start`.
 
 ```javascript
         categoryAxis: [{
@@ -83,4 +84,4 @@ The following example demonstrates the full implementation of the suggested appr
 
 ## See Also
 
-* [API Reference of categoryAxis.labels.position](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryaxislabelsposition)
+* [API Reference of categoryAxis.labels.position](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryaxislabelsposition)

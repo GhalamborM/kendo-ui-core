@@ -2,12 +2,13 @@
 title: Position the Null Values Last When Sorting 
 description: Show the null value at the end of the Grid when sorting in any order
 type: how-to
-page_title: Sorting Null Elements to the Bottom | Kendo UI Grid
+page_title: Sorting Null Elements to the Bottom - Kendo UI Grid
 slug: grid-sort-null-value-end
 position: 
 tags: grid, sort, sorting, null, bottom, show, end, ascending, descending, order, values, element, last
 ticketid: 1432643
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -29,7 +30,7 @@ res_type: kb
 How do I show the null values at the end of the Grid when I sort it in any order?
 
 ## Solution
-Use the following custom function in the [columns.sortable.compare](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.sortable#columnssortablecompare) configuration.
+Use the following custom function in the [columns.sortable.compare](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnssortable#columnssortablecompare) configuration.
 
 ```javascript
   columns: [{
@@ -50,6 +51,8 @@ Use the following custom function in the [columns.sortable.compare](https://docs
   }]
 ```
 #### Example
+
+The following example initializes a Grid with a sortable Name column that uses the custom compare function to position `null` values at the bottom for both ascending and descending sort directions.
 
 ```dojo
   <div id="grid"></div>
@@ -108,4 +111,4 @@ Use the following custom function in the [columns.sortable.compare](https://docs
 ```
 ## See Also
 
-- [columns.sortable.compare](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.sortable#columnssortablecompare) configuration
+- [columns.sortable.compare](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnssortable#columnssortablecompare) configuration

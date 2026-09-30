@@ -2,12 +2,13 @@
 title: Filtering
 page_title: DataSource Filtering
 description: "Learn how to set the initial filter options in the DataSource component for {{ site.framework }}."
+components: ["datasource"]
 slug: htmlhelper_datasourcefilter
 ---
 
 # Filters
 
-To request filtered data on initial load, configure the filters with the [`FilterDescriptorFactory`](/api/Kendo.Mvc.UI.Fluent/DataSourceFilterDescriptorFactory). The `ToDataSourceResult()` extension method will return only the filtered data in the response object.
+To request filtered data on initial load, configure the filters with the [`FilterDescriptorFactory`](/api/kendo.mvc.ui.fluent/datasourcefilterdescriptorfactory). the `ToDataSourceResult()` extension method will return only the filtered data in the response object.
 
 * The `Filter` method sets the initial filters.
 

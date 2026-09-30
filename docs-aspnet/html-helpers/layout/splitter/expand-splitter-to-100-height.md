@@ -2,6 +2,7 @@
 title: Auto-Resizing the Height
 page_title: Auto-Resizing the Height
 description: "Learn how to make the Splitter expand vertically and resize together with the browser window by using Telerik UI Splitter component for {{ site.framework }}."
+components: ["splitter"]
 slug: htmlhelpers_expand_splitter_to_100_height_aspnetcore
 position: 4
 ---
@@ -104,7 +105,7 @@ In the following example, the outer Splitter has no siblings and has a 100% heig
 ```Controller
     public class SplitterController : Controller
     {
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }
@@ -184,7 +185,7 @@ If the dimensions of the Splitter do not depend directly on the browser viewport
 ```Controller
     public class SplitterController : Controller
     {
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }

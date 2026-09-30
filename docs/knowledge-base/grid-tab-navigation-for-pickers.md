@@ -2,12 +2,13 @@
 title: Tab Navigation for Filter Menu Date Pickers
 description: How to Achieve Tab Navigation for Filter Menu Date Pickers
 type: how-to
-page_title: How to Achieve Tab Navigation for Filter Menu Date Pickers | Kendo UI Grid for jQuery
+page_title: How to Achieve Tab Navigation for Filter Menu Date Pickers - Kendo UI for jQuery Data Grid
 slug: grid-tab-navigation-for-pickers
-position: 
-tags: 
-ticketid: 
+position:
+tags:
+ticketid:
 res_type: kb
+components: ["datepicker"]
 ---
 
 ## Environment
@@ -15,7 +16,8 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>Grid, DatePicker for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® DatePicker for jQuery</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -23,21 +25,23 @@ res_type: kb
 
 ## Description
 
-This sample demonstrates how to achieve keyboard navigation with Tab press for Date Picker widgets located inside the Filter Menu of the Grid.
+This sample demonstrates how to achieve keyboard navigation with `Tab` press for DatePicker widgets located inside the Filter Menu of the Grid.
 
 ## Solution
 
+Handle the `filterMenuInit` event of the Grid to locate any DatePicker inputs inside the filter container. Attach a `keydown` listener to each DatePicker that moves focus to the next field when `Tab` is pressed.
+
 ```dojo
-  
+
     <div id="example">
       <div id="grid"></div>
       <script>
         $(document).ready(function() {
           $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               schema: {
                 model: {
@@ -58,7 +62,7 @@ This sample demonstrates how to achieve keyboard navigation with Tab press for D
             filterMenuInit: gridFilterInit,
             filterable: true,
             pageable: true,
-            columns: 
+            columns:
             [{
               field: "OrderID",
               width: 225,
@@ -109,4 +113,4 @@ This sample demonstrates how to achieve keyboard navigation with Tab press for D
       </script>
     </div>
 
-``` 
+```

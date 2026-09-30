@@ -1,12 +1,12 @@
 ---
 title: Conditionally Show ColumnMenu Options per Grid Column
-description: An example on how to conditionally show the filter and sort options in the columnMenu of the Kendo UI Grid.
+description: Learn how to conditionally show the filter and sort options in the columnMenu of the Kendo UI Grid.
 type: how-to
-page_title: Show columnMenu Options for Specific Columns | Kendo UI Grid for jQUery
+page_title: Show columnMenu Options for Specific Columns - Kendo UI for jQuery Data Grid
 slug: grid-conditional-columnMenu
 tags: grid, columnMenu, columns
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>2017.3.913</td>
  </tr>
 </table>
@@ -40,9 +40,9 @@ The following example demonstrates how to hide the `columnMenu` options for some
             	$(document).ready(function () {
             		$("#grid").kendoGrid({
             			dataSource: {
-            				type: "odata",
+            				type: "odata-v4",
             				transport: {
-            					read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+            					read: "https://demos.telerik.com/service/v2/odata/Orders"
             				},
             				schema: {
             					model: {

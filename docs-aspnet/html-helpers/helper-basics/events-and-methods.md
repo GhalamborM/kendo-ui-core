@@ -2,9 +2,10 @@
 title: Methods and Events
 page_title: Methods and Events
 description: "Get started with Telerik UI for {{ site.framework }}, obtain a reference to initialized helper instances, and call their methods and events."
+components: ["general"]
 slug: methodevents_core
-previous_url: /getting-started/helper-basics/events-and-methods 
-position: 3
+previous_url: /getting-started/helper-basics/events-and-methods
+position: 5
 ---
 
 # Methods and Events
@@ -46,7 +47,7 @@ To get a reference to a helper instance, use the [jQuery `data`](http://api.jque
     </kendo-autocomplete>
 ```
 {% endif %}
-```script
+```JS script
     $(document).ready(function () {
         // Retrieve the helper instance.
         var autoCompleteWidget = $("#animals").data("kendoAutoComplete");
@@ -76,12 +77,12 @@ To get a reference to a helper instance, you may also use the `getKendo<WidgetNa
     @{
         var animals_data = new List<string>() { "Ant", "Antilope", "Badger" };
     }
-    
+
     <kendo-autocomplete name="animals" bind-to="animals_data">
     </kendo-autocomplete>
 ```
 {% endif %}
-```script
+```JS script
     $(document).ready(function () {
         // Retrieve the helper instance.
         var autoCompleteWidget = $("#animals").getKendoAutoComplete();
@@ -91,7 +92,7 @@ To get a reference to a helper instance, you may also use the `getKendo<WidgetNa
 
 ### The JavaScript Method Syntax
 
-After the helper instance is available, you can call its methods by using the standard JavaScript method syntax. The complete list and examples of the widget methods and method parameters is available in the [API reference](https://docs.telerik.com/kendo-ui/api/javascript/kendo) section. If the code which will return a helper instance returns `undefined`, then the helper is not yet initialized. Such a problem may occur, for example, if an instance is referenced from code that was executed earlier than the `document.ready` handler.
+After the helper instance is available, you can call its methods by using the standard JavaScript method syntax. The complete list and examples of the widget methods and method parameters is available in the [API reference](https://docs.telerik.com/kendo-ui/api/kendo) section. If the code which will return a helper instance returns `undefined`, then the helper is not yet initialized. Such a problem may occur, for example, if an instance is referenced from code that was executed earlier than the `document.ready` handler.
 
 ```HtmlHelper
     @(Html.Kendo().AutoComplete()
@@ -111,12 +112,12 @@ After the helper instance is available, you can call its methods by using the st
     @{
         var animals_data = new List<string>() { "Ant", "Antilope", "Badger" };
     }
-    
+
     <kendo-autocomplete name="animals" bind-to="animals_data">
     </kendo-autocomplete>
 ```
 {% endif %}
-```script
+```JS script
     $(document).ready(function () {
         // Retrieve the helper instance when it is available.
         var autoCompleteWidget = $("#animals").data("kendoAutoComplete");
@@ -155,12 +156,12 @@ Event handlers which are attached during the initialization of the helper will b
     @{
         var animals_data = new List<string>() { "Ant", "Antilope", "Badger" };
     }
-    
+
     <kendo-autocomplete name="animals" bind-to="animals_data" on-change="onChange">
     </kendo-autocomplete>
 ```
 {% endif %}
-```script
+```JS script
     function onChange(e) {
         console.log("change event handler");
     }
@@ -188,12 +189,12 @@ All helpers provide the `bind` and the `one` method. Both methods attach event h
     @{
         var animals_data = new List<string>() { "Ant", "Antilope", "Badger" };
     }
-    
+
     <kendo-autocomplete name="animals" bind-to="animals_data">
     </kendo-autocomplete>
 ```
 {% endif %}
-```script
+```JS script
     $(document).ready(function () {
 
         var autoCompleteWidget = $("#animals").data("kendoAutoComplete");
@@ -212,7 +213,7 @@ All helpers provide the `bind` and the `one` method. Both methods attach event h
 
 ### Using Event Handler Arguments
 
-Each helper passes a single argument to the event handler&mdash;the so-called "event object". Usually, it has one or more fields which contain specific information for the event. All event objects have a `sender` field which provides a reference to the helper instance that triggered the event. Passing additional custom event arguments to the handler is not supported. The full list and examples of the widget events and the fields in the event objects is available in the [API reference](https://docs.telerik.com/kendo-ui/api/javascript/kendo) section.
+Each helper passes a single argument to the event handler&mdash;the so-called "event object". Usually, it has one or more fields which contain specific information for the event. All event objects have a `sender` field which provides a reference to the helper instance that triggered the event. Passing additional custom event arguments to the handler is not supported. The full list and examples of the widget events and the fields in the event objects is available in the [API reference](https://docs.telerik.com/kendo-ui/api/kendo) section.
 
 ```HtmlHelper
     @(Html.Kendo().AutoComplete()
@@ -236,12 +237,12 @@ Each helper passes a single argument to the event handler&mdash;the so-called "e
     @{
         var animals_data = new List<string>() { "Ant", "Antilope", "Badger" };
     }
-    
+
     <kendo-autocomplete name="animals" bind-to="animals_data" on-change="onChange">
     </kendo-autocomplete>
 ```
 {% endif %}
-```script
+```JS script
     function onChange(e) {
         var autoCompleteWidget = e.sender;
     }
@@ -250,7 +251,7 @@ Each helper passes a single argument to the event handler&mdash;the so-called "e
 
 ### Preventing Events
 
-Certain helper events can be prevented by calling the `preventDefault` method of the event object. The effect of the event prevention is specific for each event and is documented in the [API reference](https://docs.telerik.com/kendo-ui/api/javascript/kendo).
+Certain helper events can be prevented by calling the `preventDefault` method of the event object. The effect of the event prevention is specific for each event and is documented in the [API reference](https://docs.telerik.com/kendo-ui/api/kendo).
 
 ```HtmlHelper
     @(Html.Kendo().AutoComplete()
@@ -274,12 +275,12 @@ Certain helper events can be prevented by calling the `preventDefault` method of
     @{
         var animals_data = new List<string>() { "Ant", "Antilope", "Badger" };
     }
-    
+
     <kendo-autocomplete name="animals" bind-to="animals_data" on-open="onOpen">
     </kendo-autocomplete>
 ```
 {% endif %}
-```script
+```JS script
     function onOpen(e) {
         e.preventDefault();
     }
@@ -309,12 +310,12 @@ To unbind from a specific event, keep a reference to the event handler function 
     @{
         var animals_data = new List<string>() { "Ant", "Antilope", "Badger" };
     }
-    
+
     <kendo-autocomplete name="animals" bind-to="animals_data">
     </kendo-autocomplete>
 ```
 {% endif %}
-```script
+```JS script
     $(document).ready(function () {
 
         var handler = function (e) { console.log(e); };
@@ -331,15 +332,13 @@ To unbind from a specific event, keep a reference to the event handler function 
 
 ## Known Limitations
 
-Telerik UI for {{ site.framework }} does not fire an event when the corresponding API method is invoked. For example, the `Select` event of the [PanelBar helper]({% slug htmlhelpers_panelbar_aspnetcore %}) is not fired if you call the [`select` method through the API](https://docs.telerik.com/kendo-ui/api/javascript/ui/panelbar/methods/select).
+Telerik UI for {{ site.framework }} does not fire an event when the corresponding API method is invoked. For example, the `Select` event of the [PanelBar helper]({% slug htmlhelpers_panelbar_aspnetcore %}) is not fired if you call the [`select` method through the API](https://docs.telerik.com/kendo-ui/api/ui/panelbar/methods/select).
 
 ## See Also
 
 {% if site.core %}
-* [First Steps on Visual Studio for Windows (Online Guide)]({% slug gettingstarted_aspnetmvc6_aspnetmvc %})
-* [First Steps on Visual Studio for Mac (Online Guide)]({% slug gettingstarted_firststeps_vsmac %})
-* [First Steps with CLI (Online Guide)]({% slug gettingstartedcli_aspnetmvc6_aspnetmvc %})
+* [Quick Start]({% slug gettingstartedtelerik_aspnetcore %})
 {% else %}
-* [Starting a new Telerik UI project from a template]({% slug gettingstarted_aspnetmvc %})
+* [Starting a new Telerik UI project from a template]({% slug gettingstartedtelerik_cli_aspnetmvc %})
 * [Manually adding the Telerik controls to an existing application]({% slug manualsetup_aspnetmvc%})
 {% endif %}

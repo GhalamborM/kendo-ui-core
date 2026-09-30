@@ -2,6 +2,7 @@
 title: Application
 page_title: Application Overview
 description: "Learn the basics when working with the hybrid Telerik UI Application HtmlHelper for ASP.NET MVC."
+components: ["general"]
 previous_url: /helpers/hybrid/mobileapplication/overview, /helpers/hybrid/mobileapplication
 slug: overview_hybridapplication_aspnetmvc
 ---
@@ -147,7 +148,7 @@ To implement navigation, use either of the available approaches:
 
 ## Referencing Existing Instances
 
-You can reference a hybrid Application instance by using the code from the following example. Once a reference is established, use the [hybrid Application client-side API](https://docs.telerik.com/kendo-ui/api/javascript/mobile/application#methods) to control its behavior.
+You can reference a hybrid Application instance by using the code from the following example. Once a reference is established, use the [hybrid Application client-side API](https://docs.telerik.com/kendo-ui/api/mobile/application#methods) to control its behavior.
 
     @(Html.Kendo().MobileApplication()
             .ServerNavigation(true)
@@ -161,4 +162,4 @@ You can reference a hybrid Application instance by using the code from the follo
 
 ## See Also
 
-* [Hybrid ApplicationBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/MobileApplicationBuilder)
+* [Hybrid ApplicationBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/mobileapplicationbuilder)

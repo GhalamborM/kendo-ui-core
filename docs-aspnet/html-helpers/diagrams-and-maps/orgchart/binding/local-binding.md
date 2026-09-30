@@ -2,6 +2,7 @@
 title:  Local Binding
 page_title: Local Binding
 description: "Learn how to implement Local Binding with Telerik UI OrgChart component for {{ site.framework }}."
+components: ["orgchart"]
 previous_url: /helpers/editors/orgchart/binding/local-binding
 slug: htmlhelpers_orgchart_localbinding_aspnetcore
 position: 2
@@ -138,4 +139,4 @@ The following example demonstrates how to bind the OrgChart to a JSON array avai
 
 ## See Also
 
-* [JavaScript API Reference of the OrgChart](https://docs.telerik.com/kendo-ui/api/javascript/ui/orgchart)
+* [JavaScript API Reference of the OrgChart](https://docs.telerik.com/kendo-ui/api/ui/orgchart)

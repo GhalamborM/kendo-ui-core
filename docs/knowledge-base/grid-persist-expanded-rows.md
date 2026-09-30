@@ -1,12 +1,12 @@
 ---
 title: Persist expanded rows in Kendo Grid
-description: An example on how to persist the Kendo UI Grid expanded rows.
+description: Learn how to persist the Kendo UI Grid expanded rows.
 type: how-to
-page_title:  Persist expanded rows in Kendo Grid | Kendo UI Grid for jQuery
+page_title:  Persist expanded rows in Kendo Grid - Kendo UI for jQuery Data Grid
 slug: grid-persist-expanded-rows
 tags: grid, persist, detail, expand, expanded, refresh
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>2017.3.1026</td>
  </tr>
 </table>
@@ -31,8 +31,8 @@ How can I persist expanded rows after the Grid is refreshed?
 A possible solution is to:
 
 1. Save the expanded rows in the [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) of the browser.
-1. Within the [`detailExpand`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/detailexpand) event handler, add the expanded row to the `localStorage` and then remove it within the [`detailCollapse`](/api/javascript/ui/grid/events/detailcollapse) event handler.
-1. When the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound) event is fired, expand all rows saved to the `localStorage` using the [`expandRow`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/expandrow) method.
+1. Within the [`detailExpand`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/detailexpand) event handler, add the expanded row to the `localStorage` and then remove it within the [`detailCollapse`](/api/ui/grid/events/detailcollapse) event handler.
+1. When the [`dataBound`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound) event is fired, expand all rows saved to the `localStorage` using the [`expandRow`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/expandrow) method.
 
 ```dojo
   <div id="example">
@@ -70,9 +70,9 @@ A possible solution is to:
 
           var grid = $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                read: "https://demos.telerik.com/service/v2/odata/Employees"
               },
               pageSize: 20,
               serverPaging: true,
@@ -180,9 +180,9 @@ A possible solution is to:
 
           detailRow.find(".orders").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               serverPaging: true,
               serverSorting: true,

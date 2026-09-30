@@ -1,13 +1,13 @@
 ---
 title: Cut Off Digits in Grid with Custom NumericTextBox Editor
-page_title: Change the Properties of the NumericTextBox Editor in Grid | Kendo UI Grid for jQuery
-description: An example on how to change the properties of the Kendo UI NumericTextBox Editor in the Kendo UI Grid.
+page_title: Change the Properties of the NumericTextBox Editor in Grid - Kendo UI for jQuery Data Grid
+description: Learn how to change the properties of the Kendo UI NumericTextBox Editor in the Kendo UI Grid.
 type: how-to
 slug: change-the-properties-of-the-grid-numerictextbox-editor
 tags: grid, numerictextox, editing
 ticketid: 1121877
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>

@@ -1,8 +1,6 @@
-(function(f, define) {
-    define(["./kendo.core"], f);
-})(function() {
+import "./kendo.core.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "loader",
     name: "Loader",
     category: "web",
@@ -22,7 +20,7 @@ var __meta__ = {
         ARIA_LIVE = 'aria-live';
 
     var loaderClasses = {
-        loader: "k-widget k-loader",
+        loader: "k-loader",
         canvas: "k-loader-canvas",
         segment: "k-loader-segment"
     };
@@ -44,7 +42,8 @@ var __meta__ = {
             that._appearance();
 
             kendo.notify(that);
-        },
+            Widget.fn.endInit.call(that);
+},
 
         destroy: function() {
             var that = this;
@@ -54,13 +53,13 @@ var __meta__ = {
 
         options: {
             name: 'Loader',
-            themeColor: "primary",
+            themeColor: undefined,
             sizes: {
                 'small': 'sm',
                 'medium': 'md',
                 'large': 'lg'
             },
-            size: 'medium',
+            size: undefined,
             type: "pulsing",
             visible: true,
             messages: {
@@ -191,10 +190,13 @@ var __meta__ = {
 
     ui.plugin(Loader);
 
+    kendo.cssProperties.registerPrefix("Loader", "k-loader-");
+
+    kendo.cssProperties.registerValues("Loader", [{
+        prop: "themeColor",
+        values: ['base', 'primary', 'secondary', 'tertiary']
+    }]);
+
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) {
-    (a3 || a2)();
-});

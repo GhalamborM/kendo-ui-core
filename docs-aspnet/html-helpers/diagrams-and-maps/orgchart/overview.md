@@ -2,11 +2,12 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI OrgChart component for {{ site.framework }}."
+components: ["orgchart"]
 slug: htmlhelpers_orgchart_aspnetcore
 position: 0
 ---
 
-# OrgChart Overview
+# {{ site.framework }} OrgChart Overview
 {% if site.core %}
 The Telerik UI OrgChart TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI OrgChart widget.
 {% else %}
@@ -85,6 +86,8 @@ The following example demonstrates the basic configuration of the OrgChart compo
     )
 ```
 {% endif %}
+
+{% if site.mvc %}
 ```Controller
     public JsonResult Read([DataSourceRequest] DataSourceRequest request)
     {
@@ -99,64 +102,43 @@ The following example demonstrates the basic configuration of the OrgChart compo
         return Json(data, JsonRequestBehavior.AllowGet);
     }
 ```
+{% else %}
+```Controller
+    public JsonResult Read([DataSourceRequest] DataSourceRequest request)
+    {
+        List<OrgChartEmployeeViewModel> data = new List<OrgChartEmployeeViewModel>()
+        {
+            new OrgChartEmployeeViewModel() { ID = 1, Name = "Clevey Thrustfield", Title = "CEO", ParentID = null, Expanded = true, Avatar = "../content/web/orgchart/people/1.jpg"  },
+            new OrgChartEmployeeViewModel() { ID = 2, Name = "Sean Russel", Title = "Financial Manager", ParentID = 1, Expanded = true, Avatar = "../content/web/orgchart/people/2.jpg"  },
+            new OrgChartEmployeeViewModel() { ID = 3, Name = "Andrew Berry", Title = "Team Lead", ParentID = 1, Expanded = true, Avatar = "../content/web/orgchart/people/3.jpg"  },
+            new OrgChartEmployeeViewModel() { ID = 4, Name = "Dilyana Newman", Title = "Accountant", ParentID = 2, Expanded = false, Avatar = "../content/web/orgchart/people/4.jpg"  }
+        };
 
-## Functionality and Features
-
-* [Binding]({% slug htmlhelpers_orgchart_databinding_aspnetcore %})
-* [Editing]({% slug htmlhelpers_orgchart_editing_aspnetcore %})
-* [Grouping]({% slug htmlhelpers_orgchart_grouping_aspnetcore %})
-* [Templates]({% slug htmlhelpers_orgchart_templates_aspnetcore %})
-* [Accessibility]({% slug accessibility_aspnetcore_orgchart %})
-
-## Events
-
-You can subscribe to all OrgChart [events](/api/orgchart). For a complete example on the OrgChart events, refer to the [OrgChart Events Demo](https://demos.telerik.com/{{ site.platform }}/orgchart/events).
-
-The following example demonstrates how to subscribe to events by a handler name.
-
-```HtmlHelper
-    @(Html.Kendo().OrgChart()
-      .Name("orgchart")
-      .Events(e => e
-            .Select("onSelect")
-            .Change("onChange")
-      )
-    )
-    <script>
-    function onSelect(e) {
-        // Handle the "select" event.
+        return Json(data);
     }
-
-    function onChange(e) {
-        // Handle the "change" event.
-    }
-    </script>
-```
-{% if site.core %}
-```TagHelper
-    <kendo-orgchart name="orgchart"
-                    on-select="onSelect"
-                    on-change="onChange">
-    </kendo-orgchart>
-    
-    <script>
-    function onSelect(e) {
-        // Handle the "select" event.
-    }
-
-    function onChange(e) {
-        // Handle the "change" event.
-    }
-    </script>
 ```
 {% endif %}
 
-## See Also
+## Functionality and Features
 
+* [Binding]({% slug htmlhelpers_orgchart_databinding_aspnetcore %})—You can bind the OrgChart to local or remote data.
+* [Editing]({% slug htmlhelpers_orgchart_editing_aspnetcore %})—The OrgChart provides a built-in editing functionality, which is enabled by default.
+* [Grouping]({% slug htmlhelpers_orgchart_grouping_aspnetcore %})—The OrgChart enables you to group root nodes or nodes that have the same parent.
+* [Templates]({% slug htmlhelpers_orgchart_templates_aspnetcore %})—The OrgChart allows you to customize its nodes and group headers by using [Kendo Templates](https://docs.telerik.com/kendo-ui/framework/templates/overview).
+* [Accessibility]({% slug htmlhelpers_orgchart_accessibility %})—The OrgChart is accessible by screen readers and provides WAI-ARIA, Section 508, WCAG 2.2, and keyboard support.
+
+## Next Steps
+
+* [Getting Started with the OrgChart]({% slug orgchart_getting_started %})
 * [Basic Usage of the OrgChart HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/orgchart)
 {% if site.core %}
 * [Basic Usage of the OrgChart TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/orgchart/tag-helper)
 {% endif %}
+
+## See Also
+
 * [Using the API of the OrgChart for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/orgchart/api)
-* [Server-Side API](/api/orgchart)
-* [JavaScript API Reference of the OrgChart](https://docs.telerik.com/kendo-ui/api/javascript/ui/orgchart)
+* [Knowledge Base Section](/knowledge-base)
+{% if site.core %}
+* [Razor Pages binding]({% slug htmlhelpers_orgchart_razorpage_aspnetcore %})
+{% endif %}

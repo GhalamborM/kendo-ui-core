@@ -1,12 +1,13 @@
 ---
 title: Filter a Column with a DropDownList Editor When the Column Is Bound To a Complex Object
-description: An example on how to filter Kendo UI Grid columns with complex objects.
+description: Learn how to filter Kendo UI Grid columns with complex objects.
 type: how-to
-page_title: Filter Columns with Complex Objects | Kendo UI Grid for jQuery
+page_title: Filter Columns with Complex Objects - Kendo UI for jQuery Data Grid
 slug: grid-filter-column-with-dropdownlist
 tags: grid, filter, dropdownlist
 ticketid: 1144229
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Grid</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td> 
 	</tr>
 </table>
 
@@ -28,7 +29,7 @@ How can I filter a column with a drop-down editor when the column is bound to a 
 
 ## Solution
 
-Programmatically apply the filters on the [`filter`](/api/javascript/ui/grid/events/filter) event of the Grid. This approach  also requires you to programmatically clear the filters for that column when the user clicks the **Clear** button.
+Programmatically apply the filters on the [`filter`](/api/ui/grid/events/filter) event of the Grid. This approach  also requires you to programmatically clear the filters for that column when the user clicks the **Clear** button.
 
 ```dojo
        <script src="https://demos.telerik.com/kendo-ui/content/shared/js/products.js"></script>
@@ -126,9 +127,8 @@ Programmatically apply the filters on the [`filter`](/api/javascript/ui/grid/eve
             dataTextField: "CategoryName",
             dataValueField: "CategoryID",
             dataSource: {
-              type: "odata",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
+                read: "https://demos.telerik.com/service/v2/core/Categories"
               }
             }
           });
@@ -139,9 +139,8 @@ Programmatically apply the filters on the [`filter`](/api/javascript/ui/grid/eve
             dataTextField: "CategoryName",
             dataValueField: "CategoryID",
             dataSource: {
-              type: "odata",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
+                read: "https://demos.telerik.com/service/v2/core/Categories"
               }
             },
             optionLabel: "--Select Value--"

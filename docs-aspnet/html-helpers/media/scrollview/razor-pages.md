@@ -1,124 +1,116 @@
 ---
 title:  Razor Pages
-page_title: Configure a Telerik UI ScrollView in Razor Pages.
-description: "An example on how to configure a ScrollView in Razor Pages."
+page_title: Razor Pages
+description: "Learn how to configure the {{ site.product }} ScrollView for remote data binding using a DataSource in a Razor Page application."
 slug: htmlhelpers_scrollview_razorpage_aspnetcore
-position: 5
+components: ["scrollview"]
+position: 6
 ---
 
-# Razor Page
+# ScrollView in Razor Pages
 
-This article shows how to perform CRUD operations with the ScrollView component in Razor Pages.
+This article describes how to seamlessly integrate and configure the Telerik UI ScrollView for {{ site.framework }} in Razor Pages applications.
 
-To set up the ScrollView component bindings, you need to configure the `Create`, `Read`, `Update`, `Delete` methods of its `DataSource` instance. The URLs in these methods must refer to the method names in the PageModel.```
+@[template](/_contentTemplates/core/razor-pages-general-info.md#referencing-handler-methods)
 
-See the implementation details in the sample below. A complete project with Razor Pages examples is available in this [ASP.NET Core Examples repository](https://github.com/telerik/ui-for-aspnet-core-examples/tree/master/Telerik.Examples.RazorPages).
+## Binding to Remote Data
 
-```tab-HtmlHelper(csthml)
-@page
-@model Telerik.Examples.RazorPages.Pages.ScrollView.ScrollViewBindingModel
+The [DataSource]({% slug htmlhelpers_datasource_aspnetcore %}) component offers the most versatile data binding approach. To connect the ScrollView to a data set retrieved from a remote endpoint in a Razor Pages application, proceed with the following steps:
 
-@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
-@Html.AntiForgeryToken()
+1. Specify the Read request URL in the `DataSource` configuration. The URL must refer to the method name in the `PageModel`.
 
-<h1>ScrollView Binding</h1>
-<div id="example" style="margin:auto; width:60%">
-    @(Html.Kendo().ScrollView()
+    ```HtmlHelper
+        @page
+        @model IndexModel
+
+        <div id="example" style="margin:auto; width:60%">
+            @(Html.Kendo().ScrollView()
                 .Name("scrollView")
-                .EnablePager(false)
                 .ContentHeight("100%")
                 .TemplateId("scrollview-template")
-                .DataSource(d =>
-                        d.Ajax()
-                          .Read(r => r.Url("/ScrollView/ScrollViewBinding?handler=ReadOptional").Data("forgeryToken")).PageSize(3))
+                .DataSource(source => source
+                    .Ajax()
+                    .Read(r => r.Url("/Index?handler=ReadOptional").Data("forgeryToken"))
+                    .PageSize(3)
+                )
+                .HtmlAttributes(new { style = "height:500px; width:890px; max-width: 100%;" })
+            )
+        </div>
+    ```
+    ```TagHelper
+        @page
+        @model IndexModel
+
+        <div id="example" style="margin:auto; width:60%">
+            <kendo-scrollview name="scrollView"
+                content-height="100%"
+                template-id="scrollview-template"
+                style=height:500px; width:890px; max-width: 100%;>
+                <datasource custom-type="aspnetmvc-ajax" page-size="3" server-paging="true">
+                    <transport>
+                        <read url="/Index?handler=ReadOptional" data="forgeryToken"/>
+                    </transport>
+                </datasource>
+            </kendo-scrollview>
+        </div>
+    ```
+    ```JS scrollview-template
+        <script id="scrollview-template" type="text/x-kendo-template">
+            <div class="img-wrapper">
+                # for (var i = 0; i < data.length; i++) { #
+                <div>
+                    <div>
+                        <img style="width: 140px; height: 140px;" src="@Url.Content("~/Images/ScrollViewImages/")#:data[i].ImageUrl# " />
+                    </div>
+                    <p>#= data[i].ProductName #</p>
+                </div>
+                # } #
+            </div>
+        </script>
+    ```
+
+1. Add an `AntiForgeryToken` at the top of the page.
+
+    ```C#
+        @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+        @Html.AntiForgeryToken()
+    ```
+
+1. Send the `AntiForgeryToken` ith the Read request.
+
+    ```JS
+        <script>
+            function forgeryToken() {
+                return kendo.antiForgeryTokens();
+            }
+        </script>
+    ```
+
+    Additional parameters can also be supplied.
+
+    ```JS
+        <script>
+            function forgeryToken() {
+                return {
+                    __RequestVerificationToken: kendo.antiForgeryTokens().__RequestVerificationToken,
+                    additionalParameter: "test"
+                }
+            }
+        </script>
+    ```
     
-    .HtmlAttributes(new { style = "height:500px; width:890px; max-width: 100%;" })
-    )
-</div>
+1. Within the `cshtml.cs` file, add a handler method for the Read operation that returns the dataset.
 
-<script id="scrollview-template" type="text/x-kendo-template">
-    <div class="img-wrapper">
-
-        # for (var i = 0; i < data.length; i++) { #
-        <div>
-    <div ><img style="width: 140px; height: 140px;" src="@Url.Content("~/Images/ScrollViewImages/")#:data[i].ImageUrl# " /></div>
-            <p>#= data[i].ProductName #</p>
-        </div>
-
-        # } #
-
-    </div>
-</script>
-
-<script>
-
-    function forgeryToken() {
-        return kendo.antiForgeryTokens();
-    }
-
-</script>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-```
-{% if site.core %}
-```TagHelper
-@page
-@model Telerik.Examples.RazorPages.Pages.ScrollView.ScrollViewBindingModel
-
-@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
-@Html.AntiForgeryToken()
-
-<h1>ScrollView Binding</h1>
-<div id="example" style="margin:auto; width:60%">
-     <kendo-scrollview name="scrollView"
-                       enable-pager="false"
-                       content-height="100%"
-                       template-id="scrollview-template"
-                       style=height:500px; width:890px; max-width: 100%;>
-        <datasource custom-type="aspnetmvc-ajax" page-size="3">
-            <transport>
-                <read url="/ScrollView/ScrollViewBinding?handler=ReadOptional" data="forgeryToken"/>
-            </transport>
-        </datasource>
-    </kendo-scrollview>
-</div>
-
-<script id="scrollview-template" type="text/x-kendo-template">
-    <div class="img-wrapper">
-
-        # for (var i = 0; i < data.length; i++) { #
-        <div>
-    <div ><img style="width: 140px; height: 140px;" src="@Url.Content("~/Images/ScrollViewImages/")#:data[i].ImageUrl# " /></div>
-            <p>#= data[i].ProductName #</p>
-        </div>
-
-        # } #
-
-    </div>
-</script>
-
-<script>
-
-    function forgeryToken() {
-        return kendo.antiForgeryTokens();
-    }
-
-</script>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-```
-{% endif %}
-
-```tab-PageModel(cshtml.cs)
- public static List<Product> ScrollViewItems { get; set; }
+    ```C# Index.cshtml.cs
+    public class IndexModel : PageModel
+    {
+        public static List<Product> ScrollViewItems { get; set; }
+        
         public void OnGet()
         {
             if (ScrollViewItems == null)
             {
+                // Populate the "ScrollViewItems" collection with data.
                 ScrollViewItems = new List<Product>();
 
                 ScrollViewItems.Add(new Product { ImageUrl = "image1.jpg", ProductName = "Chai" });
@@ -137,6 +129,23 @@ See the implementation details in the sample below. A complete project with Razo
         {
             return new JsonResult(ScrollViewItems.ToDataSourceResult(request));
         }
-```
+    }
+    ```
+    ```Model
+        public class Product
+        {
+            public int ProductID { get; set; }
+            public string ProductName { get; set; }
+            public string ImageUrl { get; set; }
+        }
+    ```
 
-* [Server-Side API](/api/scrollview)
+For the complete project, refer to the [ScrollView in Razor Pages example](https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/ScrollView/ScrollViewBinding.cshtml).
+
+## See Also
+
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the ScrollView](https://docs.telerik.com/kendo-ui/api/ui/scrollview)
+* [Server-Side HtmlHelper API of the ScrollView](/api/scrollview)
+* [Server-Side TagHelper API of the ScrollView](/api/taghelpers/scrollview)
+* [Knowledge Base Section](/knowledge-base)

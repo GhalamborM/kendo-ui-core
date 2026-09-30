@@ -1,8 +1,4 @@
-(function(f, define){
-    define([
-        "../kendo.core"
-    ], f);
-})(function(){
+import "../kendo.core.js";
 
 (function($, undefined){
     var colorpicker = kendo.ui.colorpicker,
@@ -57,8 +53,8 @@
         if (!isPresent(contender) || isNaN(contender)) {
             return min;
         }
-
-        return contender <= min ? min : contender >= max ? max : contender;
+        let contenderMax = contender >= max ? max : contender;
+        return contender <= min ? min : contenderMax;
     }
 
     function isPresent(value) { return value !== null && value !== undefined; }
@@ -111,7 +107,8 @@
                 svgPath(getPaths(AAA_CONTRAST, STEP_COUNT, false), bezierCommandCalc) +
                 svgPath(getPaths(AAA_CONTRAST, STEP_COUNT, true), bezierCommandCalc);
 
-        return '<svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; overflow: visible; pointer-events: none; left: 0px; top: 0px; z-index: 3;" >' +
+        return `<svg xmlns="http://www.w3.org/2000/svg" ${kendo.attr("style-position")}="absolute" ${kendo.attr("style-overflow")}="visible" ${kendo.attr("style-pointer-events")}="none" ` +
+                `${kendo.attr("style-left")}="0px" ${kendo.attr("style-top")}="0px" ${kendo.attr("style-z-index")}="3" >` +
                     paths  + '</svg>';
     }
 
@@ -198,6 +195,3 @@
 
 })(window.kendo.jQuery);
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3){ (a3 || a2)(); });

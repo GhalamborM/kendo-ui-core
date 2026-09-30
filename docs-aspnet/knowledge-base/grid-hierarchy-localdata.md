@@ -1,17 +1,27 @@
 ---
-title: Grid Hierarchy with Local Data
-description: An example on how to configure the Telerik UI Grid for ASP.NET Core hierarchy using local data.
+title: Configuring the Grid Hierarchy with Local Data
+description: An example on how to configure the {{ site.product }} Grid hierarchy by using local data.
 type: how-to
 page_title: Grid Hierarchy with Local Data
 slug: grid-hierarchy-localdata
 tags: grid, hierarchy, asp, core, local data
 res_type: kb
+components: ["general"]
 component: grid
 ---
 
+## Environment
+
+<table>
+ <tr>
+  <td>Product</td>
+  <td>Grid for Progress® Telerik® UI for {{ site.framework }}</td>
+ </tr>
+</table>
+
 ## Description
 
-I want to simply bind Parent grid to a model which contains a list of elements and each of that element have list of children records and I want a DetailsGrid to bind to that list. How can I achieve this?
+I want to bind the parent Grid to a model that contains a list of elements and each of these elements has a list of child records and I want a Details Grid to bind to that list. How can I achieve this?
 
 ## Solution
 
@@ -24,11 +34,11 @@ To achieve the desired result follow the steps below:
 {% endif %}
   1. Follwo the requirements for configuring the [Hierarchy funtionliaty]({% slug hierarchy_grid_htmlhelper_aspnetcore %})
   1. Define a ClientTemplate with DataSource configured for Ajax binding and set the AutoBind configuration to `false`
-  1. Add an event handler to the [`DetailInit`](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/GridEventBuilder#detailinitsystemstring) event and use it to set teh data for the child Grid
+  1. Add an event handler to the [`DetailInit`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/grideventbuilder#detailinitsystemstring) event and use it to set teh data for the child Grid
 
   Check this [REPL for a runnable example](https://netcorerepl.telerik.com/wPlFuylo00Q9Ch7J51).
 
-  ```tab-Controller
+  ```Controller
         public ActionResult Index()
         {
             List<CategoryItem> data = new List<CategoryItem>
@@ -87,7 +97,7 @@ To achieve the desired result follow the steps below:
             return View(data);
         }
   ```
-  ```tab-View
+  ```View
     @model IEnumerable<CategoryItem>
 
     <script>
@@ -136,3 +146,31 @@ To achieve the desired result follow the steps below:
         .Events(events => events.DetailInit("onDetailInit"))
     )
   ```
+
+## More {{ site.framework }} Grid Resources
+
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+
+{% if site.core %}
+* [{{ site.framework }} DataGrid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Client-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

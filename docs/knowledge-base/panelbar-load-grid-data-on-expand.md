@@ -1,12 +1,13 @@
 ---
 title: Load the Grid When the PanelBar Is Selected
-page_title: Load the Grid When Its PanelBar Is Expanded | Kendo UI Grid and PanelBar for jQuery
+page_title: Load the Grid When Its PanelBar Is Expanded - Kendo UI Grid and PanelBar for jQuery
 type: how-to
-description: An example on how to load the Kendo UI Grid for jQuery when its PanelBar item is activated.
+description: Learn how to load the Kendo UI Grid for jQuery when its PanelBar item is activated.
 slug: panelbar-load-grid-data-on-expand
 tags: grid, panelbar, item, expanded, selected
 ticketid: 1401786, 1386928
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,10 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Progress® Kendo UI® PanelBar, Progress® Kendo UI® PanelBar for ASP.NET MVC, Progress® Kendo UI® Grid, Progress® Kendo UI® Grid for ASP.NET MVC</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
+		<td>Progress® Telerik® UI Grid for ASP.NET MVC</td>
+		<td>Progress® Kendo UI® PanelBar for jQuery</td>
+		<td>Progress® Telerik® UI PanelBar for ASP.NET MVC</td>
 	</tr>
 </table>
 
@@ -27,11 +31,11 @@ How can I load the Grid when the PanelBar is activated for the first time? How c
 
 ## Solution
 
-1. Set the Grids [not to bind automatically](/api/javascript/ui/grid/configuration/autobind) so they do not request data upon initialization.
-1. In the [`expand` event of the PanelBar](/api/javascript/ui/panelbar/events/expand), call their [`dataSource.read()` method](/api/javascript/data/datasource/methods/read).
+1. Set the Grids [not to bind automatically](/api/ui/grid/configuration/autobind) so they do not request data upon initialization.
+1. In the [`expand` event of the PanelBar](/api/ui/panelbar/events/expand), call their [`dataSource.read()` method](/api/data/datasource/methods/read).
 1. Keep a flag (for example, in the DOM as a `data` attribute on the Grid or PanelBar element) to know if you need to read the data source.
 
-Another option is to use the [`expand`](/api/javascript/ui/panelbar/events/expand) event of the PanelBar to add the Grid to the DOM dynamically and instantiate the jQuery widget only then. By doing this, you avoid creating the Grid with the initial page load thereby making the page more lightweight. This approach is useful if this item from the PanelBar is not expected to be used often by the end user. In this case, you will not be able to use the Kendo UI helpers for ASP.NET MVC, though, and you will need to rely on the jQuery widget syntax only.
+Another option is to use the [`expand`](/api/ui/panelbar/events/expand) event of the PanelBar to add the Grid to the DOM dynamically and instantiate the jQuery widget only then. By doing this, you avoid creating the Grid with the initial page load thereby making the page more lightweight. This approach is useful if this item from the PanelBar is not expected to be used often by the end user. In this case, you will not be able to use the Kendo UI helpers for ASP.NET MVC, though, and you will need to rely on the jQuery widget syntax only.
 
 The following example is jQuery-based.
 
@@ -75,9 +79,9 @@ $(document).ready(function() {
     //the rest of the properties are not really relevant, they just set up a grid
 
     dataSource: {
-      type: "odata",
+      type: "odata-v4",
       transport: {
-        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+        read: "https://demos.telerik.com/service/v2/odata/Orders"
       },
       schema: {
         model: {

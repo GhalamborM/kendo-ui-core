@@ -2,6 +2,7 @@
 title: Logarithmic Axis
 page_title: Logarithmic Axis
 description: "Learn how to set the Logarithmic Axis of Telerik UI Bar Charts component for {{ site.framework }}."
+components: ["chart"]
 slug: barcharts_logarithmic_axis
 ---
 
@@ -81,7 +82,7 @@ The following implementation demonstrates the code needed for setting the Date A
 
 Overview of setting the Logarithmic Axis representing the Fibonacci Sequence:
 
-![{{ site.product_short }} Fibonacci Sequence](images/fibonacciSequence.png)
+![{{ site.product_short }} Chart Fibonacci Sequence](images/fibonacciSequence.png)
 
 * [Demo page for the Logarithmic Axis for Bar Chart](https://demos.telerik.com/{{ site.platform }}/bar-charts/logarithmic-axis)
 

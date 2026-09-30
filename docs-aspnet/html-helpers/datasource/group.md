@@ -2,12 +2,13 @@
 title: Grouping
 page_title: DataSource Grouping
 description: "Learn how to set the initial group options in the DataSource component for {{ site.framework }}."
+components: ["datasource"]
 slug: htmlhelper_datasourcegroup
 ---
 
 # Grouping
 
-To request grouped data on initial load, configure the groups in the [`GroupDescriptorFactory`](/api/Kendo.Mvc.UI.Fluent/DataSourceGroupDescriptorFactory). The `ToDataSourceResult()` extension method will return only the grouped data in the response object.
+To request grouped data on initial load, configure the groups in the [`GroupDescriptorFactory`](/api/kendo.mvc.ui.fluent/datasourcegroupdescriptorfactory). the `ToDataSourceResult()` extension method will return only the grouped data in the response object.
 
 * The `Group` method sets the initial groups.
 

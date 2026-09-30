@@ -2,6 +2,7 @@
 title: Bar Charts
 page_title: Bar Charts
 description: "Learn how to set the properties of Telerik UI Bar Charts component for {{ site.framework }}."
+components: ["chart"]
 slug: barcharts_aspnetcore_htmlhelper
 ---
 
@@ -131,8 +132,8 @@ Setting the `Series` object to `"Bar"` renders horizontal bars.
 ## See Also
 
 * [Basic Usage of the Bar Chart HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/bar-charts/index)
-* [Basic Usage of the Bar Chart TagHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/bar-charts/tag-helper)
 * [Basic Usage of the Range Bar Chart HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/range-bar-charts/index)
+{% if site.core %}
 * [Basic Usage of the Range Bar Chart TagHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/range-bar-charts/tag-helper)
-
+{% endif %}
 * [Server-Side API](/api/chart)

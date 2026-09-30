@@ -1,12 +1,12 @@
 ---
 title: Use DropDownList for RecurrenceEditor and Checkboxes for Week Days sSelection
-description: An example on how to force the Scheduler RecurrenceEditor to its older look and feel.
+description: Learn how to force the Scheduler RecurrenceEditor to its older look and feel.
 type: how-to
-page_title: Use DropDownList for RecurrenceEditor and Checkboxes for Week Days Selection | Kendo UI Scheduler for jQuery
+page_title: Use DropDownList for RecurrenceEditor and Checkboxes for Week Days Selection - Kendo UI Scheduler for jQuery
 slug: scheduler-dropdown-and-checkbboxes-recurrnceeditor
 tags: recurrence, recurrenceeditor, scheduler, editor, dropdownlist, checkboxes
 res_type: kb
-component: scheduler
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: scheduler
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
 </table>
 
@@ -447,24 +447,26 @@ In order to have the DropDownList and the checkboxes instead of the current Butt
             batch: true,
             transport: {
                 read: {
-                    url: "https://demos.telerik.com/kendo-ui/service/tasks",
-                    dataType: "jsonp"
+                    url: "https://demos.telerik.com/service/v2/core/tasks"
                 },
                 update: {
-                    url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-                    dataType: "jsonp"
+                    url: "https://demos.telerik.com/service/v2/core/tasks/update",
+                    type: "POST",
+                    contentType: "application/json"
                 },
                 create: {
-                    url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-                    dataType: "jsonp"
+                    url: "https://demos.telerik.com/service/v2/core/tasks/create",
+                    type: "POST",
+                    contentType: "application/json"
                 },
                 destroy: {
-                    url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-                    dataType: "jsonp"
+                    url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+                    type: "POST",
+                    contentType: "application/json"
                 },
                 parameterMap: function(options, operation) {
                     if (operation !== "read" && options.models) {
-                        return {models: kendo.stringify(options.models)};
+                        return kendo.stringify(options.models);
                     }
                 }
             },
@@ -494,4 +496,4 @@ In order to have the DropDownList and the checkboxes instead of the current Butt
 
 ## See Also
 
-* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler).
+* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/ui/scheduler).

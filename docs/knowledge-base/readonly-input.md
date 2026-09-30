@@ -1,13 +1,13 @@
 ---
 title: Make DatePicker Input Elements Read-Only
 page_title: Make DatePicker Input Elements Read-Only
-description: "An example on how to make input elements of the Kendo UI for jQuery DatePicker read-only."
+description: "Learn how to make input elements of the Kendo UI for jQuery DatePicker read-only."
 slug: howto_make_input_elements_readonly_datepicker
 previous_url: /controls/editors/datepicker/how-to/readonly-input
 tags: kendo, jquery, datepicker, make, input, elements, readonly
-component: datepicker
 type: how-to
 res_type: kb
+components: ["datepicker"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI DatePicker for jQuery</td>
+  <td>Progress® Kendo UI® DatePicker for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -78,10 +78,10 @@ The following example demonstrates how to achieve the desired scenario.
 
 ## See Also
 
-* [DatePicker JavaScript API Reference](/api/javascript/ui/datepicker)
-* [How to Create Date Masking]({% slug masks_kendoui_maskedtextbox_widget %})
-* [How to Globally Modify Default Options]({% slug howto_globally_modify_default_options_datepicker %})
-* [How to Hide the Default Button]({% slug howto_hide_default_button_datepicker %})
-* [How to Integrate DatePicker with DateJS Library]({% slug howto_integrate_withdatejs_library_datepicker %})
-* [How to Persist Entered Dates]({% slug howto_persist_entered_dates_datepicker %})
-* [How to Resize Calendar Based on Input Width]({% slug howto_use_resize_calendar_basedon_input_width_datepicker %})
+* [DatePicker JavaScript API Reference](/api/ui/datepicker)
+* [Create Date Masking]({% slug masks_kendoui_maskedtextbox_widget %})
+* [Globally Modify Default Options]({% slug howto_globally_modify_default_options_datepicker %})
+* [Hide the Default Button]({% slug howto_hide_default_button_datepicker %})
+* [Integrate DatePicker with DateJS Library]({% slug howto_integrate_withdatejs_library_datepicker %})
+* [Persist Entered Dates]({% slug howto_persist_entered_dates_datepicker %})
+* [Resize Calendar Based on Input Width]({% slug howto_use_resize_calendar_basedon_input_width_datepicker %})

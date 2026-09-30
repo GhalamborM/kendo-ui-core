@@ -2,11 +2,12 @@
 title: Conditionally Display Columns
 description: Conditionally show Edit and Delete buttons in the Kendo UI Grid.
 type: how-to
-page_title: Show Command Column Based on Conditions | Kendo UI Grid for ASP.NET MVC
+page_title: Show Command Column Based on Conditions - Kendo UI Grid for ASP.NET MVC
 slug: grid-show-edit-and-delete-buttons-conditionally
 tags: grid, condition, hide, buttons, update, delete, destroy, column
 ticketid: 1143185
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
   <td>UI for ASP.NET MVC</td>
  </tr>
  </tr>
@@ -27,13 +28,15 @@ How can I hide some of the Grid columns and conditionally display **Edit** and *
 
 ## Solution
 
-The column configuration of the Grid for ASP.NET MVC has a `Hidden()` ([`columns.hidden`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.hidden)) property that expects a Boolean value which can be used for such purposes.
+The column configuration of the Grid for ASP.NET MVC has a `Hidden()` ([`columns.hidden`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnshidden)) property that expects a Boolean value which can be used for such purposes.
 
 The following example demonstrates how to pass a value in the ViewBag for a key and give it a `true` or `false` value in the controller, and then access it in the Razor template.
 
-To individually fine-tune a command, use the [`command visible`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.command.visible) function.
+To individually fine-tune a command, use the [`command visible`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns/command#columnscommandvisible) function.
 
 ###### Razor Example
+
+The following snippet passes an `IsAdmin` flag from the controller through `ViewBag` and uses it to toggle column visibility and the command column in the Razor template.
 
 ```
 public ActionResult Index()
@@ -54,6 +57,8 @@ public ActionResult Index()
 ```
 
 ###### JavaScript Example
+
+The following snippet initializes a Grid in pure JavaScript and sets `hidden: !isAdmin` on the command column to control its visibility based on a boolean variable.
 
 ```
 var isAdmin = false;

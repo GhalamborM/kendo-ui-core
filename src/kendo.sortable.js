@@ -1,9 +1,6 @@
+import "./kendo.draganddrop.js";
 
-(function(f, define) {
-    define([ "./kendo.draganddrop" ], f);
-})(function() {
-
-var __meta__ = {
+export const __meta__ = {
     id: "sortable",
     name: "Sortable",
     category: "framework",
@@ -15,13 +12,23 @@ var __meta__ = {
         Widget = kendo.ui.Widget,
         outerWidth = kendo._outerWidth,
         outerHeight = kendo._outerHeight,
+        keys = kendo.keys,
 
+        NS = ".kendoSortable",
+
+        KEYDOWN = "keydown" + NS,
+        FOCUS = "focus" + NS,
+        BLUR = "blur" + NS,
+        REFSORTABLEITEM = "ref-sortable-item",
+        REFSORTABLEITEM_ATTR = "[" + REFSORTABLEITEM + "]",
         START = "start",
         BEFORE_MOVE = "beforeMove",
         MOVE = "move",
         END = "end",
         CHANGE = "change",
+        NAVIGATE = "navigate",
         CANCEL = "cancel",
+        KENDO_KEYDOWN = "kendoKeydown",
 
         ACTION_SORT = "sort",
         ACTION_REMOVE = "remove",
@@ -61,7 +68,32 @@ var __meta__ = {
             }
 
             that.draggable = that._createDraggable();
-        },
+            that._assignRefAttribute();
+            const items = that._items();
+
+            if (that.options.navigatable) {
+                items.filter(that.options.disabled).attr("aria-disabled", true);
+                items.not(that.options.disabled).attr("aria-disabled", false);
+
+                if (!that.element.attr("role")) {
+                    that.element.attr("role", "list");
+                };
+                items.each(function(index, item) {
+                    const itemRoleAttr = item.getAttribute("role");
+                    if (!itemRoleAttr) {
+                        item.setAttribute("role", "listitem");
+                    };
+                    item.setAttribute("aria-label", `${item.textContent.trim()}, ${item.getAttribute("aria-disabled") === "true" ? "disabled" : "enabled"}`);
+                });
+
+                that._attatchNavigatableHandlers();
+
+                const firstItem = items.first();
+                that._toggleTabIndex(firstItem);
+                items.find(":kendoFocusable").attr("tabindex", -1);
+            }
+            Widget.fn.endInit.call(that);
+},
 
         events: [
             START,
@@ -69,7 +101,9 @@ var __meta__ = {
             MOVE,
             END,
             CHANGE,
-            CANCEL
+            NAVIGATE,
+            CANCEL,
+            KENDO_KEYDOWN
         ],
 
         options: {
@@ -77,6 +111,7 @@ var __meta__ = {
             hint: null,
             placeholder: null,
             filter: DEFAULT_FILTER,
+            navigatable: false,
             holdToDrag: false,
             disabled: null,
             container: null,
@@ -87,10 +122,209 @@ var __meta__ = {
             ignore: null,
             autoScroll: false,
             cursor: "auto",
-            moveOnDragEnter: false
+            moveOnDragEnter: false,
+            allowTouchActions: false,
+        },
+
+        _attatchNavigatableHandlers: function() {
+            const that = this;
+            that._keydownHandler = that._keydown.bind(that);
+            that._blurHandler = that._blur.bind(that);
+            that._focusHandler = that._focus.bind(that);
+            that.element.on(KEYDOWN, REFSORTABLEITEM_ATTR, that, that._keydownHandler)
+                .on(BLUR, REFSORTABLEITEM_ATTR, that._blurHandler)
+                .on(FOCUS, REFSORTABLEITEM_ATTR, that._focusHandler);
+        },
+
+        _focus: function(e) {
+            const that = this;
+            const target = $(e.target);
+            if (target.is(REFSORTABLEITEM_ATTR)) {
+                that._toggleFocus($(e.target));
+                if (!that._preventNavigate) {
+                    that.trigger(NAVIGATE, { item: $(e.target) });
+                }
+            }
+        },
+
+        _toggleTabIndex: function(target) {
+            const that = this;
+            const items = that._items();
+
+            if (items.length) {
+                items.attr("tabindex", -1);
+                target.attr("tabindex", 0);
+            }
+        },
+
+        _toggleFocus: function(target) {
+            const that = this;
+            const items = that._items();
+
+            if (items.length) {
+                items.removeClass("k-focus");
+                target.addClass("k-focus");
+            }
+        },
+
+        _swap: function(target, swapWith, direction) {
+            const that = this;
+
+            if (target.is(that.options.disabled)) {
+                return;
+            }
+
+            if (swapWith.length) {
+                swapWith[direction](target);
+                const oldIndex = direction === "after" ? that.indexOf(target) - 1 : that.indexOf(target) + 1;
+                const newIndex = that.indexOf(target);
+                that._toggleTabIndex(target);
+                target.trigger("focus");
+
+                this.trigger(CHANGE, { item: target , oldIndex: oldIndex , newIndex: newIndex, action: ACTION_SORT });
+            }
+        },
+
+        _navigate: function(direction, target) {
+            const that = this;
+            let item = target;
+
+            item = (direction === "next") ? item.next(REFSORTABLEITEM_ATTR) : item.prev(REFSORTABLEITEM_ATTR);
+
+            if (!item.length) {
+                return false;
+            }
+
+            that._toggleTabIndex(item);
+            item.trigger("focus");
+
+            return item;
+        },
+
+        _keydown: function(e) {
+            const that = this,
+                  key = e.keyCode,
+                  target = $(e.target),
+                  next = target.next(),
+                  prev = target.prev(),
+                  focusable = target.find(":kendoFocusable");
+            let handled = false;
+            let newTarget;
+
+            if (!kendo.keyDownHandler(e, that)) {
+                return;
+            }
+
+            that._preventNavigate = false;
+
+            if (that._lastFocusedSortableItem) {
+                if (key === keys.LEFT || key === keys.UP || key === keys.RIGHT || key === keys.DOWN) {
+                    return;
+                }
+                if (key === keys.TAB) {
+                    const shiftKey = e.shiftKey;
+                    const container = that._lastFocusedSortableItem;
+                    const innerElements = container.find(":kendoFocusable");
+                    const firstInnerElement = innerElements.first();
+                    const lastInnerElement = innerElements.last();
+
+                    if (!innerElements.length) {
+                        return;
+                    };
+                    if (!shiftKey && target.is(lastInnerElement)) {
+                        firstInnerElement.focus();
+                        handled = true;
+                    };
+                    if (shiftKey && target.is(firstInnerElement)) {
+                        lastInnerElement.focus();
+                        handled = true;
+                    };
+                }
+            };
+            if (key == keys.RIGHT || key == keys.DOWN) {
+                if (e.ctrlKey) {
+                    that._preventNavigate = true;
+                    that._swap(target, next, "after");
+                    handled = true;
+                } else if (target.is(REFSORTABLEITEM_ATTR) && !target.is(that._items().last())) {
+                    newTarget = that._navigate("next", target);
+                    handled = newTarget;
+                }
+            }
+            if (key == keys.LEFT || key == keys.UP) {
+                if (e.ctrlKey) {
+                    that._preventNavigate = true;
+                    that._swap(target, prev, "before");
+                    handled = true;
+                } else if (target.is(REFSORTABLEITEM_ATTR) && !target.is(that._items().first())) {
+                    newTarget = that._navigate("prev", target);
+                    handled = newTarget;
+                }
+            }
+            if (key == keys.ENTER) {
+                if (target.is(that.options.disabled) || target.find('input').length === 0) {
+                    return;
+                }
+                that._lastFocusedSortableItem = target;
+                if (!focusable.length) {
+                    return;
+                }
+                target.find(":kendoFocusable").attr("tabindex", 0);
+                target.removeClass("k-focus");
+                target.attr("tabindex", -1);
+                focusable.first().trigger("focus");
+                handled = true;
+            }
+            if (key == keys.ESC) {
+                that._preventNavigate = true;
+                let closestSortableItem = that._lastFocusedSortableItem;
+
+                if (!closestSortableItem) {
+                    closestSortableItem = target.closest(REFSORTABLEITEM_ATTR);
+                }
+
+                if (!closestSortableItem.length) {
+                    return;
+                }
+
+                that.element.find(":kendoFocusable").attr("tabindex", -1);
+                that._toggleTabIndex(closestSortableItem);
+                closestSortableItem.trigger("focus");
+
+                if (that._lastFocusedSortableItem) {
+                    delete that._lastFocusedSortableItem;
+                }
+                handled = true;
+            }
+            if (handled) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        },
+
+        _blur: function(e) {
+            $(e.target).removeClass("k-focus");
+        },
+
+        _detatchNavigatableHandlers: function() {
+            const that = this;
+            if (that.options.navigatable) {
+                that.element.off(NS);
+                that._keydownHandler = null;
+                that._blurHandler = null;
+                that._focusHandler = null;
+            }
+        },
+
+        _assignRefAttribute: function() {
+            const that = this;
+            const items = that._items();
+
+            items.attr(REFSORTABLEITEM, "");
         },
 
         destroy: function() {
+            this._detatchNavigatableHandlers();
             this.draggable.destroy();
             Widget.fn.destroy.call(this);
         },
@@ -112,7 +346,8 @@ var __meta__ = {
                 dragstart: that._dragstart.bind(that),
                 dragcancel: that._dragcancel.bind(that),
                 drag: that._drag.bind(that),
-                dragend: that._dragend.bind(that)
+                dragend: that._dragend.bind(that),
+                allowTouchActions: options.allowTouchActions
             });
         },
 
@@ -171,8 +406,8 @@ var __meta__ = {
                 targetCenter = this._getElementCenter(target.element);
 
                 offsetDelta = {
-                    left: Math.round(cursorOffset.left - targetCenter.left),
-                    top: Math.round(cursorOffset.top - targetCenter.top)
+                    left: Math.round(cursorOffset.left - targetCenter?.left),
+                    top: Math.round(cursorOffset.top - targetCenter?.top)
                 };
 
                 $.extend(eventData, { target: target.element });
@@ -429,12 +664,6 @@ var __meta__ = {
 
                 this._originalCursorType = body.css("cursor");
                 body.css({ "cursor": cursor });
-
-                if (!this._cursorStylesheet) {
-                    this._cursorStylesheet = $("<style>* { cursor: " + cursor + " !important; }</style>");
-                }
-
-                this._cursorStylesheet.appendTo(body);
             }
         },
 
@@ -442,8 +671,6 @@ var __meta__ = {
             if (this._originalCursorType) {
                 $(document.body).css("cursor", this._originalCursorType);
                 this._originalCursorType = null;
-
-                this._cursorStylesheet.remove();
             }
         },
 
@@ -465,9 +692,11 @@ var __meta__ = {
         },
 
         _cancel: function() {
-            this.draggedElement.show();
-            this.placeholder.remove();
-            this.draggable.dropped = true;
+            if (this.draggedElement) {
+                this.draggedElement.show();
+                this.placeholder.remove();
+                this.draggable.dropped = true;
+            }
         },
 
         _items: function() {
@@ -518,7 +747,5 @@ var __meta__ = {
 
     kendo.ui.plugin(Sortable);
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

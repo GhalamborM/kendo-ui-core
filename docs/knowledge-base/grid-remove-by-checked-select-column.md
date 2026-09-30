@@ -1,12 +1,13 @@
 ---
 title: Prevent Header Remove When Removing by Checked Select Column
-description: An example on how to prevent the header row from being removed when removing by select column checked checkboxes
+description: Learn how to prevent the header row from being removed when removing by select column checked checkboxes
 type: how-to
-page_title: Prevent Header Remove When Removing by Checked Select Column | Kendo UI Grid for jQuery
+page_title: Prevent Header Remove When Removing by Checked Select Column - Kendo UI for jQuery Data Grid
 slug: grid-remove-by-checked-select-column
 tags: grid, select, column, check, checkbox, checkboxes, header, row, remove
 ticketid: 1147495
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -68,8 +69,7 @@ To detect if the checkbox that is used to remove a row belongs to the header of 
             pageSize: 10,
             transport: {
                 read:  {
-                  url: "https://demos.telerik.com/kendo-ui/service/Products",
-                  dataType: "jsonp"
+                  url: "https://demos.telerik.com/service/v2/core/Products"
                 }
             },
             schema: {
@@ -97,4 +97,4 @@ To detect if the checkbox that is used to remove a row belongs to the header of 
 ## See Also
 
 * [Kendo UI Grid Checkbox Selection Demo.](https://demos.telerik.com/kendo-ui/grid/checkbox-selection)
-* [Columns.selectable API Reference.](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.selectable)
+* [Columns.selectable API Reference.](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsselectable)

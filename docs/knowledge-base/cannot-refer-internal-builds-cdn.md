@@ -6,6 +6,7 @@ slug: cannot_refer_internal_builds_cdn
 tags: kendoui, jquery, cannot, refer, internal, builds, cdn, installing
 type: troubleshooting
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -13,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Kendo UI for jQuery CDN Installation</td>
+  <td>Progress® Kendo UI® for jQuery CDN Installation</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -23,9 +24,9 @@ res_type: kb
 
 ## Description
 
-I cannot refer the internal Kendo UI for jQuery builds from the CDN. 
+I cannot refer the internal Kendo UI for jQuery builds from the CDN.
 
-## Cause 
+## Cause
 
 The internal Kendo UI for jQuery builds are not uploaded to CDN because they are intended only for clients with a commercial license. Only major Kendo UI for jQuery releases and service packs are available on CDN.
 
@@ -37,10 +38,9 @@ For internal builds, use private CDN services. It is recommended that you implem
     <html>
     <head>
         <title>Welcome to Kendo UI for jQuery</title>
-        <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/kendo.common.min.css" />
-        <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/kendo.blueopal.min.css" />
+        <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/{{ site.themesCdnVersion }}/default/default-main.css" />
 
-        <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
         <script>
             if (typeof jQuery == "undefined") {
                 // Fallback to local jQuery.
@@ -55,8 +55,7 @@ For internal builds, use private CDN services. It is recommended that you implem
                 // therefore assume that if the scripts have failed, so have the stylesheets.
 
                 // Fallback to local Kendo UI for jQuery stylesheets.
-                document.write(decodeURIComponent('%3Clink rel="stylesheet" href="/path/to/local/kendo.common.min.css" %3C/%3E'));
-                document.write(decodeURIComponent('%3Clink rel="stylesheet" href="/path/to/local/kendo.blueopal.min.css" %3C/%3E'));
+                document.write(decodeURIComponent('%3Clink rel="stylesheet" href="/path/to/local/default-main.css" %3C/%3E'));
 
                 // Fallback to local Kendo UI for jQuery scripts.
                 document.write(decodeURIComponent('%3Cscript src="/path/to/local/kendo.all.min.js" %3E%3C/script%3E'));
@@ -68,4 +67,3 @@ For internal builds, use private CDN services. It is recommended that you implem
         Hello world!
     </body>
     </html>
-

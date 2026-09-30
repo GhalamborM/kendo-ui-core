@@ -1,13 +1,13 @@
 ---
 title: Crop DropDownList Text
-description: An example on how to crop the text in the Kendo UI DropDownList and show an ellipsis when the content is longer than the width of the drop-down.
+description: Learn how to crop the text in the Kendo UI DropDownList and show an ellipsis when the content is longer than the width of the drop-down.
 type: how-to
-page_title: Crop Text and Show Ellipsis for Longer Content | Kendo UI DropDownList for jQuery
+page_title: Crop Text and Show Ellipsis for Longer Content - Kendo UI DropDownList for jQuery
 slug: crop-dropdown-text-and-show-ellipsis
 tags: crop, dropdownlist, dropdown, ellipsis, overflow
 ticketid: 1084518
 res_type: kb
-component: dropdownlist
+components: ["dropdownlist"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: dropdownlist
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI DropDownList</td>
+  <td>Progress® Kendo UI® DropDownList for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -48,7 +48,7 @@ Use the `white-space`, `overflow`, and `text-overflow` CSS properties.
           text-overflow: ellipsis;
         }
     </style>
-    
+
     <h4>Products</h4>
     <input id="products" style="width: 200px" />
 
@@ -60,8 +60,7 @@ Use the `white-space`, `overflow`, and `text-overflow` CSS properties.
           dataSource: {
             transport: {
               read: {
-                dataType: "jsonp",
-                url: "https://demos.telerik.com/kendo-ui/service/Products",
+                url: "https://demos.telerik.com/service/v2/core/Products",
               }
             }
           }

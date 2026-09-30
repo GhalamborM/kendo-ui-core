@@ -2,12 +2,13 @@
 title: Show Series Label in the Top Left Corner of the Kendo UI Column Chart
 description: Learn how to set custom position of the Series Labels in the Kendo UI Column Chart.
 type: how-to
-page_title: Show Series Label in Custom Position | Kendo UI Chart
+page_title: Show Series Label in Custom Position - Kendo UI Chart
 slug: chart-series-label-custom-position
 position: 
 tags: column, custom, position, label, chart, top left, corner, series.labels, series
 ticketid: 1455103
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Chart for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Chart for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -29,7 +30,7 @@ res_type: kb
 How can I show the Series Label in the top left corner of the Kendo UI Column Chart?
 
 ## Solution
-In order to show the [Series Labels](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/series.labels) in the top left corner of the Kendo UI Column Chart Series, use the [series.labels.visual](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/series.labels.visual) function:
+In order to show the [Series Labels](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/series#serieslabels) in the top left corner of the Kendo UI Column Chart Series, use the [series.labels.visual](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/series/labels#serieslabelsvisual) function:
 
 ```javascript
 $("#chart").kendoChart({
@@ -58,9 +59,11 @@ function left(e) {
   return layout;
 }
 ```
-> Make sure to set the [series.labels.position](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/series.labels.position).
+> Make sure to set the [series.labels.position](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/series/labels#serieslabelsposition).
 
 #### Example
+
+The following example demonstrates a Column Chart that renders the series label in the top-left corner of each bar by using a custom `visual` function.
 
 ```dojo
 <div id="chart"></div>
@@ -94,6 +97,6 @@ function left(e) {
 ```
 
 ## See Also
-- [series.labels](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/series.labels)
-- [series.labels.visual](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/series.labels.visual)
-- [series.labels.position](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/series.labels.position)
+- [series.labels](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/series#serieslabels)
+- [series.labels.visual](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/series/labels#serieslabelsvisual)
+- [series.labels.position](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/series/labels#serieslabelsposition)

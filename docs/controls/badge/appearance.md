@@ -1,0 +1,120 @@
+---
+title: Appearance
+page_title: jQuery Badge Documentation - Badge Appearance
+description: "Get started with the jQuery Badge by Kendo UI and learn how to customize the appearance of the widget."
+components: ["badge"]
+slug: appearance_kendoui_badge_widget
+position: 2
+---
+
+# Appearance
+
+The Badge allows you to set different styles based on its content.
+
+For a live example, visit the [Appearance Demo of the Badge](https://demos.telerik.com/kendo-ui/badge/appearance).
+
+## Rounded
+
+The available [`rounded`](/api/ui/badge/configuration/rounded) values are:
+
+- "full" (default)—Renders a circle shape badge.
+- "small"—Renders a badge with small border radius.
+- "medium"—Renders a badge with medium border radius.
+- "large"—Renders a badge with large border radius.
+- "none"—Renders a badge with no border radius.
+
+The following example demonstrates the `rounded` option of the Badge:
+
+```dojo
+    <a class="k-button"><span id="badge">42</span></a>
+
+    <script>
+        $(document).ready(function(){
+            $("#badge").kendoBadge({
+                rounded: "large"
+            });
+        });
+    </script>
+```
+
+## Theme Color
+
+The Badge allows you to specify predefined theme colors.
+
+> Starting with the [**2026 Q1**](slug:breakingchanges2026_kendoui) release, the Badge component renders with the `primary` appearance by default. Because appearance defaults are now theme-controlled, the `themeColor` option will be `undefined` when not set, but the theme applies the primary styling. To preserve the previous (secondary) look, explicitly set `themeColor: 'secondary'`.
+
+The available [themeColor](/api/ui/badge/configuration/themeColor) values are:
+
+- "primary" (Default)—Applies coloring based on the primary theme color.
+- "base"-Applies base theme color.
+- "secondary"—Applies coloring based on the secondary theme color.
+- "tertiary"—Applies coloring based on the tertiary theme color.
+- "info"—Applies coloring based on the info theme color.
+- "success"—Applies coloring based on the success theme color.
+- "warning"—Applies coloring based on the warning theme color.
+- "error"—Applies coloring based on the error theme color.
+
+```dojo
+    <a class="k-button"><span id="badge">42</span></a>
+
+    <script>
+        $(document).ready(function(){
+            $("#badge").kendoBadge({
+                themeColor: 'success'
+            });
+        });
+    </script>
+```
+
+## Size
+
+The Badge allows you to configure the size. To specify a size, set the [`size`](/api/ui/badge/configuration/size) property.
+
+The available [`size`](/api/ui/badge/configuration/size) values are:
+
+- "small"
+- "medium" (Default)
+- "large"
+- "none"
+
+The example below demonstrates how to set the `size` option to "large":
+
+```dojo
+    <a class="k-button"><span id="badge">42</span></a>
+
+    <script>
+        $(document).ready(function(){
+            $("#badge").kendoBadge({
+                size: 'large'
+            });
+        });
+    </script>
+```
+
+## FillMode
+
+The Badge enables you to set styling options and create solid or outline badges by setting the [`fill`](/api/ui/badge/configuration/fillmode) property.
+
+The available [fill](/api/ui/badge/configuration/fillmode) values are:
+
+- "solid" (Default)
+- "outline"
+- "none"
+
+The example below demonstrates how to set the `fill` option to "outline":
+
+```dojo
+    <a class="k-button"><span id="badge">42</span></a>
+    <script>
+        $(document).ready(function(){
+            $("#badge").kendoBadge({
+                fill: 'outline'
+            });
+        });
+    </script>
+```
+
+## See Also
+
+* [Basic Usage of the Badge (Demo)](https://demos.telerik.com/kendo-ui/badge/index)
+* [JavaScript API Reference of the Badge](/api/ui/badge)

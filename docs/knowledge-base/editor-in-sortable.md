@@ -1,12 +1,12 @@
 ---
 title: Missing Content when Drag Dropping Kendo Editor
-description: An example on how to refresh Kendo UI Editor after drag drop in Sortable.
+description: Learn how to refresh Kendo UI Editor after drag drop in Sortable.
 type: troubleshooting
-page_title: Refresh Editor after Drag Drop in Sortable | Kendo UI Editor for jQuery
+page_title: Refresh Editor after Drag Drop in Sortable - Kendo UI Editor for jQuery
 slug: editor-in-sortable
 tags: editor, sortable, content, refresh
 res_type: kb
-component: editor
+components: ["editor"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: editor
 <table>
  <tr>
   <td>Product</td>
-  <td>Kendo UI Editor</td>
+  <td>Progress® Kendo UI® Editor for jQuery</td>
  </tr>
 </table>
 
@@ -24,7 +24,7 @@ Editor within Sortable loses it's content when dragged.
 
 ## Solution
 
-Because of the embedded `<iframe>` when changing the position of the Editor widget in the DOM, the widget will need its [refresh()](/api/javascript/ui/editor/methods/refresh) method to be called to properly display its content again. Here you could find a small sample demonstrating that.
+Because of the embedded `<iframe>` when changing the position of the Editor widget in the DOM, the widget will need its [refresh()](/api/ui/editor/methods/refresh) method to be called to properly display its content again. Here you could find a small sample demonstrating that.
 
 ```dojo
     <ul id="sortable">
@@ -60,4 +60,4 @@ Because of the embedded `<iframe>` when changing the position of the Editor widg
 
 ## See Also
 
-* [API Reference of the Editor](/api/javascript/ui/editor)
+* [API Reference of the Editor](/api/ui/editor)

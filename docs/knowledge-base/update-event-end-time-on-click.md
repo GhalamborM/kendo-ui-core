@@ -1,13 +1,13 @@
 ---
 title: Update the End Time of the Scheduler Events on Click
 page_title: Update the End Time of the Scheduler Events on Click
-description: "Learn how to update the end time of an event on click in a Kendo UI for jQuery Scheduler widget."
+description: "Learn how to update the end time of an event on click in a Kendo UI for jQuery Scheduler component."
 previous_url: /controls/scheduling/scheduler/how-to/update-event-end-time-on-click, /controls/scheduling/scheduler/how-to/editing/update-event-end-time-on-click
 slug: howto_update_event_end_time_on_click_scheduler
 tags: telerik, kendo, jquery, scheduler, update, the, end, time, of, events, on, click 
-component: scheduler
 type: how-to
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler for jQuery</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -46,8 +46,8 @@ The following example demonstrates how to achieve the desired scenario.
     <script>
         $(function () {
             $("#scheduler").kendoScheduler({
-                date: new Date("2013/6/13"),
-                startTime: new Date("2013/6/13 07:00 AM"),
+                date: new Date("2025/6/13"),
+                startTime: new Date("2025/6/13 07:00 AM"),
                 height: 600,
                 selectable: true,
                 views: [
@@ -61,24 +61,26 @@ The following example demonstrates how to achieve the desired scenario.
                     batch: true,
                     transport: {
                         read: {
-                            url: "https://demos.telerik.com/kendo-ui/service/meetings",
-                            dataType: "jsonp"
+                            url: "https://demos.telerik.com/service/v2/core/meetings"
                         },
                         update: {
-                            url: "https://demos.telerik.com/kendo-ui/service/meetings/update",
-                            dataType: "jsonp"
+                            url: "https://demos.telerik.com/service/v2/core/meetings/update",
+                            type: "POST",
+                            contentType: "application/json"
                         },
                         create: {
-                            url: "https://demos.telerik.com/kendo-ui/service/meetings/create",
-                            dataType: "jsonp"
+                            url: "https://demos.telerik.com/service/v2/core/meetings/create",
+                            type: "POST",
+                            contentType: "application/json"
                         },
                         destroy: {
-                            url: "https://demos.telerik.com/kendo-ui/service/meetings/destroy",
-                            dataType: "jsonp"
+                            url: "https://demos.telerik.com/service/v2/core/meetings/destroy",
+                            type: "POST",
+                            contentType: "application/json"
                         },
                         parameterMap: function (options, operation) {
                             if (operation !== "read" && options.models) {
-                                return { models: kendo.stringify(options.models) };
+                                return kendo.stringify(options.models);
                             }
                         }
                     },
@@ -129,7 +131,7 @@ The following example demonstrates how to achieve the desired scenario.
 
             scheduler.wrapper.on("click", ".k-event", function(e) {
 							var uid = $(this).data("uid");
-              // https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler/methods/occurrenceByUid
+              // https://docs.telerik.com/kendo-ui/api/ui/scheduler/methods/occurrenceByUid
               var event = scheduler.occurrenceByUid(uid);
               var end = new Date(event.end);
 
@@ -146,4 +148,4 @@ The following example demonstrates how to achieve the desired scenario.
 
 * [Basic Usage of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/index)
 * [Using the API of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/api)
-* [JavaScript API Reference of the Scheduler](/api/javascript/ui/scheduler)
+* [JavaScript API Reference of the Scheduler](/api/ui/scheduler)

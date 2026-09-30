@@ -1,12 +1,12 @@
 ---
 title: Resize the Grid When a Column Is Resized
-description: An example on how to change the width of the Grid after resizing any of its columns.
+description: Learn how to change the width of the Grid after resizing any of its columns.
 type: how-to
-page_title: Resize the Widget after Its Column Is Resized | Kendo UI Grid for jQuery
+page_title: Resize the Widget after Its Column Is Resized - Kendo UI for jQuery Data Grid
 slug: grid-resize-container-on-column-resize
 tags: grid, scroll, scrollbar, vertical
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>2017.3.913</td>
  </tr>
 </table>
@@ -37,9 +37,8 @@ Manually change the width of the Grid-wrapping element to match the width of the
             	$(document).ready(function () {
             		$("#grid").kendoGrid({
             			dataSource: {
-            				type: "odata",
             				transport: {
-            					read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+            					read: "https://demos.telerik.com/service/v2/core/Orders"
             				},
             				schema: {
             					model: {

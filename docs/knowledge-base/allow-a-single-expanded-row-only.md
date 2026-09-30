@@ -1,13 +1,13 @@
 ---
-title: Allow Single Row in Master Grid to be Expanded
-page_title: Allow Single Row Expansion in Master Grids | Kendo UI Grid for jQuery
-description: "An example on how to collapse a row that was previously expanded when the user expands a new one in the Kendo UI Grid for jQuery."
+title: Allow the Expansion of a Single Row in Master Data Grids
+page_title: Allow Single-Row Expansion in Master Grids - jQuery Data Grid
+description: "Learn how to collapse a row that was previously expanded when the user expands a new one in the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/Layout/allow-a-single-expanded-row-only
 slug: howto_allowonlyasingleexpandedrow_grid
 tags: grid, single, row, master, expand
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Preferred Language</td>
@@ -29,8 +29,8 @@ How can I expand a single row in a master Kendo UI Grid at a specific time?
 
 ## Solution
 
-1. Handle the [`detailExpand`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/detailexpand) event.
-1. Find any previously expanded rows and collapse them by using the [`collapseRow()`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/collapserow) method.
+1. Handle the [`detailExpand`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/detailexpand) event.
+1. Find any previously expanded rows and collapse them by using the [`collapseRow()`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/collapserow) method.
 
 The following example demonstrates how to collapse a Grid row that was previously expanded when the user expands a new one.
 
@@ -40,9 +40,9 @@ The following example demonstrates how to collapse a Grid row that was previousl
 	  $(document).ready(function() {
 	    var grid = $("#grid").kendoGrid({
 	      dataSource: {
-	        type: "odata",
+	        type: "odata-v4",
 	        transport: {
-	          read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+	          read: "https://demos.telerik.com/service/v2/odata/Employees"
 	        },
 	        pageSize: 6,
 	        serverPaging: true,
@@ -88,9 +88,9 @@ The following example demonstrates how to collapse a Grid row that was previousl
 	  function detailInit(e) {
 	    $("<div/>").appendTo(e.detailCell).kendoGrid({
 	      dataSource: {
-	        type: "odata",
+	        type: "odata-v4",
 	        transport: {
-	          read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+	          read: "https://demos.telerik.com/service/v2/odata/Orders"
 	        },
 	        serverPaging: true,
 	        serverSorting: true,
@@ -114,4 +114,7 @@ The following example demonstrates how to collapse a Grid row that was previousl
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)
+* [jQuery Data Grid Overview (Demo)](https://demos.telerik.com/kendo-ui/grid/index)
+* [Data Grid Overview (Documentation)]({% slug overview_kendoui_grid_widget %})
+* [Product Page of the jQuery Data Grid](https://www.telerik.com/kendo-jquery-ui/data-grid-(table))

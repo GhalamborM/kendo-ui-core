@@ -5,9 +5,9 @@ description: "Learn how to implement a custom `timeline` view in a Kendo UI for 
 previous_url: /controls/scheduling/scheduler/how-to/timeline-with-dynamic-length, /controls/scheduling/scheduler/how-to/custom-views/timeline-with-dynamic-length
 slug: howto_implementcustomtimeline_withdynamiclength_scheduler
 tags: telerik, kendo, jquery, scheduler, implement, custom, timeline, views, with, dynamic, length
-component: scheduler
 type: how-to
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler for jQuery</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -84,37 +84,39 @@ The following example demonstrates how to achieve the desired scenario.
 
       $(function() {
         var scheduler = $("#scheduler").kendoScheduler({
-          date: new Date("2013/6/13"),
-          startTime: new Date("2013/6/13 07:00 AM"),
+          date: new Date("2025/6/13"),
+          startTime: new Date("2025/6/13 07:00 AM"),
           height: 600,
           views: [{
             type: "MyCustomTimelistView",
             selected: true,
-            dateHeaderTemplate: "<span class='k-link k-nav-day'>#=kendo.toString(date, ' dd/M ddd')#</span>"
+            dateHeaderTemplate: "<span class='k-link' ref-view-day >#=kendo.toString(date, ' dd/M ddd')#</span>"
           }],
           timezone: "Etc/UTC",
           dataSource: {
             batch: true,
             transport: {
-              read: {
-                url: "https://demos.telerik.com/kendo-ui/service/tasks",
-                dataType: "jsonp"
-              },
-              update: {
-                url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-                dataType: "jsonp"
-              },
-              create: {
-                url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-                dataType: "jsonp"
-              },
-              destroy: {
-                url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-                dataType: "jsonp"
-              },
+                read: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks"
+                },
+                update: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/update",
+                    type: "POST",
+                    contentType: "application/json"
+                },
+                create: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/create",
+                    type: "POST",
+                    contentType: "application/json"
+                },
+                destroy: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+                    type: "POST",
+                    contentType: "application/json"
+                },
               parameterMap: function(options, operation) {
                 if (operation !== "read" && options.models) {
-                  return {models: kendo.stringify(options.models)};
+                  return kendo.stringify(options.models);
                 }
               }
             },
@@ -157,4 +159,4 @@ The following example demonstrates how to achieve the desired scenario.
 
 * [Basic Usage of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/index)
 * [Using the API of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/api)
-* [JavaScript API Reference of the Scheduler](/api/javascript/ui/scheduler)
+* [JavaScript API Reference of the Scheduler](/api/ui/scheduler)

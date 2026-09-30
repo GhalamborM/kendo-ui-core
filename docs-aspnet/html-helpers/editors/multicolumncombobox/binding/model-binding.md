@@ -2,6 +2,7 @@
 title: Model Binding
 page_title: Model Binding
 description: "Learn how to implement model binding with Telerik UI MultiColumnComboBox component for {{ site.framework }}."
+components: ["multicolumncombobox"]
 previous_url: /helpers/editors/multicolumncombobox/binding/model-binding
 slug: modelbinding_multicolumncombobox_aspnetmvc
 position: 6
@@ -90,7 +91,7 @@ You can configure the MultiColumnComboBox to get its data from a remote source b
                 ProductName = "ProductName4"
             });
         }
-
+        {% if site.mvc %}
         public JsonResult GetProductsAjax()
         {
             var products = Enumerable.Range(0, 500).Select(i => new ProductViewModel
@@ -101,6 +102,18 @@ You can configure the MultiColumnComboBox to get its data from a remote source b
 
             return Json(products, JsonRequestBehavior.AllowGet);
         }
+        {% else %}
+        public JsonResult GetProductsAjax()
+        {
+            var products = Enumerable.Range(0, 500).Select(i => new ProductViewModel
+            {
+                ProductID = i,
+                ProductName = "ProductName" + i
+            });
+
+            return Json(products, JsonRequestBehavior.AllowGet);
+        }
+        {% endif %}
 
 1. Add the MultiColumnComboBox to the view and configure its DataSource to use remote data.
 
@@ -153,6 +166,8 @@ You can configure the MultiColumnComboBox to get its data from a remote source b
 
 ## See Also
 
-* [Basic Usage of the MultiColumnComboBox HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/multicolumncombobox/index)
-* [MultiColumnComboBoxBuilder Server-Side API](/api/Kendo.Mvc.UI.Fluent/MultiColumnComboBoxBuilder)
-* [MultiColumnComboBox Server-Side API](/api/multicolumncombobox)
+* [Basic Usage of the MultiColumnComboBox for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/multicolumncombobox/basic-usage)
+* [Server-Side API of the MultiColumnComboBox HtmlHelper](/api/multicolumncombobox)
+{% if site.core %}
+* [Server-Side API of the MultiColumnComboBox TagHelper](/api/taghelpers/multicolumncombobox)
+{% endif %}

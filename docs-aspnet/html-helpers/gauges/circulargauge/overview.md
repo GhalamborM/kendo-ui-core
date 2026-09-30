@@ -2,12 +2,13 @@
 title: Overview
 page_title: Overview
 description: "Discover the Telerik UI CircularGauge component for {{ site.framework }} and learn how to initialize and configure the component."
+components: ["circulargauge"]
 previous_url: /helpers/gauges/circulargauge/overview
 slug: overview_circulargaugehelper_aspnetcore
-position: 1
+position: 0
 ---
 
-# CircularGauge Overview
+# {{ site.framework }} CircularGauge Overview
 
 {% if site.core %}
 The Telerik UI CircularGauge TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI CircularGauge widget.
@@ -26,14 +27,14 @@ It is essentially very similar to the ArcGauge with the difference that the Circ
 
 ## Initializing the CircularGauge
 
-1. Follow all the steps from the [introductory article on {{ site.product }}](https://docs.telerik.com/{{ site.platform }}/introduction#next-steps).
-
 1. Create a new action method which renders the view.
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+    ```C#
+    public ActionResult Index()
+    {
+        return View();
+    }
+    ```
 
 1. Add the CircularGauge.
 
@@ -54,67 +55,21 @@ It is essentially very similar to the ArcGauge with the difference that the Circ
     ```
     {% endif %}
 
-## Referencing Existing Instances
+## Functionality and Features
 
-To reference an existing Telerik UI CircularGauge instance, use the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [CircularGauge client-side API](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/circulargauge#methods) to control its behavior.
+* [Scale]({% slug scale_circulargaugehelper_aspnetcore %})—You can control how the scale of the Circular Gauge renders the values, pointers and labels.
+* [Colors]({% slug colors_circulargaugehelper_aspnetcore %})—The scale of the Circular Gauge can be configured to show different colors for different values.
+* [Export]({% slug export_circulargaugehelper_aspnetcore %})—You can export the Circular Gauge as an image, SVG, or a PDF file.
 
-    // Place the following after the Telerik UI CircularGauge for {{ site.framework }} declaration.
-    <script>
-        $(function() {
-            // The Name() of the CircularGauge is used to get its client-side instance.
-            var gauge = $("#circularGauge").data("kendoCircularGauge");
-        });
-    </script>
+## Next Steps
 
-## Colors
-
-The CircularGauge supports different color ranges depending on the currently active value. The gauge will then colorize the value element and fill it with the respective range color:
-
-```HtmlHelper
-     .Colors(colors =>
-    {
-        colors.Add().From(0).To(25).Color("#0058e9");
-        colors.Add().From(25).To(50).Color("#37b400");
-        colors.Add().From(50).To(75).Color("#ffc000");
-        colors.Add().From(75).To(100).Color("#f31700");
-    })
-```
-{% if site.core %}
-```TagHelper
-    <colors>
-        <color from="0" to="25" color="#0058e9"/>
-        <color from="25" to="50" color="#37b400"/>
-        <color from="50" to="75" color="#ffc000"/>
-        <color from="75" to="100" color="#f31700"/>
-    </colors>
-```
-{% endif %}
-
-You can find a live sample demonstrating that here:
-
-[Color Ranges](https://demos.telerik.com/{{ site.platform }}/circular-gauge/colors)
-
-## Scale Options
-
-There are various Scale Settings available so you can present the gauge exactly the way you want to:
-
-```HtmlHelper
-    .Scale(x =>x.Labels(l=>l.Visible(true)))
-```
-{% if site.core %}
-```TagHelper
-    <scale>
-        <labels visible="true"/>
-    </scale>
-```
-{% endif %}
-
-You can change the start and end angle, the appearance of the label and ticks, min and max options of the scale, and others. For the full list of options, refer to the [API reference of the CircularGauge](/api/javascript/dataviz/ui/circulargauge).
-
-## See Also
-
+* [Getting Started with Circular Gauge]({% slug circulargauge_getting_started %})
 * [Basic Usage of the CircularGauge HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/circular-gauge/index)
 {% if site.core %}
 * [Basic Usage of the CircularGauge TagHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/aspnet-core/circular-gauge/tag-helper)
 {% endif %}
-* [Server-Side API](/api/circulargauge)
+
+## See Also
+
+* [Using the API of the Circular Gauge for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/circular-gauge/api)
+* [Knowledge Base Section](/knowledge-base)

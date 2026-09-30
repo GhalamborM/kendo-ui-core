@@ -5,9 +5,9 @@ description: "Learn how to use the Kendo UI Tooltip for the Kendo UI TreeMap til
 previous_url: /controls/charts/treemap/how-to/show-treemap-tooltip, /controls/charts/how-to/integration/show-treemap-tooltip
 slug: howto_showtreemaptooltip_treemap
 tags: chart, show, tooltip, in, treemap
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -81,5 +81,5 @@ The following example demonstrates how to use the Kendo UI Tooltip for the Kendo
 
 ## See Also
 
-* [TreeMap JavaScript API Reference](/api/javascript/dataviz/ui/treemap)
-* [How to Set Header Items Color]({% slug howto_setheaderitemscolor_treemap %})
+* [TreeMap JavaScript API Reference](/api/dataviz/ui/treemap)
+* [Set Header Items Color]({% slug howto_setheaderitemscolor_treemap %})

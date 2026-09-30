@@ -1,12 +1,13 @@
 ---
 title: Persist Single-Row Selection on Virtual Scrolling in Grid
-description: An example on how to persist the single-row selection functionality of the Kendo UI Grid when you use it together with virtualization.
+description: Learn how to persist the single-row selection functionality of the Kendo UI Grid when you use it together with virtualization.
 type: how-to
-page_title: Persist Single Row Selection with Virtual Scrolling | Kendo UI Grid for jQuery
+page_title: Persist Single Row Selection with Virtual Scrolling - Kendo UI for jQuery Data Grid
 slug: grid-virtual-scrolling-with-persist-single-selection
 tags: grid, selection, virtual
 ticketid: 1139830
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -31,7 +32,7 @@ When the user selects a row on the first page, scrolls to the second page, and s
 
 ## Solution
 
-Programmatically handle the collection of item selection on the [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/change) event of the Grid.
+Programmatically handle the collection of item selection on the [`change`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/change) event of the Grid.
 
 ````dojo
     <div id="example">
@@ -40,12 +41,12 @@ Programmatically handle the collection of item selection on the [`change`](https
                 $(document).ready(function() {
                     $("#grid").kendoGrid({
                         dataSource: {
-                            type: "odata",
+                            type: "odata-v4",
                             serverPaging: true,
                             serverSorting: true,
                             pageSize: 100,
                             transport: {
-                                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                                read: "https://demos.telerik.com/service/v2/odata/Orders"
                             },
                           	schema: {
                                model: {
@@ -87,4 +88,4 @@ Programmatically handle the collection of item selection on the [`change`](https
 
             </style>
     </div>
-```
+````

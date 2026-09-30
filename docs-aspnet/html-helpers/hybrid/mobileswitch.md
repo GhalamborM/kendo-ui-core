@@ -2,6 +2,7 @@
 title: Switch
 page_title: Switch Overview
 description: "Learn the basics when working with the hybrid Telerik UI Switch HtmlHelper for ASP.NET MVC."
+components: ["general"]
 previous_url: /helpers/hybrid/mobileswitch/overview, /helpers/hybrid/mobileswitch
 slug: overview_hybridswitch_aspnetmvc
 ---
@@ -54,7 +55,7 @@ The Switch displays two exclusive choices.
 
 ## Events
 
-You can subscribe to all hybrid Switch [events](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/switch#events).
+You can subscribe to all hybrid Switch [events](https://docs.telerik.com/kendo-ui/api/mobile/ui/switch#events).
 
 The following example demonstrates how to subscribe to events by a handler name.
 
@@ -71,7 +72,7 @@ The following example demonstrates how to subscribe to events by a handler name.
 
 ## Referencing Existing Instances
 
-You can reference a hybrid Switch instance by using the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) method and the value specified through the `Name()` method. Once a reference is established, use the [hybrid Switch client-side API](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/switch#methods) to control its behavior.
+You can reference a hybrid Switch instance by using the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) method and the value specified through the `Name()` method. Once a reference is established, use the [hybrid Switch client-side API](https://docs.telerik.com/kendo-ui/api/mobile/ui/switch#methods) to control its behavior.
 
     @(Html.Kendo().MobileSwitch()
         .Name("subscription-switch")
@@ -88,4 +89,4 @@ You can reference a hybrid Switch instance by using the [`jQuery.data()`](http:/
 
 ## See Also
 
-* [Hybrid SwitchBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/MobileSwitchBuilder)
+* [Hybrid SwitchBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/mobileswitchbuilder)

@@ -2,6 +2,7 @@
 title: Data Binding
 page_title: Data Binding
 description: "Learn how to bind the Telerik UI Sparkline component for {{ site.framework }} to data."
+components: ["sparkline"]
 slug: overview_sparklinesdatabinding_aspnetcore
 position: 2
 ---
@@ -24,6 +25,21 @@ Binding to local data can be done by using either of the following approaches:
             .Series(d=>d.Column(new int[] { 10 ,15, 8 ,2,30}))
     )
 ```
+{% if site.core %}
+```TagHelper
+    @{
+        var series_data = new int[] { 10 ,15, 8 ,2,30};
+    }
+    <kendo-sparkline name="temp-log"
+                     type="SparklineType.Column">
+                    <series>
+                        <series-item type="column"
+                            data="@series_data">
+                        </series-item>
+                    </series>
+    </kendo-sparkline>
+```
+{% endif %}
 
 ```HtmlHelper
     @(Html.Kendo().Sparkline()
@@ -32,6 +48,14 @@ Binding to local data can be done by using either of the following approaches:
             .Data(ViewBag.TemperatureData)
     )
 ```
+{% if site.core %}
+```TagHelper
+    <kendo-sparkline name="temp-log"
+                     data="@ViewBag.TemperatureData"
+                     type="SparklineType.Column">
+    </kendo-sparkline>
+```
+{% endif %}
 
 ## Binding to Remote Data
 
@@ -45,9 +69,29 @@ The following example demonstrates how to bind the Sparkline Chart to remote dat
             .Column("TMax").Color("#ff0000").NegativeColor("#0099ff")
     )
 ```
+{% if site.core %}
+```TagHelper
+     <kendo-sparkline name="sparkline-tmax">
+        <datasource type="DataSourceTagHelperType.Ajax">
+            <transport>
+                <read url="@Url.Action("_Weather", "Sparklines")"/>
+            </transport>
+        </datasource>
+        <series>
+            <series-item type="column"
+                name="TMax" color="#ff0000"
+                negative-color="#0099ff">
+            </series-item>
+        </series>
+    </kendo-sparkline>
+```
+{% endif %}
 
 ## See Also
 
+{% if site.core %}
+* [Sparkline in Razor Pages]({% slug htmlhelper_sparkline_razorpages_aspnetcore %})
+{% endif %}
 * [Local Data Binding by the Sparkline HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/sparklines/local-data-binding)
 * [Remote Data Binding by the Sparkline HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/sparklines/remote-data-binding)
 * [Server-Side API](/api/sparkline)

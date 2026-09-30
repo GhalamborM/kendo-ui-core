@@ -1,12 +1,13 @@
 ---
 title: Export All ListView Pages to PDF
-description: An example on how to export all pages of a Kendo UI ListView to a PDF file.
+description: Learn how to export all pages of a Kendo UI ListView to a PDF file.
 type: how-to
-page_title: Export All Pages to PDF | Kendo UI ListView for jQuery
+page_title: Export All Pages to PDF - Kendo UI ListView for jQuery
 slug: listview-pdf-export-all-pages
 tags: listview, pdf, export, all pages
 ticketid: 1139418
 res_type: kb
+components: ["listview"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ListView</td>
+  <td>Progress® Kendo UI® ListView for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1026 version</td>
  </tr>
 </table>
@@ -29,7 +30,7 @@ How can I export all ListView pages to a PDF file?
 ## Solution
 
 1. Select the Pager of the ListView.
-1. Save the `dataSource` [`pageSize`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/pagesize) in a variable.
+1. Save the `dataSource` [`pageSize`](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/pagesize) in a variable.
 1. Change the `pageSize` to display all the items.
 1. Use the [Kendo UI Drawing API](https://demos.telerik.com/kendo-ui/pdf-export/index) to export the desired content.
 1. When the export promise is done, set the old `pageSize` to the `dataSource` of the Pager.    
@@ -42,22 +43,22 @@ How can I export all ListView pages to a PDF file?
         // NOTE: Only required if the Kendo UI stylesheets are loaded
         // from a different origin, e.g. cdn.kendostatic.com
         kendo.pdf.defineFont({
-            "DejaVu Sans": "https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/fonts/DejaVu/DejaVuSans.ttf",
-            "DejaVu Sans|Bold": "https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
-            "DejaVu Sans|Bold|Italic": "https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
-            "DejaVu Sans|Italic": "https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
-            "WebComponentsIcons": "https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/fonts/glyphs/WebComponentsIcons.ttf"
+            "DejaVu Sans": "https://kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans.ttf",
+            "DejaVu Sans|Bold": "https://kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
+            "DejaVu Sans|Bold|Italic": "https://kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+            "DejaVu Sans|Italic": "https://kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+            "WebComponentsIcons": "https://kendo.cdn.telerik.com/2023.1.117/styles/fonts/glyphs/WebComponentsIcons.ttf"
         });
     </script>
 
     <!-- Load Pako ZLIB library to enable PDF compression -->
-    <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/pako_deflate.min.js"></script>
+    <script src="https://unpkg.com/pako/dist/pako_deflate.min.js"></script>
 
     <script src="https://demos.telerik.com/kendo-ui/content/shared/js/products.js"></script>
 
     <div class="demo-section k-content wide">
         <div id="listView"></div>
-        <div id="pager" class="k-pager-wrap"></div>
+        <div id="pager" class="k-pager"></div>
     </div>
 
     <script type="text/x-kendo-template" id="template">

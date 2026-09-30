@@ -2,8 +2,9 @@
 title: Table Editing
 page_title: Editor Table Editing
 description: "Learn about the table editing of the Telerik UI Editor component for {{ site.framework }}."
+components: ["editor"]
 slug: htmlhelpers_editor_table_editing_aspnetcore
-position: 12
+position: 13
 ---
 
 # Table Editing
@@ -12,10 +13,11 @@ The Editor exposes the capability of editing a data table as any other (X)HTML. 
 
 * [Inserting a Table](#inserting-a-table)
 * [Editing a table](#editing-a-table)
-* [Available Options](#available-options)
-* [Accessibility Tab](#accessibility-tab)
+* [Available **Table**, **Cell**, and **Accessibility** tab options](#available-options)
 
-To enable the table editing, you should add the `TableEditing` tool to the widget's configuration:
+> As of the R3 2023 Release, the `Table Wizard` transmutes into two separate `Table` and `Cell` properties popup elements.
+
+To enable the table editing, add the `TableEditing` tool to the configuration of the component:
 
 ```HtmlHelper
     @(Html.Kendo().Editor()
@@ -24,12 +26,14 @@ To enable the table editing, you should add the `TableEditing` tool to the widge
       .Tools(tools => tools.TableEditing())
     )
 ```
-```
+
 {% if site.core %}
 ```TagHelper
     <kendo-editor name="editor" style="height:440px" aria-label="editor">
       <tools>
-        <tool name="tableWizard">
+        <tool name="tableProperties">
+        </tool>
+        <tool name="tableCellProperties">
         </tool>
         <tool name="createTable">
         </tool>
@@ -64,25 +68,32 @@ To enable the table editing, you should add the `TableEditing` tool to the widge
 ```
 {% endif %}
 
+
 ## Inserting a Table
 
 To insert a new table by using the Table Wizard dialog:
 
-1. Click on the `Create Table` tool.
-1. To open the dialog, click the `Table Wizard` button.
-1. Configure the table that is to be inserted.
-1. Click the `OK` button.
+1. Click the **Create Table** tool.
+1. To open the dialog, click the **Table Wizard** button.
+1. Configure the table you want to insert.
+1. Click the **Confirm** button.
 
-To quickly create a plain table, click on the `Create Table` tool and choose the row and column dimensions. 
+![Telerik UI for {{ site.framework }} Editor Table Wizard](./images/table-wizard.png)
+
+To quickly create a plain table, click the **Create Table** tool and choose the row and column dimensions. 
+
+![Telerik UI for {{ site.framework }} Editor Create Table Tool](./images/table-wizard-open.png)
 
 ## Editing a Table
 
 To modify an existing table or a table cell:
 
 1. Select the table or the table cell to edit.
-1. Click the Table Wizard tool in the toolbar.
+1. Click the **Table Properties** or **Cell Properties** tool in the toolbar.
 
 > You can resize the table rows and columns by dragging the cell border with the mouse and without using the Table Wizard dialog.
+
+![Telerik UI for {{ site.framework }} Editor Table Editing](./images/table-wizard-edit.png)
 
 The table and cell options that are available in the **Table Wizard** are displayed in the following three tabs:
 
@@ -91,6 +102,8 @@ The table and cell options that are available in the **Table Wizard** are displa
 * [**Accessibility**](#accessibility-tab)&mdash;The available options related to accessibility.
 
 ## Available Options
+
+The Editor provides a set of editing options through its **Table**, **Cell**, and **Accessibility** tabs.  
 
 ### Table Tab
 
@@ -102,6 +115,8 @@ The **Table** tab provides the following options:
 * **Rows**&mdash;Defines the rows of the table.
 * **Cell Spacing**&mdash;Specifies the space between the cells ([`cellspacing` attribute](http://www.w3schools.com/tags/att_table_cellspacing.asp)).
 * **Cell Padding**&mdash;Specifies the padding in the cells ([`cellpadding` attribute](http://www.w3schools.com/tags/att_table_cellpadding.asp)).
+* **Independent Cell Paddings** (available as of the `2024 Q2` release)&mdash;Specifies individual padding in the cells for `top`, `right`, `bottom` and `left`.
+![Independent Table Paddings](./images/cell-paddings.png)
 * **Alignment**&mdash;Specifies the text alignment in the cells.
 * **Background**&mdash;Specifies the background color of the table.
 * **CSS Class**&mdash;Defines the class names for the table element (white space-separated).
@@ -114,11 +129,13 @@ The **Table** tab provides the following options:
 
 The **Cell** tab provides the following options:
 
-* **Select All Cells**&mdash;Applies the changes to all cells in the table.
+* **Apply to all cells**&mdash;Applies the changes to all cells in the table.
 * **Width**&mdash;Changes the width of the cell or cells (in pixels, em, or percent).
 * **Height**&mdash;Changes the height of the cell or cells (in pixels, em, or percent).
 * **Cell Margin**&mdash;Defines the margin of the cell or cells.
 * **Cell Padding**&mdash;Defines the padding of the cell or cells.
+* **Independent Cell Paddings** (available as of the `2024 Q2` release)&mdash;Specifies individual padding in the cells for `top`, `right`, `bottom` and `left`.
+![Independent Table Paddings](./images/cell-paddings.png)
 * **Alignment**&mdash;Specifies the text alignment of the cell or cells.
 * **Background**&mdash;Specifies the background color of the cell or cells.
 * **CSS Class**&mdash;Defines class names for the cells (white space-separated).
@@ -128,6 +145,8 @@ The **Cell** tab provides the following options:
 * **Wrap text**&mdash;When unchecked, applies a `white-space: nowrap` style to the cells ([`white-space` property](http://www.w3schools.com/cssref/pr_text_white-space.asp)).
 
 ### Accessibility Tab
+
+> As of the R3 2023 Release, the accessibility tab becomes a section in the `Advanced` tab in the new `Table Properties` popup.
 
 The **Accessibility** tab provides the following options:
 

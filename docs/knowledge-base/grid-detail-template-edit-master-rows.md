@@ -1,12 +1,13 @@
 ---
 title: Edit Rows in Detail Template
-description: An example on how to edit the records in the relevant detail rows of the Kendo UI Grid.
+description: Learn how to edit the records in the relevant detail rows of the Kendo UI Grid.
 type: how-to
-page_title: Use Detail Template to Edit Master Rows | Kendo UI Grid for jQuery
+page_title: Use Detail Template to Edit Master Rows - Kendo UI for jQuery Data Grid
 slug: grid-detail-template-edit-master-rows
 tags: grid, detail, template, editing
 ticketid: 1139115
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1026 version</td>
  </tr>
 </table>
@@ -28,7 +29,7 @@ How can I edit the master rows in the relevant detail rows of the Kendo UI Grid?
 
 ## Possible Workarounds
 
-To work around the default behavior, fake the editing process in the [`detailInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/detailinit) event handler.
+To work around the default behavior, fake the editing process in the [`detailInit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/detailinit) event handler.
 
 1. Select all inputs in the `detailCell` element.
 1. Attach a [`change`](https://api.jquery.com/change/) event handler to every input.

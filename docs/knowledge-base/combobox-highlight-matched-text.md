@@ -1,12 +1,12 @@
 ---
 title: Highlight Matched Text from ComboBox Items
-description: An example on how to highlight the text in the Kendo UI ComboBox items, which matches the search criteria.
+description: Learn how to highlight the text in the Kendo UI ComboBox items, which matches the search criteria.
 type: how-to
-page_title: Highlight the Item Text Which Matches Search Criteria | Kendo UI ComboBox for jQuery
+page_title: Highlight the Item Text Which Matches Search Criteria - Kendo UI ComboBox for jQuery
 slug: combobox-highlight-matched-text
 tags: kendo, kendo-ui, combobox, search, text, highlight
 res_type: kb
-component: combobox
+components: ["combobox"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: combobox
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ComboBox</td>
+  <td>Progress® Kendo UI® ComboBox for jQuery</td> 
  </tr>
 </table>
 
@@ -90,11 +90,11 @@ Implement the `dataBound` event handler for the widget.
       autoBind: false,
       dataBound: onDataBound,
       dataSource: {
-        type: "odata",
+        type: "odata-v4",
         serverFiltering: true,
         transport: {
           read: {
-            url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products",
+            url: "https://demos.telerik.com/service/v2/odata/Products",
           }
         }
       },
@@ -112,4 +112,4 @@ Implement the `dataBound` event handler for the widget.
 
 ## See Also
 
-* [API Reference of the ComboBox](https://docs.telerik.com/kendo-ui/api/javascript/ui/combobox)
+* [API Reference of the ComboBox](https://docs.telerik.com/kendo-ui/api/ui/combobox)

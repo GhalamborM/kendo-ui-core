@@ -1,13 +1,13 @@
 ---
 title: Bind Change Event Function to All MaskedTextBox Widgets
-description: An example on how to bind the change event handler function to all Kendo UI MaskedTextBox widgets.
+description: Learn how to bind the change event handler function to all Kendo UI MaskedTextBox widgets.
 type: how-to
-page_title: Subscribe All Widgets to One Handler | Kendo UI MaskedTextBox for jQuery
+page_title: Subscribe All Widgets to One Handler - Kendo UI MaskedTextBox for jQuery
 slug: maskedtextbox-bind-all-widgets-one-handler
 tags: maskedtextbox, bind, events
 ticketid: 1136846
 res_type: kb
-component: maskedtextbox
+components: ["maskedtextbox"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: maskedtextbox
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI MaskedTextBox</td>
+  <td>Progress® Kendo UI® MaskedTextBox for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1026 version</td>
  </tr>
 </table>
@@ -37,7 +37,7 @@ To bind all the widgets, utilize any of the following approaches:
 ### After the Page Loads
 
 1. After all the MaskedTextBoxes initialize, select them with the jQuery data-role attribute selector.
-1. Loop through the array and attach the [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/maskedtextbox/events/change) handler to every MaskedTextBox.
+1. Loop through the array and attach the [`change`](https://docs.telerik.com/kendo-ui/api/ui/maskedtextbox/events/change) handler to every MaskedTextBox.
 
 ```dojo
 <input id="maskedtextbox1" />
@@ -63,7 +63,7 @@ To bind all the widgets, utilize any of the following approaches:
 
 ### Before the Page Loads
 
-Override the default [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/maskedtextbox/events/change) event handler function before the MaskedTextBoxes initializes.
+Override the default [`change`](https://docs.telerik.com/kendo-ui/api/ui/maskedtextbox/events/change) event handler function before the MaskedTextBoxes initializes.
 
 ```dojo
 <script>

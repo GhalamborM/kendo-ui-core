@@ -2,11 +2,12 @@
 title: Hide Grid Columns When the Browser Width Is Too Small
 description: "An example demonstrating how to hide the Grid columns in the detail template when the width of the browser is too small."
 type: how-to
-page_title: Collapse Other Rows on Row Expand | Kendo UI Grid for jQuery
+page_title: Collapse Other Rows on Row Expand - Kendo UI for jQuery Data Grid
 slug: grid-browser-resize-hides-columns-in-detail-template
 tags: grid, hierarchy, collapse, expand, hide, columns, column, detail, template
 ticketid: 1358601
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,23 +15,23 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2021.3.914 version</td>
  </tr>
 </table>
 
 ## Description
 
-How can I hide the Grid columns inside the [`detailTemplate`](/api/javascript/ui/grid/configuration/detailtemplate) when the width of the browser window becomes too small?
+How can I hide the Grid columns inside the [`detailTemplate`](/api/ui/grid/configuration/detailtemplate) when the width of the browser window becomes too small?
 
 ## Solution
 
 1. Define the thresholds at which each individual column will be hidden. Refer to the `getThresholds` function in the example below.
-1. Set these thresholds to the Grid by using the [`columns.media`](/api/javascript/ui/grid/configuration/columns.media) configuration. Refer to the `setThresholds` function in the example below.
-1. Attach handlers for the [`dataBound`](/api/javascript/ui/grid/events/databound), [`columnHide`](/api/javascript/ui/grid/events/columnhide), and [`columnShow`](/api/javascript/ui/grid/events/columnshow) events to the Grid. The `columnHide` and `columnShow` handlers are responsible for hiding and showing the columns inside the `detailTemplate`. The `dataBound` handler is responsible for initializing the `detailTemplate`.
+1. Set these thresholds to the Grid by using the [`columns.media`](/api/ui/grid/configuration/columns#columnsmedia) configuration. Refer to the `setThresholds` function in the example below.
+1. Attach handlers for the [`dataBound`](/api/ui/grid/events/databound), [`columnHide`](/api/ui/grid/events/columnhide), and [`columnShow`](/api/ui/grid/events/columnshow) events to the Grid. The `columnHide` and `columnShow` handlers are responsible for hiding and showing the columns inside the `detailTemplate`. The `dataBound` handler is responsible for initializing the `detailTemplate`.
 1. Handle the `resize` event of the JavaScript `window` object. If the Grid doesn't have any hidden columns when the browser window is resized, collapse all detail rows.
 1. Use `CSS` to conditionally display the hierarchy column.
 
@@ -56,9 +57,9 @@ The following example demonstrates the full implementation of the suggested appr
         $(document).ready(function () {
             var grid = $("#grid").kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                        read: "https://demos.telerik.com/service/v2/odata/Employees"
                     },
                     pageSize: 20,
                     serverPaging: true,

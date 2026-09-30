@@ -2,11 +2,12 @@
 title: PivotConfiguratorV2
 page_title: PivotConfiguratorV2 Overview
 description: "Get started with the Telerik UI PivotGridV2 HtmlHelper for {{ site.framework }} and learn how to create and configure the PivotConfiguratorV2 Configurator."
+components: ["pivotgridv2"]
 slug: htmlhelpers_pivotgridv2_aspnetcore_configurator
-position: 4
+position: 5
 ---
 
-# PivotConfiguratorV2 Overview
+# PivotConfiguratorV2
 
 The [Telerik UI PivotConfiguratorV2 HtmlHelper for {{ site.framework }}](/api/pivotconfigurator) represents an OLAP cube structure.
 
@@ -38,7 +39,7 @@ The following example demonstrates how to create the PivotConfigurator.
     <kendo-pivotgridv2 name="pivotgridv2" height="570" configurator="#configurator">
         <!--Other configuration. -->
     </kendo-pivotgridv2>
-````
+```
 {% endif %}
 
 ## Basic Configuration
@@ -71,7 +72,7 @@ The following example demonstrates how to configure the PivotConfigurator.
                     .Catalog("Adventure Works DW 2008R2")
                     .Cube("Adventure Works"))
                 .Read(read => read
-                    .Url("https://demos.telerik.com/olap/msmdpump.dll")
+                    .Url("https://demos.telerik.com/service/v2/olap/msmdpump.dll")
                     .DataType("text")
                     .ContentType("text/xml")
                     .Type(HttpVerbs.Post)
@@ -95,26 +96,28 @@ The following example demonstrates how to configure the PivotConfigurator.
                 <row name="[Geography].[City]"></row>
             </rows>
             <measures values=@(new string[] {"[Measures].[Reseller Freight Cost]"} )></measures>
-            <transport read-url="https://demos.telerik.com/olap/msmdpump.dll" datatype="text" content-type="text/xml" type="POST">
+            <transport read-url="https://demos.telerik.com/service/v2/olap/msmdpump.dll" datatype="text" content-type="text/xml" type="POST">
                 <connection catalog="Adventure Works DW 2008R2" cube="Adventure Works"></connection>
             </transport>
         </pivot-datasource>
     </kendo-pivotgridv2>
-````
+```
 {% endif %}
 
 The following image demonstrates the output from the previous example.
 
-![{{ site.product_short }} PivotConfiguratorV2](../images/pivotconfiguratorv2.png)
+![{{ site.product_short }} PivotGridV2 and PivotConfiguratorV2](../images/pivotconfiguratorv2.png)
 
 ## Referencing Existing Instances
 
-To reference an existing PivotConfigurator instance, use the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) method. Once a reference has been established, use the [PivotConfigurator client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/pivotconfiguratorv2#methods) to control its behavior.
+To reference an existing PivotConfigurator instance, use the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) method. Once a reference has been established, use the [PivotConfigurator client-side API](https://docs.telerik.com/kendo-ui/api/ui/pivotconfiguratorv2#methods) to control its behavior.
 
-    var pivotconfiguratorv2 = $("#pivotconfiguratorv2").data("kendoPivotConfiguratorV2");
+```JS
+var pivotconfiguratorv2 = $("#pivotconfiguratorv2").data("kendoPivotConfiguratorV2");
+```
 
 ## See Also
 
 * [OLAP Cube Fundamentals]({% slug htmlhelpers_pivotgridv2_aspnetcore_fundamentals %})
 * [OLAP Cube Setup]({% slug htmlhelpers_pivotgridv2_aspnetcore_olap_cube_setup %})
-* [PivotConfiguratorV2 JavaScript API Reference](/api/javascript/ui/pivotconfiguratorv2)
+* [PivotConfiguratorV2 JavaScript API Reference](https://docs.telerik.com/kendo-ui/api/ui/pivotconfiguratorv2)

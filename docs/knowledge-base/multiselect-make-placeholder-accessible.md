@@ -1,12 +1,12 @@
 ---
 title: Make MultiSelect Placeholder Accessible
-description: An example on how to make the Kendo UI MultiSelect placeholder accessible to screen readers.
+description: Learn how to make the Kendo UI MultiSelect placeholder accessible to screen readers.
 type: how-to
-page_title: Make MultiSelect Placeholder Accessible | Kendo UI MultiSelect for jQuery
+page_title: Make MultiSelect Placeholder Accessible - Kendo UI MultiSelect for jQuery
 slug: multiselect-make-placeholder-accessible
 tags: multiselect, placeholder, accessible, screen, readers
 res_type: kb
-component: multiselect
+components: ["multiselect"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: multiselect
 <table>
  <tr>
   <td>Product</td>
-  <td>Kendo UI MultiSelect</td>
+  <td>Progress® Kendo UI® MultiSelect for jQuery</td>
  </tr>
  <tr>
-  <td>Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2019.1.220 version</td>
  </tr>
 </table>
@@ -28,7 +28,7 @@ How to make the MultiSelect placeholder accessible to screen readers?
 
 ## Solution
 
-Use the text [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect/events/change) event of the MultiSelect as demonstrated below.
+Use the text [`change`](https://docs.telerik.com/kendo-ui/api/ui/multiselect/events/change) event of the MultiSelect as demonstrated below.
 
 ```dojo
   <input type="text" placeholder="test placeholder" />
@@ -64,4 +64,4 @@ Use the text [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/mult
 
 ## See Also
 
-* [MultiSelect API Reference](/api/javascript/ui/multiselect)
+* [MultiSelect API Reference](/api/ui/multiselect)

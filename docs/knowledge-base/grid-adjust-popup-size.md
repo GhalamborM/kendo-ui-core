@@ -1,13 +1,13 @@
 ---
 title: Change Size of Popup Editor
-description: An example on how to specify dimensions for the Kendo UI Grid popup editor.
+description: Learn how to specify dimensions for the Kendo UI Grid popup editor.
 type: how-to
-page_title: Change Popup Editor Dimensions | Kendo UI Grid for jQuery
+page_title: Change Popup Editor Dimensions - Kendo UI for jQuery Data Grid
 slug: grid-adjust-popup-size
 tags: grid, popup, edit, editor, window, size, width, height, dimensions
 ticketid: 1144949
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2020.3.1021 version</td>
  </tr>
 </table>
@@ -29,7 +29,7 @@ How can I change the width and height of the popup editor window in the Grid?
 
 ## Solution
 
-1. Handle the [`edit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/edit) event of the Grid and add a custom CSS rule which explicitly specifies the dimensions of the popup wrapper.
+1. Handle the [`edit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/edit) event of the Grid and add a custom CSS rule which explicitly specifies the dimensions of the popup wrapper.
 1. Add a custom CSS rule which sets an auto width and height for `.k-edit-form-container`.
 
 ```dojo
@@ -45,28 +45,30 @@ How can I change the width and height of the popup editor window in the Grid?
 
 <script>
     $(document).ready(function () {
-        var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
             dataSource = new kendo.data.DataSource({
                 transport: {
-                    read: {
-                        url: crudServiceBaseUrl + "/Products",
-                        dataType: "jsonp"
+                    read:  {
+                        url: crudServiceBaseUrl + "/Products"
                     },
                     update: {
                         url: crudServiceBaseUrl + "/Products/Update",
-                        dataType: "jsonp"
+                        type: "POST",
+                		contentType: "application/json"
                     },
                     destroy: {
                         url: crudServiceBaseUrl + "/Products/Destroy",
-                        dataType: "jsonp"
+                        type: "POST",
+                		contentType: "application/json"
                     },
                     create: {
                         url: crudServiceBaseUrl + "/Products/Create",
-                        dataType: "jsonp"
+                        type: "POST",
+                		contentType: "application/json"
                     },
-                    parameterMap: function (options, operation) {
+                    parameterMap: function(options, operation) {
                         if (operation !== "read" && options.models) {
-                            return { models: kendo.stringify(options.models) };
+                            return kendo.stringify(options.models);
                         }
                     }
                 },

@@ -1,12 +1,13 @@
 ---
 title: Sort Scheduler Events in Descending Order
-description: An example on how to sort events in a descending order for the Kendo UI Scheduler AgendaView.
+description: Learn how to sort events in a descending order for the Kendo UI Scheduler AgendaView.
 type: how-to
-page_title: Sort Events in Descending Order | Kendo UI Scheduler for jQuery
+page_title: Sort Events in Descending Order - Kendo UI Scheduler for jQuery
 slug: scheduler-agenda-view-sort-events-descending
 tags: kendo, kendo-ui, scheduler, agenda, sort, events, descending
 ticketid: 1153690
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Scheduler for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Scheduler for jQuery</td>
 	</tr>
 </table>
 
@@ -105,7 +106,6 @@ Extend the **Agenda** view of the Scheduler and implement a custom render functi
             }
 
             var items = this._eventsList = flattenTaskGroups(groups);
-            this._angularItems(table, items);
 
             this.refreshLayout();
             this.trigger("activate");
@@ -114,8 +114,8 @@ Extend the **Agenda** view of the Scheduler and implement a custom render functi
 
     $(function() {
         $("#scheduler").kendoScheduler({
-            date: new Date("2018/1/13"),
-            startTime: new Date("2018/1/13 07:00 AM"),
+            date: new Date("2026/1/13"),
+            startTime: new Date("2026/1/13 07:00 AM"),
             height: 600,
             views: [
                 { type: "CustomAgenda", title: "Custom Agenda" }
@@ -125,24 +125,26 @@ Extend the **Agenda** view of the Scheduler and implement a custom render functi
                 batch: true,
                 transport: {
                     read: {
-                        url: "https://demos.telerik.com/kendo-ui/service/tasks",
-                        dataType: "jsonp"
-                    },
-                    update: {
-                        url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-                        dataType: "jsonp"
-                    },
-                    create: {
-                        url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-                        dataType: "jsonp"
-                    },
-                    destroy: {
-                        url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-                        dataType: "jsonp"
-                    },
+                    url: "https://demos.telerik.com/service/v2/core/tasks"
+                },
+                update: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/update",
+                    type: "POST",
+                    contentType: "application/json"
+                },
+                create: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/create",
+                    type: "POST",
+                    contentType: "application/json"
+                },
+                destroy: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+                    type: "POST",
+                    contentType: "application/json"
+                },
                     parameterMap: function(options, operation) {
                         if (operation !== "read" && options.models) {
-                            return {models: kendo.stringify(options.models)};
+                            return kendo.stringify(options.models);
                         }
                     }
                 },
@@ -191,4 +193,4 @@ Extend the **Agenda** view of the Scheduler and implement a custom render functi
 
 ## See Also
 
-* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler)
+* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/ui/scheduler)

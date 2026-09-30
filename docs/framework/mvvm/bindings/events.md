@@ -1,7 +1,8 @@
 ---
 title: Events
-page_title: Events Binding | Kendo UI MVVM
+page_title: Events Binding - Kendo UI MVVM
 description: "Learn how to enable the target DOM element by having the View-Model value return true values in Kendo UI MVVM."
+components: ["mvvm"]
 slug: eventsbinding_mvvm_kendoui
 ---
 

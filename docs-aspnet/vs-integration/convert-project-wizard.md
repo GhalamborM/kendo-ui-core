@@ -2,19 +2,30 @@
 title: Adding Telerik UI to Existing Projects
 page_title: Adding Telerik UI to Existing Projects
 description: "Learn how to convert an existing {{ site.framework }} application to a {{ site.product }} application."
+components: ["installerandvsextensions"]
 previous_url: /installation/vs-integration/convert-project-wizard, /getting-started/vs-integration/convert-project-wizard, /vs-integration-mvc/convert-project-wizard
 slug: convertprojectwizard_visualstudio_aspnetcore
 position: 10
 ---
 
-# Adding Telerik UI to Existing Projects
+# Adding {{ site.product }} to Existing Projects
 
-Enhance existing {{ site.framework }} applications with Telerik UI Components such as [Grid, Chart, DropDownList, and others.]{% if site.core %}(https://demos.telerik.com/aspnet-core){% else %}(https://demos.telerik.com/aspnet-mvc){% endif %} with just a few mouse clicks.
+Enhance existing {{ site.framework }} applications with Telerik UI Components such as [Grid]({% slug htmlhelpers_grid_aspnetcore_overview %}), [Chart]({% slug htmlhelpers_charts_aspnetcore %}), [DropDownList]({% slug htmlhelpers_dropdownlist_aspnetcore %}), and more with a few mouse clicks.
 
-The **Convert Project Wizard** turns an existing {% if site.core %}ASP.NET Core{% else %}ASP.NET MVC 5{% endif %} app into a Telerik UI for ASP.NET MVC app&mdash;an application that is ready to use the Telerik UI components. The wizard handles the setup of NuGet packages and client-side resources for you. Once complete, you can directly reference a specific release version of the {{ site.product }} components in your app. This allows you to start using the Telerik UI components without additional manual configuration.
+The **Convert Project Wizard** turns an existing {% if site.core %}ASP.NET Core{% else %}ASP.NET MVC 5{% endif %} app into a {{ site.product }} app&mdash;an application that is ready to use the Telerik UI components. The wizard handles the setup of NuGet packages and client-side resources for you. Once complete, you can directly reference a specific release version of the {{ site.product }} in your app. This allows you to start using the Telerik UI components without additional manual configuration.
 
 {% if site.core %}
 > The Convert Project Wizard does not support converting Razor Pages projects and projects with .Net version 5.
+>
+> The Convert Project Wizard is independent from the Visual Studio version and requires:
+> - A project that targets .NET 8 or 9
+> - The `Microsoft.NET.Sdk.Web` to be included as property of the project file
+>    ```
+>        <Project Sdk="Microsoft.NET.Sdk.Web">
+>            <!-- omitted for brevity -->
+>        </Project>
+>    ```
+>Alternatively, the `Microsoft.NET.Sdk.Web` can be included with the following dependencies as well `Microsoft.AspNetCore`, `Microsoft.AspNetCore.App`, `Microsoft.AspNetCore.All`.
 {% endif %}
 
 ## Using the Convert Project Wizard
@@ -23,7 +34,7 @@ To use the **Convert Project Wizard**, install the {{ site.product }} [Visual St
 
 To start the wizard, use either the **Extensions** menu in VS or the context menu in the **Solution Explorer**:
 
-- You can start the **Convert Project Wizard** from the Extensions menu at the top. In Visual Studio 2019, click **Extensions** > **Telerik** > **{{ site.product }}** > **Convert to Telerik Application**.
+- You can start the **Convert Project Wizard** from the Extensions menu at the top. In Visual Studio's Solution Explorer select the project, not the solution, click **Extensions** > **Telerik** > **{{ site.product }}** > **Convert to Telerik Application**.
 
 {% if site.core %}
 ![{{ site.product_short }} Convert Wizard in VS from Extensions](../vs-integration/images/select-wizard.png)
@@ -39,17 +50,19 @@ To start the wizard, use either the **Extensions** menu in VS or the context men
 ![{{ site.product_short }} Convert Wizard in VS from context menu](../vs-integration/images/start-wizard-context.png)
 {% endif %}
 
-The conversion wizard provides the following steps:  
+The conversion wizard provides the following steps:
 - [Version selection](#version-selection)
 - [Theme selection](#theme-selection)
+{% if site.mvc %}
 - [Project settings](#project-settings)
+{% endif %}
 
 ## Version Selection
 
 The version selection allows you to choose which version of {{ site.product }} to use in your application.
 
 {% if site.core %}
-![{{ site.product_short }} Version selection](../vs-integration/images/convert-wizard-version.png)
+![{{ site.product_short }} Version selection](../vs-integration/images/convert-project.png)
 {% else %}
 ![{{ site.product_short }} Version selection](../vs-integration/images/images-mvc/convert_distribution.png)
 {% endif %}
@@ -59,33 +72,45 @@ The version selection allows you to choose which version of {{ site.product }} t
 The theme selection allows you to choose from a large list of professionally styled built-in themes for your {{ site.product }} application.
 
 {% if site.core %}
-![{{ site.product_short }} Theme selection](../vs-integration/images/theme-selection.png)
+![{{ site.product_short }} Theme selection](../vs-integration/images/convert-theme.png)
 {% else %}
 ![{{ site.product_short }} Theme selection](../vs-integration/images/images-mvc/convert_theme.png)
 {% endif %}
 
+{% if site.core %}
+## Back Up
+
+You can create a back up for the project in the state they were before the update.
+
+![{{ site.product_short }} Theme selection](../vs-integration/images/backup.png)
+{% endif %}
+
+### Step 4: Install or Update License Key
+
+If necessary, the Telerik Visual Studio extension will notify you about a missing or outdated [license key]({%slug installation_license_key_aspnetcore%}), and will install or update it.
+
+{% if site.mvc %}
 ## Project Settings
 
 The **Project Settings** page enables you to modify the project settings by configuring the following options:
 
 - **Render Right-To-Left**&mdash;Updates the master page with the Right-to-left support class and adds CSS reference for RTL styles.
 - **Copy Editor Templates**&mdash;Copies the predefined editor templates to `~/Views/Shared/EditorTemplates`. Existing editor templates will be overwritten.
-- **Copy Global Resources**&mdash;Copies the localization files to `~/Scripts/kendo/{version}/cultures`.
+- **Copy Global Resources**&mdash;Copies the localization files to {% if site.core %}`~/wwwroot/lib/kendo-ui/js/messages`{% else %}`~/Scripts/kendo/{version}/cultures`{% endif %}.
 - **Use CDN Support**&mdash;Enables or disables the [Kendo UI CDN support](https://docs.telerik.com/kendo-ui/intro/installation/cdn-service).
 
-{% if site.core %}
-![{{ site.product_short }} Project settings](../vs-integration/images/project-settings.png)
-{% else %}
 ![{{ site.product_short }} Project settings](../vs-integration/images/images-mvc/convert_settings.png)
 {% endif %}
 
+## Manual Alternative
+
 The wizard automates several steps that are crucial for the project configuration. If you decide to perform these steps manually, follow the links below:
 
-- [Adding the NuGet Package]{% if site.core %}({% slug gettingstarted_aspnetmvc6_aspnetmvc %}#adding-the-nuget-package){% else %}({% slug setupwithnuget_aspnetmvc %}#installing-the-nuget-package){% endif %}
+{% if site.core %}- Adding the NuGet Package{% else %}- [Adding the NuGet Package]({% slug setupwithnuget_aspnetmvc %}#installing-the-nuget-package){% endif %}
 {% if site.core %}
-- [Setting for JSON Serialization]({% slug jsonserialization_core %}) 
+- [Setting for JSON Serialization]({% slug jsonserialization_core %})
 {% endif %}
-- [Adding a reference to Kendo.MVC.UI]{% if site.core %}({% slug gettingstarted_aspnetmvc6_aspnetmvc %}#adding-reference-to-kendomvcui){% else %}({% slug manualsetup_aspnetmvc %}#downloading-and-referencing-the-kendomvcdll-assembly){% endif %}
+{% if site.core %}- Adding a reference to Kendo.MVC.UI{% else %}- [Adding a reference to Kendo.MVC.UI]({% slug manualsetup_aspnetmvc %}#downloading-and-referencing-the-kendomvcdll-assembly){% endif %}
 - [Including the client-side resources]({% slug copyclientresources_aspnetmvc6_aspnetmvc %})
 
 {% if site.mvc %}

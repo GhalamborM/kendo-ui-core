@@ -2,12 +2,13 @@
 title: Modify Default Behavior of Filter Operators
 description: How to Modify Default Behavior of Filter Operators
 type: how-to
-page_title: ow to Modify Default Behavior of Filter Operators | Kendo UI Grid for jQuery
+page_title: ow to Modify Default Behavior of Filter Operators - Kendo UI for jQuery Data Grid
 slug: grid-modify-default-behavior-of-filter-operators
 position: 
 tags: 
 ticketid: 
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -26,6 +27,8 @@ res_type: kb
 This sample demonstrates how to change the default functionality of the filtering operators. In this specific case, the **doesnotcontain** and **lessthan** operators are modified to return only values which are not null.
 
 ## Solution
+
+Override `kendo.data.Query.filterExpr` before initializing the Grid to intercept the filter expression generation. Inside the override, add a null check for the affected operators so they exclude null values from results.
 
 ```dojo
   

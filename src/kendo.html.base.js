@@ -1,10 +1,6 @@
-(function(f, define) {
-    define([
-        "./kendo.core"
-    ], f);
-})(function() {
+import "./kendo.core.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "html.base",
     name: "Html.Base",
     category: "web",
@@ -37,25 +33,10 @@ var __meta__ = {
                 previouslyAddedClasses = that.wrapper.data("added-classes");
 
             stylingOptions = stylingOptions.map(function(option) {
-                var validFill;
-
-                if (option === "themeColor") {
-                    validFill = kendo.cssProperties.getValidClass({
-                        widget: options.name,
-                        propName: "fillMode",
-                        value: options.fillMode
-                    });
-
-                    if (!validFill || validFill.length === 0) {
-                        return "";
-                    }
-                }
-
                 return kendo.cssProperties.getValidClass({
                     widget: options.name,
                     propName: option,
-                    value: options[option],
-                    fill: options.fillMode
+                    value: options[option]
                 });
             });
 
@@ -78,7 +59,5 @@ var __meta__ = {
     });
 
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

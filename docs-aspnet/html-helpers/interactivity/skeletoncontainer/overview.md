@@ -2,11 +2,12 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI SkeletonContainer component for {{ site.framework }}."
+components: ["skeletoncontainer"]
 slug: htmlhelpers_skeletoncontainer_aspnetcore_overview
-position: 1
+position: 0
 ---
 
-# SkeletonContainer Overview
+# {{ site.framework }} SkeletonContainer Overview
 
 {% if site.core %}
 The Telerik UI SkeletonContainer TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI SkeletonContainer widget.
@@ -39,7 +40,7 @@ The following example demonstrates how to initialize the SkeletonContainer from 
 {% if site.core %}
 ```TagHelper
 
-        <kendo-skeletoncontainer name="skeleton" 
+        <kendo-skeletoncontainer name="skeleton"
                                  animation="SkeletonContainerAnimation.Pulse"
                                  template-id="tmpl">
         </kendo-skeletoncontainer>
@@ -49,7 +50,7 @@ The following example demonstrates how to initialize the SkeletonContainer from 
         <div class='k-card'>
                 <div class='k-card-header'>
                 <div>
-                        <span data-shape-circle class='k-card-image avatar'></span>
+                        <span data-shape-circle class='k-card-media avatar'></span>
                 </div>
                 <div class='user-info'>
                         <span data-shape-text class='k-card-title'></span>
@@ -67,12 +68,13 @@ The following example demonstrates how to initialize the SkeletonContainer from 
 
 ## Functionality and Features
 
-The Telerik UI SkeletonContainer for {{ site.framework }} accepts either a template or a CSS Grid. While the developer can pass merely anything at the template, the CSS Grid exposes an `Item` object that has a set of predefined properties. Find out more about the CSS Grid setup here: 
+The Telerik UI SkeletonContainer for {{ site.framework }} accepts either a template or a CSS Grid. While the developer can pass merely anything at the template, the CSS Grid exposes an `Item` object that has a set of predefined properties. Find out more about the CSS Grid setup here:
 
 * [Items]({% slug htmlhelpers_skeletoncontainer_aspnetcore_items %})
 
-## See Also
+## Next Steps
 
+* [Getting Started with the SkeletonContainer]({% slug aspnetcore_skeletoncontainer_getting_started %})
 * [Overview of the SkeletonContainer HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/skeletoncontainer/index)
 {% if site.core %}
 * [Basic Usage of the SkeletonContainer TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/skeletoncontainer/tag-helper)

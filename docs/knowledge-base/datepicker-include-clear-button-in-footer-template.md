@@ -4,10 +4,11 @@ description: Configure the Kendo UI DatePicker's footer template with a button t
 type: how-to
 page_title: Add a Clear Button to Footer Template
 slug: datepicker-include-clear-button-in-footer-template
-position: 
+position:
 tags: datepicker, clear, footer
 ticketid: 1456583
 res_type: kb
+components: ["timepicker"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Date/Time Pickers for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Date and Time Pickers for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -29,30 +30,33 @@ res_type: kb
 How can I add a clear button to the footer of a Kendo UI DatePicker?
 
 ## Solution
-The clear button can be appended to the [Kendo UI DatePicker's footer](https://docs.telerik.com/kendo-ui/api/javascript/ui/datepicker/configuration/footer) during the [Open event](https://docs.telerik.com/kendo-ui/api/javascript/ui/datepicker/events/open).  
+The clear button can be appended to the [Kendo UI DatePicker's footer](https://docs.telerik.com/kendo-ui/api/ui/datepicker/configuration/footer) during the [Open event](https://docs.telerik.com/kendo-ui/api/ui/datepicker/events/open).  
 
 ```javascript
-    function onOpen(e) {
+     function onOpen(e) {
         //Get the opened DatePicker's footer
-        var footer = $(e.sender.dateView.popup)[0].element.find(".k-footer");
+        var footer = $(e.sender.dateView.popup)[0].element.find(
+          ".k-calendar-footer",
+        );
 
         //If the button doesn't exist, create it, and append it to the footer.
-        if (footer.find(".k-button").length == 0) {
-            var btn = $('<a/>');
-            btn.addClass('k-button');
-            btn.text('Clear');
-            btn.on('click', function () {
-                e.sender.value(null);
-                e.sender.close();
-            });
+        if (footer.find(".k-button").length == 1) {
+          var btn = $("<a/>");
+          btn.addClass("k-button");
+          btn.text("Clear");
+          btn.on("click", function () {
+            e.sender.value(null);
+            e.sender.close();
+          });
 
-            footer.append(btn);
+          footer.append(btn);
         }
-
-    }
+      }
 ```
 
 #### Example
+
+The following example demonstrates two DatePicker instances, each with a **Clear** button appended to the calendar footer through the `open` event handler.
 
 ```dojo
     <input id="datepicker" />
@@ -67,27 +71,28 @@ The clear button can be appended to the [Kendo UI DatePicker's footer](https://d
         open: onOpen,
       });
 
-      function onOpen(e) {
+       function onOpen(e) {
         //Get the opened DatePicker's footer
-        var footer = $(e.sender.dateView.popup)[0].element.find(".k-footer");
+        var footer = $(e.sender.dateView.popup)[0].element.find(
+          ".k-calendar-footer",
+        );
 
         //If the button doesn't exist, create it, and append it to the footer.
-        if (footer.find(".k-button").length == 0) {
-          var btn = $('<a/>');
-          btn.addClass('k-button');
-          btn.text('Clear');
-          btn.on('click', function () {
+        if (footer.find(".k-button").length == 1) {
+          var btn = $("<a/>");
+          btn.addClass("k-button");
+          btn.text("Clear");
+          btn.on("click", function () {
             e.sender.value(null);
             e.sender.close();
           });
 
           footer.append(btn);
         }
-
       }
     </script>
 ```
 
 ## See Also
-* [footer Configuration - API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/datepicker/configuration/footer)
-* [open Event - API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/datepicker/events/open)
+* [footer Configuration - API Reference](https://docs.telerik.com/kendo-ui/api/ui/datepicker/configuration/footer)
+* [open Event - API Reference](https://docs.telerik.com/kendo-ui/api/ui/datepicker/events/open)

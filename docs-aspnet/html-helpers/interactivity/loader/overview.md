@@ -2,11 +2,12 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI Loader component for {{ site.framework }}."
+components: ["loader"]
 slug: htmlhelpers_loader_aspnetcore_overview
-position: 1
+position: 0
 ---
 
-# Loader Overview
+# {{ site.framework }} Loader Overview
 {% if site.core %}
 The Telerik UI Loader TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI Loader widget.
 {% else %}
@@ -59,13 +60,19 @@ The following example demonstrates the Loader in action.
 
 ## Functionality and Features
 
-* [Appearance]({% slug htmlhelpers_loader_aspnetcore_appearance %})
-* [Integration]({% slug htmlhelpers_loader_aspnetcore_integration %})
+* [Appearance]({% slug htmlhelpers_loader_aspnetcore_appearance %})&mdash;Explore the available options for customizing the Loader appearance.
+* [Integration]({% slug htmlhelpers_loader_aspnetcore_integration %})&mdash;The Loader can be integrated into another components.
+* [Accessibility]({% slug htmlhelpers_loader_accessibility %})&mdash;The Loader is accessible by screen readers and provides WAI-ARIA, Section 508, and WCAG 2.2 compatibility.
 
-## See Also
+## Next Steps
 
-* [Overview of the Loader HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/loader/index)
+* [Getting Started with the Loader]({% slug aspnetcore_loader_getting_started %})
+* [Basic Usage of the Loader HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/loader/index)
 {% if site.core %}
 * [Basic Usage of the Loader TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/loader/tag-helper)
 {% endif %}
-* [Server-Side API](/api/loader)
+
+## See Also
+
+* [Loader Integration {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/loader/integration)
+* [Knowledge Base Section](/knowledge-base)

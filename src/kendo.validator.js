@@ -1,8 +1,6 @@
-(function(f, define) {
-    define([ "./kendo.core" ], f);
-})(function() {
+import "./kendo.core.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "validator",
     name: "Validator",
     category: "web",
@@ -12,7 +10,7 @@ var __meta__ = {
 
 
 (function($, undefined) {
-    var kendo = window.kendo,
+    let kendo = window.kendo,
         Widget = kendo.ui.Widget,
         NS = ".kendoValidator",
         INVALIDMSG = "k-invalid-msg",
@@ -21,13 +19,15 @@ var __meta__ = {
         VALIDINPUT = "k-valid",
         VALIDATIONSUMMARY = "k-validation-summary",
         INVALIDLABEL = "k-text-error",
-        MESSAGEBOX = "k-messagebox k-messagebox-error",
+        MESSAGEBOX = "k-messagebox",
         INPUTINNER = ".k-input-inner",
+        UPLOADBUTTONWRAPPER = ".k-upload-button-wrap",
+        CHECKBOXWRAPPER = ".k-checkbox-wrap",
         INPUTWRAPPER = ".k-input",
         ARIAINVALID = "aria-invalid",
         ARIADESCRIBEDBY = "aria-describedby",
         emailRegExp = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/i,
-        urlRegExp = /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i,
+        ALLOWED_URL_PROTOCOLS = ["http:", "https:", "ftp:", "ftps:"],
         INPUTSELECTOR = ":input:not(:button,[type=submit],[type=reset],[disabled],[readonly])",
         CHECKBOXSELECTOR = ":checkbox:not([disabled],[readonly])",
         NUMBERINPUTSELECTOR = "[type=number],[type=range]",
@@ -74,14 +74,6 @@ var __meta__ = {
             $.extend(true, rules, resolvers[name].resolve(element));
         }
         return rules;
-    }
-
-    function decode(value) {
-        return value.replace(/&amp/g, '&amp;')
-            .replace(/&quot;/g, '"')
-            .replace(/&#39;/g, "'")
-            .replace(/&lt;/g, '<')
-            .replace(/&gt;/g, '>');
     }
 
     function numberOfDecimalDigits(value) {
@@ -133,11 +125,15 @@ var __meta__ = {
         return true;
     }
 
-    var SUMMARYTEMPLATE = '<ul>' +
-        '#for(var i = 0; i < errors.length; i += 1){#' +
-            '<li><a data-field="#=errors[i].field#" href="\\#">#= errors[i].message #</a></li>' +
-        '# } #' +
-    '</ul>';
+    var SUMMARYTEMPLATE = ({ errors }) => {
+        let result = '<ul>';
+        for (var i = 0; i < errors.length; i += 1) {
+            result += `<li><a data-field="${kendo.htmlEncode(errors[i].field)}" href="#">${kendo.htmlEncode(errors[i].message)}</a></li>`;
+        }
+
+        result += '</ul>';
+        return result;
+    };
 
     var Validator = Widget.extend({
         init: function(element, options) {
@@ -159,8 +155,11 @@ var __meta__ = {
                 that.element.attr(NOVALIDATE, NOVALIDATE);
             }
 
-            that._inputSelector = INPUTSELECTOR + validateAttributeSelector;
-            that._checkboxSelector = CHECKBOXSELECTOR + validateAttributeSelector;
+            const formId = that.element.attr("id");
+            that._shouldSearchDocument = that.element.is(FORM) && formId != undefined && $(`:input[form='${formId}']`).length > 0;
+            that._containerElement = that._shouldSearchDocument ? $(document) : that.element;
+            that._inputSelector = that._buildSelector(INPUTSELECTOR, validateAttributeSelector);
+            that._checkboxSelector = that._buildSelector(CHECKBOXSELECTOR, validateAttributeSelector);
 
             that._errors = {};
             that._attachEvents();
@@ -169,13 +168,15 @@ var __meta__ = {
             if (that._validateOnInit()) {
                 that.validate();
             }
-        },
+            Widget.fn.endInit.call(that);
+},
 
         events: [ VALIDATE, CHANGE, VALIDATE_INPUT ],
 
         options: {
             name: "Validator",
-            errorTemplate: '<span class="k-form-error">#= message #</span>',
+            errorTemplate: ({ message }) => `<span class="k-form-error">${kendo.htmlEncode(message)}</span>`,
+            messageBoxThemeColor: "error",
             messages: {
                 required: "{0} is required",
                 pattern: "{0} is not valid",
@@ -190,15 +191,32 @@ var __meta__ = {
             },
             rules: {
                 required: function(input) {
-                    var noNameCheckbox = !input.attr("name") && !input.is(":checked"),
+                    let containerElement = this._containerElement,
+                        noNameCheckbox = !input.attr("name") && !input.is(":checked"),
                         name = input.attr("name"),
                         quote = !!name && name.indexOf("'") > -1 ? '\"' : "'",
-                        namedCheckbox = input.attr("name") && !this.element.find("input[name=" + quote + input.attr("name") + quote + "]:checked").length,
+                        namedCheckbox = input.attr("name") && !containerElement.find("input[name=" + quote + input.attr("name") + quote + "]:checked").length,
                         checkbox = input.filter("[type=checkbox]").length && (noNameCheckbox || namedCheckbox),
-                        radio = input.filter("[type=radio]").length && !this.element.find("input[name=" + quote + input.attr("name") + quote + "]:checked").length,
+                        file = input.filter("[type=file]").parents(UPLOADBUTTONWRAPPER).children("input").length,
+                        radio = input.filter("[type=radio]").length && !containerElement.find("input[name=" + quote + input.attr("name") + quote + "]:checked").length,
                         value = input.val();
 
-                    return !(hasAttribute(input, "required") && (!value || value === "" || value.length === 0 || checkbox || radio));
+                        if (file) {
+                            let isValid = false;
+
+                            input.filter("[type=file]")
+                                .parents(UPLOADBUTTONWRAPPER)
+                                .children("input")
+                                .each(function(idx) {
+                                    if (input.val()) {
+                                        isValid = true;
+                                    }
+                                });
+
+                            return !(hasAttribute(input, "required") && !isValid);
+                        }
+
+                        return !(hasAttribute(input, "required") && (!value || value === "" || value.length === 0 || checkbox || radio));
                 },
                 pattern: function(input) {
                     if (input.filter("[type=text],[type=email],[type=url],[type=tel],[type=search],[type=password]").filter("[pattern]").length && input.val() !== "") {
@@ -227,7 +245,7 @@ var __meta__ = {
                 step: function(input) {
                     if (input.filter(NUMBERINPUTSELECTOR + ",[" + kendo.attr("type") + "=number]").filter("[step]").length && input.val() !== "") {
                         var min = parseFloat(input.attr("min")) || 0,
-                            step = parseFloat(input.attr("step")) || 1,
+                            step = kendo.parseFloat(input.attr("step")) || 1,
                             val = parseFloat(input.val()),
                             decimals = numberOfDecimalDigits(step),
                             raise;
@@ -244,7 +262,15 @@ var __meta__ = {
                     return matcher(input, "[type=email],[" + kendo.attr("type") + "=email]", emailRegExp);
                 },
                 url: function(input) {
-                    return matcher(input, "[type=url],[" + kendo.attr("type") + "=url]", urlRegExp);
+                    if (input.filter("[type=url],[" + kendo.attr("type") + "=url]").length && input.val() !== "") {
+                        try {
+                            const url = new URL(input.val());
+                            return ALLOWED_URL_PROTOCOLS.includes(url.protocol);
+                        } catch {
+                            return false;
+                        }
+                    }
+                    return true;
                 },
                 date: function(input) {
                     if (input.filter("[type^=date],[" + kendo.attr("type") + "=date]").length && input.val() !== "") {
@@ -284,6 +310,15 @@ var __meta__ = {
             },
             validateOnBlur: true,
             validationSummary: false
+        },
+
+        _buildSelector: function(selectorConstant, validateAttributeSelector) {
+            if (!this._shouldSearchDocument) {
+                return selectorConstant + validateAttributeSelector;
+            }
+            const id = this.element.attr("id");
+
+            return `#${id} ` + selectorConstant + validateAttributeSelector + `,[form="${id}"]`;
         },
 
         _allowSubmit: function() {
@@ -334,28 +369,29 @@ var __meta__ = {
         },
 
         _attachEvents: function() {
-            var that = this;
+            const that = this,
+            element = that._containerElement;
 
             if (that.element.is(FORM)) {
                 that.element.on("submit" + NS, that._submit.bind(that));
             }
 
             if (that.options.validateOnBlur) {
-                if (!that.element.is(INPUTSELECTOR)) {
-                    that.element.on(BLUR + NS, that._inputSelector, function() {
+                if (!element.is(INPUTSELECTOR)) {
+                    element.on(BLUR + NS, that._inputSelector, function() {
                         that._checkElement($(this));
                     });
 
-                    that.element.on("click" + NS, that._checkboxSelector, function() {
+                    element.on("click" + NS, that._checkboxSelector, function() {
                         that._checkElement($(this));
                     });
                 } else {
-                    that.element.on(BLUR + NS, function() {
+                    element.on(BLUR + NS, function() {
                         that._checkElement(that.element);
                     });
 
-                    if (that.element.is(CHECKBOXSELECTOR)) {
-                        that.element.on("click" + NS, function() {
+                    if (element.is(CHECKBOXSELECTOR)) {
+                        element.on("click" + NS, function() {
                             that._checkElement(that.element);
                         });
                     }
@@ -364,19 +400,30 @@ var __meta__ = {
         },
 
         validate: function() {
-            var inputs;
-            var idx;
-            var result = false;
-            var length;
-
-            var isValid = this.value();
+            let inputs;
+            let idx;
+            let result = false;
+            let length;
+            let containerElement = this._containerElement;
+            let isValid = this.value();
 
             this._errors = {};
 
             if (!this.element.is(INPUTSELECTOR)) {
-                var invalid = false;
+                let invalid = false;
 
-                inputs = this.element.find(this._inputSelector);
+                inputs = containerElement.find(this._inputSelector);
+
+                containerElement.find(UPLOADBUTTONWRAPPER).each(function() {
+                    let uploadContainer = $($(this).parents(".k-upload")[0]),
+                        firstFileInput = $(this).find("input:hidden[type='file']").first();
+
+                    if (firstFileInput.length) {
+                        if (uploadContainer.length && !uploadContainer.hasClass("k-disabled")) {
+                            Array.prototype.push.call(inputs, firstFileInput[0]);
+                        }
+                    }
+                });
 
                 for (idx = 0, length = inputs.length; idx < length; idx++) {
                     if (!this.validateInput(inputs.eq(idx))) {
@@ -405,18 +452,22 @@ var __meta__ = {
         validateInput: function(input) {
             input = $(input);
 
+            if (!kendo.isEmpty(input.closest('.k-otp'))) {
+                let otpContainer = input.closest(".k-otp");
+                input = otpContainer.find("input[data-role='otpinput']");
+            }
+
 
             this._isValidated = true;
 
-            var that = this,
+            const that = this,
                 template = that._errorTemplate,
                 result = that._checkValidity(input),
                 valid = result.valid,
-                widgetInstance,
                 className = "." + INVALIDMSG,
                 fieldName = (input.attr(NAME) || ""),
                 lbl = that._findMessageContainer(fieldName).add(input.next(className).filter(function() {
-                    var element = $(this);
+                    let element = that._shouldSearchDocument ? $(document) : $(this);
                     if (element.filter("[" + kendo.attr("for") + "]").length) {
                         return element.attr(kendo.attr("for")) === fieldName;
                     }
@@ -425,20 +476,32 @@ var __meta__ = {
 
                 })).addClass("k-hidden"),
                 messageText = !valid ? that._extractMessage(input, result.key) : "",
-                messageLabel = !valid ? parseHtml(template({ message: decode(messageText), field: fieldName })) : "",
+                messageLabel = !valid ? parseHtml(template({ message: messageText, field: fieldName })) : "",
                 wasValid = !input.attr(ARIAINVALID),
                 isInputInner = input.is(INPUTINNER),
                 inputWrapper = input.parent(INPUTWRAPPER);
+            let widgetInstance;
 
             input.removeAttr(ARIAINVALID);
 
-            if (input.hasClass("k-hidden")) {
+            if (input.hasClass("k-hidden") && (input.attr("data-role") == "otpinput" || input.attr("data-role") == "upload")) {
+                widgetInstance = kendo.widgetInstance(input);
+            }
+            if (input.hasClass("k-hidden") && input.attr("data-role") == "signature") {
                 widgetInstance = kendo.widgetInstance(input.closest(".k-signature"));
+            }
+
+            if (input.is("[type=radio]")) {
+                widgetInstance = kendo.widgetInstance(input.closest(".k-radio-list"));
+            }
+
+            if (input.is("[type=checkbox]")) {
+                widgetInstance = kendo.widgetInstance(input.closest(".k-checkbox-list"));
             }
 
             if (!valid && !input.data("captcha_validating")) {
                 that._errors[fieldName] = messageText;
-                var lblId = lbl.attr('id');
+                let lblId = lbl.attr('id');
 
                 that._decorateMessageContainer(messageLabel, fieldName);
 
@@ -451,9 +514,9 @@ var __meta__ = {
                     lbl.replaceWith(messageLabel);
                 } else {
                     widgetInstance = widgetInstance || kendo.widgetInstance(input);
-                    var parentElement = input.parent().get(0);
-                    var nextElement = input.next().get(0);
-                    var prevElement = input.prev().get(0);
+                    let parentElement = input.parent().get(0);
+                    let nextElement = input.next().get(0);
+                    let prevElement = input.prev().get(0);
 
                     // Get the instance of the RadioGroup which is not initialized on the input element
                     if (!widgetInstance && input.is("[type=radio]")) {
@@ -465,7 +528,7 @@ var __meta__ = {
                         widgetInstance = kendo.widgetInstance(input.closest(".k-checkbox-list"));
                     }
 
-                    if (widgetInstance && widgetInstance.wrapper && (widgetInstance.element !== widgetInstance.wrapper || widgetInstance.options.name == "Signature")) {
+                    if (widgetInstance && widgetInstance.wrapper && (widgetInstance.element !== widgetInstance.wrapper || ["Signature", "RadioGroup", "CheckBoxGroup"].indexOf(widgetInstance.options.name) > -1)) {
                         messageLabel.insertAfter(widgetInstance.wrapper);
                     } else if (parentElement && parentElement.nodeName === "LABEL") {
                         // Input inside label
@@ -496,16 +559,26 @@ var __meta__ = {
             }
 
             widgetInstance = (widgetInstance && widgetInstance.options.name == "Signature") ? widgetInstance : kendo.widgetInstance(input);
-            if (!widgetInstance || !(widgetInstance._inputWrapper || widgetInstance.wrapper)) {
+
+            if (!widgetInstance || !(widgetInstance._inputWrapper || widgetInstance.wrapper) || (input.is("[type=checkbox]") || input.is("[type=radio]"))) {
                 input.toggleClass(INVALIDINPUT, !valid);
                 input.toggleClass(VALIDINPUT, valid);
             }
 
             if (widgetInstance) {
-                var inputWrap = widgetInstance._inputWrapper || widgetInstance.wrapper;
-                var inputLabel = widgetInstance._inputLabel;
+                let widgetName = widgetInstance.options.name;
+                let inputWrap = widgetInstance._inputWrapper || widgetInstance.wrapper;
+                let inputLabel = widgetInstance._inputLabel;
 
-                if (inputWrap) {
+                if (widgetName == "OTPInput") {
+                    if (!valid) {
+                        widgetInstance._addInvalidState.bind(that);
+                        widgetInstance._addInvalidState(inputWrap, true);
+                    } else {
+                        widgetInstance._removeInvalidState.bind(that);
+                        widgetInstance._removeInvalidState(inputWrap, true);
+                    }
+                } else if (inputWrap && !(input.is("[type=checkbox]") || input.is("[type=radio]"))) {
                     inputWrap.toggleClass(INVALIDINPUT, !valid);
                     inputWrap.toggleClass(VALIDINPUT, valid);
                 }
@@ -515,7 +588,7 @@ var __meta__ = {
             }
 
             if (wasValid !== valid) {
-                var errorId = messageLabel ? messageLabel.attr("id") : lbl.attr("id");
+                let errorId = messageLabel ? messageLabel.attr("id") : lbl.attr("id");
 
                 that._associateMessageContainer(input, errorId);
 
@@ -528,9 +601,9 @@ var __meta__ = {
         },
 
         hideMessages: function() {
-            var that = this,
+            const that = this,
                 className = "." + INVALIDMSG,
-                element = that.element;
+                element = that._containerElement;
 
             that._disassociateMessageContainers();
 
@@ -542,9 +615,10 @@ var __meta__ = {
         },
 
         reset: function() {
-            var that = this,
-                inputs = that.element.find("." + INVALIDINPUT),
-                labels = that.element.find("." + INVALIDLABEL);
+            const that = this,
+                containerElement = that._containerElement,
+                inputs = containerElement.find("." + INVALIDINPUT),
+                labels = containerElement.find("." + INVALIDLABEL);
 
             that._errors = [];
 
@@ -558,16 +632,17 @@ var __meta__ = {
         },
 
         _findMessageContainer: function(fieldName) {
-            var locators = kendo.ui.validator.messageLocators,
+            let locators = kendo.ui.validator.messageLocators,
                 name,
                 containers = $();
 
-            for (var idx = 0, length = this.element.length; idx < length; idx++) {
-                containers = containers.add(searchForMessageContainer(this.element[idx].getElementsByTagName("*"), fieldName));
+            for (let idx = 0, length = this.element.length; idx < length; idx++) {
+                let target = this._shouldSearchDocument ? document : this.element[idx];
+                containers = containers.add(searchForMessageContainer(target.getElementsByTagName("*"), fieldName));
             }
 
             for (name in locators) {
-                containers = containers.add(locators[name].locate(this.element, fieldName));
+                containers = containers.add(locators[name].locate(this._containerElement, fieldName));
             }
 
             return containers;
@@ -601,9 +676,12 @@ var __meta__ = {
 
             customMessage = kendo.isFunction(customMessage) ? customMessage(input) : customMessage;
 
-            return kendo.format(input.attr(kendo.attr(ruleKey + "-msg")) || input.attr("validationMessage") || nonDefaultMessage || customMessage || input.attr("title") || "",
+            const closestParentWithFieldName = input.parent().closest("[name='" + fieldName + "']");
+            const target = closestParentWithFieldName.length ? closestParentWithFieldName : input;
+
+            return kendo.format(target.attr(kendo.attr(ruleKey + "-msg")) || target.attr("validationMessage") || nonDefaultMessage || customMessage || target.attr("title") || "",
                 fieldName,
-                input.attr(ruleKey) || input.attr(kendo.attr(ruleKey)));
+                target.attr(ruleKey) || input.attr(kendo.attr(ruleKey)));
         },
 
         _checkValidity: function(input) {
@@ -645,21 +723,32 @@ var __meta__ = {
         },
 
         _getInputNames: function() {
-            var that = this,
-                inputs = that.element.find(that._inputSelector),
-                sorted = [];
+            const that = this,
+                containerElement = this._containerElement,
+                inputs = containerElement.find(that._inputSelector);
+            let sorted = [];
+            let checkBoxNames = [];
 
-            for (var idx = 0, length = inputs.length; idx < length; idx++) {
-                var input = $(inputs[idx]);
+            for (let idx = 0, length = inputs.length; idx < length; idx++) {
+                let input = $(inputs[idx]);
 
                 if (hasAttribute(input, NAME)) {
                     // Add current name if:
                     // - not present so far;
                     // - present but not part of CheckBoxGroup or RadioGroup.
+
                     if (sorted.indexOf(input.attr(NAME)) === -1 ||
                         (input.closest(".k-checkbox-list").length === 0 &&
                         input.closest(".k-radio-list").length === 0)) {
-                            sorted.push(input.attr(NAME));
+                            if (input.parents(CHECKBOXWRAPPER).length) {
+                                checkBoxNames.push(input.attr(NAME));
+                                sorted.push(input.attr(NAME));
+                            }
+                            else {
+                                if (!checkBoxNames.includes(input.attr(NAME))) {
+                                    sorted.push(input.attr(NAME));
+                                }
+                            }
                     }
                 }
             }
@@ -730,6 +819,12 @@ var __meta__ = {
             }
 
             container.addClass([VALIDATIONSUMMARY, MESSAGEBOX].join(" "));
+
+            const themeColor = that.options.messageBoxThemeColor;
+            if (themeColor) {
+                container.addClass("k-messagebox-" + themeColor);
+            }
+
             container.attr("role", "alert");
 
             container.on("click" + NS, that._summaryClick.bind(that));
@@ -789,7 +884,5 @@ var __meta__ = {
 
     kendo.ui.plugin(Validator);
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

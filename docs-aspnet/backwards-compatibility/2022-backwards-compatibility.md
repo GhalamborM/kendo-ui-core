@@ -2,8 +2,9 @@
 title: 2022 Releases
 page_title: 2022 Releases
 description: "Learn about the breaking changes and backwards compatibility released by {{ site.product }} in 2022."
+components: ["general"]
 slug: breakingchanges_2022
-position: 1
+position: 6
 ---
 
 # 2022 Releases
@@ -14,7 +15,7 @@ This article lists the breaking or important changes in the 2022 releases of {{ 
 
 **Selectable**
 
-As of the 2022 R3 release, the `Selectable` events mechanism is altered for a variety of the components. The `Change` event will now be fired only when Selection/Deselection is performed. Invoking the client-side API methods would not fire the event as well. 
+As of the 2022 R3 release, the `Selectable` events mechanism is altered for a variety of the components. The `Change` event will now be fired only when Selection/Deselection is performed. Invoking the client-side API methods would not fire the event as well.
 
 Below you can find a list of the impacted components:
 
@@ -42,12 +43,12 @@ The Size, FillMode and Rounded properties now provide the None option instead of
 
 **DatePicker TagHelper**
 
-As of the 2022 R2 SP1 release the DatePicker `month-template` and `month-template-id` attributes are depricated. Exposed is a `month-template` child tag to support full customization as the [month](https://docs.telerik.com/kendo-ui/api/javascript/ui/datepicker/configuration/month) configuration option.
+As of the 2022 R2 SP1 release the DatePicker `month-template` and `month-template-id` attributes are depricated. Exposed is a `month-template` child tag to support full customization as the [month](https://docs.telerik.com/kendo-ui/api/ui/datepicker/configuration/month) configuration option.
 
 
 **DateTimePicker TagHelper**
 
-As of the 2022 R2 SP1 release the DatePicker `month-template` and `month-template-id` attributes are depricated. Exposed is a `month-template` child tag to support full customization as the [month](https://docs.telerik.com/kendo-ui/api/javascript/ui/datetimepicker/configuration/month) configuration option.
+As of the 2022 R2 SP1 release the DatePicker `month-template` and `month-template-id` attributes are depricated. Exposed is a `month-template` child tag to support full customization as the [month](https://docs.telerik.com/kendo-ui/api/ui/datetimepicker/configuration/month) configuration option.
 
 {% endif %}
 
@@ -70,7 +71,7 @@ As of the 2022 R1 SP2 release the `Shape` configuration option of the Button com
 
 **Scheduler**
 
-As of the 2022 R1 SP1 release the Scheduler exposes a modified keyboard navigation behavior. The main reason behind the change is to make the widget a single Tab stop element on the page. This would allow easier navigation to and away from the Scheduler. Further details on the new keyboard navigation behavior could be found on the [Keyboard Navigation demo](https://demos.telerik.com/{{ site.platform }}/scheduler/selection).
+As of the 2022 R1 SP1 release the Scheduler exposes a modified keyboard navigation behavior. The main reason behind the change is to make the widget a single Tab stop element on the page. This would allow easier navigation to and away from the Scheduler. Further details on the new keyboard navigation behavior could be found on the [Keyboard Navigation demo](https://demos.telerik.com/{{ site.platform }}/scheduler/keyboard-navigation).
 
 ## {{ site.product }} 2022 R1
 

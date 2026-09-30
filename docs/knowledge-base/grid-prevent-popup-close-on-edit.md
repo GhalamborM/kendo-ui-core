@@ -1,12 +1,12 @@
 ---
 title: Prevent Grid Popup Editor from Closing on Update and Create
-description: An example on how to keep the Kendo UI Grid popup editor open after an update is finished.
+description: Learn how to keep the Kendo UI Grid popup editor open after an update is finished.
 type: how-to
-page_title: Keep Popup Open | Kendo UI Grid for jQuery
+page_title: Keep Popup Open - Kendo UI for jQuery Data Grid
 slug: grid-prevent-popup-close-on-edit
 tags: grid, edit, popup, prevent, cancel, stop, close, edit, insert, create, modal, reopen, keep, open
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>2020.3.1021</td>
  </tr>
 </table>
@@ -28,7 +28,7 @@ How can I keep the popup editor of the Grid open after I update or insert a reco
 
 ## Solution
 
-1. Handle the [`edit`](/api/javascript/ui/grid/events/edit) event of the Grid and attach an event handler for the [`close`](/api/javascript/ui/window/events/close) event of the Popup window.
+1. Handle the [`edit`](/api/ui/grid/events/edit) event of the Grid and attach an event handler for the [`close`](/api/ui/window/events/close) event of the Popup window.
 1. In the `close` handler, the `e.preventDefault()` method will be called to prevent the popup from closing.
 1. To allow the user to close the editor, set the flag when the **Cancel** and **Close** buttons are clicked.
 
@@ -39,31 +39,28 @@ How can I keep the popup editor of the Grid open after I update or insert a reco
     var preventCloseOnSave = false;
 
     $(document).ready(function () {
-        var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-            dataSource = new kendo.data.DataSource({
-                transport: {
-                    read: {
-                        url: crudServiceBaseUrl + "/Products",
-                        dataType: "jsonp"
-                    },
-                    update: {
-                        url: crudServiceBaseUrl + "/Products/Update",
-                        dataType: "jsonp"
-                    },
-                    destroy: {
-                        url: crudServiceBaseUrl + "/Products/Destroy",
-                        dataType: "jsonp"
-                    },
-                    create: {
-                        url: crudServiceBaseUrl + "/Products/Create",
-                        dataType: "jsonp"
-                    },
-                    parameterMap: function (options, operation) {
-                        if (operation !== "read" && options.models) {
-                            return { models: kendo.stringify(options.models) };
-                        }
-                    }
-                },
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+              dataSource = new kendo.data.DataSource({
+                  transport: {
+                      read:  {
+                          url: crudServiceBaseUrl + "/Products"
+                      },
+                      update: {
+                          url: crudServiceBaseUrl + "/Products/Update",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      destroy: {
+                          url: crudServiceBaseUrl + "/Products/Destroy",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      create: {
+                          url: crudServiceBaseUrl + "/Products/Create",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      }
+                  },
                 batch: true,
                 pageSize: 20,
                 schema: {
@@ -110,7 +107,7 @@ How can I keep the popup editor of the Grid open after I update or insert a reco
         }
     };
 
-    $(".k-grid-cancel").on("mousedown", function (e) {
+    $(".k-grid-cancel-command").on("mousedown", function (e) {
         preventCloseOnSave = false;
     });
 </script>

@@ -1,85 +1,251 @@
 ---
-title:  Razor Page
-page_title: Configure a DataSource for the ComboBox for Remote Binding in Razor Page.
-description: "An example on how to configure the remote binding DataSource to populate the Telerik UI ComboBox component for {{ site.framework }} in a Razor Page using CRUD Operations."
+title: Razor Pages
+page_title: Razor Pages
+description: "Learn how to use the Telerik UI ComboBox component for {{ site.framework }} in a Razor Pages application."
 slug: htmlhelpers_combobox_razorpage_aspnetcore
-position: 3
+components: ["combobox"]
+position: 7
 ---
 
-# Razor Page
+# ComboBox in Razor Pages 
 
-## ComboBox Remote Data Binding in Razor Pages
+This article describes how to seamlessly integrate and configure the Telerik UI ComboBox for {{ site.framework }} in Razor Pages applications.
 
-This article describes how to configure a Remote DataSource of a Telerik ComboBox in a RazorPage scenario.
+> You can use any of the available [data binding approaches]({% slug htmlhelpers_combobox_databinding_aspnetcore %}#data-binding-approaches) to bind the component to data in a Razor Pages application.
 
-In order to set up the ComboBox component bindings, you need to configure the `Read` method of its `DataSource` instance. The URL in this method should refer the name of the method in the PageModel. In this method, you can also pass additional parameters, such as filter string and antiforgery token (see `dataFunction`). See the implementation details in the example below, and for the full project with RazorPages examples, visit our [GitHub repository](https://github.com/telerik/ui-for-aspnet-core-examples/tree/master/Telerik.Examples.RazorPages).
+@[template](/_contentTemplates/core/razor-pages-general-info.md#referencing-handler-methods)
 
-```HtmlHelper       
-    @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
-	@Html.AntiForgeryToken()
-	
-	@(Html.Kendo().ComboBox()
-        .Name("combobox")
-        .DataTextField("ShipName")
-        .DataValueField("ShipCity")                
-        .AutoBind(false)
-        .Filter(FilterType.Contains)
-        .DataSource(ds => ds
-            .Custom()
-            .Transport(transport => transport
-                .Read(r => r
-                    .Url("/ComboBox/ComboBoxCrud?handler=Read").Data("dataFunction")
-                ))
-                .ServerFiltering(true)
+## Binding to Remote Data
+
+The [DataSource]({% slug htmlhelpers_datasource_aspnetcore %}) component offers the most versatile data binding approach. To connect the ComboBox to a data set retrieved from a remote endpoint in a Razor Pages application, proceed with the following steps:
+
+1. Specify the Read request URL in the `DataSource` configuration. The URL must refer to the method name in the `PageModel`.
+
+    ```HtmlHelper
+        @page
+        @model IndexModel
+        <div>
+            @(Html.Kendo().ComboBox()
+                .Name("combobox")
+                .DataTextField("ShipName")
+                .DataValueField("OrderID") 
+                .DataSource(source =>
+                {
+                    source.Read(read => read
+                        .Url(Url.Page("Index", "Read")).Data("forgeryToken"));
+                })
             )
-        )
-```
-{% if site.core %}
-```TagHelper
-<kendo-combobox name="combobox"
-                datatextfield="ShipName"
-                datavaluefield="ShipCity"
-                auto-bind="false"
+        </div>
+    ```
+    ```TagHelper
+        @page
+        @model IndexModel
+        @addTagHelper *, Kendo.Mvc
+
+        <div>
+            <kendo-combobox name="combobox"
+                datatextfield="ShipName" 
+                datavaluefield="OrderID">
+                <datasource>
+                    <transport>
+                        <read url="@Url.Page("Index", "Read")" data="forgeryToken"/>
+                    </transport>
+                </datasource>
+            </kendo-combobox>
+        </div>
+    ```
+
+1. Add an `AntiForgeryToken` at the top of the page.
+
+    ```C#
+        @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+        @Html.AntiForgeryToken()
+    ```
+
+1. Send the `AntiForgeryToken` with the Read request.
+
+    ```JS
+        <script>
+            function forgeryToken(e) {
+                return kendo.antiForgeryTokens();
+            }
+        </script>
+    ```
+
+    Additional parameters can also be supplied. For example, when the [server filtering]({% slug htmlhelpers_combobox_filtering_aspnetcore%}#server-filtering) of the ComboBox is enabled, send the filter value along with the antiforgery token to the server using the JavaScript handler specified in the `Data()` option.
+
+    ```HtmlHelper
+        @page
+        @model IndexModel
+        <div>
+            @(Html.Kendo().ComboBox()
+                .Name("combobox")
+                .DataTextField("ShipName")
+                .DataValueField("OrderID")
+                .AutoBind(false)
+                .Filter(FilterType.Contains)
+                .MinLength(3)
+                .DataSource(source =>
+                {
+                    source.Read(read => read
+                        .Url(Url.Page("Index", "Read")).Data("dataFunction"))
+                        .ServerFiltering(true);
+                })
+            )
+        </div>
+    ```
+    ```TagHelper
+        @page
+        @model IndexModel
+        @addTagHelper *, Kendo.Mvc
+
+        <div>
+            <kendo-combobox name="combobox" auto-bind="false" 
+                datatextfield="ShipName" 
+                datavaluefield="OrderID" 
+                min-length="3"
                 filter="FilterType.Contains">
-    <datasource server-filtering="true">
-        <transport>
-            <read url="@Url.Content("/ComboBox/ComboBoxCrud?handler=Read")" data="dataFunction"/>
-        </transport>
-    </datasource>
-</kendo-combobox>
-```
-{% endif %}
+                <datasource server-filtering="true">
+                    <transport>
+                        <read url="@Url.Page("Index", "Read")" data="dataFunction"/>
+                    </transport>
+                </datasource>
+            </kendo-combobox>
+        </div>
+    ```
+    ```JS
+        <script>
+            function dataFunction(e) {
+                var filterValue = '';
+                if (e.filter.filters[0]) {
+                    filterValue = e.filter.filters[0].value;
+                }
 
-```script
-	<script>	
-		function dataFunction(e) {
-			var filterValue = '';
-			if (e.filter.filters[0]) {
-				filterValue = e.filter.filters[0].value;
-			}
-	
-			return {
-				__RequestVerificationToken: kendo.antiForgeryTokens().__RequestVerificationToken,
-				filterValue: filterValue
-			};
-		}
-	</script>
-```
-```PageModel(cshtml.cs)      
+                return {
+                    __RequestVerificationToken: kendo.antiForgeryTokens().__RequestVerificationToken,
+                    filterValue: filterValue
+                };
+            }
+        </script>
+    ```
 
-    public JsonResult OnGetRead(string filterValue)
-    {
-        if (filterValue != null)
+1. Within the `cshtml.cs` file, add a handler method for the Read operation that returns the dataset.
+
+    ```C# Index.cshtml.cs
+        public class IndexModel : PageModel
         {
-            var filteredData = orders.Where(p => p.ShipName.Contains(filterValue));
-            return new JsonResult(filteredData);
+            public JsonResult OnGetRead()
+            {
+                var comboBoxData = new List<OrderViewModel>();
+                // Populate the collection with the ComboBox data.
+                return new JsonResult(comboBoxData);
+            }
         }
-        return new JsonResult(orders);
-    }
-```
+    ```
+    ```Model
+        public class OrderViewModel
+        {
+            public int OrderID { get; set; }
+
+            public string ShipName { get; set; }
+        }
+    ```
+
+    When the server filtering is enabled, intercept the filter value sent through the `dataFunction` handler in the Read method and filter the data on the server before returning it to the ComboBox.
+
+    ```C# Index.cshtml.cs
+        public class IndexModel : PageModel
+        {
+            public JsonResult OnGetRead(string filterValue)
+            {
+                var comboBoxData = new List<OrderViewModel>();
+                // Populate the collection with the ComboBox data.
+
+                if (filterValue != null)
+                {
+                    var filteredData = comboBoxData.Where(p => p.ShipName.Contains(filterValue));
+                    return new JsonResult(filteredData);
+                }
+                return new JsonResult(comboBoxData);
+            }
+        }
+    ```
+For the complete project, refer to the <a href="https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/ComboBox/ComboBoxCrud.cshtml" target="_blank">ComboBox in Razor Pages example</a>.
+
+## Binding to a PageModel Property
+
+To bind the ComboBox to a property from the `PageModel`, follow the next steps:
+
+1. Add a property to the `PageModel` that must bind to the ComboBox.
+
+    ```C# Index.cshtml.cs
+        public class IndexModel : PageModel
+        {
+            [BindProperty]
+            public int OrderID { get; set; }
+
+            public void OnGet()
+            {
+                OrderID = 2; // Assign a value to the "OrderID" property, if needed.
+            }
+        }
+    ```
+1. Declare the `PageModel` at the top of the page.
+
+    ```Razor
+        @page
+        @model IndexModel
+    ```
+
+1. Bind the ComboBox to the property using the `ComboBoxFor()` configuration.
+
+    ```HtmlHelper
+        @page
+        @model IndexModel
+
+        @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+        @Html.AntiForgeryToken()
+        
+        @(Html.Kendo().ComboBoxFor(m => m.OrderID)  
+            .DataTextField("ShipName")
+            .DataValueField("OrderID")
+            .DataSource(source =>
+            {
+                source.Read(read => read
+                    .Url(Url.Page("Index", "Read")).Data("forgeryToken"));
+            })
+        )
+    ```
+    ```TagHelper
+        @page
+        @model IndexModel
+
+        @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+        @Html.AntiForgeryToken()
+        @addTagHelper *, Kendo.Mvc
+
+        <kendo-combobox for="OrderID"
+            datatextfield="ShipName" 
+            datavaluefield="OrderID">
+            <datasource>
+                <transport>
+                    <read url="@Url.Page("Index", "Read")" data="forgeryToken"/>
+                </transport>
+            </datasource>
+        </kendo-combobox>
+    ```
+    ```JS
+        <script>
+            function forgeryToken(e) {
+                return kendo.antiForgeryTokens();
+            }
+        </script>
+    ```
 
 ## See Also
 
-* [Razor Pages Support]({% slug razor_pages_integration_aspnetmvc6_aspnetmvc %})
-* [DataBinding Overview]({% slug htmlhelpers_combobox_databinding_aspnetcore %})
-
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the ComboBox](https://docs.telerik.com/kendo-ui/api/ui/combobox)
+* [Server-Side HtmlHelper API of the ComboBox](/api/combobox)
+* [Server-Side TagHelper API of the ComboBox](/api/taghelpers/combobox)
+* [Knowledge Base Section](/knowledge-base)

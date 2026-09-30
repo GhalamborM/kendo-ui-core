@@ -1,8 +1,7 @@
-(function(f, define) {
-    define([ "./kendo.toggleinputbase", "./kendo.html.input" ], f);
-})(function() {
+import "./kendo.toggleinputbase.js";
+import "./kendo.html.input.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "checkbox",
     name: "CheckBox",
     category: "web",
@@ -22,8 +21,9 @@ var __meta__ = {
             enabled: true,
             encoded: true,
             label: null,
-            rounded: "medium",
-            size: "medium"
+            rounded: undefined,
+            size: undefined,
+            wrapperClass: "k-checkbox-wrap"
         },
 
         RENDER_INPUT: kendo.html.renderCheckBox,
@@ -48,7 +48,5 @@ var __meta__ = {
 
     ui.plugin(CheckBox);
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

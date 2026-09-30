@@ -1,12 +1,13 @@
 ---
 title: Grid PageSize DropDown Change Event
-description: An example on how to capture the page size change event in the Kendo UI Grid.
+description: Learn how to capture the page size change event in the Kendo UI Grid.
 type: how-to
-page_title: Page Size DropDown Change Event | Kendo UI Grid for jQuery
+page_title: Page Size DropDown Change Event - Kendo UI for jQuery Data Grid
 slug: grid-pagesize-change-event
 tags: grid, page, size, pagesize, dropdown, event, change, capture
 ticketid: 1167416
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Created with Version</td>

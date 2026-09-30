@@ -1,10 +1,7 @@
-(function(f, define){
-    define([
-        "./colorgradient",
-        "./colorpalette",
-        "../kendo.html.button"
-    ], f);
-})(function(){
+import "./colorselector.js";
+import "./colorgradient.js";
+import "./colorpalette.js";
+import "../kendo.html.button.js";
 
 (function($, undefined){
     // WARNING: removing the following jshint declaration and turning
@@ -15,6 +12,7 @@
         html = kendo.html,
         Color = kendo.Color,
         extend = $.extend,
+        encode = kendo.htmlEncode,
         BACKGROUNDCOLOR = "background-color",
         MESSAGES = {
             apply  : "Apply",
@@ -68,7 +66,6 @@
 
             ColorSelector.fn.init.call(that, element, options);
             options = that.options = kendo.deepExtend({}, that.options, options);
-            element = that.element;
 
             that._wrapper();
 
@@ -89,7 +86,8 @@
 
             that._attachEvents();
             that._navigation();
-        },
+            ColorSelector.fn.endInit.call(that);
+},
         destroy: function() {
             var that = this;
 
@@ -108,6 +106,7 @@
             name: "FlatColorPicker",
             opacity: false,
             buttons: false,
+            buttonsTemplate: null,
             input: true,
             preview: true,
             clearButton: false,
@@ -121,8 +120,9 @@
             columns: 10,
             tileSize: 24,
             messages   : MESSAGES,
-            size: "medium", // Fake styling option to accomplish colorpicker's size for textbox and button
-            _otOfPicker: true
+            // size: undefined, // Fake styling option to accomplish colorpicker's size for textbox and button
+            _otOfPicker: true,
+            _showAdaptiveView: false,
         },
         setBackgroundColor: function (color) {
             var that = this;
@@ -135,8 +135,8 @@
             var that = this;
 
             that.wrapper
-                .on(KEYDOWN_NS, bind(that._keydown, that))
-                .on(CLICK_NS, ".k-coloreditor-reset", function () {
+                .on(KEYDOWN_NS, that, bind(that._keydown, that))
+                .on(CLICK_NS, ".k-button[data-command]", function () {
                     that._clearColor = true;
                     that._updateUI(null);
                     that._view.value(null);
@@ -201,6 +201,8 @@
             delete options.cancel;
             delete options._standalone;
 
+            const size = options._showAdaptiveView ? "large" : options.size;
+
             if (that._view) {
                 selectedColor = that._view.color();
                 that._view.destroy();
@@ -217,7 +219,7 @@
             options._otOfPicker = false;
 
             if (selector) {
-                that._view = new VIEWS[mode]($("<div></div>").appendTo(that._viewsContainer), options);
+                that._view = new VIEWS[mode]($("<div></div>").appendTo(that._viewsContainer), { ...options, size });
                 that._view.value(selectedColor);
 
                 that._view.bind("change", function (ev) {
@@ -295,26 +297,27 @@
                 options = that.options,
                 buttonOptions = extend({}, options, {
                     fillMode: "flat",
-                    themeColor: "base",
-                    rounded: "medium"
+                    themeColor: undefined,
+                    rounded: undefined,
+                    size: options._showAdaptiveView ? "large" : options.size
                 });
 
-            return kendo.template(
+            return kendo.template((options, buttonOptions) =>
                     '<div class="k-coloreditor-header k-hstack">' +
-                        '# if (views && views.length > 1) { #' +
                         '<div class="k-coloreditor-header-actions k-hstack">' +
+                            ((options.views && options.views.length > 1) ?
                             '<div role="group" class="k-button-group k-button-group-flat">' +
-                                html.renderButton('<button aria-pressed="false" data-view="gradient" title="#:messages.gradient#"></button>', extend({ icon: "color-canvas" }, buttonOptions)) +
-                                html.renderButton('<button aria-pressed="false" data-view="palette" title="#:messages.palette#"></button>', extend({ icon: "palette" }, buttonOptions)) +
-                            '</div>' +
+                                html.renderButton(`<button aria-label="${encode(options.messages.gradient)}" aria-pressed="false" data-view="gradient" title="${encode(options.messages.gradient)}"></button>`, extend({ icon: "droplet-slider" }, buttonOptions)) +
+                                html.renderButton(`<button aria-label="${encode(options.messages.palette)}" aria-pressed="false" data-view="palette" title="${encode(options.messages.palette)}"></button>`, extend({ icon: "palette" }, buttonOptions)) +
+                            '</div>'
+                            : '') +
                         '</div>' +
-                        '# } #' +
                         '<div class="k-spacer"></div>' +
                         '<div class="k-coloreditor-header-actions k-hstack">' +
-                            '# if (clearButton) { #' +
-                            html.renderButton('<button class="k-coloreditor-reset" title="#:messages.clearColor#"></button>', extend({ icon: "reset-color" }, buttonOptions)) +
-                            '# } #' +
-                            '# if (preview) { #' +
+                            (options.clearButton ?
+                            html.renderButton(`<button aria-label="${encode(options.messages.clearColor)}" data-command="reset" title="${encode(options.messages.clearColor)}"></button>`, extend({ icon: "droplet-slash" }, buttonOptions))
+                            : '') +
+                            (options.preview ?
                             '<div class="k-coloreditor-preview k-vstack">' +
                                 '<span class="k-coloreditor-preview-color k-color-preview">' +
                                     '<span class="k-color-preview-mask"></span>' +
@@ -322,19 +325,63 @@
                                 '<span class="k-coloreditor-current-color k-color-preview">' +
                                     '<span class="k-color-preview-mask"></span>' +
                                 '</span>' +
-                            '</div>' +
-                            '# } #' +
+                            '</div>'
+                            : '') +
                         '</div>' +
                     '</div>' +
                     '<div class="k-coloreditor-views k-vstack"></div>' +
-                    '# if (buttons) { #' +
-                    '<div class="k-coloreditor-footer k-actions k-hstack k-justify-content-end">' +
-                        html.renderButton('<button class="k-coloreditor-cancel" title="#:messages.cancel#">#: messages.cancel #</button>', extend({}, buttonOptions, { fillMode: "solid" })) +
-                        html.renderButton('<button class="k-coloreditor-apply" title="#:messages.apply#">#: messages.apply #</button>', extend({}, buttonOptions, { fillMode: "solid", themeColor: "primary" })) +
-                    '</div>' +
-                    '# } #'
-                )(options);
+                    (options.buttons ?
+                    '<div class="k-coloreditor-footer k-actions k-actions-start k-actions-horizontal">' +
+                        that._renderActionButtons(options, buttonOptions) +
+                    '</div>'
+                    : '')
+                )(options, buttonOptions);
         },
+
+        _renderActionButtons(options, buttonOptions) {
+            if(kendo.isPresent(options) && kendo.isBlank(options.buttonsTemplate)) {
+                return  (
+                            html
+                                .renderButton(`<button class="k-coloreditor-apply" title="${encode(options.messages.apply)}">
+                                    ${encode(options.messages.apply)}</button>`, extend({}, buttonOptions, { fillMode: null, themeColor: "primary" })
+                                ) +
+                            html
+                                .renderButton(`<button class="k-coloreditor-cancel" title="${encode(options.messages.cancel)}">
+                                    ${encode(options.messages.cancel)}</button>`, extend({}, buttonOptions, { fillMode: null })
+                                )
+                        );
+            }
+
+            let buttonsTemplate = kendo.template(options.buttonsTemplate),
+                buttonsMarkup = buttonsTemplate(options, buttonOptions);
+
+            return buttonsMarkup;
+        },
+
+        _addSizeClass: function(specificSize) {
+            const options = this.options;
+
+            this.wrapper.removeClass("k-coloreditor-lg k-coloreditor-md k-coloreditor-sm");
+            let size = specificSize || options.size;
+
+            if (size) {
+                let sizeClass = "k-coloreditor-";
+
+                switch (size) {
+                    case "large":
+                        sizeClass += "lg";
+                        break;
+                    case "small":
+                        sizeClass += "sm";
+                        break;
+                    default:
+                        sizeClass += "md";
+                        break;
+                }
+                this.wrapper.addClass(sizeClass);
+            }
+        },
+
         _wrapper: function() {
             var options = this.options,
                 wrapper;
@@ -359,12 +406,10 @@
             wrapper.find(".k-button[data-view=" + options.view + "]").addClass(SELECTED).attr(ARIA_PRESSED, true);
 
             this.wrapper = wrapper;
+            this._addSizeClass();
         }
     });
 
     ui.plugin(FlatColorPicker);
 })(window.kendo.jQuery);
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3){ (a3 || a2)(); });

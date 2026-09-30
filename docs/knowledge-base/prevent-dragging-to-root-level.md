@@ -5,9 +5,9 @@ description: "Learn how to handle the Kendo UI for jQuery TreeView drag event to
 slug: howto_preventdragging_nodestorootlevel_treeview
 previous_url: /controls/navigation/treeview/how-to/nodes/prevent-dragging-to-root-level
 tags: telerik, kendo, jquery, treeview, prevent, dragging, of, nodes, to, root, level
-component: treeview
 type: how-to
 res_type: kb
+components: ["treeview"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI TreeView for jQuery</td>
+  <td>Progress® Kendo UI® TreeView for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -78,4 +78,4 @@ The following example demonstrates how to handle the `drag` event to achieve thi
 
 * [Basic Usage of the TreeView (Demo)](https://demos.telerik.com/kendo-ui/treeview/index)
 * [Using the API of the TreeView (Demo)](https://demos.telerik.com/kendo-ui/treeview/api)
-* [JavaScript API Reference of the TreeView](/api/javascript/ui/treeview)
+* [JavaScript API Reference of the TreeView](/api/ui/treeview)

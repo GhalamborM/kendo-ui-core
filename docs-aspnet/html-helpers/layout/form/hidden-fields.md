@@ -2,8 +2,9 @@
 title: Hidden Fields
 page_title: Hidden Fields
 description: "Get started with the Telerik UI Form component for {{ site.framework }} and learn how to set hidden fields."
+components: ["form"]
 slug: htmlhelpers_form_aspnetcore_hiddenfields
-position: 8
+position: 10
 ---
 
 # Hidden Fields

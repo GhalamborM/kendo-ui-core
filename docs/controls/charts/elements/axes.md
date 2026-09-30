@@ -1,7 +1,8 @@
 ---
 title: Axes
-page_title: jQuery Chart Documentation | Axes
+page_title: jQuery Chart Documentation - Axes
 description: "Get started with the jQuery Chart by Kendo UI and learn how to configure its axes."
+components: ["chart"]
 slug: elements_kendoui_charts_widget
 ---
 
@@ -46,7 +47,7 @@ To clearly indicate the role of the axis, add an axis title.
         }]
     });
 
-![A chart with axis titles](../chart-axis-titles.png)
+![Kendo UI for jQuery Chart with axis titles](../chart-axis-titles.png)
 
 ## Setting the Plot Bands
 
@@ -69,11 +70,11 @@ You can configure each axis so that it displays bands with different colors for 
         }
     }]
 
-![A Chart with axis plot bands](../chart-plot-bands.png)
+![Kendo UI for jQuery Chart with axis plot bands](../chart-plot-bands.png)
 
 ## Applying Global Settings
 
-To apply settings to all axes, use the [`axisDefaults`](/api/javascript/dataviz/ui/chart#axisdefaults-object) object.
+To apply settings to all axes, use the [`axisDefaults`](/api/dataviz/ui/chart#axisdefaults-object) object.
 
     $("#chart").kendoChart({
         series: [{
@@ -91,4 +92,4 @@ To apply settings to all axes, use the [`axisDefaults`](/api/javascript/dataviz/
 ## See Also
 
 * [Using the API of the Chart (Demo)](https://demos.telerik.com/kendo-ui/chart-api/index)
-* [JavaScript API Reference of the Chart](/api/javascript/dataviz/ui/chart)
+* [JavaScript API Reference of the Chart](/api/dataviz/ui/chart)

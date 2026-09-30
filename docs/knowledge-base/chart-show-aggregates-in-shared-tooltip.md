@@ -1,23 +1,24 @@
 ---
 title: Show Aggregates of the Series Points in the Chart Shared Tooltip
-description: An example on how to show an total of all points in a shared tooltip template in the Kendo Chart.
+description: Learn how to show an total of all points in a shared tooltip template in the Kendo Chart.
 type: how-to
-page_title: Custom Shared Chart tooltip with aggregates | Kendo UI Chart for jQuery
+page_title: Custom Shared Chart tooltip with aggregates - Kendo UI Chart for jQuery
 slug: chart-show-aggregates-in-shared-tooltip
 tags: chart, shared, tooltip, sum, aggregates, sharedTooltip, template, sum, total
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
 
 <table>
 	<tr>
-		<td>Created with Product Version</td>
+		<td>Product Version</td>
 		<td>2017.3.1026</td>
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Chart</td>
+		<td>Progress® Kendo UI® Chart for jQuery</td>
 	</tr>
 </table>
 
@@ -28,7 +29,7 @@ How can I show the total of all the series points in the shared tooltip template
 
 ## Solution
 
-1. Use the [`tooltip.sharedTemplate`](/api/javascript/dataviz/ui/chart/configuration/tooltip#tooltipsharedtemplate) fields to calulate and display the sum of all points.
+1. Use the [`tooltip.sharedTemplate`](/api/dataviz/ui/chart/configuration/tooltip#tooltipsharedtemplate) fields to calulate and display the sum of all points.
 
 ```
     <script id="template" type="text/x-kendo-template">

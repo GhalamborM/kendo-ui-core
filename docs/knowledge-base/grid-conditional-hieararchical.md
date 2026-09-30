@@ -1,12 +1,13 @@
 ---
 title: Conditionally Hide Hierarchical Grids
-description: An example on how to conditionally show a hierarchical Kendo UI Grid.
+description: Learn how to conditionally show a hierarchical Kendo UI Grid.
 type: how-to
-page_title: Conditionally Hide Hierarchical Grids | Kendo UI Grid for jQuery
+page_title: Conditionally Hide Hierarchical Grids - Kendo UI for jQuery Data Grid
 slug: grid-conditional-hieararchical
 tags: grid, hierarchy, hiararchical, conditonal, hide, show
 ticketid: 1153473
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -46,9 +47,9 @@ How can I show just a child Grid on certain elements in the hierarchical Grid?
   $(document).ready(function() {
     var element = $("#grid").kendoGrid({
       dataSource: {
-        type: "odata",
+        type: "odata-v4",
         transport: {
-          read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+          read: "https://demos.telerik.com/service/v2/odata/Employees"
         },
         pageSize: 6,
         serverPaging: true,
@@ -95,9 +96,9 @@ How can I show just a child Grid on certain elements in the hierarchical Grid?
   function detailInit(e) {
     $("<div/>").appendTo(e.detailCell).kendoGrid({
       dataSource: {
-        type: "odata",
+        type: "odata-v4",
         transport: {
-          read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+          read: "https://demos.telerik.com/service/v2/odata/Orders"
         },
         serverPaging: true,
         serverSorting: true,
@@ -138,5 +139,5 @@ How can I show just a child Grid on certain elements in the hierarchical Grid?
 
 ## See Also
 
-* [API Reference of the dataBound Event](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound)
+* [API Reference of the dataBound Event](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound)
 * [API Reference of the jQuery remove Method](https://api.jquery.com/remove/)

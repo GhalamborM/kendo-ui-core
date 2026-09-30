@@ -1,8 +1,8 @@
-(function(f, define) {
-    define(["./kendo.core", "./kendo.floatinglabel"], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.floatinglabel.js";
+import { addInputPrefixSuffixContainers } from "./utils/prefix-suffix-containers.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "textarea",
     name: "TextArea",
     category: "web",
@@ -22,6 +22,7 @@ var __meta__ = {
         INPUT = "k-input-inner",
         FOCUSED = "k-focus",
         LABELCLASSES = "k-label k-input-label",
+        FLOATINGLABELCLASS = "k-floating-label",
         STATEDISABLED = "k-disabled",
         STATEREADONLY = "k-readonly",
         ARIA_DISABLED = "aria-disabled",
@@ -38,6 +39,8 @@ var __meta__ = {
             that.options.readonly = options.readonly !== undefined ? options.readonly : Boolean(that.element.attr("readonly"));
             that.options.enable = options.enable !== undefined ? options.enable : !(Boolean(that.element.attr("disabled")));
             that.options.placeholder = options.placeholder || that.element.attr("placeholder");
+            that.options.maxLength = options.maxLength || that.element.attr("maxlength");
+            that.options.inputMode = options.inputMode || that.element.attr("inputmode") || "text";
 
             if (!that.options.value.replace(/\s/g, '').length) {
                 that.options.value = '';
@@ -53,13 +56,17 @@ var __meta__ = {
             });
             that._applyAttributes();
             that._applyCssClasses();
-            that.element
-                .addClass(INPUT)
-                .css("resize", that.options.resizable)
-                .attr("autocomplete", "off");
+            that.element.attr("autocomplete", "off");
+            that.element.attr("inputmode", that.options.inputMode);
+
+            addInputPrefixSuffixContainers({ widget: that, wrapper: that.wrapper, options: that.options });
+            if (that.floatingLabel) {
+                that.floatingLabel.refresh();
+            }
 
             kendo.notify(that);
-        },
+            Widget.fn.endInit.call(that);
+},
 
         events: [
             CHANGE
@@ -80,43 +87,62 @@ var __meta__ = {
             label: null,
             resizable: "none",
             maxLength: null,
-            cols: 20,
+            maxRows: null,
             rows: 1,
-            rounded: "medium",
-            size: "medium",
-            fillMode: "solid",
+            rounded: undefined,
+            size: undefined,
+            fillMode: undefined,
             resize: "none",
-            overflow: "auto"
+            overflow: "auto",
+            layoutFlow: "vertical",
+            prefixOptions: {
+                separator: true
+            },
+            suffixOptions: {
+                separator: true
+            }
         },
 
         _applyCssClasses: function(action) {
-            var that = this,
-                options = that.options,
-                resize = kendo.cssProperties.getValidClass({
-                    widget: options.name,
-                    propName: "resize",
-                    value: options.resize
-                }),
-                overflow = kendo.cssProperties.getValidClass({
-                    widget: options.name,
-                    propName: "overflow",
-                    value: options.overflow
-                });
+            let that = this;
+            let options = that.options;
+            let resize = kendo.cssProperties.getValidClass({
+                widget: options.name,
+                propName: "resize",
+                value: options.resize
+            });
+
+            let overflow = kendo.cssProperties.getValidClass({
+                widget: options.name,
+                propName: "overflow",
+                value: options.overflow
+            });
+
+            let layoutFlow = kendo.cssProperties.getValidClass({
+                widget: options.name,
+                propName: "layoutFlow",
+                value: options.layoutFlow
+            });
 
             Widget.fn._applyCssClasses.call(that);
 
-            if (!resize && options.resize === "none") {
+            if (!resize && (options.resize === "none" || options.resize === "auto")) {
                 resize = "k-resize-none";
+            }
+
+            if (overflow) {
+                overflow = "!" + overflow;
             }
 
             action = action || "addClass";
 
-            if (options.overflow === "auto") {
-                overflow = "!k-overflow-y-auto";
-            }
-
-            that.wrapper[action](resize);
+            that.element[action](resize);
             that.element[action](overflow);
+            that.element[action](INPUT);
+            that.wrapper[action](layoutFlow);
+            if (options.layoutFlow == "vertical") {
+                that.element[action]("!k-flex-none");
+            }
         },
 
         _applyAttributes: function() {
@@ -164,7 +190,7 @@ var __meta__ = {
             });
 
             if (that.floatingLabel) {
-                that.floatingLabel.enable(enable = enable === undefined ? true : enable);
+                that.floatingLabel.enable(enable);
             }
         },
 
@@ -174,21 +200,60 @@ var __meta__ = {
             that.element[0].focus();
         },
 
+        updateAutoHeight: function() {
+            const that = this;
+            const element = that.element;
+            const options = that.options;
+
+            if (options.resize === "auto" && options.maxRows) {
+                const computedStyle = getComputedStyle(element[0]);
+                const lineHeight = parseInt(computedStyle.lineHeight, 10) || 16;
+                const paddingTop = parseInt(computedStyle.paddingTop, 10) || 0;
+                const paddingBottom = parseInt(computedStyle.paddingBottom, 10) || 0;
+                const totalPadding = paddingTop + paddingBottom;
+                const minHeight = (options.rows * lineHeight) + totalPadding;
+                const maxHeight = (options.maxRows * lineHeight) + totalPadding;
+
+                element.css({
+                    height: minHeight + "px"
+                });
+
+                const scrollHeight = element[0].scrollHeight;
+
+                element.css({
+                    maxHeight: maxHeight + "px",
+                    height: scrollHeight + "px"
+                });
+            }
+        },
+
         destroy: function() {
             var that = this;
+
+            that._applyCssClasses("removeClass");
 
             if (that.floatingLabel) {
                 that.floatingLabel.destroy();
             }
 
+            if (that._inputLabel) {
+                that._inputLabel.remove();
+                that._inputLabel = null;
+            }
+
+            // Move the styles back to the element.
+            that.element[0].style.cssText = that.wrapper[0].style.cssText;
+
             that.element.off(NS);
+            that.element.unwrap();
+            that.wrapper = null;
             Widget.fn.destroy.call(that);
         },
 
         setOptions: function(options) {
             var that = this;
-            that._applyCssClasses("removeClass");
-            Widget.fn.setOptions.call(that, options);
+            that.destroy();
+            that.init(that.element, options);
         },
 
         _editable: function(options) {
@@ -203,17 +268,23 @@ var __meta__ = {
             if (!readonly && !disable) {
                 element.prop(DISABLED, false)
                        .prop(READONLY, false)
-                       .attr(ARIA_DISABLED, false);
+                       .removeAttr(ARIA_DISABLED);
 
                 wrapper.removeClass(STATEDISABLED)
                         .removeClass(STATEREADONLY);
 
                 element.on("focusin" + NS, that._focusin.bind(that));
                 element.on("focusout" + NS, that._focusout.bind(that));
+                element.on("input" + NS, that._input.bind(that));
             } else {
                 element.attr(DISABLED, disable)
-                       .attr(READONLY, readonly)
-                       .attr(ARIA_DISABLED, disable);
+                       .attr(READONLY, readonly);
+
+                if (disable) {
+                    element.attr(ARIA_DISABLED, true);
+                } else {
+                    element.removeAttr(ARIA_DISABLED);
+                }
 
                 wrapper.toggleClass(STATEDISABLED, disable)
                         .toggleClass(STATEREADONLY, readonly);
@@ -234,7 +305,7 @@ var __meta__ = {
 
                 if (floating) {
                     that._floatingLabelContainer = that.wrapper.wrap("<span></span>").parent();
-                    that.floatingLabel = new kendo.ui.FloatingLabel(that._floatingLabelContainer, { widget: that, useReadOnlyClass: true });
+                    that.floatingLabel = new kendo.ui.FloatingLabel(that._floatingLabelContainer, { widget: that });
                     that._floatingLabelContainer.addClass(TEXTAREACONTAINER);
                 }
 
@@ -251,7 +322,7 @@ var __meta__ = {
                     element.attr("id", id);
                 }
 
-                that._inputLabel = $("<label class='" + LABELCLASSES + "' for='" + id + "'>" + labelText + "</label>'").insertBefore(that.wrapper);
+                that._inputLabel = $("<label class='" + (floating ? FLOATINGLABELCLASS : LABELCLASSES) + "' for='" + id + "'>" + labelText + "</label>'")[floating ? "insertAfter" : "insertBefore"](that.wrapper);
             }
         },
 
@@ -279,6 +350,10 @@ var __meta__ = {
             }
         },
 
+        _input: function() {
+            this.updateAutoHeight();
+        },
+
         _wrapper: function() {
             var that = this;
             var element = that.element;
@@ -287,7 +362,7 @@ var __meta__ = {
 
             wrapper = element.wrap("<span class='k-input k-textarea'></span>").parent();
             wrapper[0].style.cssText = DOMElement.style.cssText;
-            DOMElement.style.width = "100%";
+            DOMElement.style.width = "";
 
             that.wrapper = wrapper.addClass(DOMElement.className).removeClass('input-validation-error');
         }
@@ -302,7 +377,5 @@ var __meta__ = {
 
     ui.plugin(TextArea);
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

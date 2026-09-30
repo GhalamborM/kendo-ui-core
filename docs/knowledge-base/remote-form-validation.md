@@ -5,9 +5,9 @@ description: "Learn how to validate the form on the server by using the Kendo UI
 slug: howto_remote_validation
 previous_url: /controls/editors/validator/how-to/remote-form-validation
 tags: telerik, kendo, jquery, validator, implement, remote, form, validation
-component: validator
 type: how-to
 res_type: kb
+components: ["validator"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Validator for jQuery</td>
+  <td>Progress® Kendo UI® Validator for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -42,4 +42,4 @@ To achieve the desired scenario, apply the implementation demonstrated in [this 
 ## See Also
 
 * [Basic Usage of the Validator (Demo)](https://demos.telerik.com/kendo-ui/validator/index)
-* [JavaScript API Reference of the Validator](/api/javascript/ui/validator)
+* [JavaScript API Reference of the Validator](/api/ui/validator)

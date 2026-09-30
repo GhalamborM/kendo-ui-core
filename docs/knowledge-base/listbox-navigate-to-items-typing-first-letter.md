@@ -2,12 +2,13 @@
 title: Navigate to Items Typing First Letter
 description: How to Navigate to Items Typing Capital Letter
 type: how-to
-page_title: How to Navigate to Items Using First Letter | Kendo UI ListBox for jQuery
+page_title: How to Navigate to Items Using First Letter - Kendo UI ListBox for jQuery
 slug: listbox-navigate-to-items-typing-first-letter
-position: 
-tags: 
-ticketid: 
+position:
+tags:
+ticketid:
 res_type: kb
+components: ["listbox"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>ListBox for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® ListBox for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -23,12 +24,14 @@ res_type: kb
 
 ## Description
 
-This sample demonstrates how you can select and scroll to the item corresponding to the typed Key on the keyboard.
+This sample demonstrates how to select and scroll to the item corresponding to the key pressed on the keyboard.
 
 ## Solution
 
+Attach a `keydown` event listener to the document. When a key is pressed, iterate over the ListBox items and select the first item whose text starts with the pressed key. Then scroll the list container to bring the selected item into view.
+
 ```dojo
-  
+
     <div id="example" role="application">
       <div class="demo-section k-content wide">
         <select id="listbox"  >
@@ -91,7 +94,7 @@ This sample demonstrates how you can select and scroll to the item corresponding
                 if($(element).text().toLowerCase().startsWith(e.key))
                 {
 
-                  listBox.select($(element)); 
+                  listBox.select($(element));
                   $(".k-list-scroller").scrollTop($(element).position().top);
                   return;
                 }
@@ -116,5 +119,5 @@ This sample demonstrates how you can select and scroll to the item corresponding
         margin-right: 1px;
       }
     </style>
-      
-``` 
+
+```

@@ -2,10 +2,11 @@
 title: Skip noneditable Grid columns when using keyboard navigation
 description: An example demonstrating how to skip over noneditable grid cells when the Tab key is used to navigate them.
 type: how-to
-page_title: Skip noneditable columns when using keyboard navigation | Kendo UI Grid for jQuery
+page_title: Skip noneditable columns when using keyboard navigation - Kendo UI for jQuery Data Grid
 slug: grid-tabkey-navigation-exclude-noneditable-columns
 tags: grid, keyboard, navigation, editable, cell, skip, tab, tabkey
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -13,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -27,9 +28,9 @@ How can I skip noneditable Grid columns when I use the `Tab` key to navigate the
 
 ## Solution
 
-Utilize the Grid's [`navigate`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/navigate) event and programmatically skip the noneditable columns.
+Utilize the Grid's [`navigate`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/navigate) event and programmatically skip the noneditable columns.
 
-1. Apply a custom class to the noneditable columns through the [columns.attributes](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.attributes) configuration.
+1. Apply a custom class to the noneditable columns through the [columns.attributes](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsattributes) configuration.
 1. In the `navigate` event, check if the current cell is editable and if the `Tab` key has been pressed.
 1. Check if the `Shift` key has been pressed. This tells you if the user is navigating backwards or not.
 1. Loop through the next/previous cells until you reach an editable column.

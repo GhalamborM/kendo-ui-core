@@ -6,6 +6,7 @@ page_title: Invalid Template Error Is Thrown When Nested Templates and Localizat
 slug: invalid-template-during-localization
 ticketid: 1146274
 res_type: kb
+components: ["templates"]
 ---
 
 ## Environment
@@ -13,7 +14,7 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Progress UI for ASP.NET Core</td>
+		<td>Progress® Telerik® UI for ASP.NET Core</td>
 	</tr>
 </table>
 

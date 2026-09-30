@@ -1,12 +1,13 @@
 ---
 title: Filter Hidden Group Columns
-description: An example on how to filter a hidden grouped column in the Kendo UI Grid.
+description: Learn how to filter a hidden grouped column in the Kendo UI Grid.
 type: how-to
-page_title: Move the Filter Button of a Hidden Group Column to the First Cell of the Header | Kendo UI Grid for jQuery
+page_title: Move the Filter Button of a Hidden Group Column to the First Cell of the Header - Kendo UI for jQuery Data Grid
 slug: grid-filter-hidden-group-column
 tags: grid, filter, grouping, hidden column
 ticketid: 1149209
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Grid</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td> 
 	</tr>
 </table>
 
@@ -32,10 +33,10 @@ How can I create a filter menu inside the first cell of the header for the group
 To filter the hidden column:
 
 1. Display the column.
-1. In the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound) event handler of the Grid:
+1. In the [`dataBound`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound) event handler of the Grid:
 	1. Get the HTML of the filter button.
 	1. [`Append`](https://api.jquery.com/append/) the button to the `k-group-cell`.
-	1. Use the [`hideColumn`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/columnhide) method to hide the column.
+	1. Use the [`hideColumn`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/columnhide) method to hide the column.
 
 		```dojo
 		<div id="example">
@@ -50,35 +51,35 @@ To filter the hidden column:
 			</div>
 			<script>
 				$(document).ready(function() {
-					var telerikWebServiceBase = "https://demos.telerik.com/kendo-ui/service/";
+					var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core/";
 
 					$("#client").kendoGrid({
 						dataSource: {
 							transport: {
-								read: {
-									url: telerikWebServiceBase + "/Products",
-									dataType: "jsonp"
-								},
-								update: {
-									url: telerikWebServiceBase + "/Products/Update",
-									dataType: "jsonp"
-								},
-								destroy: {
-									url: telerikWebServiceBase + "/Products/Destroy",
-									dataType: "jsonp"
-								},
-								create: {
-									url: telerikWebServiceBase + "/Products/Create",
-									dataType: "jsonp"
-								},
-								parameterMap: function(options, operation) {
-									if (operation !== "read" && options.models) {
-										return {
-											models: kendo.stringify(options.models)
-										};
-									}
-								}
-							},
+                    		    read:  {
+                    		        url: crudServiceBaseUrl + "/Products"
+                    		    },
+                    		    update: {
+                    		        url: crudServiceBaseUrl + "/Products/Update",
+                    		        type: "POST",
+                    				contentType: "application/json"
+                    		    },
+                    		    destroy: {
+                    		        url: crudServiceBaseUrl + "/Products/Destroy",
+                    		        type: "POST",
+                    				contentType: "application/json"
+                    		    },
+                    		    create: {
+                    		        url: crudServiceBaseUrl + "/Products/Create",
+                    		        type: "POST",
+                    				contentType: "application/json"
+                    		    },
+                    		    parameterMap: function(options, operation) {
+                    		        if (operation !== "read" && options.models) {
+                    		            return kendo.stringify(options.models);
+                    		        }
+                    		    }
+                    		},
 							batch: true,
 							group: {
 								field: 'Discontinued'
@@ -122,7 +123,7 @@ To filter the hidden column:
 						dataBound: function(e) {
 							var grid = e.sender;
 							var gridEl = grid.element;
-							var filterElem = gridEl.find("[data-field='Discontinued']").find(".k-grid-filter");
+							var filterElem = gridEl.find("[data-field='Discontinued']").find(".k-grid-filter-menu");
 							var myFilterPlaceholder = gridEl.find("th.k-group-cell.k-header");
 
 							myFilterPlaceholder.append(filterElem);

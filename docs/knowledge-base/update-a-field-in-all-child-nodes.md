@@ -1,13 +1,13 @@
 ---
 title: Update a Field in All TreeList Child Nodes
 page_title: Update a Field in All TreeList Child Nodes
-description: "Learn how to update all child nodes recursively, propagating the state of a row in a Kendo UI TreeList widget."
+description: "Learn how to update all child nodes recursively, propagating the state of a row in a Kendo UI TreeList component."
 slug: howto_updatefieldinallchildnodes_treelist
 previous_url: /controls/data-management/treelist/how-to/AngularJS/update-a-field-in-all-child-nodes, /controls/data-management/treelist/how-to/update-a-field-in-all-child-nodes-angular
 tags: kendo, jquery, treelist, update, field, recursively, in, all child, nodes
-component: treelist
 type: how-to
 res_type: kb
+components: ["treelist"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI TreeList for jQuery</td>
+  <td>Progress® Kendo UI® TreeList for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -92,7 +92,7 @@ The following example demonstrates how to update all child nodes recursively and
       dataSource: dataSource,
       height: 540,
       columns: [
-        { template: "<input type='checkbox' class='k-checkbox k-checkbox-md k-rounded-md' data-bind='checked: checked' />", width: 40 },
+        { template: "<input type='checkbox' class='k-checkbox' data-bind='checked: checked' />", width: 40 },
         { field: "Position", expandable: true },
         { field: "Name" },
         { field: "Phone" }
@@ -111,4 +111,4 @@ The following example demonstrates how to update all child nodes recursively and
 
 * [Basic Usage of the TreeList (Demo)](https://demos.telerik.com/kendo-ui/treelist/index)
 * [Using the API of the TreeList (Demo)](https://demos.telerik.com/kendo-ui/treelist/api)
-* [TreeList JavaScript API Reference](/api/javascript/ui/treelist)
+* [TreeList JavaScript API Reference](/api/ui/treelist)

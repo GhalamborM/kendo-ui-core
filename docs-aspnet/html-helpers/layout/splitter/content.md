@@ -2,6 +2,7 @@
 title:  Content
 page_title: Set the content for the Splitter.
 description: "An example on how to set the content for  the Telerik UI Splitter component for {{ site.framework }}."
+components: ["splitter"]
 slug: htmlhelpers_splitter_content_aspnetcore
 position: 7
 ---
@@ -14,7 +15,7 @@ The Splitter provides several options for setting the content of the panes.
 
 ## Static Content
 
-You can set the HTML for each Splitter pane via the [`Content()`](/api/Kendo.Mvc.UI.Fluent/SplitterPaneBuilder#contentsystemaction) configuration option.
+You can set the HTML for each Splitter pane via the [`Content()`](/api/kendo.mvc.ui.fluent/splitterpanebuilder#contentsystemaction) configuration option.
 
 The following example demonstrates how to configure the HTML Content for the Splitter:
 
@@ -69,7 +70,7 @@ The following example demonstrates how to configure the HTML Content for the Spl
 
 ## Asynchronously loading content
 
-The Splitter provides built-in support for asynchronously loading content from URLs via the [`LoadContentFrom()`](/api/Kendo.Mvc.UI.Fluent/SplitterPaneBuilder#loadcontentfromsystemstring) coniguration option. These URLs should return HTML fragments that will be loaded in the pane of a Splitter. To load a whole page in an `iframe`, specify the complete URL, for example, https://www.telerik.com/.
+The Splitter provides built-in support for asynchronously loading content from URLs via the [`LoadContentFrom()`](/api/kendo.mvc.ui.fluent/splitterpanebuilder#loadcontentfromsystemstring) coniguration option. These URLs should return HTML fragments that will be loaded in the pane of a Splitter. To load a whole page in an `iframe`, specify the complete URL, for example, https://www.telerik.com/.
 
 The following example demonstrates how to load the Splitter content asynchronously.
 
@@ -82,7 +83,7 @@ The following example demonstrates how to load the Splitter content asynchronous
         panes.Add().LoadContentFrom("https://www.telerik.com/");
     }))
 ```
-{% if site.core%}
+{% if site.core %}
 ```TagHelper
     <kendo-splitter name="splitter">
             <pane content-url="@Url.Action("PaneContent", "Splitter")"></pane>
@@ -91,7 +92,7 @@ The following example demonstrates how to load the Splitter content asynchronous
 ```
 {% endif %}
 ```Controller
-public IActionResult PaneContent()
+public ActionResult PaneContent()
 {
     return PartialView();
 }
@@ -101,4 +102,4 @@ public IActionResult PaneContent()
 
 * [Loading Content with AJAX in the Splitter (Demo)](https://demos.telerik.com/{{ site.platform }}/splitter/ajax)
 * [Server-Side API](/api/splitter)
-* [JavaScript API Reference of the Splitter](/api/javascript/ui/splitter)
+* [JavaScript API Reference of the Splitter](https://docs.telerik.com/kendo-ui/api/ui/splitter)

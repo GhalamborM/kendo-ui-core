@@ -1,11 +1,12 @@
 ---
-title: Store Widgets' State in Local Storage Using Generic Functions
+title: Store the Component State in Local Storage by Using Generic Functions
 page_title: Store Widgets' State in Local Storage Using Generic Functions
-description: "An example on how to save and restore Knedo UI widgets' state, value and options using local storage."
+description: "Learn how to save and restore the state, value, and options of Kendo UI for jQuery components by using local storage."
 slug: howto_store_state_in_local_storage
 tags: local, storage, localstorage, widgets, kendo, options, value, state, save
 type: how-to
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -13,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI for jQuery</td>
+  <td>Progress® Kendo UI® for jQuery</td>
  </tr>
  <tr>
   <td>Preferred Language</td>
@@ -30,7 +31,7 @@ Code is provided by [OF360](https://of360.fr).
 ## Solution
 
 The functionality relies on the following concepts:
-* The [`edit`](/api/javascript/ui/grid/events/edit) event handler of the Grid provides a reference to the DOM element of the edit container.
+* The [`edit`](/api/ui/grid/events/edit) event handler of the Grid provides a reference to the DOM element of the edit container.
 * The Kendo UI widgets have a `data-role` HTML attribute rendered for the DOM element. This attribute holds the widget object.
 
 For brevity, the following demo does not include the configuration for the Data Source transport. However, for the [CRUD operations]({% slug cruddataoperations_kendoui_datasourcecomponent %}) to work properly, they require a transport configuration.
@@ -87,7 +88,7 @@ jQuery.fn.kendoGridStoreUserOptions = function (name, options) {
         try {
             let storage = JSON.parse(localStorage[name]);
             if (!storage) return;
-           
+
             if (storage.gridOptions) {               
                 for (let index in grid.columns) {
                     if (storage.gridOptions.columns[index].field !== grid.columns[index].field) continue;
@@ -143,7 +144,7 @@ jQuery.fn.kendoDropDownListStoreUserOptions = function (name, options) {
 
     var dropdownlist = $(self).data("kendoDropDownList");
 
- 
+
     load();
     self.on('change', save);
 
@@ -179,7 +180,7 @@ jQuery.fn.kendoDropDownListStoreUserOptions = function (name, options) {
 
 //Combobox Widget
 jQuery.fn.kendoComboboxStoreUserOptions = function (name, options) {
-    
+
     let self = this;
 
     if (typeof (name) === 'object' && options === undefined) {
@@ -228,7 +229,7 @@ jQuery.fn.kendoComboboxStoreUserOptions = function (name, options) {
 
 //Multiselect Widget
 jQuery.fn.kendoMultiSelectStoreUserOptions = function (name, options) {
-  
+
     let self = this;
 
     if (typeof (name) === 'object' && options === undefined) {
@@ -278,15 +279,17 @@ jQuery.fn.kendoMultiSelectStoreUserOptions = function (name, options) {
 
 #### Example:
 
+The following snippet chains `kendoDropDownListStoreUserOptions()` directly after `kendoDropDownList()` to save and restore the selected day value automatically using local storage.
+
 ````
 $("#dropdownlistDay").kendoDropDownList({
                     dataTextField: "text",
                     dataValueField: "value",
                     dataSource: datadropdownDay,
                     change: CombodateFilter
-                }).kendoDropDownListStoreUserOptions(); 
+                }).kendoDropDownListStoreUserOptions();
 ````
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

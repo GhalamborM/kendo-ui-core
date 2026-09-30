@@ -2,12 +2,13 @@
 title: DateTimePicker Localization in Modern Content Type
 description: How to Implement DateTimePicker Localization in Modern Mode
 type: how-to
-page_title: How to Implement DateTimePicker Localization in Modern Mode | Kendo UI DateTimePicker for jQuery
+page_title: How to Implement DateTimePicker Localization in Modern Mode - Kendo UI DateTimePicker for jQuery
 slug: datetimepicker-localization-modern-type
-position: 
-tags: 
-ticketid: 
+position:
+tags:
+ticketid:
 res_type: kb
+components: ["datetimepicker", "timepicker"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>DateTimePicker for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® DateTimePicker for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -28,7 +29,7 @@ This sample demonstrates how to implement Globalization and Localization for Ken
 ## Solution
 
 The first step is to include the culture resource script for the given language:
-https://docs.telerik.com/kendo-ui/api/javascript/ui/datetimepicker/configuration/culture
+https://docs.telerik.com/kendo-ui/api/ui/datetimepicker/configuration/culture
 
 More info you can find here:
 https://docs.telerik.com/kendo-ui/framework/globalization/overview
@@ -45,7 +46,7 @@ https://docs.telerik.com/kendo-ui/globalization/localization
 
 Here is a full sample:
 
-```dojo 
+```dojo
     <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/cultures/kendo.culture.bg-BG.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/messages/kendo.messages.bg-BG.min.js"></script>
 
@@ -60,13 +61,13 @@ Here is a full sample:
         componentType: "modern",
       }).data().kendoDateTimePicker;
     </script>
-``` 
+```
 
 ### Option 2
 
 This is a custom approach by modifying the values directly in the DOM elements using JavaScript:
 
-```dojo 
+```dojo
     <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/cultures/kendo.culture.nl-NL.min.js">     </script>
 
     <p>Modern Picker with Dutch Localization</p>
@@ -106,4 +107,4 @@ This is a custom approach by modifying the values directly in the DOM elements u
         });
       });
     </script>
-``` 
+```

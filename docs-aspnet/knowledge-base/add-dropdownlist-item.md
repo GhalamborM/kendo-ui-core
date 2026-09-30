@@ -1,12 +1,13 @@
 ---
-title: Add Item in DropDownList
+title: Adding an Item in a DropDownList
 description: An example on how to add a new item for the {{ site.product }} DropDownList.
 type: how-to
-page_title: Add Item in DropDownList
+page_title: Adding an Item in a DropDownList
 slug: add-dropdownlist-item
 tags: dropdownlist, add, item, filter, datasource, custom
 ticketid: 1549484
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -28,13 +29,13 @@ How can I add a new item if it doesn't exist when working with the {{ site.produ
 
 ## Solution
 
-1. Create a seperate `Custom` DataSource and specify the action method for the [`.Create()`](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/CustomDataSourceTransportBuilder#createsystemactionkendomvcuifluentcustomcrudoperationbuilder) method.
-1. Set the filter type for the DropDownList through the [`.Filter()`](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/DropDownListBuilder#nodatatemplateidsystemstring).
-1. Specify a [`NoDataTemplate`](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/DropDownListBuilder#nodatatemplatesystemstring) which will display an add confirmation dialog. 
+1. Create a separate `Custom` DataSource and specify the action method for the [`.Create()`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/customdatasourcetransportbuilder#createsystemactionkendomvcuifluentcustomcrudoperationbuilder) method.
+1. Set the filter type for the DropDownList through the [`.Filter()`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/dropdownlistbuilder#nodatatemplateidsystemstring).
+1. Specify a [`NoDataTemplate`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/dropdownlistbuilder#nodatatemplatesystemstring) which will display an add confirmation dialog.
 1. Inside the template, create a button and attach a handler that passes both the widget `id` and input `value`.
-1. [`Sync`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/events/sync) the data to update the records.
+1. [`Sync`](https://docs.telerik.com/kendo-ui/api/data/datasource/events/sync) the data to update the records.
 
-```Index.cshtml
+```Razor Index.cshtml
     @using Telerik.Examples.Mvc.Models
 
     @(Html.Kendo().DataSource<Location>()
@@ -65,7 +66,8 @@ How can I add a new item if it doesn't exist when working with the {{ site.produ
         .HtmlAttributes(new { style = "width: 100%" })
     )
 ```
-```Controller.cs
+{% if site.core %}
+```C# Controller.cs
     public class AddItemController : Controller
     {
         public IActionResult AddItem()
@@ -93,9 +95,41 @@ How can I add a new item if it doesn't exist when working with the {{ site.produ
         }
     }
 ```
-```Script.js
+{% else %}
+```C# Controller.cs
+    public class AddItemController : Controller
+    {
+        public ActionResult AddItem()
+        {
+            return View("~/Views/DropDownList/AddItem.cshtml");
+        }
+        public ActionResult GetLocations()
+        {
+            IEnumerable<Location> locations = LocationsData();
+
+            return Json(locations, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult CreateLocation(Location location)
+        {
+            return Json(new[] { location });
+        }
+        private List<Location> LocationsData()
+        {
+            return new List<Location>()
+            {
+                new Location() { Id = 1, Name = "London" },
+                new Location() { Id = 2, Name = "Paris" },
+                new Location() { Id = 3, Name = "Sofia" }
+            };
+        }
+    }
+```
+{% endif %}
+
+
+```JS script.js
     <script id="noDataTemplate" type="text/x-kendo-tmpl">
-        <button class="k-button k-button-solid k-button-md k-rounded-md k-button-solid-base" onclick="addNew('#: instance.element[0].   id #', '#: instance.filterInput.val() #')">Add new item</button>
+        <button class="k-button" onclick="addNew('#: instance.element[0].   id #', '#: instance.filterInput.val() #')">Add new item</button>
     </script>
 
     <script>
@@ -114,7 +148,35 @@ How can I add a new item if it doesn't exist when working with the {{ site.produ
                 dataSource.sync(); //sync the data
             }
         };
-    </script> 
+    </script>
 ```
 
 For the complete implementation of the suggested approach, refer to [this GitHub Project](https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.Mvc/Telerik.Examples.Mvc/Views/DropDownList/AddItem.cshtml).
+
+## More {{ site.framework }} DropDownList Resources
+
+* [{{ site.framework }} DropDownList Documentation]({%slug htmlhelpers_dropdownlist_aspnetcore%})
+
+* [{{ site.framework }} DropDownList Demos](https://demos.telerik.com/{{ site.platform }}/dropdownlist/index)
+
+{% if site.core %}
+* [{{ site.framework }} DropDownList Product Page](https://www.telerik.com/aspnet-core-ui/dropdownlist)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} DropDownList Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Client-Side API Reference of the DropDownList for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/dropdownlist)
+* [Server-Side API Reference of the DropDownList for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/dropdownlist)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

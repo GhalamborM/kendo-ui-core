@@ -1,12 +1,13 @@
 ---
 title: Make Kendo UI Window Responsive
-description: An example on how to make a Kendo UI Window responsive so that it reacts to changes in the size of the viewport and adapts to small screens.
+description: Learn how to make a Kendo UI Window responsive so that it reacts to changes in the size of the viewport and adapts to small screens.
 type: how-to
-page_title: Adapt Window to Viewport Size | Kendo UI Window for jQuery
+page_title: Adapt Window to Viewport Size - Kendo UI Window for jQuery
 slug: responsive-kendo-window
 tags: kendo, window, responsive, adaptive, percent, size
 ticketid: 1362958
 res_type: kb
+components: ["window"]
 ---
 
 ## Environment
@@ -14,7 +15,9 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Window for Progress® Kendo UI®, Progress® Kendo UI® Window for ASP.NET MVC and Progress® Kendo UI® Window for ASP.NET Core</td>
+		<td>Progress® Kendo UI® Window for jQuery</td>
+		<td>Progress® Telerik® UI Window for ASP.NET MVC</td>
+		<td>Progress® Telerik® UI Window for ASP.NET Core</td>
 	</tr>
 </table>
 
@@ -35,7 +38,7 @@ To display a responsive Window:
     lorem ipsum dolor sit amet.
 </div>
 
-<button id="btnShowDiag" class="k-button k-button-md k-rounded-md k-button-solid k-button-solid-base">Show dialog</button>
+<button id="btnShowDiag" class="k-button">Show dialog</button>
 <script>
     $(document).ready(function() {
         var myWindow = $("#theWindow")
@@ -104,7 +107,7 @@ To display a responsive Window:
         // Set "responsive" size, you may want to .center() on $(window).resize because the relative position between the window and the viewport will change.
         // The constraints above apply, however, and are most useful when the window is resizable by the end user. The example here demonstrates that you can use them
         // but in the provided configuration they may not be needed. You can find the full set of options the widget can take in the following article:
-        // https://docs.telerik.com/kendo-ui/api/javascript/ui/window.
+        // https://docs.telerik.com/kendo-ui/api/ui/window.
 
         opts.height = "90%";
         opts.width = "90%";
@@ -141,4 +144,4 @@ To prevent the content from being too small on mobile devices, use a `@media` qu
 
 ## See Also
 
-* [API Reference of the Kendo UI Window for jQuery](https://docs.telerik.com/kendo-ui/api/javascript/ui/window)
+* [API Reference of the Kendo UI Window for jQuery](https://docs.telerik.com/kendo-ui/api/ui/window)

@@ -1,12 +1,13 @@
 ---
-title: Changing Themes on the Client
-page_title: Changing Themes on the Client | Styles and Appearance
+title: Change Themes on the Client
+page_title: Modify and Change Themes on the Client - Styles and Appearance
 description: "Learn how to change themes on the client when styling the Kendo UI widgets."
 previous_url: /styles-and-layout/change-themes-on-the-client, /styles-and-layout/how-to/change-themes-on-the-client
 slug: change-theme-on-the-client-sass
 tags: theme, sass
 type: how-to
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI for jQuery</td>
+  <td>Progress® Kendo UI® for jQuery</td>
  </tr>
 </table>
 
@@ -50,7 +51,7 @@ Because this approach is not related to the functionality of the Kendo UI suite,
         <div class="inner">
           <h4>Calendar</h4>
           <div id="calendar"></div>
-        </div> 
+        </div>
         <div class="inner">
           <h4>Slider</h4>
           <input id="slider" />
@@ -121,12 +122,25 @@ Because this approach is not related to the functionality of the Kendo UI suite,
           dataTextField: "text",
           dataValueField: "value",
           change: function (e) {
-            var href = $('head > link')[0].href;
-            var myRegexp = new RegExp("kendo.cdn.telerik.com/(.*)?/styles", "g");
-            var version = myRegexp.exec(href)[1];
-            var curHref = 'https://kendo.cdn.telerik.com/'+version+'/styles/kendo.'+ e.sender.value() +'.min.css';
+            var themeName = $("#theme")
+            .data("kendoDropDownList")
+            .text()
+            .toLowerCase();
+            var swatch = this.value();
 
-            $('head > link')[0].href = curHref;
+            $("link").each(function () {
+              if (this.href.indexOf("/themes/") != -1) {
+                var themeVersion = this.href.split("/")[4];
+                var curHref = "https://kendo.cdn.telerik.com/themes/" +
+                    themeVersion +
+                    "/" +
+                    themeName +
+                    "/" +
+                    swatch +
+                    ".css";
+                this.href = curHref;
+              }
+            });           
           }
         });
 

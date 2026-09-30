@@ -1,13 +1,13 @@
 ---
 title: Export Master and Detail Grids to Excel in Separate Sheets
-description: An example on how to export hierarchical Kendo UI Grids in separate sheets in Excel.
+description: Learn how to export hierarchical Kendo UI Grids in separate sheets in Excel.
 type: how-to
-page_title: Excel Export Master and Detail Grids in Separate Sheets | Kendo UI Grid for jQuery
+page_title: Excel Export Master and Detail Grids in Separate Sheets - Kendo UI for jQuery Data Grid
 slug: grid-excel-export-hierarchy-master-and-detail-separate-sheets
 tags: grid,kendo,excel,export,hierarchy,detail,separate,sheets
 ticketid: 1079757
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,8 +15,8 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
-  <td>Progress Kendo UI Excel Export</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
+  <td>Progress® Kendo UI® Excel Export for jQuery</td>
  </tr>
 </table>
 
@@ -42,9 +42,8 @@ How can I have separate sheets for the rows of the master Grid and for all detai
 
 
       var dataSource = new kendo.data.DataSource({
-        type: "odata",
         transport: {
-          read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+          read: "https://demos.telerik.com/service/v2/core/Orders"
         }
       });
 
@@ -53,9 +52,9 @@ How can I have separate sheets for the rows of the master Grid and for all detai
       $("#grid").kendoGrid({
         toolbar: ["excel"],
         dataSource: {
-          type: "odata",
+          type: "odata-v4",
           transport: {
-            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+            read: "https://demos.telerik.com/service/v2/odata/Employees"
           },
           pageSize: 6,
           serverPaging: true
@@ -96,13 +95,17 @@ How can I have separate sheets for the rows of the master Grid and for all detai
               to: headerColumnsCount
             };
 
-            // save the workbook
-           kendo.saveAs({
-              dataURI: new kendo.ooxml.Workbook({
+             var result = new kendo.ooxml.Workbook({
                 sheets: sheets
-              }).toDataURL(),
-              fileName: "Employees and Orders.xlsx"
-            });
+              });
+              
+            // save the workbook
+            result.toDataURLAsync().then(function(dataURL) {
+                  kendo.saveAs({
+     				 dataURI: dataURL,
+     				 fileName: "Test.xlsx"
+    			  });
+             });
           });
         },
         columns: [
@@ -148,9 +151,9 @@ How can I have separate sheets for the rows of the master Grid and for all detai
 
         $("<div/>").appendTo(e.detailCell).kendoGrid({
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+              read: "https://demos.telerik.com/service/v2/odata/Orders"
             },
             serverPaging: true,
             serverSorting: true,
@@ -174,5 +177,5 @@ How can I have separate sheets for the rows of the master Grid and for all detai
 ## See Also
 
 * [Exporting All Data]({% slug grid-excel-export-entire-data %})
-* [sheets.filter API](https://docs.telerik.com/kendo-ui/api/javascript/ooxml/workbook/configuration/sheets.filter)
-* [sheets.columns.width API](https://docs.telerik.com/kendo-ui/api/javascript/ooxml/workbook/configuration/sheets.columns.width)
+* [sheets.filter API](/api/ooxml/workbook/configuration/sheets#sheetsfilter)
+* [sheets.columns.width API](/api/ooxml/workbook/configuration/sheets#sheetscolumns#sheetscolumnswidth)

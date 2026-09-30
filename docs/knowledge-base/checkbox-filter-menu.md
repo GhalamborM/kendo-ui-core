@@ -1,13 +1,13 @@
 ---
 title: Create Checkbox Filter Menu
-page_title: Create Checkbox Filter Menu | Kendo UI Grid for jQuery
-description: "An example on how to create a checkbox filter menu functionality in the widget."
+page_title: Create Checkbox Filter Menu - Kendo UI for jQuery Data Grid
+description: "Learn how to create a checkbox filter menu functionality in the component."
 previous_url: /controls/data-management/grid/how-to/checkbox-filter-menu, /web/grid/how-to/checkbox-filter-menu, /controls/data-management/grid/how-to/filtering/checkbox-filter-menu
 slug: howto_create_checkbox_filter_menu_grid
 tags: grid, create, checkbox, filter, menu
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -37,35 +37,37 @@ How can I create a checkbox filter menu functionality in the Kendo UI Grid?
 
 The following example demonstrates how to create a menu functionality based on a checkbox filter in a Grid.
 
-> The functionality is available out of the box using the [columns.filterable.multi](/api/javascript/ui/grid/configuration/columns.filterable.multi) property.
+> The functionality is available out of the box using the [columns.filterable.multi](/api/ui/grid/configuration/columns#columnsfilterablemulti) property.
 
 ```dojo
      <div id="grid"></div>
 
     <script>
       $(document).ready(function () {
-        var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
             dataSource = new kendo.data.DataSource({
               transport: {
                 read: {
-                  url: crudServiceBaseUrl + "/Products",
-                  dataType: "jsonp"
+                  url: crudServiceBaseUrl + "/Products"
                 },
                 update: {
                   url: crudServiceBaseUrl + "/Products/Update",
-                  dataType: "jsonp"
+                  type: "POST",
+                  contentType: "application/json"
                 },
                 destroy: {
                   url: crudServiceBaseUrl + "/Products/Destroy",
-                  dataType: "jsonp"
+                  type: "POST",
+                  contentType: "application/json"
                 },
                 create: {
                   url: crudServiceBaseUrl + "/Products/Create",
-                  dataType: "jsonp"
+                  type: "POST",
+                  contentType: "application/json"
                 },
                 parameterMap: function (options, operation) {
                   if (operation !== "read" && options.models) {
-                    return { models: kendo.stringify(options.models) };
+                    return kendo.stringify(options.models);
                   }
                 }
               },
@@ -134,15 +136,16 @@ The following example demonstrates how to create a menu functionality based on a
               value: input.value
             };
           });
-          if (fieldFilters.length) {
+          if (fieldFilters.length > 0) {
             removeFiltersForField(filter, field);
             filter.filters.push({
               logic: "or",
-              filters: fieldFilters
+              filters: fieldFilters,
             });
             dataSource.filter(filter);
+          } else if (fieldFilters.length == 0) {
+            dataSource.filter([]);
           }
-          popup.close();
         });
       }
 
@@ -184,4 +187,4 @@ The following example demonstrates how to create a menu functionality based on a
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

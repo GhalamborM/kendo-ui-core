@@ -2,6 +2,7 @@
 title: Comments
 page_title: Spreadsheet
 description: "Define comments in cells in a Telerik UI Spreadsheet component for {{ site.framework }}."
+components: ["spreadsheet"]
 slug: htmlhelpers_spreadsheet_comments_aspnetcore
 position: 2
 ---
@@ -10,7 +11,7 @@ position: 2
 
 The Spreadsheet offers support for comments to be placed within each of its cells.
 
-The following example demonstrates how a cell in the Spreadsheet can be initially [configured to contain a comment](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet/configuration/sheets.rows.cells.comment).
+The following example demonstrates how a cell in the Spreadsheet can be initially [configured to contain a comment](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet/configuration/sheets.rows.cells.comment).
 
 ```HtmlHelper
     @(Html.Kendo().Spreadsheet()

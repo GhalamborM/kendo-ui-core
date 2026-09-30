@@ -2,22 +2,30 @@
 title: Appearance
 page_title: Appearance
 description: "Learn the basics when working with the Telerik UI Loader component for {{ site.framework }} set its size, type and themeColor configurations."
+components: ["loader"]
 slug: htmlhelpers_loader_aspnetcore_appearance
 position: 2
 ---
 
 # Appearance
 
-The Loader component provides several predefined appearance options such as different types, sizes and theme colors.
+The Loader component provides predefined appearance options, such as different types, sizes, and theme colors.
+
+To explore the available options for customizing the Loader appearance, refer to the following demos:
+
+* [Loader types](https://demos.telerik.com/{{ site.platform }}/loader/index)
+* [Loader theme colors and sizes](https://demos.telerik.com/{{ site.platform }}/loader/appearance)
 
 ## Type
 
-The Loader allows you to set different animations by using the `type` input property.
+The Loader allows you to set different visual animations by using the `Type` property.
 
-The available `types` values are:
-* `pulsing` (Default)&mdash;Applies pulsing animation on the Loader.
-* `infinite-spinner`&mdash;Applies infinite-spinner animation on the Loader.
-* `converging-spinner`&mdash;Applies converging-spinner animation on the Loader.
+The available `Type` values are:
+* `Pulsing`&mdash;Applies pulsing animation on the Loader.
+* `InfiniteSpinner`&mdash;Applies infinite-spinner animation on the Loader.
+* `ConvergingSpinner`&mdash;Applies converging-spinner animation on the Loader.
+
+> When not explicitly set, the type defaults to `Pulsing`.
 
 ```HtmlHelper
     @(Html.Kendo().Loader()
@@ -35,23 +43,33 @@ The available `types` values are:
         .Type(LoaderType.ConvergingSpinner)
     )
 ```
+{% if site.core %}
+```TagHelper
+    @addTagHelper *, Kendo.Mvc
+
+    <kendo-loader name="pulsing" type="LoaderType.Pulsing">
+    </kendo-loader>
+
+    <kendo-loader name="infinite" type="LoaderType.InfiniteSpinner">
+    </kendo-loader>
+
+    <kendo-loader name="converging" type="LoaderType.ConvergingSpinner">
+    </kendo-loader>
+```
+{% endif %}
 
 ## Theme Color
 
 The Loader allows you to specify predefined theme colors.
 
-The available `themeColor` values are:
+The available `ThemeColor` values are:
 
-* `primary` (Default)&mdash;Applies coloring based on primary theme color.
-* `secondary`&mdash;Applies coloring based on secondary theme color.
-* `tertiary`&mdash; Applies coloring based on tertiary theme color.
-* `info`&mdash;Applies coloring based on info theme color.
-* `success`&mdash; Applies coloring based on success theme color.
-* `warning`&mdash; Applies coloring based on warning theme color.
-* `error`&mdash; Applies coloring based on error theme color.
-* `dark`&mdash; Applies coloring based on dark theme color.
-* `light`&mdash; Applies coloring based on light theme color.
-* `inverse`&mdash; Applies coloring based on inverted theme color.
+* `Primary`&mdash;Applies coloring based on primary theme color.
+* `Base`&mdash;Applies coloring based on base theme color.
+* `Secondary`&mdash;Applies coloring based on secondary theme color.
+* `Tertiary`&mdash; Applies coloring based on tertiary theme color.
+
+> When not explicitly set, the applied theme controls the default theme color.
 
 ```HtmlHelper
     @(Html.Kendo().Loader()
@@ -68,52 +86,55 @@ The available `themeColor` values are:
         .Name("Tertiary")
         .ThemeColor(LoaderThemeColor.Tertiary)
     )
+```
+{% if site.core %}
+```TagHelper
+    @addTagHelper *, Kendo.Mvc
 
-    @(Html.Kendo().Loader()
-        .Name("Info")
-        .ThemeColor(LoaderThemeColor.Info)
-    )
+    <kendo-loader name="Primary" theme-color="LoaderThemeColor.Primary">
+    </kendo-loader>
 
-    @(Html.Kendo().Loader()
-        .Name("Success")
-        .ThemeColor(LoaderThemeColor.Success)
-    )
+    <kendo-loader name="Secondary" theme-color="LoaderThemeColor.Secondary">
+    </kendo-loader>
 
-    @(Html.Kendo().Loader()
-        .Name("Warning")
-        .ThemeColor(LoaderThemeColor.Warning)
-    )
+    <kendo-loader name="Tertiary" theme-color="LoaderThemeColor.Tertiary">
+    </kendo-loader>
+```
+{% endif %}
 
-    @(Html.Kendo().Loader()
-        .Name("Error")
-        .ThemeColor(LoaderThemeColor.Error)
-    )
+### Custom Color
 
-    @(Html.Kendo().Loader()
-        .Name("Dark")
-        .ThemeColor(LoaderThemeColor.Dark)
-    )
+The `ThemeColor()` option accepts only the predefined `LoaderThemeColor` values. To use a different color, add a custom CSS class to the Loader and override the background color of its segments. Load the custom CSS after the Kendo UI theme stylesheet.
 
+```HtmlHelper
     @(Html.Kendo().Loader()
-        .Name("Light")
-        .ThemeColor(LoaderThemeColor.Light)
+        .Name("customLoader")
+        .HtmlAttributes(new { @class = "custom-loader" })
     )
+```
+{% if site.core %}
+```TagHelper
+    <kendo-loader name="customLoader" class="custom-loader"></kendo-loader>
+```
+{% endif %}
 
-    @(Html.Kendo().Loader()
-        .Name("Inverse")
-        .ThemeColor(LoaderThemeColor.Inverse)
-    )
+```CSS
+    #customLoader.custom-loader .k-loader-segment {
+        background-color: #7b2cbf;
+    }
 ```
 
 ## Size
 
 The Loader allows you to set different sizes.
 
-The available `size` values are:
+The available `Size` values are:
 
-* `small`
-* `medium` (Default)
-* `large`
+* `Small`
+* `Medium`
+* `Large`
+
+> When not explicitly set, the applied theme controls the default size.
 
 ```HtmlHelper
     @(Html.Kendo().Loader()
@@ -131,7 +152,23 @@ The available `size` values are:
         .Size(LoaderSize.Large)
     )
 ```
+{% if site.core %}
+```TagHelper
+    @addTagHelper *, Kendo.Mvc
+
+    <kendo-loader name="loader-small" size="LoaderSize.Small">
+    </kendo-loader>
+
+    <kendo-loader name="loader-medium" size="LoaderSize.Medium">
+    </kendo-loader>
+
+    <kendo-loader name="loader-large" size="LoaderSize.Large">
+    </kendo-loader>
+```
+{% endif %}
 
 ## See Also
 
-* [Server-Side API](/api/loader)
+* [Appearance of the Loader HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/loader/appearance)
+* [Loader Server-Side API](/api/loader)
+* [Loader Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/loader)

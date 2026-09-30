@@ -1,13 +1,13 @@
 ---
 title: Draw a Signature and Export It to SVG
-description: An example on how to allow the user to draw a signature and export it to SVG by using the Kendo UI Drawing API.
+description: Learn how to allow the user to draw a signature and export it to SVG by using the Kendo UI Drawing API.
 type: how-to
-page_title: Allow Users to Sign Their Names on a Canvas and Export It to SVG | Kendo UI Spreadsheet for jQuery
+page_title: Allow Users to Sign Their Names on a Canvas and Export It to SVG - Kendo UI Spreadsheet for jQuery
 slug: drawing-draw-signature-and-export-svg
 tags: kendo, kendo-ui, drawing, path, geometry, svg, signature
 ticketid: 1144186
 res_type: kb
-component: drawing
+components: ["drawing"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: drawing
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Drawing API</td>
+  <td>Progress® Kendo UI® Drawing API</td>
  </tr>
 </table>
 
@@ -87,7 +87,7 @@ Allow the user to draw on the screen (Canvas) and export the drawing as an SVG f
       kendo.saveAs({
         dataURI: data,
         fileName: "signature.svg",
-        proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+        proxyURL: "https://demos.telerik.com/service/v2/core/export"
       });
     });
   });
@@ -167,7 +167,7 @@ To use this approach mobile devices (touch screens) you need to use the touch ev
           kendo.saveAs({
             dataURI: data,
             fileName: "signature.svg",
-            proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+            proxyURL: "https://demos.telerik.com/service/v2/core/export"
           });
         });
       });
@@ -180,4 +180,4 @@ To use this approach mobile devices (touch screens) you need to use the touch ev
 
 ## See Also
 
-* [API Reference of the Kendo UI Drawing Library](https://docs.telerik.com/kendo-ui/api/javascript/drawing)
+* [API Reference of the Kendo UI Drawing Library](https://docs.telerik.com/kendo-ui/api/drawing)

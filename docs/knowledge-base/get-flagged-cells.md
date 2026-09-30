@@ -5,9 +5,9 @@ description: "Learn how to get all flagged cells in a Kendo UI for jQuery Spread
 slug: howto_get_flagged_cells_containing_invalid_values_spreadsheet_widget
 previous_url: /controls/data-management/spreadsheet/how-to/get-flagged-cells
 tags: kendo, jquery, spreadsheet, get, flagged, cells, containing, invalid, values
-component: spreadsheet
 type: how-to
 res_type: kb
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet for jQuery</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -65,7 +65,7 @@ The following example demonstrates how to get all flagged cells in the Spreadshe
         sheetsbar: false,
         excel: {
           // Required to enable Excel Export in some browsers
-          proxyURL: "//demos.telerik.com/kendo-ui/service/export"
+          proxyURL: "https://demos.telerik.com/service/v2/core/export"
         },
         sheets: [
           {
@@ -601,4 +601,4 @@ The following example demonstrates how to get all flagged cells in the Spreadshe
 ## See Also
 
 * [Basic Usage of the Spreadsheet (Demo)](https://demos.telerik.com/kendo-ui/spreadsheet/index)
-* [Spreadsheet JavaScript API Reference](/api/javascript/ui/spreadsheet)
+* [Spreadsheet JavaScript API Reference](/api/ui/spreadsheet)

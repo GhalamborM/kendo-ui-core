@@ -1,12 +1,12 @@
 ---
 title: Identify when the DropDownTree is Fully Loaded
-description: An example on how to identify when the last DataBound event is fired in the Kendo UI DropDownTree.
+description: Learn how to identify when the last DataBound event is fired in the Kendo UI DropDownTree.
 type: how-to
-page_title: Identify when the DropDownTree is Fully Loaded | Kendo UI DropDownTree for jQuery
+page_title: Identify when the DropDownTree is Fully Loaded - Kendo UI DropDownTree for jQuery
 slug: dropdowntree-fully-loaded
 tags: kendo, kendo-ui, dropdowntree, databound, loaded, last-databound
 res_type: kb
-component: dropdowntree
+components: ["dropdowntree"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: dropdowntree
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI DropDownTree</td>
+  <td>Progress® Kendo UI® DropDownTree for jQuery</td>
  </tr>
 </table>
 
@@ -32,12 +32,11 @@ How can I identify the last `DataBound` event in the DropDownTree so that I know
 <input id="dropdowntree" style="width: 100%;" />
 
 <script>
-  var serviceRoot = "https://demos.telerik.com/kendo-ui/service";
+  var serviceRoot = "https://demos.telerik.com/service/v2/core";
   homogeneous = new kendo.data.HierarchicalDataSource({
     transport: {
       read: {
-        url: serviceRoot + "/Employees",
-        dataType: "jsonp"
+        url: serviceRoot + "/Employees"
       }
     },
     schema: {
@@ -90,4 +89,4 @@ How can I identify the last `DataBound` event in the DropDownTree so that I know
 
 ## See Also
 
-* [API Reference of the DropDownTree](https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdowntree)
+* [API Reference of the DropDownTree](https://docs.telerik.com/kendo-ui/api/ui/dropdowntree)

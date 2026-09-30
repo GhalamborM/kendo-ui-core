@@ -1,14 +1,14 @@
 ---
 title: Increase Width to Potentially Show Full Column Values
-description: An example on how to increase the width of the filter menu in the Kendo UI Grid for ASP.NET MVC.
+description: Learn how to increase the width of the filter menu in the Kendo UI Grid for ASP.NET MVC.
 type: how-to
-page_title: Increase the Width of the Filter Menu | Kendo UI Grid for jQuery
+page_title: Increase the Width of the Filter Menu - Kendo UI for jQuery Data Grid
 slug: increase-the-width-of-the-filter-menu
 previous_url: /knowledge-base/how-to-increase-the-width-of-the-filter-menu
 tags: grid, filter, width
 ticketid: 1133304
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -16,7 +16,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for ASP.NET MVC</td>
+  <td>Progress® Telerik® UI Grid for ASP.NET MVC</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -31,11 +31,11 @@ component: grid
   <td>Version 61.0.3163.79 (Official Build) (64-bit)</td>
  </tr>
  <tr>
-  <td>.Net framework</td>
+  <td>.NET Framework</td>
   <td>Version 4.6</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -62,7 +62,7 @@ Use CSS rules to expand the width of the container and the elements that are loc
 }
 ```
 
-On the [`filterMenuInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/filtermenuinit) event, you can also set the width of the container per menu.
+On the [`filterMenuInit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/filtermenuinit) event, you can also set the width of the container per menu.
 
 ```dojo
 <div id="grid"></div>
@@ -80,9 +80,9 @@ On the [`filterMenuInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/gr
         $(document).ready(function() {
           $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               schema: {
                 model: {

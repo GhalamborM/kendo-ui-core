@@ -2,11 +2,12 @@
 title: Setting Global Min and Max DatePicker Values
 description: An example demonstrating how to change the max and min values globally for all DatePickers
 type: how-to
-page_title: Modifying Min and Max Values Globally | Kendo UI DatePicker for jQuery
+page_title: Modifying Min and Max Values Globally - Kendo UI DatePicker for jQuery
 slug: datepicker-global-min-max-range
 tags: datepicker, global, min, max, range
 ticketid: 1341901
 res_type: kb
+components: ["datepicker"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>DatePicker for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® DatePicker for jQuery</td>
  </tr>
 
   <td>Product Version</td>
@@ -29,7 +30,7 @@ How can I change globally the min and max values for all Kendo UI DatePickers?
 
 ## Solution
 
-To globally set the [`min`](/api/javascript/ui/datepicker/configuration/min) and [`max`](/api/javascript/ui/datepicker/configuration/max) configurations for all Kendo UI DatePickers, add the following script.
+To globally set the [`min`](/api/ui/datepicker/configuration/min) and [`max`](/api/ui/datepicker/configuration/max) configurations for all Kendo UI DatePickers, add the following script.
 
 ```
 <script>

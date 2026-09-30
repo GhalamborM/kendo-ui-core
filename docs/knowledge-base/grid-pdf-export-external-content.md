@@ -2,12 +2,13 @@
 title: Export Grid PDF with Custom Template and External Variables
 description: Learn how to include external variables in the PDF template of the Grid
 type: how-to
-page_title: Include External Variables and Content in PDF Template | Kendo UI Grid
+page_title: Include External Variables and Content in PDF Template - Kendo UI Grid
 slug: grid-pdf-export-external-content
 position: 
 tags: grid, pdf, export, external, customize, header, footer, variable, content, template
 ticketid: 1407533
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -33,7 +34,7 @@ I am working on a multiple grid export to PDF which needs a custom template.
 
 ## Solution
 
-- The Kendo UI PDF template has the [`pageNum`](/api/javascript/ui/grid/configuration/pdf.template) property that can be used as a condition as part of the template. This will allow you to add or remove parts of the template dependent on it. 
+- The Kendo UI PDF template has the [`pageNum`](/api/ui/grid/configuration/pdf#pdftemplate) property that can be used as a condition as part of the template. This will allow you to add or remove parts of the template dependent on it. 
 - It is possible to check runtime if the `kendo-pdf-document` contains a child with a certain id. It is important to remember that the "#" literal needs to be escaped:
 
 ```
@@ -59,6 +60,8 @@ I am working on a multiple grid export to PDF which needs a custom template.
 ```
 #### Example
 
+The following example exports two Grids to a single PDF file, adds a custom header and a DropDownList value to the first page only, and uses the `pageNum` condition inside the Kendo template to control visibility.
+
 ```dojo
   <div id="example">
 
@@ -68,7 +71,7 @@ I am working on a multiple grid export to PDF which needs a custom template.
       <div id="grid"></div>
       <div id="grid2"></div>
 
-      <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/pako_deflate.min.js"></script>
+      <script src="https://unpkg.com/pako/dist/pako_deflate.min.js"></script>
 
       <script type="x/kendo-template" id="page-template">
             <div class="page-template">
@@ -110,9 +113,8 @@ I am working on a multiple grid export to PDF which needs a custom template.
               scale: 0.8
             },
             dataSource: {
-              type: "odata",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                read: "https://demos.telerik.com/service/v2/core/Customers"
               },
               pageSize: 20
             },
@@ -151,9 +153,8 @@ I am working on a multiple grid export to PDF which needs a custom template.
               scale: 0.7
             },
             dataSource: {
-              type: "odata",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products"
+                read: "https://demos.telerik.com/service/v2/core/Products"
               },
               schema:{
                 model: {

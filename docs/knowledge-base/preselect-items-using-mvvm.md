@@ -1,13 +1,13 @@
 ---
 title: Preselect MultiSelect Items by Using MVVM Binding
 page_title: Preselect MultiSelect Items by Using MVVM Binding
-description: "Learn how to preselect items by using MVVM in the Kendo UI Multiselect widget."
+description: "Learn how to preselect items by using MVVM in the Kendo UI Multiselect component."
 previous_url: /controls/editors/multiselect/how-to/preselect-items-using-mvvm, /controls/editors/multiselect/how-to/selection/preselect-items-using-mvvm
 slug: howto_preselect_items_byusing_mvvm_binding_multiselect
 tags: telerik, kendo, jquery, multiselect, preselect, items, by, using, mvvm, binding
-component: multiselect
 type: how-to
 res_type: kb
+components: ["multiselect"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI MultiSelect for jQuery</td>
+  <td>Progress® Kendo UI® MultiSelect for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -64,11 +64,11 @@ The following example demonstrates how to achieve the desired scenario.
 
           $("#set").click(function() {
             var source = new kendo.data.DataSource({
-              type: "odata",
+              type: "odata-v4",
               serverFiltering: true,
               transport: {
                 read: {
-                  url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products",
+                  url: "https://demos.telerik.com/service/v2/odata/Products",
                 }
               }
             });
@@ -96,9 +96,9 @@ The following example demonstrates how to achieve the desired scenario.
 
 ## See Also
 
-* [MultiSelect JavaScript API Reference](/api/javascript/ui/multiselect)
-* [How to Cascade from DropDownList]({% slug howto_cascade_froma_dropdownlist_multiselect %})
-* [How to Filter Values in Widgets Sharing the Same Data]({% slug howto_filter_valuesin_widgetswith_shared_data_multiselect %})
-* [How to Select All Values with Single Selection]({% slug howto_select_allvalues_witha_single_selection_multiselect %})
-* [How to Use MultiSelect with Bootstrap Modal Window]({% slug howto_use_multiselect_with_bootstrap_modal_window_multiselect %})
-* [How to Wire Blur Event of the Filter Input]({% slug howto_wire_blur_event_ofthe_filtеr_input_multiselect %})
+* [MultiSelect JavaScript API Reference](/api/ui/multiselect)
+* [Cascade from DropDownList]({% slug howto_cascade_froma_dropdownlist_multiselect %})
+* [Filter Values in Widgets Sharing the Same Data]({% slug howto_filter_valuesin_widgetswith_shared_data_multiselect %})
+* [Select All Values with Single Selection]({% slug howto_select_allvalues_witha_single_selection_multiselect %})
+* [Use MultiSelect with Bootstrap Modal Window]({% slug howto_use_multiselect_with_bootstrap_modal_window_multiselect %})
+* [Wire Blur Event of the Filter Input]({% slug howto_wire_blur_event_ofthe_filter_input_multiselect %})

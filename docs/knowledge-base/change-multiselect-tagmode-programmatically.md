@@ -1,14 +1,14 @@
 ---
 title: Change Multiselect Tag Mode Based on the Number of Selected Items
-page_title: Change the Tag Mode Programmatically | Kendo UI MultiSelect for jQuery
-description: An example on how to programmatically change the tag mode of the Kendo UI MultiSelect.
+page_title: Change the Tag Mode Programmatically - Kendo UI MultiSelect for jQuery
+description: Learn how to programmatically change the tag mode of the Kendo UI MultiSelect.
 type: how-to
 slug: change-multiselect-tagmode-programmatically
 previous_url: /knowledge-base/change-multiselect-tagmode-programatically
 tags: multiselect, tagmode, change, programmatically, number, selected, items
 ticketid: 1133139
 res_type: kb
-component: multi-select
+components: ["multiselect"]
 ---
 
 ## Environment
@@ -16,7 +16,7 @@ component: multi-select
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI MultiSelect</td>
+  <td>Progress® Kendo UI® MultiSelect for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>

@@ -5,9 +5,9 @@ description: "Learn how to extend the clickable or touchable area of points in a
 previous_url: /controls/charts/how-to/expand-clickable-area, /controls/charts/how-to/interaction/expand-clickable-area
 slug: howto_extendclickableareaofpoints_charts
 tags: chart, expand, clickable, area, of, points
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ Sometimes the Chart produces series of points that are too small to be reliably 
 
 ## Solution
 
-It is possible to expand the active area by adding a transparent element as part of the [`visual`](/api/javascript/dataviz/ui/chart/configuration/series.visual) configuration.
+It is possible to expand the active area by adding a transparent element as part of the [`visual`](/api/dataviz/ui/chart/configuration/series#seriesvisual) configuration.
 
 The following example demonstrates how to achieve this behavior in a Bar Charts series.
 
@@ -127,8 +127,8 @@ The following example demonstrates how to expand the clickable or touchable area
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Fit PDF Exported Chart to Page]({% slug howto_fitpdfexportedcharttopage_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Fit PDF Exported Chart to Page]({% slug howto_fitpdfexportedcharttopage_charts %})

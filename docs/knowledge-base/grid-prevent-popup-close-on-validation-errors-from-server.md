@@ -1,12 +1,12 @@
 ---
 title: Prevent Grid Popup Editor from Closing on Validation Errors
-description: An example on how to keep the Kendo UI Grid popup editor open after an error occurs on the server.
+description: Learn how to keep the Kendo UI Grid popup editor open after an error occurs on the server.
 type: how-to
-page_title: Keep Popup Open on Server Error | Kendo UI Grid for jQuery
+page_title: Keep Popup Open on Server Error - Kendo UI for jQuery Data Grid
 slug: grid-prevent-popup-close-on-validation-errors-from-server
 tags: grid, edit, popup, prevent, cancel, stop, close, edit, insert, create, modal, reopen, keep, open, validation, fail, errors
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>2020.3.1021</td>
  </tr>
 </table>
@@ -28,9 +28,9 @@ I am returning errors from server and catch it in kendo datasource error event. 
 
 ## Solution
 
-1. Specify which part of the response contains the errors [`schema.errors`](/api/javascript/data/datasource/configuration/schema#schemaerrors).
-1. Add an [`error`](/api/javascript/data/datasource/events/error) handler in the data source. It will be triggered when the field which contains the errors is **present** in the response.
-1. Prevent the grid to bind with the [`one()`](/api/javascript/observable/methods/one) method. This will keep the popup open and notify the user that there are errors.
+1. Specify which part of the response contains the errors [`schema.errors`](/api/data/datasource/configuration/schema#schemaerrors).
+1. Add an [`error`](/api/data/datasource/events/error) handler in the data source. It will be triggered when the field which contains the errors is **present** in the response.
+1. Prevent the grid to bind with the [`one()`](/api/observable/methods/one) method. This will keep the popup open and notify the user that there are errors.
 
 ```
     error: function(e) {
@@ -50,6 +50,8 @@ I am returning errors from server and catch it in kendo datasource error event. 
 
 ###### Sample error response
 
+The following snippet shows the expected JSON structure the server returns when validation fails. The `errors` array is mapped through `schema.errors` so the DataSource fires its `error` event.
+
 ```
     "errors": [{
 		"code": "400",
@@ -59,50 +61,53 @@ I am returning errors from server and catch it in kendo datasource error event. 
 
 ###### Example - the update response contains errors which trigger the error event of the dataSource
 
-```dojo
+The following example configures a Grid with an `update` transport that returns an error response. The `error` handler intercepts the `dataBinding` event to keep the popup open and display the server error messages.
+
+```
 <div id="grid"></div>
     <script>
       var dataSource = new kendo.data.DataSource({
+        pageSize: 15,
         transport: {
-          read:{
-            url: "https://www.mocky.io/v2/5ce682093300004b3573161e"
+          read: {
+            url: "https://runner.telerik.io/fullscreen/PQkmUirI.json",
           },
           update: {
-            url: "https://www.mocky.io/v2/5ce686e33300006200731647",
-          }
+            url: "https://runner.telerik.io/fullscreen/ojjEoSVp.json",
+          },
         },
         schema: {
-          data: "items",
-          total:"total",
+          total: "total",
           errors: "errors",
-          model:{
-            id: "id",
-            fields:{
-              id: { editable: false },
-              name: { type: "string" }
-            }
-          }
+          model: {
+            id: "ProductID",
+            fields: {
+              ProductID: { editable: false },
+              ProductName: { type: "string" },
+            },
+          },
         },
-        error: function(e) {
+        error: function (e) {
           grid.one("dataBinding", function (ev) {
             ev.preventDefault();
-            var message = "Errors:\n";            
-            $.each(e.errors, function (idx, error) {             
-               message += "Code: "
-                 + error.code
-                 + " | Reason: " + error.reason
-              	 + "\n";
+            var message = "Errors:\n";
+            $.each(e.errors, function (idx, error) {
+              debugger;
+              message +=
+                "Code: " + error.code + " | Reason: " + error.reason + "\n";
             });
             kendo.alert(message);
           });
-        }
+        },
       });
 
-      var grid = $("#grid").kendoGrid({
-        dataSource:dataSource,
-        columns:["id", "name", {command: ["edit"]}],
-        editable:{ mode : "popup"}
-      }).data("kendoGrid");
+      var grid = $("#grid")
+        .kendoGrid({
+          dataSource: dataSource,
+          columns: ["ProductID", "ProductName", { command: ["edit"] }],
+          editable: { mode: "popup" },
+        })
+        .data("kendoGrid");
     </script>
 ```
 

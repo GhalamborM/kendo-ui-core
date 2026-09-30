@@ -1,12 +1,13 @@
 ---
 title: Count the Hidden Rows after Filtering in Spreadsheet
-description: An example on how to count the number of the hidden rows after filtering the Kendo UI Spreadsheet.
+description: Learn how to count the number of the hidden rows after filtering the Kendo UI Spreadsheet.
 type: how-to
-page_title: Count the Number of Hidden Rows | Kendo UI Spreadsheet for jQuery
+page_title: Count the Number of Hidden Rows - Kendo UI Spreadsheet for jQuery
 slug: spreadsheet-hidden-rows-count-on-filtering
 tags: spreadsheet
 ticketid: 1083716  
 res_type: kb
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -42,7 +43,7 @@ How can I count the number of hidden rows after filtering in the Spreadsheet?
 ```dojo
 <div id="spreadsheet" style="width: 100%"></div>
 <script>
-    kendo.spreadsheet.Controller.fn.onCommandRequest = function (e) {
+    kendo.spreadsheet.Controller.prototype.onCommandRequest = function (e) {
         if (e.command) {
           this._execute(e);
         } else {

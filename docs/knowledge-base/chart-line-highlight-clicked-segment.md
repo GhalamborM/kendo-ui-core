@@ -1,12 +1,13 @@
 ---
 title: Highlight Clicked Line Chart Segments
-description: An example on how to highlight the clicked line segment in the Kendo UI Line Chart.
+description: Learn how to highlight the clicked line segment in the Kendo UI Line Chart.
 type: how-to
-page_title: Highlight Line on Click | Kendo UI Chart for jQuery
+page_title: Highlight Line on Click - Kendo UI Chart for jQuery
 slug: chart-line-highlight-clicked-segment
 tags: chart, line, highlight, click, series
 ticketid: 1152454
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Chart for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Chart for jQuery</td>
 	</tr>
 </table>
 
@@ -28,7 +29,7 @@ How can I highlight the clicked line in the Kendo UI Line Chart?
 
 ## Solution
 
-Handle the [`seriesClick`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/events/seriesclick) event&mdash;in the event handler, add a custom style class to the desired HTML elements.
+Handle the [`seriesClick`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/events/seriesclick) event&mdash;in the event handler, add a custom style class to the desired HTML elements.
 
 ```dojo
 <style>
@@ -39,7 +40,7 @@ Handle the [`seriesClick`](https://docs.telerik.com/kendo-ui/api/javascript/data
 </style>
 <div id="example">
 	<div class="demo-section k-content wide">
-		<div id="chart" style="background: center no-repeat url('../content/shared/styles/world-map.png');"></div>
+		<div id="chart" style="background: center no-repeat url('https://demos.telerik.com/kendo-ui/content/shared/styles/world-map.png');"></div>
 	</div>
 	<script>
 		function createChart() {

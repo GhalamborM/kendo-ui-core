@@ -2,6 +2,7 @@
 title: Auto-Resizing to Window
 page_title: Auto-Resizing to Window
 description: "Learn how to auto-resize the Splitter to fit to the Window component by using the Telerik UI Splitter component for {{ site.framework }}."
+components: ["splitter"]
 slug: htmlhelpers_add_auto_resizing_splitter_to_window_aspnetcore
 position: 2
 ---
@@ -58,10 +59,10 @@ You can add a Splitter that resizes automatically along with the Kendo UI for jQ
             overflow: hidden;
         }
     </style>
-```    
+```
 {% if site.core %}
 ```TagHelper
-    <kendo-window name="window" 
+    <kendo-window name="window"
                   title="Telerik UI Window"
                   resizable="true"
                   modal="true"
@@ -71,8 +72,8 @@ You can add a Splitter that resizes automatically along with the Kendo UI for jQ
     </kendo-window>
 
     <script id="template" type="text/html">
-        <kendo-splitter name="splitter" 
-                        orientation="SplitterOrientation.Horizontal" 
+        <kendo-splitter name="splitter"
+                        orientation="SplitterOrientation.Horizontal"
                         is-in-client-template="true">
             <pane collapsible="true">
                 left pane <br /><br /> Please resize the Window and watch  the Splitter resize automatically.
@@ -111,7 +112,7 @@ You can add a Splitter that resizes automatically along with the Kendo UI for jQ
 ```Controller
     public class SplitterController : Controller
     {
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }

@@ -5,9 +5,9 @@ description: "Learn how to enable and disable the Kendo UI Drag and Drop functio
 slug: howto_enableanddisabledraggingatruntime_intercativityandux
 previous_url: /controls/editors/validator/how-to/disable-dragging-runtime
 tags: telerik, kendo, jquery, drag, and, drop, enable, and, disable, dragging, at, runtime
-component: draganddrop
 type: how-to
 res_type: kb
+components: ["draganddrop"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Drag and Drop for jQuery</td>
+  <td>Progress® Kendo UI® Drag and Drop for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -65,6 +65,6 @@ The following example demonstrates the implementation of the suggested approach.
 ## See Also
 
 * [Basic Usage of the Drag-and-Drop (Demo)](https://demos.telerik.com/kendo-ui/dragdrop/index)
-* [API Reference of Draggable](/api/javascript/ui/draggable)
-* [API Reference of DropTarget](/api/javascript/ui/droptarget)
-* [API Reference of DropTargetArea](/api/javascript/ui/droptargetarea)
+* [API Reference of Draggable](/api/ui/draggable)
+* [API Reference of DropTarget](/api/ui/droptarget)
+* [API Reference of DropTargetArea](/api/ui/droptargetarea)

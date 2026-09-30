@@ -1,13 +1,13 @@
 ---
 title: Show a Checkbox Column in the TreeList
 page_title: Show a Checkbox Column in the TreeList
-description: "Learn how to show a checkbox column bound to the item model in a Kendo UI TreeList widget."
+description: "Learn how to show a checkbox column bound to the item model in a Kendo UI TreeList component."
 slug: howto_showcheckboxcolumn_treelist
 previous_url: /controls/data-management/treelist/how-to/show-a-checkbox-column
 tags: kendo, jquery, treelist, show, a, checkbox, column
-component: treelist
 type: how-to
 res_type: kb
+components: ["treelist"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI TreeList for jQuery</td>
+  <td>Progress® Kendo UI® TreeList for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -78,8 +78,8 @@ The following example demonstrates how to add and render a checkbox column bound
       height: 540,
       columns: [
         {
-          headerTemplate: "<input type='checkbox' class='k-checkbox k-checkbox-md k-rounded-md' onclick='toggleAll(event)' />",
-          template: "<input type='checkbox' class='k-checkbox k-checkbox-md k-rounded-md' data-bind='checked: checked' />",
+          headerTemplate: "<input type='checkbox' class='k-checkbox' onclick='toggleAll(event)' />",
+          template: "<input type='checkbox' class='k-checkbox' data-bind='checked: checked' />",
           width: 40
         },
         { field: "Position", expandable: true },
@@ -100,4 +100,4 @@ The following example demonstrates how to add and render a checkbox column bound
 
 * [Basic Usage of the TreeList (Demo)](https://demos.telerik.com/kendo-ui/treelist/index)
 * [Using the API of the TreeList (Demo)](https://demos.telerik.com/kendo-ui/treelist/api)
-* [TreeList JavaScript API Reference](/api/javascript/ui/treelist)
+* [TreeList JavaScript API Reference](/api/ui/treelist)

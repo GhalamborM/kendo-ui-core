@@ -5,9 +5,9 @@ description: "Learn how to create left-to-right gradients with three-color value
 previous_url: /controls/charts/how-to/create-left-to-right-gradient-multi-color-values, /controls/charts/how-to/appearance/create-left-to-right-gradient-multi-color-values
 slug: howto_creategradientleftrightmulticolors_charts
 tags: chart, create, multi-color, values, left-to-right
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Charts for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -133,8 +133,8 @@ The following example demonstrates how to create such gradients with three-color
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})

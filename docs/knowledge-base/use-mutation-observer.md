@@ -5,9 +5,9 @@ description: "Learn how to use the MutationObserver to add a red border and hide
 previous_url: /framework/validator/how-to/use-mutation-observer, /controls/editors/validator/how-to/use-mutation-observer
 slug: howto_usemutationobserver_addborderandhidetooltip_validator
 tags: telerik, kendo, jquery, validator, use, mutationobserver, add, border, hide, tooltip
-component: validator
 type: how-to
 res_type: kb
+components: ["validator"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Validator for jQuery</td>
+  <td>Progress® Kendo UI® Validator for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -67,7 +67,7 @@ The following example demonstrates how to achieve this behavior by using a `Muta
         height: 323px;
         margin: 0 auto;
         padding: 10px 20px 20px 170px;
-        background: url('../content/web/validator/ticketsOnline.png') transparent no-repeat 0 0;
+        background: url('https://demos.telerik.com/kendo-ui/content/web/validator/ticketsOnline.png') transparent no-repeat 0 0;
       }
       #tickets h3 {
         font-weight: normal;
@@ -235,4 +235,4 @@ The following example demonstrates how to achieve this behavior by using a `Muta
 ## See Also
 
 * [Basic Usage of the Validator (Demo)](https://demos.telerik.com/kendo-ui/validator/index)
-* [JavaScript API Reference of the Validator](/api/javascript/ui/validator)
+* [JavaScript API Reference of the Validator](/api/ui/validator)

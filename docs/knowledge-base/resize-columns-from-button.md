@@ -1,13 +1,13 @@
 ---
 title: Resize Columns from a Button
-page_title: Resize Columns from a Button | Kendo UI Grid for jQuery
-description: "An example on how to resize the columns of the Kendo UI Grid for jQuery by using a custom button and AngularJS handlers."
+page_title: Resize Columns from a Button - Kendo UI for jQuery Data Grid
+description: "Learn how to resize the columns of the Kendo UI Grid for jQuery by using a custom button and AngularJS handlers."
 previous_url: /controls/data-management/grid/how-to/AngularJS/resize-columns-from-button
 slug: howto_resize_columnsfrom_abutton_grid
 tags: resize, columns, using, custom, button, angularjs
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -43,7 +43,7 @@ How can I resize the columns of the Kendo UI Grid for jQuery by using a custom b
 
 The following example demonstrates how to resize the columns of the Grid by using a custom button and AngularJS handlers.
 
-```dojo
+```
      <div id="example" ng-app="KendoDemos">
       <div ng-controller="MyCtrl">
         <div kendo-grid="kg" options="mainGridOptions">
@@ -68,9 +68,9 @@ The following example demonstrates how to resize the columns of the Grid by usin
 
         $scope.mainGridOptions = {
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+              read: "https://demos.telerik.com/service/v2/odata/Employees"
             },
             pageSize: 5,
             serverPaging: true,
@@ -108,4 +108,4 @@ The following example demonstrates how to resize the columns of the Grid by usin
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

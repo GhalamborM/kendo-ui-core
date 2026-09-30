@@ -1,12 +1,13 @@
 ---
 title: Drag and Resize Window Over Iframe
-description: An example on how to enable Window to be dragged and resized over iframe elements.
+description: Learn how to enable Window to be dragged and resized over iframe elements.
 type: how-to
-page_title: Drag and Resize Window Over Iframe | Kendo UI Window for jQuery
+page_title: Drag and Resize Window Over Iframe - Kendo UI Window for jQuery
 slug: window-drag-resize-over-iframe
 tags: window, iframe, drag, resize
 ticketid:
 res_type: kb
+components: ["window"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Window</td>
+  <td>Progress® Kendo UI® Window for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2020.3.1118 version</td>
  </tr>
 </table>
@@ -37,7 +38,7 @@ When there is a Kendo Window and an iframe on the same page (Window and Editor a
     <div id="example">
       <div id="window">
         <h4>Armchair 402</h4>
-        <div class="armchair"><img src="../content/web/window/armchair-402.png" alt="Armchair 402" /> Artek Alvar Aalto - Armchair 402</div>
+        <div class="armchair"><img src="https://demos.telerik.com/kendo-ui/content/web/window/armchair-402.png" alt="Armchair 402" /> Artek Alvar Aalto - Armchair 402</div>
         <p>Alvar Aalto is one of the greatest names in modern architecture and design. Glassblowers at the iittala factory still meticulously handcraft the legendary vases that are variations on one theme, fluid organic shapes that let the end user decide the use. Interpretations of the shape in new colors and materials add to the growing Alvar Aalto Collection that remains true to his original design.</p>
       </div>
 

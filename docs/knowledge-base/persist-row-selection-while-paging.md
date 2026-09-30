@@ -1,16 +1,25 @@
 ---
 title: Persist Row Selection during Data Operations
-page_title: Persist Row Selection while Paging, Sorting, or Filtering | Kendo UI Grid for jQuery
-description: An example on how to persist row selection while performing the paging, sorting, and filtering data operations.
+page_title: Persist Row Selection while Paging, Sorting, or Filtering - Kendo UI for jQuery Data Grid
+description: Learn how to persist row selection while performing the paging, sorting, and filtering data operations.
 type: how-to
 tags: kendo, ui, grid, selection, paging, sorting, grouping, filtering
 res_type: kb
-component: grid
+components: ["grid"]
 slug: howto_persist_row_selection_paging_sorting_filtering_grid
 previous_url: /controls/data-management/grid/how-to/Selection/persist-row-selection-while-paging
 ---
 
-> * As of the 2017 R2 release, persisting the selection in the Grid is available out of the box. For more information, refer to the [`persistSelection`](/api/javascript/ui/grid/configuration/persistselection) property.
+## Environment
+
+<table>
+ <tr>
+  <td>Product</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
+ </tr>
+</table>
+
+> * As of the 2017 R2 release, persisting the selection in the Grid is available out of the box. For more information, refer to the [`persistSelection`](/api/ui/grid/configuration/persistselection) property.
 > * The suggested approach in this article requires you to define an `ID` field in `schema.model`.
 
 (Applicable to Kendo UI 2017.2.504 version and earlier) The following example demonstrates how to persist the row selection in a Grid while performing the paging, sorting, and filtering data operations.
@@ -27,9 +36,9 @@ previous_url: /controls/data-management/grid/how-to/Selection/persist-row-select
 
         $("#grid").kendoGrid({
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+              read: "https://demos.telerik.com/service/v2/odata/Orders"
             },
             schema: {
               model: {
@@ -104,4 +113,4 @@ previous_url: /controls/data-management/grid/how-to/Selection/persist-row-select
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

@@ -1,13 +1,13 @@
 ---
 title: Sort Multiple Checkbox Filter
-page_title: Sort Multiple Checkbox Filter | Kendo UI Grid for jQuery
-description: "An example on how to sort the multiple checkbox filter while using the Kendo UI Grid for jQuery."
+page_title: Sort Multiple Checkbox Filter - Kendo UI for jQuery Data Grid
+description: "Learn how to sort the multiple checkbox filter while using the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/sort-multi-checkbox-filter, /kendo-mvc/web/grid/how-to/sort-multi-checkbox-filter, /kendo-ui-mvc/controls/data-management/grid/how-to/sort-multi-checkbox-filter, /controls/data-management/grid/how-to/filtering/sort-multi-checkbox-filter
 slug: howto_sort_multiple_checkbox_filter_grid
 tags: sort, multiple, checkbox, filter, using, grid
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -44,29 +44,31 @@ The following example demonstrates how to sort the Kendo UI multiple checkbox fi
 	<div id="client"></div>
       <script>
         $(document).ready(function() {
-          var telerikWebServiceBase = "https://demos.telerik.com/kendo-ui/service/";
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core/";
           $("#client").kendoGrid({
             dataSource: {
               transport: {
                 read:  {
-                  url: telerikWebServiceBase + "/Products",
-                  dataType: "jsonp"
+                    url: crudServiceBaseUrl + "/Products"
                 },
                 update: {
-                  url: telerikWebServiceBase + "/Products/Update",
-                  dataType: "jsonp"
+                    url: crudServiceBaseUrl + "/Products/Update",
+                    type: "POST",
+                contentType: "application/json"
                 },
                 destroy: {
-                  url: telerikWebServiceBase + "/Products/Destroy",
-                  dataType: "jsonp"
+                    url: crudServiceBaseUrl + "/Products/Destroy",
+                    type: "POST",
+                contentType: "application/json"
                 },
                 create: {
-                  url: telerikWebServiceBase + "/Products/Create",
-                  dataType: "jsonp"
+                    url: crudServiceBaseUrl + "/Products/Create",
+                    type: "POST",
+                contentType: "application/json"
                 },
                 parameterMap: function(options, operation) {
                   if (operation !== "read" && options.models) {
-                    return {models: kendo.stringify(options.models)};
+                    return kendo.stringify(options.models);
                   }
                 }
               },
@@ -116,4 +118,4 @@ The following example demonstrates how to sort the Kendo UI multiple checkbox fi
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

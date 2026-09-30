@@ -1,12 +1,12 @@
 ---
 title: Get the Selected Rows of a Child Grid
-description: An example on how to get the selected rows of a child Kendo UI Grid.
+description: Learn how to get the selected rows of a child Kendo UI Grid.
 type: how-to
-page_title: Get the Selected Rows of a Child Grid | Kendo UI Gird for jQuery
+page_title: Get the Selected Rows of a Child Grid - Kendo UI Gird for jQuery
 slug: grid-get-selected-rows-of-child-grid
 tags: grid, select, selected, child, hierarchy, rows, row, get, access
 res_type: kb
-component: listview
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: listview
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created version 2018.1.117</td>
  </tr>
 </table>
@@ -29,7 +29,7 @@ How can I access the selected rows of a nested grid in my hierarchical Grid?
 ## Solution
 
 1. Add a unique `Id` to each child Grid.
-2. In the [`detailExpand`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/detailexpand) event handler, save the `Id` of the expanded child Grid.
+2. In the [`detailExpand`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/detailexpand) event handler, save the `Id` of the expanded child Grid.
 3. Use the saved `Id` to access the child Grid.
 
 ```dojo
@@ -62,9 +62,9 @@ How can I access the selected rows of a nested grid in my hierarchical Grid?
 
             },
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                read: "https://demos.telerik.com/service/v2/odata/Employees"
               },
               pageSize: 6,
               serverPaging: true,
@@ -107,9 +107,9 @@ How can I access the selected rows of a nested grid in my hierarchical Grid?
         function detailInit(e) {
           $("<div id='child"+e.data.EmployeeID+"'/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               serverPaging: true,
               serverSorting: true,

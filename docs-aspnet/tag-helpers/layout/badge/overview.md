@@ -2,11 +2,12 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI Badge TagHelper for ASP.NET Core."
+components: ["badge"]
 slug: taghelpers_badge_aspnetcore
 position: 1
 ---
 
-# Badge Overview
+# {{ site.framework }} Badge Overview
 
 The Badge is an absolutely positioned element that is used to decorate avatars, navigation menus, or other components in the application when the visual notification is needed.
 
@@ -107,7 +108,7 @@ With the badge you can customize the content using templates.
 
 ## Referencing Existing Instances
 
-You can access an existing Button instance by using the [`jQuery.data()`](https://api.jquery.com/jQuery.data/) method which gets executed by the jQuery object of the originating element. Once a reference is established, use the [Badge client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/badge#methods) to control its behavior.
+You can access an existing Button instance by using the [`jQuery.data()`](https://api.jquery.com/jQuery.data/) method which gets executed by the jQuery object of the originating element. Once a reference is established, use the [Badge client-side API](https://docs.telerik.com/kendo-ui/api/ui/badge#methods) to control its behavior.
 
 ```
     <a class="k-button k-badge-overlay">

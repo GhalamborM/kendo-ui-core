@@ -2,6 +2,7 @@
 title: Icon Button
 page_title: Icon Button
 description: "Accommodate an icon and enhance the meaning of the text content of the Telerik UI Button component for {{ site.framework }}."
+components: ["button"]
 previous_url: /helpers/navigation/button/icons
 slug: icons_button_aspnetcore
 position: 2
@@ -19,27 +20,49 @@ The Button provides the following methods for configuring icons:
 
 Use only one of them with a particular Button instance. If you define multiple properties, only one of them will be obeyed according to the order stated above.
 
-The `Icon()` method displays the appropriate [Kendo UI for jQuery font icon](https://docs.telerik.com/kendo-ui/styles-and-layout/icons-web) as a content of a `<spn> :before` pseudo element. The Button enables you to completely omit any text to be specified for its contents.
+The `Icon()` method displays a built-in Kendo UI icon in the Button. In current releases, the icon is rendered as SVG by default. The Button enables you to completely omit any text to be specified for its contents. For more information about SVG icons, see [SVG Icons]({% slug svgicons_core_mvc %}).
 
 ```HtmlHelper
 	@(Html.Kendo().Button()
 		.Name("textButton")
-		.Icon("delete")
+		.Icon("trash")
 	)
 ```
 {% if site.core %}
 ```TagHelper
-	<kendo-button name="buttonDelete" type="button" icon="delete"></kendo-button>
+	<kendo-button name="buttonDelete" type="button" icon="trash"></kendo-button>
+```
+{% endif %}
+
+If you are creating a button-like anchor instead of a Button component, use `kendo.ui.icon` to render a standalone SVG icon. The method inserts the SVG markup into the target element.
+
+```JS dojo
+<a href="/products" class="k-button">
+	<span id="productsIcon" class="k-button-icon"></span>
+	<span class="k-button-text">Products</span>
+</a>
+
+<script>
+	kendo.ui.icon($("#productsIcon"), { icon: "plus", type: "svg" });
+</script>
 ```
 
-Alternatively, use the `icon-class` attribute to set a custom icon. It accepts a CSS class (or multiple space-separated CSS classes).
+Alternatively, use the `IconClass` option to set a custom icon. It accepts a CSS class (or multiple space-separated CSS classes).
 
+```HtmlHelper
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+
+	@(Html.Kendo().Button()
+		.Name("buttonCustom")
+		.IconClass("fa fa-magic")
+	)
+```
+{% if site.core %}
 ```TagHelper
-	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
 
 	<kendo-button name="buttonCustom" type="button" icon-class="fa fa-magic"></kendo-button>
 ```
-
 {% endif %}
 
 The `SpriteCssClass()` method displays the icon as a background of a `span` element instead.

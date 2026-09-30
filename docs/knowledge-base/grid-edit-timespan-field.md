@@ -2,12 +2,13 @@
 title: Edit a TimeSpan Field in InCell Mode
 description: How to Edit a TimeSpan Field in Batch Editing Mode
 type: how-to
-page_title: How to Edit a TimeSpan Field in InCell Editing Mode | Kendo UI Grid for jQuery
+page_title: How to Edit a TimeSpan Field in InCell Editing Mode - Kendo UI for jQuery Data Grid
 slug: grid-edit-timespan-field
 position: 
 tags: 
 ticketid: 
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -26,6 +27,8 @@ res_type: kb
 This sample demonstrates how to edit a TimeSpan field in InCell editing mode of the Kendo UI Grid.
 
 ## Solution
+
+Create a custom MVVM binder that maps a `TimeSpan` object to a TimePicker widget. Register the binder before initializing the Grid so the InCell editor can read and write Hours, Minutes, and Seconds from the data item.
 
 ```dojo
   

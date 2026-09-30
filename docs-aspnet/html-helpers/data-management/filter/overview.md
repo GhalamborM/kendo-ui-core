@@ -2,9 +2,10 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI Filter component for {{ site.framework }}."
+components: ["filter"]
 previous_url: /helpers/data-management/filter/overview
 slug: htmlhelpers_filter_aspnetcore_overview
-position: 1
+position: 0
 ---
 
 # Filter Component Overview
@@ -18,6 +19,15 @@ The Telerik UI Filter HtmlHelper for {{ site.framework }} is a server-side wrapp
 The Filter is a unified control for filtering data-bound components that have a [data source]({% slug htmlhelpers_datasource_aspnetcore %}). The user interface of the Filter is useful for data-bound components that do not have a built-in UI for filtering but are required to provide filter options&mdash;for example, the ListView, Chart, and Scheduler.
 
 You can add or remove the fields by which the data will be filtered and select the global logic of the filters (for example, `AND` or `OR`) and the filter operator for each field (for example, `contains` or `equals`). You can apply the filtering through a built-in button or through an API call. You can also select the name by which the fields will be displayed to the user and [localize]({% slug htmlhelpers_filter_aspnetcore_localization %}) the filter operators and messages.
+
+The `ToToken()` extension method converts a `FilterOperator` value to the string token used when a filter descriptor is serialized. For example, `FilterOperator.Contains.ToToken()` returns `"contains"`.
+
+```C#
+using Kendo.Mvc;
+using Kendo.Mvc.Extensions;
+
+var operatorToken = FilterOperator.Contains.ToToken();
+```
 
 * [Demo page for the Filter HtmlHelper](https://demos.telerik.com/{{ site.platform }}/filter/index)
 
@@ -161,28 +171,17 @@ public class SampleData
 
 ## Functionality and Features
 
-* [Setting the operators]({% slug htmlhelpers_filter_aspnetcore_choose_operators %})
-* [Persisting the state]({% slug htmlhelpers_filter_aspnetcore_store_settings %})
-* [Globalization]({% slug globalization_filter_aspnetcore %})
-
-## Referencing Existing Instances
-
-To refer to an existing Filter instance use the `jQuery.data()` method. Once a reference is established, use the [Filter client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/filter#methods) to control its behavior.
-
-```
-<script>
-    $(function() {
-        // The Name() of the Filter is used to get its client-side instance.
-        var filter = $("#theFilter").data("kendoFilter");
-    });
-</script>
-```
+* [Setting the operators]({% slug htmlhelpers_filter_aspnetcore_choose_operators %})&mdash;You can define which filter operators will be displayed in the filtering drop-down.
+* [Persisting the state]({% slug htmlhelpers_filter_aspnetcore_store_settings %})&mdash;The Filter enables you to store its filter expression and restore its state for the user.
+* [Globalization]({% slug globalization_filter_aspnetcore %})&mdash;The globalization process combines the translation of component messages (localization) with adapting them to specific cultures.
 
 ## See Also
 
 * [Basic Usage of the Filter HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/filter/index)
+* [Getting Started with the Filter]({% slug aspnetcore_filter_getting_started %})
 {% if site.core %}
 * [Basic Usage of the Filter TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/filter/tag-helper)
+* [Filter in Razor Pages]({% slug razorpages_filterhelper_aspnetcore %})
 {% endif %}
-* [Filter Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/filter)
+* [Filter Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/filter)
 * [Filter Server-Side API](/api/filter)

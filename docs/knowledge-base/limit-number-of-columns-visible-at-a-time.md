@@ -1,14 +1,13 @@
 ---
 title: Limit Maximum Number of Columns Visible at a Time Using the Column Menu
-page_title: Limit the Number of Columns at a Time Using the Column Menu | Kendo UI Grid for jQuery
-description: "An example on how to disable column items in the Column menu when a max number of columns is already shown"
-previous_url: /controls/data-management/grid/how-to/Layout/allow-a-single-expanded-row-only
+page_title: Limit the Number of Columns at a Time Using the Column Menu - Kendo UI for jQuery Data Grid
+description: "Learn how to disable column items in the Column menu when a max number of columns is already shown"
 slug: howto_limit_max_number_columns_visible_grid
 tags: grid, limit, columns, visible, show, hide
-component: chart
 ticketid: 1572191
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -16,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Preferred Language</td>
@@ -30,8 +29,8 @@ How can I limit the number of columns that can be shown with the Column menu?
 
 ## Solution
 
-1. Specify the maximum number of columns that can be visible In the [`columnMenuInit`](/api/javascript/ui/grid/events/columnmenuinit) event handler. Disable the items in the Column menu by adding the `k-disabled` / `k-state-disabled` CSS class if the checked items are equal to or higher than the max number.
-1. Disable or enable items based on the checked item number in the [`columnHide`](/api/javascript/ui/grid/events/columnhide) and [`columnShow`](/kendo-ui/api/javascript/ui/grid/events/columnshow) event handlers.
+1. Specify the maximum number of columns that can be visible In the [`columnMenuInit`](/api/ui/grid/events/columnmenuinit) event handler. Disable the items in the Column menu by adding the `k-disabled` / `k-state-disabled` CSS class if the checked items are equal to or higher than the max number.
+1. Disable or enable items based on the checked item number in the [`columnHide`](/api/ui/grid/events/columnhide) and [`columnShow`](/api/ui/grid/events/columnshow) event handlers.
 
 The following example demonstrates how to collapse a Grid row that was previously expanded when the user expands a new one.
 
@@ -47,9 +46,9 @@ The following example demonstrates how to collapse a Grid row that was previousl
         $(document).ready(function () {
           $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               schema: {
                 model: {
@@ -153,4 +152,4 @@ The following example demonstrates how to collapse a Grid row that was previousl
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

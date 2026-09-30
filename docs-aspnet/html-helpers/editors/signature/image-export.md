@@ -1,16 +1,17 @@
 ---
 title: Image Export
-page_title: Telerik UI Signature for {{ site.framework }} Documentation | Signature Image Export
+page_title: Telerik UI Signature for {{ site.framework }} Documentation - Signature Image Export
 description: "Learn how to export the Telerik UI Signature for {{ site.framework }} component as a PNG file."
+components: ["signature"]
 slug: image_export_telerikui_signature_component
 position: 4
 ---
 
 # Signature Image Export
 
-You can export the Telerik UI Signature for {{ site.framework }} to a PNG file through the Kendo UI [`saveAs`](/api/javascript/kendo/methods/saveas) method.
+You can export the Telerik UI Signature for {{ site.framework }} to a PNG file through the Kendo UI [`saveAs`](https://docs.telerik.com/kendo-ui/api/kendo/methods/saveas) method.
 
-To achieve this functionality, retrieve the base64 value of the Signature by using the [`value`](/api/javascript/ui/signature/methods/value) method of the component.
+To achieve this functionality, retrieve the base64 value of the Signature by using the [`value`](https://docs.telerik.com/kendo-ui/api/ui/signature/methods/value) method of the component.
 
 ```HtmlHelper
     <button id="export">Export as PNG</button>
@@ -61,4 +62,4 @@ To achieve this functionality, retrieve the base64 value of the Signature by usi
 ## See Also
 
 * [Image Export of the Signature (Demo)](https://demos.telerik.com/{{ site.platform }}/signature/export-image)
-* [API Reference of the Signature](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/SignatureBuilder)
+* [API Reference of the Signature](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/signaturebuilder)

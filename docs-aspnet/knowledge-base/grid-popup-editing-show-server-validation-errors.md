@@ -1,12 +1,13 @@
 ---
-title: Show server validation errors in Grid popup and prevent closing
-description: An example on how to show server errors in grid popup template and prevent the popup from closing.
+title: Show Server Validation Errors in Grid Popup and Prevent Closing
+description: An example on how to show server errors in a popup template and prevent the popup from closing when working with the {{ site.product }} Grid.
 type: how-to
-page_title: Show server validation errors in Grid editable popup
+page_title: Show Server Validation Errors in Grid Popup and Prevent Closing
 slug: grid-popup-editing-show-server-validation-errors
 tags: grid, popup, editing, validation, server, prevent, closing, ignore
 ticketid: 1417523
 res_type: kb
+components: ["general"]
 component: grid
 ---
 
@@ -15,7 +16,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Telerik® UI for ASP.NET Core</td>
+  <td>{{ site.product }} Grid</td>
  </tr>
  <tr>
   <td>Created with Product Version</td>
@@ -29,7 +30,7 @@ I have a requirement to validate an email address and web address for basic form
 
 ## Solution
 
-1. The [Kendo UI Validator](https://docs.telerik.com/kendo-ui/controls/editors/validator/overview#validator-overview) can validate emails on the client using the HTML5 validation. To use the client side validation for emails, you should provide the type in the custom popup editor:
+1. The [Kendo UI Validator](https://docs.telerik.com/kendo-ui/controls/validator/overview#validator-overview) can validate emails on the client using the HTML5 validation. To use the client side validation for emails, you should provide the type in the custom popup editor:
 
     ```
         <div class="k-edit-label">
@@ -42,7 +43,7 @@ I have a requirement to validate an email address and web address for basic form
     ```
 1. To use custom validation on the server, prevent the popup from closing and display the server error underneath the field, you can do this programmatically as the data source has no knowledge of the server validation error:
 
-```
+```Razor
     .DataSource(dataSource => dataSource
        .Ajax()
        .Events(events => events.Error("onError"))
@@ -62,15 +63,43 @@ I have a requirement to validate an email address and web address for basic form
                                 message += this + "\n";
                             });
                         }
-                        grid.editable.element.find("[data-valmsg-for='" + key + "']").replaceWith('<div class="k-widget k-tooltip k-tooltip-validation" style="margin:0.5em"><span class="k-icon k-i-warning"></span>' + message + '<div class="k-callout k-callout-n"></div></div>').show();
-                    });       
+                        grid.editable.element.find("[data-valmsg-for='" + key + "']").replaceWith('<div class="k-widget k-tooltip k-tooltip-validation" style="margin:0.5em"><span class="k-icon k-i-exclamation-circle"></span>' + message + '<div class="k-callout k-callout-n"></div></div>').show();
+                    });
                 });
             }
         }
     </script>
 ```
 
+For more information on validation, see the following articles:
+
+* [Show Validation Summary in a Grid Edit Popup]({% slug grid-popup-editing-show-validation-summary %})
+* [Validation in {{ site.product }}](https://docs.telerik.com/{{ site.platform }}/getting-started/helper-basics/validation)
+
+## More {{ site.framework }} Grid Resources
+
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+
+{% if site.core %}
+* [{{ site.framework }} DataGrid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
 ## See Also
 
-* [Show validation summary in grid edit popup]({% slug grid-popup-editing-show-validation-summary %})
-* [MVC Validation](https://docs.telerik.com/aspnet-mvc/getting-started/helper-basics/validation)
+* [Client-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

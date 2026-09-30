@@ -2,6 +2,7 @@
 title: Troubleshooting
 page_title: Troubleshooting
 description: "Learn about the solutions of common issues that may occur while working with Telerik UI Upload for {{ site.framework }}."
+components: ["upload"]
 previous_url: /aspnet-mvc/helpers/upload/troubleshooting, /aspnet-mvc/upload/troubleshooting, /helpers/editors/upload/troubleshooting
 slug: troubleshoot_uploadhelper_aspnetmvc
 position: 40
@@ -70,5 +71,5 @@ The issue is caused by a bug in Safari and occurs only when the **Windows authen
 
 * [Basic Usage by the Upload HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/upload)
 * [Using the API of the Upload HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/upload/api)
-* [UploadBuilder Server-Side API](/api/Kendo.Mvc.UI.Fluent/UploadBuilder)
+* [UploadBuilder Server-Side API](/api/kendo.mvc.ui.fluent/uploadbuilder)
 * [Upload Server-Side API](/api/upload)

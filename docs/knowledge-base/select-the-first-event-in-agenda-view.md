@@ -1,13 +1,13 @@
 ---
 title: Select the First Event in the Agenda View of the Scheduler 
 page_title: Select the First Event in the Agenda View of the Scheduler
-description: "Select the first event in the agenda view of a Kendo UI for jQuery Scheduler widget."
+description: "Select the first event in the agenda view of a Kendo UI for jQuery Scheduler component."
 previous_url: /controls/scheduling/scheduler/how-to/select-the-first-event-in-agenda-view, /controls/scheduling/scheduler/how-to/various/select-the-first-event-in-agenda-view
 slug: howto_select_the_first_event_in_agenda_view_scheduler
 tags: telerik, kendo, jquery, scheduler, select, the, first, event, in, agenda, view 
-component: scheduler
 type: how-to
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler for jQuery</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -45,8 +45,8 @@ The following example demonstrates how to achieve the desired scenario.
     <script>
         $(function () {
             $("#scheduler").kendoScheduler({
-                date: new Date("2013/6/13"),
-                startTime: new Date("2013/6/13 07:00 AM"),
+                date: new Date("2025/6/13"),
+                startTime: new Date("2025/6/13 07:00 AM"),
                 height: 600,
                 selectable: true,
                 views: [
@@ -58,24 +58,26 @@ The following example demonstrates how to achieve the desired scenario.
                     batch: true,
                     transport: {
                         read: {
-                            url: "https://demos.telerik.com/kendo-ui/service/meetings",
-                            dataType: "jsonp"
+                            url: "https://demos.telerik.com/service/v2/core/meetings"
                         },
                         update: {
-                            url: "https://demos.telerik.com/kendo-ui/service/meetings/update",
-                            dataType: "jsonp"
+                            url: "https://demos.telerik.com/service/v2/core/meetings/update",
+                             type: "POST",
+                            contentType: "application/json"
                         },
                         create: {
-                            url: "https://demos.telerik.com/kendo-ui/service/meetings/create",
-                            dataType: "jsonp"
+                            url: "https://demos.telerik.com/service/v2/core/meetings/create",
+                             type: "POST",
+                            contentType: "application/json"
                         },
                         destroy: {
-                            url: "https://demos.telerik.com/kendo-ui/service/meetings/destroy",
-                            dataType: "jsonp"
+                            url: "https://demos.telerik.com/service/v2/core/meetings/destroy",
+                             type: "POST",
+                            contentType: "application/json"
                         },
                         parameterMap: function (options, operation) {
                             if (operation !== "read" && options.models) {
-                                return { models: kendo.stringify(options.models) };
+                                return kendo.stringify(options.models);
                             }
                         }
                     },
@@ -151,4 +153,4 @@ The following example demonstrates how to achieve the desired scenario.
 
 * [Basic Usage of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/index)
 * [Using the API of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/api)
-* [JavaScript API Reference of the Scheduler](/api/javascript/ui/scheduler)
+* [JavaScript API Reference of the Scheduler](/api/ui/scheduler)

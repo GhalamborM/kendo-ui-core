@@ -1,12 +1,13 @@
 ---
 title: Store Credentials When Installing with Bower
-page_title: Store Credentials When Installing with Bower 
+page_title: Store Credentials When Installing with Bower
 description: "Learn how to avoid being asked multiple times to provide your credentials while installing the Kendo UI Bower packages."
 previous_url: /intro/installation/bower-install#storing-your-credentials
 slug: troubleshoot_bower_storing_credentials
 tags: troubleshooting, bower, credentials
 type: troubleshooting
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Kendo UI for jQuery Bower Installation</td>
+  <td>Progress® Kendo UI® for jQuery Bower Installation</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -22,11 +23,11 @@ res_type: kb
  </tr>
 </table>
 
-## Description 
+## Description
 
-I get asked multiple times to provide my credentials while installing the Kendo UI Bower packages. How can I avoid this? 
+I get asked multiple times to provide my credentials while installing the Kendo UI Bower packages. How can I avoid this?
 
-## Solution 
+## Solution
 
 To preserve your credentials and handle the issue, use either of the following approaches:
 
@@ -69,4 +70,3 @@ To preserve your credentials and handle the issue, use either of the following a
           login my-telerik.identity@example.com
           password mysecret
       ```
-	  

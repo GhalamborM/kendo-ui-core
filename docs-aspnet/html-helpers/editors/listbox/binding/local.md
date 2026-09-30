@@ -2,13 +2,14 @@
 title: Local Binding
 page_title: Local Binding
 description: "Get started with the {{ site.product }} ListBox and learn how to bind the ListBox to local data."
+components: ["listbox"]
 slug: htmlhelpers_listbox_local_aspnetcore
 position: 2
 ---
 
 # Local Binding
 
-The Telerik UI ListBox for {{ site.framework }} enables you to bind it to local arrays of data.
+The Telerik UI ListBox for {{ site.framework }} enables you to bind it to local data.
 
 When you use complex data objects, use the `DataTextField` and `DataValueField` properties to notify the ListBox about your preferred binding behavior.
 
@@ -34,7 +35,7 @@ When you use complex data objects, use the `DataTextField` and `DataValueField` 
 
     @(Html.Kendo().ListBox()
         .Name("selected")
-        .BindTo(new List<string>())
+        .BindTo(new List<SelectListItem>())
         .Selectable(ListBoxSelectable.Multiple)
     )
 ```
@@ -58,31 +59,22 @@ When you use complex data objects, use the `DataTextField` and `DataValueField` 
     </kendo-listbox>
 ```
 {% endif %}
-```IndexController.cs
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Kendo.Mvc.Examples.Models;
-    using Microsoft.AspNetCore.Mvc;
-
-    namespace Kendo.Mvc.Examples.Controllers
+```C# IndexController.cs
+    public class ListBoxController : Controller
     {
-        public partial class ListBoxController : BaseController
+        public ActionResult Index()
         {
-            public IActionResult Index()
+            ViewBag.Attendees = new List<SelectListItem>
             {
-                ViewBag.Attendees = new List<SelectListItem>
-                {
-                    new SelectListItem(){ Value = "1", Text = "Steven White" },
-                    new SelectListItem(){ Value = "2", Text = "Nancy King" },
-                    new SelectListItem(){ Value = "3", Text = "Nancy Davolio" },
-                    new SelectListItem(){ Value = "4", Text = "Michael Leverling" },
-                    new SelectListItem(){ Value = "5", Text = "Andrew Callahan" },
-                    new SelectListItem(){ Value = "6", Text = "Michael Suyama" }
-                };
+                new SelectListItem(){ Value = "1", Text = "Steven White" },
+                new SelectListItem(){ Value = "2", Text = "Nancy King" },
+                new SelectListItem(){ Value = "3", Text = "Nancy Davolio" },
+                new SelectListItem(){ Value = "4", Text = "Michael Leverling" },
+                new SelectListItem(){ Value = "5", Text = "Andrew Callahan" },
+                new SelectListItem(){ Value = "6", Text = "Michael Suyama" }
+            };
 
-                return View();
-            }
+            return View();
         }
     }
 ```

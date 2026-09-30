@@ -2,12 +2,13 @@
 title: Save Changes in All Grids 
 description: How to Save Grids in All Hierarchy Levels
 type: how-to
-page_title: How to Save Grids in All Hierarchy Levels | Kendo UI Grid for jQuery
+page_title: How to Save Grids in All Hierarchy Levels - Kendo UI for jQuery Data Grid
 slug: grid-save-all-grids
 position: 
 tags: 
 ticketid: 
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -23,9 +24,11 @@ res_type: kb
 
 ## Description
 
-This sample demonstrates how to save the changes in all Grids with InCell editing on the page, regardless whether there are separate or configured as an Hierarchy.
+This sample demonstrates how to save the changes in all Grids with InCell editing on the page, regardless whether they are separate or configured as a hierarchy.
 
 ## Solution
+
+Query all Grid instances on the page by selecting elements with `.k-widget.k-grid`. Then call `saveChanges()` on each one to persist pending edits in both parent and child Grids.
 
 ```dojo
   
@@ -39,7 +42,7 @@ This sample demonstrates how to save the changes in all Grids with InCell editin
         $(document).ready(function() {
           var element = $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               batch: true,
               schema: {
                 model: {
@@ -47,7 +50,7 @@ This sample demonstrates how to save the changes in all Grids with InCell editin
                 }
               },
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                read: "https://demos.telerik.com/service/v2/odata/Employees"
               },
               pageSize: 6,
               serverPaging: true,
@@ -91,7 +94,7 @@ This sample demonstrates how to save the changes in all Grids with InCell editin
         function detailInit(e) {
           $("<div/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               batch: true,
               schema: {
                 model: {
@@ -99,7 +102,7 @@ This sample demonstrates how to save the changes in all Grids with InCell editin
                 }
               },
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               serverPaging: true,
               serverSorting: true,

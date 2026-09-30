@@ -1,8 +1,9 @@
-(function(f, define) {
-    define([ "./kendo.core", "./kendo.data.odata", "./kendo.data.xml" ], f);
-})(function() {
+import "./kendo.core.js";
+import { filterExprNoEval } from "./data/filter-expression-no-eval.js";
+import "./kendo.data.odata.js";
+import "./kendo.data.xml.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "data",
     name: "Data source",
     category: "framework",
@@ -227,8 +228,9 @@ var __meta__ = {
                     this.trigger(CHANGE, {
                         action: "remove",
                         index: index,
-                        items: result
+                        items: this.omitCache && this.omitCache.length ? result.concat(this.omitCache) : result
                     });
+                    this.omitCache = [];
                 }
 
                 for (i = 0, len = result.length; i < len; i++) {
@@ -450,6 +452,8 @@ var __meta__ = {
 
             this.length = idx;
             this._parent = parentFn.bind(this);
+            this._loadPromises = [];
+            this._loadedNodes = [];
         },
         at: function(index) {
             var item = this[index];
@@ -500,7 +504,7 @@ var __meta__ = {
         value = value || {};
 
         if (!isPrimitiveType(value)) {
-            protoKeys = Object.getOwnPropertyNames(Object.getPrototypeOf(value));
+            protoKeys = Object.getOwnPropertyNames(Object.getPrototypeOf(value)).filter(f => f.indexOf("__") !== 0);
         }
 
         keys = Object.getOwnPropertyNames(value).concat(protoKeys);
@@ -550,7 +554,11 @@ var __meta__ = {
         },
 
         shouldSerialize: function(field, serializeFunctions) {
-            return this.hasOwnProperty(field) && field !== "_handlers" && field !== "_events" && ((serializeFunctions && serializeFunctions[field]) || typeof this[field] !== FUNCTION) && field !== "uid";
+            // This way we cover both if the serializeFunctions parameter is an object OR a boolean.
+            if (typeof serializeFunctions === "object") {
+                serializeFunctions = (serializeFunctions && serializeFunctions[field]);
+            }
+            return this.hasOwnProperty(field) && field !== "_handlers" && field !== "_events" && (serializeFunctions || typeof this[field] !== FUNCTION) && field !== "uid";
         },
 
         forEach: function(f) {
@@ -637,7 +645,7 @@ var __meta__ = {
                     if (!composite) {
                         value = that.wrap(value, field, function() { return that; });
                     }
-                    if (!that._set(field, value) || field.indexOf("(") >= 0 || field.indexOf("[") >= 0) {
+                    if ((!that._set(field, value) || field.indexOf("(") >= 0 || field.indexOf("[") >= 0)) {
                         that.trigger(CHANGE, { field: field });
                     }
                 }
@@ -947,23 +955,29 @@ var __meta__ = {
             value = null;
             originalName = name;
 
-            name = typeof (field.field) === STRING ? field.field : name;
+            let nameToUse = typeof (field.field) === STRING ? field.field : name;
 
-            if (!field.nullable) {
-                value = proto.defaults[originalName !== name ? originalName : name] = field.defaultValue !== undefined ? field.defaultValue : defaultValues[type.toLowerCase()];
+            if (!field.nullable || field.defaultValue) {
+                value = proto.defaults[originalName !== nameToUse ? originalName : nameToUse] = field.defaultValue !== undefined ? field.defaultValue : defaultValues[type.toLowerCase()];
 
                 if (typeof value === "function") {
-                    functionFields.push(name);
+                    functionFields.push(nameToUse);
                 }
             }
 
-            if (options.id === name) {
+            if (options.id === nameToUse) {
                 proto._defaultId = value;
             }
 
-            proto.defaults[originalName !== name ? originalName : name] = value;
+            proto.defaults[originalName !== nameToUse ? originalName : nameToUse] = value;
 
-            field.parse = field.parse || parsers[type];
+            if ($.isPlainObject(field)) {
+                field.parse = field.parse || parsers[type];
+            } else {
+                field = {
+                    parse: parsers[type]
+                };
+            }
         }
 
         if (functionFields.length > 0) {
@@ -1270,7 +1284,13 @@ var __meta__ = {
         this.data = data || [];
     }
 
-    Query.filterExpr = function(expression) {
+    // Continue to support legacy unsafe-eval for the spreadsheet
+    Query.filterExpr = function(expression, options = { noEval: false }) {
+        if (options.noEval) {
+            // using no-eval for most cases
+            return filterExprNoEval(expression);
+        }
+
         var expressions = [],
             logic = { and: " && ", or: " || " },
             idx,
@@ -1328,7 +1348,7 @@ var __meta__ = {
     function normalizeSort(field, dir) {
         if (field) {
             var descriptor = typeof field === STRING ? { field: field, dir: dir } : field,
-            descriptors = isArray(descriptor) ? descriptor : (descriptor !== undefined ? [descriptor] : []);
+            descriptors = isArray(descriptor) ? descriptor : [descriptor];
 
             return grep(descriptors, function(d) { return !!d.dir; });
         }
@@ -1339,7 +1359,7 @@ var __meta__ = {
 
         if (sorts) {
             var descriptor = typeof sorts === STRING ? { field: sorts, dir: dir } : sorts,
-            descriptors = isArray(descriptor) ? descriptor : (descriptor !== undefined ? [descriptor] : []);
+            descriptors = isArray(descriptor) ? descriptor : [descriptor];
 
             for (var i = 0; i < descriptors.length; i++) {
                 sortObject[descriptors[i].field] = { dir: descriptors[i].dir, index: i + 1 };
@@ -1447,6 +1467,15 @@ var __meta__ = {
         } else {
             return 0;
         }
+    }
+
+    function hasNotFetchedItems(items, start, end) {
+        for (let idx = start; idx < end; idx++) {
+            if (items[idx].notFetched) {
+                return true;
+            }
+        }
+        return false;
     }
 
     function compareFilters(expr1, expr2) {
@@ -1586,16 +1615,9 @@ var __meta__ = {
         },
 
         filter: function(expressions) {
-            var idx,
-            current,
-            length,
-            compiled,
-            predicate,
+            var compiled,
             data = this.data,
-            fields,
-            operators,
-            result = [],
-            filter;
+            result = [];
 
             expressions = normalizeFilter(expressions);
 
@@ -1603,27 +1625,9 @@ var __meta__ = {
                 return this;
             }
 
-            compiled = Query.filterExpr(expressions);
-            fields = compiled.fields;
-            operators = compiled.operators;
+            compiled = Query.filterExpr(expressions, { noEval: true });
 
-            predicate = filter = new Function("d, __f, __o", "return " + compiled.expression);
-
-            if (fields.length || operators.length) {
-                filter = function(d) {
-                    return predicate(d, fields, operators);
-                };
-            }
-
-
-            for (idx = 0, length = data.length; idx < length; idx++) {
-                current = data[idx];
-
-                if (filter(current)) {
-                    result.push(current);
-                }
-            }
-
+            result = data.filter(compiled);
             return new Query(result);
         },
 
@@ -1635,24 +1639,32 @@ var __meta__ = {
             result = new Query(that.data),
             descriptor;
 
+            var getFilteredData = (g, data) => {
+                data = data || new Query(allData).filter([{
+                    field: g.field,
+                    operator: "eq",
+                    value: g.value,
+                    ignoreCase: false
+                }]);
+
+                return data;
+            };
+
             if (descriptors.length > 0) {
                 descriptor = descriptors[0];
 
                 if (options && options.groupPaging) {
                     result = new Query(allData).groupAllData(descriptor, allData).select(function(group) {
-                        var data = new Query(allData).filter([{
-                            field: group.field,
-                            operator: "eq",
-                            value: group.value,
-                            ignoreCase: false
-                        }]);
-                        var items = descriptors.length > 1 ? new Query(group.items).group(descriptors.slice(1), data.toArray(), options).toArray() : group.items;
+                        var cachedFilteredData;
+
+                        var items = descriptors.length > 1 ? new Query(group.items).group(descriptors.slice(1), getFilteredData(group, cachedFilteredData).toArray(), options).toArray() : group.items;
+
                         return {
                             field: group.field,
                             value: group.value,
                             hasSubgroups: descriptors.length > 1,
                             items: items,
-                            aggregates: data.aggregate(descriptor.aggregates),
+                            aggregates: descriptor.aggregates && descriptor.aggregates.length ? getFilteredData(group, cachedFilteredData).aggregate(descriptor.aggregates) : {},
                             uid: kendo.guid(),
                             itemCount: items.length,
                             subgroupCount: items.length
@@ -1661,13 +1673,13 @@ var __meta__ = {
 
                 } else {
                     result = result.groupBy(descriptor).select(function(group) {
-                        var data = new Query(allData).filter([ { field: group.field, operator: "eq", value: group.value, ignoreCase: false } ]);
+                        var cachedFilteredData;
                         return {
                             field: group.field,
                             value: group.value,
-                            items: descriptors.length > 1 ? new Query(group.items).group(descriptors.slice(1), data.toArray()).toArray() : group.items,
+                            items: descriptors.length > 1 ? new Query(group.items).group(descriptors.slice(1), getFilteredData(group, cachedFilteredData).toArray()).toArray() : group.items,
                             hasSubgroups: descriptors.length > 1,
-                            aggregates: data.aggregate(descriptor.aggregates)
+                            aggregates: descriptor.aggregates && descriptor.aggregates.length ? getFilteredData(group, cachedFilteredData).aggregate(descriptor.aggregates) : {},
                         };
                     });
                 }
@@ -2120,6 +2132,234 @@ var __meta__ = {
 
             return options;
         }
+    });
+
+    var AISmartPasteTransport = Class.extend( {
+        init: function(options) {
+            const that = this;
+
+            options = that.options = extend({}, that.options, options);
+        },
+
+        read: function(options) {
+            const that = this;
+            options = that.options = extend({}, that.options, options);
+            options = that.setup(options);
+
+            if (that.options.requestStart) {
+                that.options.requestStart(options);
+            }
+
+            $.ajax(options);
+        },
+
+        setup: function(options) {
+            const that = this,
+                  service = options?.service || that.options.service,
+                  data = that.getData(options),
+                  url = typeof service === "string" ? service : service.url,
+                  requestOptions = {
+                    url: url,
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    success: function(response) {
+                        if (that.options.success) {
+                            that.options.success(response);
+                        }
+                    },
+                    error: function(response) {
+                        const resObject = {
+                            status: response.status,
+                            statusText: response.statusText,
+                            responseText: response.responseText,
+                        };
+                        if (that.options.error) {
+                            that.options.error(resObject);
+                        }
+                    }
+                 };
+
+                 if (service.headers) {
+                     requestOptions.headers = service.headers;
+                 }
+
+                 return requestOptions;
+        },
+        getData: function(options = {}) {
+            const service = options?.service,
+                  formFields = options?.formFields,
+                  content = options?.content;
+
+                let defaultData = {
+                    formFields: formFields,
+                    content: content
+                };
+
+                if (service?.data && isFunction(service?.data)) {
+                    return $.extend({}, defaultData, service.data());
+                }
+
+                if (service?.data && Object.keys(service.data).length) {
+                    return $.extend({}, defaultData, service.data);
+                }
+
+                return defaultData;
+        },
+        success: function(response) {
+            const that = this;
+
+            if (that.options.success) {
+                that.options.success(response);
+            }
+
+            return response;
+        },
+        error: function(response) {
+            const that = this;
+
+            const resObject = {
+                status: response.status,
+                statusText: response.statusText,
+                responseText: response.responseText,
+            };
+
+            if (that.options.error) {
+                that.options.error(resObject);
+            }
+        }
+    });
+
+    var AiTransport = Class.extend( {
+        init: function(options) {
+            const that = this;
+
+            options = that.options = extend({}, that.options, options);
+
+            that.messageTypes = {
+                "ai": "assistant",
+                "system": "system",
+                "user": "user",
+                "tool": "tool"
+            };
+        },
+
+        read: function(options) {
+            const that = this;
+
+            options = that.setup(options);
+
+            if (that.options.requestStart) {
+                that.options.requestStart(options);
+            }
+
+            return $.ajax(options);
+        },
+
+        success: function(response, options) {
+            const that = this;
+            const service = options?.service || that.options.service;
+            const outputGetter = service?.outputGetter || that._getResponseData;
+            const isRetry = options?.isRetry;
+            const prompt = options?.prompt;
+            const output = {
+                id: kendo.guid(),
+                output: outputGetter(response),
+                prompt: prompt,
+                isRetry: isRetry,
+                response: response,
+            };
+
+            if (that.options.success) {
+                that.options.success(output);
+            }
+        },
+
+        error: function(response, options) {
+            const that = this;
+            const service = options?.service || that.options.service;
+            const outputGetter = service?.outputGetter || that._getResponseData;
+            const isRetry = options?.isRetry;
+            const prompt = options?.prompt;
+
+            const resObject = {
+                status: response.status,
+                statusText: response.statusText,
+                responseText: response.responseText,
+            };
+
+            const output = {
+                id: kendo.guid(),
+                output: outputGetter(resObject),
+                prompt: prompt,
+                isRetry: isRetry,
+                response: response,
+            };
+
+            if (that.options.error) {
+                that.options.error(output);
+            }
+        },
+
+        setup: function(options = {}) {
+            const that = this;
+            const service = options?.service || that.options.service;
+            const data = that.getData(options);
+            const url = typeof service === "string" ? service : service.url;
+            const requestOptions = {
+                url: url,
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function(response) {
+                    that.success.call(that, response, options);
+                },
+                error: function(response) {
+                    that.error.call(that, response, options);
+                }
+            };
+
+            if (service.headers) {
+                requestOptions.headers = service.headers;
+            }
+
+            return requestOptions;
+        },
+
+        getData: function(options) {
+            const that = this;
+            const service = options?.service;
+            const isRetry = options?.isRetry;
+            const history = options?.history || [];
+            const prompt = options?.prompt;
+
+            let defaultData = [
+                ...history,
+                {
+                    role: that.messageTypes.user,
+                    contents: [
+                        {
+                            $type: "text",
+                            text: prompt
+                        }
+                    ]
+                }
+            ];
+
+            if (service?.data && isFunction(service?.data)) {
+                return service.data(prompt, isRetry, history);
+            }
+
+            if (service?.data && Object.keys(service.data).length) {
+                return $.extend({}, service.data, { messages: defaultData });
+            }
+
+            return defaultData;
+        },
+
+        _getResponseData: function(response) {
+            return response?.messages?.[0]?.contents?.[0]?.text || "An error occurred while processing the request.";
+        },
     });
 
     var Cache = Class.extend({
@@ -2654,6 +2894,45 @@ var __meta__ = {
         return result;
     }
 
+    function convertHighlightDescriptors(data, filters, idField) {
+        var getHighlightFromResults = function(results, filter) {
+            const highlighted = filter.cells && Object.keys(filter.cells).length > 0 ? filter.cells : true;
+            const acc = {};
+            let idx, length;
+
+            for (idx = 0, length = results.length; idx < length; idx++) {
+                const item = results[idx];
+                if (item && item.uid !== undefined) {
+                    const key = String(item[idField]);
+                    acc[key] = highlighted;
+                }
+            }
+
+            return acc;
+        };
+
+        let results = {};
+        let idx, length, filter, filteredData, highlightResults;
+
+        if (!isArray(filters)) {
+            return results;
+        }
+
+        for (idx = 0, length = filters.length; idx < length; idx++) {
+            filter = filters[idx];
+            if (filter) {
+                filteredData = new Query(data).filter(filter).toArray();
+                highlightResults = getHighlightFromResults(filteredData, filter);
+
+                if (highlightResults) {
+                    results = extend(true, results, highlightResults);
+                }
+            }
+        }
+
+        return results;
+    }
+
     var DataSource = Observable.extend({
         init: function(options) {
             var that = this, model, data;
@@ -2773,6 +3052,12 @@ var __meta__ = {
             }
 
             return this._storage.getItem() || [];
+        },
+
+        _isGrouped: function() {
+            var group = this.group() || [];
+
+            return group.length;
         },
 
         _isServerGrouped: function() {
@@ -3060,9 +3345,9 @@ var __meta__ = {
             }
         },
 
-        _removeItems: function(items, removePristine) {
-            if (!isArray(items)) {
-                items = [items];
+        _removeItems: function(itemsToRemove, removePristine) {
+            if (!isArray(itemsToRemove)) {
+                itemsToRemove = [itemsToRemove];
             }
 
             var shouldRemovePristine = typeof removePristine !== "undefined" ? removePristine : true;
@@ -3071,15 +3356,29 @@ var __meta__ = {
             var autoSync = this.options.autoSync;
             this.options.autoSync = false;
             try {
-                for (var idx = 0; idx < items.length; idx ++) {
-                    var item = items[idx];
+                for (var idx = 0; idx < itemsToRemove.length; idx ++) {
+                    var item = itemsToRemove[idx];
                     var model = this._createNewModel(item);
                     var found = false;
+                    var index = idx;
 
                     this._eachItem(this._data, function(items) {
+                        // Ensure all children of a parent are removed before the change event is triggered.
+                        if (index !== itemsToRemove.length - 1) {
+                            items.omitChangeEvent = true;
+                            items.omitCache = items.omitCache || [];
+                        } else {
+                            items.omitChangeEvent = false;
+                        }
+
                         for (var idx = 0; idx < items.length; idx++) {
                             var item = items.at(idx);
                             if (item.id === model.id) {
+                                /* When the change event is omitted, certain calculations such as 'total' are broken because only the last item reaches the change handler.
+                                   Keep track of all child items that had their change event omitted and when the change is finally triggered, concat them to the result.*/
+                                if (items.omitChangeEvent) {
+                                    items.omitCache.push(item);
+                                }
                                 destroyed.push(item);
                                 items.splice(idx, 1);
                                 found = true;
@@ -3123,12 +3422,11 @@ var __meta__ = {
             try {
                 for (var i = 0; i < items.length; i ++) {
                     var item = items[i];
-                    var model = this._createNewModel(item);
 
                     this._eachItem(this._data, function(dataItems) {
                         for (var idx = 0; idx < dataItems.length; idx++) {
                             var dataItem = dataItems.at(idx);
-                            if (dataItem.id === model.id) {
+                            if (dataItem.uid === item.uid) {
                                 moved.push(dataItem);
                                 dataItems.splice(index >= idx ? --index : index, 0, dataItems.splice(idx, 1)[0]);
                                 index++;
@@ -3177,7 +3475,7 @@ var __meta__ = {
                 data = this._flatData(this._data, this.options.useRanges);
 
             for (idx = 0, length = data.length; idx < length; idx++) {
-                if (data[idx].isNew && data[idx].isNew()) {
+                if (data[idx].isNew && data[idx].isNew() && !data[idx].notFetched) {
                     result.push(data[idx]);
                 }
             }
@@ -3202,6 +3500,10 @@ var __meta__ = {
             var that = this,
                 created = [],
                 updated = [],
+                destroyed;
+                that._destroyed = that._destroyed
+                    .filter(item => !item.hasOwnProperty("_isMoved"));
+
                 destroyed = that._destroyed;
 
             var promise = $.Deferred().resolve().promise();
@@ -3228,11 +3530,12 @@ var __meta__ = {
                 promise = $.when
                  .apply(null, promises)
                  .then(function() {
-                    var idx, length;
+                    var idx, length, changedItems = [];
 
                     for (idx = 0, length = arguments.length; idx < length; idx++) {
                         if (arguments[idx]) {
                             that._accept(arguments[idx]);
+                            changedItems.push(...arguments[idx].models);
                         }
                     }
 
@@ -3240,13 +3543,20 @@ var __meta__ = {
 
                     that._syncEnd();
 
-                    that._change({ action: "sync" });
+                    that._change({ action: "sync", changedItems: changedItems });
 
                     that.trigger(SYNC);
 
                     if (that._isServerGroupPaged()) {
                         that.read();
                     }
+
+                    that.data().map(function(item) {
+                        if (item.hasOwnProperty("_isMoved")) {
+                            delete item._isMoved;
+                        }
+                        return item;
+                    });
                 });
             } else {
                 that._storeData(true);
@@ -3395,7 +3705,7 @@ var __meta__ = {
         },
 
         _readData: function(data) {
-            var read = !this._isServerGrouped() ? this.reader.data : this.reader.groups;
+            let read = !this._isServerGrouped() ? this.reader.data : this.reader.groups;
             return read.call(this.reader, data);
         },
 
@@ -3705,6 +4015,9 @@ var __meta__ = {
                     that._pristineData.push(items[j]);
                 }
             } else {
+                if (kendo.isBlank(data)) {
+                    data = [];
+                }
                 that._pristineData = data.slice(0);
             }
 
@@ -3875,7 +4188,8 @@ var __meta__ = {
                     filter: that._filter,
                     group: that._group,
                     aggregate: that._aggregate,
-                    groupPaging: !!that._groupPaging
+                    groupPaging: !!that._groupPaging,
+                    isExcelExportRequest: that.options.isExcelExportRequest
                 }, data);
 
             if (!that.options.serverPaging) {
@@ -3909,8 +4223,12 @@ var __meta__ = {
                 options.aggregate = convertDescriptorsField(options.aggregate, that.reader.model);
             }
 
-            if (!that.options.groupPaging) {
+            if (!that.options.groupPaging || !(that.options.serverPaging && that.options.serverGrouping)) {
                 delete options.groupPaging;
+            }
+
+            if (!that.options.isExcelExportRequest) {
+                delete options.isExcelExportRequest;
             }
 
             return options;
@@ -4009,6 +4327,25 @@ var __meta__ = {
             that._total = total;
         },
 
+        _operationsForUpdatedFields: function() {
+            const that = this,
+                updatedFields = that._updatedFields || [],
+                operations = {};
+
+            let found = false,
+                stringified;
+
+            operations.sort = that._sort;
+            operations.filter = that._filter;
+            operations.group = that._group;
+            operations.aggregate = that._aggregate;
+
+            stringified = stringify(operations);
+            found = updatedFields.some(u => stringified.indexOf((`"field":"${u}"`)) > -1);
+
+            return !found;
+        },
+
         _pushInDestroyed: function(model) {
             var isPushed = this._destroyed.find(function(item) {
                 return item.uid === model.uid;
@@ -4019,7 +4356,7 @@ var __meta__ = {
         },
 
         _change: function(e) {
-            var that = this, idx, length, action = e ? e.action : "";
+            let that = this, idx, items, length, action = e ? e.action : "";
 
             if (action === "remove") {
                 for (idx = 0, length = e.items.length; idx < length; idx++) {
@@ -4029,10 +4366,40 @@ var __meta__ = {
                 }
             }
 
+            if (e) {
+                items = e.items || [];
+                e.partialUpdate = that._operationsForUpdatedFields() && !that._preventPartialUpdate;
+
+                if (e.action === "itemchange" && items.some(i => i.dirtyFields)) {
+                    let item = e.items[0],
+                        keys = Object.keys(item.dirtyFields),
+                        result = keys;
+
+                    for (const key of keys) {
+                        if (item[key] instanceof Object) {
+                            let stringifiedKey = kendo.stringify(item[key]);
+
+                            if (stringifiedKey) {
+                                let cleanObject = JSON.parse(stringifiedKey),
+                                cleanObjectKeys = Object.keys(cleanObject).map((k) => key + "." + k);
+
+                                result.push(...cleanObjectKeys);
+                            }
+                        }
+                    }
+
+                    that._updatedFields = result;
+                }
+            }
+
             if (that.options.autoSync && (action === "add" || action === "remove" || action === "itemchange")) {
+                if (action === "add") {
+                    that._preventPartialUpdate = true;
+                }
 
                 var handler = function(args) {
                     if (args.action === "sync") {
+                        that._preventPartialUpdate = false;
                         that.unbind("change", handler);
                         that._updateTotalForAction(action, e.items);
                     }
@@ -4115,12 +4482,16 @@ var __meta__ = {
                 var model = e.items[0],
                     resultData = result.data;
 
+                if (that._isGrouped() && !this._isServerGrouped()) {
+                    resultData = flattenGroups(resultData);
+                }
+
                 var modelIsInView = resultData.find(function(item) {
                     return item.uid === model.uid;
                 });
 
-                if (!modelIsInView) {
-                    result.data.splice(model.index, 0, model);
+                if (!modelIsInView && (model.index || model.id === null)) {
+                    result.data.splice(model.index, 0, that._isGrouped() ? that._wrapInEmptyGroup(model) : model);
                     result.total++;
                 }
             }
@@ -4155,7 +4526,7 @@ var __meta__ = {
                     that._addRange(that._observe(result.data));
 
                     if (options.skip + options.take > result.data.length) {
-                        options.skip = result.data.length - options.take;
+                        options.skip = Math.max(0, result.data.length - options.take);
                     }
 
                     that.view(query.range(options.skip, options.take).toArray());
@@ -4432,15 +4803,15 @@ var __meta__ = {
         },
 
         _fetchGroupItems: function(group, options, parents, callback) {
-            var that = this;
-            var groupItemsSkip;
-            var firstItem;
-            var lastItem;
-            var groupItemCount = group.hasSubgroups ? group.subgroupCount : group.itemCount;
-            var take = options.take;
-            var skipped = options.skipped;
-            var pageSize = that.take();
-            var expandedSubGroupItemsCount;
+            let that = this;
+            let groupItemsSkip;
+            let firstItem;
+            let lastItem;
+            let groupItemCount = group.hasSubgroups ? group.subgroupCount : group.itemCount;
+            let take = options.take;
+            let skipped = options.skipped;
+            let pageSize = that.take();
+            let expandedSubGroupItemsCount;
 
             if (options.includeParents) {
                 if (skipped < options.skip) {
@@ -4461,16 +4832,22 @@ var __meta__ = {
                     return false;
                 }
 
+                let lastItemIndex = Math.min(groupItemsSkip + take, groupItemCount - 1);
                 firstItem = group.items[groupItemsSkip];
-                lastItem = group.items[Math.min(groupItemsSkip + take, groupItemCount - 1)];
+                lastItem = group.items[lastItemIndex];
 
                 if (firstItem.notFetched) {
-                    that.getGroupItems(group, options, parents, callback, math.max(math.floor(groupItemsSkip / pageSize), 0) * pageSize, math.round((groupItemsSkip + pageSize) / pageSize));
+                    that.getGroupItems(group, options, parents, callback, groupItemsSkip, math.round((groupItemsSkip + pageSize) / pageSize));
                     return true;
                 }
 
                 if (lastItem.notFetched) {
                     that.getGroupItems(group, options, parents, callback, math.max(math.floor((groupItemsSkip + pageSize) / pageSize), 0) * pageSize, math.round((groupItemsSkip + pageSize) / pageSize));
+                    return true;
+                }
+
+                if (!firstItem.notFetched && !lastItem.notFetched && hasNotFetchedItems(group.items, groupItemsSkip, lastItemIndex)) {
+                    that.getGroupItems(group, options, parents, callback, groupItemsSkip, lastItemIndex);
                     return true;
                 }
             }
@@ -4502,28 +4879,34 @@ var __meta__ = {
 
             if (subgroups && subgroups.length) {
                 data.group = subgroups;
-                data.groupPaging = true;
             }
+
+            data.groupPaging = true;
+            that._queueWithTimeout(data, function() {
+                if (!that.trigger(REQUESTSTART, {
+                        type: "read"
+                    })) {
+                    that.transport.read({
+                        data: data,
+                        success: that._groupItemsSuccessHandler(group, options.skip, that.take(), callback, groupItemsSkip),
+                        error: function() {
+                            var args = slice.call(arguments);
+                            that.error.apply(that, args);
+                        }
+                    });
+                } else {
+                    that._dequeueRequest();
+                }
+            }, 100);
+        },
+
+        _queueWithTimeout: function(options, callback, delay) {
+            let that = this;
 
             clearTimeout(that._timeout);
             that._timeout = setTimeout(function() {
-                that._queueRequest(data, function() {
-                    if (!that.trigger(REQUESTSTART, {
-                            type: "read"
-                        })) {
-                        that.transport.read({
-                            data: data,
-                            success: that._groupItemsSuccessHandler(group, options.skip, that.take(), callback, groupItemsSkip),
-                            error: function() {
-                                var args = slice.call(arguments);
-                                that.error.apply(that, args);
-                            }
-                        });
-                    } else {
-                        that._dequeueRequest();
-                    }
-                });
-            }, 100);
+                that._queueRequest(options, callback);
+            }, delay);
         },
 
         _groupItemsSuccessHandler: function(group, skip, take, callback, groupItemsSkip) {
@@ -4599,12 +4982,15 @@ var __meta__ = {
         },
 
         _composeItemsFilter: function(group, parents) {
-            var filter = this.filter() || {
+            var filter = {
                 logic: "and",
                 filters: []
             };
 
-            filter.logic = 'and';
+            if (this.filter()) {
+                filter.filters.push(this.filter());
+            }
+
             filter = extend(true, {}, filter);
             filter.filters.push({
                 field: group.field,
@@ -4849,6 +5235,16 @@ var __meta__ = {
             }
 
             return that._group;
+        },
+
+        parseHighlightDescriptors: function(descriptors, idField) {
+            const data = this._data ? this._flatData(this._data) : [];
+            if (!descriptors || !descriptors.length || !data.length) {
+                return [];
+            }
+
+            const highlightDescriptors = convertHighlightDescriptors(data, descriptors, idField || "id");
+            return highlightDescriptors;
         },
 
         getGroupsFlat: function(data) {
@@ -5397,26 +5793,22 @@ var __meta__ = {
             }
 
             if ((that._isServerGroupPaged() && !that._groupRangeExists(skip, size)) || !that._rangeExists(skip, size)) {
-                clearTimeout(that._timeout);
-
-                that._timeout = setTimeout(function() {
-                    that._queueRequest(options, function() {
-                        if (!that.trigger(REQUESTSTART, { type: "read" })) {
-                            if (that._omitPrefetch) {
-                                that.trigger(PROGRESS);
-                            }
-                            that.transport.read({
-                                data: that._params(options),
-                                success: that._prefetchSuccessHandler(skip, size, callback),
-                                error: function() {
-                                    var args = slice.call(arguments);
-                                    that.error.apply(that, args);
-                                }
-                            });
-                        } else {
-                            that._dequeueRequest();
+                that._queueWithTimeout(options, function() {
+                    if (!that.trigger(REQUESTSTART, { type: "read" })) {
+                        if (that._omitPrefetch) {
+                            that.trigger(PROGRESS);
                         }
-                    });
+                        that.transport.read({
+                            data: that._params(options),
+                            success: that._prefetchSuccessHandler(skip, size, callback),
+                            error: function() {
+                                var args = slice.call(arguments);
+                                that.error.apply(that, args);
+                            }
+                        });
+                    } else {
+                        that._dequeueRequest();
+                    }
                 }, 100);
             } else if (callback) {
                 callback();
@@ -5680,6 +6072,12 @@ var __meta__ = {
                 range.outerEnd = range.outerStart + rangeLength;
                 prevRange = range;
             }
+        },
+        isLocalTransport: function() {
+            return this.transport instanceof LocalTransport;
+        },
+        isRemoteTransport: function() {
+            return this.transport instanceof RemoteTransport;
         }
     });
 
@@ -5988,6 +6386,8 @@ var __meta__ = {
 
         _childrenLoaded: function() {
             this._loaded = true;
+            this._loading = false;
+            this._loadingPromise = null;
 
             this._updateChildrenField();
         },
@@ -5996,6 +6396,10 @@ var __meta__ = {
             var options = {};
             var method = "_query";
             var children, promise;
+
+            if (this.loading()) {
+                return this._loadingPromise || $.Deferred().resolve().promise();
+            }
 
             if (this.hasChildren) {
                 this._initChildren();
@@ -6007,6 +6411,7 @@ var __meta__ = {
                 if (!this._loaded) {
                     children._data = undefined;
                     method = "read";
+                    this.loading(true);
                 }
 
                 children.one(CHANGE, this._childrenLoaded.bind(this));
@@ -6017,6 +6422,7 @@ var __meta__ = {
 
                 promise = children[method](options);
                 if (!this._loaded) {
+                    this._loadingPromise = promise;
                     this.trigger(ITEMLOAD, { promise: promise, node: this });
                 }
             } else {
@@ -6035,8 +6441,17 @@ var __meta__ = {
         loaded: function(value) {
             if (value !== undefined) {
                 this._loaded = value;
+                this.loading(false);
             } else {
                 return this._loaded;
+            }
+        },
+
+        loading: function(value) {
+            if (value !== undefined) {
+                this._loading = value;
+            } else {
+                return this._loading || false;
             }
         },
 
@@ -6171,10 +6586,6 @@ var __meta__ = {
 
         _markHierarchicalQuery: function(expressions) {
             var compiled;
-            var predicate;
-            var fields;
-            var operators;
-            var filter;
             var accentFoldingFiltering = this.options.accentFoldingFiltering;
 
             expressions = accentFoldingFiltering ? $.extend({}, normalizeFilter(expressions), { accentFoldingFiltering: accentFoldingFiltering }) : normalizeFilter(expressions);
@@ -6184,19 +6595,9 @@ var __meta__ = {
                 return false;
             }
 
-            compiled = Query.filterExpr(expressions);
-            fields = compiled.fields;
-            operators = compiled.operators;
+            compiled = Query.filterExpr(expressions, { noEval: true });
 
-            predicate = filter = new Function("d, __f, __o", "return " + compiled.expression);
-
-            if (fields.length || operators.length) {
-                filter = function(d) {
-                    return predicate(d, fields, operators);
-                };
-            }
-
-            this._updateHierarchicalFilter(filter);
+            this._updateHierarchicalFilter(compiled);
             return true;
         },
 
@@ -6657,6 +7058,8 @@ var __meta__ = {
         LazyObservableArray: LazyObservableArray,
         LocalTransport: LocalTransport,
         RemoteTransport: RemoteTransport,
+        AISmartPasteTransport: AISmartPasteTransport,
+        AiTransport: AiTransport,
         Cache: Cache,
         DataReader: DataReader,
         Model: Model,
@@ -6664,7 +7067,5 @@ var __meta__ = {
         BatchBuffer: BatchBuffer
     });
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

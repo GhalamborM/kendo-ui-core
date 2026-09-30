@@ -5,9 +5,9 @@ description: "Learn how to use HTML for axes labels."
 previous_url: /controls/charts/how-to/html-in-axes-labels, /controls/charts/how-to/various/html-in-axes-labels
 slug: howto_addhtmltoaxeslabels_charts
 tags: chart, use, html, for, axes, labels
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I use HTML for the `categoryAxis.labels` configuration of the Chart?
 
 ## Solution
 
-The following example demonstrates how to achieve this through the [`visual`](/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels.visual) option.
+The following example demonstrates how to achieve this through the [`visual`](/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryaxislabelsvisual) option.
 
 ```dojo
 
@@ -134,8 +134,8 @@ The following example demonstrates how to achieve this through the [`visual`](/a
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})

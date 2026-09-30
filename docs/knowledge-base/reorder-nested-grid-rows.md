@@ -1,13 +1,13 @@
 ---
 title: Reorder Rows in Nested Grids by Using the Sortable
 page_title: Reorder Rows in Nested Grid by Using the Sortable
-description: "Learn how to reorder rows in a child Grid using the Kendo UI Sortable widget."
+description: "Learn how to reorder rows in a child Grid using the Kendo UI Sortable component."
 previous_url: /controls/interactivity/sortable/how-to/reorder-child-grid-rows, /controls/interactivity/sortable/how-to/reorder-nested-grid-rows
 slug: howto_reorderrowsinnestedgrid_sortable
 tags: telerik, kendo, jquery, sortable, reorder, rows, in, nested, grids
-component: sortable
 type: how-to
 res_type: kb
+components: ["sortable"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Sortable for jQuery</td>
+  <td>Progress® Kendo UI® Sortable for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -46,9 +46,9 @@ The following example demonstrates how to achieve the desired scenario.
         $(document).ready(function() {
           var element = $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                read: "https://demos.telerik.com/service/v2/odata/Employees"
               },
               pageSize: 6,
               serverPaging: true,
@@ -123,9 +123,9 @@ The following example demonstrates how to achieve the desired scenario.
         function detailInit(e) {
           var el = $("<div/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               serverPaging: true,
               serverSorting: true,
@@ -176,4 +176,4 @@ The following example demonstrates how to achieve the desired scenario.
 ## See Also
 
 * [Basic Usage of the Sortable (Demo)](https://demos.telerik.com/kendo-ui/sortable/index)
-* [JavaScript API Reference of the Sortable](/api/javascript/ui/sortable)
+* [JavaScript API Reference of the Sortable](/api/ui/sortable)

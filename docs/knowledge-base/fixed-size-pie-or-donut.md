@@ -5,9 +5,9 @@ description: "Learn how to create fixed-size Pie or Donut Kendo UI Charts."
 previous_url: /controls/charts/how-to/fixed-size-pie-or-donut, /controls/charts/how-to/appearance/fixed-size-pie-or-donut
 slug: howto_fixedsizepiedonut_charts
 tags: chart, create, fixed-size pie, donut
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,11 +37,11 @@ How can I render Pie or Donut Charts that have the same diameter?
 
 ## Solution
 
-Normally, the plot area size is determined by the free space left by other Chart elements such as the title, the legend, and others, which ultimately leads to this issue. To work around the problem, remove the legend from the normal element flow by setting the [`legend` position](/api/javascript/dataviz/ui/chart/configuration/legend.position) to `"custom"`.
+Normally, the plot area size is determined by the free space left by other Chart elements such as the title, the legend, and others, which ultimately leads to this issue. To work around the problem, remove the legend from the normal element flow by setting the [`legend` position](/api/dataviz/ui/chart/configuration/legend#legendposition) to `"custom"`.
 
-To make room for the legend, set a fixed `plotArea.height` for all charts and position it by using the [`offsetX`/`offsetY`](/api/javascript/dataviz/ui/chart/configuration/legend.offsetx) configuration options.
+To make room for the legend, set a fixed `plotArea.height` for all charts and position it by using the [`offsetX`/`offsetY`](/api/dataviz/ui/chart/configuration/legend#legendoffsetx) configuration options.
 
-The following example demonstrates how to store and load the axis range. The changes are detected in the [`drag`](/api/javascript/dataviz/ui/chart/events/drag) and [`zoom`](/api/javascript/dataviz/ui/chart/events/zoom) events. The axis range is restored in the [`dataBound` event](/api/javascript/dataviz/ui/chart/events/databound).
+The following example demonstrates how to store and load the axis range. The changes are detected in the [`drag`](/api/dataviz/ui/chart/events/drag) and [`zoom`](/api/dataviz/ui/chart/events/zoom) events. The axis range is restored in the [`dataBound` event](/api/dataviz/ui/chart/events/databound).
 
 ```dojo
     <style>
@@ -134,8 +134,8 @@ The following example demonstrates how to store and load the axis range. The cha
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})

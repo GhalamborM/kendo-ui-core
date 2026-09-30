@@ -1,13 +1,13 @@
 ---
 title: Dynamically Add Hierarchical Grid
-description: An example on how to dynamically add hierarchy levels to the Kendo UI Grid.
+description: Learn how to dynamically add hierarchy levels to the Kendo UI Grid.
 type: how-to
-page_title: Create Hierarchy Levels at Runtime | Kendo UI Grid for jQuery
+page_title: Create Hierarchy Levels at Runtime - Kendo UI for jQuery Data Grid
 slug: grid-add-hierarchy-runtime
 tags: grid, hierarchy, setoptions, runtime
 ticketid: 1135018
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1026 version</td>
  </tr>
 </table>
@@ -29,8 +29,8 @@ How can I dynamically add hierarchy levels to the Grid?
 
 ## Solution
 
-1. Use the [`setOptions`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/setoptions) method of the Grid.
-1. In the `setOptions` properties, add the [`detailTemplate`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/detailtemplate) configuration and the [`detailInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/detailinit) event.
+1. Use the [`setOptions`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/setoptions) method of the Grid.
+1. In the `setOptions` properties, add the [`detailTemplate`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/detailtemplate) configuration and the [`detailInit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/detailinit) event.
 
 ```dojo
 <div id="example">
@@ -45,9 +45,9 @@ How can I dynamically add hierarchy levels to the Grid?
         $(document).ready(function() {
             var element = $("#grid").kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                        read: "https://demos.telerik.com/service/v2/odata/Employees"
                     },
                     pageSize: 20,
                     serverPaging: true,
@@ -97,9 +97,9 @@ How can I dynamically add hierarchy levels to the Grid?
 
             detailRow.find(".orders").kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                        read: "https://demos.telerik.com/service/v2/odata/Orders"
                     },
                     serverPaging: true,
                     serverSorting: true,

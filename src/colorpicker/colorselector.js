@@ -1,6 +1,6 @@
-(function(f, define){
-    define([ "../kendo.core" ], f);
-})(function(){
+import "../kendo.core.js";
+import "../kendo.popup.js";
+import "../kendo.color.js";
 
 (function($, undefined) {
     // WARNING: removing the following jshint declaration and turning
@@ -16,6 +16,7 @@
 
         NS = ".kendoColorTools",
         KEYDOWN_NS = "keydown" + NS,
+        KENDO_KEYDOWN = "kendoKeydown",
         DISABLED = "k-disabled";
 
     var ColorSelector = Widget.extend({
@@ -38,10 +39,10 @@
             if (options._standalone) {
                 that._triggerSelect = that._triggerChange;
             }
-        },
+},
         options: {
             name: "ColorSelector",
-            ARIATemplate: 'Current selected color is #=data || "none"#',
+            ARIATemplate: (data) => `Current selected color is ${data || "none"}`,
             value: null,
             _standalone: true
         },
@@ -49,7 +50,8 @@
             "change",
             "select",
             "forceSelect",
-            "cancel"
+            "cancel",
+            KENDO_KEYDOWN
         ],
         color: function(value) {
             if (value !== undefined) {
@@ -91,7 +93,7 @@
             this._onEnable(enable);
         },
         _attachFocusEvents: function () {
-            this.wrapper.on(KEYDOWN_NS, this._navKeydown.bind(this))
+            this.wrapper.on(KEYDOWN_NS, this, this._navKeydown.bind(this))
                 .on("focusout" + NS, this._navFocusout.bind(this));
         },
         _initialValue: function() {
@@ -138,8 +140,11 @@
         },
         _releaseInnerFocus: function() {
             this._tabKeyTrap.removeTrap();
-            this.wrapper.attr("tabindex", this._tabIndex);
-            this._innerTabindex(-1);
+
+            if (this.wrapper) {
+                this.wrapper.attr("tabindex", this._tabIndex);
+                this._innerTabindex(-1);
+            }
         },
         _select: function(color, nohooks) {
             var prev = this._value;
@@ -148,6 +153,10 @@
 
             if (!nohooks) {
                 if ((color && (!prev || !color.equals(prev))) || (color === null && color !== prev)) {
+                    if (color === null && this.element.val) {
+                        this.element.val(color);
+                    }
+
                     this.element.trigger("change");
                     this.trigger("change", { value: this.value() });
                 } else if (!this._standalone) {
@@ -289,6 +298,3 @@
 
 })(window.kendo.jQuery);
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3){ (a3 || a2)(); });

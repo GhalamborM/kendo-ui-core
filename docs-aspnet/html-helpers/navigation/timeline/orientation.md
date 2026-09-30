@@ -2,6 +2,7 @@
 title: Orientation
 page_title: Timeline Orientation
 description: "See how to control the orientation of the Telerik UI Timeline component for {{ site.framework }}."
+components: ["timeline"]
 previous_url: /helpers/navigation/timeline/orientation
 slug: orientation_htmlhelpers_timeline_aspnetcore
 position: 5
@@ -36,12 +37,12 @@ If you add the `.CollapsibleEvents()` option, all events will start out collapse
 ```
 {% if site.core %}
 ```TagHelper
-    <kendo-timeline name="Timeline" 
+    <kendo-timeline name="Timeline"
                     orientation="vertical"
                     datadatefield="EventDate"
                     datatitlefield="Title"
-                    datasubtitlefield="Subtitle" 
-                    datadescriptionfield="Description" 
+                    datasubtitlefield="Subtitle"
+                    datadescriptionfield="Description"
                     dataactionsfield="Actions"
                     dataimagesfield="Images"
                     alternating-mode="true"
@@ -100,7 +101,7 @@ public partial class Timeline : BaseController
 
         events.Add(new TimelineEventModel()
         {
-            Title = "Malta, a Country of Кnights",
+            Title = "Malta, a Country of Knights",
             Subtitle = "My second trip this year",
             Description = "Third event description.",
             EventDate = new System.DateTime(2015, 5, 25),
@@ -167,12 +168,12 @@ Alternating rendering and collapsing is not available for the events in this mod
 ```
 {% if site.core %}
 ```TagHelper
-    <kendo-timeline name="Timeline" 
+    <kendo-timeline name="Timeline"
                     orientation="horizontal"
                     datadatefield="EventDate"
                     datatitlefield="Title"
-                    datasubtitlefield="Subtitle" 
-                    datadescriptionfield="Description" 
+                    datasubtitlefield="Subtitle"
+                    datadescriptionfield="Description"
                     dataactionsfield="Actions"
                     dataimagesfield="Images">
         <datasource>
@@ -229,7 +230,7 @@ public partial class Timeline : BaseController
 
         events.Add(new TimelineEventModel()
         {
-            Title = "Malta, a Country of Кnights",
+            Title = "Malta, a Country of Knights",
             Subtitle = "My second trip this year",
             Description = "Third event description.",
             EventDate = new System.DateTime(2015, 5, 25),

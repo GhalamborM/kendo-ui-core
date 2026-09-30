@@ -1,4 +1,5 @@
 (function($, undefined) {
+
 /* ColorGradient messages */
 
 if (kendo.ui.ColorGradient) {
@@ -24,7 +25,8 @@ $.extend(true, kendo.ui.FlatColorPicker.prototype.options.messages,{
   "apply": "Apply",
   "cancel": "Cancel",
   "noColor": "no color",
-  "clearColor": "Clear color"
+  "clearColor": "Clear color",
+  "adaptiveTitle": "Choose Color"
 });
 }
 
@@ -48,6 +50,7 @@ $.extend(true, kendo.ui.ColumnMenu.prototype.options.messages,{
   "sortAscending": "Sort Ascending",
   "sortDescending": "Sort Descending",
   "filter": "Filter",
+  "clearAllFilters": "Clear All Filters",
   "column": "Column",
   "columns": "Columns",
   "columnVisibility": "Column Visibility",
@@ -62,7 +65,183 @@ $.extend(true, kendo.ui.ColumnMenu.prototype.options.messages,{
   "setColumnPosition": "Set Column Position",
   "apply": "Apply",
   "reset": "Reset",
-  "buttonTitle": "{0} edit column settings"
+  "buttonTitle": "{0} edit column settings",
+  "movePrev": "Move previous",
+  "moveNext": "Move next",
+  "groupColumn": "Group column",
+  "ungroupColumn": "Ungroup column"
+});
+}
+
+if (kendo.ui.ChartWizard) {
+  kendo.ui.ChartWizard.prototype.options.messages =
+  $.extend(true, kendo.ui.ChartWizard.prototype.options.messages,{
+    "window": {
+      "title": "Chart Preview"
+    },
+    "export": "Export",
+    "exportPDF": "PDF File",
+    "exportSVG": "SVG File",
+    "exportPNG": "PNG File",
+    "tab": {
+        "chart": "Chart",
+        "data": "Data",
+        "format": "Format"
+    },
+    "chart": {
+        "bar": {
+            "expandText": "Bar Chart",
+            "bar": "Bar",
+            "stackedBar": "Stacked Bar",
+            "hundredStackedBar": "100% Stacked Bar",
+        },
+        "pie": {
+            "expandText": "Pie Chart",
+            "pie": "Pie",
+        },
+        "column": {
+            "expandText": "Column Chart",
+            "column": "Column",
+            "stackedColumn": "Stacked Column",
+            "hundredStackedColumn": "100% Stacked Column",
+        },
+        "line": {
+            "expandText": "Line Chart",
+            "line": "Line",
+            "stackedLine": "Stacked Line",
+            "hundredStackedLine": "100% Stacked Line",
+        },
+        "scatter": {
+            "expandText": "Scatter Chart",
+            "scatter": "Scatter",
+        },
+    },
+    "data": {
+        "configuration": {
+            "expandText": "Configuration",
+            "series": {
+                "title": "Series",
+                "add": "Add",
+            },
+            "valueAxis": "Value Axis",
+            "categoryAxis": "Category Axis",
+            "xAxis": "X Axis",
+        }
+    },
+    "format": {
+        "chartArea": {
+            "expandText": "Chart Area",
+            "margins": {
+                "default": "Margins",
+                "auto": "Auto",
+                "left": "Left",
+                "right": "Right",
+                "top": "Top",
+                "bottom": "Bottom",
+            },
+            "background": {
+                "default": "Background",
+                "color": "Color",
+            },
+        },
+        "title": {
+            "expandText": "Title",
+            "applyTo": "Apply to",
+            "chartTitle": "Chart Title",
+            "chartSubtitle": "Chart Subtitle",
+            "label": "Title",
+            "font": "Font",
+            "fontPlaceholder": "(inherited font)",
+            "size": "Size",
+            "sizePlaceholder": "px",
+            "color": "Color",
+        },
+        "series": {
+            "expandText": "Series",
+            "applyTo": "Apply to",
+            "allSeries": "All Series",
+            "color": "Color",
+            "showLabels": "Show Labels",
+        },
+        "legend": {
+            "expandText": "Legend",
+            "showLegend": "Show Legend",
+            "font": "Font",
+            "fontPlaceholder": "(inherited font)",
+            "size": "Size",
+            "sizePlaceholder": "px",
+            "color": "Color",
+            "position": {
+                "default": "Position",
+                "top": "Top",
+                "bottom": "Bottom",
+                "left": "Left",
+                "right": "Right",
+            }
+        },
+        "categoryAxis": {
+            "expandText": "Category Axis",
+            "title": {
+                "text": "Title",
+                "placeholder": "Axis Title",
+                "font": "Font",
+                "fontPlaceholder": "(inherited font)",
+                "size": "Size",
+                "sizePlaceholder": "px",
+                "color": "Color",
+            },
+            "labels": {
+                "text": "Labels",
+                "font": "Font",
+                "fontPlaceholder": "(inherited font)",
+                "size": "Size",
+                "sizePlaceholder": "px",
+                "color": "Color",
+                "rotation": {
+                    "text": "Rotation",
+                    "auto": "Auto",
+                },
+                "reverseOrder": "Reverse Order",
+            }
+        },
+        "valueAxis": {
+            "expandText": "Value Axis",
+            "title": {
+                "text": "Title",
+                "placeholder": "Axis Title",
+                "font": "Font",
+                "fontPlaceholder": "(inherited font)",
+                "size": "Size",
+                "sizePlaceholder": "px",
+                "color": "Color",
+            },
+            "labels": {
+                "text": "Labels",
+                "labelFormat": {
+                    "default": "Label Format",
+                    "text": "Text",
+                    "number": "Number",
+                    "currency": "Currency",
+                    "percent": "Percent",
+                },
+                "font": "Font",
+                "fontPlaceholder": "(inherited font)",
+                "size": "Size",
+                "sizePlaceholder": "px",
+                "color": "Color",
+                "rotation": {
+                    "text": "Rotation",
+                    "auto": "Auto",
+                },
+            },
+        },
+        "xAxis": {
+            "expandText": "X Axis",
+        },
+        "yAxis": {
+            "expandText": "Y Axis",
+        },
+    }
 });
 }
 
@@ -81,8 +260,11 @@ $.extend(true, kendo.ui.DateRangePicker.prototype.options.messages,{
 if (kendo.ui.Editor) {
 kendo.ui.Editor.prototype.options.messages =
 $.extend(true, kendo.ui.Editor.prototype.options.messages,{
+  "auto": "Auto",
   "bold": "Bold",
   "italic": "Italic",
+  "search": "Search",
+  "dropFilesHere": "Drop files here.",
   "underline": "Underline",
   "strikethrough": "Strikethrough",
   "superscript": "Superscript",
@@ -142,12 +324,16 @@ $.extend(true, kendo.ui.Editor.prototype.options.messages,{
   "addRowBelow": "Add row below",
   "deleteRow": "Delete row",
   "deleteColumn": "Delete column",
-  "dialogOk": "Ok",
+  "dialogOk": "Confirm",
+  "tableBackground": "Table background",
+  "tableCellProperties": "Cell properties",
+  "tableProperties": "Table properties",
   "tableWizard": "Table Wizard",
-  "tableTab": "Table",
+  "tableTab": "General",
   "cellTab": "Cell",
-  "accessibilityTab": "Accessibility",
+  "accessibilityTab": "Advanced",
   "caption": "Caption",
+  "captionAlignment": "Caption alignment",
   "summary": "Summary",
   "width": "Width",
   "height": "Height",
@@ -160,9 +346,12 @@ $.extend(true, kendo.ui.Editor.prototype.options.messages,{
   "cssClass": "CSS Class",
   "id": "ID",
   "border": "Border",
+  "borderColor": "Border color",
+  "borderWidth": "Border width",
   "borderStyle": "Border Style",
   "collapseBorders": "Collapse borders",
   "wrapText": "Wrap text",
+  "fitToCell": "Fit to cell",
   "associateCellsWithHeaders": "Associate headers",
   "alignLeft": "Align Left",
   "alignCenter": "Align Center",
@@ -179,7 +368,9 @@ $.extend(true, kendo.ui.Editor.prototype.options.messages,{
   "alignRemove": "Remove Alignment",
   "columns": "Columns",
   "rows": "Rows",
-  "selectAllCells": "Select All Cells",
+  "selectAllCells": "Apply to all cells",
+  "applyToColumn": "apply to column",
+  "applyToRow": "apply to row",
   "print": "Print",
   "headerRows": "Header Rows",
   "headerColumns": "Header Columns",
@@ -259,21 +450,21 @@ if (kendo.ui.FileManager) {
             },
             moveConfirm: {
                 title: "Confirm",
-                content: "<p style='text-align: center;'>Do you want to move or copy?</p>",
+                content: "<p class='k-text-center'>Do you want to move or copy?</p>",
                 okText: "Copy",
                 cancel: "Move",
                 close: "close"
             },
             deleteConfirm: {
                 title: "Confirm",
-                content: "<p style='text-align: center;'>Are you sure you want to delete the selected file(s)?</br>You cannot undo this action.</p>",
+                content: "<p class='k-text-center'>Are you sure you want to delete the selected file(s)?<br/>You cannot undo this action.</p>",
                 okText: "Delete",
                 cancel: "Cancel",
                 close: "close"
             },
             renamePrompt: {
                 title: "Prompt",
-                content: "<p style='text-align: center;'>Enter new name for the file.</p>",
+                content: "<p class='k-text-center'>Enter new name for the file.</p>",
                 okText: "Rename",
                 cancel: "Cancel",
                 close: "close"
@@ -469,7 +660,20 @@ $.extend(true, kendo.ui.Gantt.prototype.options.messages,{
     "resourcesHeader": "Resources",
     "start": "Start",
     "title": "Title",
-    "unitsHeader": "Units"
+    "unitsHeader": "Units",
+    "parent": "Parent",
+    "addNew": "Add",
+    "name": "Name",
+    "percentCompleteHint": "value from 0 to 1",
+    "remove": "Remove",
+    "actualStart": "Actual Start",
+    "actualEnd": "Actual End",
+    "parentOptionLabel": "-None-",
+    "general": "General",
+    "predecessors": "Predecessors",
+    "successors": "Successors",
+    "other": "Other",
+    "dependencyType": "Type"
   },
   "plannedTasks": {
     "switchText": "Planned Tasks",
@@ -498,23 +702,53 @@ $.extend(true, kendo.ui.Gantt.prototype.options.messages,{
 if (kendo.ui.Grid) {
 kendo.ui.Grid.prototype.options.messages =
 $.extend(true, kendo.ui.Grid.prototype.options.messages,{
+  "loader": {
+    "loading": "Loading...",
+    "exporting": "Exporting..."
+  },
   "commands": {
     "cancel": "Cancel changes",
     "canceledit": "Cancel",
+    "columns": "Columns",
     "create": "Add new record",
     "destroy": "Delete",
     "edit": "Edit",
+    "add": "Add new record",
     "excel": "Export to Excel",
     "pdf": "Export to PDF",
     "save": "Save changes",
     "select": "Select",
-    "update": "Update",
-    "search": "Search..."
+    "update": "Save",
+    "search": "Search...",
+    "selectRow": "Select Row",
+    "selectAllRows": "All rows",
+    "clearSelection": "Clear selection",
+    "copySelection": "Copy selection",
+    "copySelectionNoHeaders": "Copy selection (No Headers)",
+    "reorderRow": "Reorder row",
+    "reorderRowUp": "Up",
+    "reorderRowDown": "Down",
+    "reorderRowTop": "Top",
+    "reorderRowBottom": "Bottom",
+    "exportPdf": "Export to PDF",
+    "exportExcel": "Export to Excel",
+    "exportToExcelAll": "All",
+    "exportToExcelSelection": "Selection",
+    "exportToExcelSelectionNoHeaders": "Selection (No Headers)",
+    "sortAsc": "Sort Ascending",
+    "sortDesc": "Sort Descending",
+    "moveGroupPrevious": "Move previous",
+    "moveGroupNext": "Move next",
+    "selectall": "Select all",
   },
   "editable": {
     "cancelDelete": "Cancel",
     "confirmation": "Are you sure you want to delete this record?",
     "confirmDelete": "Delete"
+  },
+  "details": {
+    "expand": "Expand",
+    "collapse": "Collapse"
   },
   "noRecords": "No records available.",
   "expandCollapseColumnHeader": "",
@@ -522,7 +756,25 @@ $.extend(true, kendo.ui.Grid.prototype.options.messages,{
   "ungroupHeader": "Press ctrl + space to ungroup",
   "toolbarLabel": "grid toolbar",
   "groupingHeaderLabel": "grid grouping header",
-  "filterCellTitle": "filter cell"
+  "filterCellTitle": "filter cell",
+  "clearButtons": {
+    "clearFiltering": "Clear All Filters",
+    "clearSorting": "Clear Sorting",
+    "clearGrouping": "Clear Grouping",
+    "columnChooserReset": "Reset",
+  },
+  "applyButtons": {
+    "applyGrouping": "Done",
+    "applySorting": "Done",
+    "columnChooserApply": "Apply",
+  },
+  "ai": {
+    "outputPlaceholder": "No AI output available",
+    "success": "Data is:",
+    "error": "Operation is not successful. Error:",
+    "invalidSelection": "This selection mode is not currently enabled. Please enable the appropriate selection option in the grid configuration.",
+    "promptPlaceholder": "Enter your AI prompt here...",
+  }
 });
 }
 
@@ -565,7 +817,7 @@ $.extend(true, kendo.ui.TreeList.prototype.options.messages,{
     "retry": "Retry",
     "commands": {
         "edit": "Edit",
-        "update": "Update",
+        "update": "Save",
         "canceledit": "Cancel",
         "create": "Add new record",
         "createchild": "Add child record",
@@ -688,6 +940,50 @@ $.extend(true, kendo.ui.PivotFieldMenu.prototype.options.messages,{
 });
 }
 
+/* PivotConfiguratorV2 messages */
+
+  if (kendo.ui.PivotConfiguratorV2) {
+    kendo.ui.PivotConfiguratorV2.prototype.options.messages =
+      $.extend(true, kendo.ui.PivotConfiguratorV2.prototype.options.messages, {
+        "title": "Settings",
+        "cancelButtonText": "Cancel",
+        "applyButtonText": "Apply",
+        "measures": "Select some fields to begin setup",
+        "columns": "Select some fields to begin setup",
+        "rows": "Select some fields to begin setup"
+      });
+  }
+
+  /* PivotFieldMenuV2 messages */
+
+  if (kendo.ui.PivotFieldMenuV2) {
+    kendo.ui.PivotFieldMenuV2.prototype.options.messages =
+      $.extend(true, kendo.ui.PivotFieldMenuV2.prototype.options.messages, {
+        "apply": "Apply",
+        "sortAscending": "Sort Ascending",
+        "sortDescending": "Sort Descending",
+        "filterFields": "Fields Filter",
+        "filter": "Filter",
+        "include": "Include Fields...",
+        "clear": "Clear",
+        "reset": "Reset",
+        "moveToColumns": "Move to Columns",
+        "moveToRows": "Move to Rows",
+        "movePrevious": "Move previous",
+        "moveNext": "Move next",
+        "filterOperatorsDropDownLabel": "Region Filter Operators",
+        "filterValueTextBoxLabel": "Region Filter Value",
+        "operators": {
+            "contains": "Contains",
+            "doesnotcontain": "Does not contain",
+            "startswith": "Starts with",
+            "endswith": "Ends with",
+            "eq": "Is equal to",
+            "neq": "Is not equal to"
+        }
+      });
+  }
+
 /* RecurrenceEditor messages */
 
 if (kendo.ui.RecurrenceEditor) {
@@ -695,6 +991,9 @@ kendo.ui.RecurrenceEditor.prototype.options.messages =
 $.extend(true, kendo.ui.RecurrenceEditor.prototype.options.messages,{
   "repeat": "Repeat",
   "recurrenceEditorTitle": "Recurrence editor",
+  "removeRecurrence": "Remove recurrence",
+  "cancel": "Cancel",
+  "update": "Save",
   "frequencies": {
     "never": "Never",
     "hourly": "Hourly",
@@ -751,6 +1050,13 @@ $.extend(true, kendo.ui.RecurrenceEditor.prototype.options.messages,{
     "day": "day",
     "weekday": "weekday",
     "weekend": "weekend day"
+  },
+  "makeRecurring": "Make recurring",
+  "summary": {
+    "on": "on",
+    "onThe": "on the",
+    "onDay": "on day",
+    "until": "until"
   }
 });
 }
@@ -818,6 +1124,7 @@ $.extend(true, kendo.ui.Scheduler.prototype.options.messages,{
   "showFullDay": "Show full day",
   "showWorkDay": "Show business hours",
   "today": "Today",
+  "create": "New Event",
   "save": "Save",
   "cancel": "Cancel",
   "destroy": "Delete",
@@ -844,6 +1151,7 @@ $.extend(true, kendo.ui.Scheduler.prototype.options.messages,{
     "deleteWindowSeries": "Delete the series",
     "deleteRecurringConfirmation": "Are you sure you want to delete this event occurrence?",
     "deleteSeriesConfirmation": "Are you sure you want to delete the whole series?",
+    "resetSeriesConfirmation": "Are you sure you want to reset the whole series?",
     "editWindowTitle": "Edit Recurring Item",
     "editWindowOccurrence": "Edit current occurrence",
     "editWindowSeries": "Edit the series",
@@ -856,6 +1164,13 @@ $.extend(true, kendo.ui.Scheduler.prototype.options.messages,{
     "end": "End",
     "allDayEvent": "All day event",
     "description": "Description",
+    "descriptionPlaceholder": "Add Description",
+    "from": "from",
+    "to": "to",
+    "cancelTimezoneReset": "No",
+    "resetTimezone": "Yes",
+    "resetTimezoneConfirmation": "Are you sure you want to reset the timezone?",
+    "resetTimezoneWindowTitle": "Reset Timezone",
     "repeat": "Repeat",
     "timezone": " ",
     "startTimezone": "Start timezone",
@@ -865,7 +1180,9 @@ $.extend(true, kendo.ui.Scheduler.prototype.options.messages,{
     "timezoneEditorButton": "Time zone",
     "timezoneTitle": "Time zones",
     "noTimezone": "No timezone",
-    "editorTitle": "Event"
+    "editorTitle": "Event",
+    "newEvent": "New Event",
+    "editEvent": "Edit Event"
   },
   "search": "Search..."
 });
@@ -923,7 +1240,7 @@ $.extend(true, kendo.spreadsheet.messages.dialogs,{
   "alignmentDialog": {
     "title": "Alignment",
     "buttons": {
-     "justtifyLeft": "Align left",
+     "justifyLeft": "Align left",
      "justifyCenter": "Center",
      "justifyRight": "Align right",
      "justifyFull": "Justify",
@@ -1113,7 +1430,7 @@ $.extend(true, kendo.spreadsheet.messages.toolbar,{
   "addRowBelow": "Add row below",
   "alignment": "Alignment",
   "alignmentButtons": {
-    "justtifyLeft": "Align left",
+    "justifyLeft": "Align left",
     "justifyCenter": "Center",
     "justifyRight": "Align right",
     "justifyFull": "Justify",
@@ -1148,6 +1465,16 @@ $.extend(true, kendo.spreadsheet.messages.toolbar,{
     "dateTime": "Date time",
     "duration": "Duration",
     "moreFormats": "More formats..."
+  },
+  formatTypesSamples: {
+    "number": "1,499.99",
+    "percent": "14.50%",
+    "financial": "(1,000.12)",
+    "currency": "$1,499.99",
+    "date": "4/21/2012",
+    "time": "5:49:00 PM",
+    "dateTime": "4/21/2012 5:49:00",
+    "duration": "168:05:00"
   },
   "formatDecreaseDecimal": "Decrease decimal",
   "formatIncreaseDecimal": "Increase decimal",
@@ -1193,6 +1520,8 @@ $.extend(true, kendo.spreadsheet.messages.toolbar,{
 if (kendo.spreadsheet && kendo.spreadsheet.messages.view) {
 kendo.spreadsheet.messages.view =
 $.extend(true, kendo.spreadsheet.messages.view,{
+  "nameBox": "Name Box",
+  "formulaInput": "Formula Input",
   "errors": {
     "shiftingNonblankCells": "Cannot insert cells due to data loss possibility. Select another insert location or delete the data from the end of your worksheet.",
     "filterRangeContainingMerges": "Cannot create a filter within a range containing merges",
@@ -1202,7 +1531,41 @@ $.extend(true, kendo.spreadsheet.messages.view,{
     "home": "Home",
     "insert": "Insert",
     "data": "Data"
+  },
+  "sheetBar": {
+    "addSheet": "Add new sheet",
+    "deleteSheet": "Delete",
+    "duplicateSheet": "Duplicate",
+    "renameSheet": "Rename",
+    "hideSheet": "Hide",
+    "moveRight": "Move Right",
+    "moveLeft": "Move Left"
   }
+});
+}
+
+if (kendo.ui.SmartBox) {
+kendo.ui.SmartBox.prototype.options.messages =
+$.extend(true, kendo.ui.SmartBox.prototype.options.messages,{
+  noPreviousSearches: "No previous searches",
+  noPreviousPrompts: "No previous prompts",
+  previousSearches: "Previously Searched",
+  previousPrompts: "Previously Asked",
+  suggestedPrompts: "Suggested Prompts",
+  searchModeLabel: "Search",
+  searchModeDescription: "Looks for exact word matches across your data",
+  searchPlaceholder: "Search",
+  semanticSearchModeLabel: "Semantic Search",
+  semanticSearchModeDescription: "Understands context to surface the most relevant results.",
+  semanticSearchPlaceholder: "Semantic Search",
+  semanticSearchButtonText: "Search",
+  aiAssistantPlaceholder: "Sort, filter or group with AI",
+  speechToText: "Speech to text",
+  speechToTextAriaLabel: "Start speech recognition",
+  cancel: "Cancel",
+  send: "Send",
+  searchButtonText: "Search",
+  aiAssistantButtonText: "AI Assistant",
 });
 }
 
@@ -1327,10 +1690,45 @@ $.extend(true, kendo.ui.Dialog.prototype.options.localization, {
 });
 }
 
+/* TimePicker */
+
+if (kendo.ui.TimePicker) {
+kendo.ui.TimePicker.prototype.options.messages =
+$.extend(true, kendo.ui.TimePicker.prototype.options.messages, {
+    set: "Set",
+    cancel: "Cancel",
+    hour: "hour",
+    minute: "minute",
+    second: "second",
+    millisecond: "millisecond",
+    now: "Now"
+});
+}
+
+/* DateTimePicker */
+
+if (kendo.ui.DateTimePicker) {
+kendo.ui.DateTimePicker.prototype.options.messages =
+$.extend(true, kendo.ui.DateTimePicker.prototype.options.messages, {
+    set: "Set",
+    cancel: "Cancel",
+    hour: "hour",
+    minute: "minute",
+    second: "second",
+    millisecond: "millisecond",
+    now: "Now",
+    date: "Date",
+    time: "Time",
+    today: "Today",
+    weekColumnHeader: ""
+});
+}
+
 /* Calendar */
 if (kendo.ui.Calendar) {
 kendo.ui.Calendar.prototype.options.messages =
 $.extend(true, kendo.ui.Calendar.prototype.options.messages, {
+    "today": "Today",
     "weekColumnHeader": "",
     "navigateTo": "Navigate to ",
     "parentViews": {
@@ -1390,7 +1788,8 @@ if (kendo.ui.List) {
     kendo.ui.List.prototype.options.messages =
     $.extend(true, kendo.ui.List.prototype.options.messages,{
       "clear": "clear",
-      "noData": "No data found."
+      "noData": "No data found.",
+      "filterInputPlaceholder": "Filter",
     });
 }
 
@@ -1430,7 +1829,8 @@ if (kendo.ui.DropDownTree) {
         "singleTag": "item(s) selected",
         "clear": "clear",
         "deleteTag": "delete",
-        "noData": "No data found."
+        "noData": "No data found.",
+        "filterInputPlaceholder": "Filter"
     });
 }
 
@@ -1443,7 +1843,8 @@ if (kendo.ui.MultiSelect) {
         "clear": "clear",
         "deleteTag": "delete",
         "noData": "No data found.",
-        "downArrow": "select"
+        "downArrow": "Select",
+        "selectAll": "Select all"
     });
 }
 
@@ -1452,10 +1853,19 @@ if (kendo.ui.MultiSelect) {
 if (kendo.ui.Chat) {
     kendo.ui.Chat.prototype.options.messages =
     $.extend(true, kendo.ui.Chat.prototype.options.messages,{
-        "messageListLabel": "Message list",
-        "placeholder": "Type a message...",
-        "toggleButton": "Toggle toolbar",
-        "sendButton": "Send message"
+      "messageListLabel": "Message list",
+      "placeholder": "Type a message...",
+      "sendButton": "Send message",
+      "speechToTextButton": "Toggle speech to text",
+      "fileButton": "Attach file",
+      "downloadAll": "Download all",
+      "selfMessageDeleted": "You removed this message.",
+      "otherMessageDeleted": "This message was removed by its sender.",
+      "stopGeneration": "Stop generation",
+      "messageBoxLabel": "Type your message here",
+      "pinnedMessageCloseButton": "Unpin message",
+      "replyMessageCloseButton": "Remove reply",
+      "fileMenuButton": "File menu"
     });
 }
 
@@ -1497,7 +1907,7 @@ if (kendo.ui.PDFViewer) {
                 previous: "Go to the previous page",
                 next: "Go to the next page",
                 last: "Go to the last page",
-                of: " of {0} ",
+                of: "of",
                 page: "page",
                 pages: "pages"
             },
@@ -1534,7 +1944,8 @@ if (kendo.ui.PDFViewer) {
                 next: "Next Match",
                 previous: "Previous Match",
                 close: "Close",
-                of: "of"
+                of: "of",
+                dragHandle: "Drag search"
             }
         }
     });
@@ -1582,6 +1993,65 @@ if (kendo.dataviz.ui.Map) {
     kendo.dataviz.ui.Map.prototype.options.messages =
     $.extend(true, kendo.dataviz.ui.Map.prototype.options.messages, {
         "tileTitle": "Map title"
+    });
+}
+
+/* Sankey messages */
+
+if (kendo.dataviz.ui.Sankey) {
+  kendo.dataviz.ui.Sankey.prototype.options.messages =
+  $.extend(true, kendo.dataviz.ui.Sankey.prototype.options.messages,{
+      "tooltipUnits": "{0} Units"
+  });
+}
+
+/* Chart messages */
+
+if (kendo.dataviz.ui.Chart) {
+    kendo.dataviz.ui.Chart.prototype.options.messages =
+    $.extend(true, kendo.dataviz.ui.Chart.prototype.options.messages,{
+        "noData": "No data available"
+    });
+}
+
+
+/* ToolCall messages */
+
+if (kendo.ui.ToolCall) {
+    kendo.ui.ToolCall.prototype.options.messages =
+    $.extend(true, kendo.ui.ToolCall.prototype.options.messages,{
+        "states": {
+            "active": "Active",
+            "completed": "Completed",
+            "awaitingApproval": "Awaiting Approval",
+            "error": "Error"
+        },
+        "approve": "Approve",
+        "reject": "Reject",
+        "parametersLabel": "Parameters",
+        "resultLabel": "Result"
+    });
+}
+
+/* Citation messages */
+
+if (kendo.ui.Citation) {
+    kendo.ui.Citation.prototype.options.messages =
+    $.extend(true, kendo.ui.Citation.prototype.options.messages,{
+        "previousSourceAction": "Previous source",
+        "nextSourceAction": "Next source"
+    });
+}
+
+/* Checkpoint messages */
+
+if (kendo.ui.Checkpoint) {
+    kendo.ui.Checkpoint.prototype.options.messages =
+    $.extend(true, kendo.ui.Checkpoint.prototype.options.messages,{
+        "startOver": "Start Over",
+        "restore": "Restore Checkpoint",
+        "redo": "Redo",
+        "checkpointRestoredText": "Checkpoint Restored"
     });
 }
 

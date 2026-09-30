@@ -1,13 +1,13 @@
 ---
 title: Dynamic User Defined Grid Row Styles
-description: An example on how to dynamically change the grid row background and hover styles based on user selected values.
+description: Learn how to dynamically change the grid row background and hover styles based on user selected values.
 type: how-to
-page_title: User Selected Row Styles | Kendo UI Grid for jQuery
+page_title: User Selected Row Styles - Kendo UI for jQuery Data Grid
 slug: grid-user-defined-row-styles
 tags: grid, user, selected, defined, value, background, hover, rows, colorpicker, dynamic. color
 ticketid: 1425657
 res_type: kb
-component: grid, colorpicker
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid, colorpicker
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Created with version</td>
@@ -33,7 +33,7 @@ We have requirement to change the kendo grid style (background color, font color
 To apply the custom background to odd and even rows, you can use the built-in functionality. The Kendo UI Grid decorates every other row with the `.k-alt` class. To make the styling dynamic and based on user selection we could: 
 
 1. Use a couple of ColorPickers
-1. Handle their [`change`](/api/javascript/ui/colorpicker/events/change) event
+1. Handle their [`change`](/api/ui/colorpicker/events/change) event
 1. Add the color via inline styles on `mousover` and then again on `mouseout` events
 
     ```

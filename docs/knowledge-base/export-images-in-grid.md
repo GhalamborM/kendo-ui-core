@@ -1,12 +1,12 @@
 ---
 title: Export images in grid
-page_title: Export images in grid | Kendo UI Grid for jQuery
-description: "An example on how to include images in the exported xlsx file."
+page_title: Export images in grid - Kendo UI for jQuery Data Grid
+description: "Learn how to include images in the exported xlsx file."
 slug: export-images-in-grid
 tags: grid, images, excel, export
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Preferred Language</td>
@@ -28,13 +28,15 @@ I have a Grid that contains images. I need to enable the application users to ex
 
 ## Solution
 
-To include the images in the exported document, configure the [`drawings`](/api/javascript/ooxml/workbook/configuration/sheets.drawings) option to include the loaded images and additional settings for their position. For more information on how Excel documents works, refer to the [introductory help topic on Excel](/framework/excel/introduction#create-excel-document).
+To include the images in the exported document, configure the [`drawings`](/api/ooxml/workbook/configuration/sheets#sheetsdrawings) option to include the loaded images and additional settings for their position. For more information on how Excel documents works, refer to the [introductory help topic on Excel](/framework/excel/introduction#create-excel-document).
 
 The following example demonstrates how to customize the Excel document so that it includes the images.
 
+Note that the path to the images points to another domain. Since retrieving the images from another domain will be blocked by CORS, the example should be run locally, and the images should be present in the application to avoid being blocked by CORS:
+
 ```dojo
 <base href="https://demos.telerik.com/kendo-ui/grid/basic-usage">
-<script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/jszip.min.js"></script>
+<script src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
 <div id="example">
     <div id="grid"></div>
 
@@ -56,7 +58,7 @@ The following example demonstrates how to customize the Excel document so that i
                 toolbar: ["excel"],
                 excel: {
                     fileName: "Kendo UI Grid Export.xlsx",
-                    proxyURL: "//demos.telerik.com/kendo-ui/service/export",
+                    proxyURL: "https://demos.telerik.com/service/v2/core/export",
                     filterable: true
                 },
                 excelExport: function (e) {
@@ -116,9 +118,8 @@ The following example demonstrates how to customize the Excel document so that i
                     }, 2000);
                 },
                 dataSource: {
-                    type: "odata",
                     transport: {
-                        read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                        read: "https://demos.telerik.com/service/v2/core/Orders"
                     },
                     schema: {
                         model: {
@@ -139,7 +140,7 @@ The following example demonstrates how to customize the Excel document so that i
                 pageable: true,
                 columns: [{
                     template: "<div class='customer-photo'" +
-                    "style='background-image: url(../content/web/Customers/#:data.CustomerID#.jpg);'></div>",
+                    "style='background-image: url(https://demos.telerik.com/kendo-ui/content/web/Customers/#:data.CustomerID#.jpg);'></div>",
                     field: "CustomerID",
                     title: "Contact",
                     width: 80
@@ -189,4 +190,4 @@ The following example demonstrates how to customize the Excel document so that i
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

@@ -2,6 +2,7 @@
 title: Tooltip
 page_title: Tooltip
 description: "Learn how to configure the tooltip of the Telerik UI Rating for {{ site.framework }}."
+components: ["rating"]
 previous_url: /helpers/editors/rating/tooltip
 slug: htmlhelpers_rating_aspnetcore_tooltip
 position: 5
@@ -31,7 +32,7 @@ The following example demonstrates how to use the default tooltip of the Rating.
 
 ## Disabling the Tooltips
 
-Setting the [`Tooltip`](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/RatingBuilder#tooltipsystemstring) property to `false` prevents the items to display tooltips when hovered.
+Setting the [`Tooltip`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/ratingbuilder#tooltipsystemstring) property to `false` prevents the items to display tooltips when hovered.
 
 ```HtmlHelper
     @(Html.Kendo().Rating()

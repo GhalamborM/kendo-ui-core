@@ -2,13 +2,14 @@
 title: Validation
 page_title: Validation
 description: "Learn how to configure the server-side validation when using the Telerik UI Captcha component for {{ site.framework }}."
+components: ["captcha"]
 slug: htmlhelpers_captcha_validation
 position: 3
 ---
 
 # Captcha Validation Setup
 
-This article explains how to use your application's backend to verify the user's response to the Telerik UI Captcha. 
+This article explains how to use your application's backend to verify the user's response to the Telerik UI Captcha.
 
 Always generate the CAPTCHA and apply the validation on the server-side of your application. This approach guarantees that no programs or bots can access the values of the CAPTCHA on the client-side via JavaScript and then bypass the validation.
 
@@ -25,8 +26,7 @@ To generate CAPTCHAs and validate the user's input, the Telerik UI Captcha depen
 1. To generate a new CAPTCHA, use the `GetNewCaptcha()` method of the `CaptchaHelper`. Save the CAPTCHA to a Session.
 
     {% if site.core %}
-
-    ```
+    ```C#
     private void GenerateNewCaptcha()
     {
         CaptchaImage captchaImage = SetCaptchaImage();
@@ -48,15 +48,15 @@ To generate CAPTCHAs and validate the user's input, the Telerik UI Captcha depen
         var image = CaptchaHelper.RenderCaptcha(newCaptcha);
         image.Save(Path.Combine(CaptchaPath, newCaptcha.UniqueId + ".png"), ImageFormat.Png);
 
-        HttpContext.Session.SetString("captcha_" + newCaptcha.UniqueId, newCaptcha.Text);
+        var key = newCaptcha.UniqueId;
+        var value = JsonConvert.SerializeObject(newCaptcha);
+        HttpContext.Session.SetString("captcha_" + key, value);
 
         return newCaptcha;
     }
     ```
-
     {% else %}
-
-    ```
+    ```C#
     private void GenerateNewCaptcha()
     {
         CaptchaImage captchaImage = CaptchaHelper.GetNewCaptcha();
@@ -67,14 +67,12 @@ To generate CAPTCHAs and validate the user's input, the Telerik UI Captcha depen
         ViewData["CaptchaID"] = captchaImage.UniqueId;
     }
     ```
-
     {% endif %}
 
     >tip Generate the CAPTCHA in the `ActionMethod` that returns the Razor View. If the CAPTCHA is used in multiple Razor Views, generate it in the Controller's constructor.
 
     {% if site.core %}
-
-    ```Controller
+    ```C# Controller
     public ActionResult Index(UserViewModel user, CaptchaModel captchaModel)
     {
         if (string.IsNullOrEmpty(captchaModel.CaptchaID))
@@ -95,12 +93,9 @@ To generate CAPTCHAs and validate the user's input, the Telerik UI Captcha depen
 
         return View(user);
     }
-
     ```
-
     {% else %}
-
-    ```Controller
+    ```C# Controller
     public ActionResult Index(UserViewModel user, CaptchaModel captchaModel)
     {
         if (string.IsNullOrEmpty(captchaModel.CaptchaID))
@@ -136,10 +131,8 @@ To generate CAPTCHAs and validate the user's input, the Telerik UI Captcha depen
         return File(bmpBytes, "image/png");
     }
     ```
-
     {% endif %}
-
-    ```CaptchaModel.cs
+    ```C# CaptchaModel.cs
     public class CaptchaModel
     {
         private string _captchaValue;
@@ -174,7 +167,7 @@ To generate CAPTCHAs and validate the user's input, the Telerik UI Captcha depen
     ```
     {% if site.core %}
     ```TagHelper
-    <kendo-captcha name="Captcha" 
+    <kendo-captcha name="Captcha"
                    captcha-image="@ViewData["Captcha"]"
                    captcha-id="@ViewData["CaptchaID"]"
                    datacaptchafield="Captcha"
@@ -197,8 +190,7 @@ To generate CAPTCHAs and validate the user's input, the Telerik UI Captcha depen
 1. Add the server-side handlers for the Captcha:
 
     {% if site.core %}
-
-    ```
+    ```C#
     public ActionResult Reset()
     {
         CaptchaImage newCaptcha = SetCaptchaImage();
@@ -217,14 +209,12 @@ To generate CAPTCHAs and validate the user's input, the Telerik UI Captcha depen
         return Json(text ==  model.Captcha.ToUpperInvariant());
     }
     ```
-
     {% else %}
-
-    ```
+    ```C#
     public ActionResult Reset()
     {
         CaptchaImage newCaptcha = CaptchaHelper.GetNewCaptcha();
-        
+
         Session["captcha" + newCaptcha.UniqueId] = newCaptcha;
 
         return Json(new CaptchaModel
@@ -239,7 +229,7 @@ To generate CAPTCHAs and validate the user's input, the Telerik UI Captcha depen
         CaptchaImage captcha = (CaptchaImage)Session["captcha" + captchaId];
 
         byte[] bmpBytes;
-        
+
         using (MemoryStream audio = CaptchaHelper.SpeakText(captcha))
         {
             bmpBytes = audio.ToArray();
@@ -328,12 +318,12 @@ The Telerik UI Captcha for {{ site.framework }} prevents automated programs from
     ```
     {% endif %}
 
-1. Instantiate a Telerik UI Validator from the form inside the [document.ready() event](https://learn.jquery.com/using-jquery-core/document-ready/). 
+1. Instantiate a Telerik UI Validator from the form inside the [document.ready() event](https://learn.jquery.com/using-jquery-core/document-ready/).
 
     {% if site.core %}
-    ```
+    ```JavaScript
     <script>
-        $(document).on("kendoReady", function () {
+        $(document).on("ready", function () {
             $("#form").kendoValidator();
         });
         function audioHandler(args) {
@@ -342,9 +332,9 @@ The Telerik UI Captcha for {{ site.framework }} prevents automated programs from
     </script>
     ```
     {% else %}
-    ```
+    ```JavaScript
     <script>
-        $(document).on("kendoReady", function() {
+        $(document).on("ready", function() {
             $("#form").kendoValidator();
         });
         function audioHandler(args) {
@@ -354,7 +344,7 @@ The Telerik UI Captcha for {{ site.framework }} prevents automated programs from
     ```
     {% endif %}
 
-> If the state of the Telerik UI Captcha is invalid, the Validator prevents the form submission and shows an error message to the user. 
+> If the state of the Telerik UI Captcha is invalid, the Validator prevents the form submission and shows an error message to the user.
 
 ## See Also
 

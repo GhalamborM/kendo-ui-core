@@ -2,6 +2,7 @@
 title: Label
 page_title: Label
 description: "Learn how to configure the label of the Telerik UI CheckBoxGroup for {{ site.framework }}."
+components: ["checkboxgroup"]
 slug: htmlhelpers_checkboxgroup_aspnetcore_label
 position: 3
 ---
@@ -12,7 +13,7 @@ If the CheckBoxGroup is bound to an array of strings, those will be used as both
 
 ## Set the Label text
 
-To customize the text of the label, use the [`label`](/api/javascript/ui/checkboxgroup/configuration/items.label) option.
+To customize the text of the label, use the [`label`](https://docs.telerik.com/kendo-ui/api/ui/checkboxgroup/configuration/items.label) option.
 
 ```HtmlHelper
     @(Html.Kendo().CheckBoxGroup()

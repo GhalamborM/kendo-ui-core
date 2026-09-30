@@ -2,8 +2,9 @@
 title: Templates
 page_title: Templates
 description: "Configure the Telerik UI ListView for {{ site.framework }} to build its templates."
+components: ["listview"]
 slug: htmlhelpers_listview_aspnetcore_templates
-position: 5
+position: 6
 ---
 
 # Templates
@@ -29,7 +30,23 @@ To set the template, refer it when you initialize the ListView. The template dis
         .Pageable() // Enable paging.
     )
 ```
-```Template
+{% if site.core %}
+```TagHelper
+    <kendo-listview name="productListView"
+                    tag-name="div"
+                    template-id="template"
+                    style="height:350px;">
+        <scrollable enabled="true" />
+        <datasource type="DataSourceTagHelperType.Ajax">
+            <transport>
+                <read url="@Url.Action("Products_Read", "ListView")" />
+            </transport>
+        </datasource>
+        <pageable enabled="true" />
+    </kendo-listview>
+```
+{% endif %}
+```JS Template
     <script type="text/x-kendo-tmpl" id="template">
         <div class="product">
             <h3>#=ProductName#</h3>
@@ -59,7 +76,24 @@ Your project might require you to visually differentiate each alternating item i
         .Pageable() // Enable paging.
     )
 ```
-```Template
+{% if site.core %}
+```TagHelper
+    <kendo-listview name="productListView"
+                    tag-name="div"
+                    template-id="template"
+                    alt-template-id="altTemplate"
+                    style="height:350px;">
+        <scrollable enabled="true" />
+        <datasource type="DataSourceTagHelperType.Ajax">
+            <transport>
+                <read url="@Url.Action("Products_Read", "ListView")" />
+            </transport>
+        </datasource>
+        <pageable enabled="true" />
+    </kendo-listview>
+```
+{% endif %}
+```JS Template
     <script type="text/x-kendo-tmpl" id="template">
         <div class="product">
             <img src="https://demos.telerik.com/kendo-ui/content/web/foods/#= ProductID #.jpg" alt="#: ProductName # image" />

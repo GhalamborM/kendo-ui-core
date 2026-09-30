@@ -1,13 +1,13 @@
 ---
 title: Set Caret Positions in the Editor
 page_title: Set Caret Positions in the Editor
-description: "Learn how to set the caret position in a Kendo UI Editor widget."
+description: "Learn how to set the caret position in a Kendo UI Editor component."
 previous_url: /controls/editors/editor/how-to/set-caret-position-using-javascript, /controls/editors/editor/how-to/customize/set-caret-position-using-javascript
 slug: howto_set_caret_position_editor
 tags: telerik, kendo, jquery, editor, set, caret, positions
-component: editor
 type: how-to
 res_type: kb
+components: ["editor"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Editor for jQuery</td>
+  <td>Progress® Kendo UI® Editor for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,16 +37,16 @@ How can I set the position of the caret inside an inline Kendo UI for jQuery Edi
 
 ## Solution
 
-To set the position of the caret inside an inline Kendo UI Editor by using JavaScript, you can use a position index or search for a string.  
+To set the position of the caret inside an inline Kendo UI Editor by using JavaScript, you can use a position index or search for a string.
 
 The exact implementation in other scenarios varies, depending on the business logic and used DOM or Range APIs.
 
 The following example demonstrates how to use a position index&mdash;that is, it sets a caret position inside the Editor to a specified index.
 
 ```dojo
-    <div id="example" style="margin: 2em;">
+    <div id="example">
         <p><button id="setPosition" class="k-button">Click</button></p>
-        <div id="editor">Some text to focus and edit.</div>
+        <textarea id="editor">Some text to focus and edit.</textarea>
     </div>
 
     <script>
@@ -75,17 +75,21 @@ The following example demonstrates how to use a position index&mdash;that is, it
 The following example demonstrates how to search for a string&mdash;that is, it sets the a caret position to the start of a string.
 
 ```dojo
-    <div id="example" style="margin: 2em;">
-      <p><input id="stringToFocus" class="k-textbox" type="text" value="focus" /> <button id="setPosition" class="k-button">Click</button></p>
-      <div id="editor" style="margin: 5em 0 0">
+    <div id="example">
+      <p>
+        <input id="stringToFocus" class="k-textbox" type="text" value="focus" style="width: 20%" />
+        <button id="setPosition" class="k-button">Click</button>
+      </p>
+      <textarea id="editor" style="margin: 5em 0 0">
         <p>Random paragraph 1.</p>
         <p>Some text to focus and edit.</p>
-      </div>
+      </textarea>
     </div>
 
     <script>
       $(document).ready(function() {
         $("#editor").kendoEditor();
+        $("#stringToFocus").kendoTextBox();
 
 
         function findNodeOfString(container, str) {
@@ -93,8 +97,8 @@ The following example demonstrates how to search for a string&mdash;that is, it 
             container,
             NodeFilter.SHOW_TEXT,
             function(node) {
-        			return node.nodeValue.indexOf(str) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-    				});
+              return node.nodeValue.indexOf(str) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+            });
 
           return nodeIterator.nextNode();
         }
@@ -128,4 +132,4 @@ The following example demonstrates how to search for a string&mdash;that is, it 
 
 * [Basic Usage of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/index)
 * [Using the API of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/api)
-* [JavaScript API Reference of the Editor](/api/javascript/ui/editor)
+* [JavaScript API Reference of the Editor](/api/ui/editor)

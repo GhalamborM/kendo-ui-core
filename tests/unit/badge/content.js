@@ -1,0 +1,278 @@
+import '@progress/kendo-ui/src/kendo.badge.js';
+import { assert, it } from 'vitest';
+
+let Badge = kendo.ui.Badge;
+let span;
+let badge;
+
+describe('kendo.ui.Badge content', function() {
+    beforeEach(function() {
+        span = $('<span />').appendTo(Mocha.fixture);
+    });
+    afterEach(function() {
+        badge.destroy();
+        span.remove();
+        kendo.destroy(Mocha.fixture);
+    });
+
+    // #region
+    it('initial text of badge element is preserved', function() {
+        span.html('text');
+        badge = new Badge(span);
+
+        assert.equal(badge.text(), 'text');
+    });
+
+    it('initial HTML of badge element is preserved', function() {
+        span.html('<strong>HtMl</strong>');
+        badge = new Badge(span);
+
+        assert.equal(badge.text(), '<strong>HtMl</strong>');
+    });
+    // #endregion
+
+
+    // #region badge.options.text
+    it('badge.options.text sets the content of the badge', function() {
+        badge = new Badge(span, { text: 100 });
+
+        assert.equal(badge.text(), 100);
+    });
+
+    it('badge.options.text overrides the initial HTML of the badge element', function() {
+        span.html('<strong>text</strong>');
+        badge = new Badge(span, { text: 100 });
+
+        assert.equal(badge.text(), 100);
+    });
+    // #endregion
+
+
+    // #region badge.options.template
+    it('badge.options.template sets the content of the badge', function() {
+        badge = new Badge(span, {
+            data: {
+                templateProp: 'template'
+            },
+            template: ({ templateProp }) => `${templateProp}`
+        });
+
+        assert.equal(badge.element.html(), 'template');
+    });
+
+    it('badge.options.template overides the initial HTML of the badge element', function() {
+        span.html('<strong>text</strong>');
+        badge = new Badge(span, {
+            data: {
+                templateProp: 'template'
+            },
+            template: ({ templateProp }) => `${templateProp}`
+        });
+
+        assert.equal(badge.element.html(), 'template');
+    });
+
+    it('badge.options.template takes precedense over badge.options.text', function() {
+        span.html('<strong>text</strong>');
+        badge = new Badge(span, {
+            text: 100,
+            template: () => '<i>template</i>'
+        });
+
+        assert.equal(badge.text(), 100);
+        assert.equal(badge.element.html(), '<i>template</i>');
+    });
+
+    it('badge.options.template takes precedense over badge.options.icon', function() {
+        span.html('<strong>text</strong>');
+        badge = new Badge(span, {
+            icon: 'add',
+            template: () => '<i>template</i>'
+        });
+
+        assert.equal(badge.icon(), undefined);
+        assert.equal(badge.element.html(), '<i>template</i>');
+    });
+    // #endregion
+
+
+    // #region badge.options.max
+    it('badge.options.max has no badge element content', function() {
+        span.html('100');
+        badge = new Badge(span, { max: 99 });
+
+        assert.equal(badge.element.html(), '100');
+    });
+
+    it('badge.options.max has no effect on strings', function() {
+        badge = new Badge(span, { text: '100', max: 14 });
+
+        assert.equal(badge.element.html(), '100');
+    });
+
+    it('badge.options.max has no effect on templates', function() {
+        badge = new Badge(span, { template: () => '100', max: 14 });
+
+        assert.equal(badge.element.html(), '100');
+    });
+
+    it('badge.options.max caps greater numbers but leaves badge.options.text intact', function() {
+        badge = new Badge(span, {
+            text: 100,
+            max: 14
+        });
+
+        assert.equal(badge.text(), 100);
+        assert.equal(badge.element.html(), '14+');
+    });
+
+    it('badge.options.max does not cap lesser or equal numbers', function() {
+        badge = new Badge(span, {
+            text: 100,
+            max: 100
+        });
+
+        assert.equal(badge.text(), 100);
+        assert.equal(badge.element.html(), '100');
+    });
+    // #endregion
+
+
+    // #region badge.options.icon
+    it('badge.options.icon sets the content of the badge', function() {
+        badge = new Badge(span, {
+            icon: 'plus'
+        });
+
+        assert.equal(badge.element.find(".k-badge-icon").length, 1);
+    });
+
+    it('badge.options.icon overides the initial HTML of the badge element', function() {
+        span.html('<strong>text</strong>');
+        badge = new Badge(span, {
+            icon: 'plus'
+        });
+
+        assert.equal(badge.element.find(".k-badge-icon").length, 1);
+    });
+
+    it('badge.options.icon takes precedense over badge.options.text', function() {
+        span.html('<strong>text</strong>');
+        badge = new Badge(span, {
+            text: 100,
+            icon: 'plus'
+        });
+
+        assert.equal(badge.text(), undefined);
+        assert.equal(badge.element.find(".k-badge-icon").length, 1);
+    });
+
+    it('badge.icon(svg) applies aria-hidden to icon wrapper and svg', function() {
+        badge = new Badge(span);
+
+        badge.icon('<svg id="raw-svg-test" viewBox="0 0 10 10"><path d="M0 0h10v10H0z"></path></svg>');
+
+        assert.equal(badge.element.find('.k-badge-icon').attr('aria-hidden'), 'true');
+        assert.equal(badge.element.find('#raw-svg-test').attr('aria-hidden'), 'true');
+    });
+
+    it('badge.icon(svg) preserves existing aria-hidden false on svg', function() {
+        badge = new Badge(span);
+
+        badge.icon('<svg id="raw-svg-false" aria-hidden="false" viewBox="0 0 10 10"><path d="M0 0h10v10H0z"></path></svg>');
+
+        assert.equal(badge.element.find('.k-badge-icon').attr('aria-hidden'), 'true');
+        assert.equal(badge.element.find('#raw-svg-false').attr('aria-hidden'), 'false');
+    });
+
+    it('badge.icon(svg) preserves existing aria-hidden true on svg', function() {
+        badge = new Badge(span);
+
+        badge.icon('<svg id="raw-svg-true" aria-hidden="true" viewBox="0 0 10 10"><path d="M0 0h10v10H0z"></path></svg>');
+
+        assert.equal(badge.element.find('.k-badge-icon').attr('aria-hidden'), 'true');
+        assert.equal(badge.element.find('#raw-svg-true').attr('aria-hidden'), 'true');
+    });
+
+    it('badge.icon(svg) adds aria-hidden to root when only nested elements have it', function() {
+        badge = new Badge(span);
+
+        badge.icon('<svg id="raw-svg-nested" viewBox="0 0 10 10"><g aria-hidden="false"><path d="M0 0h10v10H0z"></path></g></svg>');
+
+        assert.equal(badge.element.find('.k-badge-icon').attr('aria-hidden'), 'true');
+        assert.equal(badge.element.find('#raw-svg-nested').attr('aria-hidden'), 'true');
+        assert.equal(badge.element.find('#raw-svg-nested g').attr('aria-hidden'), 'false');
+    });
+    // #endregion
+
+
+    // #region badge.text()
+    it('badge.text() gets and sets correctly', function() {
+        span.html('<strong>HtMl</strong>');
+        badge = new Badge(span, { encoded: false });
+
+        assert.equal(badge.text(), badge.element.html());
+        assert.equal(badge.text(), '<strong>HtMl</strong>');
+
+        badge.text('');
+
+        assert.equal(badge.text(), badge.element.html());
+        assert.equal(badge.text(), '');
+
+        badge.text('text');
+
+        assert.equal(badge.text(), badge.element.html());
+        assert.equal(badge.text(), 'text');
+    });
+
+    it('badge.text() encodes malicious markup by default', function() {
+        const markup = '<img src=x onerror=alert(1)>';
+        badge = new Badge(span, { text: markup });
+
+        assert.equal(span.find("img").length, 0);
+        assert.equal(span.text(), markup);
+    });
+
+    it('badge.text() encodes object-backed malicious markup by default', function() {
+        const markup = '<img src=x onerror=alert(1)>';
+        const text = { toString: () => markup };
+        badge = new Badge(span, { text });
+
+        assert.equal(span.find("img").length, 0);
+        assert.equal(span.text(), markup);
+    });
+    // #endregion
+
+
+    // #region setOptions
+    it('badge.setOptions({text: text}) works correctly', function() {
+        badge = new Badge(span);
+
+        badge.setOptions({ text: 100 });
+        assert.equal(badge.text(), 100);
+    });
+    it('badge.setOptions({text: number}) works correctly', function() {
+        badge = new Badge(span);
+
+        badge.setOptions({ text: 300, max: 99 });
+
+        assert.equal(badge.text(), 300);
+        assert.equal(badge.element.html(), '99+');
+    });
+    it('badge.setOptions({icon: icon}) works correctly', function() {
+        badge = new Badge(span);
+
+        badge.setOptions({ icon: 'plus' });
+
+        assert.equal(badge.icon(), 'plus');
+        assert.equal(badge.element.find(".k-badge-icon").length, 1);
+    });
+    it('badge.setOptions({template: tmeplate}) works correctly', function() {
+        badge = new Badge(span);
+
+        badge.setOptions({ template: () => '200' });
+        assert.equal(badge.element.html(), 200);
+    });
+    // #endregion
+
+});

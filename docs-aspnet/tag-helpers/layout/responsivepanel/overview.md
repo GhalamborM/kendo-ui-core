@@ -2,6 +2,7 @@
 title: Overview
 page_title: Overview
 description: "Learn more about the Telerik UI Responsive Panel TagHelper for {{ site.framework }}, and use it your next project."
+components: ["responsivepanel"]
 previous_url: /helpers/responsivepanel, /helpers/tag-helpers/responsivepanel
 slug: taghelpers_responsivepanel_aspnetcore
 position: 1
@@ -130,4 +131,4 @@ The configuration options of the ResponsivePanel TagHelper are passed as attribu
 ## See Also
 
 * [The Responsive Panel Tag Helper for {{ site.framework }} Demo](https://demos.telerik.com/aspnet-core/responsive-panel/tag-helper)
-[The Responsive Panel Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/responsivepanel)
+[The Responsive Panel Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/responsivepanel)

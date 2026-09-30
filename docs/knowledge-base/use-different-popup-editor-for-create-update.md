@@ -1,13 +1,13 @@
 ---
 title: Use Different Popup Editors for Create and Update Operations
-page_title: Use Different Popup Editors | Kendo UI Grid for jQuery
-description: "An example on how to use different popup editors for create and update operations in the Kendo UI Grid for jQuery."
+page_title: Use Different Popup Editors - Kendo UI for jQuery Data Grid
+description: "Learn how to use different popup editors for create and update operations in the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/Editing/use-different-popup-editor-for-create-update
 slug: howto_use_different_poup_editors_for_create_update_operations
 tags: use, various, popup, editors, grid, create, update, operations
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -77,10 +77,10 @@ The following example demonstrates how to use different popup editors in a Grid 
                 e.model.ProductID = e.sender.dataSource.data().length;
               },
               dataSource: {
-                type: "odata",
+                type: "odata-v4",
                 serverFiltering: true,
                 transport: {
-                  read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
+                  read: "https://demos.telerik.com/service/v2/odata/Categories"
                 }
               }
             });
@@ -94,10 +94,10 @@ The following example demonstrates how to use different popup editors in a Grid 
                 e.model.ProductName = this.text();
               },
               dataSource: {
-                type: "odata",
+                type: "odata-v4",
                 serverFiltering: true,
                 transport: {
-                  read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products"
+                  read: "https://demos.telerik.com/service/v2/odata/Products"
                 }
               }
             });
@@ -133,4 +133,4 @@ The following example demonstrates how to use different popup editors in a Grid 
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

@@ -2,6 +2,7 @@
 title: Enabling and Disabling Widgets
 page_title: Working with State Changes | AngularJS Directives
 description: "Learn how to enable and disable widgets in AngularJS applications."
+components: ["general"]
 previous_url: /framework/AngularJS/introduction#working-with-state-changes
 slug: angularjs_enable_disable
 position: 7
@@ -15,7 +16,12 @@ By using them, you can change the `disabled` or `readonly` state of the widget b
 
 The following example demonstrates how to change the disabled state of the DropDownList.
 
-```dojo
+```
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/angular.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/kendo.all.min.js"></script>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/7.0.1/default/default-ocean-blue.css">
+
     <div id="example" ng-app="KendoDemos">
       <div class="demo-section k-content" ng-controller="MyCtrl">
         <select id="customers"
@@ -33,8 +39,7 @@ The following example demonstrates how to change the disabled state of the DropD
           dataSource: {
             transport: {
               read: {
-                dataType: "jsonp",
-                url: "https://demos.telerik.com/kendo-ui/service/Customers",
+                url: "https://demos.telerik.com/service/v2/core/Customers",
               }
             }
           },
@@ -47,7 +52,12 @@ The following example demonstrates how to change the disabled state of the DropD
 
 The following example demonstrates how to change the read-only state of the DropDownList.
 
-```dojo
+```
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/angular.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/kendo.all.min.js"></script>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/7.0.1/default/default-ocean-blue.css">
+
     <div id="example" ng-app="KendoDemos">
       <div class="demo-section k-content" ng-controller="MyCtrl">
         <select id="customers"
@@ -65,8 +75,7 @@ The following example demonstrates how to change the read-only state of the Drop
           dataSource: {
             transport: {
               read: {
-                dataType: "jsonp",
-                url: "https://demos.telerik.com/kendo-ui/service/Customers",
+                url: "https://demos.telerik.com/service/v2/core/Customers",
               }
             }
           },

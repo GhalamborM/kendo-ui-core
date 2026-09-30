@@ -1,13 +1,13 @@
 ---
-title: Change Options of Widgets Dynamically
-page_title: Change the Options of a Widget Programmatically 
-description: An example on how to change the options of the Kendo UI Grid dynamically.
+title: Change Options of Components Dynamically
+page_title: Change the Options of a Widget Programmatically
+description: Learn how to change the options of the Kendo UI for jQuery Grid dynamically.
 type: how-to
 slug: change-a-widget-options-dynamically
 previous_url: /knowledge-base/how-to-change-a-widget-options-dinamically
 tags: grid, setoptions, dynamically, options
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI for jQuery</td>
+  <td>Progress® Kendo UI® for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -30,7 +30,7 @@ component: grid
   <td>All</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>All</td>
  </tr>
  <tr>
@@ -85,9 +85,9 @@ The following example demonstrates how to dynamically change the Grid columns ba
           })
           $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               schema: {
                 model: {

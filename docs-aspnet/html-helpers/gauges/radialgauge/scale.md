@@ -2,11 +2,12 @@
 title: Scale
 page_title: Scale
 description: "Learn the Options of the Scale of the Telerik UI RadialGauge component for {{ site.framework }}."
+components: ["radialgauge"]
 slug: scale_radialgaugehelper_aspnetcore
 position: 2
 ---
 
-## Radial Gauge Scale
+# Radial Gauge Scale
 
 The scale of the Telerik UI RadialGauge for {{ site.framework }} renders the values, pointers and labels. It can be customized by adding the  `Scale` option to the widget. The `Scale` exposes the following child options:
 

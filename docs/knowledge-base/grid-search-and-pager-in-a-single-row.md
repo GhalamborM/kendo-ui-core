@@ -1,13 +1,13 @@
 ---
 title: Grid Search and Pager on the Top
-description: An example on how to have the search panel and the pager in a single row at the top of the Kendo UI Grid.
+description: Learn how to have the search panel and the pager in a single row at the top of the Kendo UI Grid.
 type: how-to
-page_title: Combine Search and Pager in the Grid | Kendo UI Grid for jQuery
+page_title: Combine Search and Pager in the Grid - Kendo UI for jQuery Data Grid
 slug: grid-search-and-pager-in-a-single-row
 tags: kendoui, kendo, grid, search, panel, pager, combine, single, one, same, row
 res_type: kb
+components: ["grid"]
 ticketid: 1501208
-component: grid
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
   <td>Created with version</td>
   <td>2020.3.1118</td>
  </tr>
@@ -30,37 +30,35 @@ I had a request to combine the paging bar and search bar into a single div/row. 
 Indeed, there is no pager template and the toolbar and pager are separate divs (siblings). I was able to achieve an outcome similar to the one you shared with us with the following steps:
 
 1. Pager Settings
-    - [`pageable.position`](/api/javascript/ui/grid/configuration/pageable.position) set to `top`
-    - [`pageable.responsive`](/api/javascript/ui/grid/configuration/pageable.responsive) set to `false`
+    - [`pageable.position`](/api/ui/grid/configuration/pageable#pageableposition) set to `top`
+    - [`pageable.responsive`](/api/ui/grid/configuration/pageable#pageableresponsive) set to `false`
 1. In the `document.ready` event, get the grid instance and use its `dataBound` event to wrap the pager and toolbar elements with another div. This will give us the chance to control them together in a container and reorder them.
-
-    ```
-        var grid = $("#grid").data("kendoGrid");
-        grid.one("dataBound", function(e){
-            $(".k-grid-toolbar, .k-grid-pager").wrapAll($("<div class='pager-toolbar-container'/>"))
-        });
-    ```
-    ```
-        <style>
-            .pager-toolbar-container{
-              display: flex;
-              flex-direction: row;
-            }
-            .k-grid-toolbar{
-              order: 1; 
-              width: 35%;
-            }
-            .k-grid-pager{
-              order: 2; 
-              width: 65%;
-              border-bottom-color:rgba(0, 0, 0, 0.08)
-            }
-
-            .k-grid .k-grid-search {
-              width: auto;
-            }
-            </style>
-    ```
+  ```js
+      var grid = $("#grid").data("kendoGrid");
+      grid.one("dataBound", function(e){
+          $(".k-grid-toolbar, .k-grid-pager").wrapAll($("<div class='pager-toolbar-container'/>"))
+      });
+  ```
+  ```html
+      <style>
+          .pager-toolbar-container{
+            display: flex;
+            flex-direction: row;
+          }
+          .k-grid-toolbar{
+            order: 1; 
+            width: 35%;
+          }
+          .k-grid-pager{
+            order: 2; 
+            width: 65%;
+            border-bottom-color:rgba(0, 0, 0, 0.08)
+           
+          .k-grid .k-grid-search {
+            width: auto;
+          }
+          </style>
+  ```
 
 
 ```dojo
@@ -89,28 +87,30 @@ Indeed, there is no pager template and the toolbar and pager are separate divs (
 
       <script>
         $(document).ready(function () {
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
               dataSource = new kendo.data.DataSource({
-                transport: {
-                  read:  {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
-                  },
-                  update: {
-                    url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
-                  },
-                  destroy: {
-                    url: crudServiceBaseUrl + "/Products/Destroy",
-                    dataType: "jsonp"
-                  },
-                  create: {
-                    url: crudServiceBaseUrl + "/Products/Create",
-                    dataType: "jsonp"
+                  transport: {
+                      read:  {
+                          url: crudServiceBaseUrl + "/Products"
+                      },
+                      update: {
+                          url: crudServiceBaseUrl + "/Products/Update",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      destroy: {
+                          url: crudServiceBaseUrl + "/Products/Destroy",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      create: {
+                          url: crudServiceBaseUrl + "/Products/Create",
+                          type: "POST",
+                  		    contentType: "application/json"
                   },
                   parameterMap: function(options, operation) {
                     if (operation !== "read" && options.models) {
-                      return {models: kendo.stringify(options.models)};
+                      return kendo.stringify(options.models);
                     }
                   }
                 },

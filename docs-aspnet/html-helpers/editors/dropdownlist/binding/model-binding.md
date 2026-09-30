@@ -2,6 +2,7 @@
 title:  Model Binding
 page_title: Model Binding
 description: "Learn how to implement Model Binding with Telerik UI DropDownList component for {{ site.framework }}."
+components: ["dropdownlist"]
 previous_url: /helpers/editors/dropdownlist/binding/model-binding
 slug: htmlhelpers_dropdownlist_modelbinding_aspnetcore
 position: 5
@@ -65,7 +66,7 @@ You can configure the DropDownList to get its data from a remote source by makin
                 ProductName = "ProductName4"
             });
         }
-
+        {% if site.mvc %}
         public JsonResult GetProductsAjax()
         {
             var products = Enumerable.Range(0, 500).Select(i => new ProductViewModel
@@ -76,6 +77,18 @@ You can configure the DropDownList to get its data from a remote source by makin
 
             return Json(products, JsonRequestBehavior.AllowGet);
         }
+        {% else %}
+        public JsonResult GetProductsAjax()
+        {
+            var products = Enumerable.Range(0, 500).Select(i => new ProductViewModel
+            {
+                ProductID = i,
+                ProductName = "ProductName" + i
+            });
+
+            return Json(products, JsonRequestBehavior.AllowGet);
+        }
+        {% endif %}
 
 1. Add the DropDownList to the view and configure its DataSource to use remote data.
 
@@ -100,4 +113,7 @@ You can configure the DropDownList to get its data from a remote source by makin
     
 ## See Also
 
-* [Server-Side API](/api/dropdownlist)
+* [Server-Side API of the DropDownList HtmlHelper](/api/dropdownlist)
+{% if site.core %}
+* [Server-Side API of the DropDownList TagHelper](/api/taghelpers/dropdownlist)
+{% endif %}

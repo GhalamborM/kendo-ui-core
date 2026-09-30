@@ -6,7 +6,7 @@ slug: third_party_modal_popups_no_access_to_widgets
 tags: telerik, kendoui, jquery, troubleshooting, third, party, modal, popups, prevent, access, to, widgets
 type: troubleshooting
 res_type: kb
-component: kendoui
+components: ["kendoui"]
 ---
 
 ## Environment
@@ -37,5 +37,5 @@ The Kendo UI widgets, which are affected by this behavior are all widgets, which
 To handle the issue, use either of the following approaches:
 
 * Disable the modality of the modal popup, so that elements outside it can be focused.
-* Use a [modal](/api/javascript/ui/window/configuration/modal) [Kendo UI Window]({% slug overview_kendoui_window_widget %}) instead of a third-party popup.
+* Use a [modal](/api/ui/window/configuration/modal) [Kendo UI Window]({% slug overview_kendoui_window_widget %}) instead of a third-party popup.
 

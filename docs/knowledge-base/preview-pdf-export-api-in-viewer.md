@@ -1,12 +1,13 @@
 ---
 title: Preview Export API in PDFViewer
-description: An example on how to preview the generated PDF from the Kendo UI Drawing API in the Kendo UI PDFViewer for jQuery.
+description: Learn how to preview the generated PDF from the Kendo UI Drawing API in the Kendo UI PDFViewer for jQuery.
 type: how-to
-page_title: Use PDFViewer with PDF Export API | Kendo UI PDFViewer for jQuery
+page_title: Use PDFViewer with PDF Export API - Kendo UI PDFViewer for jQuery
 slug: preview-pdf-export-api-in-viewer
 tags: pdf,viewer,export,preview,api,generate,download
 ticketid: 1412617
 res_type: kb
+components: ["pdfviewer"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 	    </tr>
 	    <tr>
 	    	<td>Product</td>
-	    	<td>PDFViewer for Progress® Kendo UI®</td>
+	    	<td>Progress® Kendo UI® PDFViewer for jQuery</td>
 	    </tr>
     </tbody>
 </table>
@@ -34,14 +35,12 @@ Instead of enabling your users to download the PDF that the [Kendo UI Drawing li
 Combine the Drawing API with the [Kendo UI PDFViewer component](https://demos.telerik.com/kendo-ui/pdfviewer/index).
 
 1. Generate the PDF as usual through the ` kendo.drawing.drawDOM()` method.
-1. When the promise is resolved, in the `done` method, use the [`fromFile` method](https://docs.telerik.com/kendo-ui/api/javascript/ui/pdfviewer/methods/fromfile) of the PDFViewer component instead of `kendo.saveAs`.
+1. When the promise is resolved, in the `done` method, use the [`fromFile` method](https://docs.telerik.com/kendo-ui/api/ui/pdfviewer/methods/fromfile) of the PDFViewer component instead of `kendo.saveAs`.
 
 ```dojo
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.js"></script>
-<script>
-    window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.worker.js';
-</script>
-
+<script src="https://unpkg.com/pdfjs-dist@5.6.205/build/pdf.min.mjs" type="module"></script>
+<script src="https://unpkg.com/pdfjs-dist@5.6.205/build/pdf.worker.min.mjs" type="module"></script>
+<script src="https://kendo.cdn.telerik.com/2025.1.227/js/kendo.all.min.js" type="module"></script>
   <div class="content-wrapper">
     <input type="text" placeholder="Type your name" />
     <input type="text" placeholder="Type your comment" />    
@@ -54,7 +53,7 @@ Combine the Drawing API with the [Kendo UI PDFViewer component](https://demos.te
   <div id="pdfViewer">
   </div>
 
-<script>
+<script type="module">
     var viewer = $("#pdfViewer").kendoPDFViewer({
       pdfjsProcessing: {
         file: ""

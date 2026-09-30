@@ -1,7 +1,8 @@
 ---
 title: Disabled
-page_title: Disabled Binding | Kendo UI MVVM
+page_title: Disabled Binding - Kendo UI MVVM
 description: "Learn how to disable the target DOM widget or element in Kendo UI MVVM."
+components: ["mvvm"]
 slug: disabledbinding_mvvm_kendoui
 ---
 

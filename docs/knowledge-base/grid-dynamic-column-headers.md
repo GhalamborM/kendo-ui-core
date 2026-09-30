@@ -1,13 +1,13 @@
 ---
 title: Grid with a Dynamic Column Header
-description: An example on how to change multi header title of the Kendo UI Grid dynamically based on Date Picker value change
+description: Learn how to change multi header title of the Kendo UI Grid dynamically based on Date Picker value change
 type: how-to
-page_title: Dynamically Change the Grid Column Header | Kendo UI Grid for jQuery
+page_title: Dynamically Change the Grid Column Header - Kendo UI for jQuery Data Grid
 slug: grid-dynamic-column-headers
 tags: grid, dynamically, column, header, dynamic, title, change, update, multi
 res_type: kb
+components: ["grid"]
 ticketid: 1147997
-component: grid
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Created with version</td>
@@ -35,7 +35,7 @@ The Kendo UI Grid with multi-header columns creates them with a `data-title` att
 
 1. Create a custom function `updateColumnTitle`.
 1. Get the Grid instance, the DatePicker instances and their values and generate the new title. 
-1. Use the grid [`thead`](/api/javascript/ui/grid/fields/thead) field to locate the target title and replace it with the new one.
+1. Use the grid [`thead`](/api/ui/grid/fields/thead) field to locate the target title and replace it with the new one.
     `grid.thead.find("[data-title~='Price']").html(newTitle);`
 1. Call the `updateColumnTitle` function in the `dataBound` event of the grid and also in the `change` event of the DatePickers
 

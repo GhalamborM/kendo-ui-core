@@ -1,12 +1,14 @@
 ---
-title: Export Multiple Grids to Excel.
-description: How can I export multiple Grids to the same Excel file?
+title: Exporting Multiple Grids to Excel
+description: How can I export multiple Grids to the same Excel file when working with {{ site.product }}?
 type: how-to
-page_title: Export multiple Grids to Excel.
+page_title: Exporting Multiple Grids to Excel.
+previous_url: /helpers/data-management/grid/how-to/Export/multiple-grid-export, /html-helpers/data-management/grid/how-to/Export/multiple-grid-export
 slug: excel-export-multiple-grids
 position:
 tags: grid, export, excel, multiple
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -18,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Grid for ASP.NET Core</td>
+			<td>{{ site.product }} Grid</td>
 		</tr>
 	</tbody>
 </table>
@@ -33,16 +35,16 @@ How can I export multiple Grids to the same Excel file?
 The example below relies on the following key steps:
 
 1. Create an external button to export the data when it is clicked.
-1. Use the client-side [`saveAsExcel` method](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/saveasexcel) to trigger the data export of each Grid.
-1. Handle the [`ExcelExport`](https://docs.telerik.com/aspnet-core/api/Kendo.Mvc.UI.Fluent/GridEventBuilder#excelexportsystemstring) event of the two Grids and prevent their default action.
-1. Create a new Workbook by using the sheets of the Grids Workbooks and save it through the [`kendo.saveAs()` method](https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/saveas).
+1. Use the client-side [`saveAsExcel` method](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/saveasexcel) to trigger the data export of each Grid.
+1. Handle the [`ExcelExport`](/api/kendo.mvc.ui.fluent/grideventbuilder#excelexportsystemstring) event of the two Grids and prevent their default action.
+1. Create a new Workbook by using the sheets of the Grids Workbooks and save it through the [`kendo.saveAs()` method](https://docs.telerik.com/kendo-ui/api/kendo/methods/saveas).
 
-```Index.cshtml
+```Razor Index.cshtml
     //Export to Excel Button
     @(Html.Kendo().Button()
         .Name("exportData")
         .Content("Export to Excel")
-        .Icon("excel")
+        .Icon("file-excel")
         .Events(ev => ev.Click("exportDataClick"))
     )
 
@@ -84,12 +86,14 @@ The example below relies on the following key steps:
     )
 ```
 ```JavaScript
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
+    <!-- JSZip library is required for Excel export. Load it before using Excel export features. -->
+    <!-- Starting from Q1 2024, JSZip is no longer distributed with Kendo UI. Use unpkg or another official CDN. -->
+    <script src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
     <script>
         // Use Promises to sync the exports.
         var promises = [
-        $.Deferred(),
-        $.Deferred()
+            $.Deferred(),
+            $.Deferred()
         ];
 
         function exportDataClick(e) { //"Export to Excel" button "click" event handler.
@@ -102,8 +106,8 @@ The example below relies on the following key steps:
             .then(function (productsWorkbook, ordersWorkbook) {
                 // Create a new workbook using the sheets of the "products" and "orders" workbooks.
                 var sheets = [
-                productsWorkbook.sheets[0],
-                ordersWorkbook.sheets[0]
+                    productsWorkbook.sheets[0],
+                    ordersWorkbook.sheets[0]
                 ];
                 sheets[0].title = "Products";
                 sheets[1].title = "Orders";
@@ -111,10 +115,17 @@ The example below relies on the following key steps:
                     sheets: sheets
                 });
                 // Save the new workbook.
-                kendo.saveAs({
-                    dataURI: workbook.toDataURL(),
-                    fileName: "ProductsAndOrders.xlsx"
-                })
+                workbook.toDataURLAsync().then(function(dataURL) {
+                    kendo.saveAs({
+                        dataURI: dataURL,
+                        fileName: "ProductsAndOrders.xlsx"
+                    });
+                });
+
+                promises = [
+                    $.Deferred(),
+                    $.Deferred()
+                ];
             });
         }
         function products_excelExport(e) { //"ExcelExport" event handler of "products" Grid.
@@ -128,8 +139,42 @@ The example below relies on the following key steps:
     </script>
 ```
 
-Refer to [this REPL](https://netcorerepl.telerik.com/wcYKwCPR52YDsbfP56) for a runnable example.
+> Starting with Kendo UI version 2024.1.130 (Q1 2024), the JSZip library is no longer distributed with Kendo UI. You must include it from an official distribution channel such as `unpkg` or Cloudflare. Ensure the JSZip script loads successfully before attempting Excel export operations.
+
+{% if site.mvc %}
+> The solution requires Telerik UI for ASP.NET MVC 2014.3.1125 version or later. Earlier versions do not expose the `ExcelExport` event through the fluent API.
+
+To review the complete example, refer to the [ASP.NET MVC project on how to export multiple Grids to the same Excel file](https://github.com/telerik/ui-for-aspnet-mvc-examples/tree/master/Telerik.Examples.Mvc/Telerik.Examples.Mvc/Areas/GridExportingExcelMultiple).
+{% else %}
+For a runnable example based on the code above, refer to the REPL project on [exporting multiple Grids to Excel](https://netcorerepl.telerik.com/wcYKwCPR52YDsbfP56).
+{% endif %}
+
+## More {{ site.framework }} Grid Resources
+
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+
+{% if site.core %}
+* [{{ site.framework }} DataGrid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
 
 ## See Also
- * [Excel Export Overview](https://docs.telerik.com/kendo-ui/framework/excel/introduction)
- * [kendo.ooxml.Workbook client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ooxml/workbook)
+
+* [Telerik REPL: Exporting Multiple Grids to Excel](https://netcorerepl.telerik.com/wcYKwCPR52YDsbfP56)
+* [Exporting to Excel (Overview)](https://docs.telerik.com/{{ site.platform }}/html-helpers/data-management/grid/export/excel-export)
+* [Client-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

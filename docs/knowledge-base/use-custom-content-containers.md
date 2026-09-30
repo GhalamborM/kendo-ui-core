@@ -1,13 +1,13 @@
 ---
 title: Use Custom Content Containers in the PanelBar
 page_title: Use Custom Content Containers in the PanelBar 
-description: "Learn how to use custom content containers in the Kendo UI PanelBar widget."
+description: "Learn how to use custom content containers in the Kendo UI PanelBar component."
 slug: howto_use_custom_content_containers_in_the_panelbar_widget
 previous_url: /controls/navigation/panelbar/how-to/use-custom-content-containers
 tags: telerik, kendo, jquery, panelbar, use, custom, content, containers
-component: panelbar
 type: how-to
 res_type: kb
+components: ["panelbar"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI PanelBar for jQuery</td>
+  <td>Progress® Kendo UI® PanelBar for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -127,4 +127,4 @@ The following example demonstrates how to achieve the desired scenario.
 
 * [Basic Usage of the PanelBar (Demo)](https://demos.telerik.com/kendo-ui/panelbar/index)
 * [Using the API of the PanelBar (Demo)](https://demos.telerik.com/kendo-ui/panelbar/api)
-* [JavaScript API Reference of the PanelBar](/api/javascript/ui/panelbar)
+* [JavaScript API Reference of the PanelBar](/api/ui/panelbar)

@@ -1,7 +1,8 @@
 ---
 title: Installing with NPM
-page_title: Installing with NPM | Download and Installation 
+page_title: Installing with NPM - Download and Installation 
 description: "Get started with Kendo UI for jQuery and install Kendo UI Core or Kendo UI as NPM packages."
+components: ["general"]
 slug: kendoui_npm_packages_kendoui_installation
 position: 50
 ---
@@ -14,15 +15,17 @@ This article assumes that you are familiar with the necessary steps to use brows
 
 ## 1. Install the Package
 
-Kendo UI for jQuery maintains the [commercial Kendo UI for jQuery (Kendo UI Professional)](#commercial-distribution-on-bower) and the [open-source Kendo UI for jQuery (Kendo UI Core)](#open-source-distribution-on-bower) NPM packages. 
+Kendo UI for jQuery maintains the [commercial Kendo UI for jQuery (Kendo UI Professional)](#commercial-distribution-on-npm) and the [open-source Kendo UI for jQuery (Kendo UI Core)](#open-source-distribution-on-npm) NPM packages. 
 
-All official releases, service packs, and internal builds are uploaded to both distribution packages.
+All official releases are uploaded to both distribution packages.
+
+> As of R3 2023 the Kendo UI bundles do not include the jQuery library in their `js` directories and you can [`download jQuery using npm`](https://jquery.com/download/#downloading-jquery-using-npm-or-yarn) or use other source for the jQuery library.
 
 ### Commercial Distribution on NPM
 
 The commercial distribution NPM package is available as [`@progress/kendo-ui`](https://www.npmjs.com/package/@progress/kendo-ui) in the NPM registry. 
 
-> As of the R2 2022 release, the `@progress/kendo-ui` NPM package requires a [script license activation]({% slug using-license-code %}).
+> As of the R2 2022 release, the `@progress/kendo-ui` NPM package requires a [license activation]({% slug licensing-overview %}).
 
 To install `@progress/kendo-ui`, run the following command: 
 
@@ -40,17 +43,212 @@ To install `kendo-ui-core`, run the following command:
   npm install --save kendo-ui-core
 ```
 
+## 2. Use the Proper NPM Channel 
 
-## 2. Use the Proper NPM Channel for Official and Internal Packages
+The official releases and service packs for the commercial and open-source Kendo UI distributions are uploaded in the **latest** channel. 
 
-As of November 2019, Kendo UI for jQuery supports two separate channels for its official and internal NPM packages.
+* To install the latest official build, run `npm install --save @progress/kendo-ui@latest`.
+* To install an earlier version, run `npm install --save @progress/kendo-ui@2025.4.1321`.
 
-The official releases and service packs for the commercial and open-source Kendo UI distributions are uploaded in the **latest** channel. To install the latest official build, run `npm install --save @progress/kendo-ui@latest`.
+## 3. Choose a Module System 
 
-The internal builds are released in the **dev** channel. 
+The Kendo UI for jQuery library distributes the commercial code in the following module systems:
 
-* To install the latest internal build, run `npm install --save @progress/kendo-ui@dev`. 
-* To install an earlier version, run `npm install --save @progress/kendo-ui@2019.3.1115-internal`.
+- (Available as of v2022.3.1109) ECMAScript—The script files are located in the `esm` folder. 
+- (Available as of v2022.3.1109) UMD—The script files are located in the `umd` folder. 
+- CommonJS—The script files are located in the `js` folder.
+
+## 4. Bundling the Scripts
+
+As of the 2022.3.1109 version, the `package.json` file comes with three [fields related to bundling](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#main):
+
+- `module`—Points to the ECMAScript `kendo.all.js` script in the `esm` folder.
+- `main`—Points to the CommonJS `kendo.all.js` script in the `js` folder.
+- `browser`—Points to the UMD `kendo.all.min.js` script in the `umd` folder.
+
+To bundle the Kendo UI scripts by using one of the [module systems](#3-choose-a-module-system-to-use), you can use a plugin such as [rollup](https://rollupjs.org/guide/en/). For more information on working with different module bundlers, see [Module Bundlers]({% slug module_bundlers_integration_kendoui %}) and [Webpack Support]({% slug webpacksupport_integration_kendoui %}).
+
+> Starting from version 2023.3.718, the `kendo` instance is exported as a default export for the CommonJS and ECMAScript modules. This allows you to:
+> * Use the `import kendo from "@progress/kendo-ui"` syntax to import the Kendo UI scripts in your application. 
+> * Use the `kendo` instance to get the jQuery in which the Kendo UI components are defined. For example, `const $ = kendo.jQuery; $("#grid").kendoGrid({...});`.
+
+### ECMAScript
+
+To bundle the ECMAScript files: 
+
+1. Add a rollup configuration file in the main directory of your project.
+
+    ```javascript
+     // rollup.config.js
+     import { nodeResolve } from "@rollup/plugin-node-resolve";
+
+     export default {
+        input: "index.js",
+        output: [{
+          file: "dist/bundled.js",
+          sourcemap: "inline",
+          globals: {
+            jquery: "$"
+          }
+        }],
+        external: ["jquery"],
+        treeshake: false,
+        plugins: [
+          nodeResolve()
+        ]
+      }
+    ```
+
+2. Use the `import` keyword to include the Kendo UI scripts in your application:
+
+    ```javascript
+    // index.js file located in the main directory of your project (same level as rollup.config.js).
+
+    import "jquery";
+    import "@progress/kendo-ui";
+
+    // A sample Kendo UI component in your project.
+    $("#grid").kendoGrid({...grid configs...});
+    ```
+
+3. Open a terminal and execute the `rollup` command. As a result, the bundled script is located in the `dist/bundled.js` folder of your project.
+
+    ```javascript
+    npx rollup -c
+    ```
+
+
+### CommonJS
+
+To bundle the CommonJS files: 
+
+1. Add a rollup configuration file in the main directory of your project.
+
+    ```javascript
+     // rollup.config.js
+     import { nodeResolve } from "@rollup/plugin-node-resolve";
+     import commonjs from "@rollup/plugin-commonjs";
+
+     export default {
+        input: "index.js",
+        output: [{
+          file: "dist/bundled.js",
+          sourcemap: "inline",
+          globals: {
+            jquery: "$"
+          }
+        }],
+        external: ["jquery"],
+        treeshake: false,
+        plugins: [
+          commonjs(), // Add the commonjs plugin.
+          nodeResolve()
+        ]
+      }
+    ```
+
+2. Use the `require` keyword to include the Kendo UI scripts in your application:
+
+    ```javascript
+    // index.js file located in the main directory of your project (same level as rollup.config.js).
+
+    require("jquery");
+    require("@progress/kendo-ui");
+
+    // A sample Kendo UI component in your project.
+    $("#grid").kendoGrid({...grid configs...});
+    ```
+
+3. Open a terminal and execute the `rollup` command. As a result, the bundled script is located in the `dist/bundled.js` folder of your project.
+
+    ```javascript
+    npx rollup -c
+    ```
+
+
+### UMD
+
+To bundle the UMD files: 
+
+1. Add a rollup configuration file in the main directory of your project.
+
+    ```javascript
+     // rollup.config.js
+     import { nodeResolve } from "@rollup/plugin-node-resolve";
+
+     export default {
+        input: "index.js",
+        output: [{
+          file: "dist/bundled.js",
+          sourcemap: "inline",
+          globals: {
+            jquery: "$"
+          }
+        }],
+        external: ["jquery"],
+        treeshake: false,
+        plugins: [
+          nodeResolve({
+            browser: true // Let rollup know that it has to use the browser field from the package.json file when creating the bundle. The browser field points to the UMD modules by default.
+          })
+        ]
+      }
+    ```
+
+2. Use the `import` keyword to include the Kendo UI scripts in your application:
+
+    ```javascript
+    // index.js file located in the main directory of your project (same level as rollup.config.js).
+
+    import "jquery";
+    import "@progress/kendo-ui";
+
+    // A sample Kendo UI component in your project.
+    $("#grid").kendoGrid({...grid configs...});
+    ```
+
+3. Open a terminal and execute the `rollup` command. As a result, the bundled script will be located in the `dist/bundled.js` folder of your project.
+
+    ```javascript
+    npx rollup -c
+    ```
+
+### Latest Export Settings
+
+As of `2024.4.1112` the `@progress/kendo-ui` NPM package introduce a more fine-grained exports setting to satisfy various module bundlers and easy its usage in the NPM ecosystem.
+
+```javascript
+"@progress/kendo-ui" //Imports the kendo.all.js 
+"@progress/kendo-ui/*.js" //Imports the files corresponding to the module system used - ESM or CJS.
+"@progress/kendo-ui/esm" //Imports kendo.all.js only for ESM.
+"@progress/kendo-ui/esm/*.js" //Imports the files for ESM.
+"@progress/kendo-ui/cjs" //Imports kendo.all.js only for CJS.
+"@progress/kendo-ui/esm/*.js" //Imports the files for CJS.
+"@progress/kendo-ui/umd" //Imports kendo.all.min.js only for UMD.
+"@progress/kendo-ui/umd/*.js" //Imports the files for UMD.
+```
+
+#### Examples
+
+
+```javascript
+import "@progress/kendo-ui"; //Imports the kendo.all.js 
+```
+
+
+```javascript
+import "@progress/kendo-ui/esm"; //Imports kendo.all.js only for ESM.
+``` 
+
+
+```javascript
+import "@progress/kendo-ui/kendo.grid.js"; //Imports the Grid related files corresponding to the module system used - ESM or CJS.
+```
+
+
+```javascript
+import "@progress/kendo-ui/esm/kendo.grid.js"; //Imports the Grid related files for ESM.
+```
 
 
 ## Known Issues 
@@ -62,22 +260,25 @@ The internal builds are released in the **dev** channel.
 ## Next Steps
 
 * [Create Your Own Custom Bundles]({% slug include_only_what_you_need_kendoui_scripts %})
-* [The Widget DOM Element Structure]({% slug widgetwrapperandelement_references_gettingstarted %})
-* [Initialize Widgets as jQuery Plugins]({% slug initialize_widgets_using_jquery_plugins_installation %})
-* [Initialize Widgets with MVVM]({% slug mvvm_initialization_kendoui %})
+* [Work with Module Bundlers]({% slug module_bundlers_integration_kendoui %})
+* [Use Kendo UI with Webpack]({% slug webpacksupport_integration_kendoui %})
+* [The Component DOM Element Structure]({% slug widgetwrapperandelement_references_gettingstarted %})
+* [Initialize Components as jQuery Plugins]({% slug initialize_widgets_using_jquery_plugins_installation %})
+* [Initialize Components with MVVM]({% slug mvvm_initialization_kendoui %})
 * [jQuery Version Support]({% slug jquerysupport_kendoui %})
 * [Web Browser Support]({% slug wbe_browserand_operating_system_support %})
 * [Operation System Support]({% slug ossupport_kendo %})
 * [PDF and Excel Export Support]({% slug export_support_kendoui %})
-* [Widget Script Dependencies]({% slug script_filesfor_barcodes_widgets %})
-* [Create Your Own Custom Widgets]({% slug createcustomkendouiwidgets_gettingstarted %})
+* [Create Your Own Custom Components]({% slug createcustomkendouiwidgets_gettingstarted %})
 
 ## See Also
 
+* [Module Bundlers]({% slug module_bundlers_integration_kendoui %})
+* [Webpack Support]({% slug webpacksupport_integration_kendoui %})
 * [Troubleshooting When Installing with NPM]({% slug troubleshoot_npm_installing %})
 * [Hosting Kendo UI for jQuery in Your Project]({% slug hosting_kendoui %})
 * [Installing Kendo UI for jQuery with Bower]({% slug kendoui_bower_packages_kendoui_installation %})
 * [Installing Kendo UI for jQuery by Using the CDN Services]({% slug kendoui_cdn_services_installation %})
 * [Installing Kendo UI for jQuery with NuGet]({% slug kendoui_nuget_packages %})
 * [Getting Up and Running with Your Kendo UI for jQuery Project (Guide)]({% slug getting_started_installation_kendoui %})
-* [Using Script License Code]({% slug using-license-code %})
+* [Licensing Overview]({% slug licensing-overview %})

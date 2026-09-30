@@ -1,15 +1,12 @@
-(function(f, define) {
-    define([
-        "./kendo.html.base"
-    ], f);
-})(function() {
+import "./kendo.html.base.js";
+import "./kendo.icons.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "html.chip",
     name: "Html.Chip",
     category: "web",
     description: "HTML rendering utility for Kendo UI for jQuery.",
-    depends: [ "html.base" ],
+    depends: [ "html.base", "icons" ],
     features: []
 };
 
@@ -34,38 +31,81 @@ var __meta__ = {
         },
         options: {
             name: "HTMLChip",
-            size: "medium",
-            rounded: "medium",
-            fillMode: "solid",
-            themeColor: "base",
+            size: undefined,
+            rounded: undefined,
+            fillMode: undefined,
+            themeColor: undefined,
             attr: {},
             icon: "",
+            iconClass: "",
             iconAttr: {},
             removable: false,
             removableAttr: {},
             removeIcon: "x-circle",
+            removeIconClass: "",
             content: "",
             text: "",
+            actions: [],
             stylingOptions: [ "size", "rounded", "fillMode", "themeColor" ]
         },
         _wrapper: function() {
             var that = this,
                 options = that.options;
 
-            that.wrapper = that.element.wrap("<span class='k-chip'></span>").parent().attr(options.attr);
+            options.text = options.text || options.label;
+            that.wrapper = that.element.wrap("<div class='k-chip'></div>").parent().attr(options.attr);
             that._addClasses();
 
             if (options.icon) {
-                that.wrapper.prepend($("<span class='k-chip-icon k-icon k-i-" + options.icon + "'></span>").attr(options.iconAttr));
+                that.wrapper.prepend($(kendo.ui.icon({ icon: options.icon, size: "small", iconClass: `k-chip-icon${options.iconClass ? ` ${options.iconClass}` : '' }` })).attr(options.iconAttr));
+            } else if (options.iconClass) {
+                that.wrapper.prepend($("<span></span>").addClass(options.iconClass).attr(options.iconAttr));
+            } else if (options.avatarClass) {
+                that.wrapper.prepend($("<span class='k-chip-avatar k-avatar'></span>").addClass(options.avatarClass).attr(options.iconAttr));
             }
 
             that.element.addClass("k-chip-content");
             if (options.text) {
-                that.element.html('<span class="k-chip-label">' + options.text + '</span>');
+                that.element.html('<span class="k-chip-label">' + kendo.htmlEncode(options.text) + '</span>');
+            }
+
+            if (options.visible === false) {
+                that.wrapper.addClass("k-hidden");
+            }
+
+            if (options.selected === true) {
+                that.wrapper.addClass("k-selected");
+            }
+
+            if (options.enabled === false) {
+                that.wrapper.addClass("k-disabled");
+            }
+
+            if ((options.actions && options.actions.length > 0) || options.removable) {
+                that._actions();
+            }
+
+
+        },
+        _actions: function() {
+            var that = this,
+                options = that.options;
+
+            that.actionsWrapper = $("<span class='k-chip-actions'></span>");
+            that.actionsWrapper.appendTo(that.wrapper);
+
+            if (options.actions && options.actions.length > 0) {
+                for (var i = 0; i < options.actions.length; i++) {
+                    var action = options.actions[i];
+                    that.actionsWrapper.append($("<span class='k-chip-action'></span>")
+                        .addClass(action.iconClass ? action.iconClass : '')
+                        .append(kendo.ui.icon({ icon: action.icon, size: "small" }))
+                        .attr(action.attr ? action.attr : {}));
+                }
             }
 
             if (options.removable) {
-                that.wrapper.append($("<span class='k-chip-action k-chip-remove-action'><span class='k-icon k-i-" + options.removeIcon + "'></span></span>").attr(options.removableAttr));
+                that.actionsWrapper.append($(`<span class='k-chip-action k-chip-remove-action'>${kendo.ui.icon({ icon: options.removeIcon, size: "small" })}</span>`).attr(options.removableAttr));
             }
         }
     });
@@ -77,8 +117,14 @@ var __meta__ = {
 
     kendo.cssProperties.registerPrefix("HTMLChip", "k-chip-");
 
+    kendo.cssProperties.registerValues("HTMLChip", [{
+        prop: "themeColor",
+        values: ['base', 'error', 'info', 'warning', 'success']
+    }, {
+        prop: "rounded",
+        values: kendo.cssProperties.roundedValues.concat([['full', 'full']])
+    }]);
+
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

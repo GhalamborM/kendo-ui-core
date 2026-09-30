@@ -1,13 +1,13 @@
 ---
 title: Filter Grid as You Type
-page_title: Filter as You Type | Kendo UI Grid for jQuery
-description: "An example on how to filter the jQuery Grid by Kendo UI on the fly, as the user types in the filter row textbox."
+page_title: Filter as You Type - Kendo UI for jQuery Data Grid
+description: "Learn how to filter the jQuery Grid by Kendo UI on the fly, as the user types in the filter row textbox."
 previous_url: /controls/data-management/grid/how-to/grid-filter-as-you-type, /web/grid/how-to/grid-filter-as-you-type, /controls/data-management/grid/how-to/filtering/grid-filter-as-you-type
 slug: howto_filter_gridas_you_type_grid
 tags: grid, filter, typing, row, textbox
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -41,10 +41,10 @@ Your project might require you to filter the Grid as the user types.
 
 To achieve this behavior, provide for the following requirements:
 
-* Enable the [row filtering mode](/api/javascript/ui/grid/configuration/filterable.mode).
-* Use a custom [filter cell template](/api/javascript/ui/grid/configuration/columns.filterable.cell.template) for the desired Grid column.
+* Enable the [row filtering mode](/api/ui/grid/configuration/filterable#filterablemode).
+* Use a custom [filter cell template](/api/ui/grid/configuration/columns/filterable#columnsfilterablecell#columnsfilterablecelltemplate) for the desired Grid column.
 * The purpose of the filter cell template is to attach a `data-value-update` attribute on the `input` event handler to the textbox (`args.element`) which will trigger the `change` event of the textbox. The `change` event will trigger the filtering functionality of the Grid.
-* [Change the default `"eq"` operator](/api/javascript/ui/grid/configuration/columns.filterable.cell.operator) of the column with `"contains"`, `"startswith"` or any other [supported operator](/api/javascript/data/datasource/configuration/filter.operator).
+* [Change the default `"eq"` operator](/api/ui/grid/configuration/columns/filterable#columnsfilterablecell#columnsfilterablecelloperator) of the column with `"contains"`, `"startswith"` or any other [supported operator](/api/data/datasource/configuration/filter#filteroperator).
 
 The following example demonstrates how to filter the Grid on the fly, as the user types in the filter row textbox.
 
@@ -87,8 +87,7 @@ The following example demonstrates how to filter the Grid on the fly, as the use
         },
         transport: {
           read: {
-            url: "//demos.telerik.com/kendo-ui/service/products",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/products"
           }
         }
       });
@@ -98,4 +97,4 @@ The following example demonstrates how to filter the Grid on the fly, as the use
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

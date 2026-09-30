@@ -1,12 +1,13 @@
 ---
 title: Apply the Same Data on Different Chart Instances
-description: An example on how to fetch data once and use it with different filters for different Kendo UI Charts for jQuery.
+description: Learn how to fetch data once and use it with different filters for different Kendo UI Charts for jQuery.
 type: how-to
-page_title: Fetch a Single Data Set with Different Filters for Different Charts | Kendo UI Chart for jQuery
+page_title: Fetch a Single Data Set with Different Filters for Different Charts - Kendo UI Chart for jQuery
 slug: chart-one-datasource-different-filters
 tags: fetch, same, data, apply, different, chart, instances
 ticketid: 1424758
 res_type: kb
+components: ["datasource"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
     <tbody>
 	    <tr>
 	    	<td>Product</td>
-	    	<td>Data Source for Progress® Kendo UI®</td>
+	    	<td>Progress® Kendo UI® DataSource for jQuery</td>
 	    </tr>
     </tbody>
 </table>
@@ -32,7 +33,7 @@ How can I have a single POST from a data source, retrieve all possible data, and
 1. Provide the array of data you got from the service to the `data` field of the data source.
 1. Individually set the desired filters, grouping, or sorting on each data source.
 
-```dojo
+```
 <div id="chart1"></div>
 <div id="chart2"></div>
 <script>

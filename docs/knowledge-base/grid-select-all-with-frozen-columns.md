@@ -1,12 +1,12 @@
 ---
 title: Use CheckBox Template for Selecting Rows in Grid with Locked Columns
-description: An example on how to configure a template column to handle row selection with frozen columns in the Kendo UI Grid.
+description: Learn how to configure a template column to handle row selection with frozen columns in the Kendo UI Grid.
 type: how-to
-page_title: Use Template Column with CheckBoxes for Selecting Rows with Locked Columns | Kendo UI Grid for jQuery
+page_title: Use Template Column with CheckBoxes for Selecting Rows with Locked Columns - Kendo UI for jQuery Data Grid
 slug: grid-select-all-with-frozen-columns
 tags: kendoui, kendo, grid, locked columns, frozen columns, checkbox selection, checkboxes
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
 </table>
 
@@ -24,7 +24,7 @@ How can I create a checkbox column for selecting rows in the Grid and render a *
 
 ## Solution
 
-Manually select all records within the `click` event of the checkbox for selecting all records in the header. Note that a Grid with locked (frozen) columns renders two separate tables for its data.
+Manually select all records within the `click` event of the checkbox for selecting all records in the header. Note that a Grid with locked (frozen) columns renders two separate tables for its data. As an alternative, you can check the [Checkbox Selection Demo of the Grid](https://demos.telerik.com/kendo-ui/grid/checkbox-selection).
 
 ```dojo
    <div id="grid"></div>
@@ -32,30 +32,30 @@ Manually select all records within the `click` event of the checkbox for selecti
     <script>
       $(document).ready(function () {
         //DataSource definition
-        var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
             dataSource = new kendo.data.DataSource({
-              transport: {
-                read: {
-                  url: crudServiceBaseUrl + "/Products",
-                  dataType: "jsonp"
+            transport: {
+                read:  {
+                    url: crudServiceBaseUrl + "/Products"
                 },
                 update: {
-                  url: crudServiceBaseUrl + "/Products/Update",
-                  dataType: "jsonp"
+                    url: crudServiceBaseUrl + "/Products/Update",
+                    type: "POST",
+            		    contentType: "application/json"
                 },
                 destroy: {
-                  url: crudServiceBaseUrl + "/Products/Destroy",
-                  dataType: "jsonp"
+                    url: crudServiceBaseUrl + "/Products/Destroy",
+                    type: "POST",
+            		    contentType: "application/json"
                 },
                 create: {
-                  url: crudServiceBaseUrl + "/Products/Create",
-                  dataType: "jsonp"
+                    url: crudServiceBaseUrl + "/Products/Create",
+                    type: "POST",
+            		    contentType: "application/json"
                 },
                 parameterMap: function (options, operation) {
                   if (operation !== "read" && options.models) {
-                    return {
-                      models: kendo.stringify(options.models)
-                    };
+                    return kendo.stringify(options.models);
                   }
                 }
               },
@@ -193,6 +193,7 @@ Manually select all records within the `click` event of the checkbox for selecti
 
       //on dataBound event restore previous selected rows:
       function onDataBound(e) {
+        $('.k-checkbox').kendoCheckBox();
         var view = this.dataSource.view();
         for(var i = 0; i < view.length;i++){
           if(checkedIds[view[i].id]){

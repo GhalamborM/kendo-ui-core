@@ -1,12 +1,13 @@
 ---
 title: Animate Detail Row Which Opens with Kendo UI Effects in Grid
-description: An example on how to animate the opening of a detail row with Kendo UI Effects in a Kendo UI Grid.
+description: Learn how to animate the opening of a detail row with Kendo UI Effects in a Kendo UI Grid.
 type: how-to
-page_title: Animate the Opening of Detail Rows | Kendo UI Grid for jQuery
+page_title: Animate the Opening of Detail Rows - Kendo UI for jQuery Data Grid
 slug: grid-animate-detail-row-with-kendo-effect
 tags: grid, aniamte, detail, row, detailrow, effect, slide in, fade, expand
 ticketid: 540440
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -72,9 +73,9 @@ Use the `detailInit` event and custom CSS rules.
   $(document).ready(function() {
     var element = $("#grid").kendoGrid({
       dataSource: {
-        type: "odata",
+        type: "odata-v4",
         transport: {
-          read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+          read: "https://demos.telerik.com/service/v2/odata/Employees"
         },
         pageSize: 5,
         serverPaging: true,
@@ -131,9 +132,9 @@ Use the `detailInit` event and custom CSS rules.
 
     detailRow.find(".orders").kendoGrid({
       dataSource: {
-        type: "odata",
+        type: "odata-v4",
         transport: {
-          read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+          read: "https://demos.telerik.com/service/v2/odata/Orders"
         },
         serverPaging: true,
         serverSorting: true,
@@ -200,5 +201,5 @@ Use the `detailInit` event and custom CSS rules.
 
 ## See Also
 
-* [API Reference of the detailInit Event](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/detailinit)
+* [API Reference of the detailInit Event](https://docs.telerik.com/kendo-ui/api/ui/grid/events/detailinit)
 * [Slide-In Animation Effect Demo](https://demos.telerik.com/kendo-ui/fx/slidein)

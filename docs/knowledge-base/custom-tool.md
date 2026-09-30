@@ -5,9 +5,9 @@ description: "Learn how to develop and register custom Kendo UI for jQuery ToolB
 slug: howto_customtool_toolbar
 previous_url: /controls/navigation/toolbar/how-to/custom-tool
 tags: telerik, kendo, jquery, toolbar, develop, implement, register, custom, tools
-component: toolbar
 type: how-to
 res_type: kb
+components: ["toolbar"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ToolBar for jQuery</td>
+  <td>Progress® Kendo UI® ToolBar for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -39,7 +39,9 @@ How can I develop and register custom tools in the Kendo UI for jQuery ToolBar?
 
 The example below demonstrates how to achieve the desired scenario.
 
-> The following approach works in the Kendo UI Q3 2015 release and later. 
+> The following approach works in the Kendo UI versions from Q3 2015 to R3 2022. 
+
+> If you are using Kendo UI version R1 2023 or later, please refer to the [Custom Tools]({% slug custom_tools_kendoui_toolbar %}) documentation article. 
 
 
 ```dojo
@@ -149,6 +151,6 @@ The example below demonstrates how to achieve the desired scenario.
 
 ## See Also
 
-* [ToolBar JavaScript API Reference](/api/javascript/ui/toolbar)
-* [How to Use FontAwesome Icons]({% slug howto_usefontawesomeicons_toolbar %})
-* [How to Close ToolBar Popup Manually]({% slug howto_closetoolbarpopupmanually_toolbar %})
+* [ToolBar JavaScript API Reference](/api/ui/toolbar)
+* [Use FontAwesome Icons]({% slug howto_usefontawesomeicons_toolbar %})
+* [Close ToolBar Popup Manually]({% slug howto_closetoolbarpopupmanually_toolbar %})

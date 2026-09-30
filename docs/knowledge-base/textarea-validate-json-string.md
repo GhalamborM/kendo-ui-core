@@ -1,12 +1,13 @@
 ---
 title: Validate JSON String With TextArea and Validator
-page_title: Validate JSON String With TextArea and Validator | Kendo UI TextArea for jQuery
+page_title: Validate JSON String With TextArea and Validator - Kendo UI TextArea for jQuery
 description: "An example demonstrating how to validate a JSON string inside a Kendo UI TextArea with the help of Kendo UI Validator."
 type: how-to
 slug: textarea-validate-json-string
 tags: textarea, json, parse, validate, string, input
 ticketid: 1540635
 res_type: kb
+components: ["validator"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>TextArea for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® TextArea for jQuery</td>
 	</tr>
 </table>
 
@@ -30,8 +31,8 @@ How can I validate a JSON string inside a Kendo UI TextArea?
 
 1. Create a `form` element and place the `textarea` and `button` elements inside it.
 1. Initialize a [`Kendo Validator`](https://demos.telerik.com/kendo-ui/validator/index) on the `form` element.
-1. Create a custom validation [`rule`](/api/javascript/ui/validator/configuration/rules). Perform a check to determine if the JSON inside the form is valid or not.
-1. Define an error [`message`](/api/javascript/ui/validator/configuration/messages) for the custom rule.
+1. Create a custom validation [`rule`](/api/ui/validator/configuration/rules). Perform a check to determine if the JSON inside the form is valid or not.
+1. Define an error [`message`](/api/ui/validator/configuration/messages) for the custom rule.
 
 ```dojo
 <h3>The following example is in VALID json format, you can copy and paste it in the textarea to test it.</h3>

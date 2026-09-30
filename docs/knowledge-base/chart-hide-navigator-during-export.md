@@ -1,12 +1,13 @@
 ---
 title: Exclude Navigator from Stock Chart Export
-page_title: Exclude Navigator from Stock Chart Export | Kendo UI Grid for jQuery
-description: An example on how to export a Kendo UI Stock Chart without including its navigator in the resulting file.
+page_title: Exclude Navigator from Stock Chart Export - Kendo UI for jQuery Data Grid
+description: Learn how to export a Kendo UI Stock Chart without including its navigator in the resulting file.
 type: how-to
 slug: chart-hide-navigator-during-export
 tags: chart, navigator, hide, export, exclude, excel, pdf, image
 ticketid: 1157749
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
 	 <td>Product Version</td>
@@ -32,8 +33,8 @@ Right before the export begins, hide the navigator and make it visible again aft
 
 To maintain the navigator settings after it was zoomed in or out:
 
-1. Use the [`select`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/navigator/methods/select) method of the navigator to get the [`from`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/stock-chart/configuration/navigator.select#navigator.select.from) and [`to`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/stock-chart/configuration/navigator.select#navigator.select.to) values when the export starts.
-1. Include the `from` and `to` values in the [`select`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/stock-chart/configuration/navigator.select) property of the navigator by using the `setOptions` method.
+1. Use the [`select`](https://docs.telerik.com/kendo-ui/api/dataviz/navigator/methods/select) method of the navigator to get the [`from`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/stock-chart/configuration/navigator#navigatorselect#navigator.select.from) and [`to`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/stock-chart/configuration/navigator#navigatorselect#navigator.select.to) values when the export starts.
+1. Include the `from` and `to` values in the [`select`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/stock-chart/configuration/navigator#navigatorselect) property of the navigator by using the `setOptions` method.
 
 ```dojo
 <div id="example">
@@ -68,7 +69,7 @@ To maintain the navigator settings after it was zoomed in or out:
       $("#stock-chart").kendoStockChart({
         pdf: {
           fileName: "Kendo UI Stock Chart Export.pdf",
-          proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+          proxyURL: "https://demos.telerik.com/service/v2/core/export"
         },
         dataSource: {
           transport: {
@@ -113,8 +114,8 @@ To maintain the navigator settings after it was zoomed in or out:
             field: "Close"
           },
           select: {
-            from: "2009/02/05",
-            to: "2011/10/07"
+            from: "2021/02/05",
+            to: "2023/10/07"
           }
         }
       });

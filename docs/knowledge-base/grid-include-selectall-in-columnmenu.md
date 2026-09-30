@@ -1,12 +1,12 @@
 ---
 title: Include SelectAll for Grid Column Sections in ColumnMenu
-description: An example on how to render SelectAll in the column menu of the Grid columns.
+description: Learn how to render SelectAll in the column menu of the Grid columns.
 type: how-to
-page_title: Display SelectAll in the ColumnMenu for Showing and Hiding Columns | Kendo UI Grid for jQuery
+page_title: Display SelectAll in the ColumnMenu for Showing and Hiding Columns - Kendo UI for jQuery Data Grid
 slug: grid-include-selectall-in-columnmenu
 tags: kendoui, kendo, grid, column menu, select all
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
 </table>
 
@@ -43,8 +43,8 @@ Render the checkbox within the `columnMenuInit` event of the Grid.
       }
 
       .k-group .k-popup {
-        border-style: normal; 
-        border-width: 0px; 
+        border-style: normal;
+        border-width: 0px;
       }
       .chbx {
         margin-left: 1px;
@@ -70,14 +70,14 @@ Render the checkbox within the `columnMenuInit` event of the Grid.
                   e.sender.unbind("activate");
                   e.item.find(".custom-class").remove();
                   e.item.find('.k-filter-item').find('[role="menuitemcheckbox"]').remove();
-                  $("<span class='custom-class'><label class='k-link' style='padding: 10px 40px 10px 0px;'><input class='chbx' type='checkbox' checked onclick='checkAllMenu(this)'/>Select All</label></span>").prependTo(e.item.find(".k-animation-container"));
+                    $("<span class='custom-class'><label class='k-link' style='padding: 10px 40px 10px 0px;'><input class='chbx k-checkbox' type='checkbox' checked onclick='checkAllMenu(this)'/>Select All</label></span>").prependTo(e.item.find(".k-animation-container"));
                 }
               });
             },
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               schema: {
                 model: {
@@ -120,7 +120,7 @@ Render the checkbox within the `columnMenuInit` event of the Grid.
 
         function checkAllMenu(el) {
           var checked = el.checked;
-          $(el).parents(".custom-class").siblings("ul").find("li").each(function (e) {
+           $(el).parents(".custom-class").siblings(".k-child-animation-container").find("li").each(function (e) {
             if (!$(this).hasClass("custom-class") && $(this).find("input")[0].checked !== checked) {
               $(this).find("input").click();
               $(this).removeClass("k-hover");

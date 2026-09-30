@@ -1,11 +1,12 @@
 ---
 title: Expand TreeView Items Sequentially with loadOnDemand
-description: An example on how to sequentially expand TreeView items with loadOnDemand
+description: Learn how to sequentially expand TreeView items with loadOnDemand
 type: how-to
-page_title: Sequentially Expand Items with loadOnDemand | Kendo UI TreeView for jQuery
+page_title: Sequentially Expand Items with loadOnDemand - Kendo UI TreeView for jQuery
 slug: treeview-sequentially-expand-items-with-loadondemand
 tags: kendo, kendo-ui, treeview, sequentially, expand, items, loadondemand
 res_type: kb
+components: ["treeview"]
 ---
 
 ## Environment
@@ -17,7 +18,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>TreeView for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® TreeView for jQuery</td>
 	</tr>
 </table>
 
@@ -27,7 +28,7 @@ How can I sequentially expand all TreeView items when `loadOnDemand` is set to `
 
 ## Solution
 
-Subscribe to the `dataBound` event of the TreeView and [`expand()`](https://docs.telerik.com/kendo-ui/api/javascript/ui/treeview/methods/expand) all currently loaded nodes.
+Subscribe to the `dataBound` event of the TreeView and [`expand()`](https://docs.telerik.com/kendo-ui/api/ui/treeview/methods/expand) all currently loaded nodes.
 
 ```dojo
 <div id="content">
@@ -38,12 +39,12 @@ Subscribe to the `dataBound` event of the TreeView and [`expand()`](https://docs
 <script>
 $(document).ready(function() {
     var OrderDetails = {
-        type: "odata",
+        type: "odata-v4",
         transport: {
             read: {
                 url: function(options) {
                     return kendo.format(
-                        "//demos.telerik.com/kendo-ui/service/Northwind.svc/Products({0})/Order_Details",
+                        "https://demos.telerik.com/service/v2/odata/Products({0})/Order_Details",
                         options.ProductID
                     );
                 }
@@ -59,7 +60,7 @@ $(document).ready(function() {
     };
 
     var Products = {
-        type: "odata",
+        type: "odata-v4",
         schema: {
             model: {
                 id: "ProductID",
@@ -71,7 +72,7 @@ $(document).ready(function() {
             read: {
                 url: function(options) {
                     return kendo.format(
-                        "//demos.telerik.com/kendo-ui/service/Northwind.svc/Categories({0})/Products",
+                        "https://demos.telerik.com/service/v2/odata/Categories({0})/Products",
                         options.CategoryID
                     );
                 }
@@ -80,10 +81,10 @@ $(document).ready(function() {
     };
 
     var Categories = new kendo.data.HierarchicalDataSource({
-        type: "odata",
+        type: "odata-v4",
         transport: {
             read: {
-                url: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
+                url: "https://demos.telerik.com/service/v2/odata/Categories"
             }
         },
         schema: {
@@ -114,4 +115,4 @@ $(document).ready(function() {
 
 ## See Also
 
-* [API Reference of the TreeView](https://docs.telerik.com/kendo-ui/api/javascript/ui/treeview).
+* [API Reference of the TreeView](https://docs.telerik.com/kendo-ui/api/ui/treeview).

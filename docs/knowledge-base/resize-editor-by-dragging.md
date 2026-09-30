@@ -5,9 +5,9 @@ description: "Learn how to resize the Kendo UI for jQuery Editor widget by dragg
 previous_url: /controls/editors/editor/how-to/resize-editor-by-dragging, /controls/editors/editor/how-to/appearance/resize-editor-by-dragging
 slug: howto_resize_the_editor_by_dragging_editor
 tags: telerik, kendo, jquery, editor, resize, by, dragging
-component: editor
 type: how-to
 res_type: kb
+components: ["editor"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Editor for jQuery</td>
+  <td>Progress® Kendo UI® Editor for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -125,4 +125,4 @@ The following example demonstrates how to resize the Kendo UI Editor by dragging
 
 * [Basic Usage of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/index)
 * [Using the API of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/api)
-* [JavaScript API Reference of the Editor](/api/javascript/ui/editor)
+* [JavaScript API Reference of the Editor](/api/ui/editor)

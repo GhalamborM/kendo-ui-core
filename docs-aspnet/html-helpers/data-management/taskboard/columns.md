@@ -2,13 +2,14 @@
 title: Columns
 page_title: Columns
 description: "Get started with the Telerik UI for {{ site.framework }} TaskBoard and learn about its columns."
+components: ["taskboard"]
 slug: htmlhelpers_taskboard_aspnetcore_columns
-position: 4
+position: 5
 ---
 
 # Columns
 
-The TaskBoard displays cards grouped by certain criteria in columns (lanes). Different aspects of the columns such as column width, the use of templates, the buttons rendered in the columns, etc., can be controlled through the `ColumnSettings` configuration. It has effect over all columns. 
+The TaskBoard displays cards grouped by specific criteria in columns (lanes). Different aspects of the columns such as column width, the buttons rendered in the columns, and others can be controlled through the `ColumnSettings` configuration. The `ColumnSettings` configuration affects all columns. 
 
 ## Column Settings
 
@@ -40,6 +41,35 @@ The following example demonstrates how to customize the columns by setting `widt
         .BindTo((IEnumerable<Kendo.Mvc.Examples.Models.TaskBoard.CardViewModel>)ViewBag.Cards)
     )
 ```
+{% if site.core %}
+```TagHelper
+    @{
+        var cards = (IEnumerable<CardViewModel>)ViewBag.Cards;
+    }
+
+    <kendo-taskboard 
+        dataorderfield="Order" 
+        datacategoryfield="Color" 
+        datadescriptionfield="Description" 
+        datastatusfield="Status"
+        datatitlefield="Title"
+        name="taskBoard"
+        bind-to="cards">
+        <taskboard-columns>
+                <column text="To-do" status="todo"></column>
+                <column text="In progress" status="inProgress"></column>
+                <column text="Done" status="done"></column>
+        </taskboard-columns>
+        <column-settings datastatusfield="Status" datatextfield="Text" width="200">
+            <buttons>
+                <button text="addCard" command="AddCardCommand">
+                </button>
+            </buttons>
+        </column-settings>
+    </kendo-taskboard>
+
+```
+{% endif %}
 
 ## Column Commands
 
@@ -92,8 +122,50 @@ The following example demonstrates how to use the `ColumnSettings` configuration
         .BindTo((IEnumerable<Kendo.Mvc.Examples.Models.TaskBoard.CardViewModel>)ViewBag.Cards)
     )
 ```
+{% if site.core %}
+```TagHelper
+    <script>
+        kendo.ui.taskboard.commands["MyCustomCommand"] = kendo.ui.taskboard.Command.extend({
+            exec: function () {
+                var taskboard = this.taskboard;
+                var options = this.options;
+                var column = options.column;
+                var columnElm = options.columnElement;
 
+                columnElm.css("border", "solid red 3px");
+                alert(kendo.format("Custom command executed for column with status {0} and value {1}", column.get("status"), options.value));
+            } 
+        });
+    </script>
+
+    @{
+        var cards = (IEnumerable<CardViewModel>)ViewBag.Cards;
+    }
+
+    <kendo-taskboard 
+        dataorderfield="Order" 
+        datacategoryfield="Color" 
+        datadescriptionfield="Description" 
+        datastatusfield="Status"
+        datatitlefield="Title"
+        name="taskBoard"
+        bind-to="cards">
+        <taskboard-columns>
+                <column text="To-do" status="todo"></column>
+                <column text="In progress" status="inProgress"></column>
+                <column text="Done" status="done"></column>
+        </taskboard-columns>
+        <column-settings datastatusfield="Status" datatextfield="Text" width="200">
+            <buttons>
+                <button name="CustomButton" text="My Custom Tool" icon="gear" command="MyCustomCommand" options="myvalue">
+	 	 	    </button>
+            </buttons>
+        </column-settings>
+    </kendo-taskboard>
+
+```
+{% endif %}
 ## See Also
 
 * [Kendo UI TaskBoard Cards]({% slug htmlhelpers_taskboard_aspnetcore_cards %})
-* [JavaScript API Reference of the TaskBoard](https://docs.telerik.com/kendo-ui/api/javascript/ui/taskboard)
+* [JavaScript API Reference of the TaskBoard](https://docs.telerik.com/kendo-ui/api/ui/taskboard)

@@ -2,11 +2,12 @@
 title: Grid Does Not Recognize Mouse Clicks on Touch-Screen Devices
 description: When using the Kendo UI Grid in Chrome or Firefox on a hybrid device (touch screen), the Grid fails to recognize the mouse clicks.
 type: troubleshooting
-page_title: Cannot Get Row and Cell Index on Hybrid Devices | Kendo UI Grid for jQuery
+page_title: Cannot Get Row and Cell Index on Hybrid Devices - Kendo UI for jQuery Data Grid
 slug: grid-get-the-current-row-and-cell-index
 tags: grid, cell, index, row, current, position, tap, touch, click
 ticketid: 1148726
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -32,7 +33,7 @@ The incorrect focus on mobile devices is a [known issue](https://github.com/tele
 
 ## Suggested Workarounds
 
-1. Add a `touchstart` and `click` event handlers to the [`tbody`](/api/javascript/ui/grid/fields/tbody) element of the Grid.
+1. Add a `touchstart` and `click` event handlers to the [`tbody`](/api/ui/grid/fields/tbody) element of the Grid.
 1. Get the current cell with jQuery.
 
 ```
@@ -52,30 +53,32 @@ The following example demonstrates how to fully implement the suggested workarou
 
       <script>
         $(document).ready(function () {
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
               dataSource = new kendo.data.DataSource({
                 transport: {
-                  read:  {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
-                  },
-                  update: {
-                    url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
-                  },
-                  destroy: {
-                    url: crudServiceBaseUrl + "/Products/Destroy",
-                    dataType: "jsonp"
-                  },
-                  create: {
-                    url: crudServiceBaseUrl + "/Products/Create",
-                    dataType: "jsonp"
-                  },
-                  parameterMap: function(options, operation) {
-                    if (operation !== "read" && options.models) {
-                      return {models: kendo.stringify(options.models)};
+                    read:  {
+                        url: crudServiceBaseUrl + "/Products"
+                    },
+                    update: {
+                        url: crudServiceBaseUrl + "/Products/Update",
+                        type: "POST",
+                		contentType: "application/json"
+                    },
+                    destroy: {
+                        url: crudServiceBaseUrl + "/Products/Destroy",
+                        type: "POST",
+                		contentType: "application/json"
+                    },
+                    create: {
+                        url: crudServiceBaseUrl + "/Products/Create",
+                        type: "POST",
+                		contentType: "application/json"
+                    },
+                    parameterMap: function(options, operation) {
+                        if (operation !== "read" && options.models) {
+                            return kendo.stringify(options.models);
+                        }
                     }
-                  }
                 },
                 batch: true,
                 pageSize: 20,

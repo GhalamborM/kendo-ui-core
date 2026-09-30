@@ -1,13 +1,13 @@
 ---
 title: Create Custom Editor in Detail Template
-page_title: Custom Detail Template Editor | Kendo UI Grid for jQuery
-description: "An example on how to create custom editor in the detail template of the Kendo UI Grid for jQuery."
+page_title: Custom Detail Template Editor - Kendo UI for jQuery Data Grid
+description: "Learn how to create custom editor in the detail template of the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/Templates/detail-template-editor
 slug: howto_create_custom_editorin_detail_template_grid
 tags: grid, create, custom, editor, detail, template
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -47,9 +47,9 @@ The following example demonstrates how to create a custom editor in a Grid detai
 
         <div>
             <div class='employee-details'>
-                <span class="field-name">First Name: </span> <input type="text" class="k-input k-textbox k-input-solid k-input-md k-rounded-md" data-bind="value:FirstName"/><br />
-                <span class="field-name"> Last Name: </span> <input type="text" class="k-input k-textbox k-input-solid k-input-md k-rounded-md" data-bind="value:LastName"/><br />
-                <span class="field-name"> Country: </span> <input type="text" class="k-input k-textbox k-input-solid k-input-md k-rounded-md" data-bind="value:Country"/><br />   
+                <span class="field-name">First Name: </span> <input type="text" class="k-input k-textbox" data-bind="value:FirstName"/><br />
+                <span class="field-name"> Last Name: </span> <input type="text" class="k-input k-textbox" data-bind="value:LastName"/><br />
+                <span class="field-name"> Country: </span> <input type="text" class="k-input k-textbox" data-bind="value:Country"/><br />
 
       </div>
       </div>
@@ -64,9 +64,9 @@ The following example demonstrates how to create a custom editor in a Grid detai
     <script>
       var element = $("#grid").kendoGrid({
         dataSource: {
-          type: "odata",
+          type: "odata-v4",
           transport: {
-            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+            read: "https://demos.telerik.com/service/v2/odata/Employees"
           },
           pageSize: 5,
           serverPaging: true,
@@ -127,9 +127,9 @@ The following example demonstrates how to create a custom editor in a Grid detai
 
         detailRow.find(".orders").kendoGrid({
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+              read: "https://demos.telerik.com/service/v2/odata/Orders"
             },
             serverPaging: true,
             serverSorting: true,
@@ -149,9 +149,9 @@ The following example demonstrates how to create a custom editor in a Grid detai
         });
       }
     </script>
-    <style> 
+    <style>
       .employee-details .k-input{
-        width:50%;        
+        width:50%;
       }
       .field-name{
         width: 100px;
@@ -163,4 +163,4 @@ The following example demonstrates how to create a custom editor in a Grid detai
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

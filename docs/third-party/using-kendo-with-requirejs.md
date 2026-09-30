@@ -1,7 +1,8 @@
 ---
 title: RequireJS
-page_title: RequireJS | Kendo UI Third-Party Tools
+page_title: RequireJS - Kendo UI Third-Party Tools
 description: "Learn how to work with Kendo UI and RequireJS compatible loader."
+components: ["general"]
 previous_url: /using-kendo-with-requirejs
 slug: requirejs_integration_kendoui
 ---
@@ -23,8 +24,7 @@ The following example demonstrates how to load the Kendo UI JavaScript files fro
 <!DOCTYPE HTML>
 <html>
     <head>
-        <link rel="stylesheet" href="/styles/my-kendo-styles/kendo.common.core.min.css" />
-        <link rel="stylesheet" href="/styles/my-kendo-styles/kendo.default.min.css" />
+        <link rel="stylesheet" href="/styles/my-kendo-styles/default-main.css" />
         <!-- Include RequireJS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.1/require.js"></script>
     </head>
@@ -62,8 +62,7 @@ The following example demonstrates how to use a bundle script with RequireJS.
 <!DOCTYPE HTML>
 <html>
   <head>
-  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/kendo.common.min.css">
-  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/kendo.default.min.css">
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/{{ site.themesCdnVersion }}/default/default-main.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.1/require.js"></script>
   </head>
   <body>
@@ -73,7 +72,7 @@ The following example demonstrates how to use a bundle script with RequireJS.
       require.config({
         paths: {
           "jquery": "https://code.jquery.com/jquery-1.9.1.min",
-          "jszip": "https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/jszip.min",
+          "jszip": "https://unpkg.com/jszip@3.10.1/dist/jszip.min",
           "kendo.all.min": "https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/kendo.all.min",
         }
       });
@@ -100,9 +99,7 @@ The following example demonstrates how to load AngularJS and initialize it with 
 <!DOCTYPE HTML>
 <html>
   <head>
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/kendo.common.min.css">
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/kendo.rtl.min.css">
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/kendo.default.min.css">
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/{{ site.themesCdnVersion }}/default/default-main.css" />    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.1/require.js"></script>
   </head>
   <body>
@@ -151,9 +148,8 @@ The following example demonstrates how to use a [custom Kendo script created wit
 <!DOCTYPE HTML>
 <html>
   <head>
-  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/kendo.common.min.css">
-  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/kendo.default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.1/require.js"></script>
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/{{ site.themesCdnVersion }}/default/default-main.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.1/require.js"></script>
   </head>
   <body>
     <div ng-controller="controller">
@@ -197,12 +193,10 @@ The following example demonstrates how to use a [custom Kendo script created wit
 
 ## See Also
 
-* [SharePoint Add-Ins]({% slug sharepoint_tutorials %})
 * [Twitter Bootstrap]({% slug twitterbootstrapintegration_integration_kendoui %})
 * [Angular 2.0]({% slug angular2support_integration_kendoui %})
 * [TypeScript]({% slug typescript_integration_kendoui %})
 * [Visual Studio IntelliSense]({% slug visualstudiointellisense_integration_kendoui %})
-* [Telerik Data Access]({% slug bindtotelerikdataaccesstool_integration_kendoui %})
 * [SystemJS Support]({% slug systemjs_integration_kendoui %})
 * [Webpack Support]({% slug webpacksupport_integration_kendoui %})
-* [Aurelia]({% slug aurelia_integration_kendoui %})
+* [Module Bundlers]({% slug module_bundlers_integration_kendoui %})

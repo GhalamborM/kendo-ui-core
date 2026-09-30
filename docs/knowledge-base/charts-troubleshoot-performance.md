@@ -1,13 +1,13 @@
 ---
-title: Performance Issues
-page_title: jQuery Chart Documentation | Performance Issues
+title: Manage Chart Performance Issues
+page_title: Handle Performance Issues in the Chart - Kendo UI for jQuery Chart
 description: "Learn the tips and tricks for improving the performance of the Kendo UI widgets rendering data visualization."
 previous_url: /dataviz/performance-tips, /controls/charts/troubleshoot/performance-tips
 slug: tipsandtricks_kendouistyling
 type: troubleshooting
 tags: chart, troubleshoot, performance, issues, tips
 res_type: kb
-component: chart
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,7 +15,11 @@ component: chart
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Charts, Maps, Diagrams, Barcodes, and Gauges</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
+  <td>Progress® Kendo UI® Map for jQuery</td>
+  <td>Progress® Kendo UI® Diagram for jQuery</td>
+  <td>Progress® Kendo UI® Barcode for jQuery</td>
+  <td>Progress® Kendo UI® Gauge for jQuery</td>
  </tr>
  <tr>
   <td>Kendo Version</td>
@@ -55,7 +59,7 @@ Switching to Canvas rendering improves the performance of the widgets, especiall
 
 ### Canvas Rendering in Inline Binding
 
-When you use a DataSource binding, all data items are wrapped in [`Observable`](/api/javascript/data/observableobject) instances to track changes. Generally, such behavior is unnecessary for the Chart and might become an issue if you have a large number of data points&mdash;5,000 and more. In this case, you can use [inline binding]({% slug databinding_charts_widget %}).
+When you use a DataSource binding, all data items are wrapped in [`Observable`](/api/data/observableobject) instances to track changes. Generally, such behavior is unnecessary for the Chart and might become an issue if you have a large number of data points&mdash;5,000 and more. In this case, you can use [inline binding]({% slug databinding_charts_widget %}).
 
 ```dojo
     <div id="chart"></div>

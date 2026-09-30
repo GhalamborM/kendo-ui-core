@@ -1,13 +1,13 @@
 ---
 title: Show Gantt Task Progress Handle When Using Task Template
-description: An example on how to display a progress drag handle for the Kendo UI Gantt tasks when a taskTemplate is set.
+description: Learn how to display a progress drag handle for the Kendo UI Gantt tasks when a taskTemplate is set.
 type: how-to
-page_title: Display Task Progress Drag Handle When taskTemplate Is Used | Kendo UI Gantt for jQuery
+page_title: Display Task Progress Drag Handle When taskTemplate Is Used - Kendo UI Gantt for jQuery
 slug: gantt-task-progress-drag-handle
 tags: gantt, task, progress, drag, handle, template
 ticketid: 1107725
 res_type: kb
-component: gantt
+components: ["gantt"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: gantt
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Gantt</td>
+  <td>Progress® Kendo UI® Gantt for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -45,7 +45,7 @@ For the full implementation of the approach, refer to [this Dojo example](https:
     	<script id="task-template" type="text/x-kendo-template">
     		# if (resources[0]) { #
     		<div class="template" style="background-color: #= resources[0].color #;">
-    			<img class="resource-img" src="../content/web/gantt/resources/#:resources[0].id#.jpg" alt="#: resources[0].id #" />
+    			<img class="resource-img" src="https://demos.telerik.com/kendo-ui/content/web/gantt/resources/#:resources[0].id#.jpg" alt="#: resources[0].id #" />
     			<div class="wrapper">
     				<strong class="title">#= title # </strong>
     				<span class="resource">#= resources[0].name #</span>

@@ -5,9 +5,9 @@ description: "Learn how to set a validation rule to a specific column range in K
 slug: howto_validationtocolumn_spreadsheet_widget
 previous_url: /controls/data-management/spreadsheet/how-to/validation-to-column
 tags: kendo, jquery, spreadsheet, set, validation, rules, to, column, ranges
-component: spreadsheet
 type: how-to
 res_type: kb
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet for jQuery</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I set a validation rule to a column range in the Kendo UI for jQuery Spr
 
 ## Solution
 
-To apply the validation rule to the specific range, the following example uses the [`range.validation`](/api/javascript/spreadsheet/range/methods/validation) method.
+To apply the validation rule to the specific range, the following example uses the [`range.validation`](/api/spreadsheet/range/methods/validation) method.
 
 ```dojo
 <div id="spreadsheet" style="width: 100%;"></div>
@@ -49,7 +49,7 @@ To apply the validation rule to the specific range, the following example uses t
             sheetsbar: false,
             excel: {
                 // Required to enable Excel Export in some browsers
-                proxyURL: "//demos.telerik.com/kendo-ui/service/export"
+                proxyURL: "https://demos.telerik.com/service/v2/core/export"
             },
             sheets: [
                 {
@@ -541,4 +541,4 @@ To apply the validation rule to the specific range, the following example uses t
 ## See Also
 
 * [Basic Usage of the Spreadsheet (Demo)](https://demos.telerik.com/kendo-ui/spreadsheet/index)
-* [Spreadsheet JavaScript API Reference](/api/javascript/ui/spreadsheet)
+* [Spreadsheet JavaScript API Reference](/api/ui/spreadsheet)

@@ -1,12 +1,13 @@
 ---
 title: Set Background Color of the Tab to the Content
-description: An example on how to set the background color of the tab to the content.
+description: Learn how to set the background color of the tab to the content.
 type: how-to
-page_title: Set the Same Background Color for Tabs and Content  | Kendo UI TabStrip for jQuery
+page_title: Set the Same Background Color for Tabs and Content  - Kendo UI TabStrip for jQuery
 slug: tabstrip-color-content-background-same-tab
 tags: tabstrip, color, content, background, same, tab
 ticketid: 1364933
 res_type: kb
+components: ["tabstrip"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>TabStrip for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® TabStrip for jQuery</td>
  </tr>
   <td>Product Version</td>
   <td>2019.1.115</td>
@@ -30,7 +31,7 @@ How can I set the background color of the content to the same color as the tab?
 1. During the [`document.ready` event](http://learn.jquery.com/using-jquery-core/document-ready/), use jQuery to make a reference to the background color of the selected tab.  
 1. Set the background color of the content.
 
-You can use the suggested approach in the [`show` event](https://docs.telerik.com/kendo-ui/api/javascript/ui/tabstrip/events/show) so that when the user clicks a tab, the content will match the background color of the tab.
+You can use the suggested approach in the [`show` event](https://docs.telerik.com/kendo-ui/api/ui/tabstrip/events/show) so that when the user clicks a tab, the content will match the background color of the tab.
 
 ```dojo
     <div id="example">
@@ -74,4 +75,4 @@ You can use the suggested approach in the [`show` event](https://docs.telerik.co
 
 ## See Also
 
-* [`show` API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/tabstrip/events/show)
+* [`show` API Reference](https://docs.telerik.com/kendo-ui/api/ui/tabstrip/events/show)

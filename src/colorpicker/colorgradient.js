@@ -1,13 +1,10 @@
-(function(f, define){
-    define([ "../kendo.core", "../kendo.popup", "./contrastToolUtils" ], f);
-})(function(){
-    var __meta__ = {
-        id: "colorgradient",
-        name: "ColorGradient",
-        category: "web", // suite
-        description: "ColorGradient allows selection of a color from an HSV canvas.",
-        depends: ["core", "popup", "textbox"] // dependencies
-    };
+import "../kendo.core.js";
+import "../kendo.popup.js";
+import "../kendo.slider.js";
+import "../kendo.binder.js";
+import "./contrastToolUtils.js";
+import "../kendo.icons.js";
+
 (function($, undefined) {
     // WARNING: removing the following jshint declaration and turning
     // == into === to make JSHint happy will break functionality.
@@ -17,6 +14,7 @@
         Observable = kendo.Observable,
         parseColor = kendo.parseColor,
         extend = $.extend,
+        encode = kendo.htmlEncode,
         Color = kendo.Color,
         KEYS = kendo.keys,
         BACKGROUNDCOLOR = "background-color",
@@ -46,9 +44,8 @@
             that._viewModel = kendo.observable({
                 switchMode: that.switchMode.bind(that),
                 keydown: that.keydown.bind(that),
-                mode: function (mode) {
-                    return mode === this.get("format");
-                },
+                isHEXMode: function () { return this.get("format") === 'hex' },
+                isRGBMode: function () { return this.get("format") === 'rgb' },
                 format: options.format,
                 formats: options.formats,
                 rgb: null,
@@ -63,48 +60,70 @@
 
             that._render();
 
-            that.element.on(KEYDOWN_NS, that.keydown.bind(that));
+            that.element.on(KEYDOWN_NS, that, that.keydown.bind(that));
 
             Observable.fn.init.call(that);
-        },
-        _template: kendo.template(
-            '# if (options.formats && options.formats.length > 1) { #' +
-            '<div class="k-vstack">' +
-                '<button class="k-colorgradient-toggle-mode" data-#:ns#role="button" data-#:ns#icon="arrows-kpi" data data-#:ns#bind="click: switchMode" data-#:ns#fill-mode="flat" data-#:ns#size="#: options.size #" title="#: options.messages.toggleFormat #">' +
-               '</button>' +
-            '</div>' +
-            '# } #' +
+},
+        _template: kendo.template(({ options, ns }) => {
+            let optionsSize = options.size?  encode(options.size) : "";
+            let optionsTabIndex = encode(options.tabindex);
 
+            let vStackElement = "";
+            if (options.formats && options.formats.length > 1) {
+                let optionsMessagesToggleFormat = encode(options.messages.toggleFormat);
+
+                vStackElement =
+                '<div class="k-vstack">' +
+                    `<button class="k-colorgradient-toggle-mode" data-${ns}role="button" data-${ns}icon="caret-alt-expand" data data-${ns}bind="click: switchMode" data-${ns}fill-mode="flat" data-${ns}size="${optionsSize}" title="${optionsMessagesToggleFormat}">` +
+                    '</button>' +
+                '</div>';
+            }
 
             // HEX input
-            '# if (options.formats && options.formats.indexOf("hex") >= 0) { #' +
-            '<div class="k-vstack k-flex-1" data-#:ns#bind="visible: mode(\'hex\')">' +
-                '<input type="text" data-#:ns#bind="value: hex" data-#:ns#role="textbox" data-#:ns#size="#: options.size #" tabindex="#:options.tabindex#"  aria-label="#: options.messages.hex #"/>' +
-                '<label class="k-colorgradient-input-label">HEX</label>' +
-            '</div>' +
-            '# } #' +
+            let hexInputElement = "";
+            if (options.formats && options.formats.indexOf("hex") >= 0) {
+                let optionsMessagesHex = encode(options.messages.hex);
+
+                hexInputElement =
+                `<div class="k-vstack${options._showAdaptiveView ? " k-flex-1" : ""}" data-${ns}bind="visible: isHEXMode">` +
+                    `<input type="text" data-${ns}bind="value: hex" data-${ns}role="textbox" data-${ns}size="${optionsSize}" tabindex="${optionsTabIndex}"  aria-label="${optionsMessagesHex}"/>` +
+                    '<label class="k-colorgradient-input-label">HEX</label>' +
+                '</div>';
+            }
 
             // RGBA input
-            '# if (options.formats && options.formats.indexOf("rgb") >= 0) { #' +
-            '<div  class="k-vstack" data-#:ns#bind="visible: mode(\'rgb\')">' +
-                '<input tabindex="#:options.tabindex#" data-#:ns#bind="value: rgb.r" data-#:ns#role="numerictextbox" data-#:ns#size="#: options.size #" data-#:ns#max="255" data-#:ns#min="0" data-#:ns#decimals="0" data-#:ns#spinners="false" data-#:ns#format="n0"  aria-label="#: options.messages.red #" />' +
-                '<label class="k-colorgradient-input-label">R</label>' +
-            '</div>' +
-            '<div  class="k-vstack" data-#:ns#bind="visible: mode(\'rgb\')">' +
-                '<input tabindex="#:options.tabindex#" data-#:ns#bind="value: rgb.g" data-#:ns#role="numerictextbox" data-#:ns#size="#: options.size #" data-#:ns#max="255" data-#:ns#min="0" data-#:ns#decimals="0" data-#:ns#spinners="false" data-#:ns#format="n0"  aria-label="#: options.messages.green #" />' +
-                '<label class="k-colorgradient-input-label">G</label>' +
-            '</div>' +
-            '<div  class="k-vstack" data-#:ns#bind="visible: mode(\'rgb\')">' +
-                '<input tabindex="#:options.tabindex#" data-#:ns#bind="value: rgb.b" data-#:ns#role="numerictextbox" data-#:ns#size="#: options.size #" data-#:ns#max="255" data-#:ns#min="0" data-#:ns#decimals="0" data-#:ns#spinners="false" data-#:ns#format="n0"  aria-label="#: options.messages.blue #"/>' +
-                '<label class="k-colorgradient-input-label">B</label>' +
-            '</div>' +
-            '#if(options.opacity){#' +
-            '<div  class="k-vstack" data-#:ns#bind="visible: mode(\'rgb\')">' +
-                '<input tabindex="#:options.tabindex#" data-#:ns#bind="value: rgb.a" data-#:ns#role="numerictextbox" data-#:ns#size="#: options.size #" data-#:ns#step="0.1" data-#:ns#max="1" data-#:ns#min="0" data-#:ns#decimals="1" data-#:ns#spinners="false" data-#:ns#format="n1"  aria-label="#: options.messages.alpha #" />' +
-                '<label class="k-colorgradient-input-label">A</label>' +
-            '</div>' +
-            '# } #' +
-            '# } #'),
+            let rgbaInputElement = "";
+            if (options.formats && options.formats.indexOf("rgb") >= 0) {
+                let optionsMessagesRed = encode(options.messages.red);
+                let optionsMessagesGreen = encode(options.messages.green);
+                let optionsMessagesBlue = encode(options.messages.blue);
+
+                rgbaInputElement =
+                `<div class="k-vstack" data-${ns}bind="visible: isRGBMode">` +
+                    `<input tabindex="${optionsTabIndex}" data-${ns}bind="value: rgb.r" data-${ns}role="numerictextbox" data-${ns}size="${optionsSize}" data-${ns}max="255" data-${ns}min="0" data-${ns}decimals="0" data-${ns}spinners="false" data-${ns}format="n0" aria-label="${optionsMessagesRed}" inputmode="decimal"/>` +
+                    '<label class="k-colorgradient-input-label">R</label>' +
+                '</div>' +
+                `<div class="k-vstack" data-${ns}bind="visible: isRGBMode">` +
+                    `<input tabindex="${optionsTabIndex}" data-${ns}bind="value: rgb.g" data-${ns}role="numerictextbox" data-${ns}size="${optionsSize}" data-${ns}max="255" data-${ns}min="0" data-${ns}decimals="0" data-${ns}spinners="false" data-${ns}format="n0" aria-label="${optionsMessagesGreen}" inputmode="decimal"/>` +
+                    '<label class="k-colorgradient-input-label">G</label>' +
+                '</div>' +
+                `<div class="k-vstack" data-${ns}bind="visible: isRGBMode">` +
+                    `<input tabindex="${optionsTabIndex}" data-${ns}bind="value: rgb.b" data-${ns}role="numerictextbox" data-${ns}size="${optionsSize}" data-${ns}max="255" data-${ns}min="0" data-${ns}decimals="0" data-${ns}spinners="false" data-${ns}format="n0" aria-label="${optionsMessagesBlue}" inputmode="decimal"/>` +
+                    '<label class="k-colorgradient-input-label">B</label>' +
+                '</div>';
+
+                if(options.opacity) {
+                    let optionsMessagesAlpha = options.messages.alpha;
+                    rgbaInputElement +=
+                    `<div class="k-vstack" data-${ns}bind="visible: isRGBMode">` +
+                        `<input tabindex="${optionsTabIndex}" data-${ns}bind="value: rgb.a" data-${ns}role="numerictextbox" data-${ns}size="${optionsSize}" data-${ns}step="0.1" data-${ns}max="1" data-${ns}min="0" data-${ns}decimals="1" data-${ns}spinners="false" data-${ns}format="n1" aria-label="${optionsMessagesAlpha}" inputmode="decimal"/>` +
+                        '<label class="k-colorgradient-input-label">A</label>' +
+                    '</div>';
+                }
+            }
+
+            return vStackElement + hexInputElement + rgbaInputElement;
+        }),
         destroy: function(){
             var that = this;
 
@@ -202,12 +221,11 @@
 
             options = that.options = kendo.deepExtend({}, that.options, options);
 
-            if(options.messages.previewInput) {
+            if (options.messages.previewInput) {
                 options.messages.hex = options.messages.previewInput;
             }
 
             options.messages = options.messages ? $.extend(that.options.messages, options.messages) : that.options.messages;
-            element = that.element;
 
             that._wrapper();
             that._sliders();
@@ -218,16 +236,17 @@
             that._gradientInputs();
             that._updateUI(value);
             that._navigation();
-        },
+            ColorSelector.fn.endInit.call(this);
+},
         options: {
             name : "ColorGradient",
             opacity : false,
-            hsvDragARIATemplate: 'Color well with two-dimensional slider for selecting saturation and value. Selected color is #=data || "none"#',
+            hsvDragARIATemplate: (data) => `Color well with two-dimensional slider for selecting saturation and value. Selected color is ${data || "none"}`,
             input : true,
             format: "hex",
             formats: ["rgb", "hex"],
             contrastTool: false,
-            size: "medium",
+            size: undefined,
             messages: {
                 contrastRatio: "Contrast ratio:",
                 fail: "Fail",
@@ -239,32 +258,22 @@
                 blue: "Blue channel",
                 alpha: "Alpha channel"
             },
-            _otOfPicker: true
+            _otOfPicker: true,
+            _showAdaptiveView: false,
         },
-        _template: kendo.template(
-            '<div class="k-colorgradient-canvas k-hstack">' +
-                '<div class="k-hsv-rectangle"><div class="k-hsv-gradient"></div><div role="slider" aria-orientation="undefined" class="k-hsv-draghandle k-draghandle"></div></div>' +
-
-                '<div class="k-hsv-controls k-hstack">' +
-                    '<input class="k-hue-slider k-colorgradient-slider" />' +
-                    '# if (opacity) { #' +
-                        '<input class="k-alpha-slider k-colorgradient-slider" />' +
-                    '# } #' +
+        _template: kendo.template((options) =>
+                `<div class="k-colorgradient-canvas ${options._showAdaptiveView ? "k-vstack" : "k-hstack" }">` +
+                    '<div class="k-hsv-rectangle"><div class="k-hsv-gradient"><div role="slider" aria-orientation="undefined" class="k-hsv-draghandle k-draghandle"></div></div></div>' +
+                    `<div class="k-hsv-controls ${options._showAdaptiveView ? "k-vstack" : "k-hstack" }">` +
+                        '<input class="k-hue-slider k-colorgradient-slider" />' +
+                        (options.opacity ? '<input class="k-alpha-slider k-colorgradient-slider" />' : '') +
+                    '</div>' +
                 '</div>' +
-            '</div>' +
-
-            '# if (input) { #' +
-            '<div class="k-colorgradient-inputs k-hstack">' +
-            '</div>' +
-            '# } #' +
-
-            '# if (contrastTool) { #' +
-                '<div class="k-colorgradient-color-contrast k-vbox">' +
-                '</div>' +
-            '# } #'
+                (options.input ? '<div class="k-colorgradient-inputs k-hstack"></div>' : '') +
+                (options.contrastTool ? '<div class="k-colorgradient-color-contrast k-vbox"></div>' : '')
         ),
         focus: function() {
-            this._hsvHandle.focus();
+            this._hsvHandle.trigger("focus");
         },
         setBackgroundColor: function(color) {
             var that = this;
@@ -328,7 +337,7 @@
             var that = this,
                 wrapper = that.wrapper,
                 hsvRect = wrapper.find(".k-hsv-rectangle"),
-                hsvHandle = hsvRect.find(".k-draghandle").attr("tabIndex", 0).on(KEYDOWN_NS, bind(that._hsvKeydown, that)),
+                hsvHandle = hsvRect.find(".k-draghandle").attr("tabIndex", 0).on(KEYDOWN_NS, that, bind(that._hsvKeydown, that)),
                 value = this.value();
 
             if (value && value.indexOf("rgba") > -1) {
@@ -345,10 +354,12 @@
                 var offset = this.offset,
                     dx = x - offset.left, dy = y - offset.top,
                     rw = this.width, rh = this.height,
+                    dxrw = dx > rw ? rw : dx,
+                    dyrh = dy > rh ? rh : dy,
                     resultX, resultY;
 
-                dx = dx < 0 ? 0 : dx > rw ? rw : dx;
-                dy = dy < 0 ? 0 : dy > rh ? rh : dy;
+                dx = dx < 0 ? 0 : dxrw;
+                dy = dy < 0 ? 0 : dyrh;
                 resultX = dx / rw;
                 resultY = 1 - dy / rh;
 
@@ -361,12 +372,12 @@
                     this.offset = kendo.getOffset(hsvRect);
                     this.width = hsvRect.width();
                     this.height = hsvRect.height();
-                    hsvHandle.focus();
+                    hsvHandle.trigger("focus");
                     update.call(this, e.x.location, e.y.location);
                 },
                 start: function() {
                     hsvRect.addClass("k-dragging");
-                    hsvHandle.focus();
+                    hsvHandle.trigger("focus");
                 },
                 move: function(e) {
                     e.preventDefault();
@@ -483,13 +494,15 @@
                 that._updateUI(that._getHSV(e.value, null, null, null));
             }
 
+            const slidersOrientation = that.options._showAdaptiveView ? "horizontal" : "vertical";
+
             hueSlider.attr("aria-label", "hue");
             that._hueSlider = hueSlider.kendoSlider({
                 min: 0,
                 max: 360,
                 tickPlacement: "none",
                 showButtons: false,
-                orientation: "vertical",
+                orientation: slidersOrientation,
                 slide: hueChange,
                 change: hueChange
             }).data("kendoSlider");
@@ -504,7 +517,7 @@
                 max: 100,
                 tickPlacement: "none",
                 showButtons: false,
-                orientation: "vertical",
+                orientation: slidersOrientation,
                 slide: opacityChange,
                 change: opacityChange
             }).data("kendoSlider");
@@ -513,28 +526,25 @@
             var color = this._getHSV(null, s, v, null);
             this._updateUI(color);
         },
-        _updateColorContrast: function (color) {
+        _updateColorContrast: function(color) {
             var that = this,
                 contrastOptions = that.options.contrastTool,
                 backgroundColor = contrastOptions.backgroundColor ? parseColor(contrastOptions.backgroundColor) : parseColor(WHITE),
                 contrastRatio = contrastToolUtils.getContrastFromTwoRGBAs(parseColor(color.toCssRgba()), backgroundColor),
-                contrastRatioTemplate = kendo.template('<div class="k-contrast-ratio">' +
-                                            '<span class="k-contrast-ratio-text">#:messages.contrastRatio# #:kendo.toString(ratio, "n2")#</span>' +
-                                            '<span class="k-contrast-validation k-text-success">' +
-                                                '#if (ratio > 4.5) {#' +
-                                                    '<span class="k-icon k-i-check"></span>' +
-                                                '#}#' +
-                                                '#if (ratio > 7) {#' +
-                                                    '<span class="k-icon k-i-check"></span>' +
-                                                '#}#' +
+                contrastRatioTemplate = kendo.template(({ messages, ratio }) =>
+                                            '<div class="k-contrast-ratio">' +
+                                                `<span class="k-contrast-ratio-text">${encode(messages.contrastRatio)} ${encode(kendo.toString(ratio, "n2"))}</span>` +
+                                                '<span class="k-contrast-validation !k-text-success">' +
+                                                    (ratio > 4.5 ?  kendo.ui.icon("check") : '') +
+                                                    (ratio > 7 ?  kendo.ui.icon("check") : '') +
                                             '</span></div>'),
-                labelTemplate = kendo.template('<div>' +
-                                            '<span>#:level#: #:limit# </span>' +
-                                            '#if (ratio > limit) {#' +
-                                            '<span class="k-contrast-validation k-text-success">#:messages.pass# <span class="k-icon k-i-check"></span></span>' +
-                                            '#} else {#' +
-                                            '<span class="k-contrast-validation k-text-error">#:messages.fail# <span class="k-icon k-i-close"></span></span>' +
-                                            '#}#' +
+                labelTemplate = kendo.template(({ messages, ratio, limit, level }) =>
+                                            '<div>' +
+                                                `<span>${encode(level)}: ${encode(kendo.toString(limit, "#.#"))} </span>` +
+                                                (ratio > limit ?
+                                                `<span class="k-contrast-validation !k-text-success">${encode(messages.pass)} ${kendo.ui.icon("check")}</span>`
+                                                :
+                                                `<span class="k-contrast-validation !k-text-error">${encode(messages.fail)} ${kendo.ui.icon("x")}</span>`) +
                                             '</div>'),
                 output = "";
 
@@ -562,18 +572,19 @@
 
             that._updateContrastSvg(backgroundColor);
         },
-        _updateContrastSvg: function (backgroundColor) {
+        _updateContrastSvg: function(backgroundColor) {
             var that = this,
                 hsvRect = that._hsvRect,
                 svgClassName = "k-color-contrast-svg",
                 metrics = { width: hsvRect.width(), height: hsvRect.height() },
                 newSvg;
 
-            if(!metrics.width || !metrics.height) {
+            if (!metrics.width || !metrics.height) {
                 return;
             }
 
             newSvg = $(contrastToolUtils.renderSvgCurveLine(metrics, that._getHSV(), backgroundColor)).addClass(svgClassName);
+            kendo.applyStylesFromKendoAttributes(newSvg, ["position", "overflow", "pointer-events", "left", "top", "z-index"]);
 
             hsvRect.find("." + svgClassName).remove();
             hsvRect.append(newSvg);
@@ -595,7 +606,7 @@
             that._hueSlider.value(color.h);
 
             if (that._opacitySlider) {
-                that._opacitySlider.wrapper.find(".k-slider-track").css("background", "linear-gradient(to top, transparent, " + Color.fromHSV(color.h, 1, 1, 1).toCss());
+                that._opacitySlider.wrapper.find(".k-slider-track").css("background", `linear-gradient(to ${that.options._showAdaptiveView ? "right" : "top"}, transparent, ` + Color.fromHSV(color.h, 1, 1, 1).toCss());
                 that._opacitySlider.value(100 * color.a);
             }
 
@@ -629,10 +640,34 @@
             that._triggerSelect(color);
             that._updateHsv(color);
 
-            if(that._contrastTool.length) {
+            if (that._contrastTool.length) {
                 that._updateColorContrast(color);
             }
         },
+        _addSizeClass: function(specificSize) {
+            const options = this.options;
+
+            this.wrapper.removeClass("k-colorgradient-lg k-colorgradient-md k-colorgradient-sm");
+            let size = specificSize || options.size;
+
+            if (size) {
+                let sizeClass = "k-colorgradient-";
+
+                switch (size) {
+                    case "large":
+                        sizeClass += "lg";
+                        break;
+                    case "small":
+                        sizeClass += "sm";
+                        break;
+                    default:
+                        sizeClass += "md";
+                        break;
+                }
+                this.wrapper.addClass(sizeClass);
+            }
+        },
+
         _wrapper: function() {
             var options = this.options,
                 wrapper;
@@ -650,11 +685,13 @@
                 })
                 .append(this._template(options));
 
-            this._hueElements = $(".k-hsv-rectangle, .k-alpha-slider .k-slider-track", wrapper);
-            this._colorgradientInputs = $(".k-colorgradient-inputs", wrapper);
-            this._contrastTool = $(".k-colorgradient-color-contrast", wrapper);
+                this._hueElements = $(".k-hsv-rectangle, .k-alpha-slider .k-slider-track", wrapper);
+                this._colorgradientInputs = $(".k-colorgradient-inputs", wrapper);
+                this._contrastTool = $(".k-colorgradient-color-contrast", wrapper);
 
-            this.wrapper = wrapper;
+                this.wrapper = wrapper;
+
+                this._addSizeClass();
         },
         destroy: function (){
             this._hsvEvents.destroy();
@@ -680,6 +717,3 @@
 
 })(window.kendo.jQuery);
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3){ (a3 || a2)(); });

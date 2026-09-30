@@ -1,12 +1,12 @@
 ---
 title: Use Different Editors Based on the Column Values of the Grid
-description: An example on how to use a different editor based on the value of a column in a Kendo UI Grid.
+description: Learn how to use a different editor based on the value of a column in a Kendo UI Grid.
 type: how-to
-page_title: Use Different Editor Based on the Column Value | Kendo UI Grid for jQuery
+page_title: Use Different Editor Based on the Column Value - Kendo UI for jQuery Data Grid
 slug: grid-different-editor-based-on-column-value
 tags: grid, different, condition, editor, value, data, type, dynamic
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2018.1.221</td>
  </tr>
 </table>
@@ -30,7 +30,7 @@ How can I use a different editor based on the column value in a Grid?
 
 ## Solution
 
-1. Place a condition within the [`editor`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.editor) function.
+1. Place a condition within the [`editor`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnseditor) function.
 1. Based on that condition, return the corresponding editor.
 
 ```dojo
@@ -147,9 +147,8 @@ How can I use a different editor based on the column value in a Grid?
               dataTextField: "CategoryName",
               dataValueField: "CategoryName",
               dataSource: {
-                type: "odata",
                 transport: {
-                  read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
+                  read: "https://demos.telerik.com/service/v2/core/Categories"
                 }
               },
               change: function (e) {
@@ -170,9 +169,8 @@ How can I use a different editor based on the column value in a Grid?
               dataTextField: "ProductName",
               dataValueField: "ProductName",
               dataSource: {
-                type: "odata",
                 transport: {
-                  read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products"
+                  read: "https://demos.telerik.com/service/v2/core/Products"
                 }
               },
               change: function (e) {

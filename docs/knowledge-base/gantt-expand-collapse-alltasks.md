@@ -1,12 +1,13 @@
 ---
 title: Expand and Collapse All Gantt Rows
-description: An example on how to implement a functionality to expand and collapse all kendo UI Gantt tasks.
+description: Learn how to implement a functionality to expand and collapse all Kendo UI Gantt tasks.
 type: how-to
-page_title: Implement Expand and Collapse All Tasks on a Button Click | Kendo UI Gantt for jQuery
+page_title: Implement Expand and Collapse All Tasks on a Button Click - Kendo UI Gantt for jQuery
 slug: gantt-expand-collapse-alltasks
 tags: kendo, kendoui, gantt, expand, collapse, all, tasks, button, click
 ticketid: 1142128
 res_type: kb
+components: ["gantt"]
 ---
 
 ## Environment
@@ -14,11 +15,11 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Gantt</td>
+  <td>Progress® Kendo UI® Gantt for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
-  <td>Windows 7 64bit</td>
+  <td>Windows 10 64bit</td>
  </tr>
  <tr>
   <td>Browser</td>
@@ -26,7 +27,7 @@ res_type: kb
  </tr>
  <tr>
   <td>Browser Version</td>
-  <td>Version 62.0.3202.94 (Official Build) (64-bit)</td>
+  <td>Version 92.0.4515.131 (Official Build) (64-bit)</td>
  </tr>
 </table>
 
@@ -40,7 +41,8 @@ How can I add a button which will expand or collapse all tasks in my Gantt?
 1. Add a button to your page and subscribe for its `click` event.
 1. In the `click` function, get a reference to the DataSource of the Gantt (all tasks that are rendered in it).
 1. Implement a loop to iterate through all tasks.
-1. Use `set("expanded", [true/false])` to manage the expanded state.
+1. Set the `expanded` property of each tasks.
+1. Refresh the Gantt using its `refresh()` method.
 
 ```dojo
 
@@ -53,38 +55,49 @@ How can I add a button which will expand or collapse all tasks in my Gantt?
     <script>
         $(document).ready(function() {
             $(".k-button").click(function(e) {
-                var tasks = $("#gantt").data("kendoGantt").dataSource.view();
-                var shouldExpand = !tasks[0].expanded;
-                for (i = 0; i < tasks.length; i++) {
+                let gantt = $("#gantt").data("kendoGantt");
+                let tasks = gantt.dataSource.view();
 
-                    tasks[i].set("expanded", shouldExpand)
+                if (!tasks.length) {
+                    return;
                 }
+
+                let shouldExpand = !tasks[0].expanded;
+
+                tasks.forEach((task) => {
+                    task.expanded = shouldExpand;
+                });
+
+                gantt.refresh();
             })
 
-            var serviceRoot = "https://demos.telerik.com/kendo-ui/service";
-            var tasksDataSource = new kendo.data.GanttDataSource({
+            var serviceRoot = "https://demos.telerik.com/service/v2/core";
+                var tasksDataSource = new kendo.data.GanttDataSource({
                 transport: {
                     read: {
-                        url: serviceRoot + "/GanttTasks",
-                        dataType: "jsonp"
+                        url: serviceRoot + "/GanttTasks"
                     },
                     update: {
                         url: serviceRoot + "/GanttTasks/Update",
-                        dataType: "jsonp"
+                        type: "POST",
+                        contentType: "application/json",
+                        timeout: 5000
                     },
                     destroy: {
                         url: serviceRoot + "/GanttTasks/Destroy",
-                        dataType: "jsonp"
+                        type: "POST",
+                        contentType: "application/json",
+                        timeout: 5000
                     },
                     create: {
                         url: serviceRoot + "/GanttTasks/Create",
-                        dataType: "jsonp"
+                        type: "POST",
+                        contentType: "application/json",
+                        timeout: 5000
                     },
                     parameterMap: function(options, operation) {
                         if (operation !== "read") {
-                            return {
-                                models: kendo.stringify(options.models || [options])
-                            };
+                            return kendo.stringify(options.models || [options]);
                         }
                     }
                 },
@@ -106,10 +119,7 @@ How can I add a button which will expand or collapse all tasks in my Gantt?
                             parentId: {
                                 from: "ParentID",
                                 type: "number",
-                                defaultValue: null,
-                                validation: {
-                                    required: true
-                                }
+                                defaultValue: null
                             },
                             start: {
                                 from: "Start",
@@ -145,26 +155,26 @@ How can I add a button which will expand or collapse all tasks in my Gantt?
             var dependenciesDataSource = new kendo.data.GanttDependencyDataSource({
                 transport: {
                     read: {
-                        url: serviceRoot + "/GanttDependencies",
-                        dataType: "jsonp"
+                        url: serviceRoot + "/GanttDependencies"
                     },
                     update: {
                         url: serviceRoot + "/GanttDependencies/Update",
-                        dataType: "jsonp"
+                        type: "POST",
+                        contentType: "application/json"
                     },
                     destroy: {
                         url: serviceRoot + "/GanttDependencies/Destroy",
-                        dataType: "jsonp"
+                        type: "POST",
+                        contentType: "application/json"
                     },
                     create: {
                         url: serviceRoot + "/GanttDependencies/Create",
-                        dataType: "jsonp"
+                        type: "POST",
+                        contentType: "application/json"
                     },
                     parameterMap: function(options, operation) {
                         if (operation !== "read") {
-                            return {
-                                models: kendo.stringify(options.models || [options])
-                            };
+                            return kendo.stringify(options.models || [options]);
                         }
                     }
                 },

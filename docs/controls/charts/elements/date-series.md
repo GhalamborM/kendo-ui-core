@@ -1,7 +1,8 @@
 ---
 title: Date Series
-page_title: jQuery Chart Documentation | Date Series
+page_title: jQuery Chart Documentation - Date Series
 description: "Get started with the jQuery Chart by Kendo UI and learn how to handle date series and date grouping."
+components: ["chart"]
 previous_url: /controls/charts/date-series
 slug: dateseries_charts_widget
 ---
@@ -63,7 +64,7 @@ If the series contain two or more values for a specific period (base unit), they
 
 The following image demonstrates a chart with a set date category axis.
 
-![A Chart with a date category axis](../chart-category-date-axis.png)
+![Kendo UI for jQuery Chart with a date category axis](../chart-category-date-axis.png)
 
 The following example demonstrates date series that are grouped by the year.
 
@@ -103,7 +104,7 @@ The following example demonstrates date series that are grouped by the year.
 
 The following image displays a chart with a grouped date category axis. Note how the maximum value for each year is now displayed.
 
-![A Chart with a grouped date category axis](../chart-category-date-axis-grouped.png)
+![Kendo UI for jQuery Chart with a grouped date category axis](../chart-category-date-axis-grouped.png)
 
 ### Setting Aggregates
 
@@ -252,9 +253,9 @@ The date category axis provides options for specifying one format per base unit.
 
 #### Displaying the Axis Date Range
 
-To display the exact start and end date of the axis range, set the [`rangeLabels.visible` property](/api/javascript/dataviz/ui/chart/configuration/categoryaxis.rangelabels#categoryaxisrangelabelsvisible) to `true`.
+To display the exact start and end date of the axis range, set the [`rangeLabels.visible` property](/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxisrangelabels#categoryaxisrangelabelsvisible) to `true`.
 
-The range labels support the same settings as the axis labels. If an option is not set, it will default to the value set for the regular labels. For example [`rangeLabels.color`](/api/javascript/dataviz/ui/chart/configuration/categoryaxis.rangelabels#categoryaxisrangelabelscolor) defaults to the value of [`labels.color`](/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryaxislabelscolor).
+The range labels support the same settings as the axis labels. If an option is not set, it will default to the value set for the regular labels. For example [`rangeLabels.color`](/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxisrangelabels#categoryaxisrangelabelscolor) defaults to the value of [`labels.color`](/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryaxislabelscolor).
 
 Toggle the range labels in the example below to see how they differ from the regular axis labels:
 
@@ -361,4 +362,4 @@ The date axis provides options for specifying one format per base unit. If speci
 ## See Also
 
 * [Using the API of the Chart (Demo)](https://demos.telerik.com/kendo-ui/chart-api/index)
-* [JavaScript API Reference of the Chart](/api/javascript/dataviz/ui/chart)
+* [JavaScript API Reference of the Chart](/api/dataviz/ui/chart)

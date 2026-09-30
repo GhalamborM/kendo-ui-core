@@ -1,10 +1,6 @@
-(function(f, define) {
-    define([
-        "./kendo.html.base"
-    ], f);
-})(function() {
+import "./kendo.html.base.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "html.input",
     name: "Html.Input",
     category: "web",
@@ -63,7 +59,7 @@ var __meta__ = {
             }
 
             if (!!options.label) {
-                that.labelEl = $("<label for='" + elementId + "' class='" + options.labelClass + "'>");
+                that.labelEl = $("<label></label>").attr({ "for": elementId, "class": options.labelClass });
 
                 if (options.encoded) {
                     that.labelEl.text(options.label);
@@ -112,8 +108,8 @@ var __meta__ = {
             optionalClass: "k-label-optional",
             optionalText: "(Optional)",
             type: "checkbox",
-            rounded: "medium",
-            size: "medium",
+            rounded: undefined,
+            size: undefined,
             stylingOptions: [ "size", "rounded" ]
         }
     });
@@ -131,7 +127,7 @@ var __meta__ = {
             optionalClass: "k-label-optional",
             optionalText: "(Optional)",
             type: "radio",
-            size: "medium",
+            size: undefined,
             stylingOptions: [ "size"]
         }
     });
@@ -154,7 +150,5 @@ var __meta__ = {
     kendo.cssProperties.registerPrefix("HTMLRadioButton", "k-radio-");
 
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

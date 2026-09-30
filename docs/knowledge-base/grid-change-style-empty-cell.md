@@ -2,12 +2,13 @@
 title: Change the CSS of an Empty Cell
 description: An example describing how to style a Kendo UI Grid cell which has no value.
 type: how-to
-page_title: Style Cell with No Text | Kendo UI Grid
+page_title: Style Cell with No Text - Kendo UI Grid
 slug: grid-change-style-empty-cell
 position: 
 tags: grid, cell, empty, null, style, css
 ticketid: 1438929
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -29,7 +30,7 @@ res_type: kb
 How can I change the style of a cell such as the background color in my Kendo UI Grid if the grid cell is null or empty?
 
 ## Solution
-Add a class to the specific column using the [columns.attributes property](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.attributes).  Then, during the [DataBound event](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound), reference all DOM row elements in the Kendo UI Grid using the [items method](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/items), and check the [text](https://api.jquery.com/text/) of the `td` element.
+Add a class to the specific column using the [columns.attributes property](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsattributes).  Then, during the [DataBound event](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound), reference all DOM row elements in the Kendo UI Grid using the [items method](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/items), and check the [text](https://api.jquery.com/text/) of the `td` element.
 
 ```dojo
     <style>
@@ -87,7 +88,7 @@ Add a class to the specific column using the [columns.attributes property](https
 ```
 
 ## See Also
-* [columns.attributes property - Kendo UI Grid jQuery API](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.attributes)
-* [dataBound event - Kendo UI Grid jQuery API](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound)
-* [items method - Kendo UI Grid jQuery API](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/items)
+* [columns.attributes property - Kendo UI Grid jQuery API](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsattributes)
+* [dataBound event - Kendo UI Grid jQuery API](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound)
+* [items method - Kendo UI Grid jQuery API](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/items)
 * [text() - jQuery API](https://api.jquery.com/text/)

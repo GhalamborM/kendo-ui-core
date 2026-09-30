@@ -1,13 +1,13 @@
 ---
 title: Override Hours in the DateTimePicker Popup
 page_title: Override Hours in the DateTimePicker Popup
-description: "Learn how to override hours in the popup of the Kendo UI DateTimePicker widget."
+description: "Learn how to override hours in the popup of the Kendo UI DateTimePicker component."
 slug: howto_override_hours_inpopup_datetimepicker
 previous_url: /controls/editors/datetimepicker/how-to/override-hours
 tags: telerik, kendo, jquery, datetimepicker, override, hours, in, popup
-component: datetimepicker
 type: how-to
 res_type: kb
+components: ["datetimepicker", "timepicker"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI DateTimePicker for jQuery</td>
+  <td>Progress® Kendo UI® DateTimePicker for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -66,4 +66,4 @@ The following example demonstrates how to achieve the desired scenario.
 ## See Also
 
 * [Using the API of the DateTimePicker (Demo)](https://demos.telerik.com/kendo-ui/datetimepicker/api)
-* [JavaScript API Reference of the DateTimePicker](/api/javascript/ui/datetimepicker)
+* [JavaScript API Reference of the DateTimePicker](/api/ui/datetimepicker)

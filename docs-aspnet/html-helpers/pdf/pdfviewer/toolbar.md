@@ -2,6 +2,7 @@
 title: Toolbar and Tools
 page_title: Toolbar and Tools
 description: "Get started with the Telerik UI PDFViewer component for {{ site.framework }} and learn how to use and define the tools in its toolbar."
+components: ["pdfviewer"]
 previous_url: /helpers/pdf/pdfviewer/toolbar
 slug: htmlhelpers_pdfviewer_toolbar_aspnetcore
 position: 4
@@ -11,11 +12,13 @@ position: 4
 
 Internally, the PDFViewer uses the [{{ site.product }} Toolbar]({% slug htmlhelpers_toolbar_aspnetcore %}) and provides a set of default tools and corresponding commands in its toolbar.
 
-This approach enables you to use the [ToolBar client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/toolbar) and perform all available customizations.
+You can also define [custom tools](#custom-tools) in the toolbar that trigger custom logic.
 
-You can control the number and type of the rendered tools by initializing the items collection only with the tools that you require. For the full list of configuration options, refer to the [client-side API of the ToolBar items](https://docs.telerik.com/kendo-ui/api/javascript/ui/pdfviewer/configuration/toolbar.items).
+## Built-In Tools
 
-The toolbar collection includes the following built-in tools:
+You can control the number and type of the rendered tools by adding only the desired tools in the [`Items()`](/api/kendo.mvc.ui.fluent/pdfviewertoolbarsettingsbuilder#itemssystemaction) configuration of the `Toolbar`. For the full list of configuration options, refer to the [client-side API of the ToolBar items](https://docs.telerik.com/kendo-ui/api/ui/pdfviewer/configuration/toolbar.items).
+
+The toolbar of the PDFViewer supports the following built-in tools:
 
 * `pager`
 * `zoom`
@@ -25,15 +28,17 @@ The toolbar collection includes the following built-in tools:
 * `open` 
 * `download`
 * `print`
+* `annotations`
 
 > Running an Adblock extension in Chrome might treat the new browser tab for the print dialog as a potential ad and block it.
 
-The `zoom`, `zoomInOut`, `toggleSelection`, `search` and `print` tools are available only with PDFjs processing.
+The `zoom`, `zoomInOut`, `toggleSelection`, `search`, and `print` tools are available only with [PDFjs processing]({% slug htmlhelpers_pdfviewer_pdfjs_processing_aspnetcore%}).
 
-The following example demonstrates basic configuration options for the PDFViewer toolbar tools. You can also add `spacer` elements, in order to group a preferable set of tools. 
+The following example demonstrates basic configuration options for the PDFViewer toolbar tools. You can also add `spacer` elements to group a specific set of tools. 
 
 ```HtmlHelper
-      @(Html.Kendo().PDFViewer().Name("pdfviewer")
+    @(Html.Kendo().PDFViewer()
+        .Name("pdfviewer")
         .Toolbar(toolbar =>
             toolbar.Items(items =>
             {
@@ -52,7 +57,8 @@ The following example demonstrates basic configuration options for the PDFViewer
 ```
 {% if site.core %}
 ```TagHelper
-@addTagHelper *, Kendo.Mvc
+    @addTagHelper *, Kendo.Mvc
+
     <kendo-pdfviewer name="pdfviewer">
         <toolbar enabled="true">
             <pdfviewer-toolbar-items>
@@ -80,7 +86,26 @@ The following example demonstrates basic configuration options for the PDFViewer
 ```
 {% endif %}
 
-You can also use the `add` and `remove` client-side API methods to programmatically manage the rendered tools in the PDFViewer.
+The `open`, `download`, and `print` built-in tools are displayed on the right-side of the toolbar (next to the `search` tool) by default. To update the default appearance of these tools and display them as options of a [DropDownList]({% slug htmlhelpers_dropdownlist_aspnetcore%}), which is added as first item in the toolbar, enable the [`ContextMenu`](/api/kendo.mvc.ui.fluent/pdfviewertoolbarsettingsbuilder#contextmenu) option of the `Toolbar` configuration.
+
+```HtmlHelper
+    @(Html.Kendo().PDFViewer()
+        .Name("pdfviewer")
+        .Toolbar(toolbar => toolbar.ContextMenu(true))
+    )
+```
+{% if site.core %}
+```TagHelper
+    @addTagHelper *, Kendo.Mvc
+
+    <kendo-pdfviewer name="pdfviewer">
+        <toolbar enabled="true" context-menu="true">
+        </toolbar>
+    </kendo-pdfviewer>
+```
+{% endif %}
+
+You can also use the [`add()`](https://docs.telerik.com/kendo-ui/api/ui/toolbar/methods/add) and [`remove()`](https://docs.telerik.com/kendo-ui/api/ui/toolbar/methods/remove) client-side API methods to programmatically manage the rendered tools in the PDFViewer.
 
 ```HtmlHelper
     @(Html.Kendo().PDFViewer()
@@ -93,16 +118,99 @@ You can also use the `add` and `remove` client-side API methods to programmatica
     </kendo-pdfviewer>
 ```
 {% endif %}
-```script.js
+```JS
     <script>    
-      var pdfviewer = $("#pdfViewer").getKendoPDFViewer();
-      var printToolElement = $(".k-toolbar").find('a[title="Print"]');
-      pdfviewer.toolbar.remove(printToolElement);
+      var pdfviewer = $("#pdfviewer").getKendoPDFViewer(); // Get a reference to the PDFViewer.
+      var printToolElement = $(".k-toolbar").find('button[data-command="PrintCommand"]'); // Select the 'print' tool button with jQuery.
+      pdfviewer.toolbar.remove(printToolElement); // Remove the 'print' tool.
+      pdfviewer.toolbar.add({ // Add a custom tool in the toolbar.
+        type: "button",
+        text: "Custom tool", 
+        click: function() { 
+            console.log("Cuatom tool button is clicked.");
+        },
+        togglable: true
+      });
+    </script>
+```
+
+### Overflow Behavior
+
+The built-in toolbar provides properties for customizing its overflow behavior and appearance.
+The following example demonstrates how to modify the default overflow settings of the toolbar through the `Oveflow()` configuration.
+
+```Razor
+    @(Html.Kendo().PDFViewer().Name("pdfviewer")
+        .PdfjsProcessing(pdf => pdf.File(Url.Content("~/shared/web/pdfViewer/sample.pdf")))
+        .Height(700)
+        .Toolbar(t => t
+            .Overflow(o => o
+              .Mode(ToolBarOverflowMode.Scroll)
+              .ScrollButtons(ScrollButtonsType.Auto)
+              .ScrollButtonsPosition(ScrollButtonsPositionType.Start)
+              .ScrollDistance(50)
+            )
+        )
+    )
+```
+{% if site.core %}
+```TagHelper
+    <kendo-pdfviewer name="pdfviewer"
+                     height="700">
+        <pdfjs-processing file="@Url.Content("~/shared/web/pdfViewer/sample.pdf")" />
+        <toolbar>
+            <overflow mode="ToolBarOverflowMode.Scroll" scroll-buttons="ScrollButtonsType.Auto" scroll-buttons-position="ScrollButtonsPositionType.Start" scroll-distance="50" />
+        </toolbar>
+    </kendo-pdfviewer>
+```
+{% endif %} 
+
+For more information on the available overflow options, refer to the [Appearance documentation of the ToolBar component]({% slug toolbar_appearance %}).
+
+## Custom Tools
+
+The toolbar of the PDFViewer component supports custom tools.
+
+The following example demonstrates how to add a custom tool to the toolbar.
+
+```HtmlHelper
+    @(Html.Kendo().PDFViewer()
+        .Name("pdfviewer")
+        .Toolbar(toolbar =>
+            toolbar.Items(items =>
+            {
+                items.Add().Text("Custom tool").Click("customToolClick").Type("button");
+            })  
+        )
+    )
+```
+{% if site.core %}
+```TagHelper
+    @addTagHelper *, Kendo.Mvc
+
+     <kendo-pdfviewer name="pdfviewer">
+        <toolbar enabled="true">
+            <pdfviewer-toolbar-items>
+                <pdfviewer-toolbar-item text="Custom tool" click="customToolClick" type="button">
+                </pdfviewer-toolbar-item>
+            </pdfviewer-toolbar-items>
+        </toolbar>
+    </kendo-pdfviewer>
+```
+{% endif %}
+```JS
+    <script>
+        function customToolClick() {
+            // Execute the desired custom logic when the custom tool is clicked.
+        }
     </script>
 ```
 
 ## See Also
 
 * [Basic Usage of the PDFViewer HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/pdfviewer/index)
-* [ToolBar Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/toolbar)
-* [PDFViewer Server-Side API](/api/pdfviewer)
+* [Client-Side API Reference of the ToolBar for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/toolbar)
+* [Server-Side API Reference of the PDFViewer for {{ site.framework }}](/api/pdfviewer)
+{% if site.core %}
+* [Server-Side TagHelper API Reference of the PDFViewer for {{ site.framework }}](/api/taghelpers/pdfviewer)
+{% endif %}

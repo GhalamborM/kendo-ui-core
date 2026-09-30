@@ -2,6 +2,7 @@
 title: Label
 page_title: Label
 description: "Learn how to configure the label of the Telerik UI Rating for {{ site.framework }}."
+components: ["rating"]
 previous_url: /helpers/editors/rating/label
 slug: htmlhelpers_rating_aspnetcore_label
 position: 4
@@ -33,7 +34,7 @@ The following example demonstrates how to use the default label.
 
 ## Customizing the Label
 
-To customize the text of the label, use the [`Label.TemplateId`](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/RatingLabelSettingsBuilder#templateidsystemstring) property. By default, the template automatically receives the `value` and `maxValue` in the data object which allows you to use those properties inside the template through [the Kendo UI Templates syntax](https://docs.telerik.com/kendo-ui/framework/templates/overview).
+To customize the text of the label, use the [`Label.TemplateId`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/ratinglabelsettingsbuilder#templateidsystemstring) property. by default, the template automatically receives the `value` and `maxValue` in the data object which allows you to use those properties inside the template through [the Kendo UI Templates syntax](https://docs.telerik.com/kendo-ui/framework/templates/overview).
 
 ```HtmlHelper
     @(Html.Kendo().Rating()
@@ -66,7 +67,7 @@ To customize the text of the label, use the [`Label.TemplateId`](https://docs.te
 
 ## Disabling the Label
 
-Setting the [`Label`](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/RatingBuilder#labelsystemstring) property to `false` prevents the label from being displayed.
+Setting the [`Label`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/ratingbuilder#labelsystemstring) property to `false` prevents the label from being displayed.
 
 ```HtmlHelper
     @(Html.Kendo().Rating()

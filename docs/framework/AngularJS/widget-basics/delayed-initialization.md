@@ -2,6 +2,7 @@
 title: Delayed Widget Initialization
 page_title: Delayed Widget Initialization | AngularJS Directives
 description: "Learn how to delay the initialization of Kendo UI widgets in AngularJS applications."
+components: ["general"]
 previous_url: /framework/AngularJS/introduction#delaying-widget-initialization
 slug: angularjs_delayed_initialization
 position: 2
@@ -39,13 +40,18 @@ The following example demonstrates that the Grid is created only when the `gridO
 
 You can load the widget data with a `$http` call and initialize the widget when the data is available.
 
-```dojo
+```
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/angular.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/kendo.all.min.js"></script>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/7.0.1/default/default-ocean-blue.css">
+
 <div ng-app="app" ng-controller="MyCtrl">
   <select kendo-drop-down-list k-options="customOptions" k-ng-delay="customOptions.dataSource"></select>
 </div>
 <script>
   angular.module("app", [ "kendo.directives" ]).controller("MyCtrl", function($scope, $http) {
-    $http({method: "GET", url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products"})
+    $http({method: "GET", url: "https://demos.telerik.com/service/v2/core/Products"})
       .success(function(result){
         $scope.customOptions.dataSource = new kendo.data.DataSource({
           data: result.d

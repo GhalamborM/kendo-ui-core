@@ -5,9 +5,9 @@ description: "Learn how use Kendo UI for jQuery Windows as sliding panes."
 slug: howto_windowasslidingpane_window
 previous_url: /controls/layout/window/how-to/window-as-sliding-pane
 tags: telerik, kendo, jquery, window, use, mvvm, for, data, editing
-component: window
 type: how-to
 res_type: kb
+components: ["window"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Window for jQuery</td>
+  <td>Progress® Kendo UI® Window for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -82,9 +82,9 @@ The following example demonstrates how to make the Window behave as a sliding pa
 
 ## See Also
 
-* [Window JavaScript API Reference](/api/javascript/ui/window)
-* [How to Add Auto-Resizing Splitter]({% slug howto_addautoresizingsplitter_window %})
-* [How to Cascade Open Windows]({% slug howto_cascadeopenwindows_window %})
-* [How to Display Loading Indicator over Window]({% slug howto_displayloadingindicator_overwindow_window %})
-* [How to Post to Iframe]({% slug howto_posttoiframe_window %})
-* [How to Use Custom Action Icons]({% slug howto_customactionicons_window %})
+* [Window JavaScript API Reference](/api/ui/window)
+* [Add Auto-Resizing Splitter]({% slug howto_addautoresizingsplitter_window %})
+* [Cascade Open Windows]({% slug howto_cascadeopenwindows_window %})
+* [Display Loading Indicator over Window]({% slug howto_displayloadingindicator_overwindow_window %})
+* [Post to Iframe]({% slug howto_posttoiframe_window %})
+* [Use Custom Action Icons]({% slug howto_customactionicons_window %})

@@ -1,7 +1,8 @@
 ---
 title: Saving Files
-page_title: Saving Files | Kendo UI Saving Files
+page_title: Saving Files - Kendo UI Saving Files
 description: "Learn how to save files on the client machine when working with Kendo UI."
+components: ["general"]
 previous_url: /framework/save-files/introduction
 slug: overview_savingfiles_kendoui
 position: 7
@@ -9,9 +10,9 @@ position: 7
 
 # Saving Files
 
-As of the 2014 Q3 release, you can save files on the client machine by using the [`kendo.saveAs`](/api/javascript/kendo/methods/saveas) method.
+As of the 2014 Q3 release, you can save files on the client machine by using the [`kendo.saveAs`](/api/kendo/methods/saveas) method.
 
-## Configuration
+## Getting Started
 
 To save a file on the client machine:
 
@@ -46,7 +47,7 @@ The following example demonstrates how to save a text file on the client by usin
 
 The `kendo.saveAs` will attempt to save the file using client-side API in browsers that support file creation (IE10+, Google Chrome and Firefox). If the browser does not implement an API for saving files, then `kendo.saveAs` could POST the content to a server-side proxy, which will stream the file back to the end user. The server-side proxy approach works in all [supported browsers]({% slug wbe_browserand_operating_system_support %}). Set the `proxyURL` option to enable the server proxy, as demonstrated below.
 
-When a proxy is used the `kendo.saveAs()` method includes any CSRF and anti-forgery tokens out of the box as long as they are present on the page. The logic internally uses the [`kendo.antiForgeryTokens()`](/api/javascript/kendo/methods/antiforgerytokens) method and adds that to the request data as it posts to the proxy.
+When a proxy is used the `kendo.saveAs()` method includes any CSRF and anti-forgery tokens out of the box as long as they are present on the page. The logic internally uses the [`kendo.antiForgeryTokens()`](/api/kendo/methods/antiforgerytokens) method and adds that to the request data as it posts to the proxy.
 
 ```
 <script>
@@ -92,6 +93,8 @@ The following examples demonstrate sample implementations of a server-side proxy
 
 ### ASP.NET WebForms
 
+The following example shows an ASPX page and its code-behind that decode the posted `base64` content and stream the file back to the browser with the appropriate `Content-Disposition` header.
+
 ```tab-ASPX
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="SaveFile.aspx.cs" Inherits="SaveFile" %>
 ```
@@ -125,6 +128,8 @@ public partial class SaveFile : System.Web.UI.Page
 ```
 
 ### ASP.NET WebAPI Controller
+
+The following example shows a Web API controller action that accepts the file data as a typed model and returns a streaming `HttpResponseMessage` with the correct content type and disposition headers.
 
 ```
 public class SaveFile : ApiController
@@ -160,6 +165,8 @@ public class SaveFile : ApiController
 
 ### ASP.NET MVC Proxy
 
+The following example shows an MVC controller action secured with `[ValidateAntiForgeryToken]` and the corresponding Razor view script that posts the file data to that action.
+
 ```tab-Controller
 public class HomeController
 {
@@ -186,6 +193,8 @@ public class HomeController
 
 ### PHP Proxy
 
+The following example reads the posted `base64`, `contentType`, and `fileName` values, decodes the content, and outputs the file with the appropriate headers.
+
 ```
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fileName = $_POST['fileName'];
@@ -203,6 +212,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ```
 
 ### Java (Spring MVC)
+
+The following example shows a Spring MVC controller method that decodes the base64 content and writes the file bytes to the response output stream.
 
 ```
 @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -224,4 +235,4 @@ public @ResponseBody void save(String fileName, String base64, String contentTyp
 
 * [Overview of the Excel Export Feature]({% slug introduction_excelexport_kendoui %})
 * [Overview of Kendo UI Drawing API](/framework/drawing/overview)
-* [JavaScript API Reference on PDF Export](/api/javascript/drawing/pdfoptions)
+* [JavaScript API Reference on PDF Export](/api/drawing/pdfoptions)

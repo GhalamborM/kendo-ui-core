@@ -1,22 +1,23 @@
 ---
 title: Use Context Menu to Perform Actions on Grid Rows
-description: An example on how to add, edit, and delete rows by using the ContextMenu in the Kendo UI Grid.
+description: Learn how to add, edit, and delete rows by using the ContextMenu in the Kendo UI Grid.
 type: how-to
-page_title: Add, Edit, or Remove Rows with the ContextMenu | Kendo UI Grid for jQuery
+page_title: Add, Edit, or Remove Rows with the ContextMenu - Kendo UI for jQuery Data Grid
 slug: grid-contextmenu-add-edit-delete-rows
 tags: grid, add, edit, delete, contextmenu
 ticketid: 1142072
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1026 version</td>
  </tr>
 </table>
@@ -29,8 +30,8 @@ How can I use the Kendo UI ContextMenu to add, edit, and delete rows in the Kend
 ## Solution
 
 1. Create a Kendo UI ContextMenu that will have the desired actions.
-1. Set the [`filter`](https://docs.telerik.com/kendo-ui/api/javascript/ui/contextmenu/configuration/filter) of the ContextMenu to `td`.
-1. In the [`select`](https://docs.telerik.com/kendo-ui/api/javascript/ui/contextmenu/events/select) event handler of the ContextMenu:
+1. Set the [`filter`](https://docs.telerik.com/kendo-ui/api/ui/contextmenu/configuration/filter) of the ContextMenu to `td`.
+1. In the [`select`](https://docs.telerik.com/kendo-ui/api/ui/contextmenu/events/select) event handler of the ContextMenu:
 	1. Get the row of the `target`.
 	1. Based on the selection and in a `switch/case`, invoke the relevant method of the Grid.
 
@@ -45,34 +46,33 @@ How can I use the Kendo UI ContextMenu to add, edit, and delete rows in the Kend
 
     <script>
         $(document).ready(function() {
-            var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+            var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
                 dataSource = new kendo.data.DataSource({
                     transport: {
-                        read: {
-                            url: crudServiceBaseUrl + "/Products",
-                            dataType: "jsonp"
+                        read:  {
+                            url: crudServiceBaseUrl + "/Products"
                         },
                         update: {
                             url: crudServiceBaseUrl + "/Products/Update",
-                            dataType: "jsonp"
+                            type: "POST",
+                            contentType: "application/json"
                         },
                         destroy: {
                             url: crudServiceBaseUrl + "/Products/Destroy",
-                            dataType: "jsonp"
+                            type: "POST",
+                            contentType: "application/json"
                         },
                         create: {
                             url: crudServiceBaseUrl + "/Products/Create",
-                            dataType: "jsonp"
+                            type: "POST",
+                            contentType: "application/json"
                         },
                         parameterMap: function(options, operation) {
                             if (operation !== "read" && options.models) {
-                                return {
-                                    models: kendo.stringify(options.models)
-                                };
+                                return kendo.stringify(options.models);
                             }
                         }
                     },
-                    batch: true,
                     pageSize: 20,
                     schema: {
                         model: {

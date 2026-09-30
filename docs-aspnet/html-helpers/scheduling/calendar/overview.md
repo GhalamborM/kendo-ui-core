@@ -1,13 +1,14 @@
 ---
 title: Overview
 page_title: Overview
-description: "Learn the basics when working with the Telerik UI Calendar component for {{ site.framework }}."
+description: "The Telerik UI Calendar component for {{ site.framework }} provides a styled UI Calendar."
+components: ["calendar"]
 previous_url: /helpers/scheduling/calendar/overview
 slug: htmlhelpers_overview_calendarhelper_aspnetcore
-position: 1
+position: 0
 ---
 
-# Calendar Overview
+# {{ site.framework }} Calendar Overview
 
 {% if site.core %}
 The Telerik UI Calendar TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI Calendar widget.
@@ -47,12 +48,16 @@ The following example demonstrates how to define the Calendar by using the Calen
 
 ## Functionality and Features
 
-* [Date ranges]({% slug htmlhelpers_dateranges_calendar_aspnetcore %})
-* [Day template]({% slug htmlhelpers_daytemplate_calendar_aspnetcore %})
+* [Date ranges]({% slug htmlhelpers_dateranges_calendar_aspnetcore %})&mdash;You can set a predefined selection range.
+* [Day template]({% slug htmlhelpers_daytemplate_calendar_aspnetcore %})&mdash;The Calendar enables you to customize the rendered day for the `month` view.
 * [Week numbers]({% slug htmlhelpers_weeknumbers_calendar_aspnetcore %})
 * [Selection]({% slug htmlhelpers_selection_calendar_aspnetcore %})
-* [Disabled dates]({% slug htmlhelpers_disableddates_calendar_aspnetcore %})
-* [Accessibility]({% slug htmlhelpers_accessibility_calendar_aspnetcore %})
+* [Disabled dates]({% slug htmlhelpers_disableddates_calendar_aspnetcore %})&mdash;The Calendar allows you to disable certain days which are not intended to be selected by the end user such as weekends, national holidays, and others.
+* [Accessibility]({% slug htmlhelpers_calendar_accessibility %})&mdash;You can take advantage of the accessibility capabilities provided by the Calendar component.
+* [Century cells format]({% slug htmlhelpers_century_cells_format_calendar_aspnetcore %})&mdash;The component exposes two formats for the century cells.
+* [Reverse selection]({% slug htmlhelpers_reverse_selection_calendar_aspnetcore %})&mdash;The component allows you to pick an end date which is before the start date.
+* [Show other month days]({% slug htmlhelpers_show_other_month_days_calendar_aspnetcore %})&mdash;The component allows you to control if the days from the previous/next months will be displayed.
+
 
 ## Events
 
@@ -101,7 +106,7 @@ The following example demonstrates how to subscribe to events by a handler name.
             kendo.alert(calendar.value());
         }
     </script>
-```    
+```
 {% endif %}
 
 ### Handling by Template Delegate
@@ -128,7 +133,7 @@ The following example demonstrates how to subscribe to events by a template dele
     )
 ```
 {% if site.core %}
-```TagHelper.cshtml
+```TagHelper
     <kendo-calendar name="calendar"
                     on-change='function(e)
                     {
@@ -146,7 +151,7 @@ The following example demonstrates how to subscribe to events by a template dele
 
 ## Referencing Existing Instances
 
-To reference an existing Telerik UI Calendar instance, use the [`jQuery.data()`](https://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [Calendar client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/calendar#methods) to control its behavior.
+To reference an existing Telerik UI Calendar instance, use the [`jQuery.data()`](https://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [Calendar client-side API](https://docs.telerik.com/kendo-ui/api/ui/calendar#methods) to control its behavior.
 
 ```
     // Place the following after your Telerik UI Calendar for {{ site.framework }} declaration.
@@ -158,11 +163,15 @@ To reference an existing Telerik UI Calendar instance, use the [`jQuery.data()`]
     </script>
 ```
 
+## Next Steps
+
+* [Getting Started with the Calendar]({% slug aspnetcore_calendar_getting_started %})
+* [Basic Usage of the Calendar for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/calendar/index)
+{% if site.core %}
+* [Calendar in Razor Pages]({% slug razorpages_calendar_aspnetcore %})
+{% endif %}
+
 ## See Also
 
-* [Basic Usage of the Calendar HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/calendar/index)
-{% if site.core %}
-* [Basic Usage of the Calendar TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/calendar/tag-helper)
-{% endif %}
-* [Using the API of the Calendar HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/calendar/api)
-* [Server-Side API](/api/calendar)
+* [Using the API of the Calendar (Demo)](https://demos.telerik.com/{{ site.platform }}/calendar/api)
+* [Knowledge Base Section](/knowledge-base)

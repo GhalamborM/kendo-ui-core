@@ -1,7 +1,8 @@
 ---
 title: Component Types
-page_title: Telerik UI Calendar Documentation | Calendar Component Types | Telerik UI
+page_title: Telerik UI Calendar Documentation - Calendar Component Types
 description: "Get started with the Telerik UI Calendar and learn how to enable the modern component type."
+components: ["calendar"]
 slug: htmlhelpers_componenttype_calendar_aspnetcore 
 position: 7
 ---
@@ -27,7 +28,7 @@ By default, the Calendar is initialized with the `classic` render mode. In order
 
 As a result, the appearance of the widget is alternated. 
 
-![{{ site.product_short }} Comparison between the component types](../../../images/classic-modern-calendar-rendering.png)
+![{{ site.product_short }} Calendar comparison between the component types](../../../images/classic-modern-calendar-rendering.png)
 
 ## See Also
 

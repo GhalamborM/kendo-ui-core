@@ -1,13 +1,13 @@
 ---
 title: Implement Excel-Like Filter Menus
-page_title: AutoComplete for Current Filter | Kendo UI Grid for jQuery
+page_title: AutoComplete for Current Filter - Kendo UI for jQuery Data Grid
 description: "Learn how to filter the jQuery Grid by Kendo UI by using AutoComplete and by showing results from the current Grid filter."
 previous_url: /controls/data-management/grid/how-to/filtering/grid-with-excel-like-filter
 slug: howto_gridfiltering_excellike_grid
 tags: grid, similar, excel, filter, menus, using, autocomplete, showing, results, current, filtering
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -39,7 +39,7 @@ How can I filter the jQuery Grid by Kendo UI by using AutoComplete and by showin
 
 The following example demonstrates how to set the Grid with an Excel-like filter that has sorted and unique items.
 
-To set a single Data Source for all filter menus, the example uses the [`columns.filterable.dataSource`](/api/javascript/ui/grid/configuration/columns.filterable.datasource) property of the Grid.
+To set a single Data Source for all filter menus, the example uses the [`columns.filterable.dataSource`](/api/ui/grid/configuration/columns/filterable#columnsfilterabledatasource) property of the Grid.
 
 To observe this behavior:
 
@@ -135,4 +135,4 @@ To observe this behavior:
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

@@ -2,8 +2,9 @@
 title: Cards
 page_title: Cards
 description: "Get started with the Telerik UI for {{ site.framework }} TaskBoard and learn about its cards."
+components: ["taskboard"]
 slug: htmlhelpers_taskboard_aspnetcore_cards
-position: 3
+position: 4
 ---
 
 # Cards
@@ -46,7 +47,36 @@ The following example demonstrates how to disable a specific card.
         });
     </script>
 ```
+{% if site.core %}
+```TagHelper
+    @{
+        var cards=(IEnumerable<CardViewModel>)ViewBag.Cards;
+    }
 
+    <kendo-taskboard 
+        dataorderfield="Order" 
+        datadescriptionfield="Description" 
+        datastatusfield="Status" 
+        datatitlefield="Title" 
+        height="980" name="taskBoard" 
+        bind-to="cards">
+        <taskboard-columns>
+            <column text="To-do" status="todo"></column>
+            <column text="In progress" status="inProgress"></column>
+            <column text="Done" status="done"></column>
+        </taskboard-columns>
+    </kendo-taskboard>
+
+   <script>
+        $(document).ready(function() {
+            var taskBoard = $("#taskBoard").data("kendoTaskBoard");
+
+            taskBoard.enable(taskBoard.items().eq(0), false);
+        });
+    </script>
+
+```
+{% endif %}
 You can also set readonly status to specific cards, or to all cards in a column.
 
 The following example demonstrates how to set all cards in a column to readonly.
@@ -75,6 +105,36 @@ The following example demonstrates how to set all cards in a column to readonly.
         });
     </script>
 ```
+{% if site.core %}
+```TagHelper
+    @{
+        var cards=(IEnumerable<CardViewModel>)ViewBag.Cards;
+    }
+
+    <kendo-taskboard 
+        dataorderfield="Order" 
+        datadescriptionfield="Description" 
+        datastatusfield="Status" 
+        datatitlefield="Title"
+        name="taskBoard" 
+        bind-to="cards">
+        <taskboard-columns>
+            <column text="To-do" status="todo"></column>
+            <column text="In progress" status="inProgress"></column>
+            <column text="Done" status="done"></column>
+        </taskboard-columns>
+    </kendo-taskboard>
+
+    <script>
+        $(document).ready(function() {
+            var taskBoard = $("#taskBoard").data("kendoTaskBoard");
+
+            taskBoard.readOnlyByColumn(taskBoard.columns().eq(0));
+        });
+    </script>
+
+```
+{% endif %}
 
 ## Card Menu
 
@@ -131,4 +191,4 @@ The following example demonstrates how to use a custom button that executes a cu
 ## See Also
 
 * [{{ site.framework }} TaskBoard Columns]({% slug htmlhelpers_taskboard_aspnetcore_columns %})
-* [JavaScript API Reference of the TaskBoard](https://docs.telerik.com/kendo-ui/api/javascript/ui/taskboard)
+* [JavaScript API Reference of the TaskBoard](https://docs.telerik.com/kendo-ui/api/ui/taskboard)

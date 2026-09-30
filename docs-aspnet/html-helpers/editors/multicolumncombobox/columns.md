@@ -2,6 +2,7 @@
 title: Columns
 page_title: Columns
 description: "Set the column width and other settings in the  MultiColumnComboBox component for {{ site.framework }}."
+components: ["multicolumncombobox"]
 previous_url: /helpers/editors/multicolumncombobox/columns
 slug: columns_multicolumncombobox_aspnetcore
 position: 4
@@ -11,7 +12,7 @@ position: 4
 
 The MultiColumnComboBox allows you to predefine the columns that will be rendered in its drop-down list through the `dropDownWidth` option.
 
-The columns also allow you to [set their `columns.width`](https://docs.telerik.com/kendo-ui/api/javascript/ui/multicolumncombobox/configuration/columns.width).
+The columns also allow you to [set their `columns.width`](https://docs.telerik.com/kendo-ui/api/ui/multicolumncombobox/configuration/columns.width).
 
 > * If the widths of all columns are defined in pixels through their `width` option, the `dropDownWidth` value (if set) is overridden.
 > * In all other cases when the widths of all columns are not set, the `dropDownWidth` value is applied to the element.

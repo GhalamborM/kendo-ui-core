@@ -2,11 +2,12 @@
 title: Set Configuration Property Globally on the Server for Multiple Grids
 description: An example demonstrating how to create a custom Grid helper to set a property globally for multiple grids.
 type: how-to
-page_title: Globally Configure Properties on the Server for Multiple Grids | Kendo UI Grid for ASP.NET MVC
+page_title: Globally Configure Properties on the Server for Multiple Grids - Kendo UI Grid for ASP.NET MVC
 slug: grid-configure-property-using-new-html-helper
 tags: grid, mvc, asp.net, property, globally, global, multiple, custom, helper.
 ticketid: 1157755
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress® Kendo UI® Grid for ASP.NET MVC</td>
+  <td>Progress® Telerik® UI Grid for ASP.NET MVC</td>
  </tr>
  <tr>
   <td>Product Version</td>

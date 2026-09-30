@@ -1,12 +1,13 @@
 ---
 title: Get Grid Column Title upon Cell Selection
-description: An example on how to get the title of a column when selecting a cell in the Kendo UI Grid.
+description: Learn how to get the title of a column when selecting a cell in the Kendo UI Grid.
 type: how-to
-page_title: Obtain Column Name of Grouped Grid When Cell Is Selected | Kendo UI Grid for jQuery
+page_title: Obtain Column Name of Grouped Grid When Cell Is Selected - Kendo UI for jQuery Data Grid
 slug: grid-column-title-click-group
 tags: grid, column, title, click, group
 ticketid: 1072636
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -28,10 +29,10 @@ How can I get the name of a column when a user clicks one of its cells even if t
 
 ## Solution
 
-In the [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/change) event of the Grid:
+In the [`change`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/change) event of the Grid:
 
 1.  Reference the Grid.
-2.  Obtain the [selected cell](/api/javascript/ui/grid/methods/select) and its [`index`](https://api.jquery.com/index/).
+2.  Obtain the [selected cell](/api/ui/grid/methods/select) and its [`index`](https://api.jquery.com/index/).
 3.  [Find](https://api.jquery.com/find/) the table header DOM element corresponding to the `index` and [get the attribute of the data title](https://www.w3schools.com/jsref/met_element_getattribute.asp).
 
 > The suggested approach is not applicable to multi-column headers.

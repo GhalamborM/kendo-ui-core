@@ -1,12 +1,13 @@
 ---
 title: Prevent Specific Column Reordering in Grid
-description: An example on how to prevent the reordering of specific columns in the Kendo UI Grid.
+description: Learn how to prevent the reordering of specific columns in the Kendo UI Grid.
 type: how-to
-page_title: Prevent Column Reordering | Kendo UI Grid for jQuery
+page_title: Prevent Column Reordering - Kendo UI for jQuery Data Grid
 slug: grid-prevent-columns-reordering
 tags: grid, columns, reorder
 ticketid: 1138136
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1026 version</td>
  </tr>
 </table>
@@ -30,8 +31,8 @@ How can I prevent a specific column to be reordered in the Kendo UI Grid?
 
 The Kendo UI Grid does not provide a built-in solution for achieving this behavior. However, you can still work around the issue.
 
-1. In the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound) event handler, save the column in a global variable.
-1. In the [`columnReorder`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/columnreorder) event handler, use the [`reorderColumn`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/reordercolumn) method to position the column in the desired spot.
+1. In the [`dataBound`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound) event handler, save the column in a global variable.
+1. In the [`columnReorder`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/columnreorder) event handler, use the [`reorderColumn`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/reordercolumn) method to position the column in the desired spot.
 
 ```dojo
 <div id="grid"></div>

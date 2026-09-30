@@ -1,11 +1,12 @@
 ---
-title: Align Zero With Multiple Axes in Chart
-page_title: Align Zero With Multiple Axes in Chart | Kendo UI Chart for jQuery
-description: An example on how to align the zero value for multiple value axes in a Kendo UI Chart.
+title: Align Zero with Multiple Axes in Chart
+page_title: Align Zero with Multiple Axes in the Chart - Kendo UI Chart for jQuery
+description: Learn how to align the zero value for multiple value axes in a Kendo UI for jQuery Chart.
 type: how-to
 slug: chart-align-zero-multiple-axes
 tags: chart, align, zero, multiple, axes
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -13,18 +14,18 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Chart for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
 </table>
 
 ## Description
 
-I have a chart with multiple axes. One has negavive values and the other does not. I want the zero on the two axes to be aligned and to show the negative values on one axis.
+I have a chart with multiple axes. One has negative values and the other does not. I want the zero on the two axes to be aligned and to show the negative values on one axis.
 
 ## Solution
 
-1. Update the [min](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/valueaxis.min) and [max](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/valueaxis.max) setting for the value axes so they include both positive and negative values.
-1. Specify a function for the [valueAxis.labels.template](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/valueaxis.labels#valueaxislabelstemplate) of the axes where only positive values should be displayed. 
+1. Update the [min](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/valueaxis#valueaxismin) and [max](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/valueaxis#valueaxismax) setting for the value axes so they include both positive and negative values.
+1. Specify a function for the [valueAxis.labels.template](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/valueaxis#valueaxislabels#valueaxislabelstemplate) of the axes where only positive values should be displayed.
 1. Check the values in the template handler and return only the positive values. For the negative values return an empty string.
 
 
@@ -108,7 +109,7 @@ I have a chart with multiple axes. One has negavive values and the other does no
             // the number of categories.
             axisCrossingValues: [0, 0, 10, 10]
         }
-    }); 
+    });
 
 </script>
 ```

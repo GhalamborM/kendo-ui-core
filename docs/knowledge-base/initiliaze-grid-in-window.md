@@ -5,9 +5,9 @@ description: "Learn how to initialize a Kendo UI for jQuery Grid inside a Kendo 
 slug: initialize_thegrid_window_widget
 previous_url: /controls/layout/window/how-to/initiliaze-grid-in-window
 tags: telerik, kendo, jquery, window, initialize, the, grid
-component: window
 type: how-to
 res_type: kb
+components: ["window"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Window for jQuery</td>
+  <td>Progress® Kendo UI® Window for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -84,11 +84,11 @@ The example below demonstrates how to use the `activate` event when initializing
 ## See Also
 
 * [Initialize the Grid inside a Hidden Container](/web/grid/appearance#initialize-the-grid-inside-a-hidden-container)
-* [JavaScript API Reference: Configuration of Window Animations](/api/javascript/ui/window/configuration/animation)
-* [Window JavaScript Window API Reference](/api/javascript/ui/window)
-* [How to Add Auto-Resizing Splitter]({% slug howto_addautoresizingsplitter_window %})
-* [How to Create Confirmation Dialog via Promises]({% slug howto_createconfirmationdialog_viapromises_window %})
-* [How to Display Loading Indicator over Window]({% slug howto_displayloadingindicator_overwindow_window %})
-* [How to Use Custom Action Icons]({% slug howto_customactionicons_window %})
+* [JavaScript API Reference: Configuration of Window Animations](/api/ui/window/configuration/animation)
+* [Window JavaScript Window API Reference](/api/ui/window)
+* [Add Auto-Resizing Splitter]({% slug howto_addautoresizingsplitter_window %})
+* [Create Confirmation Dialog via Promises]({% slug howto_createconfirmationdialog_viapromises_window %})
+* [Display Loading Indicator over Window]({% slug howto_displayloadingindicator_overwindow_window %})
+* [Use Custom Action Icons]({% slug howto_customactionicons_window %})
 
 

@@ -2,6 +2,7 @@
 title: Creating Kendo UI Projects
 page_title: Creating Kendo UI Projects
 description: "Learn how to create a new Progress&reg; Kendo UI&reg; for jQuery application."
+components: ["installerandvsextensions"]
 slug: newprojectwizard_visualstudio_kendoui
 position: 16
 previous_url: /getting-started/vs-integration/create-kendo-professional-project, /vs-integration-mvc/create-kendo-professional-project
@@ -32,7 +33,7 @@ To create a new Kendo UI for jQuery application, start the **Create New Project 
 
 The wizard detects all the installed versions of Kendo UI and lists them in the **Version** combobox. This enables you to select a version you want to apply to your project.
 
-![{{ site.product_short }} A new Kendo UI Project Wizard](../vs-integration/images/images-mvc/create_kendo.png)
+![{{ site.product_short }} A new Kendo UI Project Wizard](../vs-integration/images/images-mvc/create-new-project-wizard.png)
 
 ## Project Settings
 

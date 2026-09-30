@@ -1,7 +1,8 @@
 ---
 title: Offline Support
-page_title: Offline Support | Kendo UI Data Source
+page_title: Offline Support - Kendo UI for jQuery DataSource
 description: "Learn more about the offline support the Kendo UI for jQuery framework provides when working with the DataSource component and your JavaScript widgets."
+components: ["datasource"]
 slug: offlinesupport_kendoui_datasourcecomponent
 position: 7
 ---
@@ -14,11 +15,11 @@ Users can continue to work with the available data until the network connectivit
 
 **Offline storage mechanism**
 
-![Offline Storage](/framework/datasource/OfflineStorage.gif)
+![Kendo UI for jQuery DataSource Offline Storage](/framework/datasource/OfflineStorage.gif)
 
 ## Enabling Offline Storage
 
-To enable the offline storage feature, set the [`offlineStorage`](/api/javascript/data/datasource/configuration/offlinestorage) option. The DataSource uses this value as a key when it saves and loads its state. By default, to persist its offline state, the DataSource uses the [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) option.
+To enable the offline storage feature, set the [`offlineStorage`](/api/data/datasource/configuration/offlinestorage) option. The DataSource uses this value as a key when it saves and loads its state. By default, to persist its offline state, the DataSource uses the [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) option.
 
 > To use offline storage, provide the model with a designated `ID` field.
 
@@ -28,8 +29,7 @@ The following example demonstrates how to set the offline storage key.
         offlineStorage: "products-offline",
         transport: {
             read: {
-                url: "https://demos.telerik.com/kendo-ui/service/products",
-                dataType: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/products"
             }
         },
         schema: {
@@ -41,10 +41,10 @@ The following example demonstrates how to set the offline storage key.
 
 ## Switching between Offline and Online Mode
 
-By default, the DataSource is online. All data item changes, such as create, update, and destroy, are included in the remote service that is configured through the [`transport`](/api/javascript/data/datasource/configuration/transport) option.
+By default, the DataSource is online. All data item changes, such as create, update, and destroy, are included in the remote service that is configured through the [`transport`](/api/data/datasource/configuration/transport) option.
 
-* To go back to online mode, call the [`online`](/api/javascript/data/datasource/methods/online) method with `true` as an argument. As a result, the DataSource calls the [`sync`](/api/javascript/data/datasource/methods/sync) method to send all offline changes to the remote service.
-* To switch to offline mode, call the [`online`](/api/javascript/data/datasource/methods/online) method  with `false` as an argument. As a result, the DataSource starts to persist all data item changes in the offline storage.
+* To go back to online mode, call the [`online`](/api/data/datasource/methods/online) method with `true` as an argument. As a result, the DataSource calls the [`sync`](/api/data/datasource/methods/sync) method to send all offline changes to the remote service.
+* To switch to offline mode, call the [`online`](/api/data/datasource/methods/online) method  with `false` as an argument. As a result, the DataSource starts to persist all data item changes in the offline storage.
 
 The following example demonstrates how to go in offline mode.
 
@@ -52,16 +52,16 @@ The following example demonstrates how to go in offline mode.
         offlineStorage: "products-offline",
         transport: {
             read: {
-                url: "https://demos.telerik.com/kendo-ui/service/products",
-                type: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/products"
             },
             update: {
-                url: "https://demos.telerik.com/kendo-ui/service/products/update",
-                dataType: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/products/update",
+                method: "POST",
+                contentType: "application/json"
             },
             parameterMap: function(options, operation) {
                 if (operation !== "read" && options.models) {
-                    return {models: kendo.stringify(options.models)};
+                    return kendo.stringify(options.models);
                 }
             }
         },
@@ -85,24 +85,24 @@ The following example demonstrates how to go in offline mode.
 
 ## Getting the Current Offline State
 
-The [`offlineData`](/api/javascript/data/datasource/methods/offlinedata) method returns the current offline state of the DataSource. The state is an array of JavaScript objects that represent the data items. Changed data items have an attached `__state__` field which indicates the type of change&mdash;`"create"`, `"update"`, or `"destroy"`. Unmodified data items do not have a `__state__` field.
+The [`offlineData`](/api/data/datasource/methods/offlinedata) method returns the current offline state of the DataSource. The state is an array of JavaScript objects that represent the data items. Changed data items have an attached `__state__` field which indicates the type of change&mdash;`"create"`, `"update"`, or `"destroy"`. Unmodified data items do not have a `__state__` field.
 
-> If the [`serverGrouping`](/api/javascript/data/datasource/configuration/servergrouping) option is set to `true` the `offlineData` returns an array of groups in the following way `{ value:"group value", field:"group field", items: [ /* data items in the group */ ] }`.
+> If the [`serverGrouping`](/api/data/datasource/configuration/servergrouping) option is set to `true` the `offlineData` returns an array of groups in the following way `{ value:"group value", field:"group field", items: [ /* data items in the group */ ] }`.
 
     var dataSource = kendo.data.DataSource({
         offlineStorage: "products-offline",
         transport: {
             read: {
-                url: "https://demos.telerik.com/kendo-ui/service/products",
-                type: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/products"
             },
             update: {
-                url: "https://demos.telerik.com/kendo-ui/service/products/update",
-                dataType: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/products/update",
+                type: "POST",
+                contentType: "application/json"
             },
             parameterMap: function(options, operation) {
                 if (operation !== "read" && options.models) {
-                    return {models: kendo.stringify(options.models)};
+                    return kendo.stringify(options.models);
                 }
             }
         },
@@ -141,8 +141,7 @@ To use custom offline storage, set the `offlineStorage` option to a JavaScript o
         },
         transport: {
             read: {
-                url: "https://demos.telerik.com/kendo-ui/service/products",
-                type: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/products"
             }
         }
     });
@@ -161,8 +160,7 @@ The `online` and `offline` events behave differently across the browsers. Firefo
         offlineStorage: "products-offline",
         transport: {
             read: {
-                url: "https://demos.telerik.com/kendo-ui/service/products",
-                type: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/products"
             }
         }
     });
@@ -182,8 +180,7 @@ AJAX polling is more robust than using the `online` and `offline` events, works 
         offlineStorage: "products-offline",
         transport: {
             read: {
-                url: "https://demos.telerik.com/kendo-ui/service/products",
-                type: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/products"
             }
         }
     });
@@ -237,4 +234,4 @@ The data saving fails and the browser throws an exception. To handle the error, 
 * [DataSource Overview]({% slug overview_kendoui_datasourcecomponent %})
 * [CORS Data Fetching from Another Domain]({% slug corsdatafetching_anotherdomain_datasourcecomponent %})
 * [CRUD Data Operations]({% slug cruddataoperations_kendoui_datasourcecomponent %})
-* [DataSource JavaScript API Reference](/api/javascript/data/datasource)
+* [DataSource JavaScript API Reference](/api/data/datasource)

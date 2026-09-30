@@ -1,13 +1,13 @@
 ---
 title: Remove Files in the Upload with Confirmation Dialog
 page_title: Remove Files in the Upload with Confirmation Dialog
-description: "Learn how to display a custom confirmation dialog when removing files from the Kendo UI Upload widget."
+description: "Learn how to display a custom confirmation dialog when removing files from the Kendo UI Upload component."
 slug: howto_remove_files_with_confirmation
 previous_url: /controls/editors/upload/how-to/remove-files-with-confirmation-dialog
 tags: telerik, kendo, jquery, upload, remove, files, using, confirmation, dialog
-component: upload
 type: how-to
 res_type: kb
+components: ["upload"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Upload for jQuery</td>
+  <td>Progress® Kendo UI® Upload for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I remove files in the Kendo UI Upload by displaying a custom confirmatio
 
 ## Solution
 
-The following example demonstrates how to display a custom confirmation dialog by utilizing the [`kendo.confirm()`](/api/javascript/kendo/methods/confirm) method.
+The following example demonstrates how to display a custom confirmation dialog by utilizing the [`kendo.confirm()`](/api/kendo/methods/confirm) method.
 
 
 
@@ -71,7 +71,7 @@ The following example demonstrates how to display a custom confirmation dialog b
 
 ## See Also
 
-* [JavaScript API Reference of the Upload](/api/javascript/ui/upload)
+* [JavaScript API Reference of the Upload](/api/ui/upload)
 * [Modes of Operation]({% slug modes_upload_widget %})
 * [Metadata]({% slug metadata_upload_widget %})
 

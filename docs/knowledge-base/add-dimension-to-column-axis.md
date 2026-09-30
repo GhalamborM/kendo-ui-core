@@ -1,13 +1,13 @@
 ---
 title: Add a Dimension to the Column Axis of the PivotGrid
-page_title: Add Dimensions to PivotGrid Column Axis
-description: "Learn how to use the PivotGrid API to add a new dimension to the column axis in a Kendo UI PivotGrid widget."
+page_title: Add Dimensions to Column Axes - jQuery ComboBox
+description: "Learn how to use the PivotGrid API to add a new dimension to the column axis in a Kendo UI PivotGrid component."
 previous_url: /controls/data-management/pivotgrid/how-to/add-dimention-to-column-axis, /controls/data-management/pivotgrid/how-to/dimensions/add-dimension-to-column-axis
 slug: howto_add_dimension_column_axis_pivotgrid
 tags: kendoui, pivotgrid, add, dimension, to, column, axis
-component: pivotgrid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI PivotGrid</td>
+  <td>Progress® Kendo UI® PivotGrid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -38,7 +38,7 @@ How can I add a new dimension to the column axis of the Kendo UI PivotGrid?
 
 ## Solution
 
-The following example demonstrates how to use the [Kendo UI PivotGrid API](https://docs.telerik.com/kendo-ui/api/javascript/ui/pivotgrid) to add a new dimension to the column axis of the widget.
+The following example demonstrates how to use the [Kendo UI PivotGrid API](https://docs.telerik.com/kendo-ui/api/ui/pivotgrid) to add a new dimension to the column axis of the widget.
 
 ```dojo
 <script src="https://demos.telerik.com/kendo-ui/content/shared/js/products.js"></script>
@@ -96,8 +96,8 @@ The following example demonstrates how to use the [Kendo UI PivotGrid API](https
 
 ## See Also
 
-* [PivotGrid JavaScript API Reference](/api/javascript/ui/pivotgrid)
-* [How to Change Data Source Dynamically]({% slug howto_change_datasource_dynamically_pivotgrid %})
-* [How to Drill Down Navigation Always Starting from Root Tuple]({% slug howto_drill_down_navigation_startingfrom_root_tuple_pivotgrid %})
-* [How to Expand Multiple Column Dimensions]({% slug howto_expand_multiple_column_dimensions_pivotgrid %})
-* [How to Filter by Using the include Operator]({% slug howto_use_include_operator_pivotgrid %})
+* [PivotGrid JavaScript API Reference](/api/ui/pivotgrid)
+* [Change Data Source Dynamically]({% slug howto_change_datasource_dynamically_pivotgrid %})
+* [Drill Down Navigation Always Starting from Root Tuple]({% slug howto_drill_down_navigation_startingfrom_root_tuple_pivotgrid %})
+* [Expand Multiple Column Dimensions]({% slug howto_expand_multiple_column_dimensions_pivotgrid %})
+* [Filter by Using the include Operator]({% slug howto_use_include_operator_pivotgrid %})

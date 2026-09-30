@@ -4,21 +4,22 @@ description: An example that shows how to add and remove a marker at the locatio
 type: how-to
 page_title: Add and remove a marker on click
 slug: map-add-marker-on-click
-position: 
+position:
 tags: map, add, markers, on, click, location, marker
 res_type: kb
+components: ["map"]
 ---
 
 ## Environment
 <table>
 	<tbody>
 		<tr>
-			<td>Created with Product Version</td>
+			<td>Product Version</td>
 			<td>2019.2.619</td>
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Map for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Map for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -30,7 +31,7 @@ I have a map that a user will utilize in order to mark their position. I want th
 
 ## Solution
 
-1. Add the [`click`](/api/javascript/dataviz/ui/map/events/click) event handler
+1. Add the [`click`](/api/dataviz/ui/map/events/click) event handler
 1. Use the `e.location` event data to add the new marker
 1. Add a tooltip with a remove button and include the current location. You can do that by adding your own `data-` attribute
 
@@ -62,6 +63,8 @@ I have a map that a user will utilize in order to mark their position. I want th
 ```
 
 #### Example
+
+The following example renders a Map centered on Austin, TX, adds a new marker at each clicked location with a tooltip that contains a **Remove** button, and exposes a **Show markers** button that lists all current marker coordinates.
 
 ```dojo
     <div id="example">
@@ -101,7 +104,7 @@ I have a map that a user will utilize in order to mark their position. I want th
             }
           });
         }
-        
+
         function remove(btn){
           var markerLocation = $(btn).data("location");
           var markers = map.markers.items;
@@ -114,7 +117,7 @@ I have a map that a user will utilize in order to mark their position. I want th
         }
 
         function show(){
-          var markers = map.markers.items; 
+          var markers = map.markers.items;
           var message = "";
          	for(var i=0; i< markers.length; i++){
             message += kendo.format("Marker {0} Location - {1}</br>", i+1, markers[i].location());
@@ -138,6 +141,6 @@ I have a map that a user will utilize in order to mark their position. I want th
 
 ## See Also
 
-* [Map API Reference](/api/javascript/dataviz/ui/map)
-* [Marker API](/api/javascript/dataviz/map/marker)
-* [MarkerLayer API](/api/javascript/dataviz/map/marker-layer)
+* [Map API Reference](/api/dataviz/ui/map)
+* [Marker API](/api/dataviz/map/marker)
+* [MarkerLayer API](/api/dataviz/map/marker-layer)

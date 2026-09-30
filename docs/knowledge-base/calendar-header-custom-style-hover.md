@@ -1,13 +1,14 @@
 ---
-title: Styling the Kendo UI Calendar header using CSS
-description: Add/change the style of the header based on custom preference.
+title: Style the Calendar Header by Using CSS
+description: Learn how to add or change the style of the Kendo UI for jQuery Calendar header based on custom preference.
 type: how-to
-page_title: Custom styling of the header | Kendo UI Calendar
+page_title: Implement Custom Styling to the Header - Kendo UI for jQuery Calendar
 slug: calendar-header-custom-style-hover
-position: 
+position:
 tags: calender, header, style, css, custom, color, background, change, hover, styling, text, hovering, icon
 ticketid: 1426434
 res_type: kb
+components: ["calendar"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Calendar for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Calendar for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -43,7 +44,7 @@ To add styling to the text and the icon in the header when hovering over them, u
 
 ```css
 .k-link.k-nav-fast:hover,
-.k-link.k-nav-prev:hover, 
+.k-link.k-nav-prev:hover,
 .k-link.k-nav-next:hover {
    color: purple;
 }
@@ -62,7 +63,7 @@ To add styling to the text and the icon in the header when hovering over them, u
       color: purple;
   }
 </style>
-  
+
 <div id="calendar"></div>
 
 <script>

@@ -1,19 +1,26 @@
 ---
-title:  Razor Page
-page_title: Configure the Captcha in Razor Page.
+title: Razor Pages
+page_title: Razor Pages
 description: "An example on how to configure the Telerik UI Captcha component for {{ site.framework }} in a Razor Page."
+components: ["captcha"]
 slug: htmlhelpers_captcha_razorpage_aspnetcore
+position: 8
 ---
 
-# Razor Page
+# Captcha in Razor Pages
 
-This article describes how to configure the Telerik UI Captcha for {{ site.framework }} in a RazorPage scenario.
+This article describes how to seamlessly integrate and configure the Telerik UI Captcha for {{ site.framework }} in Razor Pages applications.
+
+@[template](/_contentTemplates/core/razor-pages-general-info.md#referencing-handler-methods)
+
+## Getting Started
 
 To set up the Captcha for a Razor Pages scenario, you need to configure the server-side handler methods that will validate the user's input. The URL in these methods must refer to the name of the `PageModel`. From there, to further configure your application's backend, refer to the [Validation](https://docs.telerik.com/aspnet-core/html-helpers/editors/captcha/validation) article.
 
-See the implementation details in the example below, and for the full project with RazorPages examples, visit our [GitHub repository](https://github.com/telerik/ui-for-aspnet-core-examples/tree/master/Telerik.Examples.RazorPages).
+```HtmlHelper
+    @page
+    @model CaptchaIndexModel
 
-```HtmlHelper.cshtml
     @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
 
     @{
@@ -62,14 +69,14 @@ See the implementation details in the example below, and for the full project wi
             })
     )
 ```
-```Script.js
+```JS Script.js
     <script>
         function audioHandler(args) {
             args.success("../shared/UserFiles/Folders/captcha/" + args.data.CaptchaID + ".wav");
         }
     </script>
 ```
-```PageModel.cshtml
+```C# PageModel
     public class CaptchaIndexModel : PageModel
     {
         [BindProperty]
@@ -107,7 +114,7 @@ See the implementation details in the example below, and for the full project wi
                 Order = new OrderViewModel();
             }
         }
-        public IActionResult OnPost()
+        public ActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
@@ -168,3 +175,12 @@ See the implementation details in the example below, and for the full project wi
     }
 ```
 
+For the complete project, refer to the [Captcha in Razor Pages example](https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/Captcha/CaptchaIndex.cshtml).
+
+## See Also
+
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the Captcha](https://www.telerik.com/kendo-jquery-ui/documentation/api/ui/captcha)
+* [Server-Side HtmlHelper API of the Captcha](/api/captcha)
+* [Server-Side TagHelper API of the Captcha](/api/taghelpers/captcha)
+* [Knowledge Base Section](/knowledge-base)

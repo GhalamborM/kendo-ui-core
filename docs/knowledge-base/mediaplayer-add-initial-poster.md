@@ -2,12 +2,13 @@
 title: Add Initial Poster on Media Player
 description: How to Add Initial Poster on Media Player
 type: how-to
-page_title: How to Add Initial Poster on Media Player | Kendo UI MediaPlayer for jQuery
+page_title: How to Add Initial Poster on Media Player - Kendo UI MediaPlayer for jQuery
 slug: mediaplayer-add-initial-poster
-position: 
-tags: 
-ticketid: 
+position:
+tags:
+ticketid:
 res_type: kb
+components: ["mediaplayer"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>MediaPlayer for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® MediaPlayer for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -23,12 +24,14 @@ res_type: kb
 
 ## Description
 
-This sample demonstrates how you can a separate image as the Poster of the player.
+This sample demonstrates how to set a separate image as the poster of the MediaPlayer.
 
 ## Solution
 
+Subscribe to the MediaPlayer's `ready` event using `.one()`. Inside the handler, locate the `<video>` element and set its `poster` attribute to the desired image URL. Call `load()` on the video element to apply the change before playback begins.
+
 ```dojo
-  
+
     <div id="example">
       <div class="demo-section k-content wide" style="max-width: 925px;">
         <div id="mediaplayer" style="height:360px"></div>
@@ -43,14 +46,14 @@ $(document).ready(function () {
 
   $("#mediaplayer").data("kendoMediaPlayer").one("ready",function(e){
     var videoEl =  $("#mediaplayer").find("video");
-    videoEl.attr("poster","https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Polar_Bear_AdF.jpg/400px-Polar_Bear_AdF.jpg");
+    videoEl.attr("poster","https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Polar_Bear_AdF.jpg/960px-Polar_Bear_AdF.jpg");
     videoEl[0].load();
   });
 
   var videos = new kendo.data.DataSource({
     data: [{
       title: "Build HIPAA-Compliant Healthcare Apps Fast",
-      poster: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Polar_Bear_AdF.jpg/400px-Polar_Bear_AdF.jpg",
+      poster: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Polar_Bear_AdF.jpg/960px-Polar_Bear_AdF.jpg",
       source: "https://www.w3schools.com/tags/movie.mp4"
     },
           ]
@@ -79,7 +82,7 @@ $(document).ready(function () {
 
 });
       </script>
-    
+
       <script type="text/x-kendo-template" id="template">
         <li class="k-item k-state-default" onmouseover="$(this).addClass('k-hover')"
             onmouseout="$(this).removeClass('k-hover')">
@@ -151,5 +154,5 @@ $(document).ready(function () {
         }
       </style>
     </div>
-      
-``` 
+
+```

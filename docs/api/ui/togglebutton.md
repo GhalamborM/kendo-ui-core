@@ -1,0 +1,164 @@
+---
+title: ToggleButton
+description: Configuration, methods and events of the Kendo UI ToggleButton
+res_type: api
+component: togglebutton
+---
+
+# kendo.ui.ToggleButton
+
+Represents the Kendo UI ToggleButton widget. Inherits from [Button](/api/ui/button).
+
+
+## Configuration
+
+### group `String` *(default: undefined)*
+
+Specifies a group of ToggleButtons the current instance belongs to. The string will be rendered as a value of the `data-group` attribute of the widget's element.
+
+
+<div class="meta-api-description">
+How to group related toggle buttons in Kendo UI for jQuery? Configure related toggle buttons by assigning them to a shared group identifier or named set to enable grouping, styling, or managing collections of toggles together, controlling their behavior as a unit, linking multiple toggle controls via a common group key or data attribute for coordinated interaction, grouping toggle elements for event handling or UI updates, setting a string-based group reference to organize toggle buttons or bind them logically for synchronized toggling functionality and consistent styling across grouped controls.
+</div>
+
+#### Example
+
+    <button id="button1" type="button">Option 1</button>
+    <button id="button2" type="button">Option 2</button>
+    <script>
+        $("#button1").kendoToggleButton({
+            group: "myGroup"
+        });
+        $("#button2").kendoToggleButton({
+            group: "myGroup"
+        });
+    </script>
+
+### selected `Boolean` *(default: false)*
+
+Specifies the selected state of the ToggleButtons. If set to `true` the widget will be initially selected.
+
+
+<div class="meta-api-description">
+How do I set the initial state of a Kendo UI ToggleButton? Control the starting toggled state of a button by configuring whether it is initially active, enabled, or switched on, using a true or false value to set the button's default selection status, toggle activation state, or initial pressed condition; useful for defining if a toggle control begins as selected, checked, highlighted, or in an enabled mode when loaded or initialized.
+</div>
+
+#### Example
+
+    <button id="button1" type="button">Option 1</button>
+    <button id="button2" type="button">Option 2</button>
+    <script>
+        $("#button1").kendoToggleButton({
+            selected: true
+        });
+        $("#button2").kendoToggleButton({
+            group: "myGroup"
+        });
+    </script>
+
+### size `String` *(default: undefined)*
+
+Controls the overall physical size of the ToggleButton. Valid values are: `"xsmall"`, `"small"`, `"medium"`, and `"large"`. When `undefined` (the default), the theme controls the default size.
+
+#### Example
+
+    <button id="button" type="button">Edit</button>
+    <script>
+        $("#button").kendoToggleButton({
+            size: "large"
+        });
+    </script>
+
+
+<div class="meta-api-description">
+How do I set the initial state of a Kendo UI ToggleButton? Control the starting toggled state of a button by configuring whether it is initially active, enabled, or switched on, using a true or false value to set the button’s default selection status, toggle activation state, or initial pressed condition; useful for defining if a toggle control begins as selected, checked, highlighted, or in an enabled mode when loaded or initialized.
+</div>
+
+#### Example
+
+    <button id="button1" type="button">Option 1</button>
+    <button id="button2" type="button">Option 2</button>
+    <script>
+        $("#button1").kendoToggleButton({
+            selected: true
+        });
+        $("#button2").kendoToggleButton({
+            group: "myGroup"
+        });
+    </script>
+
+## Methods
+
+### toggle
+
+Toggles the selected state of the ToggleButton.
+
+
+<div class="meta-api-description">
+How can I programmatically toggle the state of a Kendo UI ToggleButton? Programmatically switch, invert, flip, or change the selection state of a toggle button, toggle switch, or similar UI control to select or deselect it based on its current state; enable toggling behavior through code to mimic user clicks, automate toggle actions, implement custom selection logic, synchronize toggle states with application data or external events, or control on/off, active/inactive, checked/unchecked states dynamically in user interfaces.
+</div>
+
+#### Parameters
+
+##### toggle `Boolean`
+
+Indicates whether the **ToggleButton** should be selected or deselected. `true` and `false` arguments are accepted. If no argument is supplied, the **ToggleButton** will toggle its current state to the opposite value.
+
+#### Example
+
+    <button id="button" type="button">Edit</button>
+
+    <script>
+        $("#button").kendoToggleButton();
+        var button = $("#button").data("kendoToggleButton");
+        // select the button
+        button.toggle(true);
+        // deselect the button
+        button.toggle(false);
+        // select the button when initially deselected
+        button.toggle();
+    </script>
+
+## Events
+
+### toggle
+
+Fires when the **ToggleButton** selected state is toggled.
+
+
+<div class="meta-api-description">
+How do I listen for changes in the selection state of a Kendo UI ToggleButton using the toggle event? Detect and respond to changes in button selection state including user clicks or programmatic toggles by listening for toggle events that signal when a toggle button's active or selected status changes, enabling developers to update application state, manage UI updates, synchronize component states, trigger side effects, handle selection changes, and run custom event handlers that receive detailed event data with current toggle status and component context for dynamic interaction control and reactive interface behaviors.
+</div>
+
+#### Event Data
+
+##### e.sender `kendo.ui.ToggleButton`
+
+The widget instance which fired the event.
+
+##### e.checked `Boolean`
+
+Specifies the selected state of the button after the toggle operation has performed.
+
+##### e.group `String`
+
+Provides the name of the group the button belongs to (if any).
+
+##### e.id `Boolean`
+
+Provides the id of the button element (if any).
+
+##### e.target `Boolean`
+
+Provides the button jQuery element instance.
+
+#### Example
+
+    <button id="button" type="button">Edit</button>
+    <script>
+        $("#button").kendoToggleButton({
+            toggle: function(e) {
+                console.log(e);
+            }
+        });
+    </script>

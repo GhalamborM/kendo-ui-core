@@ -1,7 +1,8 @@
 ---
 title: Form Integration
-page_title: Telerik UI Signature for {{ site.framework }} Documentation | Signature Form Integration
+page_title: Telerik UI Signature for {{ site.framework }} Documentation - Signature Form Integration
 description: "Learn how to integrate the Signature inside a Telerik UI Form for {{ site.framework }}."
+components: ["signature"]
 slug: form_integration_telerikui_signature_component
 position: 3
 ---
@@ -10,7 +11,7 @@ position: 3
 
 The Telerik UI Signature for {{ site.framework }} allows you to integrate it inside a Telerik UI Form for {{ site.framework }}. Furthermore, you can validate the Signature before the form is submitted.
 
-To integrate the Signature inside a Telerik UI Form for {{ site.framework }} component, add the [`Items.Editor`](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/FormItemFactory#add) configuration of the form field to `Signature`.
+To integrate the Signature inside a Telerik UI Form for {{ site.framework }} component, add the [`Items.Editor`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/formitemfactory#add) configuration of the form field to `Signature`.
 
 ```HtmlHelper
     @(Html.Kendo().Form<Kendo.Mvc.Examples.Models.Form.FormItemsViewModels>()
@@ -51,4 +52,4 @@ To integrate the Signature inside a Telerik UI Form for {{ site.framework }} com
 ## See Also
 
 * [Form Integration of the Signature (Demo)](https://demos.telerik.com/{{ site.platform }}/signature/form-integration)
-* [API Reference of the Signature](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/SignatureBuilder)
+* [API Reference of the Signature](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/signaturebuilder)

@@ -1,12 +1,13 @@
 ---
 title: Add Click Handlers to Icons in the ListBox Template
-description: An example on how to add a small icon to the Kendo UI ListBox items that will launch a window.
+description: Learn how to add a small icon to the Kendo UI ListBox items that will launch a window.
 type: how-to
-page_title: Add Click Handlers to Icons in a Draggable ListBox | Kendo UI ListBox for jQuery
+page_title: Add Click Handlers to Icons in a Draggable ListBox - Kendo UI ListBox for jQuery
 slug: listbox-add-click-handler-to-item-template
 tags: listbox, click, icon, template, function, click not working, draggable
 ticketid: 1401928
 res_type: kb
+components: ["listbox"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 	    </tr>
 	    <tr>
 	    	<td>Product</td>
-	    	<td>jQuery Kendo UI ListBox and wrappers</td>
+	    	<td>Progress® Kendo UI® ListBox for jQuery</td>
 	    </tr>
     </tbody>
 </table>

@@ -1,13 +1,13 @@
 ---
 title: Display DateTime Value as ComboBox Group Header
-description: An example on how to format properly the date in the group header when it was used for grouping the items in a Kendo UI ComboBox.
+description: Learn how to format properly the date in the group header when it was used for grouping the items in a Kendo UI ComboBox.
 type: how-to
-page_title: Configure the Proper Date Format for the Group Label | Kendo UI ComboBox for jQuery
+page_title: Configure the Proper Date Format for the Group Label - Kendo UI ComboBox for jQuery
 slug: combobox-display-date-as-group-header
 tags: kendo, kendoui, combobox, grouping, group-heder, date
 ticketid: 1138203
 res_type: kb
-component: combobox
+components: ["combobox"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: combobox
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ComboBox</td>
+  <td>Progress® Kendo UI® ComboBox for jQuery</td>
  </tr>
 </table>
 
@@ -28,7 +28,7 @@ How van I render the date in a standard format and not like `/DATE/1498798800000
 
 ## Solution
 
-To properly display properly the group headers, configure a [`groupTemplate`](https://docs.telerik.com/kendo-ui/api/javascript/ui/combobox/configuration/grouptemplate) and a [`fixedGroupTemplate`](https://docs.telerik.com/kendo-ui/api/javascript/ui/combobox/configuration/fixedgrouptemplate).
+To properly display properly the group headers, configure a [`groupTemplate`](https://docs.telerik.com/kendo-ui/api/ui/combobox/configuration/grouptemplate) and a [`fixedGroupTemplate`](https://docs.telerik.com/kendo-ui/api/ui/combobox/configuration/fixedgrouptemplate).
 
 ```dojo
 <input id="customers" style="width: 400px" />
@@ -41,9 +41,9 @@ To properly display properly the group headers, configure a [`groupTemplate`](ht
       groupTemplate: "Group: #= kendo.toString(kendo.parseDate(data), 'd') #",
       fixedGroupTemplate: "Group: #= kendo.toString(kendo.parseDate(data), 'd') #",
       dataSource: {
-        type: "odata",
+        type: "odata-v4",
         transport: {
-          read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+          read: "https://demos.telerik.com/service/v2/odata/Orders"
         },
         group: {
           field: "OrderDate"
@@ -56,6 +56,6 @@ To properly display properly the group headers, configure a [`groupTemplate`](ht
 
 ## See Also
 
-* [API Reference of the ComboBox](https://docs.telerik.com/kendo-ui/api/javascript/ui/combobox)
-* [`object`](https://docs.telerik.com/kendo-ui/api/javascript/kendo)
+* [API Reference of the ComboBox](https://docs.telerik.com/kendo-ui/api/ui/combobox)
+* [`object`](https://docs.telerik.com/kendo-ui/api/kendo)
 * [Kendo UI Documentation on Date Formatting](https://docs.telerik.com/kendo-ui/framework/globalization/dateformatting)

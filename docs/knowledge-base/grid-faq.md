@@ -1,14 +1,25 @@
 ---
 title: Frequently Asked Questions
-page_title: Frequently Asked Questions | Kendo UI Grid for jQuery
+page_title: Frequently Asked Questions - Kendo UI for jQuery Data Grid
 description: "Find answers to the most frequently asked questions related to the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/grid-faq
 slug: frequently_asked_questions_grid
 tags: grid, faq
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
+
+## Environment
+
+<table>
+ <tr>
+  <td>Product</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
+ </tr>
+</table>
+
+## FAQ about the Kendo UI Data Grid for jQuery
 
 This article provides a collection of the most frequently asked questions (FAQ) on checkbox and answers related to the Kendo UI Grid.
 
@@ -62,4 +73,4 @@ Use the configurations, methods, and events of the Grid and jQuery. For more inf
 ## See Also
 
 * [Grid Checkbox Selection Demo](https://demos.telerik.com/kendo-ui/grid/checkbox-selection)
-* [API Reference for the columns.selectable Configuration](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.selectable)
+* [API Reference for the columns.selectable Configuration](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsselectable)

@@ -7,6 +7,7 @@ slug: troubleshoot_npm_installing
 tags: troubleshooting, jquery, module, not, found, npm, installing
 type: troubleshooting
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Kendo UI for jQuery NPM Installation</td>
+  <td>Progress® Kendo UI® for jQuery NPM Installation</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -24,11 +25,11 @@ res_type: kb
 
 ## Description
 
-During the NPM installation process, I get an error that the jQuery module is not found. 
+During the NPM installation process, I get an error that the jQuery module is not found.
 
-## Error Message 
+## Error Message
 
-`Error: Cannot find module 'jquery' from '/Users/bernhard/Documents/JavaScriptDevelopment/kendo-ui-npm-example/javascript-browserify'` 
+`Error: Cannot find module 'jquery' from '/Users/bernhard/Documents/JavaScriptDevelopment/kendo-ui-npm-example/javascript-browserify'`
 
 ## Cause
 

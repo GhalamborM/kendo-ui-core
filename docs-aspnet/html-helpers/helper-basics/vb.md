@@ -2,14 +2,17 @@
 title: Visual Basic Syntax
 page_title: Visual Basic Syntax
 description: "Get started with Telerik UI for ASP.NET MVC and apply the proper Visual Basic syntax when using lambda expressions and anonymous types inside the helper declarations."
+components: ["general"]
 slug: visualbasic_aspnetmvc
 previous_url: /vb, /getting-started/vb, getting-started/helper-basics/vb
-position: 4
+position: 8
 ---
 
 # Visual Basic Syntax
 
 When you use [lambda expressions](http://msdn.microsoft.com/en-us/library/bb531253.aspx) and [anonymous types](http://msdn.microsoft.com/en-us/library/bb384767.aspx) inside the helper declarations, you have to apply the correct Visual Basic (VB) syntax.
+
+>While the {{ site.product }} helpers can be initialized with VB syntax, we recommend using the C# syntax instead. Following [Microsoft's announcement](https://visualstudiomagazine.com/articles/2020/03/12/vb-in-net-5.aspx) that VB will not be evolved as a language, and because of the minimal VB usage in {{ site.product }}, we've decided to provide MVC resources only in C#. As a result, the {{ site.product }} documentation, demos, Visual Studio templates, sample projects and examples provided in the forums and in the Support Ticketing system will only use C#.
 
 The following example demonstrates how to use the VB syntax in the Editor.
 

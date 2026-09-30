@@ -1,13 +1,13 @@
 ---
 title: Persist the Selection in the ComboBox
-description: An example on how to persist the selected item in a Kendo UI ComboBox.
+description: Learn how to persist the selected item in a Kendo UI ComboBox.
 type: how-to
-page_title: Persist the ComboBox Selection | Kendo UI ComboBox for jQuery
+page_title: Persist the ComboBox Selection - Kendo UI ComboBox for jQuery
 slug: persist-combobox-selection
 tags: persisting, selected, item, combobox
 ticketid: 1116339
 res_type: kb
-component: combobox
+components: ["combobox"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: combobox
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ComboBox</td>
+  <td>Progress® Kendo UI® ComboBox for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -33,7 +33,7 @@ In web pages I have the Persistence Manager control to preserve the user options
 
 ## Solution
 
-Retrieve the selected item and keep it in `localStorage` by using the [`select()`](https://docs.telerik.com/kendo-ui/api/javascript/ui/combobox/methods/select) method. When necessary, set an item as selected again by using `select()`.
+Retrieve the selected item and keep it in `localStorage` by using the [`select()`](https://docs.telerik.com/kendo-ui/api/ui/combobox/methods/select) method. When necessary, set an item as selected again by using `select()`.
 
 ```dojo
   <div  >
@@ -52,10 +52,10 @@ Retrieve the selected item and keep it in `localStorage` by using the [`select()
           dataTextField: "CategoryName",
           dataValueField: "CategoryID",
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             serverFiltering: true,
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
+              read: "https://demos.telerik.com/service/v2/odata/Categories"
             }
           }
         }).data("kendoComboBox");

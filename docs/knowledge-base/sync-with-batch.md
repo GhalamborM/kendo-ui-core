@@ -5,9 +5,9 @@ description: "Learn how to create a Kendo UI for jQuery Scheduler on the client 
 previous_url: /controls/scheduling/scheduler/how-to/sync-with-batch, /controls/scheduling/scheduler/how-to/binding/sync-with-batch
 slug: howto_create_a_scheduler_on_the_client_and_sync_with_batch_scheduler
 tags: telerik, kendo, jquery, scheduler, create, on, the, client, and, sync, with, batch  
-component: scheduler
 type: how-to
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler for jQuery</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -50,25 +50,27 @@ $(function() {
       var remoteDataSource = new kendo.data.SchedulerDataSource({
           batch: true,
           transport: {
-              read: {
-                  url: "https://demos.telerik.com/kendo-ui/service/tasks",
-                  dataType: "jsonp"
-              },
-              update: {
-                  url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-                  dataType: "jsonp"
-              },
-              create: {
-                  url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-                  dataType: "jsonp"
-              },
-              destroy: {
-                  url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-                  dataType: "jsonp"
-              },
+               read: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks"
+                },
+                update: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/update",
+                    type: "POST",
+                    contentType: "application/json"
+                },
+                create: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/create",
+                    type: "POST",
+                    contentType: "application/json"
+                },
+                destroy: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+                    type: "POST",
+                    contentType: "application/json"
+                },
               parameterMap: function(options, operation) {
                   if (operation !== "read" && options.models) {
-                      return {models: kendo.stringify(options.models)};
+                      return kendo.stringify(options.models);
                   }
               }
           },
@@ -96,8 +98,8 @@ $(function() {
   	var nextIdx = 10000;
 
     var scheduler = $("#scheduler").kendoScheduler({
-        date: new Date("2013/6/13"),
-        startTime: new Date("2013/6/13 07:00 AM"),
+        date: new Date("2025/6/13"),
+        startTime: new Date("2025/6/13 07:00 AM"),
         height: 600,
         views: [
             "day",
@@ -193,7 +195,7 @@ $(function() {
 }
 
 #people {
-    background: url('../../content/web/scheduler/team-schedule.png') transparent no-repeat;
+    background: url('https://demos.telerik.com/kendo-ui/content/web/scheduler/team-schedule.png') transparent no-repeat;
     height: 115px;
     position: relative;
 }
@@ -220,4 +222,4 @@ $(function() {
 
 * [Basic Usage of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/index)
 * [Using the API of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/api)
-* [JavaScript API Reference of the Scheduler](/api/javascript/ui/scheduler)
+* [JavaScript API Reference of the Scheduler](/api/ui/scheduler)

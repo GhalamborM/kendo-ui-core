@@ -1,13 +1,13 @@
 ---
 title: Open an AutoComplete Custom Editor on a Cell Click in Spreadsheet
-description: An example on how to display a custom cell editor which contains a Kendo UI AutoComplete when the user clicks a cell in the Kendo UI Spreadsheet.
+description: Learn how to display a custom cell editor which contains a Kendo UI AutoComplete when the user clicks a cell in the Kendo UI Spreadsheet.
 type: how-to
-page_title: Show Custom Cell Editor with AutoComplete When the User Clicks on a Cell | Kendo UI Spreadsheet for jQuery
+page_title: Show Custom Cell Editor with AutoComplete When the User Clicks on a Cell - Kendo UI Spreadsheet for jQuery
 slug: spreadsheet-open-autocomplete-editor-on-cell-click
 tags: kendo, kendo-ui, spreadsheet, custom, editor, cell, popup, autocomplete, open-on-click
 ticketid: 1143980
 res_type: kb
-component: spreadsheet
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -15,8 +15,8 @@ component: spreadsheet
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet</td>
-  <td>Progress Kendo UI AutoComplete</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
+  <td>Progress® Kendo UI® AutoComplete for jQuery</td>
  </tr>
 </table>
 
@@ -144,5 +144,5 @@ The following example demonstrates how to implement the desired scenario.
 
 ## See Also
 
-* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet)
-* [API Reference of the AutoComplete](https://docs.telerik.com/kendo-ui/api/javascript/ui/autocomplete)
+* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet)
+* [API Reference of the AutoComplete](https://docs.telerik.com/kendo-ui/api/ui/autocomplete)

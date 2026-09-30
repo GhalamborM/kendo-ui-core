@@ -1,84 +1,100 @@
 ---
-title:  Razor Page
-page_title: Configure a Dialog in Razor Page.
+title: Razor Pages
+page_title: Razor Pages
 description: "An example on how to configure the Telerik UI Dialog component for {{ site.framework }} in a Razor Page."
 slug: htmlhelpers_dialog_razorpage_aspnetcore
-position: 5
+components: ["dialog"]
+position: 6
 ---
 
-# Razor Page
+# Dialog in Razor Pages
 
-This article describes how to configure the Telerik UI Dialog for {{ site.framework }} in a RazorPage scenario.
+This article describes how to seamlessly integrate and configure the Telerik UI Dialog for {{ site.framework }} in Razor Pages applications.
 
-The example below demonstrates how to pass antiforgery token when an action from the Dialog is clicked. See the implementation details in the example below, and for the full project with RazorPages examples, visit our [GitHub repository](https://github.com/telerik/ui-for-aspnet-core-examples/tree/master/Telerik.Examples.RazorPages).
+@[template](/_contentTemplates/core/razor-pages-general-info.md#referencing-handler-methods)
 
-```tab-HtmlHelper(csthml)  	
-	@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
-	@Html.AntiForgeryToken()
+## Handling Dialog Actions
 
-	@(Html.Kendo().Dialog()
-        .Name("dialog")
-        .Title("Data Update")
-        .Content("<p>Would you like to confirm updating the data?<p>")
-        .Width(400)
-        .Modal(false)
-        .Actions(actions =>
-        {
-            actions.Add().Text("Cancel");
-            actions.Add().Text("Send data").Primary(true).Action("onSendData");
-        })
-	)	
+The following example demonstrates how to configure Dialog action buttons and handle their click events with AJAX requests to the `PageModel` in a Razor Pages application. 
 
-	<script>
-		function onSendData() {
-			$.ajax({
-				url: "/Dialog/DialogIndex",
-				type: "POST",				
-				headers: {
-					RequestVerificationToken: kendo.antiForgeryTokens().__RequestVerificationToken
-				},
-				dataType: "json"
-			});
-		}
-	</script>
+```HtmlHelper
+@page
+@model DialogIndexModel
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@Html.AntiForgeryToken()
+
+@(Html.Kendo().Dialog()
+	.Name("dialog")
+	.Title("Data Update")
+	.Content("<p>Would you like to confirm updating the data?<p>")
+	.Width(400)
+	.Modal(false)
+	.Actions(actions =>
+	{
+		actions.Add().Text("Cancel");
+		actions.Add().Text("Send data").Primary(true).Action("onSendData");
+	})
+)
 ```
 {% if site.core %}
-```tab-TagHelper
-    <kendo-dialog name="dialog" title="Data Update" width="400" modal="false" >
-        <actions>            
-            <action text="Cancel">
-            </action>
-            <action text="Send data" primary="true" action="onSendData">
-            </action>
-        </actions>
-        <content>
-            <p>Would you like to confirm updating the data?</p>
-        </content>
-    </kendo-dialog>
-	
-	<script>
-		function onSendData() {
-			$.ajax({
-				url: "/Dialog/DialogIndex",
-				type: "POST",				
-				headers: {
-					RequestVerificationToken: kendo.antiForgeryTokens().__RequestVerificationToken
-				},
-				dataType: "json"
-			});
-		}
+```TagHelper
+@page
+@model DialogIndexModel
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@Html.AntiForgeryToken()
+
+<kendo-dialog name="dialog" title="Data Update" width="400" modal="false" >
+	<actions>            
+		<action text="Cancel">
+		</action>
+		<action text="Send data" primary="true" action="onSendData">
+		</action>
+	</actions>
+	<content>
+		<p>Would you like to confirm updating the data?</p>
+	</content>
+</kendo-dialog>
+```
+```JS Scripts
+<script>
+	function onSendData() {
+		$.ajax({
+			url: "/Dialog/DialogIndex",
+			type: "POST",
+			data: { custom : "some text" },
+			headers: {
+				RequestVerificationToken: kendo.antiForgeryTokens().__RequestVerificationToken
+			},
+			dataType: "json"
+		});
+	}
+</script>
 ```
 {% endif %}
-```tab-PageModel(cshtml.cs)      
+```C# PageModel
+public class DialogIndexModel : PageModel
+{
+	public void OnGet()
+	{
 
-    public void OnPost()
-        {
-			....
-        }
+	}
+
+	public void OnPost(string custom)
+	{
+
+	}
+}
 ```
+
+For the complete project, refer to the [Dialog in Razor Pages example](https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/Dialog/DialogIndex.cshtml).
 
 ## See Also
 
-* [Razor Pages Support]({% slug razor_pages_integration_aspnetmvc6_aspnetmvc %})
-* [Dialog Overview]({% slug overview_dialoghelper_aspnetcore %})
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the Dialog](https://www.telerik.com/kendo-jquery-ui/documentation/api/ui/dialog)
+* [Server-Side HtmlHelper API of the Dialog](/api/dialog)
+* [Server-Side TagHelper API of the Dialog](/api/taghelpers/dialog)
+* [Knowledge Base Section](/knowledge-base)
 

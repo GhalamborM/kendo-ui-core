@@ -2,6 +2,7 @@
 title: Comparison
 page_title: Comparison
 description: "Learn about the differences between the old and the new version of the Telerik UI PivotGrid HtmlHelper for {{ site.framework }}."
+components: ["pivotgridv2"]
 slug: htmlhelpers_pivotgridv2_aspnetcore_comparison
 position: 4
 ---
@@ -22,7 +23,7 @@ As of the November 2021 release, {{ site.framework }} introduces the new PivotGr
 
 There are many developers who use and depend on the PivotGrid. Making any drastic changes to the source code of the old widget would undoubtedly interfere with their work. That is why the decision to introduce a second widget, was taken.
 
-Тhe old and new versions of the PivotGrid can coexist. The old PivotGrid will not disappear with the upcoming release. This allows developers to smoothly transition to the new version without rushing their projects.
+The old and new versions of the PivotGrid can coexist. The old PivotGrid will not disappear with the upcoming release. This allows developers to smoothly transition to the new version without rushing their projects.
 
 We have decided to keep the PivotGrid and introduce PivotGridV2 as a separate component. This approach allows us to avoid making breaking changes to the PivotGrid, which could affect many developers that use and depend on the PivotGrid. The old PivotGrid will not be removed in the upcoming release, which gives the developers the opportunity to smoothly transition to the new version.
 
@@ -61,4 +62,4 @@ The following list summarizes the key benefits of the new PivotGridV2:
 ## See Also
 
 * [Basic Usage of the PivotGridV2 (Demo)](https://demos.telerik.com/{{ site.platform }}/pivotgridv2/index)
-* [PivotGridV2 JavaScript API Reference](/api/javascript/ui/pivotgridv2)
+* [PivotGridV2 JavaScript API Reference](https://docs.telerik.com/kendo-ui/api/ui/pivotgridv2)

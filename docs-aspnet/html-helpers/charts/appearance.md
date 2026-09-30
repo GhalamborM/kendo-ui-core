@@ -2,6 +2,7 @@
 title: Appearance
 page_title: Appearance
 description: "Learn how to control the appearance of the Telerik UI Chart component for {{ site.framework }}."
+components: ["chart"]
 previous_url: /helpers/html-helpers/charts/chart/appearance
 slug: htmlhelpers_charts_appearance_aspnetcore
 position: 3
@@ -11,7 +12,7 @@ position: 3
 
 Unlike other {{ site.product }} components which use only CSS for styling, you can mainly control the appearance of the Chart elements by using JavaScript style options.
 
-For more information on the structure of the Chart, refer to the articles on the [Chart building elements]({% slug htmlhelpers_charts_dataseries_aspnetcore %}).   
+For more information on the structure of the Chart, refer to the articles on the [Chart building elements]({% slug htmlhelpers_charts_dataseries_aspnetcore %}).
 
 ## Predefined Themes
 
@@ -47,7 +48,9 @@ The Charts come with [a set of predefined themes](https://docs.telerik.com/kendo
         )
     )
 ```
+
 {% if site.core %}
+
 ```TagHelper
 
     @addTagHelper *, Kendo.Mvc
@@ -84,16 +87,17 @@ The Charts come with [a set of predefined themes](https://docs.telerik.com/kendo
     </kendo-chart>
 
 ```
+
 {% endif %}
 
 ## Sass Themes
 
-As of the R2 2017 SP1 release, the Chart provides styling options through [Sass-based themes](https://docs.telerik.com/kendo-ui/styles-and-layout/sass-themes). When the theme is set to `inherit`, the Chart reads colors and fonts from the theme variables.
+As of the R2 2017 SP1 release, the Chart provides styling options through [Sass-based themes](https://docs.telerik.com/kendo-ui/styles-and-layout/sass-themes). When the theme is set to `sass`, the Chart reads colors and fonts from the theme variables.
 
 ```HtmlHelper
     @(Html.Kendo().Chart()
         .Name("chart")
-        .Theme("inherit")
+        .Theme("sass")
         .Title("Site Visitors Stats /thousands/")
         .Legend(legend => legend
             .Position(ChartLegendPosition.Bottom)
@@ -120,7 +124,9 @@ As of the R2 2017 SP1 release, the Chart provides styling options through [Sass-
         )
     )
 ```
+
 {% if site.core %}
+
 ```TagHelper
 
     @addTagHelper *, Kendo.Mvc
@@ -131,7 +137,7 @@ As of the R2 2017 SP1 release, the Chart provides styling options through [Sass-
         var categories = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun" };
     }
 
-    <kendo-chart name="chart" theme="inherit">
+    <kendo-chart name="chart" theme="sass">
         <chart-title text="Site Visitors Stats /thousands/"></chart-title>
         <chart-legend position="ChartLegendPosition.Bottom"></chart-legend>
         <series-defaults type="ChartSeriesType.Column">
@@ -157,6 +163,61 @@ As of the R2 2017 SP1 release, the Chart provides styling options through [Sass-
     </kendo-chart>
 
 ```
+
+{% endif %}
+
+## Using Pattern Fills
+
+In addition to solid colors, the Chart series can also be filled with repeating patterns by using the `Pattern` configuration setting of the series.
+
+> The pattern inherits the series color as main color and accepts an optional `background` color.
+
+The following customizable pattern fills are available:
+
+- Crosshatch
+- Diagonal Stripes
+- Dots
+- Grid
+- Vertical Stripes
+
+Below is an example of using pattern fills for series:
+
+```HtmlHelper
+    @(Html.Kendo().Chart()
+        .Name("chart")
+        .Series(series =>
+        {
+            series.Bar(new double[] {  117000, 138000 }).Name("Total Visits")
+                .Pattern(pattern=>pattern.Color("red").Background("blue").Type(ChartSeriesPattern.Dots).Radius(50));
+            series.Bar(new double[] {  67000, 83000 }).Name("Unique visitors")
+                .Pattern(pattern=>pattern.Type(ChartSeriesPattern.Crosshatch).Width(25));
+        })
+    )
+```
+
+{% if site.core %}
+
+```TagHelper
+
+    @addTagHelper *, Kendo.Mvc
+
+    <kendo-chart name="chart">
+        <series>
+            <series-item type="ChartSeriesType.Bar"
+                        name="Total Visits"
+                        data="new double[] { 117000, 138000 }">
+                <pattern color="red" background="blue" type="ChartSeriesPattern.Dots" radius=50/>
+            </series-item>
+            <series-item type="ChartSeriesType.Bar"
+                        name="Unique visitors"
+                        data="new double[] { 67000, 83000 }">
+                <pattern type="ChartSeriesPattern.Crosshatch" width=25 />
+            </series-item>
+        </series>
+    </kendo-chart>
+
+```
+
 {% endif %}
 
 ## Animated Transitions
@@ -170,7 +231,9 @@ As of the R2 2017 SP1 release, the Chart provides styling options through [Sass-
         // Other options.
     )
 ```
+
 {% if site.core %}
+
 ```TagHelper
 
     @addTagHelper *, Kendo.Mvc
@@ -180,12 +243,14 @@ As of the R2 2017 SP1 release, the Chart provides styling options through [Sass-
     </kendo-chart>
 
 ```
+
 {% endif %}
 
+You can also customize the chart's animation by taking advantage of the [Kendo Motion system](https://www.telerik.com/design-system/docs/foundation/motion/). The Kendo Motion system provides duration tokens and easing tokens that combine into transition tokens and helps define the behavior of interactive objects.
 
 ## See Also
 
-* [Using the API of the Chart HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/chart-api/index)
-* [Basic Usage of the Area Chart HtmlHelper for {{ site.framework }} (Demos)](https://demos.telerik.com/{{ site.platform }}/area-charts/index)
-* [Basic Usage of the Kendo UI Area Charts Tag Helper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/area-charts/tag-helper)
-* [Server-Side API](/api/chart)
+- [Using the API of the Chart HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/chart-api/index)
+- [Basic Usage of the Area Chart for {{ site.framework }} (Demos)](https://demos.telerik.com/{{ site.platform }}/area-charts/index)
+- [Server-Side API](/api/chart)
+- [Kendo Motion System](https://www.telerik.com/design-system/docs/foundation/motion/)

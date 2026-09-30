@@ -1,7 +1,8 @@
 ---
 title: Custom
-page_title: Custom Binding | Kendo UI MVVM
+page_title: Custom Binding - Kendo UI MVVM
 description: "Learn how to create custom bindings in Kendo UI MVVM."
+components: ["mvvm"]
 slug: custombinding_mvvm_kendoui
 ---
 
@@ -19,7 +20,7 @@ To set a custom binding, use the `data-bind` attribute.
         One Big Orange Square.
     </div>
 
-To register a custom binding, extend the [`kendo.data.Binder`](/api/javascript/data/binder) object.
+To register a custom binding, extend the [`kendo.data.Binder`](/api/data/binder) object.
 
 The following example demonstrates how to register a one-way binding. As a result, the HTML element is updated when the view-model changes.
 

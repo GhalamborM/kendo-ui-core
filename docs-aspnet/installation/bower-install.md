@@ -2,6 +2,7 @@
 title: Installing with Bower
 page_title: Installing with Bower
 description: "Get started with Telerik UI for ASP.NET Core and install the helpers by using the Bower package manager."
+components: ["general"]
 previous_url: /getting-started/installation/bower-install
 slug: bowerpackage_core
 position: 10
@@ -68,14 +69,14 @@ To avoid being asked multiple times to provide your credentials while installing
 
 1. In your home directory, create a file called `.netrc` (`~/.netrc`). Verify that you modify the file permissions to make it readable only to you.
 
-      ```sh
+      ```batch sh
       touch ~/.netrc
       chmod 0600 ~/.netrc
       ```
 
 1. Add your credentials to the `~/.netrc` file using the format demonstrated in the following example.
 
-      ```
+      ```batch
       machine bower.telerik.com
           login my-telerik.identity@example.com
           password mysecret
@@ -124,6 +125,4 @@ This section provides solutions for common issues you might encounter while inst
 * [Including Client-Side Resources]({% slug copyclientresources_aspnetmvc6_aspnetmvc %})
 * [Installing Telerik UI for ASP.NET Core by Using the CDN Services]({% slug cdnservices_core %})
 * [Installing Telerik UI for ASP.NET Core with NuGet]({% slug nuget_install_aspnetmvc6_aspnetmvc %})
-* [First Steps on Visual Studio for Windows (Online Guide)]({% slug gettingstarted_aspnetmvc6_aspnetmvc %})
-* [First Steps on Visual Studio for Mac (Online Guide)]({% slug gettingstarted_firststeps_vsmac %})
-* [First Steps with CLI (Online Guide)]({% slug gettingstartedcli_aspnetmvc6_aspnetmvc %})
+* [Quick Start]({% slug gettingstartedtelerik_aspnetcore %})

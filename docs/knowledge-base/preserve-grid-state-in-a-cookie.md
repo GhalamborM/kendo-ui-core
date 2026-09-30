@@ -1,13 +1,13 @@
 ---
 title: Preserve Grid State in a Cookie
-page_title: Preserve Grid State in a Cookie | Kendo UI Grid for jQuery
+page_title: Preserve Grid State in a Cookie - Kendo UI for jQuery Data Grid
 description: "Learn how to preserve the Kendo UI jQuery Grid state in a cookie and restore it when the page is re-visited."
 previous_url: /controls/data-management/grid/how-to/preserve-grid-state-in-a-cookie, /controls/data-management/grid/how-to/state/preserve-grid-state-in-a-cookie
 slug: howto_preserve_gridstate_inacookie_grid
 tags: preserve, persist, grid, state, cookie, restore, when, page, revisited
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -107,7 +107,7 @@ The following example demonstrates how to preserve the Grid state&mdash;filterin
 
             setCookie("employeesState", state, 1);
             if(getCookie('empRows')){
-              $.each(JSON.parse($.cookie('empRows')),function(){
+              $.each(JSON.parse(getCookie('empRows')),function(){
                 var item = dataSource.get(this);
                 var row = grid.tbody.find('[data-uid='+item.uid+']');
                 row.addClass('k-selected');
@@ -186,4 +186,4 @@ The following example demonstrates how to preserve the Grid state&mdash;filterin
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

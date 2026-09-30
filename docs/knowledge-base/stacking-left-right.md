@@ -1,13 +1,13 @@
 ---
 title: Stack Static Notifications to the Left or Right
 page_title: Stack Static Notifications to the Left or Right 
-description: "Learn how to stack static notifications to the left or to the right in the Kendo UI Notfication widget."
+description: "Learn how to stack static notifications to the left or to the right in the Kendo UI Notfication component."
 slug: howto_stack_static_tothe_leftor_right_notification
 previous_url: /controls/layout/notification/how-to/stacking-left-right 
 tags: telerik, kendo, jquery, notification, stack, static, to, the, left, or, right 
-component: notification
 type: how-to
 res_type: kb
+components: ["notification"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Notification for jQuery</td>
+  <td>Progress® Kendo UI® Notification for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -113,4 +113,4 @@ The following example demonstrates how to achieve the desired scenario.
 
 * [Basic Usage of the Notification (Demo)](https://demos.telerik.com/kendo-ui/notification/index)
 * [Using the API of the Notification (Demo)](https://demos.telerik.com/kendo-ui/notification/api)
-* [JavaScript API Reference of the Notification](/api/javascript/ui/notification)
+* [JavaScript API Reference of the Notification](/api/ui/notification)

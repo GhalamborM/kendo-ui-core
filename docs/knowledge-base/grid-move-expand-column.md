@@ -1,12 +1,12 @@
 ---
 title: Move the Expand Column
-description: An example on how to relocate the expand column of a Kendo UI Grid.
+description: Learn how to relocate the expand column of a Kendo UI Grid.
 type: how-to
-page_title: Move the Expand Column | Kendo UI Grid for jQuery
+page_title: Move the Expand Column - Kendo UI for jQuery Data Grid
 slug: grid-move-expand-column
 tags: grid, expand, detail, column, nested, hierarchy, relocate, move
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2018.1.221</td>
  </tr>
 </table>
@@ -28,7 +28,7 @@ How can I relocate the expand column of the Grid?
 
 ## Solution
 
-Within the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound) event, rearrange the columns by using jQuery.
+Within the [`dataBound`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound) event, rearrange the columns by using jQuery.
 
 ```dojo
   <style>
@@ -54,9 +54,9 @@ Within the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/gri
         $(document).ready(function() {
           var element = $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                read: "https://demos.telerik.com/service/v2/odata/Employees"
               },
               pageSize: 6,
               serverPaging: true,
@@ -108,9 +108,9 @@ Within the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/gri
         function detailInit(e) {
           $("<div/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               serverPaging: true,
               serverSorting: true,

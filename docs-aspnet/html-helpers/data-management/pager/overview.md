@@ -2,11 +2,12 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI Pager component for {{ site.framework }}."
+components: ["pager"]
 slug: htmlhelpers_pager_aspnet_overview
-position: 1
+position: 0
 ---
 
-# Pager Overview
+# {{ site.framework }} Pager Overview
 
 {% if site.core %}
 The Telerik UI Pager TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI Pager widget. To add the component to your ASP.NET Core app, you can use either.
@@ -52,12 +53,11 @@ The following example demonstrates how to tie a pager to a data source and enabl
     <kendo-pager name="pager1" refresh="true" datasource-id="dataSource1" page-sizes="true">
     </kendo-pager>
 ```
-{% endif %}
 ```Controller
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
 
-    public class PagerController : BaseController
+    public class PagerController : Controller
     {
         public IActionResult People_Read([DataSourceRequest]DataSourceRequest request)
         {
@@ -76,6 +76,31 @@ The following example demonstrates how to tie a pager to a data source and enabl
         }
     }
 ```
+{% else %}
+```Controller
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+
+    public class PagerController : Controller
+    {
+        public ActionResult People_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            var people = new List<SampleData>() {
+                 new SampleData() { Name = "Jane Doe", Age = 25, IsOnLeave = false },
+                 new SampleData() { Name = "John Doe", Age = 33, IsOnLeave = true },
+                 new SampleData() { Name = "John Smith", Age = 37, IsOnLeave = true },
+                 new SampleData() { Name = "Nathan Doe", Age = 42, IsOnLeave = false }
+            };
+            return Json(people.ToDataSourceResult(request));
+        }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+    }
+```
+{% endif %}
 ```Model
     public class SampleData
     {
@@ -87,55 +112,24 @@ The following example demonstrates how to tie a pager to a data source and enabl
 
 ## Functionality and Features
 
-* [Pager Settings and Types]({% slug settings_pager_aspnet %})
-* [Responsive Pager]({% slug responsive_pager_aspnet  %})
-* [Pager Templates]({% slug templates_pager_aspnet %})
-* [Globalization and Messages]({% slug globalization_pager_aspnet %})
+* [Pager Settings and Types]({% slug settings_pager_aspnet %})&mdash;Control the Pager functions and rendering.
+* [Responsiveness]({% slug responsive_pager_aspnet %})&mdash;The Pager supports responsive design by default. 
+* [Adaptive Mode]({% slug htmlhelpers_pager_adaptive_mode %})&mdash;Enable the adaptive mode that changes the rendering of the Pager based on the screen resolution of the device.
+* [Templates]({% slug templates_pager_aspnet %})&mdash;Customize the look and feel of the Pager.
+* [Globalization]({% slug globalization_pager_aspnet %})&mdash;Localize the texts and tooltips of the Pager.
+* [Accessibility]({% slug htmlhelpers_pager_accessibility %})&mdash;The Pager is accessible by screen readers and provides WAI-ARIA, Section 508, WCAG 2.2, and keyboard support.
 
-## Events
+## Next Steps
 
-You can subscribe to the Pager [events](/api/pager).
-
-```HtmlHelper
-    @(Html.Kendo().Pager()
-        .Name("Pager")
-        .Events(events => events
-            .Change("onChange")
-        )
-    )
-    <script>
-        function onChange(e){
-            console.log("pager change event");
-        }
-    </script>
-```
-{% if site.core %}
-```TagHelper
-    <kendo-pager name="pager" on-change="onChange">
-    <script>
-        function onChange(e) {
-            console.log("pager change event");
-        }
-    </script>
-```
-{% endif %}
-
-## Referencing Existing Instances
-
-To refer to an existing Pager instance use the `jQuery.data()` method. Once a reference is established, use the [Pager API](https://docs.telerik.com/kendo-ui/api/javascript/ui/pager) to control its behavior.
-
-```
-<script>
-    $(function() {
-        // The Name() of the Pager is used to get its client-side instance.
-        var pager = $("#pager").data("kendoPager");
-    });
-</script>
-```
+* [Getting Started with the Pager]({% slug pager_aspnetcore_get_started %})
+* [Basic Usage of the Pager HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/pager/index)
+* [Pager HtmlHelper Integration for {{ site.framework }}(Demo)](https://demos.telerik.com/{{ site.platform }}/pager/integration)
 
 ## See Also
 
-* [Basic Usage of the Pager HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/pager/index)
-* [Pager HtmlHelper Integration for {{ site.framework }}(Demo)](https://demos.telerik.com/{{ site.platform }}/pager/integration)
-* [Pager Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/pager)
+* [Pager Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/pager)
 * [Pager Server-Side API](/api/pager)
+* [Knowledge Base Section](/knowledge-base)
+{% if site.core %}
+* [Razor Pages binding]({% slug htmlhelpers_pager_razorpage_aspnetcore %})
+{% endif %}

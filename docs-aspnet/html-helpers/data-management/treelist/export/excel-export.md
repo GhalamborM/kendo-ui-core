@@ -2,6 +2,7 @@
 title: Excel Export
 page_title: Excel Export
 description: "Export the Telerik UI TreeList for {{ site.framework }} to Excel."
+components: ["treelist"]
 slug: htmlhelpers_treelist_aspnetcore_excelexport
 position: 2
 ---
@@ -17,13 +18,13 @@ For a runnable example, refer to the [demo on Excel export by the TreeList](http
 To enable the Excel export option of the TreeList:
 
 1. Include the corresponding toolbar command and set the export settings.
-    * [Toolbar configuration](/api/Kendo.Mvc.UI.Fluent/TreeListToolbarFactory#excel)
-    * [Excel export configuration](/api/Kendo.Mvc.UI.Fluent/TreeListBuilder#excelsystemactionkendomvcuifluenttreelistexcelsettingsbuildert)
+    * [Toolbar configuration](/api/kendo.mvc.ui.fluent/treelisttoolbarfactory#excel)
+    * [Excel export configuration](/api/kendo.mvc.ui.fluent/treelistbuilder#excelsystemaction)
 1. To take full advantage of the Excel export feature, download the JSZip library and include the file before the Kendo UI JavaScript files in the `Layout.cshtml`. For more information, refer to the article with the [requirements]({% slug exportsupport_core %}#jszip-library).
 
     ```HtmlHelper
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.js"></script>
+        <script src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
         <script src="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/kendo.all.min.js"></script>
 
         @(Html.Kendo().TreeList<Kendo.Mvc.Examples.Models.TreeList.EmployeeDirectoryModel>()
@@ -53,7 +54,7 @@ To enable the Excel export option of the TreeList:
     ```
     {% endif %}
 
-To initiate the Excel export, press the **Toolbar** button or use the [TreeList client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/treelist) and call the [`saveAsExcel`](https://docs.telerik.com/kendo-ui/api/javascript/ui/treelist/methods/saveasexcel) method.
+To initiate the Excel export, press the **Toolbar** button or use the [TreeList client-side API](https://docs.telerik.com/kendo-ui/api/ui/treelist) and call the [`saveAsExcel`](https://docs.telerik.com/kendo-ui/api/ui/treelist/methods/saveasexcel) method.
 
 ## Outputting the Result
 

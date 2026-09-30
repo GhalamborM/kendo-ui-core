@@ -1,8 +1,6 @@
-(function(f, define) {
-    define([ "./kendo.core" ], f);
-})(function() {
+import "./kendo.core.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "popup",
     name: "Pop-up",
     category: "framework",
@@ -36,15 +34,12 @@ var __meta__ = {
         VISIBLE = "visible",
         EFFECTS = "effects",
         ACTIVE = "k-active",
-        ACTIVEBORDER = "k-state-border",
-        ACTIVEBORDERREGEXP = /k-state-border-(\w+)/,
         ACTIVECHILDREN = ".k-picker-wrap, .k-dropdown-wrap, .k-link",
         MOUSEDOWN = "down",
         DOCUMENT_ELEMENT = $(document.documentElement),
         WINDOW = $(window),
         SCROLL = "scroll",
-        cssPrefix = support.transitions.css,
-        TRANSFORM = cssPrefix + "transform",
+        TRANSFORM = "transform",
         extend = $.extend,
         NS = ".kendoPopup",
         styles = ["font-size",
@@ -64,7 +59,6 @@ var __meta__ = {
     var Popup = Widget.extend({
         init: function(element, options) {
             var that = this, parentPopup;
-
             options = options || {};
 
             if (options.isRtl) {
@@ -84,16 +78,14 @@ var __meta__ = {
                 that.collisions.push(that.collisions[0]);
             }
 
-            parentPopup = $(that.options.anchor).closest(".k-popup,.k-group").filter(":not([class^=km-])"); // When popup is in another popup, make it relative.
+            parentPopup = $(that.options.anchor).closest(".k-popup,.k-group,.k-menu-group").filter(":not([class^=km-])"); // When popup is in another popup, make it relative.
 
             options.appendTo = $($(options.appendTo)[0] || parentPopup[0] || document.body);
 
             that.element.hide()
-                .addClass("k-popup k-group k-reset")
+                .addClass("k-popup")
                 .toggleClass("k-rtl", !!options.isRtl)
-                .css({ position: ABSOLUTE })
                 .appendTo(options.appendTo)
-                .attr("aria-hidden", true)
                 .on("mouseenter" + NS, function() {
                     that._hovered = true;
                 })
@@ -117,7 +109,8 @@ var __meta__ = {
 
             extend(options.animation.open, {
                 complete: function() {
-                    that.wrapper.css({ overflow: VISIBLE }); // Forcing refresh causes flickering in mobile.
+                    that.wrapper.addClass("k-animation-container-shown"); // Forcing refresh causes flickering in mobile.
+                    that.wrapper.css("overflow","");
                     that._activated = true;
                     that._trigger(ACTIVATE);
                 }
@@ -148,7 +141,8 @@ var __meta__ = {
             if (options.toggleTarget) {
                 $(options.toggleTarget).on(options.toggleEvent + NS, that.toggle.bind(that));
             }
-        },
+            Widget.fn.endInit.call(this);
+},
 
         events: [
             OPEN,
@@ -168,6 +162,7 @@ var __meta__ = {
             viewport: window,
             copyAnchorStyles: true,
             autosize: false,
+            autowidth: false,
             modal: false,
             adjustSize: {
                 width: 0,
@@ -184,13 +179,13 @@ var __meta__ = {
                     hide: true
                 }
             },
-            omitOriginOffsets: false
+            omitOriginOffsets: false,
+            smartFlip: false
         },
 
         _animationClose: function() {
             var that = this;
             var location = that.wrapper.data(LOCATION);
-
             that.wrapper.hide();
 
             if (location) {
@@ -198,7 +193,7 @@ var __meta__ = {
             }
 
             if (that.options.anchor != BODY) {
-                that._hideDirClass();
+                that._hideActiveClass();
             }
 
             that._closing = false;
@@ -226,7 +221,7 @@ var __meta__ = {
             element.removeData();
 
             if (options.appendTo[0] === document.body) {
-                parent = element.parent(".k-animation-container");
+                parent = element.closest(".k-animation-container");
 
                 if (parent[0]) {
                     parent.remove();
@@ -239,12 +234,14 @@ var __meta__ = {
         open: function(x, y) {
             var that = this,
                 fixed = { isFixed: !isNaN(parseInt(y,10)), x: x, y: y },
+                shouldCorrectWidth = that._shouldCorrectWidth,
                 element = that.element,
                 options = that.options,
                 animation, wrapper,
                 anchor = $(options.anchor),
                 mobile = element[0] && element.hasClass("km-widget"),
-                listbox = element.find("[role='listbox']");
+                listbox = element.find("[role='listbox']"),
+                parent;
 
             if (!that.visible()) {
                 if (options.copyAnchorStyles) {
@@ -254,7 +251,7 @@ var __meta__ = {
                     element.css(kendo.getComputedStyles(anchor[0], styles));
                 }
 
-                if (element.data("animating") || that._trigger(OPEN)) {
+                if (that.element.parent().data("animating") || that._trigger(OPEN)) {
                     return;
                 }
 
@@ -270,13 +267,14 @@ var __meta__ = {
                     that._toggleResize(true);
                 }
 
-                that.wrapper = wrapper = kendo.wrap(element, options.autosize)
+                that.wrapper = wrapper = kendo.wrap(element, options.autosize, options._resizeOnWrap, shouldCorrectWidth, options.autowidth)
                     .css({
                         overflow: HIDDEN,
                         display: "block",
                         position: ABSOLUTE
-                    })
-                    .attr("aria-hidden", false);
+                    });
+
+                parent = element.parent();
 
                 if (listbox.attr("aria-label")) {
                     wrapper.attr("aria-label", listbox.attr("aria-label"));
@@ -285,7 +283,7 @@ var __meta__ = {
                 }
 
                 if (support.mobileOS.android) {
-                    wrapper.css(TRANSFORM, "translatez(0)"); // Android is VERY slow otherwise. Should be tested in other droids as well since it may cause blur.
+                    parent.css(TRANSFORM, "translatez(0)"); // Android is VERY slow otherwise. Should be tested in other droids as well since it may cause blur.
                 }
 
                 wrapper.css(POSITION);
@@ -294,24 +292,40 @@ var __meta__ = {
                     wrapper.css(TOP, "-10000px");
                 }
 
+                if (fixed.isFixed) {
+                    element.css("margin", "0");
+                } else {
+                    element.css("margin", "");
+                }
+
                 that.flipped = that._position(fixed);
                 animation = that._openAnimation();
 
-                if (options.anchor != BODY) {
-                    that._showDirClass(animation);
+                if (options.anchor != BODY && !that.element.hasClass("k-tooltip")) {
+                    that._addActiveClass();
                 }
 
-                if (!element.is(":visible") && element.data("olddisplay") === undefined) {
-                    element.show();
-                    element.data("olddisplay", element.css("display"));
-                    element.hide();
-                }
+                parent.hide();
+                element.show();
+                that.wrapper.show();
 
-                element.data(EFFECTS, animation.effects)
+                parent.data(EFFECTS, animation.effects)
                        .kendoStop(true)
-                       .kendoAnimate(animation)
-                       .attr("aria-hidden", false);
+                       .kendoAnimate(animation);
             }
+        },
+
+        _updateDimensions: function() {
+            const that = this;
+            const shouldCorrectWidth = that._shouldCorrectWidth;
+            const element = that.element;
+            const options = that.options;
+
+            that.wrapper = kendo.wrap(element, options.autosize, options._resizeOnWrap, shouldCorrectWidth, options.autowidth)
+            .css({
+                display: "block",
+                position: ABSOLUTE
+            });
         },
 
         _location: function(isFixed) {
@@ -364,38 +378,24 @@ var __meta__ = {
             return animation;
         },
 
-        _hideDirClass: function() {
+        _hideActiveClass: function() {
             var anchor = $(this.options.anchor);
-            var direction = ((anchor.attr("class") || "").match(ACTIVEBORDERREGEXP) || ["", "down"])[1];
-            var dirClass = ACTIVEBORDER + "-" + direction;
-
             anchor
-                .removeClass(dirClass)
                 .children(ACTIVECHILDREN)
-                .removeClass(ACTIVE)
-                .removeClass(dirClass);
+                .removeClass(ACTIVE);
 
-            this.element.removeClass(ACTIVEBORDER + "-" + kendo.directions[direction].reverse);
         },
 
-        _showDirClass: function(animation) {
-            var direction = animation.effects.slideIn ? animation.effects.slideIn.direction : "down";
-            var dirClass = ACTIVEBORDER + "-" + direction;
-
+        _addActiveClass: function() {
             $(this.options.anchor)
-                .addClass(dirClass)
                 .children(ACTIVECHILDREN)
-                .addClass(ACTIVE)
-                .addClass(dirClass);
-
-            this.element.addClass(ACTIVEBORDER + "-" + kendo.directions[direction].reverse);
+                .addClass(ACTIVE);
         },
 
         position: function() {
             if (this.visible()) {
+                this._updateDimensions();
                 this.flipped = this._position();
-                //this._hideDirClass();
-                //this._showDirClass(this._openAnimation());
             }
         },
 
@@ -406,11 +406,12 @@ var __meta__ = {
         },
 
         visible: function() {
-            return this.element.is(":" + VISIBLE);
+            return this.wrapper.is(":" + VISIBLE) && this.element.is(":" + VISIBLE);
         },
 
         close: function(skipEffects) {
             var that = this,
+                parent = that.element.parent(),
                 options = that.options, wrap,
                 animation, openEffects, closeEffects;
 
@@ -419,10 +420,12 @@ var __meta__ = {
 
                 that._toggleResize(false);
 
-                if (that._closing || that._trigger(CLOSE)) {
+                if (!skipEffects && that._closing || that._trigger(CLOSE)) {
                     that._toggleResize(true);
                     return;
                 }
+
+                that.wrapper.removeClass("k-animation-container-shown");
 
                 // Close all inclusive popups.
                 that.element.find(".k-popup").each(function() {
@@ -440,7 +443,7 @@ var __meta__ = {
                     animation = { hide: true, effects: {} };
                 } else {
                     animation = extend(true, {}, options.animation.close);
-                    openEffects = that.element.data(EFFECTS);
+                    openEffects = parent.data(EFFECTS);
                     closeEffects = animation.effects;
 
                     if (!closeEffects && !kendo.size(closeEffects) && openEffects && kendo.size(openEffects)) {
@@ -451,13 +454,11 @@ var __meta__ = {
                     that._closing = true;
                 }
 
-                that.element
-                        .kendoStop(true)
-                        .attr("aria-hidden", true);
+                parent.kendoStop(true);
                 wrap
-                    .css({ overflow: HIDDEN }) // stop callback will remove hidden overflow
-                    .attr("aria-hidden", true);
-                that.element.kendoAnimate(animation);
+                    .css({ overflow: HIDDEN }); // stop callback will remove hidden overflow
+
+                parent.kendoAnimate(animation);
 
                 if (skipEffects) {
                     that._animationClose();
@@ -479,7 +480,7 @@ var __meta__ = {
                     that._resizeTimeout = null;
                 }, 50);
             } else {
-                if (!that._hovered || (that._activated && that.element.find(".k-list").length > 0)) {
+                if (!that._hovered || (that._activated && that.element.find(".k-list:visible").length > 0)) {
                     that.close();
                 }
             }
@@ -553,7 +554,15 @@ var __meta__ = {
                 }
 
                 if (offset + output < 0) {
-                    output += anchorSize + size;
+                    if (this.options.smartFlip) {
+                        var overflowBelow = offset + boxSize - viewPortSize;
+                        var overflowAbove = -(offset + output);
+                        if (overflowAbove >= overflowBelow) {
+                            output += anchorSize + size;
+                        }
+                    } else {
+                        output += anchorSize + size;
+                    }
                 }
             }
             return output;
@@ -639,7 +648,7 @@ var __meta__ = {
 
             var pos = getOffset(wrapper, POSITION, anchor[0] === wrapper.offsetParent()[0]),
                 offset = getOffset(wrapper),
-                anchorParent = anchor.offsetParent().parent(".k-animation-container,.k-popup,.k-group"); // If the parent is positioned, get the current positions
+                anchorParent = anchor.offsetParent().parent(".k-animation-container,.k-popup,.k-group,.k-menu-group"); // If the parent is positioned, get the current positions
 
             if (anchorParent.length) {
                 pos = getOffset(wrapper, POSITION, true);
@@ -681,7 +690,6 @@ var __meta__ = {
                 location.left += that._flip(offsets.left, outerWidth(element), outerWidth(anchor), viewportWidth / zoomLevel, origins[1], positions[1], outerWidth(wrapper));
             }
 
-            element.css(POSITION, ABSOLUTE);
             wrapper.css(location);
 
             return (location.left != flipPos.left || location.top != flipPos.top);
@@ -698,8 +706,8 @@ var __meta__ = {
                 anchorOffset = getOffset(anchor),
                 appendTo = $(that.options.appendTo),
                 appendToOffset,
-                width = outerWidth(element),
-                height = outerHeight(element) || outerHeight(element.children().first()),
+                width = outerWidth(element) || outerWidth(element.find(".k-child-animation-container").children().first()),
+                height = outerHeight(element) || outerHeight(element.find(".k-child-animation-container").children().first()),
                 anchorWidth = outerWidth(anchor),
                 anchorHeight = outerHeight(anchor),
                 top = that.options.omitOriginOffsets ? 0 : anchorOffset.top,
@@ -758,7 +766,7 @@ var __meta__ = {
     var tabKeyTrapNS = "kendoTabKeyTrap";
     var focusableNodesSelector = "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex], *[contenteditable]";
     var TabKeyTrap = Class.extend({
-        init: function(element) {
+        init: function(element, options) {
             this.element = $(element);
             this.element.autoApplyNS(tabKeyTrapNS);
         },
@@ -789,7 +797,9 @@ var __meta__ = {
             var sortedElements = this._sortFocusableElements(elements);
             var next = this._nextFocusable(e, sortedElements);
 
-            this._focus(next);
+            if (next) {
+                this._focus(next);
+            }
 
             e.preventDefault();
         },
@@ -799,7 +809,7 @@ var __meta__ = {
             });
 
             if (this.element.is("[tabindex]")) {
-                elements.push(this.element[0]);
+                [].push.call(elements, this.element[0]);
             }
 
             return elements;
@@ -808,7 +818,7 @@ var __meta__ = {
             var sortedElements;
 
             if (stableSort) {
-                sortedElements = elements.sort(function(prev, next) {
+                sortedElements = [].sort.call(elements, function(prev, next) {
                     return prev.tabIndex - next.tabIndex;
                 });
             } else {
@@ -817,7 +827,7 @@ var __meta__ = {
                     item.setAttribute(attrName, i);
                 });
 
-                sortedElements = elements.sort(function(prev, next) {
+                sortedElements = [].sort.call(elements, function(prev, next) {
                     return prev.tabIndex === next.tabIndex ?
                         parseInt(prev.getAttribute(attrName), 10) - parseInt(next.getAttribute(attrName), 10) :
                         prev.tabIndex - next.tabIndex;
@@ -856,8 +866,6 @@ var __meta__ = {
     });
     ui.Popup.TabKeyTrap = TabKeyTrap;
 })(window.kendo.jQuery);
+export default kendo;
 
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

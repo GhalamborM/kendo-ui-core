@@ -1,8 +1,7 @@
-(function(f, define) {
-    define([ "./kendo.core", "./kendo.userevents" ], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.userevents.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "touch",
     name: "Touch",
     category: "mobile",
@@ -63,7 +62,8 @@ var __meta__ = {
             }
 
             kendo.notify(that);
-        },
+            Widget.fn.endInit.call(that);
+},
 
         events: [
             "touchstart",
@@ -163,7 +163,5 @@ var __meta__ = {
 
     kendo.ui.plugin(Touch);
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

@@ -2,8 +2,9 @@
 title: Items
 page_title: Items
 description: "Get started with the Telerik UI Form component for {{ site.framework }} and learn how to configure items."
+components: ["form"]
 slug: htmlhelpers_form_aspnetcore_items
-position: 2
+position: 3
 ---
 
 # Items
@@ -38,7 +39,7 @@ The following example shows how to set the `Label` of an item. Enabling the `Opt
 ```
 {% if site.core %}
 ```TagHelper
-    <kendo-form name="exampleForm" form-data="@Model" method="POST" asp-action="Items">
+    <kendo-form name="exampleForm" form-data="@Model" method="POST" action="Items">
         <validatable validate-on-blur="true" validation-summary="true" />
         <form-items>
             <form-item type="group">
@@ -58,6 +59,15 @@ The following example shows how to set the `Label` of an item. Enabling the `Opt
     </kendo-form>
 ```
 {% endif %}
+
+## Default Value for Label and Title
+
+It is possible to set the (Name Data Annotation)[https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.displayattribute.name?view=net-7.0] of the Field directly in the Model and then it will be automatically set in the Form as the default Label and Title of the Item:
+
+```C#
+        [Display(Name = "User Name")]  
+        public string FirstName { get; set; }  
+```
 
 ## Configure Hint
 
@@ -84,7 +94,7 @@ The following example shows how to set the `Hint` of an item. The hint is displa
 ```
 {% if site.core %}
 ```TagHelper
-    <kendo-form name="exampleForm" form-data="@Model" method="POST" asp-action="Items">
+    <kendo-form name="exampleForm" form-data="@Model" method="POST" action="Items">
         <validatable validate-on-blur="true" validation-summary="true" />
         <form-items>
                 <form-items>
@@ -100,7 +110,7 @@ The following example shows how to set the `Hint` of an item. The hint is displa
 
 ## Configure Editor
 
-With the `Editor` option you can explicitly configure an editor to be used for a specific field. See the [editor](https://docs.telerik.com/kendo-ui/api/javascript/ui/form/configuration/items#itemseditor) configuration option in the client-side API documentation, for a list of the supported editors.
+With the `Editor` option you can explicitly configure an editor to be used for a specific field. See the [editor](https://docs.telerik.com/kendo-ui/api/ui/form/configuration/items#itemseditor) configuration option in the client-side API documentation, for a list of the supported editors.
 
 ```HtmlHelper
     @(Html.Kendo().Form<MyApplication.Models.FormItemsViewModels>()
@@ -175,7 +185,7 @@ With the `Editor` option you can explicitly configure an editor to be used for a
 ```
 {% if site.core %}
 ```TagHelper
-    <kendo-form name="exampleForm" form-data="@Model" method="POST" asp-action="Items"  >
+    <kendo-form name="exampleForm" form-data="@Model" method="POST" action="Items"  >
         <validatable validate-on-blur="true" validation-summary="true" />
         <form-items>
             <form-item type="group">
@@ -268,6 +278,25 @@ You can implement custom editor by using the editor option as a function as foll
     }
     </script>
 ```
+{% if site.core %}
+```TagHelper
+    <kendo-form name="formExample" method="POST" action="Index">
+        <form-items>
+            <form-item field="Description" editor-handler="customTextareaEditor">
+                <item-label text="Description:" />
+            </form-item>  
+        </form-items>
+    </kendo-form>
+
+    <script>
+        function customTextareaEditor(container, options) {
+            $('<textarea class="k-textarea" data-bind="value: ' + options.field + '" name="' + options.field + '"/>')
+                .appendTo(container);
+        }
+    </script>
+```
+{% endif %}
+
 
 ## See Also
 

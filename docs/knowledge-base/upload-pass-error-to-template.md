@@ -1,12 +1,12 @@
 ---
 title: Display Validation Error Message in the Upload File Template
-description: An example on how to display the message from the validation error in a custom file template of a Kendo UI Upload.
+description: Learn how to display the message from the validation error in a custom file template of a Kendo UI Upload.
 type: how-to
-page_title: Pass Error Message to the File Template | Kendo UI Upload for jQuery
+page_title: Pass Error Message to the File Template - Kendo UI Upload for jQuery
 slug: upload-pass-error-to-template
 tags: kendo,upload,error,file-template,template
 res_type: kb
-component: upload
+components: ["upload"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: upload
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Upload</td>
+  <td>Progress® Kendo UI® Upload for jQuery</td>
  </tr>
 </table>
 
@@ -88,5 +88,5 @@ How can I pass the message from a validation error to the custom file template o
 
 ## See Also
 
-* [API Reference of the Upload](https://docs.telerik.com/kendo-ui/api/javascript/ui/upload)
+* [API Reference of the Upload](https://docs.telerik.com/kendo-ui/api/ui/upload)
 * [Validation Demo of the Upload](https://demos.telerik.com/kendo-ui/upload/validation)

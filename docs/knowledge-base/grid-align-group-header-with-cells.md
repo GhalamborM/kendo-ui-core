@@ -1,12 +1,13 @@
 ---
 title: Show Multiple Aggregates in Separate Cells in Grid Group Header
-description: An example on how to show multiple aggregates in the group header of a Kendo UI Grid and align them with the Grid columns.
+description: Learn how to show multiple aggregates in the group header of a Kendo UI Grid and align them with the Grid columns.
 type: how-to
-page_title: Align Group Header Template with Columns | Kendo UI Grid for jQuery
+page_title: Align Group Header Template with Columns - Kendo UI for jQuery Data Grid
 slug: grid-align-group-header-cells
 tags: grid, grouping, aggregates, template
 ticketid: 1142332
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
 </table>
 
@@ -27,7 +28,7 @@ How can I:
 
 ## Solution
 
-Access all available aggregates by using the `aggregates` field in the [`groupHeaderTemplate`](/api/javascript/ui/grid/configuration/columns.groupheadertemplate).
+Access all available aggregates by using the `aggregates` field in the [`groupHeaderTemplate`](/api/ui/grid/configuration/columns#columnsgroupheadertemplate).
 
 To display the different aggregates in separate cells that are aligned with the columns:
 

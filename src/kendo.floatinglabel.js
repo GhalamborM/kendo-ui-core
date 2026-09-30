@@ -1,8 +1,6 @@
-(function(f, define) {
-    define(["./kendo.core"], f);
-})(function() {
+import "./kendo.core.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "floatinglabel",
     name: "FloatingLabel",
     category: "framework",
@@ -16,11 +14,14 @@ var __meta__ = {
         ui = kendo.ui,
         NS = ".kendoFloatingLabel",
         FLOATINGLABELCONTAINER = "k-floating-label-container",
-        EMPTY = "k-state-empty",
+        EMPTY = "k-empty",
         FOCUSED = "k-focus",
         STATEDISABLED = "k-disabled",
-        NOCLICKCLASS = "k-no-click",
-        STATEREADONLY = "k-readonly";
+        STATEREADONLY = "k-readonly",
+        FLOATINGLABEL_OFFSET_Y = "--kendo-floating-label-offset-y",
+        FLOATINGLABEL_OFFSET_X = "--kendo-floating-label-offset-x",
+        FLOATINGLABEL_FOCUS_OFFSET_Y = "--kendo-floating-label-focus-offset-y",
+        FLOATINGLABEL_FOCUS_OFFSET_X = "--kendo-floating-label-focus-offset-x";
 
     var FloatingLabel = Widget.extend({
         init: function(element, options) {
@@ -29,21 +30,30 @@ var __meta__ = {
             Widget.fn.init.call(that, element, options);
             options = $.extend(true, {}, options);
 
+            that.widget = that.options.widget;
+            that.widgetWrapper = that.widget.wrapper[0];
+
             that.refresh();
             that._editable({
                 readonly: that.options.widget.options.readonly !== undefined ? that.options.widget.options.readonly : false,
                 disable: that.options.widget.options.enable !== undefined ? !(that.options.widget.options.enable) : false
             });
 
+            if (that.widgetWrapper.style.width) {
+                that.element.css("width", that.widgetWrapper.style.width);
+                that.widgetWrapper.style.width = "100%";
+            }
+
             that.element.addClass(FLOATINGLABELCONTAINER);
 
             kendo.notify(that);
-        },
+            Widget.fn.endInit.call(that);
+},
 
         options: {
             name: 'FloatingLabel',
             widget: null,
-            useReadOnlyClass: false
+            floatCheck: ({ element }) => !element.val()
         },
 
         readonly: function(readonly) {
@@ -63,17 +73,26 @@ var __meta__ = {
         refresh: function() {
             var that = this;
             var element = that.element;
+            var inputInner = that.options.widget.wrapper.find(".k-input-inner");
+            if (inputInner.length > 0) {
+                var labelHeight = that.element.find("> .k-floating-label").height();
+                var offsetX = inputInner.position().left + Number.parseInt(inputInner.css('padding-left'));
+                var offsetY = inputInner.position().top + Number.parseInt(inputInner.css('padding-top')) + labelHeight;
+                element[0].style.setProperty(FLOATINGLABEL_OFFSET_X, offsetX + "px");
+                element[0].style.setProperty(FLOATINGLABEL_OFFSET_Y, offsetY + "px");
+            }
 
             element
                 .removeClass(EMPTY)
                 .removeClass(FOCUSED);
 
-
-            if (!that.options.widget.element.val()) {
+            if (that.options.floatCheck({ element: that.options.widget.element, floating: that.element })) {
                 element.addClass(EMPTY);
             }
 
-            if (document.activeElement === that.options.widget.element[0]) {
+            if (document.activeElement === that.options.widget.element[0]
+                || (that.options.widget.input && document.activeElement === that.options.widget.input[0])) {
+
                 element.addClass(FOCUSED);
             }
         },
@@ -96,20 +115,18 @@ var __meta__ = {
             if (!readonly && !disable) {
                 element
                     .removeClass(STATEDISABLED)
-                    .removeClass(that.options.useReadOnlyClass ? STATEREADONLY : NOCLICKCLASS);
+                    .removeClass(STATEREADONLY);
 
                 element.on("focusin" + NS, that.refresh.bind(that));
                 element.on("focusout" + NS, that.refresh.bind(that));
             } else {
                 element
                     .toggleClass(STATEDISABLED, disable)
-                    .toggleClass(that.options.useReadOnlyClass ? STATEREADONLY : NOCLICKCLASS, readonly);
+                    .toggleClass(STATEREADONLY, readonly);
             }
         }
     });
     ui.plugin(FloatingLabel);
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

@@ -1,12 +1,13 @@
 ---
 title: Use AngularJS ng-click in ListBox Template 
-description: An example on how to use use AngularJS directive in the jQuery template of the Kendo UI ListBox items.
+description: Learn how to use use AngularJS directive in the jQuery template of the Kendo UI ListBox items.
 type: how-to
-page_title: Use ng-click in jQuery template | Kendo UI ListBox for jQuery
+page_title: Use ng-click in jQuery template - Kendo UI ListBox for jQuery
 slug: listbox-use-angular-ng-click
 tags: listbox, angularjs, ng-click, angular, template, directive, jQuery, compile
 ticketid: 1146854
 res_type: kb
+components: ["listbox"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ListBox</td>
+  <td>Progress® Kendo UI® ListBox for jQuery</td>
  </tr>
  <tr>
   <td>Created with version</td>
@@ -22,6 +23,7 @@ res_type: kb
  </tr>
 </table>
 
+> Starting with R2 2022, the Kendo UI team officially drops the support for AngularJS 1.x through Kendo UI for jQuery. The AngularJS related files and functionality are removed from the bundles and distribution in R3 SP1 2023. The last version that contains the files is R3 2023.
 
 ## Description
 
@@ -35,8 +37,8 @@ It is possible to use AngularJS directive in the jQuery template if we compile i
 
 Here are the important steps:
 
-1. Add an event handler to the [`dataBound`](/api/javascript/ui/listbox/events/databound) event of the first ListBox(the one which has a dataSource).
-1. Add an event handler to both of the ListBoxes [`add`](/api/javascript/ui/listbox/events/add) events.
+1. Add an event handler to the [`dataBound`](/api/ui/listbox/events/databound) event of the first ListBox(the one which has a dataSource).
+1. Add an event handler to both of the ListBoxes [`add`](/api/ui/listbox/events/add) events.
 1. Pass the function to the handlers above using a `$timeout`  because the `add` event is triggered before the item is actually added in which the compilation occurs:
 
 ```
@@ -53,7 +55,12 @@ Here are the important steps:
     }
 ```
 
+> The example loads Kendo UI 2023.3.1010 version.
+
 ```dojo
+	  <script src="https://kendo.cdn.telerik.com/2023.3.1010/js/angular.min.js"></script>
+	  <script src="https://kendo.cdn.telerik.com/2023.3.1010/js/kendo.all.min.js"></script>
+
     <div id="example" ng-app="KendoDemos">
       <h2>Compile AngularJS directives in jQuery template</h2>
       <p style="color: #fff;background-color: #ff4350;width:460px;font-size:20px;">Click the Image in the template to trigger "ng-Click"</p>
@@ -103,8 +110,7 @@ Here are the important steps:
           dataSource: {
             transport: {
               read: {
-                dataType: "jsonp",
-                url: "https://demos.telerik.com/kendo-ui/service/Customers",
+                url: "https://demos.telerik.com/service/v2/core/Customers",
               }
             }
           },

@@ -1,12 +1,13 @@
 ---
 title: Apply Gradient Effect on Area Chart
-page_title: Apply Gradient Color | Kendo UI Chart for jQuery
-description: An example on how to apply a gradient color effect to the Kendo UI Area Chart.
+page_title: Apply Gradient Color - Kendo UI Chart for jQuery
+description: Learn how to apply a gradient color effect to the Kendo UI Area Chart.
 type: how-to
 slug: chart-area-gradient-effect
 tags: chart, area, gradient, effect, color
 ticketid: 1158735
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Chart for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Chart for jQuery</td>
 	</tr>
 </table>
 
@@ -29,7 +30,7 @@ How can I apply a gradient color effect on the Kendo UI Area Chart?
 ## Solution
 
 1. Use an external gradient.
-1. Use the [`series.color`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/series.color) configuration to set the external gradient.
+1. Use the [`series.color`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/series#seriescolor) configuration to set the external gradient.
 
 ```dojo
 <div style="height: 0">

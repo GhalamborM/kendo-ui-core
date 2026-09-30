@@ -1,13 +1,13 @@
 ---
 title: Transfer Grid Rows by Using the Sortable
 page_title: Transfer Grid Rows by Using the Sortable
-description: "Learn how to move a row from one Grid to another using the Kendo UI Sortable widget."
+description: "Learn how to move a row from one Grid to another using the Kendo UI Sortable component."
 slug: howto_transfergridrows_sortable
 previous_url: /controls/interactivity/sortable/how-to/transfer-grid-rows
 tags: telerik, kendo, jquery, sortable, transfer, grid, rows
-component: sortable
 type: how-to
 res_type: kb
+components: ["sortable"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Sortable for jQuery</td>
+  <td>Progress® Kendo UI® Sortable for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -135,4 +135,4 @@ The following example demonstrates how to achieve the desired scenario. Reorderi
 ## See Also
 
 * [Basic Usage of the Sortable (Demo)](https://demos.telerik.com/kendo-ui/sortable/index)
-* [JavaScript API Reference of the Sortable](/api/javascript/ui/sortable)
+* [JavaScript API Reference of the Sortable](/api/ui/sortable)

@@ -2,6 +2,7 @@
 title: Installing with NPM
 page_title: Installing with NPM
 description: "Get started with {{ site.product }} and install NPM packages of the helpers."
+components: ["general"]
 previous_url: /getting-started/installation/npm
 slug: npmpackages_core
 position: 9
@@ -130,6 +131,4 @@ This section provides solutions for common issues you might encounter while inst
 * [Including Client-Side Resources]({% slug copyclientresources_aspnetmvc6_aspnetmvc %})
 * [Installing Telerik UI for ASP.NET Core by Using the CDN Services]({% slug cdnservices_core %})
 * [Installing Telerik UI for ASP.NET Core with NuGet]({% slug nuget_install_aspnetmvc6_aspnetmvc %})
-* [First Steps on Visual Studio for Windows (Online Guide)]({% slug gettingstarted_aspnetmvc6_aspnetmvc %})
-* [First Steps on Visual Studio for Mac (Online Guide)]({% slug gettingstarted_firststeps_vsmac %})
-* [First Steps with CLI (Online Guide)]({% slug gettingstartedcli_aspnetmvc6_aspnetmvc %})
+* [Quick Start]({% slug gettingstartedtelerik_aspnetcore %})

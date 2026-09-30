@@ -1,12 +1,13 @@
 ---
 title: Toggle CheckBox Selection for All TreeView Nodes
-description: An example on how to programmatically check and uncheck all Kendo UI TreeView checkbox nodes.
+description: Learn how to programmatically check and uncheck all Kendo UI TreeView checkbox nodes.
 type: how-to
-page_title: Check or Uncheck All Node CheckBoxes | Kendo UI TreeView for jQuery
+page_title: Check or Uncheck All Node CheckBoxes - Kendo UI TreeView for jQuery
 slug: treeview-uncheck-check-all-nodes
 tags: treeview, uncheck, check, all, nodes
 ticketid: 1083489
 res_type: kb
+components: ["treeview"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>TreeView for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® TreeView for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -28,7 +29,7 @@ How can I check and uncheck all checkboxes for all nodes in a Kendo UI TreeView 
 
 ## Solution
 
-Use the jQuery library and trigger the [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/treeview/events/change) event.  
+Use the jQuery library and trigger the [`change`](https://docs.telerik.com/kendo-ui/api/ui/treeview/events/change) event.  
 
 ```
 //Uncheck All Nodes

@@ -1,13 +1,13 @@
 ---
 title: Pan when dragging shapes in Diagram
-description: An example on how to pan the viewport when dragging shapes in the Kendo UI Diagram.
+description: Learn how to pan the viewport when dragging shapes in the Kendo UI Diagram.
 type: how-to
-page_title: Pan viewport when dragging past boundary | Kendo UI Diagram for jQuery
+page_title: Pan viewport when dragging past boundary - Kendo UI Diagram for jQuery
 slug: diagram-pan-viewport-on-drag
 tags: diagram, pan, shapes, auto, move, drag, dragging, view, viewport
 ticketid: 1148503
 res_type: kb
-component: diagram
+components: ["diagram"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: diagram
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Diagram</td>
+  <td>Progress® Kendo UI® Diagram for jQuery</td>
  </tr>
  <tr>
   <td>Created with Version</td>
@@ -30,7 +30,7 @@ I have a large diagram that I would like to pan the viewport when a user drags a
 
 ## Solution
 
-1. Add a handler to the [`drag`](/api/javascript/dataviz/ui/diagram/events/drag) event
+1. Add a handler to the [`drag`](/api/dataviz/ui/diagram/events/drag) event
 1. Use the current pan and add the new point dependent on the direction in which the dragging is taking place
 
   	```

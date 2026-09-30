@@ -2,6 +2,7 @@
 title: CRUD Operations
 page_title: DataSource CRUD
 description: "Learn how to define the CRUD options in the DataSource component for {{ site.framework }}."
+components: ["datasource"]
 slug: htmlhelper_datasourcecrud
 ---
 
@@ -161,7 +162,7 @@ The `Destroy` method sets the action method which is responsible for destroying 
 
 ## Batch Operation
 
-The `Batch` method configures the batch `create`, `update` and `destroy` operations. This means that all changes are kept on the client until a data source [`sync()`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/sync) occurs either programmatically or via a `Save Changes` button click in the grid for example. By default, the batch operations are disabled.
+The `Batch` method configures the batch `create`, `update` and `destroy` operations. This means that all changes are kept on the client until a data source [`sync()`](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/sync) occurs either programmatically or via a `Save Changes` button click in the grid for example. By default, the batch operations are disabled.
 
 ```HtmlHelper
     @(Html.Kendo().DataSource<ProductViewModel>()

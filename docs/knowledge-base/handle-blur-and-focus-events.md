@@ -5,9 +5,9 @@ description: "Learn how to handle the blur and the focus events of a Kendo UI Ed
 previous_url: /controls/editors/editor/how-to/handle-blur-and-focus-events, /controls/editors/editor/how-to/appearance/handle-blur-and-focus-events
 slug: howto_handleblurandfocusevents_editor
 tags: telerik, kendo, jquery, editor, handle, blur, focus, events
-component: editor
 type: how-to
 res_type: kb
+components: ["editor"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Editor for jQuery</td>
+  <td>Progress® Kendo UI® Editor for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -67,4 +67,4 @@ The following example demonstrates how to handle the `blur` and the `focus` even
 
 * [Basic Usage of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/index)
 * [Using the API of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/api)
-* [JavaScript API Reference of the Editor](/api/javascript/ui/editor)
+* [JavaScript API Reference of the Editor](/api/ui/editor)

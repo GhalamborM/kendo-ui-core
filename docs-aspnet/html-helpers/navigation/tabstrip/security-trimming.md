@@ -2,6 +2,7 @@
 title: Security Trimming
 page_title: Security Trimming
 description: "Use the built-in security trimming functionality of the Telerik UI TabStrip HtmlHelper for ASP.NET MVC."
+components: ["tabstrip"]
 previous_url: /helpers/navigation/tabstrip/security-trimming
 slug: securitytrimming_tabstrip_aspnetmvc
 position: 5
@@ -24,5 +25,5 @@ For more information on using a custom `AuthorizeAttribute`, refer to [this arti
 
 * [Basic Usage of the TabStrip HtmlHelper for ASP.NET MVC (Demo)](https://demos.telerik.com/aspnet-mvc/tabstrip)
 * [Using the API of the TabStrip HtmlHelper for ASP.NET MVC (Demo)](https://demos.telerik.com/aspnet-mvc/tabstrip/api)
-* [TabStripBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/TabStripBuilder)
+* [TabStripBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/tabstripbuilder)
 * [TabStrip Server-Side API](/api/tabstrip)

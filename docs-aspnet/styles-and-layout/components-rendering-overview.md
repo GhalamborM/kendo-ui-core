@@ -1,12 +1,16 @@
 ---
-title: Overview
+title: Components Rendering
 page_title: Components Rendering Overview
 description: "Learn about the rendering of the {{ site.product }} components and their appearance options."
+components: ["general"]
 slug: components_rendering_overview
 position: 0
 ---
 
-# Components Rendering Overview
+# Components Rendering
+
+> * R1 2023 is the last official release of Telerik UI for {{ site.framework }}, where LESS Themes are supported and shipped with the product.
+> * With the upcoming R3 2023 release in September, the fonts will no longer be delivered with the Telerik and Kendo UI themes. To continue using the font icons, you must add a separate CDN reference to the font icons stylesheet.
 
 The R1 2022 release introduces new rendering for several components. In the long run, we will make similar rendering improvements to most of the UI components in the suite. These are breaking changes that affect both the SASS and the LESS-based themes.
 
@@ -17,7 +21,7 @@ The R1 2022 release introduces new rendering for several components. In the long
 - [List of Updated Components](#updated-components)
 - [Migrating from LESS Themes](#less-themes-migration)
 - [CSS Classes Migration](#css-classes-migration)
-- [JQuery Selectors Migration](#jquery-selectors-migration)
+- [jQuery Selectors Migration](#jquery-selectors-migration)
 
 
 ## What is the Reason Behind These Changes?
@@ -32,7 +36,7 @@ We use a set of CSS classes and depending on the value of the corresponding styl
 
 In the old rendering styling was applied through a single class with a `k-` prefix, for example `k-button`. The new rendering has a separate CSS class for each styling property.
 
-The new rendering of the components supports several common options on a component level:
+The new rendering of the affected components supports several common options on a component level:
 
 - [`ThemeColor`](#theme-color)
 - [`Size`](#size)
@@ -40,9 +44,11 @@ The new rendering of the components supports several common options on a compone
 - [`Rounded`](#rounded)
 - [`FillMode`](#fill-mode)
 
-Each component has its own appearance documentation article with information about the supported options and their values.
+Each updated component has its own appearance documentation article with information about the supported options and their values.
 
-For a list of all the updated components and their respective articles, see the [Updated Components](#updated-components) section.
+For a list of all the updated components which are affected by this change and their corresponding articles, see the [Updated Components](#updated-components) section.
+
+There is no single universal list of supported CSS classes for every component. Use the appearance documentation for the component you are styling to find its rendered classes and supported styling options. For application-specific selectors, prefer the component's custom class options and place your overrides after the Kendo UI theme styles. For icon classes, refer to the [font icons](https://docs.telerik.com/{{ site.platform }}/styles-and-layout/sass-themes/font-icons) and [SVG icons](https://docs.telerik.com/{{ site.platform }}/styles-and-layout/sass-themes/svg-icons) documentation.
 
 ### Theme Color
 
@@ -51,14 +57,14 @@ The `ThemeColor` property controls the color used to style the component. The pr
 The following example shows how a Button with `Solid` fill mode and `Base` theme color is rendered:
 
 ```html
-<button type="button" class="k-button k-button-solid k-button-solid-base">
+<button type="button" class="k-button">
     <span class="k-button-text">Text</span>
 </button>
 ```
 
 The following image demonstrates the result of applying the different `ThemeColor` values to a button:
 
-![{{ site.product_short }} Theme Color Option Image](images/theme-color-option.png)
+![{{ site.product_short }} Button Theme Color Option](images/theme-color-option.png)
 
 For more information about the available `ThemeColor` values, visit the [Appearance documentation](#updated-components) of the respective component.
 
@@ -84,7 +90,7 @@ The following example shows the rendering of a Button with large size (`lg`):
 
 The following image demonstrates the appearance of a Button, with different `Size` values applied:
 
-![{{ site.product_short }} Size Option Image](images/size-option.png)
+![{{ site.product_short }} Button Size Option](images/size-option.png)
 
 For more information about the available `Size` values, visit the [Appearance documentation](#updated-components) of the respective component.
 
@@ -95,7 +101,7 @@ The `Shape` property controls the shape of the component. The structure of the C
 The following example shows a Badge with `rectangle` shape:
 
 ```html
-<span class="k-badge k-badge-solid k-badge-primary k-badge-md k-badge-rectangle k-badge-inline">2</span>
+<span class="k-badge k-badge-primary k-badge-rectangle k-badge-inline">2</span>
 ```
 
 For more information about the available `Shape` option values, visit the [Appearance documentation](#updated-components) of the respective component.
@@ -122,7 +128,7 @@ The following example shows the rendering of a Button with large border radius (
 
 The following image demonstrates the appearance of a Button, with different `Rounded` values applied:
 
-![{{ site.product_short }} Rounded Option Image](images/rounded-option.png)
+![{{ site.product_short }} Button Rounded Option](images/rounded-option.png)
 
 For more information about the available `Rounded` option values, visit the [Appearance documentation](#updated-components) of the respective component.
 
@@ -133,14 +139,14 @@ The `FillMode` property controls how the color is applied to the component. The 
 The following example shows a Button with a `Solid` fill mode:
 
 ```html
-<button type="button" class="k-button k-button-solid">
+<button type="button" class="k-button">
     <span class="k-button-text">Text</span>
 </button>
 ```
 
 The following image demonstrates the appearance of a Button, with different `FillMode` values applied:
 
-![{{ site.product_short }} Fill Mode Option Image](images/fill-mode-option.png)
+![{{ site.product_short }} Button Fill Mode Option](images/fill-mode-option.png)
 
 For more information about the available `FillMode` option values, visit the [Appearance documentation](#updated-components) of the respective component.
 
@@ -188,11 +194,14 @@ The following table shows the old and the updated versions of the state classes:
 | `DateTimePicker` | [DateTimePicker Appearance Documentation]({% slug appearance_datetimepicker_aspnetcore %})
 | `DropDownList` | [DropDownList Appearance Documentation]({% slug appearance_dropdownlist_aspnetcore %})
 | `DropDownTree` | [DropDownTree Appearance Documentation]({% slug appearance_dropdowntree %})
+| `FloatingActionButton` | [FloatingActionButton Appearance Documentation]({% slug htmlhelpers_appearance_floatingactionbutton_aspnetcore %})
 | `MaskedTextBox` | [MaskedTextBox Appearance Documentation]({% slug appearance_maskedtextbox %})
+| `Menu` | [Menu Appearance Documentation]({% slug appearance_menu %})
 | `MultiColumnComboBox` | [MultiColumnComboBox Appearance Documentation]({% slug appearance_multicolumncombobox %})
 | `MultiSelect` | [MultiSelect Appearance Documentation]({% slug appearance_multiselect %})
 | `NumericTextBox` | [NumericTextBox Appearance Documentation]({% slug numerictextbox_appearance %})
 | `RadioButton` | [RadioButton Appearance Documentation]({% slug radiobutton_appearance %})
+| `Slider` | [Slider Appearance Documentation]({% slug slider_appearance %})
 | `Switch` | [Switch Appearance Documentation]({% slug switch_appearance %})
 | `TextArea` | [TextArea Appearance Documentation]({% slug textarea_appearance %})
 | `TextBox` | [TextBox Appearance Documentation]({% slug textbox_appearance %})
@@ -201,7 +210,8 @@ The following table shows the old and the updated versions of the state classes:
 
 ## LESS Themes Migration
 
-> The LESS themes will be deprecated with the R1 2023 release.
+> R1 2023 is the last official release of Telerik UI for {{ site.framework }}, where LESS Themes are supported and shipped with the product.
+
 
 This section concerns developers who use the original LESS-based themes and have not migrated to the SASS-based themes yet.
 
@@ -250,7 +260,7 @@ Example of the old Button rendering:
 Example of the new Button rendering:
 
 ```html
-<button class="k-button k-button-solid k-button-md k-rounded-md k-button-solid-base">
+<button class="k-button">
     <span class="k-button-icon k-icon k-i-folder"></span>
     <span class="k-button-text">Button</span>
 </button>
@@ -260,7 +270,7 @@ As demonstrated in the examples above, the `k-button-icontext` class is no longe
 
 ### How Can I Update the Reference to Target the Element In the New Rendering?
 
-The easiest way to solve the [issue with missing classes](#how-do-i-know-if-i-have-overriden-a-class-name) is to update the selectors of the CSS rules that target a  specific element.
+The easiest way to solve the [issue with missing classes](#how-do-i-know-if-i-have-overridden-a-class-name) is to update the selectors of the CSS rules that target a  specific element.
 
 The following example shows a CSS rule that uses an old class selector `k-button-icontext`, which does not exist in the new rendering:
 
@@ -280,7 +290,7 @@ The following example shows a CSS rule that uses the `k-button` class as a selec
 
 Examples of the old rendering, old classes, new rendering, and new classes are available in the [appearance documentation](#updated-components) of each component.
 
-## JQuery Selectors Migration
+## jQuery Selectors Migration
 
 This section concerns developers who use the `k-{classname}` class selectors in custom JavaScript logic.
 

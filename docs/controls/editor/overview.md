@@ -1,0 +1,52 @@
+---
+title: Overview
+page_title: jQuery Editor Documentation - Editor Overview
+description: "Explore the Kendo UI for jQuery Editor with editing modes, tools, pasting, image browsing, format painting, AI integration, and CSP support."
+components: ["editor"]
+slug: overview_kendoui_editor_widget
+position: 1
+---
+
+# {{ site.product }} Editor Overview
+
+The Editor allows you to create rich textual content through a What-You-See-Is-What-You-Get (WYSIWYG) interface and generate component value as an XHTML markup.
+
+* [Demo page for the Editor](https://demos.telerik.com/kendo-ui/editor/index)
+
+## Functionality and Features
+
+| Feature | Definition |
+| --- | --- |
+| [Read-only Editor]({% slug readonly_kendoui_editor_widget %}) | The Editor supports an inactive, read-only state. |
+| [Modes of operation]({% slug modes_kendoui_editor_widget %}) | You can render the Editor in its `classic` or the `inline` mode. |
+| [Tools]({% slug tools_kendoui_editor_widget %}) | The component provides a predefined collection of user interaction tools. |
+| [AI integration]({% slug ai_integration_kendoui_editor %}) | The Editor integrates with the AIPrompt component and inline prompt experiences to help users generate, revise, summarize, and transform content. |
+| [Selection]({% slug set_selections_editor_widget %}) | The Editor allows you to work with standard range objects that provide a polyfill for Internet Explorer versions which do not fully support them. |
+| [Image browser]({% slug image_browser_editor_widget %}) | The component provides two ways of picking an image&mdash;by pasting a URL of an image or by browsing a list of predefined files and directories. |
+| [Format painter]({% slug format_painter_editor_widget %}) | The Editor allows users to select a section of text and copy its formatting (font, size, color, and so on) and apply it to another section within the content. |
+| [Immutable elements]({% slug immutable_elements_editor_widget %}) | You can also add HTML elements to the Editor that cannot be modified by the user. |
+| [Pasting content]({% slug pasting_editor_widget %}) | The Editor accepts content that users paste from HTML and Microsoft (MS) Word documents. |
+| [Post-processing content]({% slug post_process_content_editor_widget %}) | If the Editor is within a `<form>` element, the convenient moment to post-process its content is right before the `<form>` is posted to the server in the `submit` event. |
+| [Preventing cross-site scripting]({% slug prevent_xss_editor_widget %}) | The Editor provides options for addressing security risks that can be caused by allowing the users to enter the HTML of your site. |
+| [Using the Table Wizard tool]({% slug table_wizard_dialog_editor_widget %}) | The Editor delivers the Table Wizard tool which enables the user to add and configure tables. |
+| [Appearance]({% slug appearance_kendoui_editor_widget %}) | The Editor supports a number of options for styling its appearance such as configuring its size, using the default styles, and adding custom styles. |
+
+## CSP Compliance
+
+The Editor component relies on inline styles for several of its features. If strict [CSP mode]({% slug troubleshooting_content_security_policy_kendoui %}) is enabled for the application you can use the following configuration options to make the Editor component CSP-compliant:
+
+* Use the [`nonce`](/api/ui/editor/configuration/nonce) configuration and pass a value for the nonce attribute. The passed value would be used as the nonce attribute for the inline styles in the content area iframe, the placeholder inline style and the link tags loading external stylesheets in the content area.
+* Use the [`unsafeInline`](/api/ui/editor/configuration/unsafeinline) configuration and set it to `false`, so no inline styles are used by the formatting tool. As a result no decoration will be applied to the formatting tool dropdown and the formatted values will appear as plain text. Actual formatting will be applied (for example if the content of the Editor is exported to MS Word), but the applied format will not be visible in the Editor component, due to the enabled strict CSP mode.
+
+## Next Steps
+
+* [Getting Started with the Kendo UI Editor for jQuery]({% slug getting_started_kendoui_editor_widget %})
+* [Basic Usage of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/index)
+* [Using the API of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/api)
+
+## See Also
+
+* [JavaScript API Reference of the Editor](/api/ui/editor)
+* [Demo Page for the jQuery Editor](https://demos.telerik.com/kendo-ui/editor/index)
+* [Knowledge Base Section](/knowledge-base)
+* [jQuery Editor Product Page](https://www.telerik.com/kendo-jquery-ui/rich-text-editor)

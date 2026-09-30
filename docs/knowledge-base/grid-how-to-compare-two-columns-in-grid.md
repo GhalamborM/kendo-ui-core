@@ -1,13 +1,13 @@
 ---
 title: Compare Two Columns in AngularJS Grids
-description: An example on how to compare two columns of a Kendo UI Grid in AngularJS.
+description: Learn how to compare two columns of a Kendo UI Grid in AngularJS.
 type: how-to
-page_title: Compare Two Columns | Kendo UI Grid for jQuery
+page_title: Compare Two Columns - Kendo UI for jQuery Data Grid
 slug: grid-how-to-compare-two-columns-in-grid
 tags: grid, angularjs, compare
 ticketid: 1122028
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,9 +15,9 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr> <tr>
-  <td>Made with version</td>
+  <td>Product Version</td>
   <td>2017.2.621</td>
  </tr></table>
 
@@ -28,9 +28,9 @@ How can I compare two Grid columns and then change the background color of one o
 
 ## Solution
 
-Use the [`column.template`](/api/javascript/ui/grid/configuration/columns.template) property and an `if` statement inside the [template](/framework/templates/overview#template-syntax) to compare the values from the columns.
+Use the [`column.template`](/api/ui/grid/configuration/columns#columnstemplate) property and an `if` statement inside the [template](/framework/templates/overview#template-syntax) to compare the values from the columns.
 
-```dojo
+```
     <div id="example" ng-app="KendoDemos">
       <div ng-controller="MyCtrl">
         <kendo-grid options="mainGridOptions">
@@ -42,9 +42,9 @@ Use the [`column.template`](/api/javascript/ui/grid/configuration/columns.templa
         .controller("MyCtrl", function($scope){
         $scope.mainGridOptions = {
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+              read: "https://demos.telerik.com/service/v2/odata/Employees"
             },
             pageSize: 5,
             serverPaging: true,
@@ -78,9 +78,9 @@ Use the [`column.template`](/api/javascript/ui/grid/configuration/columns.templa
         $scope.detailGridOptions = function(dataItem) {
           return {
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               serverPaging: true,
               serverSorting: true,

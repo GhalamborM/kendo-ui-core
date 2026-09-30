@@ -1,13 +1,13 @@
 ---
 title: Use Custom Validation in Filter Menus
-page_title: Custom Validation in Filter Menus | Kendo UI Grid for jQuery
-description: "An example on how to use custom validation in the filter menu of the jQuery Grid by Kendo when the filtering functionality is applied."
+page_title: Custom Validation in Filter Menus - Kendo UI for jQuery Data Grid
+description: "Learn how to use custom validation in the filter menu of the jQuery Grid by Kendo when the filtering functionality is applied."
 previous_url: /controls/data-management/grid/how-to/filtering/use-custom-validation-in-filter-menus, /controls/editors/validator/how-to/use-custom-validation-in-grid-filter-menus
 slug: howto_gridfiltering_custom_validation_filter_menu_grid
 tags: use, custom, validation, filter, grid, menus
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -43,9 +43,9 @@ For example, by using the Kendo UI DatePicker for date fields or the Kendo UI Nu
 
 To achieve this behavior:
 
-1. Handle the [`filterMenuInit`](/api/javascript/ui/grid/events/filtermenuinit) event and get a reference to the corresponding widgets.
+1. Handle the [`filterMenuInit`](/api/ui/grid/events/filtermenuinit) event and get a reference to the corresponding widgets.
 2. Get a reference to the built-in Kendo UI Validator.
-3. Use the [`rules`](/api/javascript/ui/validator/configuration/rules) and [`messages`](/api/javascript/ui/validator/configuration/messages) options of the Validator to add the necessary custom validation logic and messages.
+3. Use the [`rules`](/api/ui/validator/configuration/rules) and [`messages`](/api/ui/validator/configuration/messages) options of the Validator to add the necessary custom validation logic and messages.
 
 As a result, when the user input does not follow the predefined rules, the custom validation will be triggered.
 
@@ -131,4 +131,4 @@ The following example demonstrates how to use custom validation in the **Filter*
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

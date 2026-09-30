@@ -2,6 +2,7 @@
 title: Server-Side Processing
 page_title: Server-Side Processing
 description: "Process the data of the Telerik UI Spreadsheet by using the Telerik Document Processing library."
+components: ["spreadsheet"]
 previous_url: /helpers/data-management/spreadsheet/spreadsheet-processing
 slug: spreadsheet_processing_spreadsheet_mvc
 position: 10
@@ -24,7 +25,7 @@ TDP handles the data import, export, and processing from the following formats:
 
 ## Dependencies
 
-The `.NET` server-side module is distributed as a part of the [{{ site.product }}]({% slug overview_aspnetmvc6_aspnetmvc %}). The `telerik.ui.for.aspnetmvc.<version>.zip` archive contains a `spreadsheet` folder that contains assemblies for both .NET 4.0 and .NET 4.5 versions. Include a reference to the `Telerik.Web.Spreadsheet.dll` assembly for the respective framework version. The main entry point for the project is the `Telerik.Web.Spreadsheet.Workbook` class. This is a `POCO` object that mirrors the object structure of the JSON and provides format conversion methods. Under the hood, it uses TDP to perform the actual conversion.
+The `.NET` server-side module is distributed as a part of the [{{ site.product }}]({% slug overview_aspnetmvc6_aspnetmvc %}). The `telerik.ui.for.aspnetmvc.<version>.zip` archive contains a `spreadsheet` folder that contains assemblies for both .NET 4.0 and .NET 4.5 versions. Include a reference to the `Telerik.Spreadsheet.Web.dll` assembly for the respective framework version. The main entry point for the project is the `Telerik.Spreadsheet.Web.Workbook` class. This is a `POCO` object that mirrors the object structure of the JSON and provides format conversion methods. Under the hood, it uses TDP to perform the actual conversion.
 
 > No strict dependency on the type of the server framework that is used exists. Popular choices, such as MVC, WebAPI, and WebForms, work equally well.
 
@@ -38,16 +39,16 @@ The supported file extensions are:
 * `.txt`
 * `.json`
 
-```cs
+```C#
 public class HomeController : Controller
 {
     public ActionResult Read()
     {
         var path = Server.MapPath("~/App_Data/path/to/document.xlsx");
-        var workbook = Telerik.Web.Spreadsheet.Workbook.Load(path);
+        var workbook = Telerik.Spreadsheet.Web.Workbook.Load(path);
 
         //Uses Newtonsoft.Json internally to serialize fields correctly.
-        return Content(workbook.ToJson(), Telerik.Web.Spreadsheet.MimeTypes.JSON);
+        return Content(workbook.ToJson(), Telerik.Spreadsheet.Web.MimeTypes.JSON);
     }
 }
 ```
@@ -80,7 +81,7 @@ The supported file extensions are:
 
     @{
         var path = Server.MapPath("~/App_Data/path/to/document.xlsx");
-        var workbook = Telerik.Web.Spreadsheet.Workbook.Load(path);
+        var workbook = Telerik.Spreadsheet.Web.Workbook.Load(path);
     }
 
     @(Html.Kendo().Spreadsheet()
@@ -92,7 +93,7 @@ The supported file extensions are:
 
 The following example demonstrates how to load the data by using the `BindTo` method and the Spreadsheet document model.
 
-```cs
+```C#
 	public class HomeController : Controller
     {
         public ActionResult Index()
@@ -102,12 +103,12 @@ The following example demonstrates how to load the data by using the `BindTo` me
             worksheet.Cells[0, 0].SetValue("1.23");
             worksheet.Name = "Worksheet 1";
 
-            return View(Telerik.Web.Spreadsheet.Workbook.FromDocument(document));
+            return View(Telerik.Spreadsheet.Web.Workbook.FromDocument(document));
         }
     }
 ```
 ```cshtml
-@model Telerik.Web.Spreadsheet.Workbook
+@model Telerik.Spreadsheet.Web.Workbook
 
 @(Html.Kendo().Spreadsheet()
     .Name("spreadsheet")
@@ -128,15 +129,15 @@ The supported file extensions are:
 
 > Set [`aspnet:MaxJsonDeserializerMembers`](https://msdn.microsoft.com/en-us/library/hh975440%28v=vs.120%29.aspx?f=255&MSPPError=-2147217396) to a higher value than the default one in the `web.config`.
 
-```cs
+```C#
 [HttpPost]
-public ActionResult Save(Telerik.Web.Spreadsheet.Workbook workbook)
+public ActionResult Save(Telerik.Spreadsheet.Web.Workbook workbook)
 {
     workbook.Save("path/to/document.xlsx");
     return new EmptyResult();
 }
 ```
-```cshtml
+```Razor cshtml
 @(Html.Kendo().Spreadsheet()
     .Name("spreadsheet")
 )
@@ -154,7 +155,7 @@ public ActionResult Save(Telerik.Web.Spreadsheet.Workbook workbook)
     });
 </script>
 ```
-```web.config
+```xml web.config
 <configuration>
   <appSettings>
     <add key="aspnet:MaxJsonDeserializerMembers" value="150000" />
@@ -164,20 +165,20 @@ public ActionResult Save(Telerik.Web.Spreadsheet.Workbook workbook)
 
 ## Converting TDP Documents to Workbooks
 
-Telerik Document Processing provides a full-blown model for a Spreadsheet document. To display the result in a Spreadsheet, convert it to `Telerik.Web.Spreadsheet.Workbook`.
+Telerik Document Processing provides a full-blown model for a Spreadsheet document. To display the result in a Spreadsheet, convert it to `Telerik.Spreadsheet.Web.Workbook`.
 
     var document = new Telerik.Windows.Documents.Spreadsheet.Model.Workbook();
     var worksheet = document.Worksheets.Add();
     worksheet.Cells[0, 0].SetValue("1.23");
 
-    return Telerik.Web.Spreadsheet.Workbook.FromDocument(document);
+    return Telerik.Spreadsheet.Web.Workbook.FromDocument(document);
 
 ## Converting Workbooks to TDP Documents
 
-You can convert a `Telerik.Web.Spreadsheet.Workbook` Spreadsheet model and to a TDP document and then process it further and convert and store it as needed.
+You can convert a `Telerik.Spreadsheet.Web.Workbook` Spreadsheet model and to a TDP document and then process it further and convert and store it as needed.
 
     [HttpPost]
-    public ActionResult Process(Telerik.Web.Spreadsheet.Workbook workbook)
+    public ActionResult Process(Telerik.Spreadsheet.Web.Workbook workbook)
     {
         var document = workbook.ToDocument();
 

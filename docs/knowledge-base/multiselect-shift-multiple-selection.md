@@ -1,13 +1,13 @@
 ---
 title: Select Multiple Items in MultiSelect by Holding Shift Key
-description: An example on how to select multiple items by holding shift in MultiSelect.
+description: Learn how to select multiple items by holding shift in MultiSelect.
 type: how-to
-page_title: Select Multiple Items in MultiSelect by Holding Shift Key | Kendo UI MultiSelect for jQuery
+page_title: Select Multiple Items in MultiSelect by Holding Shift Key - Kendo UI MultiSelect for jQuery
 slug: multiselect-shift-multiple-selection
 tags: multiselect, shift, multiple, selection
 res_type: kb
+components: ["multiselect"]
 ticketid: 1540791
-component: multiselect
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: multiselect
 <table>
  <tr>
   <td>Product</td>
-  <td>Kendo UI MultiSelect</td>
+  <td>Progress® Kendo UI® MultiSelect for jQuery</td>
  </tr> 
 </table>
 
@@ -25,7 +25,7 @@ Is it possible to select multiple items with two clicks? How to select multiple 
 
 ## Solution
 
-1. Subscribe to the text [`open`](https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect/events/open) event of the MultiSelect.
+1. Subscribe to the text [`open`](https://docs.telerik.com/kendo-ui/api/ui/multiselect/events/open) event of the MultiSelect.
 1. In the `open` event handler bind a click event listener to the items using the `k-list` class. 
 
 ```dojo
@@ -100,4 +100,4 @@ Is it possible to select multiple items with two clicks? How to select multiple 
 
 ## See Also
 
-* [MultiSelect API Reference](/api/javascript/ui/multiselect)
+* [MultiSelect API Reference](/api/ui/multiselect)

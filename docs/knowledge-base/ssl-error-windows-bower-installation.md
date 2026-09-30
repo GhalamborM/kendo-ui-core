@@ -1,12 +1,13 @@
 ---
-title: An SSL Issue Occurs on Windows When Installing with Bower 
-page_title: An SSL Issue Occurs on Windows When Installing with Bower 
+title: An SSL Issue Occurs on Windows When Installing with Bower
+page_title: An SSL Issue Occurs on Windows When Installing with Bower
 description: "Learn how to handle an SSL issue on Windows that occurs when installing Kendo UI for jQuery with Bower."
 previous_url: /intro/installation/bower-install#troubleshooting
 slug: troubleshoot_bower_installing
 tags: progress, kendoui, jquery, ssl, issue, on, windows, bower, installation
 type: troubleshooting
 res_type: kb
+components: ["general"]
 ---
 
 
@@ -15,7 +16,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Kendo UI for jQuery Bower Installation</td>
+  <td>Progress® Kendo UI® for jQuery Bower Installation</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -25,13 +26,13 @@ res_type: kb
 
 ## Description
 
-Bower on Windows has troubles installing the repository. 
+Bower on Windows has troubles installing the repository.
 
-## Error Message 
+## Error Message
 
 `fatal: unable to access 'https://bower.telerik.com/bower-kendo-ui.git/': SSL certificate problem: unable to get local issuer certificate`.
 
-## Cause 
+## Cause
 
 The underlying Git installation is missing the certificate bundle.
 
@@ -57,8 +58,8 @@ To fix the issue, follow the steps in [this article](https://docs.microsoft.com/
 
 **Figure 1: Adding a new entry**
 
-![Adding New Entry](./images/vs2015-external-tools.png)
-	  
+![Kendo UI for jQuery Adding New Entry](./images/vs2015-external-tools.png)
+
 ## See Also
 
 * [Installing with Bower](https://docs.telerik.com/kendo-ui/intro/installation/bower-install)

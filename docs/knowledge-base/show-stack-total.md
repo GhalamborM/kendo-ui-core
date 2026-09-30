@@ -5,9 +5,9 @@ description: "Learn how to place a label with the stack total on top of column o
 previous_url: /controls/charts/how-to/various/show-stack-total
 slug: howto_showtotalstacked_charts
 tags: chart, total, sum, for, stacked, series
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -80,10 +80,52 @@ It is possible to use this configuration to display the cumulative point value f
     </script>
 ```
 
+Since the label is defined at last field level, when you unselect the last field from legend the `stackValue` is no longer visible. To overcome this, add a 'dummy' series field with the total label:
+
+```dojo
+    <div id="chart"></div>
+    <script>
+      $(function () {
+        $("#chart").kendoChart({
+          dataSource: {
+            data: [
+              { a: 22, b: 11, c: 33, d: 0 },
+              { a: 2, b: 1, c: 3, d: 0 },
+            ],
+          },
+          seriesDefaults: {
+            type: "column",
+            stack: true,
+          },
+          series: [
+            {
+              field: "a",
+              name: "a",
+            },
+            {
+              field: "b",
+              name: "b",
+            },
+            {
+              field: "c",
+              name: "c",
+            },
+            {
+              field: "d",
+              labels: {
+                template: "#= stackValue #",
+                visible: true,
+              }
+            }]
+        });
+      });
+    </script>
+```
+
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})

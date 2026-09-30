@@ -1,117 +1,70 @@
 ---
 title:  Razor Pages
-page_title: Configure a Telerik UI DateInput with Globalization in Razor Pages.
-description: "An example on how to configure a DateInput with Globalization in Razor Pages."
+page_title: Razor Pages
+description: "Telerik UI DateInput for {{ site.framework }} in a Razor Pages application."
 slug: htmlhelpers_dateinput_razorpage_aspnetcore
-position: 3
+components: ["dateinput"]
+position: 10
 ---
 
-# Razor Page
+# DateInput in Razor Pages
 
-This article demonstrates how to set up the DateInput component in a Razor Pages scenario and how to configure it for Globalization.
+This article describes how to seamlessly integrate and configure the Telerik UI DateInput for {{ site.framework }} in Razor Pages applications.
 
-See the implementation details in the example below. For the full project with Razor Pages examples, visit our [GitHub repository](https://github.com/telerik/ui-for-aspnet-core-examples/tree/master/Telerik.Examples.RazorPages).
+@[template](/_contentTemplates/core/razor-pages-general-info.md#referencing-handler-methods)
 
-```tab-HtmlHelper(csthml)
-@page
-@model Telerik.Examples.RazorPages.Pages.DateInput.DateInputGlobalizationModel
-@{
-    ViewData["Title"] = "DateInputGlobalization";
-}
+## Binding to a PageModel Property
 
-@using System.Globalization
+To bind the DateInput to a property from the `PageModel`, follow the next steps:
 
-@{
-    // Set the server culture.
-    var culture = CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("de-DE");
-}
+1. Add a property to the `PageModel` that must bind to the DateInput.
 
-/* Add the culture script from your local folder or the Kendo CDN. Use the culture variable from above to make sure the server and client cultures match. */
-<script src="@Url.Content("https://kendo.cdn.telerik.com/2020.3.1118/js/cultures/kendo.culture." + culture + ".min.js")"></script>
-
-<script type="text/javascript">
-    // Set the client culture.
-    kendo.culture("@culture");
-</script>
-
-<div>
-    <h4>Enter a date</h4>
-    @(Html.Kendo().DateInput()
-        .Name("dateinput")
-        .Value(DateTime.Today)
-    )
-
-    @(Html.Kendo().DateInput()
-      .Name("dateinput2")
-    )
-</div>
-
-
-<style>
-    div {
-        text-align: center;
-    }
-</style>
-```
-{% if site.core %}
-```tab-TagHelper(csthml)
-@page
-@model Telerik.Examples.RazorPages.Pages.DateInput.DateInputGlobalizationModel
-@{
-    ViewData["Title"] = "DateInputGlobalization";
-}
-
-@addTagHelper *, Kendo.Mvc
-@using System.Globalization
-
-@{
-    // Set the server culture.
-    var culture = CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("de-DE");
-}
-
-/* Add the culture script from your local folder or the Kendo CDN. Use the culture variable from above to make sure the server and client cultures match. */
-<script src="@Url.Content("https://kendo.cdn.telerik.com/2020.3.1118/js/cultures/kendo.culture." + culture + ".min.js")"></script>
-
-<script type="text/javascript">
-    // Set the client culture.
-    kendo.culture("@culture");
-</script>
-
-<div>
-    <h4>Enter a date</h4>
-    <kendo-dateinput name="dateinput" value="DateTime.Today">
-    </kendo-dateinput>
-
-    <kendo-dateinput name="dateinput2">
-    </kendo-dateinput>
-</div>
-
-
-<style>
-    div {
-        text-align: center;
-    }
-</style>
-```
-{% endif %}
-
-```tab-PageModel(cshtml.cs)
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace Telerik.Examples.RazorPages.Pages.DateInput
-{
-    public class DateInputGlobalizationModel : PageModel
-    {
-        public void OnGet()
+    ```C# Index.cshtml.cs
+        public class IndexModel : PageModel
         {
-        }
-    }
-}
-```
+            [BindProperty]
+            public DateTime DateCreated { get; set; }
 
-* [Server-Side API](/api/dateinput)
+            public void OnGet()
+            {
+                DateCreated = DateTime.Now; // Assign a value to the "DateCreated" property, if needed.
+            }
+        }
+    ```
+1. Declare the `PageModel` at the top of the page.
+
+    ```Razor
+        @page
+        @model IndexModel
+    ```
+
+1. Bind the DateInput to the property using the `DateInputFor()` configuration.
+
+    ```HtmlHelper
+        @page
+        @model IndexModel
+
+        @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+        @Html.AntiForgeryToken()
+        
+        @(Html.Kendo().DateInputFor(m => m.DateCreated))
+    ```
+    ```TagHelper
+        @page
+        @model IndexModel
+
+        @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+        @Html.AntiForgeryToken()
+        @addTagHelper *, Kendo.Mvc
+
+        <kendo-dateinput for="DateCreated">
+        </kendo-dateinput>
+    ```
+
+## See Also
+
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the DateInput](https://docs.telerik.com/kendo-ui/api/ui/dateinput)
+* [Server-Side HtmlHelper API of the DateInput](/api/dateinput)
+* [Server-Side TagHelper API of the DateInput](/api/taghelpers/dateinput)
+* [Knowledge Base Section](/knowledge-base)

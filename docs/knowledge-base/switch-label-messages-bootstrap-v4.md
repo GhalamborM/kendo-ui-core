@@ -1,12 +1,12 @@
 ---
 title: Show Switch label messages with Bootstrap 4 theme
-page_title: Label Messages in Bootstrap 4 | Kendo UI Switch for jQuery
-description: "An example on how to display the defined messages in the Boostrap v4 theme in the Kendo UI Switch."
+page_title: Label Messages in Bootstrap 4 - Kendo UI Switch for jQuery
+description: "Learn how to display the defined messages in the Boostrap v4 theme in the Kendo UI Switch."
 slug: switch-label-messages-bootstrap-v4
 tags: switch, label, messages, bootstrap, 4, v4, show, display, use, visible
-component: switch
 type: how-to
 res_type: kb
+components: ["switch"]
 ticketid: 1455921
 ---
 
@@ -15,10 +15,10 @@ ticketid: 1455921
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Switch</td>
+  <td>Progress® Kendo UI® Switch for jQuery</td>
  </tr>
  <tr>
-   <td>Created with Kendo UI version</td>
+   <td>Product Version</td>
    <td>Tested up to version {{ site.cdnVersion }}</td>
   </tr>
 </table>
@@ -26,6 +26,8 @@ ticketid: 1455921
 ## Description
 
 I have defined the label messages in the Switch but they are not visible with Bootstrap 4 theme. Why and how can I display them?
+
+* R1 2023 is the last official release of Kendo jQuery, which supports and ships [Less themes]({% slug themesandappearnce_kendoui_desktopwidgets %}) with the product.
 
 ## Solution
 
@@ -39,8 +41,7 @@ The Kendo UI Bootstrap theme follows the designs as laid out in [Bootstrap v4](h
     </style>
 ```
 
-```dojo
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/kendo.bootstrap-v4.min.css" />
+```dojo    
     <style>
         .k-switch-label-on,.k-switch-label-off {
           display:block;

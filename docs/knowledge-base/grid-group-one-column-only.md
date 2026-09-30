@@ -1,13 +1,13 @@
 ---
 title: Allow Only One Grouped Column in Grid
-description: An example on how to restrict the user from grouping more than one column in the Kendo UI Grid.
+description: Learn how to restrict the user from grouping more than one column in the Kendo UI Grid.
 type: how-to
-page_title: Group Only One Column at a Time | Kendo UI Grid for jQuery
+page_title: Group Only One Column at a Time - Kendo UI for jQuery Data Grid
 slug: grid-group-one-column-only
 tags: grid, grouping, singe column
 ticketid: 1135530
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1018 version</td>
  </tr>
 </table>
@@ -29,7 +29,7 @@ How can I group only one column at a time in the Kendo UI Grid? How can I restri
 
 ## Solution
 
-1. Handle the [`dataBinding`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databinding) event of the Grid.
+1. Handle the [`dataBinding`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databinding) event of the Grid.
 1. In the event handler and based on the number of groups, leave only the last one.
 
 ```dojo
@@ -40,9 +40,9 @@ How can I group only one column at a time in the Kendo UI Grid? How can I restri
         $(document).ready(function() {
             $("#grid").kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                        read: "https://demos.telerik.com/service/v2/odata/Orders"
                     },
                     schema: {
                         model: {

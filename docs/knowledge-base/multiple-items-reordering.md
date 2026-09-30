@@ -1,13 +1,13 @@
 ---
 title: Reorder Multiple Items in the Sortable
 page_title: Reorder Multiple Items in the Sortable
-description: "Learn how to reorder multiple items using the Kendo UI Sortable widget."
+description: "Learn how to reorder multiple items using the Kendo UI Sortable component."
 slug: howto_reordermultipleitems_sortable
 previous_url: /controls/interactivity/sortable/how-to/multiple-items-reordering
 tags: telerik, kendo, jquery, sortable, reorder, multiple, items
-component: sortable
 type: how-to
 res_type: kb
+components: ["sortable"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Sortable for jQuery</td>
+  <td>Progress® Kendo UI® Sortable for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -115,11 +115,11 @@ The following example demonstrates how to achieve the desired scenario.
     }
 
     .one-way {
-      background: url('../content/web/sortable/one-way.png') no-repeat 50% 50%;
+      background: url('https://demos.telerik.com/kendo-ui/content/web/sortable/one-way.png') no-repeat 50% 50%;
     }
 
     .two-way {
-      background: url('../content/web/sortable/two-way.png') no-repeat 50% 50%;
+      background: url('https://demos.telerik.com/kendo-ui/content/web/sortable/two-way.png') no-repeat 50% 50%;
     }
 
     .list-wrapper {
@@ -191,4 +191,4 @@ The following example demonstrates how to achieve the desired scenario.
 ## See Also
 
 * [Basic Usage of the Sortable (Demo)](https://demos.telerik.com/kendo-ui/sortable/index)
-* [JavaScript API Reference of the Sortable](/api/javascript/ui/sortable)
+* [JavaScript API Reference of the Sortable](/api/ui/sortable)

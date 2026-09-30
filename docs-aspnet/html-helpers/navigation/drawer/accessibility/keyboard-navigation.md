@@ -2,6 +2,7 @@
 title:  Keyboard Navigation
 page_title: Keyboard Navigation
 description: "Learn how to use the keyboard navigation functionality of the Telerik UI Drawer component for {{ site.framework }}."
+components: ["drawer"]
 previous_url: /html-helpers/navigation/drawer/keyboard-navigation
 slug: htmlhelpers_drawer_keyboardnavigation_aspnetcore
 position: 2
@@ -27,5 +28,6 @@ The Drawer supports the following keyboard shortcuts:
 
 ## See Also
 
+* [Custom Keyboard Navigation in the Drawer for {{ site.framework }}]({% slug custom_keyboard_navigation_drawer_htmlhelper %})
 * [Keyboard Navigation by the Drawer HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/drawer/keyboard-navigation)
 * [Server-Side API](/api/drawer)

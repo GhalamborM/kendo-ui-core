@@ -1,13 +1,13 @@
 ---
 title: Control the Header Format of the Calendar
-page_title: Control the Header Format of the Calendar
-description: "Learn how to control the header format of the Kendo UI for jQuery Calendar widget."
+page_title: Manage the Header Format of the Calendar
+description: "Learn how to control the header format of the Kendo UI for jQuery Calendar component."
 slug: howto_control_header_format_calendar
 previous_url: /controls/scheduling/calendar/how-to/control-header-format-based-on-selected-culture
 tags: telerik kendo, jquery, calendar, control, header, format, based, on, selected, culture
-component: calendar
 type: how-to
 res_type: kb
+components: ["calendar"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Calendar for jQuery</td>
+  <td>Progress® Kendo UI® Calendar for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -84,4 +84,4 @@ The following example demonstrates how to achieve the desired behavior.
 
 ## See Also
 
-* [JavaScript API Reference of the Calendar](/api/javascript/ui/calendar)
+* [JavaScript API Reference of the Calendar](/api/ui/calendar)

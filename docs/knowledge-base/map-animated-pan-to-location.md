@@ -2,10 +2,11 @@
 title: Animate Panning to Location on the Map
 description: "An example demonstrating how to make a panning animation when particular coordinates are selected."
 type: how-to
-page_title: Animate Panning to Location on the Map | Kendo UI Map for jQuery
+page_title: Animate Panning to Location on the Map - Kendo UI Map for jQuery
 slug: map-animated-pan-to-location
 tags: map, pan, panning, animate, animation, automatic
 res_type: kb
+components: ["map"]
 ---
 
 ## Environment
@@ -13,10 +14,10 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Map</td>
+  <td>Progress® Kendo UI® Map for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2021.3.1109 version</td>
  </tr>
 </table>
@@ -27,7 +28,7 @@ How can I animate the [`Kendo UI Map`](/controls/diagrams-and-maps/map/overview)
 
 ## Solution
 
-1. Create the map and retrieve the current longitude and latitude coordinates using the [`viewToLocation`](/api/javascript/dataviz/ui/map/methods/viewtolocation) method.
+1. Create the map and retrieve the current longitude and latitude coordinates using the [`viewToLocation`](/api/dataviz/ui/map/methods/viewtolocation) method.
 1. Use the current coordinates to determine if the map must be panned to the West or to the East to reach the destination.
 1. Use the current coordinates to determine if the map must be panned to the North or to the South to reach the destination.
 1. Change the default `pan step` of the map navigator to reduce the speed at which the map is panned.
@@ -70,7 +71,7 @@ The following example demonstrates the full implementation of the suggested appr
         center: [0, 0],
         layers: [{
             type: "tile",
-            urlTemplate: "http://a.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png",
+            urlTemplate: "https://a.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png",
             attribution: "&copy; OpenStreetMap"
         }]
     });

@@ -1,14 +1,14 @@
 ---
 title: Virtualize ComboBox with MVVM
-description: An example on how to implement virtualization for the Kendo UI ComboBox in MVVM projects.
+description: Learn how to implement virtualization for the Kendo UI ComboBox in MVVM projects.
 type: how-to
-page_title: Implement Virtualization for MVVM ComboBox | Kendo UI ComboBox and MVVM for jQuery
+page_title: Implement Virtualization for MVVM ComboBox - Kendo UI ComboBox and MVVM for jQuery
 previous_url: /knowledge-base/how-to-virtualize-mvvm-combobox
 slug: virtualize-mvvm-combobox
 tags: kendoui, kendo, kendo, kendoui, combobox, mvvm, virtualization
 ticketid: 1121707
 res_type: kb
-component: combobox
+components: ["combobox"]
 ---
 
 ## Environment
@@ -16,7 +16,7 @@ component: combobox
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI MVVM</td>
+  <td>Progress® Kendo UI® MVVM Architecture</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -53,9 +53,9 @@ Specify the `itemHeight` and the `valueMapper` in the `data-virtual` attribute o
 $(document).ready(function() {
         var model = kendo.observable({
         source: new kendo.data.DataSource({
-                type: "odata",
+                type: "odata-v4",
                 transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                        read: "https://demos.telerik.com/service/v2/odata/Orders"
                 },
                 schema: {
                         model: {
@@ -79,9 +79,8 @@ $(document).ready(function() {
 
 function orderValueMapper(options) {
         $.ajax({
-                url: "https://demos.telerik.com/kendo-ui/service/Orders/ValueMapper",
+                url: "https://demos.telerik.com/service/v2/core/Orders/ValueMapper",
                 type: "GET",
-                dataType: "jsonp",
                 data: convertValues(options.value),
                 success: function (data) {
                 options.success(data);
@@ -92,7 +91,7 @@ function orderValueMapper(options) {
 function convertValues(value) {
         var data = {};
 
-        value = $.isArray(value) ? value : [value];
+        value = Array.isArray(value) ? value : [value];
 
         for (var idx = 0; idx < value.length; idx++) {
         data["values[" + idx + "]"] = value[idx];
@@ -105,4 +104,4 @@ function convertValues(value) {
 
 ## See Also
 
-* [Virtualization of the ComboBox](https://docs.telerik.com/kendo-ui/controls/editors/combobox/virtualization#data-and-ui-virtualization)
+* [Virtualization of the ComboBox](https://docs.telerik.com/kendo-ui/controls/combobox/virtualization#data-and-ui-virtualization)

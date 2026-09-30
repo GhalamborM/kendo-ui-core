@@ -2,12 +2,12 @@
 title: Always visible select all checkbox
 description: The Grid should always show the select all checkbox when filtering with the multi filter checkbox. 
 type: how-to
-page_title: Grid select all should always be visible when filtering | Kendo UI Grid
+page_title: Grid select all should always be visible when filtering - Kendo UI Grid
 slug: grid-keep-the-select-all-checkbox-when-filtering
 tags: grid, selctall, multi, filter, show, check, checkbox
 ticketid: 1498839
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -106,30 +106,32 @@ And add the styles
           }
 
 
-          var telerikWebServiceBase = "https://demos.telerik.com/kendo-ui/service/";
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core/";
 
           $("#client").kendoGrid({
             dataSource: {
               transport: {
                 read:  {
-                  url: telerikWebServiceBase + "/Products",
-                  dataType: "jsonp"
-                },
-                update: {
-                  url: telerikWebServiceBase + "/Products/Update",
-                  dataType: "jsonp"
-                },
-                destroy: {
-                  url: telerikWebServiceBase + "/Products/Destroy",
-                  dataType: "jsonp"
-                },
-                create: {
-                  url: telerikWebServiceBase + "/Products/Create",
-                  dataType: "jsonp"
-                },
+                      url: crudServiceBaseUrl + "/Products"
+                  },
+                  update: {
+                      url: crudServiceBaseUrl + "/Products/Update",
+                      type: "POST",
+                  contentType: "application/json"
+                  },
+                  destroy: {
+                      url: crudServiceBaseUrl + "/Products/Destroy",
+                      type: "POST",
+                  contentType: "application/json"
+                  },
+                  create: {
+                      url: crudServiceBaseUrl + "/Products/Create",
+                      type: "POST",
+                  contentType: "application/json"
+                  },
                 parameterMap: function(options, operation) {
                   if (operation !== "read" && options.models) {
-                    return {models: kendo.stringify(options.models)};
+                    return kendo.stringify(options.models);
                   }
                 }
               },

@@ -2,12 +2,13 @@
 title: Aggregates
 page_title: Aggregates
 description: "Learn how to set the aggregate options in the DataSource component for {{ site.framework }}."
+components: ["datasource"]
 slug: htmlhelper_datasourceaggregates
 ---
 
 # Aggregates
 
-To make aggregates available on the client, configure them in the [`DataSourceAggregatesFactory`](/api/Kendo.Mvc.UI.Fluent/DataSourceAggregatesFactory). By using the `ToDataSourceResult()` extension method on the server, the results will be sent in the response object and can be used in group headers, footers or other client-side templates.
+To make aggregates available on the client, configure them in the [`DataSourceAggregatesFactory`](/api/kendo.mvc.ui.fluent/datasourceaggregatesfactory). by using the `ToDataSourceResult()` extension method on the server, the results will be sent in the response object and can be used in group headers, footers or other client-side templates.
 
 * The `Aggregates` method sets the aggregates.
 

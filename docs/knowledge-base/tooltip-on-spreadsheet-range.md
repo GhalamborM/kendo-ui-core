@@ -5,8 +5,8 @@ description: "Learn how to show a selected range from a Kendo UI Spreadsheet in 
 previous_url: /controls/data-management/spreadsheet/how-to/AngularJS/show-selected-range-in-tooltip, /controls/data-management/spreadsheet/how-to/show-selected-range-in-tooltip
 slug: tooltip_on_spreadsheet_range
 tags: spreadsheet, tooltip, range, selection
-component: tooltip, spreadsheet
 res_type: kb
+components: ["tooltip"]
 ---
 
 ## Environment
@@ -14,8 +14,8 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Tooltip for jQuery</td>
-  <td>Progress Kendo UI Spreadsheet for jQuery</td>
+  <td>Progress® Kendo UI® Tooltip for jQuery</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
  </tr>
 </table>
 
@@ -26,9 +26,9 @@ How can I show a selected range from a Kendo UI Spreadsheet in a Kendo UI Toolti
 ## Solution
 
 1. Wrap the Spreadsheet in a [Kendo UI Tooltip]({% slug overview_kendoui_tooltip_widget %}).
-2. Use the `k-spreadsheet-selection` class as a [`filter`](/api/javascript/ui/tooltip/configuration/filter) in the configuration options of the Tooltip.
-3. Use the [`content`](/api/javascript/ui/tooltip/configuration/content) option to provide a function that will create the content for the Tooltip based on the current Spreadsheet selection.
-4. Use the [`selection()`](/api/javascript/spreadsheet/sheet/methods/selection) method of the Spreadsheet to get the current selection (returns a range), and the Range [`values()`](/api/javascript/spreadsheet/range/methods/values) method to get the respective values.
+2. Use the `k-spreadsheet-selection` class as a [`filter`](/api/ui/tooltip/configuration/filter) in the configuration options of the Tooltip.
+3. Use the [`content`](/api/ui/tooltip/configuration/content) option to provide a function that will create the content for the Tooltip based on the current Spreadsheet selection.
+4. Use the [`selection()`](/api/spreadsheet/sheet/methods/selection) method of the Spreadsheet to get the current selection (returns a range), and the Range [`values()`](/api/spreadsheet/range/methods/values) method to get the respective values.
 
 The following example demonstrates how to display a selected range from the Spreadsheet in a Kendo UI Tooltip.
 
@@ -39,7 +39,7 @@ The following example demonstrates how to display a selected range from the Spre
       <div id="spreadsheet" style="width: 100%"></div>
       <script>
         $(function() {
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service";
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core";
 
           var dataSource = new kendo.data.DataSource({
             transport: {
@@ -111,7 +111,6 @@ The following example demonstrates how to display a selected range from the Spre
           function onRead(options) {
             $.ajax({
               url: crudServiceBaseUrl + "/Products",
-              dataType: "jsonp",
               success: function (result) {
                 options.success(result);
               },
@@ -155,6 +154,6 @@ The following example demonstrates how to display a selected range from the Spre
 
 ## See Also
 
-* [Tooltip JavaScript API Reference](/api/javascript/ui/tooltip)
-* [Spreadsheet JavaScript API Reference](/api/javascript/ui/spreadsheet)
-* [Range API Reference](/api/javascript/spreadsheet/range)
+* [Tooltip JavaScript API Reference](/api/ui/tooltip)
+* [Spreadsheet JavaScript API Reference](/api/ui/spreadsheet)
+* [Range API Reference](/api/spreadsheet/range)

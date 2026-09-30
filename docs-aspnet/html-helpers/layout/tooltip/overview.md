@@ -2,12 +2,13 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI Tooltip component for {{ site.framework }}."
+components: ["tooltip"]
 previous_url: /helpers/html-helpers/tooltip, /helpers/layout/tooltip/overview
 slug: htmlhelpers_tooltip_aspnetcore
 position: 1
 ---
 
-# Tooltip Overview
+# {{ site.framework }} Tooltip Overview
 
 {% if site.core %}
 The Telerik UI Tooltip TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI Tooltip widget.
@@ -92,7 +93,7 @@ For a complete example on basic Tooltip events, refer to the [demo on using the 
 
 ## Referencing Existing Instances
 
-To reference an existing Tooltip instance, use the [`jQuery.data()`](https://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [Tooltip client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/tooltip#methods) to control its behavior.
+To reference an existing Tooltip instance, use the [`jQuery.data()`](https://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [Tooltip client-side API](https://docs.telerik.com/kendo-ui/api/ui/tooltip#methods) to control its behavior.
 
 ```
     // Place the following after your Telerik UI Tooltip for {{ site.framework }} declaration.
@@ -109,7 +110,8 @@ To reference an existing Tooltip instance, use the [`jQuery.data()`](https://api
 * [Basic Usage of the Tooltip HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/tooltip)
 {% if site.core %}
 * [Basic Usage of the Tooltip TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/tooltip/index)
+* [Tooltip in Razor Pages]({% slug htmlhelpers_tooltip_aspnetcore_razor_page %})
 {% endif %}
 * [Using the API of the Tooltip HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/tooltip/api)
-* [Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/tooltip)
+* [Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/tooltip)
 * [Server-Side API](/api/tooltip)

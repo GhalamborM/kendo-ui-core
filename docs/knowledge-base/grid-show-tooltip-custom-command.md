@@ -1,12 +1,13 @@
 ---
 title: Show Tooltip for Grid Custom Command Buttons
-description: An example on how to display a tooltip when hovering custom command buttons in the Kendo UI Grid.
+description: Learn how to display a tooltip when hovering custom command buttons in the Kendo UI Grid.
 type: how-to
-page_title: Display a Tooltip for Custom Command Buttons | Kendo UI Grid for jQuery
+page_title: Display a Tooltip for Custom Command Buttons - Kendo UI for jQuery Data Grid
 slug: grid-show-tooltip-custom-command
 tags: grid, command, tooltip
 ticketid: 1148238
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,8 +15,8 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Grid</td>
-		<td>Progress Kendo UI Tooltip</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
+		<td>Progress® Kendo UI® Tooltip for jQuery</td>
 	</tr>
 	<tr>
 		<td>Product Version</td>
@@ -45,9 +46,9 @@ The Grid does not support a property for setting a tooltip to its command button
         $(document).ready(function() {
           $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               schema: {
                 model: {

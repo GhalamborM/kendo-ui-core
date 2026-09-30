@@ -5,9 +5,9 @@ description: "Learn how to update Kendo UI Map shapes by a specified ID."
 slug: howto_updatemapshapesbyid_map
 previous_url: /controls/diagrams-and-maps/map/how-to/update-map-shapes-by-id
 tags: kendo, jquery, map, shapes, by, id
-component: map
 type: how-to
 res_type: kb
+components: ["map"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Map for jQuery</td>
+  <td>Progress® Kendo UI® Map for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -39,7 +39,7 @@ How can I update the shapes of the Kendo UI for jQuery Map by using their IDs?
 
 The following example demonstrates how to update the Map shapes by a specified ID.
 
-```dojo
+```pseudo
     <div id="map"></div>
     <script>
       function createMap() {
@@ -100,4 +100,4 @@ The following example demonstrates how to update the Map shapes by a specified I
 
 * [Basic Usage of the Map (Demo)](https://demos.telerik.com/kendo-ui/map/index)
 * [Using the API of the Map (Demo)](https://demos.telerik.com/kendo-ui/map/api)
-* [JavaScript API Reference of the Map](/api/javascript/dataviz/ui/map)
+* [JavaScript API Reference of the Map](/api/dataviz/ui/map)

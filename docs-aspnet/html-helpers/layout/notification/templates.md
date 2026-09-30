@@ -2,6 +2,7 @@
 title: Templates
 page_title: Templates
 description: "Learn the basics when working with the Telerik UI Notification component for ASP.NET MVC."
+components: ["notification"]
 previous_url: /helpers/layout/notification/templates
 slug: templates_notificatiomhelper_aspnetmvc
 position: 5
@@ -71,5 +72,5 @@ The following example demonstrates how to use Notification templates.
 ## See Also
 
 * [Using Templates in the Notification HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/notification/templates)
-* [NotificationBuilder Server-Side API](/api/Kendo.Mvc.UI.Fluent/NotificationBuilder)
+* [NotificationBuilder Server-Side API](/api/kendo.mvc.ui.fluent/notificationbuilder)
 * [Notification Server-Side API](/api/notification)

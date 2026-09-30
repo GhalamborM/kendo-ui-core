@@ -1,18 +1,19 @@
 ---
 title: Freezing Rows and Columns
-page_title: Freezing Rows and Columns | Kendo UI Excel Export
+page_title: Freezing Rows and Columns - Kendo UI Excel Export
 description: "Learn how to freeze rows and columns in the output Excel document while working with Kendo UI."
+components: ["general"]
 slug: freezerowsandcolumns_excelexport_kendoui
 position: 3
 ---
 
 # Freezing Rows and Columns
 
-Kendo UI allows you to freeze both columns and rows by using the [`freezePane`](/api/javascript/ooxml/workbook/configuration/sheets.freezepane) option.
+Kendo UI allows you to freeze both columns and rows by using the [`freezePane`](/api/ooxml/workbook/configuration/sheets#sheetsfreezepane) option.
 
 ## Rows
 
-Freezing the first row of an Excel sheet is a common requirement. It allows you to scroll the rest of the document without losing the header. To freeze rows, set the [`rowSplit`](/api/javascript/ooxml/workbook/configuration/sheets.freezepane.rowsplit) option to the number of rows you want to freeze.
+Freezing the first row of an Excel sheet is a common requirement. It allows you to scroll the rest of the document without losing the header. To freeze rows, set the [`rowSplit`](/api/ooxml/workbook/configuration/sheets#sheetsfreezepane#sheetsfreezepanerowsplit) option to the number of rows you want to freeze.
 
 The following example demonstrates how to freeze the top row in a worksheet.
 
@@ -48,16 +49,18 @@ var workbook = new kendo.ooxml.Workbook({
     }
   ]
 });
-kendo.saveAs({
-    dataURI: workbook.toDataURL(),
-    fileName: "Test.xlsx"
+workbook.toDataURLAsync().then(function (dataURI) {
+    kendo.saveAs({
+      dataURI: dataURI,
+      fileName: "Test.xlsx",
+    });
 });
 </script>
 ```
 
 ## Columns
 
-To freeze columns, set the [`colSplit`](/api/javascript/ooxml/workbook/configuration/sheets.freezepane.colsplit) option to the number of columns you want to freeze.
+To freeze columns, set the [`colSplit`](/api/ooxml/workbook/configuration/sheets#sheetsfreezepane#sheetsfreezepanecolsplit) option to the number of columns you want to freeze.
 
 The following example demonstrates how to freeze the first two columns and the top row in a worksheet.
 
@@ -93,9 +96,11 @@ var workbook = new kendo.ooxml.Workbook({
     }
   ]
 });
-kendo.saveAs({
-    dataURI: workbook.toDataURL(),
-    fileName: "Test.xlsx"
+workbook.toDataURLAsync().then(function (dataURI) {
+    kendo.saveAs({
+      dataURI: dataURI,
+      fileName: "Test.xlsx",
+    });
 });
 </script>
 ```

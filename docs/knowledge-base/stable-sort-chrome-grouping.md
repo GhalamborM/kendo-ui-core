@@ -1,13 +1,13 @@
 ---
 title: Implement Stable Sorting for Grouped Data in Chrome
-page_title: Stable Sorting for Grouped Data | Kendo UI Grid for jQuery
-description: "An example on how to implement stable sorting for grouped data in Google Chrome when using the Kendo UI jQuery Grid widget."
+page_title: Stable Sorting for Grouped Data - Kendo UI for jQuery Data Grid
+description: "Learn how to implement stable sorting for grouped data in Google Chrome when using the Kendo UI jQuery Grid component."
 previous_url: /controls/data-management/grid/how-to/sorting/stable-sort-chrome-grouping
 slug: howto_implement_stable_sortwithgroupingin_chrome_grid
 tags: implement, stable, sorting, for, grouped, data, grid, chrome
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -39,7 +39,7 @@ How can I implement stable sorting for grouped data in Google Chrome when using 
 
 The implementation of the built-in sorting algorithm in Google Chrome [is not guaranteed to be stable](https://bugs.chromium.org/p/v8/issues/detail?id=90).
 
-A [non-stable sorting algorithm](https://en.wikipedia.org/wiki/Sorting_algorithm#Stability) might cause items with the same sorting order to change places. When the Grid is grouped by a given field, you can use the [`sort`](/api/javascript/data/datasource/methods/sort) method in the [`group`](/api/javascript/ui/grid/events/group) event handler to programmatically sort the items within each group in the preferred order.
+A [non-stable sorting algorithm](https://en.wikipedia.org/wiki/Sorting_algorithm#Stability) might cause items with the same sorting order to change places. When the Grid is grouped by a given field, you can use the [`sort`](/api/data/datasource/methods/sort) method in the [`group`](/api/ui/grid/events/group) event handler to programmatically sort the items within each group in the preferred order.
 
 The following example demonstrates how to apply a stable sort function by using a position field in the Grid.
 
@@ -93,4 +93,4 @@ The following example demonstrates how to apply a stable sort function by using 
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

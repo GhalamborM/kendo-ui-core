@@ -2,6 +2,7 @@
 title: ListView
 page_title: ListView Overview
 description: "Learn the basics when working with the hybrid Telerik UI ListView HtmlHelper for ASP.NET MVC."
+components: ["general"]
 previous_url: /helpers/hybrid/mobilelistview/overview, /helpers/hybrid/mobilelistview
 slug: overview_hybridlistview_aspnetmvc
 ---
@@ -134,7 +135,7 @@ To configure the ListView, use either of the following approaches:
 
 ## Events
 
-You can subscribe to all hybrid ListView [events](https://docs.telerik.com/kendo-ui/api/javascript/ui/listview#events).
+You can subscribe to all hybrid ListView [events](https://docs.telerik.com/kendo-ui/api/ui/listview#events).
 
 The following example demonstrates how to subscribe to events by a handler name.
 
@@ -153,7 +154,7 @@ The following example demonstrates how to subscribe to events by a handler name.
 
 ## Referencing Existing Instances
 
-You can reference a hybrid Layout instance by using the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) method and the value specified through the `Name()` method. Once a reference is established, use the [hybrid ListView client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/listview#methods) to control its behavior.
+You can reference a hybrid Layout instance by using the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) method and the value specified through the `Name()` method. Once a reference is established, use the [hybrid ListView client-side API](https://docs.telerik.com/kendo-ui/api/ui/listview#methods) to control its behavior.
 
     @(Html.Kendo().MobileListView()
             .Name("MobileListView")
@@ -167,4 +168,4 @@ You can reference a hybrid Layout instance by using the [`jQuery.data()`](http:/
     
 ## See Also
 
-* [Hybrid ListViewBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/MobileListViewBuilder)
+* [Hybrid ListViewBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/mobilelistviewbuilder)

@@ -2,12 +2,13 @@
 title: Select the First Item on Removal of Any Item in ListBox
 description: Focus on the first item after any item is removed from the ListBox
 type: how-to
-page_title: Set Default Selection | Kendo UI ListBox
+page_title: Set Default Selection - Kendo UI ListBox
 slug: listbox-select-first-when-item-removed
 position: 
 tags: listbox, remove, delete, first, focus, select, default, item, set
 ticketid: 1447644
 res_type: kb
+components: ["listbox"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>ListBox for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® ListBox for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -29,7 +30,7 @@ res_type: kb
 How can I select the first item in the Kendo UI ListBox whenever I remove any item from the ListBox?
 
 ## Solution
-Use the [select method](https://docs.telerik.com/kendo-ui/api/javascript/ui/listbox/methods/select) in the [remove event](https://docs.telerik.com/kendo-ui/api/javascript/ui/listbox/events/remove). Make sure to use the [setTimeout() method](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) so that the first item is selected after the remove function is executed.
+Use the [select method](https://docs.telerik.com/kendo-ui/api/ui/listbox/methods/select) in the [remove event](https://docs.telerik.com/kendo-ui/api/ui/listbox/events/remove). Make sure to use the [setTimeout() method](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) so that the first item is selected after the remove function is executed.
 
 ```javascript
   $("#listBox").kendoListBox({
@@ -43,6 +44,8 @@ Use the [select method](https://docs.telerik.com/kendo-ui/api/javascript/ui/list
 ```
 
 #### Example
+
+The following example initializes a ListBox with a **Remove** toolbar button and uses a `setTimeout` call inside the `remove` event to select the first item after the removal is complete.
 
 ```dojo
   <select id="listBox">
@@ -68,6 +71,6 @@ Use the [select method](https://docs.telerik.com/kendo-ui/api/javascript/ui/list
 ```
 
 ## See Also
-- [select](https://docs.telerik.com/kendo-ui/api/javascript/ui/listbox/methods/select)
-- [remove](https://docs.telerik.com/kendo-ui/api/javascript/ui/listbox/events/remove)
+- [select](https://docs.telerik.com/kendo-ui/api/ui/listbox/methods/select)
+- [remove](https://docs.telerik.com/kendo-ui/api/ui/listbox/events/remove)
 - [setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)

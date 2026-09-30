@@ -1,13 +1,13 @@
 ---
 title: Set the Min Value of the ValueAxis Dynamically
-page_title: Change the Min Value of the ValueAxis Dynamically | Kendo UI Chart for jQuery
-description: An example on how to dynamically set the min value of the valueAxis in the Kendo UI Chart.
+page_title: Change the Min Value of the ValueAxis Dynamically - Kendo UI Chart for jQuery
+description: Learn how to dynamically set the min value of the valueAxis in the Kendo UI Chart.
 type: how-to
 slug: change-the-min-value-of-the-valueaxis-dynamically
 tags: chart, valueaxis, min, dynamically
 ticketid: 1125680
 res_type: kb
-component: charts
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: charts
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -38,14 +38,14 @@ How can I dynamically set the min value of the `valueAxis` when the data or the 
 ## Solution
 
 1. Loop through the visible series values.
-1. Based on the visible lines, set the minimum value on the [`render`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/events/render) event of the Chart.  
+1. Based on the visible lines, set the minimum value on the [`render`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/events/render) event of the Chart.  
 
 For the full implementation, refer to [this Dojo example](https://dojo.telerik.com/ukITOJ/2).
 
 ```
    <div id="example">
       <div class="demo-section k-content wide">
-        <div id="chart" style="background: center no-repeat url('../content/shared/styles/world-map.png');"></div>
+        <div id="chart" style="background: center no-repeat url('https://demos.telerik.com/kendo-ui/content/shared/styles/world-map.png');"></div>
       </div>
       <script>
 

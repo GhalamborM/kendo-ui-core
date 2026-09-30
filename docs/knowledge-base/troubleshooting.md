@@ -1,14 +1,25 @@
 ---
 title: Grid Troubleshooting on Editing
-page_title: Grid Troubleshooting on Editing 
+page_title: Grid Troubleshooting on Editing
 description: "Troubleshoot any issues that might occur while editing the data of the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/editing/troubleshooting
 slug: edittroubleshoot_kendoui_grid_widget
 tags: grid, editing, troubleshooting
-component: grid
 type: troubleshooting
 res_type: kb
+components: ["grid"]
 ---
+
+## Environment
+
+<table>
+ <tr>
+  <td>Product</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
+ </tr>
+</table>
+
+## Description
 
 This article provides solutions for issues you might encounter while working with the editing functionality of the Grid.
 
@@ -23,7 +34,7 @@ Normally, a foreign key column is bound to a numeric data field which points to 
 To work around the issue, use either of the following approaches:
 
 * Use zeros instead of nulls to match the data values with the declared data field type.
-* Use a [custom column editor](https://demos.telerik.com/kendo-ui/grid/editing-custom) with a manually configured DropDownList that has a [`valuePrimitive`](/api/javascript/ui/dropdownlist/configuration/valueprimitive) setting set to `true`.
+* Use a [custom column editor](https://demos.telerik.com/kendo-ui/grid/editing-custom) with a manually configured DropDownList that has a [`valuePrimitive`](/api/ui/dropdownlist/configuration/valueprimitive) setting set to `true`.
 
 For a runnable example on implementing foreign-key columns in the Grid, refer to [this demo](https://demos.telerik.com/kendo-ui/grid/foreignkeycolumn).
 
@@ -36,4 +47,4 @@ To work around this issue, define a custom data-binding mechanism. After applyin
 ## See Also
 
 * [Implementing Foreign-Key Columns in the Grid (Demo)](https://demos.telerik.com/kendo-ui/grid/foreignkeycolumn)
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

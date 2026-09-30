@@ -1,7 +1,8 @@
 ---
 title: CORS Data Fetching
-page_title: CORS Data Fetching | Kendo UI Data Source
+page_title: CORS Data Fetching - Kendo UI for jQuery DataSource
 description: "Learn how to fetch data from another domain by using CORS with all modern browsers when working with the Kendo UI for jQuery DataSource component and your JavaScript widgets."
+components: ["datasource"]
 previous_url: /howto/use-cors-with-all-modern-browsers
 slug: corsdatafetching_anotherdomain_datasourcecomponent
 position: 6
@@ -60,7 +61,7 @@ We'll talk about handling old Opera versions more in a minute, but let's first a
 
 #### Internet Explorer and XDomainRequest
 
-Internet Explorer, pre IE10, approaches cross-origin resource sharing a bit differently. Rather than go the route of WebKit and Gecko, IE 8 and 9 do not reuse the standard Ajax `XMLHttpRequest` object for CORS requests. Instead, they introduce a brand new object for cross-origin resource sharing called [`XDomainRequest`](https://developer.mozilla.org/en-US/docs/Web/API/XDomainRequest).
+Internet Explorer, pre IE10, approaches cross-origin resource sharing a bit differently. Rather than go the route of WebKit and Gecko, IE 8 and 9 do not reuse the standard Ajax `XMLHttpRequest` object for CORS requests. Instead, they introduce a brand new object for cross-origin resource sharing called [`XDomainRequest`](https://udn.realityripple.com/docs/Web/API/XDomainRequest).
 
 This means your Ajax code for cross-domain calls looks 100% identical to `same-domain` calls in Chrome and Firefox, but it will have to fork in Internet Explorer to use the new XDR object with CORS requests. A pain, but a solvable problem. There are some other limits with XDR, [but we'll leave that to you to research](http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx).
 
@@ -122,7 +123,7 @@ So, to make the Feed Reader demo CORS work in IE 8/9, a small snippet is added t
     <!--[if lt IE 10]>
     <!--iecors provides a jQuery ajax custom transport for IE8/9 XDR-->
     <script src="scripts/jquery.iecors.js"></script>
-    <![endif]-->
+    <![Kendo UI for jQuery endif]-->
 
 #### Fixing Opera with More Code and JSONP
 
@@ -168,4 +169,4 @@ Hopefully this post helps highlight the value of CORS and how it can be used wit
 * [DataSource Overview]({% slug overview_kendoui_datasourcecomponent %})
 * [Offline Support]({% slug offlinesupport_kendoui_datasourcecomponent %})
 * [CRUD Data Operations]({% slug cruddataoperations_kendoui_datasourcecomponent %})
-* [DataSource JavaScript API Reference](/api/javascript/data/datasource)
+* [DataSource JavaScript API Reference](/api/data/datasource)

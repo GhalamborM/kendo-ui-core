@@ -1,8 +1,6 @@
-(function(f, define) {
-    define([ "./kendo.core" ], f);
-})(function() {
+import "./kendo.core.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "toggleinputbase",
     name: "ToggleInputBase",
     category: "web",
@@ -16,6 +14,7 @@ var __meta__ = {
         Widget = ui.Widget,
         CHANGE = "change",
         DISABLED = "disabled",
+        KDISABLED = "k-disabled",
         CHECKED = "checked";
 
     var ToggleInputBase = Widget.extend({
@@ -31,7 +30,8 @@ var __meta__ = {
             that._attachEvents();
 
             kendo.notify(that, kendo.ui);
-        },
+            Widget.fn.endInit.call(that);
+},
 
         events: [
             CHANGE
@@ -69,7 +69,8 @@ var __meta__ = {
         },
 
         enable: function(enable) {
-            var element = this.element;
+            const element = this.element;
+            const label = this.wrapper.siblings("label[for='" + element.attr("id") + "']");
 
             if (typeof enable == "undefined") {
                 enable = true;
@@ -77,11 +78,9 @@ var __meta__ = {
 
             this.options.enabled = enable;
 
-            if (enable) {
-                element.prop(DISABLED, false);
-            } else {
-                element.attr(DISABLED, DISABLED);
-            }
+            kendo.toggleAttribute(element, DISABLED, !enable);
+            kendo.toggleClass(element, KDISABLED, null, !enable);
+            kendo.toggleClass(label, KDISABLED, null, !enable);
         },
 
         toggle: function() {
@@ -124,13 +123,18 @@ var __meta__ = {
             inputMethod(that.element, $.extend({}, options));
             that.element.removeClass('input-validation-error');
 
-            that.wrapper = that.element;
-        }
+            that.wrapper = that.element.wrap(`<span class="${options.wrapperClass}"></span>`).parent();
+        },
+
+        setOptions: function(options) {
+            this._clearCssClasses(options, this.element);
+            this._setEvents(options);
+            $.extend(this.options, options);
+            this._applyCssClasses(this.element);
+        },
     });
 
     ui.plugin(ToggleInputBase);
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

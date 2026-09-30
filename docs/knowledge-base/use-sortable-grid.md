@@ -5,9 +5,9 @@ description: "Learn how to use the Kendo UI Sortable widget with a Kendo UI Grid
 previous_url: /controls/interactivity/sortable/how-to/reorder-grid-rows, /controls/interactivity/sortable/how-to/batch-editable-grid, /web/sortable/how-to/angularjs-reorder-grid-rows, /controls/interactivity/sortable/how-to/use-sortable-grid
 slug: howto_usesortablewithgrid_inincellediting_sortable
 tags: telerik, kendo, jquery, sortable, reorder, rows, in, grids
-component: sortable
 type: how-to
 res_type: kb
+components: ["sortable"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Sortable for jQuery</td>
+  <td>Progress® Kendo UI® Sortable for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -119,38 +119,38 @@ The main milestones of the approach are the following:
 
 * The standard HTML inputs that are used as editors need to have a `data-value-update="input"` attribute. If this attribute is not attached to the HTML element, the Grid will not update its data.
 
-      ```
-       var textEditor = function (container, options) {
-         $('<input data-value-update="input" data-bind="value:' + options.field + '"/>')
-           .appendTo(container);
-       };
-       ```
+    ```
+     var textEditor = function (container, options) {
+       $('<input data-value-update="input" data-bind="value:' + options.field + '"/>')
+         .appendTo(container);
+     };
+    ```
 
 * If you use a Kendo UI widget as an editor, manually trigger its `change` event in the `edit` event of the Grid.
 
-      ```
-       // The Kendo UI widget that is used as an editor.
-       var numericEditor = function (container, options) {
-         $('<input data-role="numerictextbox" data-bind="value:' + options.field + '"/>')
-           .appendTo(container);
-       };
+    ```
+     // The Kendo UI widget that is used as an editor.
+     var numericEditor = function (container, options) {
+       $('<input data-role="numerictextbox" data-bind="value:' + options.field + '"/>')
+         .appendTo(container);
+     };
+     
+     // The Grid edit event handler.
+     edit: function(e) {
+       var input = e.container.find("[data-role=numerictextbox]");
+       var widget = input.data("kendoNumericTextBox");
+       var model = e.model;
 
-       // The Grid edit event handler.
-       edit: function(e) {
-         var input = e.container.find("[data-role=numerictextbox]");
-         var widget = input.data("kendoNumericTextBox");
-         var model = e.model;
-
-         input.on("keyup", function(e) {
-           if(e.key === kendo.culture().numberFormat["."]) {
-             // For the Kendo UI NumericTextBox only.
-             return;
-           }
-           widget.value(input.val());
-           widget.trigger("change");
-         });
-       },
-       ```
+       input.on("keyup", function(e) {
+         if(e.key === kendo.culture().numberFormat["."]) {
+           // For the Kendo UI NumericTextBox only.
+           return;
+         }
+         widget.value(input.val());
+         widget.trigger("change");
+       });
+     },
+    ```
 
 > * For simplicity, the demo uses local data with a dummy **Order** field. This may not be the case in a real-world scenario.
 > * The `change` event handler of the Sortable updates the **Order** field, which is a sample implementation. The `change` event handler has to be modified to fit your real-world scenario.
@@ -296,5 +296,5 @@ The main milestones of the approach are the following:
 ## See Also
 
 * [Basic Usage of the Sortable (Demo)](https://demos.telerik.com/kendo-ui/sortable/index)
-* [JavaScript API Reference of the Sortable](/api/javascript/ui/sortable)
+* [JavaScript API Reference of the Sortable](/api/ui/sortable)
 * [Reorder rows in grid with locked columns]({% slug grid-drag-drop-with-locked-columns %})

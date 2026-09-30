@@ -2,6 +2,7 @@
 title: Date Axis
 page_title: Date Axis
 description: "Learn how to set the Date Axis of Telerik UI Bar Charts component for {{ site.framework }}."
+components: ["chart"]
 slug: barcharts_date_axis
 ---
 
@@ -218,7 +219,7 @@ The following implementation demonstrates the code needed for setting the Date A
 
 
     <script>
-        $(document).on("kendoReady", function () {
+        $(document).on("ready", function () {
             $(".configurator").bind("change", refresh);
         });
         function refresh() {

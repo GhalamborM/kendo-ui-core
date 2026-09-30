@@ -1,9 +1,10 @@
 ---
 title: 2020 Releases
-page_title: 2020 Releases | Kendo UI Backwards Compatibility
+page_title: 2020 Releases - Kendo UI Backwards Compatibility
 description: "Learn about the breaking changes and backwards compatibility released by Kendo UI in 2020."
 slug: breakingchanges2020_kendoui
-position: 2
+components: ["general"]
+position: 6
 ---
 
 # 2020 Releases
@@ -14,7 +15,7 @@ This article lists the breaking changes in the Kendo UI 2020 releases.
 
 **Upload**
 
-Changed appearance in `Less-based themes` of the Upload action buttons that are rendered when the [async.autoUpload option](https://docs.telerik.com/kendo-ui/api/javascript/ui/upload/configuration/async.autoupload) is set to `false`.
+Changed appearance in `Less-based themes` of the Upload action buttons that are rendered when the [async.autoUpload option](https://docs.telerik.com/kendo-ui/api/ui/upload/configuration/async#asyncautoupload) is set to `false`.
 
 Reverting to the previous appearance is possible by utilizing the following styles:
 

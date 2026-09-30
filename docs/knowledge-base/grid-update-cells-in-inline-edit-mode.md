@@ -1,12 +1,13 @@
 ---
 title: Update Adjacent Cells in Grid Rows while in Inline Edit Mode
-description: An example on how to update the value of adjacent cells while the Kendo UI Grid is in inline edit mode.
+description: Learn how to update the value of adjacent cells while the Kendo UI Grid is in inline edit mode.
 type: how-to
-page_title: Update Adjacent Cells in Rows in Inline Edit Mode | Kendo UI Grid for jQuery
+page_title: Update Adjacent Cells in Rows in Inline Edit Mode - Kendo UI for jQuery Data Grid
 slug: grid-update-cells-in-inline-edit-mode
 tags: grid, inline, edit, mode, update, cells, next, contiguous
 ticketid: 1147034
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -40,7 +41,7 @@ How can I update the Model and, respectively, the row cells which correspond to 
 
 To update the value of the Grid cells in an inline edit row mode when another field in the same row changes and while having the new value reflected still in edit mode:
 
-1. Subscribe to the [`change`](/api/javascript/data/datasource/events/change) event of the data source.
+1. Subscribe to the [`change`](/api/data/datasource/events/change) event of the data source.
 1. When the event is triggered, check if its `action` corresponds to `itemchange` and its `field` to the one you choose.
 1. If both conditions are met, get the `DataItem` of the row that is edited and update it by using the `set` method, which will propagate the changes in the GUI.
 
@@ -50,28 +51,30 @@ To update the value of the Grid cells in an inline edit row mode when another fi
 
   <script>
     $(document).ready(function () {
-      var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-      dataSource = new kendo.data.DataSource({
-        transport: {
-          read:  {
-            url: crudServiceBaseUrl + "/Products",
-            dataType: "jsonp"
-          },
-          update: {
-            url: crudServiceBaseUrl + "/Products/Update",
-            dataType: "jsonp"
-          },
-          destroy: {
-            url: crudServiceBaseUrl + "/Products/Destroy",
-            dataType: "jsonp"
-          },
-          create: {
-            url: crudServiceBaseUrl + "/Products/Create",
-            dataType: "jsonp"
-          },
+      var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+                dataSource = new kendo.data.DataSource({
+                    transport: {
+                        read:  {
+                            url: crudServiceBaseUrl + "/Products"
+                        },
+                        update: {
+                            url: crudServiceBaseUrl + "/Products/Update",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
+                        destroy: {
+                            url: crudServiceBaseUrl + "/Products/Destroy",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
+                        create: {
+                            url: crudServiceBaseUrl + "/Products/Create",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
           parameterMap: function(options, operation) {
             if (operation !== "read" && options.models) {
-              return {models: kendo.stringify(options.models)};
+              return kendo.stringify(options.models);
             }
           }
         },
@@ -123,5 +126,5 @@ To update the value of the Grid cells in an inline edit row mode when another fi
 
 ## See Also
 
-* [The set Method of the Grid](https://docs.telerik.com/kendo-ui/api/javascript/data/model/methods/set)
-* [The change Event of the Grid](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/change)
+* [The set Method of the Grid](https://docs.telerik.com/kendo-ui/api/data/model/methods/set)
+* [The change Event of the Grid](https://docs.telerik.com/kendo-ui/api/ui/grid/events/change)

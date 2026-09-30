@@ -1,13 +1,13 @@
 ---
 title: Move Popup Notifications on Window Resize
 page_title: Move Popup Notifications on Window Resize 
-description: "Learn how to move popup notifications on window resize in the Kendo UI Notification widget."
+description: "Learn how to move popup notifications on window resize in the Kendo UI Notification component."
 slug: howto_move_popup_notifications_onwindow_resize_notification
 previous_url: /controls/layout/notification/how-to/move-on-window-resize 
 tags: telerik, kendo, jquery, notification, move, popup, on, window, resize  
-component: notification
 type: how-to
 res_type: kb
+components: ["notification"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Notification for jQuery</td>
+  <td>Progress® Kendo UI® Notification for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -124,4 +124,4 @@ The code from the example below executes the following actions:
 
 * [Basic Usage of the Notification (Demo)](https://demos.telerik.com/kendo-ui/notification/index)
 * [Using the API of the Notification (Demo)](https://demos.telerik.com/kendo-ui/notification/api)
-* [JavaScript API Reference of the Notification](/api/javascript/ui/notification)
+* [JavaScript API Reference of the Notification](/api/ui/notification)

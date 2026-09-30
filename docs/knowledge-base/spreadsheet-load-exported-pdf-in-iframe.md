@@ -1,13 +1,13 @@
 ---
 title: Create an Inline PDF from the Spreadsheet and Embed It in an iFrame
-description: An example on how to generate a PDF from the Kendo UI Spreadsheet and load the PDF in an iframe element.
+description: Learn how to generate a PDF from the Kendo UI Spreadsheet and load the PDF in an iframe element.
 type: how-to
-page_title: Export Spreadsheet to PDF and Load the File in iFrame | Kendo UI Spreadsheet for jQuery
+page_title: Export Spreadsheet to PDF and Load the File in iFrame - Kendo UI Spreadsheet for jQuery
 slug: spreadsheet-load-exported-pdf-in-iframe
 tags: kendo, kendoui, spreadsheet, pdf, iframe, base64, embed
 ticketid: 1138153
 res_type: kb
-component: spreadsheet
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: spreadsheet
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
  </tr>
 </table>
 
@@ -50,10 +50,10 @@ Load the generated base64 PDF data in the `<iframe>` element. To do that, use th
 
     $("#spreadsheet").kendoSpreadsheet({
       excel: {
-        proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+        proxyURL: "https://demos.telerik.com/service/v2/core/export"
       },
       pdf: {
-        proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+        proxyURL: "https://demos.telerik.com/service/v2/core/export"
       },
       sheets: [{
         name: "Food Order"
@@ -65,5 +65,5 @@ Load the generated base64 PDF data in the `<iframe>` element. To do that, use th
 
 ## See Also
 
-* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet)
-* [`sheet`](https://docs.telerik.com/kendo-ui/api/javascript/spreadsheet/sheet)
+* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet)
+* [`sheet`](https://docs.telerik.com/kendo-ui/api/spreadsheet/sheet)

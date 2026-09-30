@@ -2,6 +2,7 @@
 title: Troubleshooting
 page_title: Troubleshooting
 description: "Troubleshoot common issues with the {{ site.product }} Visual Studio extensions."
+components: ["installerandvsextensions"]
 previous_url: /getting-started/vs-integration/troubleshooting, /installation/vs-integration/troubleshooting, /vs-integration-mvc/troubleshooting
 slug: troubleshooting_visualstudio_aspnetcore
 position: 30
@@ -27,7 +28,7 @@ This article provides solutions for common issues you may encounter while workin
 {% if site.core %}
         ![{{ site.product_short }} Troubleshooting when the VS extension is disabled](../vs-integration/images/vsextensions-disabled.png)
 {% else %}
-        ![{{ site.product_short }} vsextensions-disabled](../vs-integration/images/images-mvc/vsextensions-disabled.png)
+        ![{{ site.product_short }} Troubleshooting when the VS extension is disabled](../vs-integration/images/images-mvc/vsextensions-disabled.png)
 {% endif %}
 
 * If the extension is not correctly installed:
@@ -52,6 +53,24 @@ If the target **Framework** dropdown doesn't allow you to select the desired fra
 1. Check the .Net version in the list of Individual components. 
 1. Go to **Tools** > **Get Tools and Features**. 
 1. In Visual Studio Installer, select the **Individual components** tab and check the .NET Framework 4.6.2 targeting pack and .NET Framework 4.6.2 SDK
+
+{% if site.mvc %}
+
+## Created project could not load file or assembly 'Telerik.SvgIcons'
+
+When creating a new project using an older version of the components, there might be mismatch between the version of the installed VS Extentions and the older Telerik Icon assemblies required to build the specific old version of the toolset.
+
+The error will show a message similar to this:
+
+*Could not load file or assembly 'Telerik.SvgIcons, Version=4.0.0.0, Culture=neutral, PublicKeyToken=20b4b0547069c4f8' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)*
+
+You can fix the issue by opening the `.csproj` file of the project and updating the version of the Icon packages:
+```XML
+    <PackageReference Include="Telerik.FontIcons" Version="4.0.0" />
+    <PackageReference Include="Telerik.SvgIcons" Version="4.0.0" />
+```
+
+{% endif %}
 
 ## See Also
 

@@ -2,6 +2,7 @@
 title: Virtual Scrolling
 page_title: Virtual Scrolling
 description: "Get started with the Telerik UI Grid component for {{ site.framework }} and learn how to enable virtual scrolling as an alternative to paging."
+components: ["grid"]
 slug: virtual_scrolling_aspnetcore_grid
 position: 2
 ---
@@ -33,21 +34,23 @@ When virtual scrolling is enabled, the Grid loads data from its remote data sour
 
 In virtual scrolling, the HTML output is different from the standard scrolling functionality&mdash;the data table of the Grid is not placed inside a scrollable container. The scrollbar belongs to a separate `div.k-scrollbar` which affects scenarios when the data rows have to be manually scrolled to a particular position.
 
-        <div class="k-widget k-grid">
-            <div class="k-grid-header">
-                <div class="k-grid-header-wrap">
-                    <table>...</table>
-                </div>
-            </div>
-            <div class="k-grid-content">
-                <div class="k-virtual-scrollable-wrap">
-                    <table>...</table>
-                </div>
-                <div class="k-scrollbar k-scrollbar-vertical">
-                    ...<!-- div elements which generate a scrollbar -->...
-                </div>
-            </div>
+```HTML
+<div class="k-widget k-grid">
+    <div class="k-grid-header">
+        <div class="k-grid-header-wrap">
+            <table>...</table>
         </div>
+    </div>
+    <div class="k-grid-content">
+        <div class="k-virtual-scrollable-wrap">
+            <table>...</table>
+        </div>
+        <div class="k-scrollbar k-scrollbar-vertical">
+            ...<!-- div elements which generate a scrollbar -->...
+        </div>
+    </div>
+</div>
+```
 
 When the user scrolls a Grid in its virtual-scrolling mode, the Grid renders the table rows for the reached scroll position on the fly. If the Gris uses local data or if its remote data has already been loaded and cached, the rendering rate and performance of the widget depend on:
 * The page size.
@@ -63,17 +66,19 @@ Virtual scrolling relies on a fake scrollbar. Its size is not determined by the 
 * Disable text wrapping, or
 * Set an explicit, large-enough row height as demonstrated in the following example.
 
-        .k-virtual-scrollable-wrap tr
-        {
-            height: 3em;
-        }
+```CSS
+    .k-virtual-scrollable-wrap tr
+    {
+        height: 3em;
+    }
 
-        // Or
+    /* OR */
 
-        .k-virtual-scrollable-wrap td
-        {
-            white-space: nowrap;
-        }
+    .k-virtual-scrollable-wrap td
+    {
+        white-space: nowrap;
+    }
+```
 
 ## Using on Mobile
 
@@ -92,11 +97,14 @@ On mobile devices where a scrollbar that can be grabbed and dragged is not visib
     * Initialize the Grid while its element is still visible.
     * Initialize the Grid in a suitable event of the parent widget - for example, in the `Activate()` event handler of the TabStrip.
 * Because of height-related browser limitations (which cannot be avoided), virtual scrolling works with up to one or two million records. The exact number of records depends on the browser and the row height. If you use a row count that is larger than the browser can handle, unexpected widget behavior or JavaScript errors might occur. In such cases, revert to standard paging.
-* Refreshing or replacing the Grid data in the virtual mode has to be accompanied by resetting the position of the virtual scrollbar to zero&mdash;for example, by using `$('#GridID .k-scrollbar').scrollTop(0);`. In some scenarios, you might also need to call the [`refresh()` method](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/refresh).
+* Refreshing or replacing the Grid data in the virtual mode has to be accompanied by resetting the position of the virtual scrollbar to zero&mdash;for example, by using `$('#GridID .k-scrollbar').scrollTop(0);`. In some scenarios, you might also need to call the [`refresh()` method](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/refresh).
 * Programmatic scrolling to a particular Grid row is not supported when virtual scrolling is enabled, because it is not possible to reliably predict the exact scroll offset of the row.
 * When the Grid is `navigatable`, keyboard navigation supports only the `Up Arrow` and `Down Arrow` keys. The `Page Up` and `Page Down` key scrolling is not supported.
 
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
 * [Virtualization of Remote Data by the Grid HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/grid/virtualization-remote-data)
 * [Server-Side API](/api/grid)

@@ -1,12 +1,13 @@
 ---
-title: Remove DropDownList Items
-page_title: Remove Items from the {{ site.product }} DropDownList
-description: "An example on how to remove items from the {{ site.product }} DropDownList."
+title: Removing DropDownList Items
+page_title: Removing Items from the DropDownList
+description: Learn how to remove items from the {{ site.product }} DropDownList by following the steps in the Knowledge Base section of the {{ site.product }} components.
 slug: dropdownlist-remove-items
 tags: telerik, dropdownlist, remove, items, datasource
 component: dropdownlist
 type: how-to
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -28,13 +29,13 @@ How can I remove items from the {{ site.product }} DropDownList?
 
 ## Solution
 
-To achieve the desired scenario: 
+To achieve the desired scenario:
 
 1. Create a `button` that will be responsible for removing an item in the DropDownList.
-1. To remove an item, handle `click` event of the previously created button and use the [`.remove()`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/remove) configuration method of the DropDownList's DataSource.
+1. To remove an item, handle `click` event of the previously created button and use the [`.remove()`](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/remove) configuration method of the DropDownList's DataSource.
 
-```Index.cshtml
-    <button class="k-button k-button-solid-primary k-button-solid k-button-md k-rounded-md" id="remove">Remove Items</button>
+```Razor Index.cshtml
+    <button class="k-button k-button-primary" id="remove">Remove Items</button>
 
     @(Html.Kendo().DropDownList()
          .Name("color")
@@ -58,10 +59,10 @@ To achieve the desired scenario:
          .HtmlAttributes(new { style = "width: 100%" })
     )
 ```
-```Script.js
+```JS script.js
     <script>
         $("#remove").click(function() {
-           var ddl =  $("#color").data("kendoDropDownList"); // Get the reference of the DropDownList. 
+           var ddl =  $("#color").data("kendoDropDownList"); // Get the reference of the DropDownList.
 
            var oldData = ddl.dataSource.data(); // Get the DataSource's data.
 
@@ -73,7 +74,31 @@ To achieve the desired scenario:
 
 For the complete implementation of the suggested approach, refer to the [Telerik REPL example on removing {{ site.product }} DropDownList items](https://netcorerepl.telerik.com/QQOXbxbx53N2swP026).
 
-## See Also 
+## More {{ site.framework }} DropDownList Resources
 
-* [API Reference of the DropDownList](https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdownlist)
+* [{{ site.framework }} DropDownList Documentation]({%slug htmlhelpers_dropdownlist_aspnetcore%})
+
+* [{{ site.framework }} DropDownList Demos](https://demos.telerik.com/{{ site.platform }}/dropdownlist)
+
+{% if site.core %}
+* [{{ site.framework }} DropDownList Product Page](https://www.telerik.com/aspnet-core-ui/dropdownlist)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} DropDownList Product Page](https://www.telerik.com/aspnet-mvc/dropdownlist)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
 * [Telerik REPL: Removing {{ site.product }} DropDownList Items](https://netcorerepl.telerik.com/QQOXbxbx53N2swP026)
+* [Client-Side API Reference of the DropDownList for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/dropdownlist)
+* [Server-Side API Reference of the DropDownList for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/dropdownlist)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

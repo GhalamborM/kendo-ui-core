@@ -1,13 +1,13 @@
 ---
 title: Upload Files and Select Additional Metadata
 page_title: Upload Files and Select Additional Metadata
-description: "Learn how to upload files and select additional metadata with the Kendo UI Upload widget."
+description: "Learn how to upload files and select additional metadata with the Kendo UI Upload component."
 slug: howto_select_additional_metadata_upload
 previous_url: /controls/editors/upload/how-to/select-additional-metadata
 tags: telerik, kendo, jquery, upload, upload, files, and, select, additional, metadata
-component: upload
 type: how-to
 res_type: kb
+components: ["upload"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Upload for jQuery</td>
+  <td>Progress® Kendo UI® Upload for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -157,7 +157,7 @@ The following example demonstrates how to achieve the desired scenario.
 
 ## See Also
 
-* [JavaScript API Reference of the Upload](/api/javascript/ui/upload)
+* [JavaScript API Reference of the Upload](/api/ui/upload)
 * [Modes of Operation]({% slug modes_upload_widget %})
 * [Metadata]({% slug metadata_upload_widget %})
 

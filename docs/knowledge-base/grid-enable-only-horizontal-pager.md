@@ -2,12 +2,13 @@
 title: Enable Only Horizontal Pager
 description: Set the pager of the Kendo UI Grid to allow only the horizontal appearance and prevent the vertical dropdownlist.
 type: how-to
-page_title: Prevent Pager from Displaying Vertically | Kendo UI Grid
+page_title: Prevent Pager from Displaying Vertically - Kendo UI Grid
 slug: grid-enable-only-horizontal-pager
 position: 
 tags: grid, pager, responsive, horizontal
 ticketid: 1445455
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -29,7 +30,7 @@ res_type: kb
 What is the best way to set the pager's appearance to be shown only as horizontally?  How can I make it so the Grid's pager doesn't change?
 
 ## Solution
-The pager can be set to always display as horizontal by changing the [pageable.responsive property](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/pageable.responsive) to false.
+The pager can be set to always display as horizontal by changing the [pageable.responsive property](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/pageable#pageableresponsive) to false.
 
 ```javascript
       $("#grid").kendoGrid({
@@ -41,6 +42,8 @@ The pager can be set to always display as horizontal by changing the [pageable.r
 ```
 
 #### Example
+
+The following example initializes a Grid with `pageable.responsive` set to `false` so the pager always renders in its horizontal layout regardless of the available width.
 
 ```dojo
     <div id="grid"></div>
@@ -65,4 +68,4 @@ The pager can be set to always display as horizontal by changing the [pageable.r
 ```
 
 ## See Also
-* [pageable.responsive - API Reference/Kendo UI Grid for jQuery](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/pageable.responsive)
+* [pageable.responsive - API Reference/Kendo UI Grid for jQuery](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/pageable#pageableresponsive)

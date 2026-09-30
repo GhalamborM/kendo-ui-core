@@ -1,13 +1,13 @@
 ---
 title: Filter by Date Only
-page_title: Filter by Date | Kendo UI Grid for jQuery
-description: "An example on how to filter date columns in the Kendo UI Grid for jQuery."
+page_title: Filter by Date - Kendo UI for jQuery Data Grid
+description: "Learn how to filter date columns in the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/filter-by-date, /controls/data-management/grid/how-to/filtering/filter-by-date
 slug: howto_filter_date_columns_grid
 tags: grid, filter, date, columns
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 
@@ -16,7 +16,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -42,8 +42,8 @@ To achieve this behavior and ignore the exact time when you filter the data:
 The helper field is intended to hold only the date, so that the Grid data is later filtered by it while displaying the original `datetime` field.
 
 To create the helper field:
-* Use the [`dataSource.schema.parse`](/api/javascript/data/datasource/configuration/schema.parse) configuration to create a new field that is intended to hold the date only.
-* Use the data-holding field in the [`columns`](/api/javascript/ui/grid/configuration/columns) definition, but provide a [`template`](/api/javascript/ui/grid/configuration/columns.template) that will visualize the initial datetime field.
+* Use the [`dataSource.schema.parse`](/api/data/datasource/configuration/schema#schemaparse) configuration to create a new field that is intended to hold the date only.
+* Use the data-holding field in the [`columns`](/api/ui/grid/configuration/columns) definition, but provide a [`template`](/api/ui/grid/configuration/columns#columnstemplate) that will visualize the initial datetime field.
 
 ```dojo
 <div id="grid"></div>
@@ -108,8 +108,8 @@ Before applying it, you have to handle the `filterMenuInit` event to transform t
 
 To achieve the filter change:
 
-* Handle the [`filterMenuInit` event](/api/javascript/ui/grid/events/filtermenuinit) and conditionally apply custom logic to modify the filter so that it looks for dates, selected from the DatePicker, between the start and the end of day.
-* Use the [`dataSource.filter()` method](/api/javascript/data/datasource/methods/filter) and pass the modified filter configuration to it.
+* Handle the [`filterMenuInit` event](/api/ui/grid/events/filtermenuinit) and conditionally apply custom logic to modify the filter so that it looks for dates, selected from the DatePicker, between the start and the end of day.
+* Use the [`dataSource.filter()` method](/api/data/datasource/methods/filter) and pass the modified filter configuration to it.
 
 ```dojo
 <div id="grid"></div>
@@ -165,4 +165,4 @@ To achieve the filter change:
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

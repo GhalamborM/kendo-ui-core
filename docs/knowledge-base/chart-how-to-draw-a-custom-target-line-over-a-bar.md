@@ -1,12 +1,13 @@
 ---
 title: Draw a Custom Target Line over a Bar
-page_title: Draw a Custom Target Line over a Bar | Kendo UI Chart for jQuery
-description: An example on how to draw a custom target line over a bar in the Kendo UI Chart.
+page_title: Draw a Custom Target Line over a Bar - Kendo UI Chart for jQuery
+description: Learn how to draw a custom target line over a bar in the Kendo UI Chart.
 type: how-to
 slug: chart-how-to-draw-a-custom-target-line-over-a-bar
 tags: chart, bar, target,
 ticketid: 1140477
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -28,7 +29,7 @@ res_type: kb
   <td>Browser Version</td>
   <td>11</td>
  </tr> <tr>
-  <td>Made with version</td>
+  <td>Product Version</td>
   <td>2017.3.1026</td>
  </tr>
 </table>
@@ -42,7 +43,7 @@ How can I show target lines for each Chart bar?
 
 Use either of the following approaches:
 1. Implement the [Kendo UI Bullet Chart](https://demos.telerik.com/kendo-ui/bullet-charts/index), or
-1. Utilize [custom visuals](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/seriesdefaults.visual).
+1. Utilize [custom visuals](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/seriesdefaults#seriesdefaultsvisual).
 
 The following example demonstrates how to use the custom visuals approach.
 

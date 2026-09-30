@@ -1,16 +1,17 @@
 ---
 title: Appearance
-page_title: "{{ site.framework }} TextArea Documentation | TextArea Appearance"
+page_title: Appearance
 description: "Learn how to customize the appearance of the Telerik UI TextArea HtmlHelper for {{ site.framework }}."
+components: ["textarea"]
 slug: textarea_appearance
 position: 2
 ---
 
-# TextArea Appearance
+# Appearance
 
-As of the R1 2022 release, the TextArea component uses a new rendering. To learn more about why we decided to create a new rendering for our components, see the [Components Rendering](https://docs.telerik.com/{{ site.platform }}/styles-and-layout/components-rendering-overview) article.
+In this article, you will find information about the styling options and rendering of the {{ site.product }} TextArea.
 
-For a live example of the styling options of the TextArea, visit the [Appearance Demo of the TextArea](https://demos.telerik.com/{{ site.platform }}/textarea/appearance).
+For a live example, visit the [Appearance Demo of the TextArea](https://demos.telerik.com/{{ site.platform }}/textarea/appearance).
 
 ## Options
 
@@ -24,7 +25,7 @@ The TextArea HtmlHelper supports the following styling methods:
 
 ### Size
 
-The `Size()` method allows you to adjust the size of the TextArea. The default size is `Medium`.
+The `Size()` method allows you to adjust the size of the TextArea.
 
 ```HtmlHelper
 @(Html.Kendo().TextArea()
@@ -51,12 +52,15 @@ The following values are available for the `Size` option:
 - `Small`
 - `Medium`
 - `Large`
-- `None`
+
+> When not explicitly set, the applied theme controls the default size.
+
+> The `None` value is deprecated. Use custom CSS instead.
 
 
 ### Rounded
 
-You can control how much border radius is applied to the component by using the `Rounded()` method. The default value is `Medium`.
+You can control how much border radius is applied to the component by using the `Rounded()` method.
 
 ```HtmlHelper
 @(Html.Kendo().TextArea()
@@ -71,7 +75,7 @@ You can control how much border radius is applied to the component by using the 
 </kendo-textarea>
 ```
 {% endif %}
-The value `Medium` is applied to the wrapping span element through the `k-rounded-md` class. 
+The value `Medium` is applied to the wrapping span element through the `k-rounded-md` class.
 
 ```html
 <span class="k-textarea k-input k-rounded-md">
@@ -84,12 +88,15 @@ The `Rounded()` method supports the following values:
 - `Medium`
 - `Large`
 - `Full`
-- `None`
+
+> When not explicitly set, the applied theme controls the default border radius.
+
+> The `None` value is deprecated. Use custom CSS instead.
 
 
 ### FillMode
 
-The `FillMode` option controls the way the color is applied to the component. The default value is `Solid`.
+The `FillMode` option controls the way the color is applied to the component.
 
 ```HtmlHelper
 @(Html.Kendo().TextArea()
@@ -118,7 +125,10 @@ The following values are available for the `FillMode` option:
 - `Solid`
 - `Flat`
 - `Outline`
-- `None`
+
+> When not explicitly set, the applied theme controls the default fill mode.
+
+> The `None` value is deprecated. Use custom CSS instead.
 
 
 ### Overflow
@@ -181,79 +191,18 @@ The option is applied to the wrapping span element through the `k-resize-none` c
 
 The following values are available for the `Resize` option:
 
+> **Important**: The `Auto` option can be used only with the `MaxRow()` configuration.
+
+- `Auto`
 - `Both`
 - `Horizontal`
 - `Vertical`
 - `None`
 
-
-## Old vs New Rendering
-
-The old rendering of the component consisted of a wrapping `span` element with the `k-textarea` class and a child `textarea` element with the `k-textbox` class.
-
-```html
-<span class="k-textarea">
-    <textarea class='k-textbox'></textarea>
-</span>
-```
-
-The new rendering of the component also consists of a wrapping `span` element that has a child `textarea` element:
-
-- The `span` element controls the overall appearance of the component and has the following class structure:
-
-  ```html
-  <span class="k-textarea k-input k-input-md k-rounded-md k-input-solid">
-  </span>
-  ```
-
-- The `textarea` element controls the appearance of the `textarea` itself and has the following class structure:
-
-  ```html
-  <textarea class="k-input-inner k-overflow-hidden k-resize-both" placeholder="..."></textarea>
-  ```
-
-The full rendering of the component has the following HTML structure:
-
-```html
-<span class="k-textarea k-input k-input-md k-rounded-md k-input-solid">
-    <textarea class="k-input-inner k-overflow-hidden k-resize-both" placeholder="...">...</textarea>
-</span>
-```
-
-## Visual Backwards Compatibility
-
-To achieve the same look and feel as the old rendering, the element references must be updated. Visit the [CSS Classes Migration](https://docs.telerik.com/{{ site.platform }}/styles-and-layout/components-rendering-overview#css-classes-migration) and [JQuery Selectors Migration](https://docs.telerik.com/{{ site.platform }}/styles-and-layout/components-rendering-overview#jquery-selectors-migration) sections of the [Components Rendering](https://docs.telerik.com/{{ site.platform }}/styles-and-layout/components-rendering-overview) article for additional information.
-
-> The new styling and rendering supports only the [default options](#options) when you use a LESS theme.
-
-Previously, a reference to the `textarea` element was obtainable through the `k-input` class.
-
-```javascript
-$(".k-input") // Returns a reference to the textarea element in the old rendering.
-```
-
-With the new rendering, the `textarea` element must be targeted by using the `k-input-inner` class.
-
-```javascript
-$(".k-input-inner") // Returns a reference to the textarea element in the new rendering.
-```
-
-The following example showcases how to apply a background color to the **TextArea** in both the new, and the old rendering:
-
-```
-    <style>
-      /* Works BEFORE R1 2022 */
-      .k-input {
-        background-color: #0071bc !important; /* Blue color in versions BEFORE R1 2022 */
-      }
-      /* Works AFTER R1 2022 */
-      .k-input-inner {
-        background-color: #2e8540 !important; /* Green color in versions AFTER R1 2022 */
-      }
-    </style>
-```
+@[template](/_contentTemplates/components-rendering-section.md#components-rendering-section)
 
 ## See Also
 
+* [Components Appearance Overview]({% slug components_rendering_overview %})
 * [Appearance of the TextArea HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/textarea/appearance)
 * [Server-Side API](/api/textarea)

@@ -1,12 +1,12 @@
 ---
 title: Display the Event Title in the Delete Confirm Prompt
-description: An example on how to display the title of the task or event in the Delete confirmation dialog of the Kendo UI Scheduler.
+description: Learn how to display the title of the task or event in the Delete confirmation dialog of the Kendo UI Scheduler.
 type: how-to
-page_title: Inject the Task Title for Display in the Delete Confirm Dialog | Kendo UI Scheduler for jQuery
+page_title: Inject the Task Title for Display in the Delete Confirm Dialog - Kendo UI Scheduler for jQuery
 slug: scheduler-inject-task-title-in-the-confirm-delete-prompt
 tags: kendo, scheduler, delete-task, delete-prompt
 res_type: kb
-component: scheduler
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: scheduler
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
 </table>
 
@@ -57,8 +57,8 @@ Handle the `dataBound` event and attach a `click` event handler to the `k-event-
 				dataBound: function(e) {
 					$('.k-event-delete').on('click', handleDeleteClick);
 				},
-				date: new Date("2013/6/13"),
-				startTime: new Date("2013/6/13 07:00 AM"),
+				date: new Date("2025/6/13"),
+				startTime: new Date("2025/6/13 07:00 AM"),
 				height: 600,
 				views: [ "workWeek" ],
 				timezone: "Etc/UTC",
@@ -66,24 +66,26 @@ Handle the `dataBound` event and attach a `click` event handler to the `k-event-
 					batch: true,
 					transport: {
 						read: {
-							url: "https://demos.telerik.com/kendo-ui/service/tasks",
-							dataType: "jsonp"
-						},
-						update: {
-							url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-							dataType: "jsonp"
-						},
-						create: {
-							url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-							dataType: "jsonp"
-						},
-						destroy: {
-							url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-							dataType: "jsonp"
-						},
+                		    url: "https://demos.telerik.com/service/v2/core/tasks"
+                		},
+                		update: {
+                		    url: "https://demos.telerik.com/service/v2/core/tasks/update",
+                		    type: "POST",
+                		    contentType: "application/json"
+                		},
+                		create: {
+                		    url: "https://demos.telerik.com/service/v2/core/tasks/create",
+                		    type: "POST",
+                		    contentType: "application/json"
+                		},
+                		destroy: {
+                		    url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+                		    type: "POST",
+                		    contentType: "application/json"
+                		},
 						parameterMap: function(options, operation) {
 							if (operation !== "read" && options.models) {
-								return {models: kendo.stringify(options.models)};
+								return kendo.stringify(options.models);
 							}
 						}
 					},
@@ -114,4 +116,4 @@ Handle the `dataBound` event and attach a `click` event handler to the `k-event-
 
 ## See Also
 
-* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler)
+* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/ui/scheduler)

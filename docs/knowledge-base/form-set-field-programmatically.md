@@ -1,11 +1,12 @@
 ---
 title: Set Form field programmatically
-description: An example on how to set a Form field programmatically.
+description: Learn how to set a Form field programmatically.
 type: how-to
 page_title: Set Form field programmatically
 slug: form-set-field-programmatically
 tags: form, field, set, change
 res_type: kb
+components: ["form"]
 ---
 
 ## Environment
@@ -13,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Form</td>
+  <td>Progress® Kendo UI® Form for jQuery</td>
  </tr>
 </table>
 
@@ -23,7 +24,7 @@ How can I change From data based on user selection in another widget?
 
 ## Solution
 
-Get a reference to the Form instance and set the value of the required model field via the `kendo.data.Model` [set method](/api/javascript/data/observableobject/methods/set). This way the UI, as well as the form data that will be submitted, will be updated with the new value.
+Get a reference to the Form instance and set the value of the required model field via the `kendo.data.Model` [set method](/api/data/observableobject/methods/set). This way the UI, as well as the form data that will be submitted, will be updated with the new value.
 
 > Only a valid model can be updated following this approach
 
@@ -121,7 +122,7 @@ Get a reference to the Form instance and set the value of the required model fie
           function onDdlChange(e){
             var form = $("#exampleForm").getKendoForm();
             var dataItem = e.sender.dataItem();
-            
+
             form.editable.options.model.set("City", dataItem.ShipCity);
             form.editable.options.model.set("AddressLine", dataItem.ShipAddress);
           };
@@ -133,4 +134,4 @@ Get a reference to the Form instance and set the value of the required model fie
 
 ## See Also
 
-* [Form Overview](https://docs.telerik.com/kendo-ui/controls/layout/form/overview)
+* [Form Overview](https://docs.telerik.com/kendo-ui/controls/form/overview)

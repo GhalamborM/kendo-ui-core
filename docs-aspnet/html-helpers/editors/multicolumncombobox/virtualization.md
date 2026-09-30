@@ -2,6 +2,7 @@
 title: Virtualization
 page_title: Virtualization
 description: "Learn how to set up the virtualization feature of the Telerik UI MultiColumnComboBox component for {{ site.framework }}."
+components: ["multicolumncombobox"]
 previous_url: /helpers/editors/multicolumncombobox/virtualization
 slug: virtualization_multicolumncombobox_aspnetcore
 position: 5
@@ -12,10 +13,12 @@ position: 5
 You can configure a MultiColumnComboBox to use virtualization.
 
 > * For the virtualization to work properly, define the widths of all columns in pixels.
-> * The MultiColumnComboBox supports server binding to primitive or an enum value types only.
+> * The MultiColumnComboBox supports model binding to primitive or an enum value types only.
 
 1. Create the `Read` and `ValueMapper` actions.
 
+    {% if site.core %}
+    ```C#
         public IActionResult Index()
         {
             return View(new ProductViewModel
@@ -63,6 +66,58 @@ You can configure a MultiColumnComboBox to use virtualization.
 
             return products;
         }
+    ```
+    {% else %}
+    ```C#
+        public ActionResult Index()
+        {
+            return View(new ProductViewModel
+            {
+                ProductID = 4,
+                ProductName = "ProductName4"
+            });
+        }
+
+        [HttpPost]
+        public ActionResult ProductsVirtualization_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            return Json(GetProducts().ToDataSourceResult(request));
+        }
+
+        public ActionResult Products_ValueMapper(int[] values)
+        {
+            var indices = new List<int>();
+
+            if (values != null && values.Any())
+            {
+                var index = 0;
+
+                foreach (var product in GetProducts())
+                {
+                    if (values.Contains(product.ProductID))
+                    {
+                        indices.Add(index);
+                    }
+
+                    index += 1;
+                }
+            }
+
+            return Json(indices, JsonRequestBehavior.AllowGet);
+        }
+
+        private static IEnumerable<ProductViewModel> GetProducts()
+        {
+            var products = Enumerable.Range(0, 2000).Select(i => new ProductViewModel
+            {
+                ProductID = i,
+                ProductName = "ProductName" + i
+            });
+
+            return products;
+        }
+    ```
+    {% endif %}
 
 1. Add the MultiColumnComboBox to the view and configure it to use virtualization.
 
@@ -98,6 +153,7 @@ You can configure a MultiColumnComboBox to use virtualization.
                     });
             })
             .Virtual(v => v.ItemHeight(26).ValueMapper("valueMapper"))
+        )
     ```
     {% if site.core %}
     ```TagHelper
@@ -145,7 +201,7 @@ You can configure a MultiColumnComboBox to use virtualization.
             function convertValues(value) {
                 var data = {};
 
-                value = $.isArray(value) ? value : [value];
+                value = Array.isArray(value) ? value : [value];
 
                 for (var idx = 0; idx < value.length; idx++) {
                     data["values[" + idx + "]"] = value[idx];

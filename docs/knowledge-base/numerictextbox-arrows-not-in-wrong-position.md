@@ -1,12 +1,13 @@
 ---
 title: Fix Position of Arrows in the NumericTextBox
-description: An example on how to fix the position of arrows in a Kendo UI NumericTextBox for jQuery.
+description: Learn how to fix the position of arrows in a Kendo UI NumericTextBox for jQuery.
 type: how-to
-page_title: Fix Arrows That Are Not Centered | Kendo UI NumericTextBox
+page_title: Fix Arrows That Are Not Centered - Kendo UI NumericTextBox
 slug: numerictextbox-arrows-not-in-wrong-position
 tags: numerictextbox, arrows, not, in, wrong, position, style, textbox, k-textbox
 ticketid: 1405455
 res_type: kb
+components: ["numerictextbox"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>NumericTextBox for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® NumericTextBox for jQuery</td>
  </tr>
 
   <td>Product Version</td>

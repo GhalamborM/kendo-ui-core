@@ -1,11 +1,12 @@
 ---
 title: Enable Sorting, Filtering, and Grouping for a Column Bound to an Object
-description: An example on how to enable sorting, filtering and grouping for a column which is bound to an object in the Kendo UI Grid.
+description: Learn how to enable sorting, filtering and grouping for a column which is bound to an object in the Kendo UI Grid.
 type: how-to
-page_title: Enable Sorting, Filtering, and Grouping for a Column Bound to an Object | Kendo UI Grid for jQuery
+page_title: Enable Sorting, Filtering, and Grouping for a Column Bound to an Object - Kendo UI for jQuery Data Grid
 slug: enable-operations-for-object-column
 tags: grid, object, column, operations, drop, down, filtering, sorting, grouping
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -17,7 +18,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -79,9 +80,8 @@ Bind the column to a field of the object and the editor to the object itself.
             dataTextField: "CategoryName",
             dataValueField: "CategoryID",
             dataSource: {
-              type: "odata",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
+                read: "https://demos.telerik.com/service/v2/core/Categories"
               }
             }
           });

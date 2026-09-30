@@ -1,12 +1,12 @@
 ---
 title: Group Filter Checkboxes in Grid by Another Field
-description: An example on how to group the checkboxes in the filter menu by another field in the Kendo UI Grid.
+description: Learn how to group the checkboxes in the filter menu by another field in the Kendo UI Grid.
 type: how-to
-page_title: Group the Checkboxes in the Filter Menu by Different Field | Kendo UI Grid for jQuery
+page_title: Group the Checkboxes in the Filter Menu by Different Field - Kendo UI for jQuery Data Grid
 slug: grid-group-filter-checkboxes
 tags: kendoui, kendo, grid, filtering, checkbox filter
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
 </table>
 
@@ -24,7 +24,7 @@ How to group the checkboxes in the filter menu by a specific field?
 
 ## Solution
 
-Although sorting the dataSource of the checkboxes is possible, applying group expression to it will break the built-in functionality of the Grid. However, you can sort the dataSource of the checkboxes by the field that you want to group by and manually insert group separators. In the following example, the entire logic for grouping the checkboxes is within the [`filterMenuOpen`](/api/javascript/ui/grid/events/filtermenuopen) event of the Grid.
+Although sorting the dataSource of the checkboxes is possible, applying group expression to it will break the built-in functionality of the Grid. However, you can sort the dataSource of the checkboxes by the field that you want to group by and manually insert group separators. In the following example, the entire logic for grouping the checkboxes is within the [`filterMenuOpen`](/api/ui/grid/events/filtermenuopen) event of the Grid.
 
 ```dojo
 <style>
@@ -40,31 +40,33 @@ Although sorting the dataSource of the checkboxes is possible, applying group ex
     <div id="client"></div>
       <script>
         $(document).ready(function() {
-          var telerikWebServiceBase = "https://demos.telerik.com/kendo-ui/service/";
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core/";
           $("#client").kendoGrid({
             dataSource: {
               transport: {
-                read:  {
-                  url: telerikWebServiceBase + "/Products",
-                  dataType: "jsonp"
-                },
-                update: {
-                  url: telerikWebServiceBase + "/Products/Update",
-                  dataType: "jsonp"
-                },
-                destroy: {
-                  url: telerikWebServiceBase + "/Products/Destroy",
-                  dataType: "jsonp"
-                },
-                create: {
-                  url: telerikWebServiceBase + "/Products/Create",
-                  dataType: "jsonp"
-                },
-                parameterMap: function(options, operation) {
-                  if (operation !== "read" && options.models) {
-                    return {models: kendo.stringify(options.models)};
+                  read:  {
+                      url: crudServiceBaseUrl + "/Products"
+                  },
+                  update: {
+                      url: crudServiceBaseUrl + "/Products/Update",
+                      type: "POST",
+              		contentType: "application/json"
+                  },
+                  destroy: {
+                      url: crudServiceBaseUrl + "/Products/Destroy",
+                      type: "POST",
+              		contentType: "application/json"
+                  },
+                  create: {
+                      url: crudServiceBaseUrl + "/Products/Create",
+                      type: "POST",
+              		contentType: "application/json"
+                  },
+                  parameterMap: function(options, operation) {
+                      if (operation !== "read" && options.models) {
+                          return kendo.stringify(options.models);
+                      }
                   }
-                }
               },
               batch: true,
               pageSize: 20,

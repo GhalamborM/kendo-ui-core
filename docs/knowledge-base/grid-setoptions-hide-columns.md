@@ -1,12 +1,13 @@
 ---
 title: Persist Hidden Columns after setOptions Is Applied
-description: An example on how to hide columns after the setOptions method is applied to the Kendo UI Grid.
+description: Learn how to hide columns after the setOptions method is applied to the Kendo UI Grid.
 type: how-to
-page_title: Persist Hidden Columns after setOptions | Kendo UI Grid for jQuery
+page_title: Persist Hidden Columns after setOptions - Kendo UI for jQuery Data Grid
 slug: grid-setoptions-hide-columns
 tags: grid, persist, state, columns, hide
 ticketid: 1166018
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -29,8 +30,8 @@ How can I persist the hidden columns after setting the options of the Grid?
 
 ## Solution
 
-1. Handle the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound) event.
-1. In the `dataBound` event handler, based on the `columns.hidden` property, use the [`hideColumn`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/hidecolumn) method.
+1. Handle the [`dataBound`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound) event.
+1. In the `dataBound` event handler, based on the `columns.hidden` property, use the [`hideColumn`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/hidecolumn) method.
 
 ```dojo
 <div id="example">
@@ -44,9 +45,8 @@ How can I persist the hidden columns after setting the options of the Grid?
         $(document).ready(function() {
             $("#grid").kendoGrid({
                 dataSource: {
-                    type: "odata",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                        read: "https://demos.telerik.com/service/v2/core/Customers"
                     },
                     pageSize: 20
                 },

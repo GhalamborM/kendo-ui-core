@@ -1,7 +1,8 @@
 ---
 title: DataSource Operations
-page_title: DataSource Operations | Kendo UI Data Source
+page_title: DataSource Operations - Kendo UI for jQuery DataSource
 description: "Learn how to filter, sort, and group your data items when working with the Kendo UI for jQuery DataSource component and your JavaScript widgets."
+components: ["datasource"]
 previous_url: /framework/datasource/basic-usage
 slug: datasourceoperations_kendoui_datasourcecomponent
 position: 4
@@ -13,7 +14,7 @@ The DataSource component supports a number of operations for handling your data 
 
 ## Local Sorting
 
-You can sort the data in the Kendo UI DataSource component by enabling its [`sort`](/api/javascript/data/datasource/configuration/sort) configuration option. First, set a field by which the items will be sorted and, then, an ascending or descending sorting direction. 
+You can sort the data in the Kendo UI DataSource component by enabling its [`sort`](/api/data/datasource/configuration/sort) configuration option. First, set a field by which the items will be sorted and, then, an ascending or descending sorting direction. 
 
 The example below demonstrates how to sort the items in the DataSource on the client. 
 
@@ -47,7 +48,7 @@ The example below demonstrates how to sort the items in the DataSource on the cl
 
 ## Server Sorting
 
-To perform sorting on the server, enable the [`serverSorting`](/api/javascript/data/datasource/configuration/serversorting) option of the DataSource. When `serverSorting` is enabled, information about the sorting field and direction is sent to the server. 
+To perform sorting on the server, enable the [`serverSorting`](/api/data/datasource/configuration/serversorting) option of the DataSource. When `serverSorting` is enabled, information about the sorting field and direction is sent to the server. 
 
 The following example demonstrates how to configure `serverSorting`.
 
@@ -56,11 +57,11 @@ The following example demonstrates how to configure `serverSorting`.
 
     <script>
       var dataSource = new kendo.data.DataSource({
-        type: "odata",           
+        type: "odata-v4",           
         serverSorting: true,
         sort: { field: "ProductName", dir: "asc" },           
         transport: {
-          read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products"
+          read: "https://demos.telerik.com/service/v2/odata/Products"
         },
       });    
 
@@ -79,7 +80,7 @@ Filtering local data is a trivial task when you are using the DataSource. The co
 
 Note that local filtering is convenient for small datasets and you need to avoid it when working with large numbers of data because it might lead to performance issues.
 
-For more details about the filter expression structure, refer to the documentation on the [`filter`](/api/javascript/data/datasource/configuration/filter) configuration option. 
+For more details about the filter expression structure, refer to the documentation on the [`filter`](/api/data/datasource/configuration/filter) configuration option. 
 
 ```dojo
     <div id="container"></div>
@@ -117,9 +118,9 @@ For more details about the filter expression structure, refer to the documentati
 
 ## Server Filtering
 
-Server filtering is convenient for large datasets. Make sure that you set the [`schema`](/api/javascript/data/datasource/configuration/schema) and the [`filter`](/api/javascript/data/datasource/configuration/filter) properties as necessary.
+Server filtering is convenient for large datasets. Make sure that you set the [`schema`](/api/data/datasource/configuration/schema) and the [`filter`](/api/data/datasource/configuration/filter) properties as necessary.
 
-The following example features local data but the data returned by the [`transport`](/api/javascript/data/datasource/configuration/transport) will be evaluated in the same way.
+The following example features local data but the data returned by the [`transport`](/api/data/datasource/configuration/transport) will be evaluated in the same way.
 
 ```
         // The JSON result from "{remote service}"
@@ -152,7 +153,7 @@ The following example features local data but the data returned by the [`transpo
 
 ## Accent-Folding Filtering
 
-As of R2 2019, the DataSource delivers a built-in functionality to handle cases when the user needs to filter on diacritic characters in a specific language. The [`accentFoldingFiltering`](/api/javascript/data/datasource/configuration/accentfoldingfiltering) option allows the user to define a specific culture that will be used when the filter is applied. 
+As of R2 2019, the DataSource delivers a built-in functionality to handle cases when the user needs to filter on diacritic characters in a specific language. The [`accentFoldingFiltering`](/api/data/datasource/configuration/accentfoldingfiltering) option allows the user to define a specific culture that will be used when the filter is applied. 
 
 Since these characters are unique for a specific language, you have to set the appropriate culture as a value. For example, `tr-TR` for Turkish, `es-ES` for Spanish, or `fr-FR` for French.
 
@@ -284,6 +285,8 @@ The following example features local data but the data returned by a `transport`
     });
 ```
 
+A full implementation of Server Grouping with Virtualization you can see in [this official Grid demo](https://demos.telerik.com/kendo-ui/grid/server-grouppaging-virtualization).
+
 ## Mixed Data Operation Mode
 
 Note that all data operations have to occur either on the server or on the client. Therefore, while you can still use the mixed data operation mode of the DataSource, this approach is not recommended as it leads to undesired side effects. 
@@ -378,4 +381,4 @@ The DataSource component also enables you to create a shared data source, which 
 * [Offline Support]({% slug offlinesupport_kendoui_datasourcecomponent %})
 * [CORS Data Fetching from Another Domain]({% slug corsdatafetching_anotherdomain_datasourcecomponent %})
 * [CRUD Data Operations]({% slug cruddataoperations_kendoui_datasourcecomponent %})
-* [DataSource JavaScript API Reference](/api/javascript/data/datasource)
+* [DataSource JavaScript API Reference](/api/data/datasource)

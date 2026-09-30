@@ -1,12 +1,13 @@
 ---
 title: Implement allowCopy in TreeList
-description: An example on how to enable the copying of the selected items in the Kendo UI TreeList.
+description: Learn how to enable the copying of the selected items in the Kendo UI TreeList.
 type: how-to
-page_title: Enable Copy of Selected Items | Kendo UI TreeList for jQuery
+page_title: Enable Copy of Selected Items - Kendo UI TreeList for jQuery
 slug: treelist-copy-selection
 tags: treelist, allowCopy, selection, copy
 ticketid: 1161545
 res_type: kb
+components: ["treelist"]
 ---
 
 ## Environment
@@ -18,14 +19,14 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>TreeList for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® TreeList for jQuery</td>
 	</tr>
 </table>
 
 
 ## Description
 
-Unlike the Grid, the TreeList API does not provide the [`allowCopy`](/api/javascript/ui/grid/configuration/allowcopy) option. Depending on the specific data, my project uses both widgets. The lack of the setting confuses the users&mdash;in some places they can copy the data while in other places they cannot copy the data even though the controls look the similar.
+Unlike the Grid, the TreeList API does not provide the [`allowCopy`](/api/ui/grid/configuration/allowcopy) option. Depending on the specific data, my project uses both widgets. The lack of the setting confuses the users&mdash;in some places they can copy the data while in other places they cannot copy the data even though the controls look the similar.
 
 How can I enable the copying of the selected items in a TreeList?
 
@@ -35,7 +36,7 @@ This functionality is not part of the built-in TreeList settings but is already 
 
 ## Suggested Workarounds
 
-To focus the table, add an event handler to the [`change`](/api/javascript/ui/treelist/events/change) event of the TreeList and to the `Ctrl`+`C` key combination. You can further elaborate on the example with the help of the non-minified `kendo.grid.js` file and the `getTSV` internal function.
+To focus the table, add an event handler to the [`change`](/api/ui/treelist/events/change) event of the TreeList and to the `Ctrl`+`C` key combination. You can further elaborate on the example with the help of the non-minified `kendo.grid.js` file and the `getTSV` internal function.
 
 
 

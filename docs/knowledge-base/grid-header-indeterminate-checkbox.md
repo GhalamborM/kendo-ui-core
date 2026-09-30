@@ -2,11 +2,12 @@
 title: Make the Header Checkbox Indeterminate
 description: "Display indeterminate status for the master checkbox when only some of the Grid checkboxes are selected."
 type: how-to
-page_title: Make the Header Checkbox Indeterminate | Kendo UI Grid
+page_title: Make the Header Checkbox Indeterminate - Kendo UI Grid
 slug: grid-header-indeterminate-checkbox
 position: 
 tags: grid, header, checkbox, select, indeterminate, prop, status
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -30,7 +31,7 @@ How can I make the master checkbox in the Grid header appear as indeterminate?
 
 ## Solution
 
-Utilize the [`change`](/api/javascript/ui/grid/events/change) event of the Grid and find if the checked checkboxes are more than zero but less than all available checkboxes on the page. If so, use the [jQuery.prop()](https://api.jquery.com/prop/) method to change the status of the master checkbox.
+Utilize the [`change`](/api/ui/grid/events/change) event of the Grid and find if the checked checkboxes are more than zero but less than all available checkboxes on the page. If so, use the [jQuery.prop()](https://api.jquery.com/prop/) method to change the status of the master checkbox.
 
 The following example demonstrates how to implement indeterminate checkboxes.
 
@@ -57,8 +58,7 @@ The following example demonstrates how to implement indeterminate checkboxes.
               pageSize: 10,
               transport: {
                 read:  {
-                  url: "https://demos.telerik.com/kendo-ui/service/Products",
-                  dataType: "jsonp"
+                  url: "https://demos.telerik.com/service/v2/core/Products"
                 }
               },
               schema: {

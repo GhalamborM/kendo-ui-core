@@ -1,12 +1,13 @@
 ---
 title: Configure the NoRecords Data Attribute for Empty Grids
-description: An example on how to add a noRecords.template to an MVVM Kendo UI Grid.
+description: Learn how to add a noRecords.template to an MVVM Kendo UI Grid.
 type: how-to
-page_title: Customize the NoRecords Template with MVVM | Kendo UI Grid for jQuery
+page_title: Customize the NoRecords Template with MVVM - Kendo UI for jQuery Data Grid
 slug: grid-mvvm-empty-norecords-template
 tags: grid, mvvm, empty, norecords, template
 ticketid: 1123131
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -28,7 +29,7 @@ How can I determine the equivalency for the `noRecords.template` which uses data
 
 ## Solution
 
-To set the [`noRecords.template`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/norecords) use the [`data-no-records` data attribute](https://docs.telerik.com/kendo-ui/intro/widget-basics/mvvm-initialization#using-the-data-attributes).
+To set the [`noRecords.template`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/norecords) use the [`data-no-records` data attribute](https://docs.telerik.com/kendo-ui/intro/widget-basics/mvvm-initialization#using-the-data-attributes).
 
 ```
 <div data-role="grid"      
@@ -73,8 +74,7 @@ The following example demonstrates how to implement a custom `noRecords` templat
             },
             transport: {
               read: {
-                url: "https://demos.telerik.com/kendo-ui/service/products",
-                dataType: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/products"
               }
             }
           })

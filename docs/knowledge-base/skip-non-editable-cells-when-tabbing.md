@@ -1,13 +1,13 @@
 ---
 title: Skip Non-Editable Cells When Tabbing
-page_title:  Skip Non|Editable Cells | Kendo UI Grid for jQuery
-description: "An example on how to skip non-editable cells when tabbing in the Kendo UI Grid for jQuery."
+page_title:  Skip Non|Editable Cells - Kendo UI for jQuery Data Grid
+description: "Learn how to skip non-editable cells when tabbing in the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/Editing/skip-non-editable-cells-when-tabbing
 slug: howto_skip_noneditable_cells_when_tabbing_grid
 tags: skip, noneditable, grid, cells, when, tabbing
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -43,7 +43,7 @@ The following examples demonstrate how to skip non-editable cells of a Grid duri
 * Skip all cells from a specific column.
 * Skip specific cells from different columns and rows, based on custom criteria.
 
-> Both examples work only if [`navigatable`](/api/javascript/ui/grid/configuration/navigatable) is disabled and the locked (frozen) columns are not used.
+> Both examples work only if [`navigatable`](/api/ui/grid/configuration/navigatable) is disabled and the locked (frozen) columns are not used.
 
 ## Skipping Specific Columns
 
@@ -246,4 +246,4 @@ The following example demonstrates how to skip cells from different columns and 
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

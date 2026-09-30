@@ -1,12 +1,13 @@
 ---
 title: Animate the resize Method
-description: An example on how to animate the resize method of the Kendo UI Grid.
+description: Learn how to animate the resize method of the Kendo UI Grid.
 type: how-to
-page_title: Change Height with Animation | Kendo UI Grid for jQuery
+page_title: Change Height with Animation - Kendo UI for jQuery Data Grid
 slug: grid-animate-resize-method
 tags: grid, animation, resize, height
 ticketid: 1151627
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -29,7 +30,7 @@ How can I animate the height resizing of the Kendo UI Grid?
 ## Solution
 
 1. Use two simultaneous animations&mdash;the first one for the HTML element of the Grid and the second one for the `.k-grid-content` HTML element.
-2. When the animations are complete, invoke the [`resize`](https://docs.telerik.com/kendo-ui/api/javascript/ui/widget/methods/resize) method of the Grid.
+2. When the animations are complete, invoke the [`resize`](https://docs.telerik.com/kendo-ui/api/ui/widget/methods/resize) method of the Grid.
 
 ```dojo
 <div id="example">
@@ -38,9 +39,9 @@ How can I animate the height resizing of the Kendo UI Grid?
 		$(document).ready(function() {
 			$("#grid").kendoGrid({
 				dataSource: {
-					type: "odata",
+					type: "odata-v4",
 					transport: {
-						read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+						read: "https://demos.telerik.com/service/v2/odata/Customers"
 					},
 					pageSize: 20
 				},

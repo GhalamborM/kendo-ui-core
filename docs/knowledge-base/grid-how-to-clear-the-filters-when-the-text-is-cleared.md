@@ -1,13 +1,13 @@
 ---
 title: Clear Filters When Text Is Cleared in Grid
-description: An example on how to clear the filters when the text is cleared in a Kendo UI Grid.
+description: Learn how to clear the filters when the text is cleared in a Kendo UI Grid.
 type: how-to
-page_title: Clear the Filters When the Text is Cleared | Kendo UI Grid for jQuery
+page_title: Clear the Filters When the Text is Cleared - Kendo UI for jQuery Data Grid
 slug: grid-how-to-clear-the-filters-when-the-text-is-cleared
 tags: grid, filter, clear
 ticketid: 1136856
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -29,7 +29,7 @@ component: grid
   <td>Browser Version</td>
   <td>Chrome 61.0.3163.100</td>
  </tr> <tr>
-  <td>Made with Version</td>
+  <td>Product Version</td>
   <td>2017.3.1018</td>
  </tr></table>
 
@@ -52,7 +52,7 @@ To replicate the [**ColumnMenu** demo](https://demos.telerik.com/kendo-ui/grid/c
 
 The described behavior is expected because when the filter has to be removed, the user is expected to click the **Clear** button next to the **Filter** button.
 
-In this scenario, use the [`ColumnMenuInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/columnmenuinit) event to attach an event handler to the **Filter** button and, if the value of the text box is an empty string, to clear the filters with the [`filter`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/filter) method.
+In this scenario, use the [`ColumnMenuInit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/columnmenuinit) event to attach an event handler to the **Filter** button and, if the value of the text box is an empty string, to clear the filters with the [`filter`](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/filter) method.
 
 ```dojo
 <div id="example">
@@ -62,9 +62,9 @@ In this scenario, use the [`ColumnMenuInit`](https://docs.telerik.com/kendo-ui/a
                 $(document).ready(function() {
                     $("#grid").kendoGrid({
                         dataSource: {
-                            type: "odata",
+                            type: "odata-v4",
                             transport: {
-                                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                                read: "https://demos.telerik.com/service/v2/odata/Orders"
                             },
                             schema: {
                                 model: {

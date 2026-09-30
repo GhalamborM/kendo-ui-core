@@ -2,12 +2,13 @@
 title: Create a Custom Validation Summary
 description: How to Create a Custom Validation Summary
 type: how-to
-page_title: How to Create a Custom Validation Summary | Kendo UI Validator for jQuery
+page_title: How to Create a Custom Validation Summary - Kendo UI Validator for jQuery
 slug: validator-create-custom-summary
-position: 
-tags: 
-ticketid: 
+position:
+tags:
+ticketid:
 res_type: kb
+components: ["validator"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>Validator for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Validator for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -23,9 +24,11 @@ res_type: kb
 
 ## Description
 
-This sample demonstrates how you can display the Validation errors in your custom HTML format.
+This sample demonstrates how to display validation errors in a custom HTML format.
 
 ## Solution
+
+Initialize the Validator on the form element and call `validate()` in the submit handler. If validation fails, iterate over the errors returned by `errors()` and build a custom HTML list. Render the list in a container element below the form.
 
 ```dojo
     <div id="example">
@@ -174,5 +177,5 @@ This sample demonstrates how you can display the Validation errors in your custo
         return html+"</ul>";
       }
     </script>
-      
-``` 
+
+```

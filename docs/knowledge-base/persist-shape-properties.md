@@ -1,13 +1,13 @@
 ---
 title: Persist the Shape Properties of the Diagram
 page_title: Persist the Shape Properties of the Diagram
-description: "Learn how to persist Shape properties in the Kendo UI Diagram widget."
+description: "Learn how to persist Shape properties in the Kendo UI Diagram component."
 slug: howto_persistshapeproperties_diagram
 previous_url: /controls/diagrams-and-maps/diagram/how-to/persist-shape-properties
 tags: kendo, jquery, diagram, persist, shape, properties
-component: diagram
 type: how-to
 res_type: kb
+components: ["diagram"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Diagram for jQuery</td>
+  <td>Progress® Kendo UI® Diagram for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -178,7 +178,7 @@ The following example demonstrates how to use the session storage of the browser
 ## See Also
 
 * [Basic Usage of the Diagram (Demo)](https://demos.telerik.com/kendo-ui/diagram/index)
-* [JavaScript API Reference of the Diagram](/api/javascript/dataviz/ui/diagram)
-* [How to Implement Local Data Editing]({% slug howto_editlocaladata_diagram %})
-* [How to Render External Content in Shapes]({% slug howto_renderexternalcontent_inshapes_diagram %})
-* [How to Wrap Text]({% slug howto_wraptext_diagram %})
+* [JavaScript API Reference of the Diagram](/api/dataviz/ui/diagram)
+* [Implement Local Data Editing]({% slug howto_editlocaladata_diagram %})
+* [Render External Content in Shapes]({% slug howto_renderexternalcontent_inshapes_diagram %})
+* [Wrap Text]({% slug howto_wraptext_diagram %})

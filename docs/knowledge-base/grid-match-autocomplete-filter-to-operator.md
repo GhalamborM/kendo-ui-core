@@ -1,11 +1,12 @@
 ---
 title: Match AutoComplete Filter to Selected Operator in Grid
-description: An example on how to change the filter in the AutoComplete to match the selected operator in a Kendo UI Grid.
+description: Learn how to change the filter in the AutoComplete to match the selected operator in a Kendo UI Grid.
 type: how-to
-page_title: Match AutoComplete Filter to Selected Operator in Grid | Kendo UI Grid for jQuery
+page_title: Match AutoComplete Filter to Selected Operator in Grid - Kendo UI for jQuery Data Grid
 slug: grid-match-autocomplete-filter-to-operator
 tags: grid, filter, autocomplete, dynamic, change, option, operator
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -13,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
 </table>
 
@@ -24,7 +25,7 @@ How can I match the filter in the AutoComplete with the selected option in the G
 ## Solution
 
 1. Handle the `click` event for the **Filter** button and get a reference to the AutoComplete widget which is used as a filter.
-1. Based on the `clicked` option in the filter menu, change the [`filter`](https://docs.telerik.com/kendo-ui/api/javascript/ui/autocomplete/configuration/filter) setting of the AutoComplete.
+1. Based on the `clicked` option in the filter menu, change the [`filter`](https://docs.telerik.com/kendo-ui/api/ui/autocomplete/configuration/filter) setting of the AutoComplete.
 
 ```dojo
 <script src="https://demos.telerik.com/kendo-ui/content/shared/js/people.js"></script>

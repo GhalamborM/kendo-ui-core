@@ -1,13 +1,12 @@
-(function(f, define) {
-    define(["./kendo.core"], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.icons.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "badge",
     name: "Badge",
     category: "web", // suite
     description: "The Badge decorates avatars, navigation menus, or other components in the application when visual notification is needed",
-    depends: ["core"] // dependencies
+    depends: ["core", "icons"] // dependencies
 };
 
 (function($, undefined) {
@@ -16,8 +15,8 @@ var __meta__ = {
     var ui = kendo.ui;
     var HIDDEN = 'k-hidden';
 
-    var iconTemplate = '<span class=\'k-badge-icon k-icon k-i-#= icon #\'></span>';
-    var svgIconTemplate = '<span class=\'k-badge-icon k-svg-icon\'>#= icon #</span>';
+    var iconTemplate = ({ icon }) => kendo.ui.icon($(`<span class='k-badge-icon'></span>`), { icon: icon });
+    var svgIconTemplate = ({ icon }) => `<span class='k-badge-icon k-svg-icon k-icon' aria-hidden='true'>${icon}</span>`;
 
     var Badge = Widget.extend({
         init: function(element, options) {
@@ -30,7 +29,8 @@ var __meta__ = {
             that._appearance();
 
             kendo.notify(that);
-        },
+            Widget.fn.endInit.call(that);
+},
 
         destroy: function() {
             var that = this;
@@ -42,12 +42,13 @@ var __meta__ = {
             name: 'Badge',
             cutoutBorder: false,
             data: {},
-            fillMode: 'solid',
+            fillMode: undefined,
             icon: '',
+            encoded: true,
             max: Infinity,
             position: 'inline',
             align: '',
-            rounded: 'medium',
+            rounded: undefined,
             roundings: {
                 'small': 'sm',
                 'medium': 'md',
@@ -59,10 +60,10 @@ var __meta__ = {
                 'medium': 'md',
                 'large': 'lg'
             },
-            size: 'medium',
+            size: undefined,
             template: null,
             text: '',
-            themeColor: 'secondary',
+            themeColor: undefined,
             visible: true,
             _classNames: []
         },
@@ -152,7 +153,7 @@ var __meta__ = {
 
             // Color
             if (typeof themeColor === 'string' && themeColor !== '') {
-                classNames.push('k-badge-' + fillMode + '-' + themeColor);
+                classNames.push('k-badge-' + themeColor);
             }
 
             // Size
@@ -211,8 +212,9 @@ var __meta__ = {
         },
 
         text: function(text) {
-            var that = this;
-            var max = that.options.max;
+            let that = this,
+                max = that.options.max,
+                encoded = that.options.encoded !== false;
 
             // handle badge.text()
             if (arguments.length === 0 || text === undefined) {
@@ -230,8 +232,8 @@ var __meta__ = {
 
             // handle badge.text('string')
             if (typeof text === 'string') {
+                text = encoded === true ? kendo.htmlEncode(text): text;
                 that.element.html(text);
-
                 return;
             }
 
@@ -248,8 +250,8 @@ var __meta__ = {
 
             // handle other objects
             if (typeof text === 'object' && 'toString' in text) {
+                text = encoded === true ? kendo.htmlEncode(text): text;
                 that.element.html(text.toString());
-
                 return;
             }
 
@@ -268,8 +270,14 @@ var __meta__ = {
 
             // Handle badge.icon(<SVG />)
             if (icon.indexOf('<svg') === 0) {
+                var svgIcon = icon;
+
+                if (!/^<svg\b[^>]*\baria-hidden\s*=/i.test(svgIcon)) {
+                    svgIcon = svgIcon.replace(/<svg\b([^>]*)>/i, "<svg$1 aria-hidden='true'>");
+                }
+
                 iconTemplateFunction = kendo.template(svgIconTemplate);
-                that.element.html(iconTemplateFunction({ icon: icon }));
+                that.element.html(iconTemplateFunction({ icon: svgIcon }));
 
                 return;
             }
@@ -320,10 +328,13 @@ var __meta__ = {
 
     ui.plugin(Badge);
 
+    kendo.cssProperties.registerPrefix("Badge", "k-badge-");
+
+    kendo.cssProperties.registerValues("Badge", [{
+        prop: "themeColor",
+        values: ['base', 'primary', 'secondary', 'tertiary', 'info', 'success', 'warning', 'error']
+    }]);
+
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) {
-    (a3 || a2)();
-});

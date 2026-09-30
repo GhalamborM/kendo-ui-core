@@ -2,6 +2,7 @@
 title: Excel Export
 page_title: Excel Export
 description: "Learn how to export to an Excel file in the browser using the Telerik UI Spreadsheet component for {{ site.framework }}."
+components: ["spreadsheet"]
 slug: htmlhelpers_spreadsheet_export_to_excel_aspnetcore
 position: 2
 ---
@@ -16,15 +17,15 @@ The output files are in the OOXML Spreadsheet format with an `.xlsx` extension. 
 
 The default toolbar configuration includes an **Export** button. Clicking it opens a dialog box for entering the file name and selecting the desired output format for the exported document.
 
-![{{ site.product_short }} Activating the Export to Excel dialog](activate-export.png)
+![{{ site.product_short }} Spreadsheet activating the Export to Excel dialog](activate-export.png)
 
 The following image demonstrates the export of the Spreadsheet data to Excel.
 
-![{{ site.product_short }} Exporting to Excel](export-to-excel.png)
+![{{ site.product_short }} Spreadsheet Exporting to Excel](export-to-excel.png)
 
 ## API Export Reference
 
-The Spreadsheet client-side API includes the [`saveAsExcel`](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet/methods/saveasexcel) method for initiating the export with JavaScript. This method does not ask you to specify a file name. Instead, it sets the value in [`excel.fileName`](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet/configuration/excel#excel.fileName).
+The Spreadsheet client-side API includes the [`saveAsExcel`](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet/methods/saveasexcel) method for initiating the export with JavaScript. This method does not ask you to specify a file name. Instead, it sets the value in [`excel.fileName`](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet/configuration/excel#excel.fileName).
 
 ```HtmlHelper
     @(Html.Kendo().Spreadsheet()
@@ -33,9 +34,9 @@ The Spreadsheet client-side API includes the [`saveAsExcel`](https://docs.teleri
     )
 ```
 
-## Known Issues
+## Outputting the Result
 
-Currently, the export module does not handle sorting and filtering. This limitation will be addressed before the widget goes out of its Beta version.
+Through its default configuration the {{ site.product }} Spreadsheet exports the current sheet of data with sorting and filtering applied.
 
 ## See Also
 

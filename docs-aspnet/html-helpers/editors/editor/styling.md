@@ -2,8 +2,9 @@
 title: Styling of Content
 page_title: Styling of Content
 description: "Learn how to apply styles to the Telerik UI Editor component for {{ site.framework }}."
+components: ["editor"]
 slug: htmlhelpers_editor_styling_aspnetcore
-position: 9
+position: 10
 ---
 
 # Styling of Content
@@ -120,7 +121,7 @@ To avoid the default content styles from the previous example, remove or overrid
         });
     </script>
 ```
-```
+
 {% if site.core %}
 ```TagHelper
     <kendo-editor name="editor" value="@{

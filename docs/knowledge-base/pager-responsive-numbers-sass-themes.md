@@ -1,12 +1,12 @@
 ---
 title: Make Page Number Responsive for SASS Themes
-description: An example on how to make the page numbers in SASS themes responsive.
+description: Learn how to make the page numbers in SASS themes responsive.
 type: how-to
-page_title: Responsive Pager for SASS Themes | Kendo UI Pager for jQuery
+page_title: Responsive Pager for SASS Themes - Kendo UI Pager for jQuery
 slug: pager-responsive-numbers-sass-themes
 tags: kendo, pager, responsive, dropdown, numbers, bootstrap, default
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Pager</td>
+  <td>Progress® Kendo UI® Pager for jQuery</td>
  </tr>
 </table>
 
@@ -89,7 +89,7 @@ For the full implementation of this approach, refer to [this runnable example](h
     .k-pager-numbers.k-state-expanded li {
         display: inline-block;
     }
-    .k-pager-wrap .k-pager-numbers .k-current-page {
+    .k-pager .k-pager-numbers .k-current-page {
         display: block;
     }
 
@@ -174,7 +174,7 @@ For the full implementation of this approach, refer to [this runnable example](h
     .k-pager-numbers.k-state-expanded li {
         display: inline-block;
     }
-    .k-pager-wrap .k-pager-numbers .k-current-page {
+    .k-pager .k-pager-numbers .k-current-page {
         display: block;
     }
 

@@ -1,13 +1,14 @@
 ---
-title: Custom Data Binding
-page_title: Custom Data Binding
+title: Custom Binding
+page_title: Custom Binding
 description: "Learn how to implement custom ToDataSourceResult data binding in the Telerik UI ComboBox component for {{ site.framework }}."
+components: ["combobox"]
 previous_url: /helpers/editors/combobox/binding/custom-binding
 slug: htmlhelpers_combobox_todatasourceresultbinding_aspnetcore
-position: 5
+position: 4
 ---
 
-# Custom Data Binding
+# Custom Binding
 
 You can configure the Telerik UI ComboBox for data binding to use a custom DataSource and thus bind to a `ToDataSourceResult` instance.
 
@@ -15,7 +16,7 @@ For a runnable example, refer to the [demo on customizing the data source of the
 
 1. Create an action method which renders the view.
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }
@@ -47,8 +48,8 @@ For a runnable example, refer to the [demo on customizing the data source of the
                         })
                         .Schema(schema =>
                         {
-                            schema.Data("Data") // Define the [data](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource#configuration-schema.data) option.
-                                .Total("Total"); // Define the [total](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource#configuration-schema.total) option.
+                            schema.Data("Data") // Define the [data](https://docs.telerik.com/kendo-ui/api/data/datasource#configuration-schema.data) option.
+                                .Total("Total"); // Define the [total](https://docs.telerik.com/kendo-ui/api/data/datasource#configuration-schema.total) option.
                         });
             })
         )

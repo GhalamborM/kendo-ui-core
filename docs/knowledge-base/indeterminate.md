@@ -5,9 +5,9 @@ description: "Learn how to set the indeterminate state of the Kendo UI Switch."
 slug: howto_set_indeterminate_state_switch
 previous_url: /controls/editors/switch/how-to/indeterminate
 tags: telerik, kendo, jquery, switch, set, indeterminate, state
-component: switch
 type: how-to
 res_type: kb
+components: ["switch"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Switch for jQuery</td>
+  <td>Progress® Kendo UI® Switch for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -82,4 +82,4 @@ The following example demonstrates how to set the Switch in an indeterminate sta
 
 * [Basic Usage of the Switch (Demo)](https://demos.telerik.com/kendo-ui/switch/index)
 * [Using the API of the Switch (Demo)](https://demos.telerik.com/kendo-ui/switch/api)
-* [JavaScript API Reference of the Switch](/api/javascript/ui/switch)
+* [JavaScript API Reference of the Switch](/api/ui/switch)

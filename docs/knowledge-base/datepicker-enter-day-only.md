@@ -1,12 +1,12 @@
 ---
 title: Enter Date by Setting Only the Day
-description: An example on how to set a value by setting only the day in the Kendo UI DatePicker.
+description: Learn how to set a value by setting only the day in the Kendo UI DatePicker.
 type: how-to
-page_title: Set Date by Entering Only the Day | Kendo UI DatePicker for jQuery
+page_title: Set Date by Entering Only the Day - Kendo UI DatePicker for jQuery
 slug: datepicker-enter-day-only
 tags: kendo, datepicker, day, date, select, default, set
 res_type: kb
-component: datepicker
+components: ["datepicker"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: datepicker
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI DatePicker</td>
+  <td>Progress® Kendo UI® DatePicker for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2018.1.226</td>
  </tr>
 </table>
@@ -65,6 +65,6 @@ The following example demonstrates how to achieve the desired functionality.
 
 ## See Also
 
-* [API Reference of the DatePicker](https://docs.telerik.com/kendo-ui/api/javascript/ui/datepicker)
-* [API Reference of the DateTimePicker](https://docs.telerik.com/kendo-ui/api/javascript/ui/datetimepicker)
-* [API Reference of the Calendar](https://docs.telerik.com/kendo-ui/api/javascript/ui/calendar)
+* [API Reference of the DatePicker](https://docs.telerik.com/kendo-ui/api/ui/datepicker)
+* [API Reference of the DateTimePicker](https://docs.telerik.com/kendo-ui/api/ui/datetimepicker)
+* [API Reference of the Calendar](https://docs.telerik.com/kendo-ui/api/ui/calendar)

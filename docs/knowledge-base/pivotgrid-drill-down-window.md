@@ -2,12 +2,13 @@
 title: PivotGrid Drill Down Window
 description: How to Implement Drill Down Navigation
 type: how-to
-page_title: How to Implement Drill Down Functionality | Kendo UI PivotGrid for jQuery
+page_title: How to Implement Drill Down Functionality - Kendo UI PivotGrid for jQuery
 slug: pivotgrid-drill-down-window
-position: 
-tags: 
-ticketid: 
+position:
+tags:
+ticketid:
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>PivotGrid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® PivotGrid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -27,7 +28,7 @@ This sample demonstrates how to implement a Drill Down Window for the PivotGrid,
 
 ## Solution
 
-The key part is creating a secondary **drillDownDataSource**, which will request and hold only a subset of the data related to the clicked cell. This is achieved using multiple [filters](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/configuration/filter#filterfilters).
+The key part is creating a secondary **drillDownDataSource**, which will request and hold only a subset of the data related to the clicked cell. This is achieved using multiple [filters](https://docs.telerik.com/kendo-ui/api/data/datasource/configuration/filter#filterfilters).
 
 ```dojo
    <style>
@@ -183,7 +184,7 @@ The key part is creating a secondary **drillDownDataSource**, which will request
           {
             if(type == "number") {
               return parseFloat(value);
-            } 
+            }
             else if(type == "boolean")
             {
               return (value == 'true');
@@ -213,4 +214,4 @@ The key part is creating a secondary **drillDownDataSource**, which will request
                 # } #
       </script>
     </div>
-``` 
+```

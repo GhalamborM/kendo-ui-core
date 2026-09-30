@@ -1,13 +1,13 @@
 ---
 title: Align Footer Cells
-page_title: Align Footer Cells | Kendo UI Grid for jQuery
-description: "An example on how to align the footer cells during Excel export in a Kendo UI Grid for jQuery."
+page_title: Align Footer Cells - Kendo UI for jQuery Data Grid
+description: "Learn how to align the footer cells during Excel export in a Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/excel/footer-alignment
 slug: howto_alignfootercells_grid
 tags: grid, align, footer, cells, excel, export
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -35,7 +35,7 @@ How can I align the footer cells during Excel export in a Kendo UI Grid for jQue
 
 The following example demonstrates how to align the footer cells during Excel export.
 
-Normally, to achieve this behavior, you can use HTML and CSS. However, Excel does not supported these options. To set the alignment, the demo uses the [`hAlign`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.halign) option of the cell. For more information on how Excel documents work, refer to the [introductory article on Excel]({% slug introduction_excelexport_kendoui %}).
+Normally, to achieve this behavior, you can use HTML and CSS. However, Excel does not supported these options. To set the alignment, the demo uses the [`hAlign`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellshalign) option of the cell. For more information on how Excel documents work, refer to the [introductory article on Excel]({% slug introduction_excelexport_kendoui %}).
 
 ```dojo
 <div id="grid"></div>
@@ -63,9 +63,8 @@ Normally, to achieve this behavior, you can use HTML and CSS. However, Excel doe
         }
       },
       dataSource: {
-        type: "odata",
         transport: {
-          read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products"
+          read: "https://demos.telerik.com/service/v2/core/Products"
         },
         schema:{
           model: {
@@ -112,4 +111,4 @@ Normally, to achieve this behavior, you can use HTML and CSS. However, Excel doe
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

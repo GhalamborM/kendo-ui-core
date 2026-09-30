@@ -2,11 +2,12 @@
 title: Overview
 page_title: Cloud Integration Overview
 description: "This overview lists the articles that demonstrate how to use the {{ site.product }} suite with different cloud services."
+components: ["general"]
 slug: cloud_integration_overview_aspnetcore
 position: 1
 ---
 
-# Cloud Integration Overview
+# {{ site.product }} Cloud Integration Overview
 
 You can use Telerik UI for {{ site.framework }} with various cloud services like **Amazon Web Services** and **Azure**. Key features of the cloud service providers are their storage capability, infrastructure-as-a-service (IaaS ) solutions, and tools. Both AWS and Azure provide an extensive list of scalable, secure, and cost-effective computing services. 
 

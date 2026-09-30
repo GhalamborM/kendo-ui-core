@@ -2,6 +2,7 @@
 title: Custom Data Binding
 page_title: Custom Data Binding
 description: "Learn how to implement custom ToDataSourceResult data binding in the Telerik UI MultiSelect component for {{ site.framework }}."
+components: ["multiselect"]
 previous_url: /helpers/editors/multiselect/binding/custom-binding
 slug: htmlhelpers_multiselect_todatasourceresultbinding_aspnetcore
 position: 5
@@ -13,7 +14,7 @@ You can configure the Telerik UI MultiSelect to use a custom DataSource and, in 
 
 1. Create an action method which renders the view.
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }
@@ -45,8 +46,8 @@ You can configure the Telerik UI MultiSelect to use a custom DataSource and, in 
                         })
                         .Schema(schema =>
                         {
-                            schema.Data("Data") // Define the [data](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource#configuration-schema.data) option.
-                                .Total("Total"); // Define the [total](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource#configuration-schema.total) option.
+                            schema.Data("Data") // Define the [data](https://docs.telerik.com/kendo-ui/api/data/datasource#configuration-schema.data) option.
+                                .Total("Total"); // Define the [total](https://docs.telerik.com/kendo-ui/api/data/datasource#configuration-schema.total) option.
                         });
             })
         )

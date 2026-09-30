@@ -3,35 +3,32 @@ name: CI
 on:
   push:
     paths:
-      - '.github/workflows/ci.yml'
-      - 'package.json'
-      - 'gulpfile.js'
-      - 'build/**'
-      - 'src/**'
-      - 'tests/**'
-
+      - ".github/workflows/ci.yml"
+      - "package.json"
+      - "gulpfile.js"
+      - "build/**"
+      - "src/**"
+      - "tests/**"
 jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: 22
 
       - name: Install
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
-      - name: Build less themes
-        run: npx gulp styles
+      - name: Build
+        run: npm run build
 
-      - name: Build scripts
-        run: npx gulp scripts
+      - name: Install Playwright Deps
+        run: npx -y playwright install --with-deps chromium
 
-      - name: Karma
-        run: npx gulp karma-ci
-        env:
-          CHROME_BIN: /usr/bin/google-chrome
+      - name: Tests
+        run: npm run test

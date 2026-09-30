@@ -1,7 +1,8 @@
 ---
 title: Installing with NuGet
-page_title: Installing with NuGet | Download and Installation 
+page_title: Installing with NuGet - Download and Installation 
 description: "Get started with Kendo UI for jQuery and install the Kendo UI Professional or Kendo UI Core NuGet packages."
+components: ["general"]
 slug: kendoui_nuget_packages
 position: 60
 ---
@@ -12,26 +13,31 @@ position: 60
 
 Progress maintains the Telerik NuGet Feed for registered users and all Kendo UI for jQuery official releases and service packs are published there as well.
 
->The legacy https://nuget.telerik.com/nuget server is now deprecated. Make sure to switch to the new https://nuget.telerik.com/v3/index.json server, which is faster, lighter, and reduces the number of requests from your NuGet client.
+> As of R3 2023 the Kendo UI bundles do not include the jQuery library in their `js` directories and you can [`download jQuery using NuGet package manager`](https://subscription.packtpub.com/book/web-development/9781782173113/1/ch01lvl1sec12/using-nuget-package-manager-to-download-jquery) or use other source for the jQuery library.
 
-## 1. Choose the Required Package
+
+## 1. Generate a NuGet API Key
+
+@[template](/_contentTemplates/nuget-apikey.md#generate-nuget-api-key)
+
+## 2. Choose the Required Package
 
 The Telerik NuGet Feed provides the following Kendo UI for jQuery packages:
 
 * `KendoUIProfessional`&mdash;The commercial Kendo UI for jQuery version.
-* `KendoUIProfessional.Trial`&mdash;The trial Kendo UI for jQuery version.
-* `KendoUICore`&mdash;The open-source Kendo UI distribution which contains only the open-sourced widgets.
+* `KendoUICore`&mdash;The open-source Kendo UI distribution which contains only the open-sourced components.
 
-## 2. Register the Feed on Your System
+## 3. Register the Feed on Your System
 
 To add the Telerik NuGet feed as a package source on your machine and access the packages, use either of the following approaches:
 
 * [Use the NuGet CLI](#add-the-feed-with-the-nuget-cli).
 * [Use the UI provided from Visual Studio for configuring authenticated NuGet feeds](#add-the-feed-with-the-nuget-package-manager).
 
-The following video summarizes the steps for adding the Telerik NuGet feed to your NuGet sources.
+Regardless of how you set up the Telerik NuGet feed, you must first [generate a NuGet API key](#1-generate-a-nuget-api-key) needed for the authentication.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/c3m_BLMXNDk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+>warning Never hard-code your Telerik NuGet API keys in a `NuGet.Config` file in a GitHub repository, Docker image, or any location that may be accessed by unauthorized parties. An API key is valuable and bad actors can use it to access the NuGet packages that are licensed under your account. A credentials abuse can lead to a review of the affected Telerik account.
+
 
 ### Add the Feed with the NuGet CLI
 
@@ -39,23 +45,14 @@ To register the Telerik NuGet Feed on your system by using the [NuGet CLI](http:
 
 1. Download the [latest NuGet executable](https://dist.nuget.org/win-x86-commandline/latest/nuget.exe).
 1. Open a command prompt and change the path to where the `nuget.exe` is downloaded.
-1. The command from the following example stores a token in the `%AppData%\NuGet\NuGet.config` file. Your original credentials cannot be obtained from this token.
+1. Execute the command:
 
-    ```
-        NuGet Sources Add -Name "telerik.com" -Source "https://nuget.telerik.com/v3/index.json" -UserName "your login email" -Password "your password"
-    ```
+   ```SH
+   NuGet Sources Add -Name "telerik.com" -Source "https://nuget.telerik.com/v3/index.json" -UserName "api-key" -Password "YOUR-NUGET-API-KEY" -StorePasswordInClearText
+   ```
 
-    If you are unable to connect to the feed by using encrypted credentials, try the alternative approach of storing credentials in clear text.
-
-    ```
-        NuGet Sources Add -Name "telerik.com" -Source "https://nuget.telerik.com/v3/index.json" -UserName "your login email" -Password "your password" -StorePasswordInClearText
-    ```
-
-    If you have already stored a token instead of storing the credentials as clear text, you can update the definition in the `%AppData%\NuGet\NuGet.config` file by using the following command:
-
-    ```
-        NuGet Sources Update -Name "telerik.com" -Source "https://nuget.telerik.com/v3/index.json" -UserName "your login email" -Password "your password" -StorePasswordInClearText
-    ```
+    The command adds the Telerik NuGet source, uses your NuGet API key for authentication, and stores the API key in plain text in the global config file (in `%AppData%\NuGet\NuGet.config`).
+    
 
 ### Add the Feed with the NuGet Package Manager
 
@@ -65,10 +62,16 @@ To register the Telerik NuGet Feed on your system by using the NuGet package man
 1. Go to **Tools** > **NuGet Package Manager** > **Package Manager Settings**, select **Package Manager Sources** and then click the **+** button.
 1. Select the feed **Name**, set the feed URL to https://nuget.telerik.com/v3/index.json, and click **OK**.
 
-    ![Kendo UI for jQuery resources](../../images/add-nuget-package-source.png)
+    ![Kendo UI for jQuery Resources](../../images/add-nuget-package-source.png)
 
 1. Select the **Browse** list of packages.
-1. Enter your Telerik credentials in the Windows Authentication dialog. As a result, all of the packages that are licensed to the user account are now available in Visual Studio Package Manager.
+1. In the Windows authentication prompt:
+
+   5.1. Enter `api-key` in the **User Name** field.
+
+   5.2. Enter your [NuGet API key](#1-generate-a-nuget-api-key) in the **Password** field.
+
+   5.3. Check the **Remember My Password** checkbox.
 
 ## 3. Install the Packages
 
@@ -82,7 +85,9 @@ Regardless of the package installation approach you choose, after the installati
 * `/Scripts/kendo/<version>/`&mdash;Contains the minified JavaScript files.
 * `/Content/kendo/<version>/`&mdash;Contains the minified CSS files and theme images.
 
-![Kendo UI for jQuery resources](../../images/kendo-folder-structure.png)
+![Kendo UI for jQuery Folder Structure](../../images/kendo-folder-structure.png)
+
+> The installation approach with the NuGet works only with .NET MVC projects that have the `Content` and `Scripts` folders. In a .NET Core(and newer) projects, the resources(scripts and styles) must be copied manually in the `wwwroot` folder.
 
 ### Install with the Package Manager Dialog
 
@@ -90,11 +95,9 @@ To install the Kendo UI for jQuery packages by using the **Package Manager** dia
 
 1. Right-click **Solution** or a specific project in **Solution**, and navigate to **Manage NuGet Packages**.
 
-    ![Kendo UI for jQuery resources](../../images/manage-nuget-packages.png)
+    ![Kendo UI for jQuery Manage NuGet Packages](../../images/manage-nuget-packages.png)
 
 1. Set the package source to `telerik.com` and install the `KendoUIProfessional` NuGet package.
-
-    ![Kendo UI for jQuery resources](../../images/kendo-ui-package.png)
 
 ### Install with the Package Manager Console
 
@@ -110,10 +113,9 @@ To install the Kendo UI for jQuery packages by using the **Package Manager** con
 ## Next Steps
 
 * [Create Your Own Custom Bundles]({% slug include_only_what_you_need_kendoui_scripts %})
-* [Create Your Own Custom Widgets]({% slug createcustomkendouiwidgets_gettingstarted %})
-* [Initialize Widgets as jQuery Plugins]({% slug initialize_widgets_using_jquery_plugins_installation %})
-* [Initialize Widgets with MVVM]({% slug mvvm_initialization_kendoui %})
-* [Widget Script Dependencies]({% slug script_filesfor_barcodes_widgets %})
+* [Create Your Own Custom Components]({% slug createcustomkendouiwidgets_gettingstarted %})
+* [Initialize Components as jQuery Plugins]({% slug initialize_widgets_using_jquery_plugins_installation %})
+* [Initialize Components with MVVM]({% slug mvvm_initialization_kendoui %})
 
 ## See Also
 
@@ -122,4 +124,4 @@ To install the Kendo UI for jQuery packages by using the **Package Manager** con
 * [Installing Kendo UI for jQuery by Using the CDN Services]({% slug kendoui_cdn_services_installation %})
 * [Installing Kendo UI for jQuery with NPM]({% slug kendoui_npm_packages_kendoui_installation %})
 * [Getting Up and Running with Your Kendo UI for jQuery Project (Guide)]({% slug getting_started_installation_kendoui %})
-* [Using Script License Code]({% slug using-license-code %})
+* [Licensing Overview]({% slug licensing-overview %})

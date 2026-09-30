@@ -1,13 +1,13 @@
 ---
 title: Persist Expanded Rows after Refresh
-page_title: Persist Expanded Rows | Kendo UI Grid for jQuery
-description: "An example on how to persist the expanded rows of the Kendo UI Grid for jQuery after refresh."
+page_title: Persist Expanded Rows - Kendo UI for jQuery Data Grid
+description: "Learn how to persist the expanded rows of the Kendo UI Grid for jQuery after refresh."
 previous_url: /controls/data-management/grid/how-to/persist-expanded-rows, /controls/data-management/grid/how-to/state/persist-expanded-rows
 slug: howto_persist_expanded_rows_afetrrefresh_grid
 tags: persist, expanded, rows, grid, after, refresh
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -48,7 +48,7 @@ The following example demonstrates how to persist the expanded rows in a Grid af
         $(document).ready(function() {
           $("#refresh").click(function() {
                 var grid = $("#grid").data("kendoGrid");
-                var expanded = $.map(grid.tbody.children(":has(> .k-hierarchy-cell .k-i-collapse)"), function (row) {
+                var expanded = $.map(grid.tbody.children(":has(> .k-hierarchy-cell .k-svg-i-chevron-down)"), function (row) {
                     return $(row).data("uid");
                 });
 
@@ -63,9 +63,9 @@ The following example demonstrates how to persist the expanded rows in a Grid af
 
             var element = $("#grid").kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                        read: "https://demos.telerik.com/service/v2/odata/Employees"
                     },
                     pageSize: 6,
                     serverPaging: true,
@@ -104,9 +104,9 @@ The following example demonstrates how to persist the expanded rows in a Grid af
         function detailInit(e) {
             $("<div/>").appendTo(e.detailCell).kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                        read: "https://demos.telerik.com/service/v2/odata/Orders"
                     },
                     serverPaging: true,
                     serverSorting: true,
@@ -131,4 +131,4 @@ The following example demonstrates how to persist the expanded rows in a Grid af
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

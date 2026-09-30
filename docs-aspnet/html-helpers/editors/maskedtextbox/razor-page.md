@@ -1,47 +1,59 @@
 ---
 title: Razor Pages
-page_title: The Telerik UI MaskedTextBox in RazorPages
+page_title: Razor Pages
 description: "Telerik UI MaskedTextBox for {{ site.framework }} in a RazorPages application."
 slug: razorpages_maskedtextboxhelper_aspnetcore
-position: 5
+components: ["maskedtextbox"]
+position: 8
 ---
 
-# Telerik UI MaskedTextBox in Razor Pages
+# MaskedTextBox in Razor Pages
 
-Razor Pages are an alternative to the MVC pattern. Razor Pages make page-focused coding easier and more productive. This approach consists of a `cshtml` file and a `cs` file (generally, the two files have the same name). You can seamlessly integrate the Telerik UI MaskedTextBox for {{ site.framework }} in Razor Pages applications.
+This article describes how to seamlessly integrate and configure the Telerik UI MaskedTextBox for {{ site.framework }} in Razor Pages applications.
 
-For a runnable example, refer to the [MaskedTextBox in RazorPages example](https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/MaskedTextBox/MaskedTextBoxEditing.cshtml).
+@[template](/_contentTemplates/core/razor-pages-general-info.md#referencing-handler-methods)
 
-## Getting Started
+## Binding to a PageModel Property
 
-To bind the Telerik UI MaskedTextBox within a `RazorPage`:
+To bind the MaskedTextBox to a property from the `PageModel`, follow the next steps:
 
-1. Declare the `PageModel` at the top of the `RazorPage`:
+1. Declare the `PageModel` at the top of the page.
 
-
-    ```
+    ```Razor
         @page
-        @model Telerik.Examples.RazorPages.Pages.MaskedTextBox.MaskedTextBoxEditingModel
+        @model IndexModel
     ```
 
-1. Declare the widget either in a form or as a stand-alone widget:
-
+1. Declare the component either in a form or as a stand-alone component:
 
     ```HtmlHelper
+        @page
+        @model IndexModel
+
+        @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+        @Html.AntiForgeryToken()
+
         <form method="post">
             <label for="phone_number">Phone number:</label>
             @(Html.Kendo().MaskedTextBoxFor(c=>c.PhoneNumber)
-                        .Mask("(999) 000-0000")
-                )
+                .Mask("(999) 000-0000")
+            )
             <br />
             <input type="submit" name="name" value="Submit Form" />
         </form>
     ```
     {% if site.core %}
     ```TagHelper
+        @page
+        @model IndexModel
+
+        @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+        @Html.AntiForgeryToken()
+        @addTagHelper *, Kendo.Mvc
+
         <form method="post">
             <label for="phone_number">Phone number:</label>
-            <kendo-maskedtextbox for="PhoneNumber" mask="(999) 000-0000" >
+            <kendo-maskedtextbox for="PhoneNumber" mask="(999) 000-0000">
             </kendo-maskedtextbox>
             <br />
             <input type="submit" name="name" value="Submit Form" />
@@ -51,15 +63,15 @@ To bind the Telerik UI MaskedTextBox within a `RazorPage`:
 
 1. Bind the property values in the backend:
 
-    ```
-        public class MaskedTextBoxEditingModel : PageModel
+    ```C#
+        public class IndexModel : PageModel
         {
             [BindProperty]
             public string PhoneNumber { get; set; }
 
             public void OnGet()
             {
-                //omitted for clarity
+                PhoneNumber = "555 123 4567"; // Assign value to the "PhoneNumber" property, if needed.
             }
 
             public void OnPost()
@@ -69,6 +81,13 @@ To bind the Telerik UI MaskedTextBox within a `RazorPage`:
         }
     ```
 
+For the complete project, refer to the [MaskedTextBox in Razor Pages example](https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/MaskedTextBox/MaskedTextBoxEditing.cshtml).
+
 ## See Also
 
-* [Server-Side API](/api/maskedtextbox)
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the MaskedTextBox](https://docs.telerik.com/kendo-ui/api/ui/maskedtextbox)
+* [Server-Side HtmlHelper API of the MaskedTextBox](/api/maskedtextbox)
+* [Server-Side TagHelper API of the MaskedTextBox](/api/taghelpers/maskedtextbox)
+* [Knowledge Base Section](/knowledge-base)
+

@@ -5,9 +5,9 @@ description: "Learn how to zoom the Kendo UI Map on double click."
 slug: howto_zoomondblclick_map
 previous_url: /controls/diagrams-and-maps/map/how-to/zoom-on-dblclick
 tags: kendo, jquery, map, zoom, on, double, click
-component: map
 type: how-to
 res_type: kb
+components: ["map"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Map for jQuery</td>
+  <td>Progress® Kendo UI® Map for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I zoom the Kendo UI for jQuery Map upon a double click?
 
 ## Solution
 
-In the following example, which demonstrates how to achieve the desired scenario, the event coordinates are mapped to the location by using the [`eventToLocation`](/api/javascript/dataviz/ui/map/methods/eventtolocation) method.
+In the following example, which demonstrates how to achieve the desired scenario, the event coordinates are mapped to the location by using the [`eventToLocation`](/api/dataviz/ui/map/methods/eventtolocation) method.
 
 ```dojo
 <div id="map"></div>
@@ -48,9 +48,9 @@ In the following example, which demonstrates how to achieve the desired scenario
       zoom: 3,
       layers: [{
           type: "tile",
-          urlTemplate: "http://#= subdomain #.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png",
+          urlTemplate: "https://#= subdomain #.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png",
           subdomains: ["a", "b", "c"],
-          attribution: "&copy; <a href='http://osm.org/copyright'>OpenStreetMap contributors</a>"
+          attribution: "&copy; <a href='https://osm.org/copyright'>OpenStreetMap contributors</a>"
       }]
     });
 
@@ -70,4 +70,4 @@ In the following example, which demonstrates how to achieve the desired scenario
 
 * [Basic Usage of the Map (Demo)](https://demos.telerik.com/kendo-ui/map/index)
 * [Using the API of the Map (Demo)](https://demos.telerik.com/kendo-ui/map/api)
-* [JavaScript API Reference of the Map](/api/javascript/dataviz/ui/map)
+* [JavaScript API Reference of the Map](/api/dataviz/ui/map)

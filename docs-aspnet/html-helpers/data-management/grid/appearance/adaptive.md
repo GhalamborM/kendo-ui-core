@@ -2,6 +2,7 @@
 title: Adaptive Rendering
 page_title: Adaptive Rendering
 description: "Get started with the {{ site.framework }} Grid by Telerik UI which provides consistency to the customer experience on any device by supporting adaptive rendering."
+components: ["grid"]
 previous_url: /html-helpers/data-management/grid/adaptive, /helpers/data-management/grid/adaptive
 slug: adaptive_rendering_gridhelper_aspnetcore
 position: 5
@@ -15,7 +16,7 @@ For example, when you filter or edit data on mobile, the system slides in a new 
 
 ## Enabling the Responsive Web Design
 
-To enable the adaptive rendering feature, set the [`Mobile`](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/GridBuilder#mobile) property to `MobileMode.Auto` or `MobileMode.Phone`:
+To enable the adaptive rendering feature, set the [`Mobile`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/gridbuilder#mobile) property to `MobileMode.Auto` or `MobileMode.Phone`:
 
 * If set to `MobileMode.Auto`, the component will use adaptive rendering when viewed on a mobile browser.
 * If set to `MobileMode.Phone`, the component will be forced to use adaptive rendering regardless of the browser type.
@@ -52,7 +53,7 @@ To enable the adaptive rendering feature, set the [`Mobile`](https://docs.teleri
 
 The column resizing feature on touch screen devices is triggered when the user holds a finger on the respective column header. When the resizing icon appears, the user can resize the column by dragging.
 
-![{{ site.product_short }} A Grid with resizable columns on a mobile device](../adaptive-resizing-icon.png)
+![{{ site.product_short }} Resizing icon in a Grid with resizable columns on a mobile device](../adaptive-resizing-icon.png)
 
 ## Destroying Adaptive Grids
 
@@ -60,11 +61,14 @@ When the Grid is in its adaptive rendering mode, it generates auxiliary markup w
 
 To manually destroy the Grid:
 
-1. Call the Kendo UI for jQuery [`kendo.destroy()`](https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/destroy) method over the closest `.k-pane-wrapper` ancestor which is created around the Grid.
+1. Call the Kendo UI for jQuery [`kendo.destroy()`](https://docs.telerik.com/kendo-ui/api/kendo/methods/destroy) method over the closest `.k-pane-wrapper` ancestor which is created around the Grid.
 1. Remove the whole `.k-pane-wrapper` element from the DOM.
 
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
 * [Responsive Columns by the Grid HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/grid/responsive-columns)
 * [Adaptive Rendering by the Grid HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/grid/adaptive-rendering)
 * [Server-Side API](/api/grid)

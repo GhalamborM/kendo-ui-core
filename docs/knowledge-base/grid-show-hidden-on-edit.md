@@ -1,12 +1,12 @@
 ---
 title: Show Hidden Columns When Editing the Grid
-description: An example on how to show the hidden columns when editing a Kendo UI Grid.
+description: Learn how to show the hidden columns when editing a Kendo UI Grid.
 type: how-to
-page_title: Show Hidden Columns When Editing the Grid | Kendo UI Grid for jQuery
+page_title: Show Hidden Columns When Editing the Grid - Kendo UI for jQuery Data Grid
 slug: grid-show-hidden-on-edit
 tags: grid, edit, show, hidden, on, editor
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2020.3.1021</td>
  </tr>
 </table>
@@ -30,8 +30,8 @@ How can I display the hidden rows in a Grid in inline edit mode so that the user
 
 Toggle the visibility of the column by using the built-in methods of the Grid.
 
-1. Within the [`beforeEdit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/beforeedit) event handler, show the column by using the [`showColumn`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/showcolumn) method.
-1. When the [`save`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/save) event is fired, hide the column by using the [`hideColumn`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/hidecolumn) method.
+1. Within the [`beforeEdit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/beforeedit) event handler, show the column by using the [`showColumn`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/showcolumn) method.
+1. When the [`save`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/save) event is fired, hide the column by using the [`hideColumn`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/hidecolumn) method.
 
 ```dojo
 
@@ -40,28 +40,30 @@ Toggle the visibility of the column by using the built-in methods of the Grid.
 
       <script>
         $(document).ready(function () {
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
               dataSource = new kendo.data.DataSource({
-                transport: {
-                  read:  {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
-                  },
-                  update: {
-                    url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
-                  },
-                  destroy: {
-                    url: crudServiceBaseUrl + "/Products/Destroy",
-                    dataType: "jsonp"
-                  },
-                  create: {
-                    url: crudServiceBaseUrl + "/Products/Create",
-                    dataType: "jsonp"
+                  transport: {
+                      read:  {
+                          url: crudServiceBaseUrl + "/Products"
+                      },
+                      update: {
+                          url: crudServiceBaseUrl + "/Products/Update",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      destroy: {
+                          url: crudServiceBaseUrl + "/Products/Destroy",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      create: {
+                          url: crudServiceBaseUrl + "/Products/Create",
+                          type: "POST",
+                  		    contentType: "application/json"
                   },
                   parameterMap: function(options, operation) {
                     if (operation !== "read" && options.models) {
-                      return {models: kendo.stringify(options.models)};
+                      return kendo.stringify(options.models);
                     }
                   }
                 },

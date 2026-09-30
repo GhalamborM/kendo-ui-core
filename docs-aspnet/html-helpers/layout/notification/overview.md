@@ -1,13 +1,14 @@
 ---
 title: Overview
 page_title: Overview
-description: "Learn the basics when working with the Telerik UI Notification component for {{ site.framework }}."
+description: "The Telerik UI Notification component for {{ site.framework }} provides a styled UI element with arbitrary content which can display information to the user on various occasions."
+components: ["notification"]
 previous_url: /helpers/html-helpers/notification, /helpers/layout/notification/overview
 slug: htmlhelpers_notification_aspnetcore
-position: 1
+position: 0
 ---
 
-# Notification Overview
+# {{ site.framework }} Notification Overview
 
 {% if site.core %}
 The Telerik UI Notification TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI Notification widget.
@@ -18,9 +19,6 @@ The Telerik UI Notification HtmlHelper for {{ site.framework }} is a server-side
 The Notification provides a styled UI widget with arbitrary content which can provide information to the user on various occasions.
 
 * [Demo page for the Notification HtmlHelper](https://demos.telerik.com/{{ site.platform }}/notification/index)
-{% if site.core %}
-* [Demo page for the Notification TagHelper](https://demos.telerik.com/aspnet-core/notification/tag-helper)
-{% endif %}
 
 ## Initializing the Notification
 
@@ -87,7 +85,7 @@ The following example demonstrates the basic configuration of the Notification.
 	</kendo-notification>
 ```
 {% else %}
-```    
+```
     @(Html.Kendo().Notification()
         .Name("notification")
         .Stacking(NotificationStackingSettings.Down)
@@ -112,15 +110,21 @@ The following example demonstrates the basic configuration of the Notification.
 ```
 {% endif %}
 
-## Events
+## Functionality and Features
 
-For a complete example on basic Notification events, refer to the [demo on using the events of the Notification](https://demos.telerik.com/{{ site.platform }}/notification/events).
+* [Positioning]({% slug positioning_notificatiomhelper_aspnetmvc %})—You can predefine the position of the Notification.
+* [Types]({% slug types_notificatiomhelper_aspnetmvc %})—The Notification provides built-in `"info"`, `"success"`, `"warning"`, and `"error"` types.
+* [Hiding Options]({% slug hiding_notificatiomhelper_aspnetmvc %})—You can select different hiding behavior for the Notification.
+
+## Next Steps
+
+* [Getting Started with the Notification]({% slug aspnetcore_notification_getting_started %})
+* [Basic Usage of the Notification for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/notification)
+{% if site.core %}
+* [Notification in Razor Pages]({% slug htmlhelpers_notification_razorpage_aspnetcore %})
+{% endif %}
 
 ## See Also
 
-* [Basic Usage of the Notification HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/notification)
-{% if site.core %}
-* [Basic Usage of the Notification TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/notification/tag-helper)
-{% endif %}
 * [Using the API of the Notification HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/notification/api)
 * [Server-Side API](/api/notification)

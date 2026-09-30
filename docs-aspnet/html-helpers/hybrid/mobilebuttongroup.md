@@ -2,6 +2,7 @@
 title: ButtonGroup
 page_title: ButtonGroup Overview
 description: "Learn the basics when working with the hybrid Telerik UI ButtonGroup HtmlHelper for ASP.NET MVC."
+components: ["general"]
 previous_url: /helpers/hybrid/mobilebuttongroup/overview, /helpers/hybrid/mobilebuttongroup
 slug: overview_hybridbuttongroup_aspnetmvc
 ---
@@ -55,7 +56,7 @@ The ButtonGroup presents a linear set of grouped buttons.
 
 ## Events
 
-You can subscribe to all hybrid ButtonGroup [events](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/buttongroup#events).
+You can subscribe to all hybrid ButtonGroup [events](https://docs.telerik.com/kendo-ui/api/mobile/ui/buttongroup#events).
 
 The following example demonstrates how to subscribe to events by a handler name.
 
@@ -79,7 +80,7 @@ The following example demonstrates how to subscribe to events by a handler name.
 
 ## Referencing Existing Instances
 
-You can reference a hybrid ButtonGroup instance by using the code from the following example. Once a reference is established, use the [hybrid ButtonGroup client-side API](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/buttongroup#methods) to control its behavior.
+You can reference a hybrid ButtonGroup instance by using the code from the following example. Once a reference is established, use the [hybrid ButtonGroup client-side API](https://docs.telerik.com/kendo-ui/api/mobile/ui/buttongroup#methods) to control its behavior.
 
     @(Html.Kendo().MobileButtonGroup()
         .Name("select-period")
@@ -100,4 +101,4 @@ You can reference a hybrid ButtonGroup instance by using the code from the follo
 
 ## See Also
 
-* [Hybrid ButtonGroupBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/MobileButtonGroupBuilder)
+* [Hybrid ButtonGroupBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/mobilebuttongroupbuilder)

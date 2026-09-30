@@ -2,6 +2,7 @@
 title: Layout
 page_title: Layout Overview
 description: "Learn the basics when working with the hybrid Telerik UI Layout HtmlHelper for ASP.NET MVC."
+components: ["general"]
 previous_url: /helpers/hybrid/mobilelayout/overview, /helpers/hybrid/mobilelayout
 slug: overview_hybridlayout_aspnetmvc
 ---
@@ -10,7 +11,7 @@ slug: overview_hybridlayout_aspnetmvc
 
 The hybrid Telerik UI Layout HtmlHelper for ASP.NET MVC is a server-side wrapper for the hybrid Kendo UI Layout widget.
 
-* [Client-side API page for the Layout](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/layout)
+* [Client-side API page for the Layout](https://docs.telerik.com/kendo-ui/api/mobile/ui/layout)
 
 ## Basic Configuration
 
@@ -44,7 +45,7 @@ The hybrid Telerik UI Layout HtmlHelper for ASP.NET MVC is a server-side wrapper
                 Html.Kendo().MobileTabStrip()
                     .Items(items => {
                         items.Add().Icon("contacts").Text("Profile");
-                        items.Add().Icon("settings").Text("Settings");
+                        items.Add().Icon("wrench").Text("Settings");
                     })
             )
         )
@@ -73,7 +74,7 @@ The hybrid Telerik UI Layout HtmlHelper for ASP.NET MVC is a server-side wrapper
 
 ## Events
 
-You can subscribe to all hybrid Layout [events](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/layout#events).
+You can subscribe to all hybrid Layout [events](https://docs.telerik.com/kendo-ui/api/mobile/ui/layout#events).
 
 The following example demonstrates how to subscribe to events by a handler name.
 
@@ -92,7 +93,7 @@ The following example demonstrates how to subscribe to events by a handler name.
 
 ## Referencing Existing Instances
 
-You can reference a hybrid Layout instance by using the code from the following example. Once a reference is established, use the [hybrid Layout client-side API](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/layout) to control its behavior.
+You can reference a hybrid Layout instance by using the code from the following example. Once a reference is established, use the [hybrid Layout client-side API](https://docs.telerik.com/kendo-ui/api/mobile/ui/layout) to control its behavior.
 
     @(Html.Kendo().MobileLayout()
             .Name("MobileLayout")
@@ -106,4 +107,4 @@ You can reference a hybrid Layout instance by using the code from the following 
 
 ## See Also
 
-* [Hybrid LayoutBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/MobileLayoutBuilder)
+* [Hybrid LayoutBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/mobilelayoutbuilder)

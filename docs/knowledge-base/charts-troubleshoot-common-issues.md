@@ -1,13 +1,13 @@
 ---
 title: Troubleshoot Common Issues in the Charts
 page_title: Troubleshoot Common Issues in the Charts
-description: "Learn how to deal with issues you may encounter while using the Kendo UI Chart widget."
+description: "Learn how to deal with issues you may encounter while using the Kendo UI Chart component."
 previous_url: /dataviz/troubleshooting, /controls/charts/troubleshoot/common-issues
 slug: troubleshooting_chart_widget
 type: troubleshooting
 tags: chart, troubleshoot, common, issues
 res_type: kb
-component: chart
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: chart
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Charts</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Kendo Version</td>
@@ -129,7 +129,7 @@ The following Dojo example demonstrates how to handle the issue by using `kendo-
 
 ## Chart graphics do not render in Internet Explorer
 
-![A Chart in the Internet Explorer with its graphics failing to render](../../../styles-and-layout/chart-ie.png)
+![Kendo UI for jQuery A Chart in the Internet Explorer with its graphics failing to render](../styles-and-layout/chart-ie.png)
 
 > A security message which prompts you to enable the Intranet settings might appear. If you do so, skip the following steps.
 
@@ -137,7 +137,7 @@ The following Dojo example demonstrates how to handle the issue by using `kendo-
 
 Select **Internet Options** > **Security** > **Internet** (or **Local intranet**) > **Custom Level**  and enable **Binary and script behaviors** by ticking the **Enable** radio button.
 
-![Options and settings to apply to render the chart graphics](../../../styles-and-layout/chart-ie-script-behaviors.png)
+![Kendo UI for jQuery Options and settings to apply to render the chart graphics](../styles-and-layout/chart-ie-script-behaviors.png)
 
 ### The Chart does not render when JavaScript is disabled
 
@@ -178,15 +178,15 @@ The following example demonstrates how to embed fonts in exported PDF.
     // Import DejaVu Sans font for embedding
 
     kendo.pdf.defineFont({
-        "DejaVu Sans"             : "https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/fonts/DejaVu/DejaVuSans.ttf",
-        "DejaVu Sans|Bold"        : "https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
-        "DejaVu Sans|Bold|Italic" : "https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
-        "DejaVu Sans|Italic"      : "https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
+        "DejaVu Sans"             : "https://kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans.ttf",
+        "DejaVu Sans|Bold"        : "https://kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
+        "DejaVu Sans|Bold|Italic" : "https://kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+        "DejaVu Sans|Italic"      : "https://kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
     });
 </script>
 
 <!-- Load Pako ZLIB library to enable PDF compression -->
-<script src="//kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/pako_deflate.min.js"></script>
+<script src="https://unpkg.com/pako/dist/pako_deflate.min.js"></script>
 
 <script>
      $(".export-pdf").click(function() {
@@ -196,7 +196,7 @@ The following example demonstrates how to embed fonts in exported PDF.
      $("#chart").kendoChart({
         pdf: {
             fileName: "Kendo UI Chart Export.pdf",
-            proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+            proxyURL: "https://demos.telerik.com/service/v2/core/export"
         },
         title: {
             text: "Gross domestic product growth \n /GDP annual %/",

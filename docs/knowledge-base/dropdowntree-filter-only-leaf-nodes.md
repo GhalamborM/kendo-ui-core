@@ -1,12 +1,12 @@
 ---
 title: Filter Only Leaf Nodes In DropDownTree
-description: An example on how to filter only leaf nodes in DropDownTree .
+description: Learn how to filter only leaf nodes in DropDownTree .
 type: how-to
-page_title: Filter Only Leaf Nodes DropDownTree | Kendo UI DropDownTree for jQuery
+page_title: Filter Only Leaf Nodes DropDownTree - Kendo UI DropDownTree for jQuery
 slug: dropdowntree-filter-only-leaf-nodes
 tags: kendo, kendoui, dropdowntree, filter
 res_type: kb
-component: dropdowntree
+components: ["dropdowntree"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: dropdowntree
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI DropDownTree</td>
+  <td>Progress® Kendo UI® DropDownTree for jQuery</td>
  </tr>
 </table>
 
@@ -81,4 +81,4 @@ How can I perform filtering only on the leaf nodes of Kendo DropDownTree?
 
 ## See Also
 
-* [API Reference of the DropDownTree](https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdowntree).
+* [API Reference of the DropDownTree](https://docs.telerik.com/kendo-ui/api/ui/dropdowntree).

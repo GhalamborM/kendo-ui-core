@@ -5,9 +5,9 @@ description: "Learn how to modify the generated Excel file from a Kendo UI Pivot
 previous_url: /controls/data-management/pivotgrid/how-to/modify-exported-excel, /controls/data-management/pivotgrid/how-to/export/modify-exported-excel
 slug: howto_modify_exported_excel_files_pivotgrid
 tags: kendoui, pivotgrid, modify, exported, excel, files
-component: pivotgrid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI PivotGrid</td>
+  <td>Progress® Kendo UI® PivotGrid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -52,7 +52,7 @@ The following example demonstrates how to achieve this behavior.
             var pivotgrid = $("#pivotgrid").kendoPivotGrid({
                 excel: {
                     fileName: "Kendo UI PivotGrid Export.xlsx",
-                    proxyURL: "//demos.telerik.com/kendo-ui/service/export",
+                    proxyURL: "https://demos.telerik.com/service/v2/core/export",
                     filterable: true
                 },
                 excelExport: function(e) {
@@ -88,7 +88,7 @@ The following example demonstrates how to achieve this behavior.
                             catalog: "Adventure Works DW 2008R2",
                             cube: "Adventure Works"
                         },
-                        read: "//demos.telerik.com/olap/msmdpump.dll"
+                        read: "https://demos.telerik.com/service/v2/olap/msmdpump.dll"
                     },
                     schema: {
                         type: "xmla"
@@ -109,8 +109,8 @@ The following example demonstrates how to achieve this behavior.
 
 ## See Also
 
-* [PivotGrid JavaScript API Reference](/api/javascript/ui/pivotgrid)
-* [How to Change Data Source Dynamically]({% slug howto_change_datasource_dynamically_pivotgrid %})
-* [How to Drill Down Navigation Always Starting from Root Tuple]({% slug howto_drill_down_navigation_startingfrom_root_tuple_pivotgrid %})
-* [How to Expand Multiple Column Dimensions]({% slug howto_expand_multiple_column_dimensions_pivotgrid %})
-* [How to Filter by Using the include Operator]({% slug howto_use_include_operator_pivotgrid %})
+* [PivotGrid JavaScript API Reference](/api/ui/pivotgrid)
+* [Change Data Source Dynamically]({% slug howto_change_datasource_dynamically_pivotgrid %})
+* [Drill Down Navigation Always Starting from Root Tuple]({% slug howto_drill_down_navigation_startingfrom_root_tuple_pivotgrid %})
+* [Expand Multiple Column Dimensions]({% slug howto_expand_multiple_column_dimensions_pivotgrid %})
+* [Filter by Using the include Operator]({% slug howto_use_include_operator_pivotgrid %})

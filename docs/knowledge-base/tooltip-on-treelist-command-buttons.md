@@ -1,13 +1,13 @@
 ---
 title: Configure Kendo Tooltip for TreeList command buttons
-description: An example on how to update the content of Kendo Tooltip when used on TreeList command buttons.
+description: Learn how to update the content of Kendo Tooltip when used on TreeList command buttons.
 type: how-to
-page_title: Use Kendo Tooltip for TreeList command buttons | Kendo UI Tooltip for jQuery
+page_title: Use Kendo Tooltip for TreeList command buttons - Kendo UI Tooltip for jQuery
 slug: tooltip-on-treelist-command-buttons
 tags: kendo ui, tooltip, treelist, content
 ticketid: 1534253
 res_type: kb
-component: tooltip
+components: ["tooltip"]
 ---
 
 ## Environment
@@ -15,8 +15,8 @@ component: tooltip
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Tooltip</td>
-  <td>Progress Kendo UI TreeList</td>
+  <td>Progress® Kendo UI® Tooltip for jQuery</td>
+  <td>Progress® Kendo UI® TreeList for jQuery</td>
  </tr>
 </table>
  
@@ -27,7 +27,7 @@ How to update the content of Kendo Tooltip when it is used for the TreeList comm
 
 ## Solution
 
-Subscribe to the TreeList `edit`, `dataBound` and `cancel` events. In the event handlers refresh the Tooltip content using the [`refresh`](/api/javascript/ui/tooltip/methods/refresh) method 
+Subscribe to the TreeList `edit`, `dataBound` and `cancel` events. In the event handlers refresh the Tooltip content using the [`refresh`](/api/ui/tooltip/methods/refresh) method
 
 ### DatePicker
 
@@ -38,29 +38,31 @@ The following example demonstrates how to refresh the content of Kendo Tooltip w
 
 <script>
     $(document).ready(function(){
-      var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service";
+      var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core";
 
       var dataSource = new kendo.data.TreeListDataSource({
         transport: {
           read:  {
-            url: crudServiceBaseUrl + "/EmployeeDirectory/All",
-            dataType: "jsonp"
+            url: crudServiceBaseUrl + "/EmployeeDirectory/All"
           },
           update: {
             url: crudServiceBaseUrl + "/EmployeeDirectory/Update",
-            dataType: "jsonp"
+             type: "POST",
+                 contentType: "application/json"
           },
           destroy: {
             url: crudServiceBaseUrl + "/EmployeeDirectory/Destroy",
-            dataType: "jsonp"
+             type: "POST",
+                 contentType: "application/json"
           },
           create: {
             url: crudServiceBaseUrl + "/EmployeeDirectory/Create",
-            dataType: "jsonp"
+             type: "POST",
+                 contentType: "application/json"
           },
           parameterMap: function(options, operation) {
             if (operation !== "read" && options.models) {
-              return {models: kendo.stringify(options.models)};
+              return kendo.stringify(options.models);
             }
           }
         },
@@ -90,11 +92,11 @@ The following example demonstrates how to refresh the content of Kendo Tooltip w
         dataSource: dataSource,           
         edit: function(e){            
           $('#treelist').data('kendoTooltip').refresh()             
-        }, 
+        },
         dataBound: function(e){            
           $('#treelist').data('kendoTooltip').refresh()             
-        }, 
-        cancel: function(e){ 
+        },
+        cancel: function(e){
           setTimeout(function(){
             $('#treelist').data('kendoTooltip').refresh()
           })
@@ -129,5 +131,5 @@ The following example demonstrates how to refresh the content of Kendo Tooltip w
 
 ## See Also
 
-* [Tooltip] API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/tooltip)
-* [TreeList API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/treelist)
+* [Tooltip] API Reference](https://docs.telerik.com/kendo-ui/api/ui/tooltip)
+* [TreeList API Reference](https://docs.telerik.com/kendo-ui/api/ui/treelist)

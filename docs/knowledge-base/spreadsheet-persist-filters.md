@@ -1,12 +1,13 @@
 ---
 title: Persist Filters in Spreadsheet
-description: An example on how to persist the selected filters in the Kendo UI Spreadsheet.
+description: Learn how to persist the selected filters in the Kendo UI Spreadsheet.
 type: how-to
-page_title: Persist Selected Filters after Reload of Data | Kendo UI Spreadsheet for jQuery
+page_title: Persist Selected Filters after Reload of Data - Kendo UI Spreadsheet for jQuery
 slug: spreadsheet-persist-filters
 tags: kendo, kendo-ui, spreadsheet, filters, persist-filter
 ticketid: 1156588
 res_type: kb
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Spreadsheet for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Spreadsheet for jQuery</td>
 	</tr>
 </table>
 
@@ -28,7 +29,7 @@ How can I save the filter for each column and then re-apply the filter once the 
 
 The Spreadsheet does not provide a built-in option for achieving the described scenario. However, you can still work around the issue by using its API.
 
-1. Store the current filter state on the sheet by retrieving it through the [`filter()`](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet/configuration/sheets.filter) method.
+1. Store the current filter state on the sheet by retrieving it through the [`filter()`](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet/configuration/sheets#sheetsfilter) method.
 
 	```js
 	var spread = $("#spreadsheet").getKendoSpreadsheet();
@@ -40,7 +41,7 @@ The Spreadsheet does not provide a built-in option for achieving the described s
 	}
 	```
 
-1. When needed, restore the filter status by using the [`filter()`](https://docs.telerik.com/kendo-ui/api/javascript/spreadsheet/range/methods/filter) method of the `Range` object.
+1. When needed, restore the filter status by using the [`filter()`](https://docs.telerik.com/kendo-ui/api/spreadsheet/range/methods/filter) method of the `Range` object.
 
 	```js
 	var spread = $("#spreadsheet").getKendoSpreadsheet();
@@ -446,4 +447,4 @@ The following example demonstrates the implementation of the suggested approach.
 
 ## See Also
 
-* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet)
+* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet)

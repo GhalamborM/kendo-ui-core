@@ -1,13 +1,13 @@
 ---
 title: Clear Selection on All Grid Pages
-description: An example on how to clear the selection of all pages when the persistSelection property is set to true in the Kendo UI Grid.
+description: Learn how to clear the selection of all pages when the persistSelection property is set to true in the Kendo UI Grid.
 type: how-to
-page_title: Clear Persisted Selection | Kendo UI Grid for jQuery
+page_title: Clear Persisted Selection - Kendo UI for jQuery Data Grid
 slug: clear-selection-all-pages-grid
 tags: clear selection, persistSelection, grid, all pages
 ticketid: 1133757
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.913 version</td>
  </tr>
 </table>
@@ -30,7 +30,7 @@ How can I clear the selection on all Kendo UI Grid pages?
 ## Solution
 
 1. Assign an empty object as the value of the `_selectedIds` property of the Grid.
-1. Invoke the [`clearSelection`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/clearselection) method.
+1. Invoke the [`clearSelection`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/clearselection) method.
 
 ```dojo
 <script src="https://demos.telerik.com/kendo-ui/content/shared/js/orders.js"></script>

@@ -2,9 +2,10 @@
 title: Frequently Asked Questions
 page_title: Frequently Asked Questions
 description: "Find the answers of the most frequently asked questions related to the Telerik UI Grid component and their answers."
+components: ["grid"]
 previous_url: /kendo-ui/aspnet-mvc/helpers/grid/faq, /helpers/data-management/grid/faq
 slug: freqaskedquestions_gridhelper_aspnetmvc
-position: 20
+position: 31
 ---
 
 # Frequently Asked Questions
@@ -13,7 +14,7 @@ This article lists some of the most frequently asked questions when working with
 
 ## How can I display HTML in Grid columns?
 
-By default, the Telerik UI Grid for {{ site.framework }} encodes the HTML entities that are included in its data. To prevent this, call the [`Encoded`](/api/Kendo.Mvc.UI.Fluent/GridBoundColumnBuilder#formatsystemstring) method and pass `false` as its argument.
+By default, the Telerik UI Grid for {{ site.framework }} encodes the HTML entities that are included in its data. To prevent this, call the [`Encoded`](/api/kendo.mvc.ui.fluent/gridboundcolumnbuilder#formatsystemstring) method and pass `false` as its argument.
 
 ```HtmlHelper
     columns.Bound(o => o.Description).Encoded(false);
@@ -31,12 +32,14 @@ By default, the Telerik UI Grid for {{ site.framework }} encodes the HTML entiti
 
 {% if site.mvc %}
 
-* If the Grid is `server-bound`, use the `Template` method.
+* If the Grid is configured for [server binding]({% slug serverbinding_grid_aspnetmvc %}), use the `Template` method to customize the default column template.
 
   > The `Template` method needs a [templated Razor delegate](http://haacked.com/archive/2011/02/27/templated-razor-delegates.aspx) when used in Razor views. The bound item is available through the `@item` parameter.
 
     ```HtmlHelper
-          @(Html.Kendo().Grid<Models.Product>(Model)
+        @model IEnumerable<Product>
+
+          @(Html.Kendo().Grid(Model)
               .Name("Grid")
               .Columns(columns =>
               {
@@ -47,9 +50,13 @@ By default, the Telerik UI Grid for {{ site.framework }} encodes the HTML entiti
           )
     ```
 
-Here is another sample with DetailTemplates (common setting for the Grid, not specific to given Column):
+Here is another example that shows how to set the server-side detail template of the Grid through the [DetailTemplate()](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/gridbuilder#detailtemplatesystemfunc) option:
 
-    ```HtmlHelper
+```HtmlHelper
+    @model IEnumerable<Product>
+
+    @(Html.Kendo().Grid(Model)
+        .Name("Grid")
         .DetailTemplate(@<text>
             <div>ProductID: @item.ProductID</div>
             <div>ProductName: @item.ProductName</div>
@@ -58,7 +65,9 @@ Here is another sample with DetailTemplates (common setting for the Grid, not sp
             <div>UnitsOnOrder: @item.UnitsOnOrder</div>
             <div>Discontinued: @item.Discontinued</div>
         </text>)
-    ```
+        ...
+    )
+```
 
 It is important to note that you can use only-server templates when the Grid is `server-bound`. They are not available in Ajax or WebService binding mode. For these cases, you will need to use Client Templates.
 
@@ -233,7 +242,7 @@ The following example demonstrates how to use a JavaScript function in the `Clie
 
 ## How can I use Kendo UI widgets inside Grid client column templates?
 
-The `script` tags are not automatically evaluated inside a Grid client column template, so the included widgets are not initialized. The scripts must be evaluated manually in the [Grid's `dataBound` event](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid#events-dataBound).
+The `script` tags are not automatically evaluated inside a Grid client column template, so the included widgets are not initialized. The scripts must be evaluated manually in the [Grid's `dataBound` event](https://docs.telerik.com/kendo-ui/api/ui/grid#events-dataBound).
 
 The following example demonstrates how to add a Kendo UI Menu inside a Grid column template. Note that the Menu requires the Grid cells to allow overflowing, which is disabled by default.
 {% if site.mvc %}
@@ -291,7 +300,7 @@ The following example demonstrates how to add a Kendo UI Menu inside a Grid colu
                             });
 
                         })
-                        .ToClientTemplate().Value
+                        .ToClientTemplate().ToString()
                     );
         })
         .Events(ev => ev.DataBound("initMenus"))
@@ -313,7 +322,7 @@ The following example demonstrates how to add a Kendo UI Menu inside a Grid colu
                                 });
 
                             })
-                            .ToClientTemplate().Value)">
+                            .ToClientTemplate().ToString())">
             </column>
         </columns>
     </kendo-grid>
@@ -335,7 +344,7 @@ The following example demonstrates how to add a Kendo UI Menu inside a Grid colu
 
 ## How can I change the format of bound columns?
 
-Use the [`Format`](/api/Kendo.Mvc.UI.Fluent/GridBoundColumnBuilder#formatsystemstring) method. The value should be a valid [`number`](https://docs.telerik.com/kendo-ui/api/javascript/kendo#standard-number-formats) or [`date`](https://docs.telerik.com/kendo-ui/api/javascript/kendo#standard-date-formats) format.
+Use the [`Format`](/api/kendo.mvc.ui.fluent/gridboundcolumnbuilder#formatsystemstring) method. the value should be a valid [`number`](https://docs.telerik.com/kendo-ui/api/kendo#standard-number-formats) or [`date`](https://docs.telerik.com/kendo-ui/api/kendo#standard-date-formats) format.
 
 The following example demonstrates how to specify the format of a bound column.
 
@@ -363,9 +372,15 @@ The following example demonstrates how to add Kendo UI icons to custom command b
         .Name("grid")
         .Columns(columns =>
         {
-            columns.Command(command => { command.Custom("myCommand").Text("My Text").IconClass("k-icon k-i-custom"); });
+            columns.Command(command => { command.Custom("myCommand").Click("myCommandClick").Text("My Text").IconClass("k-icon k-i-custom"); });
         })
     )
+
+    <script>
+        function myCommandClick() {
+            console.log("custom command click event handler");
+        }
+    </script>
 ```
 {% if site.core %}
 ```TagHelper
@@ -373,11 +388,17 @@ The following example demonstrates how to add Kendo UI icons to custom command b
         <columns>
             <column>
                 <commands>
-                    <column-command name="myCommand" text="My Text" icon-class="k-icon k-i-custom" />
+                    <column-command name="myCommand" click="myCommandClick" text="My Text" icon-class="k-icon k-i-custom" />
                 </commands>
             </column>
         </columns>
     </kendo-grid>
+
+    <script>
+        function myCommandClick() {
+            console.log("custom command click event handler");
+        }
+    </script>
 ```
 {% endif %}
 
@@ -443,13 +464,15 @@ The following example demonstrates how to send additional data in an Ajax-bound 
 
 ## How can I reload data in Ajax-bound Grids?
 
-Use the [`read`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource#read) method of the DataSource.
+Use the [`read`](https://docs.telerik.com/kendo-ui/api/data/datasource#read) method of the DataSource.
 
 The following example demonstrates how to reload an Ajax-bound Grid.
 
-    var grid = $("#Grid").data("kendoGrid");
+```JS
+var grid = $("#Grid").data("kendoGrid");
 
-    grid.dataSource.read();
+grid.dataSource.read();
+```
 
 ## How can I convert my models to view model objects?
 
@@ -459,16 +482,19 @@ The `ToDataSourceResult` extension method supports an optional selector, which c
 
 The following example demonstrates how to convert the processed data.
 
-    public ActionResult Read([DataSourceRequest] DataSourceRequest request)
-    {
-        var northwind = new NorthwindDataContext();
-        var orders = northwind.Orders;
+```C#
+public ActionResult Read([DataSourceRequest] DataSourceRequest request)
+{
+    var northwind = new NorthwindDataContext();
+    var orders = northwind.Orders;
 
-        var result = orders.ToDataSourceResult(request, o => new {
-            OrderID = o.OrderID,
-            CustomerName = o.Customer.ContactName
-        });
-    }
+    var result = orders.ToDataSourceResult(request, o => new {
+        OrderID = o.OrderID,
+        CustomerName = o.Customer.ContactName
+    });
+    return Json(result);
+}
+```
 
 ## How can I avoid circular reference exceptions?
 
@@ -477,38 +503,39 @@ properties which create the circular references.
 
 The following example demonstrates how to avoid circular references.
 
-    // Models.
-    public class Order
-    {
-        public int OrderID { get; set; }
+```C# Model
+public class Order
+{
+    public int OrderID { get; set; }
 
-        // This property creates a circular reference because of the Customer class.
-        // Refers to the Order class through the Orders property.
-        public Customer Customer { get; set; }
-    }
+    // This property creates a circular reference because of the Customer class.
+    // Refers to the Order class through the Orders property.
+    public Customer Customer { get; set; }
+}
 
-    public class Customer
-    {
-        public string ContactName { get; set; }
-        public IEnumerable<Order> Orders { get; set; }
-    }
+public class Customer
+{
+    public string ContactName { get; set; }
+    public IEnumerable<Order> Orders { get; set; }
+}
+```
+```C# Controller
+public ActionResult Read([DataSourceRequest] DataSourceRequest request)
+{
+    var northwind = new NorthwindDataContext();
+    var orders = northwind.Orders;
 
-    // Action.
-    public ActionResult Read([DataSourceRequest] DataSourceRequest request)
-    {
-        var northwind = new NorthwindDataContext();
-        var orders = northwind.Orders;
-
-        // Avoid the circular reference by creating a View Model object and skipping the Customer property.
-        var result = orders.ToDataSourceResult(request, o => new {
-            OrderID = o.OrderID,
-            CustomerName = o.Customer.ContactName
-        });
-    }
+    // Avoid the circular reference by creating a View Model object and skipping the Customer property.
+    var result = orders.ToDataSourceResult(request, o => new {
+        OrderID = o.OrderID,
+        CustomerName = o.Customer.ContactName
+    });
+}
+```
 
 ## How can I handle errors in Ajax binding mode?
 
-Use the [`error`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource#error) event of the DataSource. Apply the `Error` method from the fluent API to specify the name of the JavaScript function which will handle the event.
+Use the [`error`](https://docs.telerik.com/kendo-ui/api/data/datasource#error) event of the DataSource. Apply the `Error` method from the fluent API to specify the name of the JavaScript function which will handle the event.
 
 The following example demonstrates how to handle errors in the Ajax binding mode.
 
@@ -585,29 +612,35 @@ Prevent the caching and browser re-use of Ajax responses in either of the follow
 {% if site.mvc %}
 * Use an `OutputCache` attribute for the action method.
 
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public JsonResult MyReadMethod()
-        {
-            /* ... */
-        }
+    ```C#
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+    public JsonResult MyReadMethod()
+    {
+        /* ... */
+    }
+    ```
 {% endif %}
 
 {% if site.core %}
 * Use an `ResponseCache` attribute for the action method.
 
-        [ResponseCache(NoStore = true, Duration = 0)]
-        public JsonResult MyReadMethod()
-        {
-            /* ... */
-        }
+    ```C#
+    [ResponseCache(NoStore = true, Duration = 0)]
+    public JsonResult MyReadMethod()
+    {
+        /* ... */
+    }
+    ```
 {% endif %}
 
 * Configure the Kendo UI DataSource to make `POST` instead of `GET` Ajax requests for the `Read` action.
 * Use jQuery's [`ajaxSetup`](https://api.jquery.com/jquery.ajaxsetup/) configuration method. This influences all Ajax requests that the web application performs.
 
-        $.ajaxSetup ({
-           cache: false
-        });
+    ```JS
+    $.ajaxSetup ({
+        cache: false
+    });
+    ```
 
 ## How can I display model state errors?
 
@@ -738,11 +771,13 @@ By default, all properties are read-only. Decorate the read-only properties with
 
 The following example demonstrates the Read-only property through the `ReadOnly` attribute.
 
-    public class Order
-    {
-        [ReadOnly(true)]
-        public int OrderID { get; set; }
-    }
+```C#
+public class Order
+{
+    [ReadOnly(true)]
+    public int OrderID { get; set; }
+}
+```
 
 The following example demonstrates the Read-only property through the `Editable` method.
 
@@ -797,15 +832,17 @@ To validate a date by using the Kendo UI DateTimePicker:
 
 1. Decorate the `Date` property in the model by using the [`UIHint`](https://msdn.microsoft.com/en-us/library/cc679268) attribute.
 
-        public class Order
-        {
-            public int OrderID { get; set; }
+    ```C#
+    public class Order
+    {
+        public int OrderID { get; set; }
 
-            public string ShipCountry { get; set; }
+        public string ShipCountry { get; set; }
 
-            [UIHint("KendoDateEditor")]
-            public Date OrderDate { get; set; }
-        }
+        [UIHint("KendoDateEditor")]
+        public Date OrderDate { get; set; }
+    }
+    ```
 
 To validate a number by using the Kendo UI NumericTextBox:
 
@@ -827,18 +864,54 @@ To validate a number by using the Kendo UI NumericTextBox:
 
 1. Decorate the `number` property in the model by using the [`UIHint`](https://msdn.microsoft.com/en-us/library/cc679268) attribute.
 
-        public class Order
-        {
-            public int OrderID { get; set; }
+    ```C#
+    public class Order
+    {
+        public int OrderID { get; set; }
 
-            public string ShipCountry { get; set; }
+        public string ShipCountry { get; set; }
 
-            [UIHint("KendoNumberEditor")]
-            public decimal Price { get; set; }
-        }
+        [UIHint("KendoNumberEditor")]
+        public decimal Price { get; set; }
+    }
+    ```
+
+## How can I distinguish between Add and Edit mode?
+
+To distinguish between the insert and update modes, you can use the `isNew` method in combination with the edit event handler of the grid:
+[Grid Edit Event](http://docs.telerik.com/kendo-ui/api/ui/grid#events-edit)
+
+Here is a basic sample for reference:
+
+```HtmlHelper
+    // Omitted for brevity.
+   .Events(events => events.Edit("onEdit"))
+```
+{% if site.core %}
+```TagHelper
+    <kendo-grid on-edit="onEdit">
+        // Omitted for brevity.
+    </kendo-grid>
+```
+{% endif %}
+```js
+function onEdit(args) {
+    if (args.model.isNew() == false) {
+            // textbox
+            $("#ShipName").attr("readonly", true);
+             
+            // dropdownlist
+            var kendoDdl = $("#ShipCountry").data("kendoDropDownList");
+            kendoDdl.readonly(true);
+    }
+}
+```
 
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
 * [Basic Usage of the Grid HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/grid)
 {% if site.core %}
 * [Basic Usage of the Grid TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/grid/tag-helper)

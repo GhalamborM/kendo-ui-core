@@ -1,13 +1,13 @@
 ---
 title: Hide Columns on Clicking the Headers and Restore Them on Clicking a Button
 page_title: Hide Columns on Clicking Headers | AngularJS Kendo UI Grid
-description: "An example on how to hide columns and show them back later when working in AngularJS applications with the Kendo UI Grid."
+description: "Learn how to hide columns and show them back later when working in AngularJS applications with the Kendo UI Grid."
 previous_url: /controls/data-management/grid/how-to/AngularJS/hide-columns-by-clicking-the-headers, /controls/data-management/grid/how-to/AngularJS/hide-columns-by-clicking-the-headers
 slug: howto_hide_columns_and_subcolumns_grid
 tags: grid, hide, columns, click, restore, headers, buttonclick, angularjs
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -45,7 +45,7 @@ Your AngularJS project might require you to hide Grid columns and sub-columns by
 
 The following example demonstrates how to achieve this behavior.
 
-```dojo
+```
 <div id="example" ng-app="KendoDemos">
       <div ng-controller="MyCtrl">
         <div kendo-grid="grid" k-options="gridOptions"></div>
@@ -94,9 +94,8 @@ The following example demonstrates how to achieve this behavior.
 
         $scope.gridOptions = {
           dataSource: {
-            type: "odata",
             transport: {
-              read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+              read: "https://demos.telerik.com/service/v2/core/Customers"
             },
             pageSize: 20
           },

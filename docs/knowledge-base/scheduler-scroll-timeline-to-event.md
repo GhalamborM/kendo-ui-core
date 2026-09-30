@@ -1,12 +1,13 @@
 ---
 title: Scroll to and Select Scheduler Events
-description: An example on how to vertically and horizontally scroll the Kendo UI Scheduler timeline to an event and then select it.
+description: Learn how to vertically and horizontally scroll the Kendo UI Scheduler timeline to an event and then select it.
 type: how-to
-page_title: Scroll Scheduler Timeline to an Event and Select It | Kendo UI Scheduler for jQuery
+page_title: Scroll Scheduler Timeline to an Event and Select It - Kendo UI Scheduler for jQuery
 slug: scheduler-scroll-timeline-to-event
 tags: kendo, kendoui, scheduler, timeline, scroll, select, event
 ticketid: 1141944
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
 </table>
 
@@ -29,7 +30,7 @@ How can I vertically and horizontally scroll and focus an event that is placed o
 1. Calculate its position according to the Scheduler content element.
 1. Scroll the Scheduler view to that position.
 
-You can also select the desired event by using the [`select`](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler/methods/select) method.
+You can also select the desired event by using the [`select`](https://docs.telerik.com/kendo-ui/api/ui/scheduler/methods/select) method.
 
 ````dojo
 <div id="example" class="k-content">
@@ -69,8 +70,8 @@ You can also select the desired event by using the [`select`](https://docs.teler
     $("#scheduler").kendoScheduler({
       height: 300,
       selectable: true,
-      date: new Date("2013/6/13"),
-      startTime: new Date("2013/6/13 07:00 AM"),
+      date: new Date("2025/6/13"),
+      startTime: new Date("2025/6/13 07:00 AM"),
       eventHeight: 50,
       majorTick: 60,
       views: [ "timelineWeek" ],
@@ -79,8 +80,7 @@ You can also select the desired event by using the [`select`](https://docs.teler
         batch: true,
         transport: {
           read: {
-            url: "https://demos.telerik.com/kendo-ui/service/meetings",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/meetings"
           }
         },
         schema: {
@@ -131,4 +131,4 @@ You can also select the desired event by using the [`select`](https://docs.teler
 
 ## See Also
 
-* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler)
+* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/ui/scheduler)

@@ -1,12 +1,13 @@
 ---
 title: Remove Double Left Border from the Grid
-description: An example on how to remove the double left border when hiding the first column in the Kendo UI Grid.
+description: Learn how to remove the double left border when hiding the first column in the Kendo UI Grid.
 type: how-to
-page_title: Remove Faulty Left Border after Hiding the First Column | Kendo UI Grid for jQuery
+page_title: Remove Faulty Left Border after Hiding the First Column - Kendo UI for jQuery Data Grid
 slug: grid-remove-double-left-border
 tags: grid, columns, border
 ticketid: 1347080
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -28,7 +29,7 @@ How can I remove the double left border when hiding the first column in the Kend
 
 ## Solution
 
-1. Handle the [`columnHide`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/columnhide) and [`columnShow`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/columnshow) events of the Grid.
+1. Handle the [`columnHide`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/columnhide) and [`columnShow`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/columnshow) events of the Grid.
 1. In the event handler of `columnHide` and `columnShow`, find the first visible column and apply a class that will remove its left border.
 
 ```dojo

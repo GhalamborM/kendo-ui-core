@@ -2,6 +2,7 @@
 title: Overview
 page_title: Grouping
 description: "Learn how to enable the grouping functionality of the Telerik UI Grid for {{ site.framework }}."
+components: ["grid"]
 slug: htmlhelpers_grid_aspnetcore_grouping
 position: 1
 ---
@@ -12,7 +13,7 @@ By default, the grouping functionality of the Telerik UI Grid for {{ site.framew
 
 For a runnable example, refer to the [demo on using aggregates in the Grid](https://demos.telerik.com/{{ site.platform }}/grid/aggregates).
 
-To control grouping in the Grid, use the [`Groupable()`](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/GridBuilder#groupable) method.
+To control grouping in the Grid, use the [`Groupable()`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/gridbuilder#groupable) method.
 
 ```HtmlHelper
     @(Html.Kendo().Grid<Kendo.Mvc.Examples.Models.CustomerViewModel>()
@@ -30,7 +31,7 @@ To control grouping in the Grid, use the [`Groupable()`](https://docs.telerik.co
 ```
 {% endif %}
 
-> Only columns that are [bound to a field](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.field) can be groupable. To enable grouping on a column bound to an object, [bind the column to a field of that object](https://docs.telerik.com/aspnet-core/knowledge-base/grid-enable-operations-for-object-column).
+> Only columns that are [bound to a field](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns.field) can be groupable. To enable grouping on a column bound to an object, [bind the column to a field of that object](https://docs.telerik.com/aspnet-core/knowledge-base/grid-enable-operations-for-object-column).
 
 You can also render groups by setting group expressions in the DataSource of the Grid even without enabling `Groupable`.
 
@@ -54,5 +55,9 @@ You can also render groups by setting group expressions in the DataSource of the
 {% endif %}
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
+* [Sticky Groups]({% slug htmlhelpers_grid_aspnetcore_sticky_groups %})
 * [Grouping with Aggregates by the Grid HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/grid/aggregates)
 * [Server-Side API](/api/grid)

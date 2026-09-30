@@ -1,13 +1,13 @@
 ---
 title: Expand Multiple Column Dimensions in the PivotGrid
 page_title: Expand Multiple PivotGrid Column Dimensions
-description: "Learn how to expand multiple column dimensions by using the dataBound event in a Kendo UI PivotGrid widget."
+description: "Learn how to expand multiple column dimensions by using the dataBound event in a Kendo UI PivotGrid component."
 previous_url: /controls/data-management/pivotgrid/how-to/expand-multiple-dimensions, /controls/data-management/pivotgrid/how-to/dimensions/expand-multiple-dimensions
 slug: howto_expand_multiple_column_dimensions_pivotgrid
 tags: kendoui, pivotgrid, access, mdx, query
-component: pivotgrid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI PivotGrid</td>
+  <td>Progress® Kendo UI® PivotGrid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -40,7 +40,7 @@ How can I reset the expanding that has occurred in the PivotGrid and revert to m
 
 In order for the expand to properly work, set fully qualified names to the expanded tuples as shown in the following code snippet with the `[Calendar Year].&[2005]` configuration.
 
-The following example demonstrates how to expand multiple column dimensions by using the [`dataBound`](/api/javascript/ui/pivotgrid/events/databound) event of the PivotGrid.
+The following example demonstrates how to expand multiple column dimensions by using the [`dataBound`](/api/ui/pivotgrid/events/databound) event of the PivotGrid.
 
 ```dojo
 <div id="example">
@@ -71,7 +71,7 @@ The following example demonstrates how to expand multiple column dimensions by u
                             catalog: "Adventure Works DW 2008R2",
                             cube: "Adventure Works"
                         },
-                        read: "https://demos.telerik.com/olap/msmdpump.dll"
+                        read: "https://demos.telerik.com/service/v2/olap/msmdpump.dll"
                     },
                     schema: {
                         type: "xmla"
@@ -94,8 +94,8 @@ The following example demonstrates how to expand multiple column dimensions by u
 
 ## See Also
 
-* [PivotGrid JavaScript API Reference](/api/javascript/ui/pivotgrid)
-* [How to Change Data Source Dynamically]({% slug howto_change_datasource_dynamically_pivotgrid %})
-* [How to Drill Down Navigation Always Starting from Root Tuple]({% slug howto_drill_down_navigation_startingfrom_root_tuple_pivotgrid %})
-* [How to Filter by Using the include Operator]({% slug howto_use_include_operator_pivotgrid %})
-* [How to Integrate with Kendo UI Chart]({% slug howto_integratewith_kendoui_chart_pivotgrid %})
+* [PivotGrid JavaScript API Reference](/api/ui/pivotgrid)
+* [Change Data Source Dynamically]({% slug howto_change_datasource_dynamically_pivotgrid %})
+* [Drill Down Navigation Always Starting from Root Tuple]({% slug howto_drill_down_navigation_startingfrom_root_tuple_pivotgrid %})
+* [Filter by Using the include Operator]({% slug howto_use_include_operator_pivotgrid %})
+* [Integrate with Kendo UI Chart]({% slug howto_integratewith_kendoui_chart_pivotgrid %})

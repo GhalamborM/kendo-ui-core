@@ -5,9 +5,9 @@ description: "Learn how to align the a popup to always appear in the center of a
 slug: howto_makepopupcenter_window
 previous_url: /controls/layout/window/how-to/make-popup-appear-in-center
 tags: telerik, kendo, jquery, window, render, popup, in, the, center, of, the
-component: window
 type: how-to
 res_type: kb
+components: ["window"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Window for jQuery</td>
+  <td>Progress® Kendo UI® Window for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -52,32 +52,33 @@ The example below demonstrates how to position a popup in the center of the brow
        $('button').click(createAndShowPopup);
        var kendoWindowAssign = $("#windowForAssign");
        var title = "Sample title";
-       var url = "http://jsonplaceholder.typicode.com/posts";
+       var url = "https://jsonplaceholder.typicode.com/posts";
 
        function createAndShowPopup(){
-         kendoWindowAssign.kendoWindow({
-           width: "650px",
-           modal: true,
-           height: '120px',
-           iframe: true,
-           resizable: false,
-           title: title,
-           content: url,
-           visible: false
-         });
+        kendoWindowAssign.kendoWindow({
+          width: "650px",
+          modal: true,
+          height: '200px',
+          resizable: false,
+          title: title,
+          content: {
+            url: url,
+            dataType: "json"
+          },
+        });
 
-         var popup = $("#windowForAssign").data('kendoWindow');
-         popup.open();
-         popup.center();
-       }
-     </script>
+        var popup = $("#windowForAssign").data('kendoWindow');
+        popup.open();
+        popup.center();
+      }
+  </script>
 ```
 
 ## See Also
 
-* [Window JavaScript API Reference](/api/javascript/ui/window)
-* [How to Post to Iframe]({% slug howto_posttoiframe_window %})
-* [How to Restrict Window Positioning]({% slug howto_restrictpositioning_window %})
-* [How to Use Custom Action Icons]({% slug howto_customactionicons_window %})
+* [Window JavaScript API Reference](/api/ui/window)
+* [Post to Iframe]({% slug howto_posttoiframe_window %})
+* [Restrict Window Positioning]({% slug howto_restrictpositioning_window %})
+* [Use Custom Action Icons]({% slug howto_customactionicons_window %})
 
 

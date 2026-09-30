@@ -2,12 +2,15 @@
 title: Stacked And Grouped Bar Chart
 page_title:  Stacked And Grouped Bar Chart
 description: "Learn how to use the Stacked and Grouped Bars of Telerik UI Bar Charts component for {{ site.framework }}."
+components: ["chart"]
 slug: barcharts_aspnetcore_htmlhelper_stacked_and_grouped_bars
 ---
 
 # Stacked And Grouped Bar Charts
 
 Usually, the data series in a stacked column or bar chart have one stack per category. There are scenarios in which you might want to arrange your data so that the chart appears to have more than one stack per category.
+
+A stacked and grouped bar chart is possible only when each series is defined.
 
 In this demo, you can see how to group stacked columns to display the World population compared by age and sex in a specific period of time by setting the Stack() method, which sets the name of the stack that the series belong to:
 
@@ -173,7 +176,7 @@ The following implementation demonstrates the code needed for setting the Stacke
 
 Overview of the Stacked and Grouped Bars:
 
-![{{ site.product_short }} Stacked and Grouped Bars](images/stackedAndGroupedBars.png)
+![{{ site.product_short }} Chart Stacked and Grouped Bars](images/stackedAndGroupedBars.png)
 
 ## See Also
 * [Basic Usage of Bar Charts {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/bar-charts)

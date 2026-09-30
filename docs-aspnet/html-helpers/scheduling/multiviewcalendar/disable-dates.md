@@ -2,6 +2,7 @@
 title: Disabled Dates
 page_title: Disabled Dates
 description: "Learn how to disable dates in the Telerik UI MultiViewCalendar component for {{ site.framework }}."
+components: ["multiviewcalendar"]
 previous_url: /helpers/scheduling/multiviewcalendar/disable-dates
 slug: disabled_dates_multiviewcalendar_htmlhelper_aspnetcore
 position: 6
@@ -11,7 +12,7 @@ position: 6
 
 The MultiViewCalendar allows you to disable certain days which are not intended to be selected by the end user such as weekends, national holidays, and others.
 
-To disable a date, either [set an array](#setting-and-array) or [add a function](#adding-a-function).
+To disable a date, either [set an array](#setting-an-array) or [add a function](#adding-a-function).
 
 ## Setting an Array
 
@@ -26,7 +27,7 @@ When you set an array, list the days that need to be disabled by using the first
 {% if site.core %}
 ```TagHelper
     <kendo-multiviewcalendar name="MultiViewCalendar" 
-                             disable-dates="new DateTime[] { DateTime.Now }">
+        disable-dates="new DateTime[] { DateTime.Now }">
     </kendo-multiviewcalendar>
 ```
 {% endif %}
@@ -40,7 +41,14 @@ When you add a function, determine its return value as `true` for the date that 
         .Name("MultiViewCalendar")
         .DisableDates("handler")
     )
-
+```
+{% if site.core %}
+```TagHelper
+    <kendo-multiviewcalendar value="DateTime.Now" name="dateTimePicker" disable-dates-handler="handler">
+    </kendo-multiviewcalendar>
+```
+{% endif %}
+```JavaScript
     <script>
         function handler(date) {
             var disabled = [13,14,20,21];

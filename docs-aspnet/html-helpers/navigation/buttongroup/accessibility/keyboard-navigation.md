@@ -2,6 +2,7 @@
 title: Keyboard Navigation
 page_title: Keyboard Navigation
 description: "Get started with the {{ site.product }} ButtonGroup and learn about the accessibility support it provides through its keyboard navigation functionality."
+components: ["buttongroup"]
 slug: keynav_aspnetcore_buttongroup
 position: 2
 ---
@@ -14,5 +15,6 @@ For a complete example, refer to the [demo on keyboard navigation of the ButtonG
 
 ## See Also
 
+* [Custom Keyboard Navigation in the ButtonGroup for {{ site.framework }}]({% slug custom_keyboard_navigation_buttongroup_htmlhelper %})
 * [Keyboard Navigation in the ButtonGroup HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/buttongroup/keyboard-navigation)
-* [Accessibility in the ButtonGroup HtmlHelper for {{ site.framework }}]({% slug accessibility_aspnetcore_buttongroup %})
+* [Accessibility in the ButtonGroup HtmlHelper for {{ site.framework }}]({% slug htmlhelpers_buttongroup_accessibility %})

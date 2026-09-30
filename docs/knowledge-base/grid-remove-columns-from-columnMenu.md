@@ -1,22 +1,23 @@
 ---
 title: Remove Specific Grid Columns from ColumnMenu
-description: An example on how to hide columns from the columnMenu in the Kendo UI Grid.
+description: Learn how to hide columns from the columnMenu in the Kendo UI Grid.
 type: how-to
-page_title: Remove Specific Column from ColumnMenu | Kendo UI Grid for jQuery
+page_title: Remove Specific Column from ColumnMenu - Kendo UI for jQuery Data Grid
 slug: grid-remove-columns-from-columnmenu
 tags: Grid, ColumnMenu, Columns
 ticketid: 1131816
 res_type: kb
+components: ["grid"]
 ---
 
-> **Deprecated** The functionality is available from the API. Check [`column.menu`](/api/javascript/ui/grid/configuration/columns.menu) configuration of the Grid.
+> **Deprecated** The functionality is available from the API. Check [`column.menu`](/api/ui/grid/configuration/columns#columnsmenu) configuration of the Grid.
 
 ## Environment
 
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -49,9 +50,9 @@ Manipulate the columnMenu within the `columnMenuInit` event of the Grid. With th
                     		removeColumnsFromColumnMenu(["OrderID", "ShipCountry"], e);            				
             			},
             			dataSource: {
-            				type: "odata",
+            				type: "odata-v4",
             				transport: {
-            					read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+            					read: "https://demos.telerik.com/service/v2/odata/Orders"
             				},
             				schema: {
             					model: {

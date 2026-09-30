@@ -2,6 +2,7 @@
 title: Selection
 page_title: Selection
 description: "Enable the single, multiple, range-date, and week selections when working with the Telerik UI Calendar component for {{ site.framework }}."
+components: ["calendar"]
 slug: htmlhelpers_selection_calendar_aspnetcore
 position: 5
 ---
@@ -16,7 +17,7 @@ For a runnable example, refer to [the demo on multiple selection in the Calendar
 
 By default, the Calendar enables the user to select a single date by using the mouse or the keyboard.
 
-> As of the 2022 R3 release, the [`Change`](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/CalendarEventBuilder#changesystemstring) event will now be fired only when Selection/Deselection is performed.
+> As of the 2022 R3 release, the [`Change`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/calendareventbuilder#changesystemstring) event will now be fired only when Selection/Deselection is performed.
 
 ## Multiple Date Selection
 

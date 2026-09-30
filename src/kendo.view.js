@@ -1,12 +1,8 @@
-(function(f, define) {
-    define([
-        "./kendo.core",
-        "./kendo.binder",
-        "./kendo.fx"
-    ], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.binder.js";
+import "./kendo.fx.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "view",
     name: "View",
     category: "framework",
@@ -35,7 +31,6 @@ var __meta__ = {
         DETACH = "detach",
         sizzleErrorRegExp = /unrecognized expression/;
 
-    var bodyRegExp = /<body[^>]*>(([\u000a\u000d\u2028\u2029]|.)*)<\/body>/i;
     var LOAD_START = "loadStart";
     var LOAD_COMPLETE = "loadComplete";
     var SHOW_START = "showStart";
@@ -309,8 +304,7 @@ var __meta__ = {
         _createHeader: function() {
             var that = this;
             var wrapper = that.wrapper;
-
-            this.header = wrapper.children(roleSelector("header")).addClass(classNames.header);
+            this.header = wrapper.children(roleSelector("header"));
         },
 
         _createFooter: function() {
@@ -625,8 +619,8 @@ var __meta__ = {
                 views,
                 view;
 
-            if (bodyRegExp.test(html)) {
-                html = RegExp.$1;
+            if (html.indexOf("<body") > -1) {
+                html = $("<div>").append(html).html();
             }
 
             sandbox[0].innerHTML = html;
@@ -647,11 +641,12 @@ var __meta__ = {
 
             container.append(views);
 
+            html = null; // Garbage collection.
             return this._createView(view);
         },
 
         _locate: function(selectors) {
-            return this.$angular ? directiveSelector(selectors) : roleSelector(selectors);
+            return roleSelector(selectors);
         },
 
         _findViewElement: function(url) {
@@ -722,7 +717,5 @@ var __meta__ = {
     kendo.ViewClone = ViewClone;
 
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

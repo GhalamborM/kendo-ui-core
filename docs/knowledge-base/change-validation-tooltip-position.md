@@ -1,30 +1,28 @@
 ---
 title: Change Validation Message Position
-page_title: Change Validation Message Position | Kendo UI Grid for jQuery
-description: "An example on how to change the validation message position in a popup edit form when working with the Kendo UI Grid."
+page_title: Change Validation Message Position - Kendo UI for jQuery Data Grid
+description: "Learn how to change the validation message position in a popup edit form when working with the Kendo UI Grid."
 previous_url: /controls/data-management/grid/how-to/Editing/change-validation-tooltip-position
 slug: howto_change_validation_message_position_grid
 tags: grid, validation, message, position
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
 
 <table>
- <tr>
-  <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
- </tr>
- <tr>
-  <td>Operating System</td>
-  <td>Windows 10 64bit</td>
- </tr>
- <tr>
-  <td>Preferred Language</td>
-  <td>JavaScript</td>
- </tr>
+<tbody>
+<tr>
+<td> Product </td>
+<td> Kendo UI for jQuery Chart </td>
+</tr>
+<tr>
+<td> Version </td>
+<td> 2025.4.1217 </td>
+</tr>
+</tbody>
 </table>
 
 ## Description
@@ -38,7 +36,7 @@ By design, validation messages inside the Grid are tooltips that are displayed o
 The following example demonstrates how to change this behavior and display the validation messages at a specific position in the popup edit form of the Grid.
 
 The approach relies on the following milestones:
-* Usage of a [popup edit form template](/api/javascript/ui/grid/configuration/editable.template).
+* Usage of a [popup edit form template](/api/ui/grid/configuration/editable#editabletemplate).
 * The validation messages are put in [placeholders]({% slug overview_kendoui_validator_widget %}#customization-of-tooltip-position) that are wrapped in custom parents and positioned with the help of custom CSS styles.
 * The [width of the popup edit form may need to be increased]({% slug howto_increase_popup_edit_formand_textbox_grid %}).
 
@@ -72,7 +70,7 @@ The approach relies on the following milestones:
     display: none;
   }
 
-  .k-popup-edit-form .k-input{
+  .k-window-content .k-input{
     width: 50%
   }
 </style>
@@ -80,7 +78,7 @@ The approach relies on the following milestones:
 <script id="edit-template" type="text/x-kendo-template">
     <dl>
       <dt><label for="ProductName">Product Name</label></dt>
-      <dd><input class="k-input k-textbox k-input-solid k-input-md k-rounded-md" data-bind="value:ProductName" name="ProductName" required="required" />
+      <dd><input class="k-input k-textbox" data-bind="value:ProductName" name="ProductName" required="required" />
       <div class="validator-msg"><span data-for="ProductName" class="k-invalid-msg"></span></div></dd>
 
       <dt><label for="UnitPrice">Unit Price</label></dt>
@@ -93,28 +91,30 @@ The approach relies on the following milestones:
 
 <script>
 $(function () {
-  var crudServiceBaseUrl = "//demos.telerik.com/kendo-ui/service",
+  var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
       dataSource = new kendo.data.DataSource({
         transport: {
           read:  {
-            url: crudServiceBaseUrl + "/Products",
-            dataType: "jsonp"
+            url: crudServiceBaseUrl + "/Products"
           },
           update: {
             url: crudServiceBaseUrl + "/Products/Update",
-            dataType: "jsonp"
+            type: "POST",
+            contentType: "application/json"
           },
           destroy: {
             url: crudServiceBaseUrl + "/Products/Destroy",
-            dataType: "jsonp"
+            type: "POST",
+            contentType: "application/json"
           },
           create: {
             url: crudServiceBaseUrl + "/Products/Create",
-            dataType: "jsonp"
+            type: "POST",
+            contentType: "application/json"
           },
           parameterMap: function(options, operation) {
             if (operation !== "read" && options.models) {
-              return {models: kendo.stringify(options.models)};
+              return kendo.stringify(options.models);
             }
           }
         },
@@ -152,4 +152,4 @@ $(function () {
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

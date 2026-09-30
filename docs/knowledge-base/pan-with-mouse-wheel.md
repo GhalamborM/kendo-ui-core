@@ -5,9 +5,9 @@ description: "Learn how to pan the Kendo UI Diagram with the mouse wheel."
 slug: howto_pan_with_mouse_wheel
 previous_url: /controls/diagrams-and-maps/diagram/how-to/pan-with-mouse-wheel
 tags: kendo, jquery, diagram, pan, with, mouse, wheel
-component: diagram
 type: how-to
 res_type: kb
+components: ["diagram"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Diagram for jQuery</td>
+  <td>Progress® Kendo UI® Diagram for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -39,9 +39,9 @@ How can I pan the Kendo UI Diagram when scrolling with the mouse?
 
 To achieve this behavior:
 
-1. Handle the [`zoomStart` event](/api/javascript/dataviz/ui/diagram/events/zoomstart) of the Kendo UI Diagram.
+1. Handle the [`zoomStart` event](/api/dataviz/ui/diagram/events/zoomstart) of the Kendo UI Diagram.
 2. Get the delta from the arguments, that is `e.meta.delta`.
-3. Pan the Diagram with the new coordinates by using the [`pan` method](/api/javascript/dataviz/ui/diagram/methods/pan).
+3. Pan the Diagram with the new coordinates by using the [`pan` method](/api/dataviz/ui/diagram/methods/pan).
 
 ```dojo
 
@@ -76,7 +76,7 @@ $("#diagram").kendoDiagram({
 ## See Also
 
 * [Basic Usage of the Diagram (Demo)](https://demos.telerik.com/kendo-ui/diagram/index)
-* [JavaScript API Reference of the Diagram](/api/javascript/dataviz/ui/diagram)
-* [How to Implement Local Data Editing]({% slug howto_editlocaladata_diagram %})
-* [How to Render External Content in Shapes]({% slug howto_renderexternalcontent_inshapes_diagram %})
-* [How to Wrap Text]({% slug howto_wraptext_diagram %})
+* [JavaScript API Reference of the Diagram](/api/dataviz/ui/diagram)
+* [Implement Local Data Editing]({% slug howto_editlocaladata_diagram %})
+* [Render External Content in Shapes]({% slug howto_renderexternalcontent_inshapes_diagram %})
+* [Wrap Text]({% slug howto_wraptext_diagram %})

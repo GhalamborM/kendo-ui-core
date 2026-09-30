@@ -1,13 +1,13 @@
 ---
 title: Persist Dirty Fields in the Local Storage
-description: An example on how to persist dirty fields data in the localStorage when working with the Kendo UI Grid.
+description: Learn how to persist dirty fields data in the localStorage when working with the Kendo UI Grid.
 type: how-to
-page_title: Save Dirty Data in Local Storage | Kendo UI Grid for jQuery
+page_title: Save Dirty Data in Local Storage - Kendo UI for jQuery Data Grid
 slug: grid-persist-dirty-data-localstorage
 tags: grid, dirty, editing, localstorage, persist
 ticketid: 1147441
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -19,7 +19,7 @@ component: grid
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Grid</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td> 
 	</tr>
 </table>
 
@@ -30,8 +30,8 @@ How can I save the dirty content of the Grid in the `localStorage` and restore i
 
 ## Solution
 
-1. In the [`save`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/save) event handler of the Grid, save the fields data in an object in the `localStorage`.
-1. In the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound) event handler of the Grid, set the saved values.
+1. In the [`save`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/save) event handler of the Grid, save the fields data in an object in the `localStorage`.
+1. In the [`dataBound`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound) event handler of the Grid, set the saved values.
 
 ```dojo
 <div id="grid"></div>

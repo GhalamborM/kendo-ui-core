@@ -2,12 +2,13 @@
 title: Search Panel with Multiple Values
 description: How to Filter Grid with Multiple Values
 type: how-to
-page_title: How to Filter Grid with Multiple Values and a Single TextBox | Kendo UI Grid for jQuery
+page_title: How to Filter Grid with Multiple Values and a Single TextBox - Kendo UI for jQuery Data Grid
 slug: grid-search-panel-with-multiple-values
 position: 
 tags: 
 ticketid: 
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -23,13 +24,15 @@ res_type: kb
 
 ## Description
 
-This sample demonstrates how you can use multiple values in the built-in Search Panel of the Grid, achieving multi-column and multi-value filtering with a single textbox input.
+This sample demonstrates how to use multiple values in the built-in Search Panel of the Grid, achieving multi-column and multi-value filtering with a single textbox input.
 
-The separation logic of the different values can be controlled the following variable:
+The separation logic of the different values can be controlled through the following variable:
 
 `var separator = ",";`
 
 ## Solution
+
+Override the Grid's internal `_toolbar` method to intercept search input events. Split the input value by the separator, build a composite `or` filter expression with `contains` conditions for each column, and apply it to the DataSource.
 
 ```dojo
   

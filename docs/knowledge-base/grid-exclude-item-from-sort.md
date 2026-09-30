@@ -1,12 +1,13 @@
 ---
 title: Exclude Specific Items When Sorting Grid Data
-description: An example on how to exclude one or more specific items when the user sorts data in the Kendo UI Grid.
+description: Learn how to exclude one or more specific items when the user sorts data in the Kendo UI Grid.
 type: how-to
-page_title: Exclude Specific Items When Sorting | Kendo UI Grid for jQuery
+page_title: Exclude Specific Items When Sorting - Kendo UI for jQuery Data Grid
 slug: grid-exclude-item-from-sort
 tags: grid, exclude, item, sort, sorting, items, row, record
 ticketid: 1158437
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
 	 <td>Product Version</td>
@@ -28,7 +29,7 @@ How can I exclude a particular row from sorting so that it always stays on top?
 
 ## Solution
 
-Use the [`compare`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.sortable#columns.sortable.compare) function of the [`sortable`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.sortable#columns.sortable) property and use custom logic to override the default behavior. In the following example, Chai will always be the first row regardless of the sorting that the user applies.
+Use the [`compare`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnssortable#columns.sortable.compare) function of the [`sortable`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnssortable#columns.sortable) property and use custom logic to override the default behavior. In the following example, Chai will always be the first row regardless of the sorting that the user applies.
 
 ```dojo
 <script src="https://demos.telerik.com/kendo-ui/content/shared/js/products.js"></script>

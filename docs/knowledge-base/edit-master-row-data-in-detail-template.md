@@ -1,13 +1,13 @@
 ---
 title: Edit Records in Child Grids
-page_title: Edit Records in Child Grids | Kendo UI Grid for jQuery
-description: "An example on how to edit records in hierarchical Kendo UI Grid widgets for jQuery."
+page_title: Edit Records in Child Grids - Kendo UI for jQuery Data Grid
+description: "Learn how to edit records in hierarchical Kendo UI Grid widgets for jQuery."
 previous_url: /controls/data-management/grid/how-to/Editing/edit-master-row-data-in-detail-template
 slug: howto_edit_recordsin_children_grid
 tags: grid, edit, records, child, hierarchy
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -41,10 +41,10 @@ The following example demonstrates how to edit records in a child Grid.
     var preventBinding = false,
     grid = $("#grid").kendoGrid({
       dataSource: {
-        type: "odata",
+        type: "odata-v4",
         transport: {
           read: {
-            url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees",
+            url: "https://demos.telerik.com/service/v2/odata/Employees",
             data: { $expand: "Orders" }
           }
         },
@@ -54,7 +54,7 @@ The following example demonstrates how to edit records in a child Grid.
           }
         },
         change: function (e) {
-          if (e.field && e.field.indexOf("Orders.results") >= 0) {
+          if (e.field && e.field.indexOf("Orders") >= 0) {
             preventBinding = true;
           }
         },
@@ -99,7 +99,7 @@ The following example demonstrates how to edit records in a child Grid.
 
 function detailInit(e) {
   var findByID = function (id) {
-    return e.data.Orders.results.find(function(item){
+    return e.data.Orders.find(function(item){
       return item.OrderID == id;
     });
   };
@@ -108,7 +108,7 @@ function detailInit(e) {
     dataSource: {
       transport: {
         read: function (options) {
-          options.success(e.data.Orders.results.toJSON());
+          options.success(e.data.Orders.toJSON());
         },
         update: function (options) {
           var data = options.data,
@@ -126,7 +126,7 @@ function detailInit(e) {
           var parentItem = findByID(options.data.OrderID);
           preventBinding = true;
 
-          e.data.Orders.results.remove(parentItem);
+          e.data.Orders.remove(parentItem);
 
           options.success();
         },
@@ -160,4 +160,4 @@ function detailInit(e) {
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

@@ -1,12 +1,13 @@
 ---
 title: Use ContextMenu on Grid Cell
-description: An example on how to use the Kendo UI ContextMenu over a Kendo UI Grid row.
+description: Learn how to use the Kendo UI ContextMenu over a Kendo UI Grid row.
 type: how-to
-page_title: Use ContextMenu over Grid Row | Kendo UI Grid for jQuery
+page_title: Use ContextMenu over Grid Row - Kendo UI for jQuery Data Grid
 previous_url: /knowledge-base/how-to-use-context-menu-over-grid-row
 slug: use-context-menu-over-grid-row
 ticketid: 1114321
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
 </table>
  
@@ -64,7 +65,7 @@ The following example demonstrates how to achieve the desired scenario.
 ```
 
 For more information, refer to:  
-* [https://docs.telerik.com/kendo-ui/api/javascript/ui/grid\/methods/dataitem](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/dataitem)  
-* [https://docs.telerik.com/kendo-ui/api/javascript/ui/contextmenu\/events/select](https://docs.telerik.com/kendo-ui/api/javascript/ui/contextmenu/events/select)  
+* [https://docs.telerik.com/kendo-ui/api/ui/grid\/methods/dataitem](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/dataitem)  
+* [https://docs.telerik.com/kendo-ui/api/ui/contextmenu\/events/select](https://docs.telerik.com/kendo-ui/api/ui/contextmenu/events/select)  
 
 

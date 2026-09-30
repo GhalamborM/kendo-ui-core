@@ -5,9 +5,9 @@ description: "Learn how to use the Kendo UI for jQuery Tooltip to show additiona
 previous_url: /controls/scheduling/scheduler/how-to/show-tooltip-with-additional-information-over-events, /controls/scheduling/scheduler/how-to/appearance/show-tooltip-with-slot-details
 slug: howto_showtooltipwith_additionalinformation_overevents_scheduler
 tags: telerik, kendo, jquery, scheduler, show, tooltip, with, additional, information, info, over, events 
-component: scheduler
 type: how-to
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler for jQuery</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -44,8 +44,8 @@ The following example demonstrates how to achieve the desired scenario.
 <script>
   $(function() {
     $("#scheduler").kendoScheduler({
-      date: new Date("2013/6/13"),
-      startTime: new Date("2013/6/13 07:00 AM"),
+      date: new Date("2025/6/13"),
+      startTime: new Date("2025/6/13 07:00 AM"),
       height: 600,
       views: [
         "day",
@@ -60,24 +60,26 @@ The following example demonstrates how to achieve the desired scenario.
         batch: true,
         transport: {
           read: {
-            url: "//demos.telerik.com/kendo-ui/service/tasks",
-            dataType: "jsonp"
-          },
-          update: {
-            url: "//demos.telerik.com/kendo-ui/service/tasks/update",
-            dataType: "jsonp"
-          },
-          create: {
-            url: "//demos.telerik.com/kendo-ui/service/tasks/create",
-            dataType: "jsonp"
-          },
-          destroy: {
-            url: "//demos.telerik.com/kendo-ui/service/tasks/destroy",
-            dataType: "jsonp"
-          },
+                    url: "https://demos.telerik.com/service/v2/core/tasks"
+                },
+                update: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/update",
+                    type: "POST",
+                    contentType: "application/json"
+                },
+                create: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/create",
+                    type: "POST",
+                    contentType: "application/json"
+                },
+                destroy: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+                    type: "POST",
+                    contentType: "application/json"
+                },
           parameterMap: function(options, operation) {
             if (operation !== "read" && options.models) {
-              return {models: kendo.stringify(options.models)};
+              return kendo.stringify(options.models);
             }
           }
         },
@@ -142,4 +144,4 @@ The following example demonstrates how to achieve the desired scenario.
 
 * [Basic Usage of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/index)
 * [Using the API of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/api)
-* [JavaScript API Reference of the Scheduler](/api/javascript/ui/scheduler)
+* [JavaScript API Reference of the Scheduler](/api/ui/scheduler)

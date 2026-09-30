@@ -1,13 +1,13 @@
 ---
 title: Use Detail Template Editors in Inline Editing Modes
-page_title: Inline Editing Detail Template | Kendo UI Grid for jQuery
-description: "An example on how to edit records by using a detail template along with the inline editing mode of the Kendo UI Grid widget for jQuery."
+page_title: Inline Editing Detail Template - Kendo UI for jQuery Data Grid
+description: "Learn how to edit records by using a detail template along with the inline editing mode of the Kendo UI Grid widget for jQuery."
 previous_url: /controls/data-management/grid/how-to/Editing/edit-grid-in-inline-editing-mode-with-detail-template
 slug: howto_edit_records_via_detail_template_editor_in_inline_mode
 tags: grid, detail, template, inline, edit, mode, editors
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -37,9 +37,9 @@ You project might require you to edit records by using a detail template along w
 
 To achieve this behavior:
 
-* Use the [`detailTemplate`](/api/javascript/ui/grid/configuration/detailtemplate) configuration option to create a template that contains the views for both the read-only and the editing mode.
-* Handle the [`edit` event](/api/javascript/ui/grid/events/edit) to bind the custom editor from the detail template to the respective model field. Toggle the visibility of the detail template views&mdash;that is, show the editor and hide the one, used for displaying the value.
-* Similarly, handle the [`save`](/api/javascript/ui/grid/events/save) and the [`cancel`](/api/javascript/ui/grid/events/cancel) events to toggle back the detail template views.
+* Use the [`detailTemplate`](/api/ui/grid/configuration/detailtemplate) configuration option to create a template that contains the views for both the read-only and the editing mode.
+* Handle the [`edit` event](/api/ui/grid/events/edit) to bind the custom editor from the detail template to the respective model field. Toggle the visibility of the detail template views&mdash;that is, show the editor and hide the one, used for displaying the value.
+* Similarly, handle the [`save`](/api/ui/grid/events/save) and the [`cancel`](/api/ui/grid/events/cancel) events to toggle back the detail template views.
 
 The following example demonstrates how to edit records by using a different detail template in the editing mode of the Grid.
 
@@ -48,7 +48,7 @@ The following example demonstrates how to edit records by using a different deta
   <div id="text-container">
     #: text #
   </div>
-  <span class="k-input k-textarea k-input-solid k-input-md k-rounded-md" style="">
+  <span class="k-input k-textarea" style="">
     <textarea style="display: none;" id="text-editor" class="!k-overflow-y-auto k-input-inner" rows="10" cols="100" data-bind="value:text">
        #: text #
     </textarea>
@@ -60,6 +60,8 @@ The following example demonstrates how to edit records by using a different deta
     { id: 1, from: "Jane Doe", to: "Someone else", cc: "Boss", text: "Message content" },
     { id: 2, from: "John Doe", to: "Jane Doe", cc: "Manager", text: "Other message content" }
   ];
+
+  var sampleDataNextID = data.length + 1;
 
 $("#grid").kendoGrid({
   columns: [
@@ -76,17 +78,18 @@ $("#grid").kendoGrid({
       },
       update: function(options){
         var updatedItem = options.data;
+        // Save the updated item to the original datasource.
+        data.splice(updatedItem.id - 1, 1, updatedItem);
 
-            // Save the updated item to the original datasource.
-            data.splice(updatedItem.id - 1, 1, updatedItem);
-
-            // On success.
-            options.success();
+        // On success.
+        options.success();
       },
       create: function(options){
-        options.data.id = data.length;
+        options.data.id = sampleDataNextID++;
+        // Save data item to the original datasource.
         data.push(options.data);
-        options.success()
+        // On success.
+        options.success(options.data);
       },
       destroy: function(options){
         var indexToDelete;
@@ -143,4 +146,4 @@ $("#grid").kendoGrid({
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

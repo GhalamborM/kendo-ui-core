@@ -1,13 +1,13 @@
 ---
 title: Remove Trailing Space When Resizing Grid Columns
-description: An example on how to fill the empty space when the columns in the Kendo UI Grid are resized.
+description: Learn how to fill the empty space when the columns in the Kendo UI Grid are resized.
 type: how-to
-page_title: Remove Empty Space on Resizing | Kendo UI Grid for jQuery
+page_title: Remove Empty Space on Resizing - Kendo UI for jQuery Data Grid
 slug: grid-remove-trailing-space-resize
 tags: grid, resize, column, empty, space, blank, trailing, size, zero, width
 ticketid: 1084792
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2018.1.117</td>
  </tr>
 </table>
@@ -52,7 +52,7 @@ Add an empty column to the Grid. You can manually calculate its width, so that i
 
     function adjustLastColumn() {
         var grid = $("#grid1").data("kendoGrid");
-        var contentDiv = grid.wrapper.children(".k-grid-content");
+        var contentDiv = grid.wrapper.children().find(".k-grid-content");
         var masterHeaderTable = grid.thead.parent();
         var masterBodyTable = contentDiv.children("table");
         var gridDivWidth = contentDiv.width() - kendo.support.scrollbar();
@@ -81,9 +81,9 @@ Add an empty column to the Grid. You can manually calculate its width, so that i
 
     $("#grid1").kendoGrid({
         dataSource: {
-            type: "odata",
+            type: "odata-v4",
             transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                read: "https://demos.telerik.com/service/v2/odata/Employees"
             },
             pageSize: 6,
             serverPaging: true,

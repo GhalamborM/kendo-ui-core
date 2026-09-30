@@ -2,11 +2,12 @@
 title: Show Grid Column Width while Resizing
 description: Implement excel-like functionality in the Grid to display the width of the column while the user is resizing it.
 type: how-to
-page_title: Display Current Column Width on Resizing | Kendo UI Grid for jQuery
+page_title: Display Current Column Width on Resizing - Kendo UI for jQuery Data Grid
 slug: grid-show-column-width-while-resizing
 tags: grid, show, column, width, resize, resizable, tooltip, excel
 ticketid: 1333477
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  </tr>
   <tr>
@@ -31,7 +32,7 @@ I need a excel specification in our grid. When I am dragging the column it shoul
 
 ## Solution
 
-1. Add a handler to the grid `dataBound` event only once with the [`one()`](/api/javascript/observable/methods/one) method to avoid performance issues
+1. Add a handler to the grid `dataBound` event only once with the [`one()`](/api/observable/methods/one) method to avoid performance issues
 1. Set the grid to `autoBind` false
 1. Get the resizable widget instance and hook a handler function to the `resize` event and the `resizeend` event
 1. In the function, show some styled HTML element, dynamically updating its position based on the width of the column

@@ -1,7 +1,8 @@
 ---
 title: Data Binding
-page_title: jQuery Sparkline Charts Documentation | Data Binding
-description: "Get started with the jQuery Sparkline by Kendo UI and learn how to bind the widget to data."
+page_title: jQuery Sparkline Charts Documentation - Data Binding
+description: "Get started with the jQuery Sparkline by Kendo UI and learn how to bind the component to data."
+components: ["sparkline","chart"]
 slug: databinding_kendoui_sparklinescharts
 position: 2
 ---
@@ -14,7 +15,7 @@ The Sparkline charts can visualize series that are bound to both local and remot
 
 Binding to local data can be done by using any of the following approaches:
 
-* Passing an array with values to the widget constructor.
+* Passing an array with values to the component constructor.
 * Setting the root-level `data` field to an array with values.
 * Configuring a series and setting its `data` option.
 
@@ -41,4 +42,4 @@ For more information, refer to the article on [binding Telerik UI Charts to a da
 ## See Also
 
 * [Basic Usage of the Sparkline (Demo)](https://demos.telerik.com/kendo-ui/sparklines/index)
-* [JavaScript API Reference of the Sparkline](/api/javascript/dataviz/ui/sparkline)
+* [JavaScript API Reference of the Sparkline](/api/dataviz/ui/sparkline)

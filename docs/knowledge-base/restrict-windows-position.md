@@ -5,9 +5,9 @@ description: "Learn how to restrict the movement of a Kendo UI Window to a certa
 slug: howto_restrictpositioning_window
 previous_url: /controls/layout/window/how-to/restrict-windows-position
 tags: telerik, kendo, jquery, window, restrict, the, positioning, of 
-component: window
 type: how-to
 res_type: kb
+components: ["window"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Window for jQuery</td>
+  <td>Progress® Kendo UI® Window for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -90,8 +90,8 @@ The example below demonstrates how to achieve the desired scenario.
 
 ## See Also
 
-* [Window JavaScript API Reference](/api/javascript/ui/window)
-* [How to Add Close Button inside Modal Windows]({% slug howto_addclosebutton_insidemodalwindows_window %})
-* [How to Create Confirmation Dialog via Promises]({% slug howto_createconfirmationdialog_viapromises_window %})
-* [How to Initialize the Grid]({% slug initialize_thegrid_window_widget %})
-* [How to Post to Iframe]({% slug howto_posttoiframe_window %})
+* [Window JavaScript API Reference](/api/ui/window)
+* [Add Close Button inside Modal Windows]({% slug howto_addclosebutton_insidemodalwindows_window %})
+* [Create Confirmation Dialog via Promises]({% slug howto_createconfirmationdialog_viapromises_window %})
+* [Initialize the Grid]({% slug initialize_thegrid_window_widget %})
+* [Post to Iframe]({% slug howto_posttoiframe_window %})

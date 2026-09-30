@@ -2,11 +2,12 @@
 title: Overview
 page_title: HeatMap Overview
 description: "Learn how to initialize the Telerik UI HeatMap component for {{ site.framework }} and use its events."
+components: ["heatmap"]
 slug: overview_heatmaphelper_aspnetcore
-position: 1
+position: 0
 ---
 
-# HeatMap Overview
+# {{ site.framework }} HeatMap Overview
 
 {% if site.core %}
 The Telerik UI HeatMap TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI HeatMap widget.
@@ -22,10 +23,7 @@ The HeatMap uses colors to indicate the relative value of data points in two dim
 
 To see the component in action, check the examples:
 
-* [Demo page for the HeatMap HtmlHelper](https://demos.telerik.com/{{ site.platform }}/heatmap/index)
-{% if site.core %}
-* [Demo page for the HeatMap TagHelper](https://demos.telerik.com/{{ site.platform }}/heatmap/tag-helper)
-{% endif %}
+* [Demo page for the HeatMap](https://demos.telerik.com/{{ site.platform }}/heatmap/index)
 
 ## Basic configuration
 
@@ -111,73 +109,20 @@ The following example demonstrates how to define a HeatMap.
 ```
 {% endif %}
 
-## Events
+## Functionality and Features
 
-You can subscribe to all HeatMap [events](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/treemap#events).
+* [Data Binding](https://demos.telerik.com/{{ site.platform }}/heatmap/remote-data-binding)&mdash;The HeatMap supports remote server data binding.
+* [Color Scheme](https://demos.telerik.com/{{ site.platform }}/heatmap/color-scheme)&mdash;You can use the built-in color scale to control the lightness of the series depending on the point value.
+* [Pan and Zoom](https://demos.telerik.com/{{ site.platform }}/heatmap/pan-and-zoom)&mdash;Enable the panning and zooming to allow users to observe the visualized data in different segments.
+* [Crosshairs](https://demos.telerik.com/{{ site.platform }}/heatmap/crosshairs)&mdash;The HeatMap enables you to configure the axes crosshairs.
+* [Markers](https://demos.telerik.com/{{ site.platform }}/heatmap/markers)&mdash;You can configure the markers of the HeatMap to display different shapes.
 
-### Handling Events by Handler Name
+## Next Steps
 
-The following example demonstrates how to subscribe to events by a handler name.
-
-```HtmlHelper
-    @(Html.Kendo().Chart()
-            .Name("heatmap")
-            // other configuration
-            .Events(events => events
-                .DataBound("onDataBound")
-            )
-    )
-```
-{% if site.core %}
-```TagHelper
-    @addTagHelper *, Kendo.Mvc
-    <kendo-chart name="heatmap" 
-                on-data-bound="onDataBound">
-    </kendo-chart>
-```
-{% endif %}
-```script.js
-    <script>
-    function onDataBound(e) {
-        // Handle the dataBound event.
-    }
-    </script>
-```
-
-{% if site.core %}
-### Handling Events by Template Delegate
-
-The following example demonstrates how to subscribe to events by a template delegate.
-
-```HtmlHelper
-    @(Html.Kendo().Chart()
-            .Name("heatmap")
-            .Events(e => e
-                .DataBound(@<text>
-                function(e) {
-                    // Handle the dataBound event.
-                }
-                </text>)
-            )
-    )
-```
-
-{% endif %}
-
-## Referencing Existing Instances
-
-To reference an existing Kendo UI HeatMap instance, use the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [Client-side API](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart) to control its behavior.
-
-    // Place the following after the declaration of the TreeMap for {{ site.framework }}.
-    <script>
-        $(function() {
-            // The Name() of the TreeMap is used to get its client-side instance.
-            var heatMap = $("#heatmap").data("kendoChart");
-        });
-    </script>
+* [Getting Started with the HeatMap]({% slug heatmap_chart_getting_started %})
+* [Subscribing to Chart Events]({% slug events_chart_aspnetcore %})
 
 ## See Also
 
 * [Demo of the HeatMap HtmlHelper for {{ site.framework }}](https://demos.telerik.com/{{ site.platform }}/heatmap/index)
-* [Demo of the HeatMap TagHelper for {{ site.framework }}](https://demos.telerik.com/{{ site.platform }}/heatmap/tag-helper)
 * [Server-Side API](/api/chart)

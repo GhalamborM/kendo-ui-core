@@ -2,6 +2,7 @@
 title: Drawer
 page_title: Drawer Overview
 description: "Learn the basics when working with the hybrid Telerik UI Drawer HtmlHelper for ASP.NET MVC."
+components: ["general"]
 previous_url: /helpers/hybrid/mobiledrawer/overview, /helpers/hybrid/mobiledrawer
 slug: overview_hybriddrawer_aspnetmvc
 ---
@@ -59,7 +60,7 @@ The Drawer provides a slide to reveal the global mobile application toolbox or n
 
                         root.Add().Text("Account").Items(items =>
                         {
-                            items.Add().Icon("settings").Text("Settings");
+                            items.Add().Icon("wrench").Text("Settings");
                             items.Add().Icon("off").Text("Log Out");
                         });
                     })
@@ -76,7 +77,7 @@ The Drawer provides a slide to reveal the global mobile application toolbox or n
 
 ## Events
 
-You can subscribe to all hybrid Drawer [events](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/drawer#events).
+You can subscribe to all hybrid Drawer [events](https://docs.telerik.com/kendo-ui/api/mobile/ui/drawer#events).
 
 The following example demonstrates how to subscribe to events by a handler name.
 
@@ -95,7 +96,7 @@ The following example demonstrates how to subscribe to events by a handler name.
 
 ## Referencing Existing Instances
 
-You can reference a hybrid Drawer instance by using the code from the following example. Once a reference is established, use the [hybrid Drawer client-side API](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/drawer#methods) to control its behavior.
+You can reference a hybrid Drawer instance by using the code from the following example. Once a reference is established, use the [hybrid Drawer client-side API](https://docs.telerik.com/kendo-ui/api/mobile/ui/drawer#methods) to control its behavior.
 
     @(Html.Kendo().MobileDrawer()
             .Name("MobileDrawer")
@@ -109,4 +110,4 @@ You can reference a hybrid Drawer instance by using the code from the following 
 
 ## See Also
 
-* [Hybrid DrawerBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/MobileDrawerBuilder)
+* [Hybrid DrawerBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/mobiledrawerbuilder)

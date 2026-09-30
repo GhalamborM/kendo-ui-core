@@ -5,9 +5,9 @@ description: "Learn how to expand the Kendo UI TabStrip widget to 100% height an
 slug: howto_expandto100percentheightautoresize_tabstrip
 previous_url: /controls/navigation/tabstrip/how-to/expand-height
 tags: telerik, kendo, jquery, tabstrip, expand, to, 100%, percent, height, and, autoresize
-component: tabstrip
 type: how-to
 res_type: kb
+components: ["tabstrip"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI TabStrip for jQuery</td>
+  <td>Progress® Kendo UI® TabStrip for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -127,7 +127,7 @@ The example below demonstrates how to make the TabStrip widget 100% high and res
 
 ## See Also
 
-* [TabStrip JavaScript API Reference](/api/javascript/ui/tabstrip)
-* [How to Add Close Button to Tabs]({% slug howto_addclosebuttontotabs_tabstrip %})
-* [How to Initialize the Grid in Kendo UI TabStrip]({% slug initialize_thegrid_tabstrip_widget %})
-* [How to Scroll TabStrip with Keyboard]({% slug howto_scrolltabstripwithkeyboard_tabstrip %})
+* [TabStrip JavaScript API Reference](/api/ui/tabstrip)
+* [Add Close Button to Tabs]({% slug howto_addclosebuttontotabs_tabstrip %})
+* [Initialize the Grid in Kendo UI TabStrip]({% slug initialize_thegrid_tabstrip_widget %})
+* [Scroll TabStrip with Keyboard]({% slug howto_scrolltabstripwithkeyboard_tabstrip %})

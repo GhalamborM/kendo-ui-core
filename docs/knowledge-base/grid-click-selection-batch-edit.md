@@ -1,12 +1,13 @@
 ---
 title: Implement Single-Row Selection on Click in Batch Edit Grid
-description: An example on how to allow click selection in a Kendo UI Grid in batch edit mode.
+description: Learn how to allow click selection in a Kendo UI Grid in batch edit mode.
 type: how-to
-page_title: Implement Single-Row Selection on Click in Batch Edit Mode | Kendo UI Grid for jQuery
+page_title: Implement Single-Row Selection on Click in Batch Edit Mode - Kendo UI for jQuery Data Grid
 slug: grid-click-selection-batch-edit
 tags: single, row, selection, grid, batch, edit, mode
 ticketid: 1125960
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -46,32 +47,33 @@ Use the `closeCell` and `editCell` methods of the Grid on single or double click
 
   <script>
     $(document).ready(function () {
-      var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-          dataSource = new kendo.data.DataSource({
+      var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+        dataSource = new kendo.data.DataSource({
             transport: {
-              read:  {
-                url: crudServiceBaseUrl + "/Products",
-                dataType: "jsonp"
-              },
-              update: {
-                url: crudServiceBaseUrl + "/Products/Update",
-                dataType: "jsonp"
-              },
-              destroy: {
-                url: crudServiceBaseUrl + "/Products/Destroy",
-                dataType: "jsonp"
-              },
-              create: {
-                url: crudServiceBaseUrl + "/Products/Create",
-                dataType: "jsonp"
-              },
-              parameterMap: function(options, operation) {
-                if (operation !== "read" && options.models) {
-                  return {models: kendo.stringify(options.models)};
+                read:  {
+                    url: crudServiceBaseUrl + "/Products"
+                },
+                update: {
+                    url: crudServiceBaseUrl + "/Products/Update",
+                    type: "POST",
+                contentType: "application/json"
+                },
+                destroy: {
+                    url: crudServiceBaseUrl + "/Products/Destroy",
+                    type: "POST",
+                contentType: "application/json"
+                },
+                create: {
+                    url: crudServiceBaseUrl + "/Products/Create",
+                    type: "POST",
+                contentType: "application/json"
+                },
+                parameterMap: function(options, operation) {
+                    if (operation !== "read" && options.models) {
+                        return kendo.stringify(options.models);
+                    }
                 }
-              }
             },
-            batch: true,
             pageSize: 20,
             schema: {
               model: {
@@ -117,5 +119,5 @@ Use the `closeCell` and `editCell` methods of the Grid on single or double click
 
 ## See Also
 
-* [API Reference of the `closeCell` Method](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/closecell)
-* [API Reference of the `editCell` Method](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/editcell)
+* [API Reference of the `closeCell` Method](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/closecell)
+* [API Reference of the `editCell` Method](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/editcell)

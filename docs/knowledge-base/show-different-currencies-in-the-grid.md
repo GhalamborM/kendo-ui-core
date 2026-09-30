@@ -1,14 +1,14 @@
 ---
 title: Display Mixed Currencies in Grid
-description: An example on how to show different currencies in the Kendo UI Grid.
+description: Learn how to show different currencies in the Kendo UI Grid.
 type: how-to
-page_title: Show Different Currencies | Kendo UI Grid for jQuery
+page_title: Show Different Currencies - Kendo UI for jQuery Data Grid
 slug: show-different-currencies-in-the-grid
 tags: grid, currencies
 previous_url: /knowledge-base/how-to-show-different-currencies-in-the-grid
 ticketid: 1105869
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -16,10 +16,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Made with version</td>
+  <td>Product Version</td>
   <td>2017.1.223</td>
  </tr>
 </table>
@@ -33,7 +33,7 @@ How can I display different currencies in the same Grid?
 
 ## Solution
 
-Use a custom approach by utilizing the [`column.template`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.template) property of the Grid. This logic requires information about which the correct currency for each displayed data item is and you need to use a manual format for every currency.
+Use a custom approach by utilizing the [`column.template`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnstemplate) property of the Grid. This logic requires information about which the correct currency for each displayed data item is and you need to use a manual format for every currency.
 
 ```dojo
 <div id="example">
@@ -42,9 +42,9 @@ Use a custom approach by utilizing the [`column.template`](https://docs.telerik.
         $(document).ready(function() {
           $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               schema: {
                 model: {

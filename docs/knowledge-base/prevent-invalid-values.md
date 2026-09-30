@@ -1,13 +1,13 @@
 ---
 title: Prevent Invalid DateTimePicker Values
 page_title: Prevent Invalid DateTimePicker Values
-description: "Learn how to prevent invalid values in a Kendo UI DateTimePicker widget."
+description: "Learn how to prevent invalid values in a Kendo UI DateTimePicker component."
 slug: howto_prevent_invalid_values_datetimepicker
 previous_url: /controls/editors/datetimepicker/how-to/prevent-invalid-values
 tags: telerik, kendo, jquery, datetimepicker, prevent, invalid, values
-component: datetimepicker
 type: how-to
 res_type: kb
+components: ["datetimepicker", "timepicker"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI DateTimePicker for jQuery</td>
+  <td>Progress® Kendo UI® DateTimePicker for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -39,7 +39,7 @@ How can I prevent invalid values in the Kendo UI for jQuery DateTimePicker?
 
 To achieve the desired scenario:
 
-1. Attach a handler to the [`change`](/api/javascript/ui/datetimepicker/events/change) event of the `DateTimePicker`.
+1. Attach a handler to the [`change`](/api/ui/datetimepicker/events/change) event of the `DateTimePicker`.
 
 1. Check if the new value of the `DateTimePicker` is `null`, which will indicate whether the entered value is invalid or not.
 
@@ -90,4 +90,4 @@ To achieve the desired scenario:
 ## See Also
 
 * [Using the API of the DateTimePicker (Demo)](https://demos.telerik.com/kendo-ui/datetimepicker/api)
-* [JavaScript API Reference of the DateTimePicker](/api/javascript/ui/datetimepicker)
+* [JavaScript API Reference of the DateTimePicker](/api/ui/datetimepicker)

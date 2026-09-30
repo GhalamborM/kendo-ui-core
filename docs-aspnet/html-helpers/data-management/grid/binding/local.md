@@ -2,14 +2,15 @@
 title: Local Binding
 page_title: Local Binding
 description: "Learn how to implement Local Binding with Telerik UI Grid component for {{ site.framework }}."
+components: ["grid"]
 previous_url: /helpers/data-management/grid/binding/server-binding
 slug: htmlhelpers_grid_aspnetcore_localbinding
-position: 3
+position: 1
 ---
 
 # Local Binding
 
-When configured for local binding, the Grid for {{ site.framework }} will serialize the data as part of its data source and will perform all data operations, such as paging, sorting, filtering, grouping, and aggregating, on the client.
+When configured for local binding, the Grid serializes the data as part of its `DataSource` and performs all data operations, such as paging, sorting, filtering, grouping, and aggregating, on the client.
 
 For a runnable example, refer to the [demo on local binding of the Grid](https://demos.telerik.com/{{ site.platform }}/grid/local-data-binding).  
 
@@ -17,6 +18,7 @@ To configure the Grid for {{ site.framework }} to do local binding:
 
 1. Define a model class or use an existing one from your application.
 
+    ```C#
         public class OrderViewModel
         {
 
@@ -32,15 +34,18 @@ To configure the Grid for {{ site.framework }} to do local binding:
                 set;
             }
         }
-
+    ```
+    
 1. Open the `HomeController.cs` and return an `IEnumerable` of the model type with the View. This is the `View()` which holds the Grid definition.
 
+    {% if site.core %}
+    ```C# HomeController.cs      
         public IActionResult Index()
         {
             // Returns a collection of OrderViewModels.
             var model = orderService.Read();
 
-             /* For a quick test, you can mock the data, and copy and paste this snippet.
+                /* For a quick test, you can mock the data, and copy and paste this snippet.
             var model = Enumerable.Range(1, 20).Select(i => new OrderViewModel
             {
                 OrderID = i,
@@ -50,6 +55,26 @@ To configure the Grid for {{ site.framework }} to do local binding:
 
             return View(model);
         }
+    ```
+    {% else %}
+    ```C# HomeController.cs  
+        public ActionResult Index()
+        {
+            // Returns a collection of OrderViewModels.
+            var model = orderService.Read();
+
+            /* For a quick test, you can mock the data, and copy and paste this snippet.
+            var model = Enumerable.Range(1, 20).Select(i => new OrderViewModel
+            {
+                OrderID = i,
+                ShipCountry = i % 2 == 0 ? "ShipCountry 1" : "ShipCountry 2"
+            });
+            */
+
+            return View(model);
+        }  
+    ```
+    {% endif %}
 
 1. In the `Index.cshtml` view, configure the Grid to accept the model in its constructor and set `ServerOperations(false)`.
 
@@ -77,11 +102,39 @@ To configure the Grid for {{ site.framework }} to do local binding:
             })
         )
     ```
+    {% if site.core %}
+    ```TagHelper
+        @addTagHelper *, Kendo.Mvc
+        @model IEnumerable<AspNetCoreGrid.Models.OrderViewModel>
+
+        <kendo-grid name="grid">
+            <datasource type="DataSourceTagHelperType.Ajax" page-size="2" server-operation="false" data="@Model">
+            </datasource>
+            <toolbar>
+                <toolbar-button name="pdf" text="Custom PDF button text"></toolbar-button>
+                <toolbar-button name="excel" text="Custom Excel button text"></toolbar-button>
+            </toolbar>
+            <pageable enabled="true">
+            </pageable>
+            <sortable enabled="true" />
+            <groupable enabled="true" />
+            <columns>
+                <column field="OrderID">
+                </column>
+                <column field="ShipCountry">
+                </column>
+            </columns>
+        </kendo-grid>
+    ```
+    {% endif %}
     
 1. Build and run the application.
 
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
 * [Custom Ajax Binding by the Grid HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/grid/customajaxbinding)
 * [Knowledge Base Section](/knowledge-base)
 * [Server-Side API](/api/grid)

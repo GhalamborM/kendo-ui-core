@@ -1,12 +1,13 @@
 ---
 title: Lock and Unlock Grid Columns by Using Toolbar instead of Column Menu
-description: An example on how to lock and unlock Kendo UI Grid columns by using the Toolbar instead of the Column Menu.
+description: Learn how to lock and unlock Kendo UI Grid columns by using the Toolbar instead of the Column Menu.
 type: how-to
-page_title: Lock and Unlock Columns with Toolbar instead of Column Menu | Kendo UI Grid for jQuery
+page_title: Lock and Unlock Columns with Toolbar instead of Column Menu - Kendo UI for jQuery Data Grid
 slug: grid-lock-unlock-using-toolbar
 tags: grid, lock, unlock, toolbar, column, menu
 ticketid: 1150311
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -83,9 +84,8 @@ Use the `lockColumn` and `unlockColumn` methods. To make changes through a custo
     $(document).ready(function() {
       $("#grid").kendoGrid({
         dataSource: {
-          type: "odata",
           transport: {
-            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+            read: "https://demos.telerik.com/service/v2/core/Orders"
           },
           schema: {
             model: {
@@ -168,7 +168,7 @@ Use the `lockColumn` and `unlockColumn` methods. To make changes through a custo
 
 ## See Also
 
-* [API Reference of the lockColumn Method](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/lockcolumn)
-* [API Reference of the unlockColumn Method](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/unlockcolumn)
+* [API Reference of the lockColumn Method](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/lockcolumn)
+* [API Reference of the unlockColumn Method](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/unlockcolumn)
 * [Kendo UI Templates Overview](https://docs.telerik.com/kendo-ui/framework/templates/overview)
 * [Kendo UI Grid Toolbar Template Demo](https://demos.telerik.com/kendo-ui/grid/toolbar-template)

@@ -1,12 +1,12 @@
 ---
 title: Change text alignment in Grid cells
-description: An example on how to change the text alignment in a Grid column.
+description: Learn how to change the text alignment in a Grid column.
 type: how-to
-page_title: Grid Cells Text Alignment | Kendo UI Grid for jQuery
+page_title: Grid Cells Text Alignment - Kendo UI for jQuery Data Grid
 slug: grid-change-cells-text-alignment
 tags: grid, cells, text, align
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>2021.2.511</td>
  </tr>
 </table>
@@ -28,7 +28,7 @@ How can I change the default text alignment of a Grid column to right or center?
 
 ## Solution
 
-Apply the `k-text-left`, `k-text-right` or `k-text-center` classes through the Grid [column.attributes](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.attributes), [column.headerAttributes](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.headerattributes) and [column.footerAttributes](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.footerattributes) options.
+Apply the `k-text-left`, `k-text-right` or `k-text-center` classes through the Grid [column.attributes](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsattributes), [column.headerAttributes](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsheaderattributes) and [column.footerAttributes](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsfooterattributes) options.
 
 ```dojo
 <div id="grid"></div>
@@ -64,4 +64,4 @@ Apply the `k-text-left`, `k-text-right` or `k-text-center` classes through the G
 
 ## Notes
 
-* [JavaScript API Reference of the Grid](/api/javascript/dataviz/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

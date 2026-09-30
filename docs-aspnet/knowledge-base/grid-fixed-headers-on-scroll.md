@@ -1,11 +1,12 @@
 ---
-title: Create Fixed Headers on Scroll
-description: How can create fixed headers on scroll for the Telerik UI Grid.
+title: Creating Fixed Headers on Scroll
+description: How can I create fixed headers on scroll for the {{ site.product }} Grid?
 type: how-to
-page_title: Create Fixed Headers on Scroll
+page_title: Creating Fixed Headers on Scroll
 slug: grid-fixed-headers-on-scroll
 tags: aspnet, mvc, grid, fixed, headers, on, scroll
 res_type: kb
+components: ["general"]
 component: grid
 ---
 
@@ -20,13 +21,13 @@ component: grid
 
 ## Description
 
-How can I create fixed headers on scroll in the Grid for {{ site.product_short }}.
+How can I create fixed headers on scroll in the Grid for {{ site.product_short }}?
 
 ## Solution 
 
-In order to create fixed headers on scroll, apply the following CSS rule :
+To create fixed headers on scroll, apply the following CSS rule:
 
-```style.css
+```C# style.css
 <style>
     #second > table > thead,
     #first > table > thead {
@@ -35,7 +36,7 @@ In order to create fixed headers on scroll, apply the following CSS rule :
     }
 </style>
 ```
-```Index.cshtml
+```Razor Index.cshtml
     @(Html.Kendo().Grid<GridFixedHeaders.Models.OrderViewModel>()
         .Name("first")
         .Columns(columns => {
@@ -80,3 +81,31 @@ In order to create fixed headers on scroll, apply the following CSS rule :
         )
     )
 ```
+
+## More {{ site.framework }} Grid Resources
+
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+
+{% if site.core %}
+* [{{ site.framework }} DataGrid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Client-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

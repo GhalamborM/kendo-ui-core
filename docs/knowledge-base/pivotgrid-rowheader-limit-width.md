@@ -2,11 +2,12 @@
 title: PivotGrid resize the width of the row header area
 description: How to prevent the row header from expanding too much and taking up space in the Kendo UI PivotGrid
 type: how-to
-page_title: Compact width of the rowheaders | Kendo UI PivotGrid for jQuery
+page_title: Compact width of the rowheaders - Kendo UI PivotGrid for jQuery
 slug: pivotgrid-rowheader-limit-width
 tags: pivot, pivotgrid, width, compact, column, row, header, rowheader, limit, resize, reduce
 ticketid: 1474913, 1157675
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>PivotGrid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® PivotGrid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -40,7 +41,7 @@ The easiest way to accomplish the desired behaviour would be to:
       overflow-x: scroll;
     } 
   ```
-1. For the height, we could use the [`dataBound`](/api/javascript/ui/pivotgrid/events/databound) event handler to assign it to row headers section so that it is equal to the grid content.
+1. For the height, we could use the [`dataBound`](/api/ui/pivotgrid/events/databound) event handler to assign it to row headers section so that it is equal to the grid content.
 
 ```
   function onDataBound(e){
@@ -81,7 +82,7 @@ The easiest way to accomplish the desired behaviour would be to:
                   catalog: "Adventure Works DW 2008R2",
                   cube: "Adventure Works"
                 },
-                read: "https://demos.telerik.com/olap/msmdpump.dll"
+                read: "https://demos.telerik.com/service/v2/olap/msmdpump.dll"
               },
               schema: {
                 type: "xmla"

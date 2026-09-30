@@ -1,13 +1,13 @@
 ---
 title: Style Grid Table Rows and Cells Based on Values
 page_title: Style Grid Table Rows and Cells by Data Item Values
-description: "An example on how to customize the tables cells and rows styles of the Kendo UI Grid for jQuery based on data items values."
+description: "Learn how to customize the tables cells and rows styles of the Kendo UI Grid for jQuery based on data items values."
 previous_url: /controls/data-management/grid/how-to/style-rows-cells-based-on-data-item-values, /controls/data-management/grid/how-to/style-rows-cells-based-on-data-item-values, /asp-mvc/controls/data-management/grid/how-to/style-rows-cells-based-on-data-item-values, /controls/data-management/grid/how-to/Layout/style-rows-cells-based-on-data-item-values
 slug: howto_customize_rowsand_cells_basedon_dataitem_values_grid
 tags: customize, grid, rows, cells, basedon, data, item, value
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -37,11 +37,11 @@ How can I customize the cells and rows of the Kendo UI Grid for jQuery based on 
 
 ## Solution
 
-Grid templates enable you to customize and style the content *inside* the table cells. However, your project might require the customization of the tables cells or rows of the Grid. Naturally, the custom styling is likely based on the values of the data items.
+Grid templates enable you to customize and style the content *inside* the table cells. However, when your project requires the customization of the tables cells or rows of the Grid, the custom styling is based on the values of the data items.
 
-Although the demos apply custom CSS classes, you can still use the demonstrated approaches even if you apply inline styles or other HTML attributes.
+Although the demos apply custom CSS classes, you can use the demonstrated approaches even if you apply inline styles or other HTML attributes.
 
-To customize the rows and cells based on the values of the data items, utilize any of the following approaches:
+To customize the rows and cells based on the values of the data items, use any of the following approaches:
 * [Iterate the table rows](#iterating-the-table-rows)
 * [Iterate the data items](#iterating-the-data-items)
 * [Use a row template](#using-a-row-template)
@@ -149,7 +149,7 @@ The usage of the `dataBound` handler and the iteration of the table rows is suit
 
 ## Iterate the Data Items
 
-The usage of the `dataBound` handler and the iteration of the data items is suitable only if you intend to customize part of the Grid rows. The approach loops through all data items of the Grid and accesses just the rows which match certain conditions.
+The usage of the `dataBound` handler and the iteration of the data items is suitable only if you intend to customize part of the Grid rows. The approach loops through all data items of the Grid and accesses only the rows which match the desired conditions.
 
 ```dojo
     <style>
@@ -309,4 +309,4 @@ The usage of a row template is suitable only if you do not intend to use hierarc
 ## See Also
 
 * [Dynamic User defined row styles]({% slug grid-user-defined-row-styles %})
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

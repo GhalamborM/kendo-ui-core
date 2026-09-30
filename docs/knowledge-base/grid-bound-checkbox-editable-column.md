@@ -1,13 +1,13 @@
 ---
 title: Add Model-Bound and Batch-Editable Checkbox Columns to the Grid
-description: An example on how to add a checkbox that is bound to the model in the batch edit mode to the Kendo UI Grid.
+description: Learn how to add a checkbox that is bound to the model in the batch edit mode to the Kendo UI Grid.
 type: how-to
-page_title: Implement Checkboxes in Batch Edit Mode Bound to the Model | Kendo UI Grid for jQuery
+page_title: Implement Checkboxes in Batch Edit Mode Bound to the Model - Kendo UI for jQuery Data Grid
 slug: grid-bound-checkbox-editable-column
 tags: checkbox, template, column, grid, boolean, bound, dirty flag, edit mode, batch, editable
 ticketid: 1132606
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
 </table>
@@ -59,30 +59,32 @@ The following example demonstrates the full implementation of the approach.
 ```dojo
     <div id="grid"></div>
     <script>
-      var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-          dataSource = new kendo.data.DataSource({
+      var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+        dataSource = new kendo.data.DataSource({
             transport: {
-              read:  {
-                url: crudServiceBaseUrl + "/Products",
-                dataType: "jsonp"
-              },
-              update: {
-                url: crudServiceBaseUrl + "/Products/Update",
-                dataType: "jsonp"
-              },
-              destroy: {
-                url: crudServiceBaseUrl + "/Products/Destroy",
-                dataType: "jsonp"
-              },
-              create: {
-                url: crudServiceBaseUrl + "/Products/Create",
-                dataType: "jsonp"
-              },
-              parameterMap: function(options, operation) {
-                if (operation !== "read" && options.models) {
-                  return {models: kendo.stringify(options.models)};
+                read:  {
+                    url: crudServiceBaseUrl + "/Products"
+                },
+                update: {
+                    url: crudServiceBaseUrl + "/Products/Update",
+                    type: "POST",
+            		contentType: "application/json"
+                },
+                destroy: {
+                    url: crudServiceBaseUrl + "/Products/Destroy",
+                    type: "POST",
+            		contentType: "application/json"
+                },
+                create: {
+                    url: crudServiceBaseUrl + "/Products/Create",
+                    type: "POST",
+            		contentType: "application/json"
+                },
+                parameterMap: function(options, operation) {
+                    if (operation !== "read" && options.models) {
+                        return kendo.stringify(options.models);
+                    }
                 }
-              }
             },
             batch: true,
             pageSize: 20,
@@ -110,7 +112,7 @@ The following example demonstrates the full implementation of the approach.
           "ProductName",
           { field: "UnitPrice", title: "Unit Price", format: "{0:c}", width: 110 },
           { field: "UnitsInStock", title: "Units In Stock", width: 110 },
-          { field: "Discontinued", template: '<input type="checkbox" #= Discontinued ? \'checked="checked"\' : "" # class="chkbx k-checkbox k-checkbox-md k-rounded-md" />', width: 110, editable: function(e){ return false; } },
+          { field: "Discontinued", template: '<input type="checkbox" #= Discontinued ? \'checked="checked"\' : "" # class="chkbx k-checkbox" />', width: 110, editable: function(e){ return false; } },
           { command: "destroy", title: "&nbsp;", width: 100 }],
         editable: true
       });
@@ -123,10 +125,10 @@ The following example demonstrates the full implementation of the approach.
         dataItem.dirty = true;
       });
     </script>
-    <style> 
-        .k-grid-content td 
-        { 
-          position:relative; 
-        } 
+    <style>
+        .k-grid-content td
+        {
+          position:relative;
+        }
     </style>
 ```

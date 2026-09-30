@@ -2,12 +2,13 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI ScrollView for {{ site.framework }}."
+components: ["scrollview"]
 previous_url: /helpers/media/scrollview/overview
 slug: htmlhelpers_scrollview_aspnetcore
-position: 1
+position: 0
 ---
 
-# ScrollView Overview
+# {{ site.framework }} ScrollView Overview
 
 {% if site.core %}
 The Telerik UI ScrollView TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI ScrollView widget.
@@ -94,8 +95,8 @@ Make sure that the template provides the `pageSize` of the data source. If `serv
          .TemplateId("employee-template")
          .DataSource(d =>
                 d.Custom()
-                  .Type("odata")
-                  .Transport(t => t.Read(r => r.Url("https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees")))
+                  .Type("odata-v4")
+                  .Transport(t => t.Read(r => r.Url("https://demos.telerik.com/service/v2/odata/Employees")))
                   .ServerPaging(true)
                   .PageSize(1))
          .HtmlAttributes(new { style = "height:600px; width:890px; max-width: 100%;" })
@@ -118,9 +119,9 @@ Make sure that the template provides the `pageSize` of the data source. If `serv
     <kendo-scrollview name="scrollView" content-height="100%" 
                                         template-id="employee-template" 
                                         style="height:600px; width:890px; max-width: 100%;">
-        <datasource custom-type="odata" page-size="1" server-paging="true">
+        <datasource custom-type="odata-v4" page-size="1" server-paging="true">
             <transport>
-                <read url="https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees" />
+                <read url="https://demos.telerik.com/service/v2/odata/Employees" />
             </transport>
         </datasource>
     </kendo-scrollview>
@@ -209,7 +210,7 @@ The following example demonstrates how to fetch data from a Controller action.
 
 If you set the `PageSize` option to a larger value, you will need to use a loop in the template.
 
-```
+```JS
     <script id="scrollview-template" type="text/x-kendo-template">
         # for (var i = 0; i < data.length; i++) { #
             <p style="border: 2px solid blue; color: red;">#= data[i].SomeField #</p>
@@ -219,33 +220,23 @@ If you set the `PageSize` option to a larger value, you will need to use a loop 
 
 ## Functionality and Features
 
-* [Paging]({% slug htmlhelpers_scrollview_aspnetcore_paging %})
-* [Templates]({% slug htmlhelpers_scrollview_aspnetcore_templates %})
+* [Templates]({% slug htmlhelpers_scrollview_aspnetcore_templates %})&mdash;To take control over the rendering of the ScrollView items, utilize the available templates.
+* [Paging]({% slug htmlhelpers_scrollview_aspnetcore_paging %})&mdash;Set an overlay background color for the ScrollView pager.
+* [Events]({% slug events_scrollview_aspnetcore %})&mdash;Subscribe to the available client-side events to implement any custom logic.
+* [Keyboard Navigation]({% slug htmlhelpers_scrollview_accessibility_keyboard_navigation_aspnetcore %})&mdash;The ScrollView delivers keyboard shortcuts for faster navigation.
 
-## Events
+## Next Steps
 
-For a complete example on basic ScrollView events, refer to the [demo on using the events of the ScrollView](https://demos.telerik.com/{{ site.platform }}/scrollview/events).
-
-## Referencing Existing Instances
-
-To reference an existing Telerik UI ScrollView instance, use the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) configuration option. Once you have a reference to the widget, use the [ScrollView client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/scrollview#methods) to control its behavior.
-
-```
-    // Place the following after your Telerik UI ScrollView for {{ site.framework }} declaration.
-    <script>
-    $(function() {
-        // The For() of the ScrollView is used to get its client-side instance.
-        var scrollview = $("#scrollview").data("kendoScrollView");
-    });
-    </script>
-```
+* [Getting Started with the ScrollView]({% slug aspnetcore_scrollview_getting_started %})
+* [Basic Usage of the ScrollView HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/scrollview)
+{% if site.core %}
+* [Basic Usage of the ScrollView TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/scrollview/tag-helper)
+* [ScrollView in Razor Pages]({% slug htmlhelpers_scrollview_razorpage_aspnetcore %})
+{% endif %}
 
 ## See Also
 
-* [Basic Usage of the ScrollView HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/scrollview/index)
-{% if site.core %}
-* [Basic Usage of the ScrollView TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/scrollview/tag-helper)
-{% endif %}
-* [Using the API of the ScrollView HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/scrollview/api)
-* [ScrollView Server-Side API](/api/scrollview)
-* [ScrollView Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/scrollview)
+* [Using the API of the ScrollView for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/scrollview/api)
+* [Server-Side API of the ScrollView](/api/scrollview)
+* [Client-Side API of the ScrollView](https://docs.telerik.com/kendo-ui/api/ui/scrollview)
+* [Knowledge Base Section](/knowledge-base)

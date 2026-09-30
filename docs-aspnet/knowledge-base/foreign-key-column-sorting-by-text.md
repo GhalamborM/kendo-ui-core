@@ -1,12 +1,13 @@
 ---
-title: Enable ForeignKey Column Sorting by Text
-page_title: ForeignKey Column Sorting by Text
+title: Enabling ForeignKey Column Sorting by Text
+page_title: Enabling ForeignKey Column Sorting by Text
 description: "An example on how to enable ForeignKey column sorting by text in the Telerik UI Grid for {{ site.framework }}."
 slug: howto_enable_foreignkey_sotringby_text_grid
 tags: grid, enable, foreignkey, column, sort, text
 component: grid
 type: how-to
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -14,94 +15,30 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Telerik {{ site.product_short }} Grid</td>
+  <td>Progress {{ site.product }} Grid</td>
  </tr>
  <tr>
-  <td>Operating System</td>
-  <td>Windows 10 64bit</td>
+  <td>Progress {{ site.product }} version</td>
+  <td>Created with the 2023.1.314 version</td>
  </tr>
 </table>
 
 ## Description
 
-How can I enable ForeignKey column sorting by text in the {{ site.product }} Grid?
+How can I enable `ForeignKey` column sorting by text in the {{ site.product }} Grid?
 
 ## Solution
 
-The following example demonstrates how to enable the sort-by-text functionality in a ForeignKey column by using a calculated field in a Grid.
+The following example demonstrates how to enable the sort-by-text functionality in a ForeignKey column by adding the text field in the Grid.
 
-* Create an additional text field that will be used for sorting in the ViewModel of the Grid.
-```
-    public class ProductViewModel
-    {
-        public string CategoryName
-        { 
-            get; 
-            set; 
-        }
-    }
-```
+To achieve the desired scenario:
 
-* Prepopulate the data for the Foreign Key column within the controller.
-```
-    public class GridController : Controller
-    {
-        public IActionResult Index()
-        {
-            ViewData["categories"] = GetCategories();
-            return View();
-        }
-    }
-```
+1. Add the complex model field that is corresponding for the ForeignKey column.
+1. Subscribe to the [`document.ready()`](http://learn.jquery.com/using-jquery-core/document-ready/) event after the Grid declaration, get a reference of the header for the ForeignKey column, and change the `data-kendo-field` attribute to point to the text field.
 
-* Create a dictionary of key-value pairs using the prepopulated data.
-```
-    <script type="text/javascript">
-        var categories= @Html.Raw(Json.Serialize(@ViewData["categories"])); //serialize the data
-    
-        //create dictionary of text-values for the FKC
-        var categoriesDict = {};
-        for (var i = 0; i < categories.length; i++) {
-            categoriesDict[categories[i].CategoryID] = categories[i].CategoryName;
-        }
-    </script>
+If the Grid uses deferred initialization, place the handler after the deferred scripts are rendered. This example uses `ServerOperation(false)`, so the Grid sorts the returned data on the client by the text field.
 
-```
-* Bind the additional text field using the [.Bound()](https://docs.telerik.com/aspnet-core/api/Kendo.Mvc.UI.Fluent/GridColumnFactory?&_ga=2.8632309.1913833702.1649765178-415541100.1638373975#boundsystemlinqexpressionsexpressionsystemfunctt1) configuration option and calculate the field by utilizing the [.ClientTemplate()](https://docs.telerik.com/aspnet-core/api/Kendo.Mvc.UI.Fluent/GridBoundColumnBuilder#clienttemplatesystemstring) setting.
-```
-    @(Html.Kendo().Grid<Kendo.Mvc.Examples.Models.ProductViewModel>()
-        .Name("grid")
-        .Columns(columns =>
-        {
-            columns.Bound(p => p.CategoryName).ClientTemplate("#=calculateField(CategoryID)#").EditorTemplateName("CategoryNameEditor");
-           
-        })
-	)
-
-
-    <script type="text/javascript">
-        function calculateField(categoryId){
-            return categoriesDict[categoryId];
-        }
-	</script>
-```
-* Specify a DropDownList for the text field editor in the **~View/Shared/EditorTemplates** folder and specify the value field with the **data-bind** attribute.
-```
-    @model ProductViewModel
-
-    @(Html.Kendo().DropDownListFor(m => m.CategoryName)
-        .DataValueField("CategoryID")
-        .DataTextField("CategoryName")
-        .AutoBind(false)
-        .HtmlAttributes(new {data_bind="value:CategoryID"})
-        .BindTo((System.Collections.IEnumerable)ViewData["categories"])
-    )
-
-```
-
-Example:
-
-```Model
+```C# Model.cs
      public class ProductViewModel
      {
          public int ProductID
@@ -122,24 +59,22 @@ Example:
              set;
          }
 
-
-         [UIHint("CategoryNameEditor")]
-         public string CategoryName
+         public CategoryViewModel Category
          {
-             get;
-             set;
-         }
+            get;
+            set;
+         } 
 
          public int? CategoryID { get; set; }
      }
 ```
-```Index.cshtml
+```Razor Index.cshtml
     @(Html.Kendo().Grid<Kendo.Mvc.Examples.Models.ProductViewModel>()
             .Name("grid")
             .Columns(columns =>
             {
                 columns.Bound(p => p.ProductName);
-                columns.Bound(p => p.CategoryName).ClientTemplate("#=calculateField(CategoryID)#").EditorTemplateName("CategoryNameEditor").Width(200);
+                columns.Bound(p => p.CategoryID).ClientTemplate("#=calculateField(CategoryID)#").EditorTemplateName("CategoryNameEditor").Width(200);
                 columns.Bound(p => p.UnitPrice).Format("{0:c}").Width(200);
                 columns.Command(command => command.Destroy()).Width(150);
             })
@@ -170,70 +105,36 @@ Example:
             )
     )
 ```
-```Controller
-    public class GridController : Controller
-    {
-        public IActionResult Index()
-        {
-            ViewData["categories"] = GetCategories();
-            return View();
-        }
-        public IEnumerable<CategoryViewModel> GetCategories()
-        {
-            var firms = Enumerable.Range(1, 10)
-               .Select(i => new CategoryViewModel
-               {
-                   CategoryID = i,
-                   CategoryName = "CategoryName " + i
-               }).ToList();
-           
-            return firms;
-        }
-        public IActionResult Products_Read([DataSourceRequest] DataSourceRequest request)
-        {
-            IEnumerable<ProductViewModel> products = GetProducts();
-
-            return Json(products.ToDataSourceResult(request));
-        }
-
-        private static IEnumerable<ProductViewModel> GetProducts()
-        {
-            return Enumerable.Range(1, 20)
-                .Select(i => new ProductViewModel
-                {
-                    ProductID = i,
-                    ProductName = "ProductName" + i,
-                    UnitPrice = 1250.50M,
-                    CategoryID = i % 5
-                });
-        }
-    }
+```JS script.js
+   <script type="text/javascript">
+        $(function () {
+            var grid = $("#grid").data("kendoGrid"); // Get the Grid's reference.
+            grid.thead.find("th[data-kendo-field='CategoryID']").attr("data-kendo-field", "Category.CategoryName");
+        });
+   </script>
 ```
-```CategoryNameEditor.cshtml
-    @model ProductViewModel
 
-    @(Html.Kendo().DropDownListFor(m=>m.CategoryName)
-        .DataValueField("CategoryID")
-        .DataTextField("CategoryName")
-        .AutoBind(false)
-        .HtmlAttributes(new {data_bind="value:CategoryID"})
-        .BindTo((System.Collections.IEnumerable)ViewData["categories"])
-    )
+Place the script in the same `.cshtml` view after the Grid markup, or in an `@section Scripts` that the layout renders after the view content. The Grid must be initialized before the handler runs.
 
-```
-```JavaScript
-    <script type="text/javascript">
-        var categories= @Html.Raw(Json.Serialize(@ViewData["categories"]));
-        
-        //create dictionary of text-values for the FKC
-        var categoriesDict = {};
-        for (var i = 0; i < categories.length; i++) {
-            console.log(categories[i]);
-            categoriesDict[categories[i].CategoryID] = categories[i].CategoryName;
-        }
-   
-        function calculateField(firmId){
-            return categoriesDict[firmId];
-        }
-    </script>
-```
+For the complete implementation of the suggested approach, refer to the [Telerik REPL example on enabling foreign key column sorting by text in the Grid](https://netcorerepl.telerik.com/GxEIcTlf138axUqV28).
+
+## More {{ site.framework }} Grid Resources
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+{% if site.core %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Client-Side API Reference of the Grid  for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid  for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+* [Telerik REPL: Enable ForeignKey Column Sorting by Text](https://netcorerepl.telerik.com/GxEIcTlf138axUqV28)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

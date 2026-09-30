@@ -2,12 +2,13 @@
 title: Cancel Insert Action in Grid
 description: Cancel Add New Record Action in Grid
 type: how-to
-page_title: How to Cancel Add New Record Action in Grid | Kendo UI Grid for jQuery
+page_title: How to Cancel Add New Record Action in Grid - Kendo UI for jQuery Data Grid
 slug: grid-cancel-insert-action
 position: 
 tags: 
 ticketid: 
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>

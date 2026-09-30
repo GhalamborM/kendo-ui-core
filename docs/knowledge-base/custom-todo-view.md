@@ -5,9 +5,9 @@ description: "Learn how to create a custom To-Do view for a Kendo UI for jQuery 
 previous_url: /controls/scheduling/scheduler/how-to/custom-todo-view, /controls/scheduling/scheduler/how-to/custom-views/custom-todo-view
 slug: howto_create_custom_todo_view
 tags: telerik, kendo, jquery, scheduler, create, custom, todo, views
-component: scheduler
 type: how-to
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler for jQuery</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -43,4 +43,4 @@ To achieve the desired scenario, refer to [this project](https://github.com/tele
 
 * [Basic Usage of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/index)
 * [Using the API of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/api)
-* [JavaScript API Reference of the Scheduler](/api/javascript/ui/scheduler)
+* [JavaScript API Reference of the Scheduler](/api/ui/scheduler)

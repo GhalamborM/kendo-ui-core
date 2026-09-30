@@ -1,13 +1,14 @@
 ---
 title: Overview
 page_title: Overview
-description: "Learn the basics when working with the Telerik UI DropDownButton component for {{ site.framework }}."
+description: "Try now the Telerik UI DropDownButton component for {{ site.framework }} offering various configuration options for its items, icons, and appearance."
+components: ["dropdownbutton"]
 previous_url: /helpers/navigation/dropdownbutton/overview
 slug: htmlhelpers_dropdownbutton_aspnetcore
 position: 1
 ---
 
-# DropDownButton Overview
+# {{ site.framework }} DropDownButton Overview
 
 {% if site.core %}
 The Telerik UI DropDownButton TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI DropDownButton widget.
@@ -27,22 +28,22 @@ The following example demonstrates how to define the DropDownButton.
     @(Html.Kendo().DropDownButton()
         .Name("DropDownButton")
         .Text("Paste")
-        .Icon("paste")
+        .Icon("clipboard")
         .Items(items => {
-            items.Add().Id("keep-text").Text("Keep Text Only").Icon("paste-plain-text");
-            items.Add().Id("paste-html").Text("Paste as HTML").Icon("paste-as-html");
-            items.Add().Id("paste-markdown").Text("Paste Markdown").Icon("paste-markdown");
+            items.Add().Id("keep-text").Text("Keep Text Only").Icon("clipboard-text");
+            items.Add().Id("paste-html").Text("Paste as HTML").Icon("clipboard-code");
+            items.Add().Id("paste-markdown").Text("Paste Markdown").Icon("clipboard-markdown");
             items.Add().Id("paste-default").Text("Set Default Paste");
         })
     )
 ```
 {% if site.core %}
 ```TagHelper
-    <kendo-dropdownbutton name="DropDownButton" text="Paste" icon="paste">
+    <kendo-dropdownbutton name="DropDownButton" text="Paste" icon="clipboard">
         <dropdownbutton-items>
-            <item id="keep-text" text="Keep Text Only" icon="paste-plain-text"></item>
-            <item id="paste-html" text="Paste as HTML" icon="paste-as-html"></item>
-            <item id="paste-markdown" text="Paste Markdown" icon="paste-markdown"></item>
+            <item id="keep-text" text="Keep Text Only" icon="clipboard-text"></item>
+            <item id="paste-html" text="Paste as HTML" icon="clipboard-code"></item>
+            <item id="paste-markdown" text="Paste Markdown" icon="clipboard-markdown"></item>
             <item id="paste-default" text="Set Default Paste"></item>
         </dropdownbutton-items>
     </kendo-dropdownbutton>
@@ -51,16 +52,18 @@ The following example demonstrates how to define the DropDownButton.
 
 ## Functionality and Features
 
-* [Items]({% slug htmlhelpers_dropdownbutton_aspnetcore_items %})&mdash;You can configure the DropDownButton by adding items to the popup.
-* [Appearance]({% slug htmlhelpers_dropdownbutton_aspnetcore_appearance %})&mdash;You can control the appearance of the DropDownButton by configuring its styling options.
-* [Icons]({% slug htmlhelpers_dropdownbutton_aspnetcore_icons %})&mdash;You can enchance the DropDownButton's textual content by adding icons.
-* [Accessibility]({% slug accessibility_aspnetcore_dropdownbutton %})&mdash;You can access the DropDownButton by different screen readers.
+* [Items]({% slug htmlhelpers_dropdownbutton_aspnetcore_items %})&mdash;You can configure the DropDownButton by adding items to the popup and customizing them.
+* [Appearance]({% slug htmlhelpers_dropdownbutton_aspnetcore_appearance %})&mdash;You can customize the appearance of the DropDownButton by configuring its size, fill mode, theme color, and border radius.
+* [Icons]({% slug htmlhelpers_dropdownbutton_aspnetcore_icons %})&mdash;You can enhance the DropDownButton's textual content by adding icons.
+* [Accessibility]({% slug htmlhelpers_dropdownbutton_accessibility %})&mdash;You can access the DropDownButton by using different screen readers.
+* [Events]({% slug events_dropdownbutton %})&mdash;Handling the `Click()`, `Open()`, and `Close()` events of the DropDownButton allows you to implement custom functionality.
+
+## Next Steps
+
+* [Getting Started with the DropDownButton]({% slug dropdownbutton_getting_started %})
+* [Basic Usage of the DropDownButton for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/dropdownbutton/index)
 
 ## See Also
 
-* [Overview of the DropDownButton for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/dropdownbutton/index)
-* [Using the Basic Events of the DropDownButton for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/dropdownbutton/events)
-* [Applying the DropDownButton API (Demo)](https://demos.telerik.com/{{ site.platform }}/dropdownbutton/api)
-* [Server-Side API](/api/dropdownbutton)
-* [Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdownbutton)
-
+* [Using the API of the DropDownButton for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/dropdownbutton/api)
+* [Knowledge Base Section](/knowledge-base)

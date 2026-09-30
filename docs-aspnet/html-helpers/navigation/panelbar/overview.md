@@ -1,13 +1,14 @@
 ---
 title: Overview
 page_title: Overview
-description: "Learn the basics when working with the Telerik UI PanelBar component for {{ site.framework }}."
+description: "Discover the Telerik UI PanelBar component for {{ site.framework }} and its built-in features like data binding, accssibility, and support for various expand modes."
+components: ["panelbar"]
 previous_url: /helpers/html-helpers/panelbar, /helpers/navigation/panelbar/overview
 slug: htmlhelpers_panelbar_aspnetcore
-position: 1
+position: 0
 ---
 
-# PanelBar Overview
+# {{ site.framework }} PanelBar Overview
 
 {% if site.core %}
 The Telerik UI PanelBar TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI PanelBar widget.
@@ -65,35 +66,32 @@ The following example demonstrates the basic configuration of the PanelBar.
     )
 ```
 ```TagHelper
-    <kendo-panelbar name="employees" datatextfield="FullName">
-        <hierarchical-datasource>
-            <transport>
-                <read url="https://demos.telerik.com/kendo-ui/service/Employees" datatype="jsonp" />
-            </transport>
-            <schema type="json">
-                <hierarchical-model id="EmployeeId" has-children="HasEmployees">
-                </hierarchical-model>
-            </schema>
-        </hierarchical-datasource>
-    </kendo-panelbar>
-```
-```TagHelper-items
-    <kendo-panelbar name="project">
+    <kendo-panelbar name="panelbar" expand-mode="single">
         <items>
-            <panelbar-item text="Storage" expanded="true">
+            <panelbar-item text="Projects">
                 <items>
-                    <panelbar-item text="Wall Shelving"></panelbar-item>
-                    <panelbar-item text="Floor Shelving"></panelbar-item>
-                    <panelbar-item text="Kids Storag"></panelbar-item>
+                    <panelbar-item text="New Business Plan"></panelbar-item>
+                    <panelbar-item text="Sales Forecasts">
+                        <items>
+                            <panelbar-item text="Q1 Forecast"></panelbar-item>
+                            <panelbar-item text="Q2 Forecast"></panelbar-item>
+                            <panelbar-item text="Q3 Forecast"></panelbar-item>
+                            <panelbar-item text="Q4 Forecast"></panelbar-item>
+                        </items>
+                    </panelbar-item>
+                    <panelbar-item text="Sales Reports"></panelbar-item>
                 </items>
             </panelbar-item>
-            <panelbar-item text="Lights">
+            <panelbar-item text="Programs">
                 <items>
-                    <panelbar-item text="Ceiling"></panelbar-item>
-                    <panelbar-item text="Table"></panelbar-item>
-                    <panelbar-item text="Floor"></panelbar-item>
+                    <panelbar-item text="Monday"></panelbar-item>
+                    <panelbar-item text="Tuesday"></panelbar-item>
+                    <panelbar-item text="Wednesday"></panelbar-item>
+                    <panelbar-item text="Thursday"></panelbar-item>
+                    <panelbar-item text="Friday"></panelbar-item>
                 </items>
             </panelbar-item>
+            <panelbar-item text="Communication" enabled="false"></panelbar-item>
         </items>
     </kendo-panelbar>
 ```
@@ -123,78 +121,26 @@ The following example demonstrates the basic configuration of the PanelBar.
 
 ## Functionality and Features
 
-* [Data Binding]({% slug htmlhelpers_panelbar_databinding_aspnetcore %})
-* [Expand modes]({% slug htmlhelpers_panelbar_expandmodes_aspnetcore %})
-* [Accessibility]({% slug accessibility_aspnetcore_panelbar %})
+* [Data Binding]({% slug htmlhelpers_panelbar_databinding_aspnetcore %})—The PanelBar supports binding to data. 
+* [Expand modes]({% slug htmlhelpers_panelbar_expandmodes_aspnetcore %})—The component offers `Single` and `Multiple` expand modes. 
+* [Events]({% slug events_panelbar_aspnetcore %})—To control the behavior of the component upon user interaction, you can use the events that the component emits.
+* [Accessibility]({% slug htmlhelpers_panelbar_accessibility %})—The PanelBar is accessible by screen readers and provides WAI-ARIA, Section 508, WCAG 2.1, and keyboard support.
 
-## Events
 
-You can subscribe to all PanelBar [events](https://docs.telerik.com/kendo-ui/api/javascript/ui/panelbar#events). For a complete example on basic PanelBar events, refer to the [demo on using the events of the PanelBar](https://demos.telerik.com/{{ site.platform }}/panelbar/events).
+## Next Steps
 
-### Handling by Handler Name
-
-The following example demonstrates how to subscribe to events by a handler name.
-
-```HtmlHelper
-    @(Html.Kendo().PanelBar()
-            .Name("panelbar")
-            .Events(e => e
-                .Expand("panelbar_expand")
-                .Collapse("panelbar_collapse")
-            )
-    )
-    <script>
-        function panelbar_collapse() {
-            // Handle the collapse event.
-        }
-
-        function panelbar_expand() {
-            // Handle the expand event.
-        }
-    </script>
-```
-
-### Handling by Template Delegate
-
-The following example demonstrates how to subscribe to events by a template delegate.
-
-```HtmlHelper
-    @(Html.Kendo().PanelBar()
-        .Name("panelbar")
-        .Events(e => e
-            .Expand(@<text>
-                function() {
-                    // Handle the expand event inline.
-                }
-            </text>)
-            .Collapse(@<text>
-                function() {
-                    // Handle the collapse event inline.
-                }
-            </text>)
-        )
-    )
-```
-
-## Referencing Existing Instances
-
-To reference an existing PanelBar instance, use the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [client-side PanelBar API](https://docs.telerik.com/kendo-ui/api/javascript/ui/panelbar#methods) to control its behavior.
-
-    // Place this after the PanelBar for {{ site.framework }} declaration.
-    <script>
-        $(document).ready(function() {
-            // The Name() of the panelbar is used to get its client-side instance.
-            var panelbar = $("#panelbar").data("kendoPanelBar");
-        });
-    </script>
-
-## See Also
-
+* [Getting Started with the PanelBar]({% slug  aspnetcore_panelbar_getting_started %})
 * [Basic Usage of the PanelBar HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/panelbar)
 {% if site.core %}
 * [Basic Usage of the PanelBar TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/panelbar/tag-helper)
+* [PanelBar in Razor Pages]({% slug htmlhelpers_panelbar_razorpage_aspnetcore%})
 {% endif %}
+
+## See Also
+
 * [Using the API of the PanelBar HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/panelbar/api)
-* [PanelBar Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/panelbar)
-* [PanelBarBuilder Server-Side API](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/PanelBarBuilder)
+* [PanelBar Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/panelbar)
+* [PanelBarBuilder Server-Side API](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/panelbarbuilder)
 * [PanelBar Server-Side API](/api/panelbar)
+* [Knowledge Base Section](/knowledge-base)
+

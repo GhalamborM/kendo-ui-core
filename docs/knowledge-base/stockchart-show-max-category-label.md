@@ -2,12 +2,13 @@
 title: Show Maximum Value of categoryAxis.labels All the Time in Kendo UI StockChart
 description: Learn how to display the maximum value of the catergoryAxis.label in the Kendo UI StockChart even when it is not in the selected range
 type: how-to
-page_title: Display the Maximum Value of X-Axis Label | Kendo UI StockChart
+page_title: Display the Maximum Value of X-Axis Label - Kendo UI StockChart
 slug: stockchart-show-max-category-label
 position: 
 tags: stockchart, label, max, maximum, values, axis, navigation, selection, range
 ticketid: 1451074
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Chart for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Chart for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -29,7 +30,7 @@ res_type: kb
 How can I show the maximum value of the categoryAxis.labels even when it is not in the selection range of the navigator?
 
 ## Solution
-In order to show the maximum value of categoryAxis all the time, use the following custom approach using the [render](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/stock-chart/events/render) event and the [selectEnd](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/stock-chart/events/selectend) event:
+In order to show the maximum value of categoryAxis all the time, use the following custom approach using the [render](https://docs.telerik.com/kendo-ui/api/dataviz/ui/stock-chart/events/render) event and the [selectEnd](https://docs.telerik.com/kendo-ui/api/dataviz/ui/stock-chart/events/selectend) event:
 
 ```javascript
 var stockChart = $("#stock-chart").kendoStockChart({
@@ -177,5 +178,5 @@ var stockChart = $("#stock-chart").kendoStockChart({
 
 
 ## See Also
-- [render event](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/stock-chart/events/render)
-- [selectEnd event](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/stock-chart/events/selectend)
+- [render event](https://docs.telerik.com/kendo-ui/api/dataviz/ui/stock-chart/events/render)
+- [selectEnd event](https://docs.telerik.com/kendo-ui/api/dataviz/ui/stock-chart/events/selectend)

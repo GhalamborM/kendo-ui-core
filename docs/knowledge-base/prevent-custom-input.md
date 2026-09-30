@@ -5,9 +5,9 @@ description: "Learn how to allow only existing values in a Kendo UI AutoComplete
 previous_url: /controls/editors/autocomplete/how-to/prevent-custom-input, /controls/editors/autocomplete/how-to/input/restrict-user-input, /controls/editors/autocomplete/how-to/input/prevent-custom-input
 slug: howto_preventcustominput_autocomplete
 tags: telerik, kendo, jquery, autocomplete, prevent, restrict, custom, user, input, allow, only, existing, values
-component: autocomplete
 type: how-to
 res_type: kb
+components: ["autocomplete"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI AutoComplete for jQuery</td>
+  <td>Progress® Kendo UI® AutoComplete for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -138,7 +138,7 @@ The following example demonstrates how to allow only existing values in the Auto
           width: 482px;
           height: 152px;
           padding: 110px 0 0 30px;
-          background: url('../content/web/autocomplete/shipping.png') transparent no-repeat 0 0;
+          background: url('https://demos.telerik.com/kendo-ui/content/web/autocomplete/shipping.png') transparent no-repeat 0 0;
           margin: 100px auto;
         }
 
@@ -163,4 +163,4 @@ The following example demonstrates how to allow only existing values in the Auto
 
 * [Basic Usage of the AutoComplete (Demo)](https://demos.telerik.com/kendo-ui/autocomplete/index)
 * [Using the API of the AutoComplete (Demo)](https://demos.telerik.com/kendo-ui/autocomplete/api)
-* [JavaScript API Reference of the AutoComplete](/api/javascript/ui/autocomplete)
+* [JavaScript API Reference of the AutoComplete](/api/ui/autocomplete)

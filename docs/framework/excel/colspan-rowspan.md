@@ -1,7 +1,8 @@
 ---
 title: Expanding Cells across Rows and Columns
-page_title: Expanding Cells across Rows and Columns | Kendo UI Excel Export
+page_title: Expanding Cells across Rows and Columns - Kendo UI Excel Export
 description: "Learn how to make a cell occupy more than one column or row when exporting a Kendo UI component to Excel."
+components: ["general"]
 slug: colaspanandrowspan_excelexport_kendoui
 position: 5
 ---
@@ -14,7 +15,7 @@ However, you can configure a cell to occupy more than one row or column.
 
 ## Spanning across Columns
 
-To expand a cell across two or more columns, set the [`colSpan`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.colspan) option. As a result, all cells will follow shift to the right with the same number of columns as defined by the `colSpan`.
+To expand a cell across two or more columns, set the [`colSpan`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellscolspan) option. As a result, all cells will follow shift to the right with the same number of columns as defined by the `colSpan`.
 
 ```dojo
 <script>
@@ -31,16 +32,18 @@ var workbook = new kendo.ooxml.Workbook({
     }
   ]
 });
-kendo.saveAs({
-    dataURI: workbook.toDataURL(),
-    fileName: "Test.xlsx"
+workbook.toDataURLAsync().then(function (dataURI) {
+    kendo.saveAs({
+      dataURI: dataURI,
+      fileName: "Test.xlsx",
+    });
 });
 </script>
 ```
 
 ## Spanning across Rows
 
-To expand a cell across two or more rows, set the [`rowSpan`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.rowspan) option.
+To expand a cell across two or more rows, set the [`rowSpan`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellsrowspan) option.
 
 ```dojo
 <script>
@@ -62,9 +65,11 @@ var workbook = new kendo.ooxml.Workbook({
     }
   ]
 });
-kendo.saveAs({
-    dataURI: workbook.toDataURL(),
-    fileName: "Test.xlsx"
+workbook.toDataURLAsync().then(function (dataURI) {
+    kendo.saveAs({
+      dataURI: dataURI,
+      fileName: "Test.xlsx",
+    });
 });
 </script>
 ```
@@ -88,9 +93,11 @@ var workbook = new kendo.ooxml.Workbook({
     }
   ]
 });
-kendo.saveAs({
-    dataURI: workbook.toDataURL(),
-    fileName: "Test.xlsx"
+workbook.toDataURLAsync().then(function (dataURI) {
+    kendo.saveAs({
+      dataURI: dataURI,
+      fileName: "Test.xlsx",
+    });
 });
 </script>
 ```

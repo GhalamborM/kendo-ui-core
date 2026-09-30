@@ -1,13 +1,13 @@
 ---
 title: Style the strokes in Diagram
-description: An example on how to change the color and the width for every stroke in Diagram.
+description: Learn how to change the color and the width for every stroke in Diagram.
 type: how-to
-page_title: Style the strokes in Diagram | Kendo UI Diagram for jQuery
+page_title: Style the strokes in Diagram - Kendo UI Diagram for jQuery
 slug: diagram-custom-style-strokes
 tags: diagram, editing, stroke, style
 ticketid: 1498173
 res_type: kb
-component: diagram
+components: ["diagram"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: diagram
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Diagram</td>
+  <td>Progress® Kendo UI® Diagram for jQuery</td>
  </tr>
 </table>
 
@@ -27,8 +27,8 @@ How can I design the color and width of every stroke in Kendo UI Diagram?
 ## Solution
 
 1. Add an additional property to the data object in connectionDataSource.
-2. Use the [change event](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/diagram/events/change) of the Diagram. 
-3. Loop through all strokes and set their color and width using the [redraw](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/diagram/shape/methods/redraw) method.
+2. Use the [change event](https://docs.telerik.com/kendo-ui/api/dataviz/ui/diagram/events/change) of the Diagram. 
+3. Loop through all strokes and set their color and width using the [redraw](https://docs.telerik.com/kendo-ui/api/dataviz/diagram/shape/methods/redraw) method.
 
 
 The following example demonstrates how to change the color and width of every stroke in Diagram:

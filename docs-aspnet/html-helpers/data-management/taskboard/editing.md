@@ -2,8 +2,9 @@
 title: Editing
 page_title: Editing
 description: "Get started with the Telerik UI for {{ site.framework }} TaskBoard and learn how to implement its editing functionality."
+components: ["taskboard"]
 slug: htmlhelpers_taskboard_aspnetcore_editing
-position: 5
+position: 3
 ---
 
 # Editing
@@ -48,6 +49,46 @@ The following example demonstrates how to configure CRUD (Create, Read, Update, 
         )
     )
 ```
+{% if site.core %}
+```TagHelper
+  <kendo-taskboard 
+		datacategoryfield="ID" 
+		datadescriptionfield="Description" 
+		datastatusfield="OwnerID" 
+		datatitlefield="Title"
+		name="taskBoard" >
+        <taskboard-columns>
+            <datasource type="DataSourceTagHelperType.Ajax">
+                <schema data="Data" total="Total" errors="Errors">
+                    <model id="ID"></model>
+                </schema>
+                <transport>
+                    <read url="@Url.Action("Editing_Columns_Read", "TaskBoard")" />
+                    <update url="@Url.Action("Editing_Columns_Update", "TaskBoard")" />
+                    <create url="@Url.Action("Editing_Columns_Create", "TaskBoard")"/>
+                    <destroy url="@Url.Action("Editing_Columns_Destroy", "TaskBoard")"/>
+                </transport>
+            </datasource>
+        </taskboard-columns>
+		<datasource type="DataSourceTagHelperType.Ajax">
+	 		<schema data="Data" total="Total" errors="Errors">
+				 <model id="TaskID"></model>
+	 		</schema>
+	 		<transport>
+	 	 		<read url="@Url.Action("Tasks_Read", "TaskBoard")" />
+	 	 	    <update url="@Url.Action("Tasks_Update", "TaskBoard")" />
+	 	 	    <create url="@Url.Action("Tasks_Create", "TaskBoard")"/>
+	 	 	    <destroy url="@Url.Action("Tasks_Destroy", "TaskBoard")"/>
+	 		</transport>
+		</datasource>
+		<column-settings datastatusfield="ID" datatextfield="Text">
+		</column-settings>
+		<editable enabled="true">
+		</editable>
+	</kendo-taskboard>
+
+```
+{% endif %}
 ```Controller
     public partial class TaskBoardController : Controller
     {
@@ -179,6 +220,24 @@ The following example demonstrates how to configure the data source of the colum
         .Destroy("Editing_Columns_Destroy", "TaskBoard")
     )
 ```
+{% if site.core %}
+```TagHelper
+        <taskboard-columns>
+            <datasource type="DataSourceTagHelperType.Ajax">
+                <schema data="Data" total="Total" errors="Errors">
+                    <model id="ID"></model>
+                </schema>
+                <transport>
+                    <read url="@Url.Action("Editing_Columns_Read", "TaskBoard")" />
+                    <update url="@Url.Action("Editing_Columns_Update", "TaskBoard")" />
+                    <create url="@Url.Action("Editing_Columns_Create", "TaskBoard")"/>
+                    <destroy url="@Url.Action("Editing_Columns_Destroy", "TaskBoard")"/>
+                </transport>
+            </datasource>
+        </taskboard-columns>
+
+```
+{% endif %}
 
 The following example demonstrates how to configure the data source of the cards.
 
@@ -192,6 +251,23 @@ The following example demonstrates how to configure the data source of the cards
         .Destroy(destroy => destroy.Action("Tasks_Destroy", "TaskBoard"))
     )
 ```
+{% if site.core %}
+```TagHelper
+
+		<datasource type="DataSourceTagHelperType.Ajax">
+	 		<schema data="Data" total="Total" errors="Errors">
+				 <model id="TaskID"></model>
+	 		</schema>
+	 		<transport>
+	 	 		<read url="@Url.Action("Tasks_Read", "TaskBoard")" />
+	 	 	    <update url="@Url.Action("Tasks_Update", "TaskBoard")" />
+	 	 	    <create url="@Url.Action("Tasks_Create", "TaskBoard")"/>
+	 	 	    <destroy url="@Url.Action("Tasks_Destroy", "TaskBoard")"/>
+	 		</transport>
+		</datasource>
+
+```
+{% endif %}
 
 ### Setting the Editable Option
 
@@ -232,4 +308,4 @@ The following example demonstrates how to set the `Editable` configuration.
 ## See Also
 
 * [Editing of the TaskBoard (Demo)](https://demos.telerik.com/{{ site.platform }}/taskboard/editing)
-* [JavaScript API Reference of the TaskBoard](https://docs.telerik.com/kendo-ui/api/javascript/ui/taskboard)
+* [JavaScript API Reference of the TaskBoard](https://docs.telerik.com/kendo-ui/api/ui/taskboard)

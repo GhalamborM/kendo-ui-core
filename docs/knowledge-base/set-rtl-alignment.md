@@ -1,13 +1,13 @@
 ---
 title: Achieve RTL Alignment in the Chart by Using the Drawing API
 page_title: Achieve RTL Alignment in the Chart by Using the Drawing API
-description: "Learn how to set an RTL alignment to a Kendo UI Chart widget."
+description: "Learn how to set an RTL alignment to a Kendo UI Chart component."
 previous_url: /controls/charts/how-to/set-rtl-alignment, /controls/charts/how-to/appearance/set-rtl-alignment
 slug: howto_setrtlalignment_charts
 tags: chart, achieve, rtl, alignment, using, drawing, api
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -152,8 +152,8 @@ However, you can achieve a similar outcome in a Kendo UI Chart by using the [Dra
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})

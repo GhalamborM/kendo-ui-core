@@ -1,13 +1,13 @@
 ---
 title: Group Grid Columns Which Are Bound to Objects
-description: An example on how to group Kendo UI Grid columns when they are bound to objects.
+description: Learn how to group Kendo UI Grid columns when they are bound to objects.
 type: how-to
-page_title: Group Columns Which Are Bound to Objects | Kendo UI Grid for jQuery
+page_title: Group Columns Which Are Bound to Objects - Kendo UI for jQuery Data Grid
 slug: group-columns-which-are-bound-to-object
 tags: grid, group, custom
 ticketid: 1116551
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>2017.2.621</td>
  </tr>
 </table>
@@ -29,9 +29,9 @@ How can I group columns which are bound to objects?
 
 ## Solution
 
-1. When the [`group`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/group) event fires, check for a group by the column which is bound to an object.
+1. When the [`group`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/group) event fires, check for a group by the column which is bound to an object.
 
-1. If such a group exists, use the [`group`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/group) method of the dataSource to add a group by one of the properties of the object.
+1. If such a group exists, use the [`group`](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/group) method of the dataSource to add a group by one of the properties of the object.
 
 ```       
     <div id="grid"></div>

@@ -2,6 +2,7 @@
 title: Printing
 page_title: Printing
 description: "Get started with the Telerik UI Grid component for {{ site.framework }} allowing you to select only the Grid content on a page for printing."
+components: ["grid"]
 slug: printing_gridhelper_aspnetcore
 position: 4
 ---
@@ -54,7 +55,7 @@ The following example demonstrates how to retrieve the HTML of the Grid, inject 
                     '<head>' +
                     '<meta charset="utf-8" />' +
                     '<title>Kendo UI Grid</title>' +
-                    '<link href="https://kendo.cdn.telerik.com/' + kendo.version + '/styles/kendo.common.min.css" rel="stylesheet" /> ' +
+                    '<link href="https://kendo.cdn.telerik.com/themes/' + {{ site.themesCdnVersion }} + '/default/default-main.css" rel="stylesheet" /> ' +
                     '<style>' +
                     'html { font: 11pt sans-serif; }' +
                     '.k-grid { border-top-width: 0; }' +
@@ -128,7 +129,6 @@ The following example demonstrates how to retrieve the HTML of the Grid, inject 
                 '<head>' +
                 '<meta charset="utf-8" />' +
                 '<title>Kendo UI Grid</title>' +
-                '<link href="https://kendo.cdn.telerik.com/' + kendo.version + '/styles/kendo.common.min.css" rel="stylesheet" /> ' +
                 '<style>' +
                 'html { font: 11pt sans-serif; }' +
                 '.k-grid { border-top-width: 0; }' +
@@ -179,6 +179,9 @@ The following example demonstrates how to retrieve the HTML of the Grid, inject 
 
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
 * [Excel Export by the Grid HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/grid/excel-export)
 * [Copying to Excel by the Grid HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/grid/copy-to-excel)
 * [PDF Export of the Grid component for {{ site.framework }}]({% slug pdfexport_gridhelper_aspnetcore %})

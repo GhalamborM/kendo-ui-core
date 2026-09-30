@@ -1,12 +1,13 @@
 ---
 title: Add Keyboard Navigation to Chart Series
-page_title: Add Keyboard Navigation to Chart Series | Kendo UI Chart for jQuery
+page_title: Add Keyboard Navigation to Chart Series - Kendo UI Chart for jQuery
 description: "An example demonstrating how to implement custom keyboard navigation to the Kendo UI Chart series."
 type: how-to
 slug: chart-series-keyboard-navigation
 tags: chart, series, accessibility, keyboard, navigation, aria, label, screenreader, reader, screen
 ticketid: 1497415
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Chart for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Chart for jQuery</td>
 	</tr>
 </table>
 
@@ -37,7 +38,7 @@ The Kendo UI Chart is an [`svg`](https://developer.mozilla.org/en-US/docs/Web/SV
 The custom keyboard navigation works with the `ALT+W` key combination to move the highlight to the next series and the `ALT+S` key combination to move the highlight to the previous series. These key combinations do not interfere with the default behavior of the screen readers which use the `arrow keys`. You can choose any other key or key combination by modifying the code.
 
 1. Use the jQuery [`keydown`](https://api.jquery.com/keydown/) event to handle the keyboard input.
-1. Highlight the current series by using the [`toggleHighlight`](/api/javascript/dataviz/chart/chart_series/methods/togglehighlight) method.
+1. Highlight the current series by using the [`toggleHighlight`](/api/dataviz/chart/chart_series/methods/togglehighlight) method.
 1. Apply `aria-label` attributes to the `path` elements.
 1. Use a custom functionality to force screen readers to announce the series data.
 
@@ -59,7 +60,7 @@ The following example showcases the full implementation of the logic with multip
       }
     </style>
 
-    <div id="chart" style="background: center no-repeat url('../content/shared/styles/world-map.png');"></div>
+    <div id="chart" style="background: center no-repeat url('https://demos.telerik.com/kendo-ui/content/shared/styles/world-map.png');"></div>
     <script>
       function createChart() {
         $("#chart").kendoChart({
@@ -108,7 +109,7 @@ The following example showcases the full implementation of the logic with multip
               visible: false
             },
             labels: {
-              padding: {top: 135}
+              position: 'start'
             }
           },
           tooltip: {
@@ -134,7 +135,7 @@ The following example showcases the full implementation of the logic with multip
         let chart = $("#chart").data("kendoChart");
         let series = chart.findSeriesByIndex(0),
             seriesCount = chart.options.series.length,
-            dataCount = series._options.data.length, 
+            dataCount = series._options.data.length,
             key = e.keyCode;
 
         // ALT + W (forward)
@@ -150,7 +151,7 @@ The following example showcases the full implementation of the logic with multip
 
           // Force screen readers to announce the provided text.
           announceText(currentSeries._options.name + " year " + currentCategory.category + " value " + currentCategory.value);
-        } 
+        }
 
         // ALT + S (backward)
         if(e.altKey && key == 83) {
@@ -290,7 +291,7 @@ The following example showcases the full implementation of the logic with single
       }
     </style>
 
-    <div id="chart" style="background: center no-repeat url('../content/shared/styles/world-map.png');"></div>
+    <div id="chart" style="background: center no-repeat url('https://demos.telerik.com/kendo-ui/content/shared/styles/world-map.png');"></div>
     <script>
       function createChart() {
         $("#chart").kendoChart({
@@ -341,7 +342,7 @@ The following example showcases the full implementation of the logic with single
         let chart = $("#chart").data("kendoChart");
         let series = chart.findSeriesByIndex(0),
             seriesCount = chart.options.series.length,
-            dataCount = series._options.data.length, 
+            dataCount = series._options.data.length,
             key = e.keyCode;
 
         // ALT + W (forward)
@@ -351,7 +352,7 @@ The following example showcases the full implementation of the logic with single
 
           navigateForward(chart, dataCount, seriesCount);
           applyLabel(chart);
-        } 
+        }
 
         // ALT + S (backward)
         if(e.altKey && key == 83) {

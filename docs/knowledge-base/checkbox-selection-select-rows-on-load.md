@@ -1,13 +1,13 @@
 ---
 title: Select Grid Rows Programmatically Based on the DataItem
-description: An example on how to select rows in a Kendo UI Grid based on the values of the data items.
+description: Learn how to select rows in a Kendo UI Grid based on the values of the data items.
 type: how-to
-page_title: Automatically Check Checkboxes on Load | Kendo UI Grid for jQuery
+page_title: Automatically Check Checkboxes on Load - Kendo UI for jQuery Data Grid
 slug: checkbox-selection-select-rows-on-load
 tags: checkbox selection, grid, kendo ui
 ticketid: 1117204
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Tested up to version 2017.2 621</td>
  </tr>
 </table>
@@ -29,10 +29,10 @@ I want to have a Grid with some of its checkboxes checked by default when it loa
 
 ## Solution
 
-1. In the [`dataBound`](/api/javascript/ui/grid/events/databound) event handler, get the rows with the [`items()`](/api/javascript/ui/grid/methods/items) method of the grid.
+1. In the [`dataBound`](/api/ui/grid/events/databound) event handler, get the rows with the [`items()`](/api/ui/grid/methods/items) method of the grid.
 1. Loop through the rows by using the jQuery [`each`](https://api.jquery.com/each/) method.
-1. Get every row data by using the [`dataItem`](/api/javascript/ui/grid/methods/dataitem) method.
-1. Set the current row as selected by using the [`select`](/api/javascript/ui/grid/methods/select) method.
+1. Get every row data by using the [`dataItem`](/api/ui/grid/methods/dataitem) method.
+1. Set the current row as selected by using the [`select`](/api/ui/grid/methods/select) method.
 
 ```dojo
 <div id="example">
@@ -45,8 +45,7 @@ I want to have a Grid with some of its checkboxes checked by default when it loa
                     pageSize: 10,
                     transport: {
                         read: {
-                            url: "https://demos.telerik.com/kendo-ui/service/Products",
-                            dataType: "jsonp"
+                            url: "https://demos.telerik.com/service/v2/core/Products"
                         }
                     },
                     schema: {
@@ -108,4 +107,4 @@ The checkbox selectable column is available as of the Kendo UI R2 2017 SP1 relea
 
 * [Frequently Asked Questions on Checkbox Selection]({% slug frequently_asked_questions_grid %})
 * [Grid Checkbox Selection Demo](https://demos.telerik.com/kendo-ui/grid/checkbox-selection)
-* [API Reference for the columns.selectable Configuration](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.selectable)
+* [API Reference for the columns.selectable Configuration](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsselectable)

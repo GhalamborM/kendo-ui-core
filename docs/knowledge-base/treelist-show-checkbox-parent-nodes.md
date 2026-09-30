@@ -2,12 +2,13 @@
 title: Show Checkbox in Root Nodes of the TreeList
 description: Display the checkbox only in the root nodes of the Kendo UI TreeList
 type: how-to
-page_title: Checkbox in Parent Nodes | Kendo UI TreeList
+page_title: Checkbox in Parent Nodes - Kendo UI TreeList
 slug: treelist-show-checkbox-parent-nodes
 position: 
 tags: checkbox, treelist, rootnode, root, parent, parentnode
 ticketid: 1445675
 res_type: kb
+components: ["treelist"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>TreeList for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® TreeList for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -28,14 +29,14 @@ res_type: kb
 How can I show the checkbox in the checkbox column of the Kendo UI TreeList for the root nodes only?
 
 ## Solution
-1. Set the [visibility](https://www.w3schools.com/cssref/pr_class_visibility.asp) of all the checkboxes to *hidden* in the [columns.template](https://docs.telerik.com/kendo-ui/api/javascript/ui/treelist/configuration/columns.template) property as seen below:
+1. Set the [visibility](https://www.w3schools.com/cssref/pr_class_visibility.asp) of all the checkboxes to *hidden* in the [columns.template](https://docs.telerik.com/kendo-ui/api/ui/treelist/configuration/columns#columnstemplate) property as seen below:
 
 	```javascript
 	  columns: [{ 
 	    template: "<input style='visibility: hidden;' type='checkbox' data-bind='checked: checked' />"
 	  }]
 	```
-1. Use the [dataBound](https://docs.telerik.com/kendo-ui/api/javascript/ui/treelist/events/databound) event to run the following JavaScript function:
+1. Use the [dataBound](https://docs.telerik.com/kendo-ui/api/ui/treelist/events/databound) event to run the following JavaScript function:
 
 	```javascript
 	  dataBound: function(e) {
@@ -51,6 +52,8 @@ How can I show the checkbox in the checkbox column of the Kendo UI TreeList for 
 	```
 
 #### Example
+
+The following example renders a TreeList with a checkbox column and uses the `dataBound` event to show checkboxes only on root nodes (where `parentId` is `null`) and hide them on all child rows.
 
 ```dojo
 
@@ -116,7 +119,7 @@ How can I show the checkbox in the checkbox column of the Kendo UI TreeList for 
 ```
 
 ## See Also
-- [Show Checkbox Column](https://docs.telerik.com/kendo-ui/controls/data-management/treelist/how-to/show-a-checkbox-column)
+- [Show Checkbox Column](https://www.telerik.com/kendo-jquery-ui/documentation/knowledge-base/show-a-checkbox-column)
 - [CSS visibility](https://www.w3schools.com/cssref/pr_class_visibility.asp)
-- [columns.template](https://docs.telerik.com/kendo-ui/api/javascript/ui/treelist/configuration/columns.template)
-- [dataBound](https://docs.telerik.com/kendo-ui/api/javascript/ui/treelist/events/databound)
+- [columns.template](https://docs.telerik.com/kendo-ui/api/ui/treelist/configuration/columns#columnstemplate)
+- [dataBound](https://docs.telerik.com/kendo-ui/api/ui/treelist/events/databound)

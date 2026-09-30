@@ -1,7 +1,8 @@
 ---
 title: Date Parsing
-page_title: Date Parsing | Kendo UI Globalization
+page_title: Date Parsing - Kendo UI Globalization
 description: "Learn how to convert a specified string to a date object using the Kendo UI culture specific settings."
+components: ["general"]
 previous_url: /framework/globalization/dateparsing
 slug: dateparsing_kendoui_globalization
 position: 4
@@ -13,31 +14,31 @@ Kendo UI exposes methods which convert a specified string to a [`Date`](https://
 
 ## Parsing without Specifying Formats
 
-The [`kendo.parseDate(string)`](/api/javascript/kendo/methods/parsedate) method converts a string to a JavaScript `Date` object taking into account the set of default culture formats.
+The [`kendo.parseDate(string)`](/api/kendo/methods/parsedate) method converts a string to a JavaScript `Date` object taking into account the set of default culture formats.
 
     //current culture is "en-US"
     kendo.parseDate("12/22/2000"); //Fri Dec 22 2000
 
 ## Parsing by Specifying Formats
 
-The [`kendo.parseDate(string, format)`](/api/javascript/kendo/methods/parsedate) method converts a string to a JavaScript Date object taking into account the specified formats.
+The [`kendo.parseDate(string, format)`](/api/kendo/methods/parsedate) method converts a string to a JavaScript Date object taking into account the specified formats.
 
     kendo.parseDate("2000/12/22", "yyyy/MM/dd");
     kendo.parseDate("2000/12/22", ["MM/dd/yyyy", "yyyy/MM/dd"]);
 
 ## Parsing by Specifying Format and Culture Names
 
-The [`kendo.parseDate(string, format, cultureName)`](/api/javascript/kendo/methods/parsedate) method converts a string to a JavaScript `Date` object by taking into account the specified formats and culture.
+The [`kendo.parseDate(string, format, cultureName)`](/api/kendo/methods/parsedate) method converts a string to a JavaScript `Date` object by taking into account the specified formats and culture.
 
     kendo.parseDate("2012.07.16", "yyyy/MM/dd", "de-DE");
   	kendo.parseDate("2012.07.16", ["MM/dd/yyyy", "yyyy/MM/dd"], "de-DE");
 
-> * The `kendo.parseDate()` parses strings by incrementally matching an increasing portion of the date string until it satisfies the current corresponding format part. This may lead to unexpected results when parsing ambiguous date strings with no delimiters. For example, the parsing of `222015` with a `dMyyyy` format fails, because `"22"` is matched as `d` and there is no suitable string part left for the month.
+> * The `kendo.parseDate()` parses strings by incrementally matching an increasing portion of the date string until it satisfies the current corresponding format part. This may lead to unexpected results when parsing ambiguous date strings with no delimiters. For example, the parsing of `222015` with a `dMyyyy` format fails, because `"22"` is matched as `d` and that leaves no suitable string part for the month.
 > * In addition, parsing is permissive and ignores invalid strings which occur after the year.
 
-## Parsing by Exactly Matching the Format
+## Parsing by Entirely Matching the Format
 
-The [`kendo.parseExactDate(string, formats)`](/api/javascript/kendo/methods/parseexactdate) method will parse a string as a date. If the string does not match the format exactly the method will return `null`.
+The [`kendo.parseExactDate(string, formats)`](/api/kendo/methods/parseexactdate) method will parse a string as a date. If the string does not match the format entirely the method will return `null`.
 
     kendo.parseExactDate("3/4/2013", "MM/dd/yyyy") // Outputs "Mon Mar 04 2013 00:00:00".
     kendo.parseExactDate("3/4/2013", "MM/dd/yy") // Outputs "null".

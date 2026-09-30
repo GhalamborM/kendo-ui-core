@@ -8,6 +8,7 @@ position:
 tags: grid, columns, menu
 ticketid: 1063371
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -29,11 +30,11 @@ res_type: kb
 Is there a way to add an external columns menu with checkbox functionality outside to the Kendo UI Grid?
 
 ## Solution
-Using the [Kendo UI Grid's API](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid), you can take advantage of the [hideColumn](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/hidecolumn) and [showColumn](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/showcolumn) methods.  These can be used in an external component, such as a Kendo UI Menu, outside of the Grid.  
+Using the [Kendo UI Grid's API](https://docs.telerik.com/kendo-ui/api/ui/grid), you can take advantage of the [hideColumn](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/hidecolumn) and [showColumn](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/showcolumn) methods.  These can be used in an external component, such as a Kendo UI Menu, outside of the Grid.  
 
 Here's one approach you can take to add an external Kendo UI Menu with checkbox functionality based on the Kendo UI Grid column's hidden field:
 
-1. Reference the [Grid Columns](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/fields/columns).
+1. Reference the [Grid Columns](https://docs.telerik.com/kendo-ui/api/ui/grid/fields/columns).
 
     ```javascript
             //reference grid
@@ -43,7 +44,7 @@ Here's one approach you can take to add an external Kendo UI Menu with checkbox 
             var columnValues = grid.columns;
     ```
 
-1. Create an array and loop through the [grid columns hidden field](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.hidden). If it's not hidden, push the "checked" string.
+1. Create an array and loop through the [grid columns hidden field](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnshidden). If it's not hidden, push the "checked" string.
 
     ```javascript
             //Create array
@@ -60,7 +61,7 @@ Here's one approach you can take to add an external Kendo UI Menu with checkbox 
             });    
     ```
 
-1. Get the Kendo UI Menu, [append](https://docs.telerik.com/kendo-ui/api/javascript/ui/menu/methods/append) the first item, and reference it.
+1. Get the Kendo UI Menu, [append](https://docs.telerik.com/kendo-ui/api/ui/menu/methods/append) the first item, and reference it.
 
     ```javascript
             //reference the Kendo UI Menu
@@ -82,10 +83,10 @@ Here's one approach you can take to add an external Kendo UI Menu with checkbox 
             });
     ```
 
-1. When a user selects a column from the menu, the Kendo UI Menu's [select event](https://docs.telerik.com/kendo-ui/api/javascript/ui/menu/events/select) is fired. 
+1. When a user selects a column from the menu, the Kendo UI Menu's [select event](https://docs.telerik.com/kendo-ui/api/ui/menu/events/select) is fired. 
     1. Make a  reference to the Grid.
     1. Determine how many hidden columns are in the Grid to always keep one.
-    1. Based on the column's field, use the [showColumn](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/showcolumn) or [hideColumn](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/hidecolumn) method.
+    1. Based on the column's field, use the [showColumn](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/showcolumn) or [hideColumn](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/hidecolumn) method.
     1.  If the item is shown, check the box.  Otherwise, uncheck it.  If it's the last item, keep the box checked.
 
     ```javascript
@@ -135,7 +136,7 @@ Here's one approach you can take to add an external Kendo UI Menu with checkbox 
 
     ```
 
-1.  Finally, you may want to remove the columns section from the Grid's [columnMenu](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columnmenu). One way to do that is using the Kendo UI Grid's [columnMenuInit event](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/columnmenuinit), and removing it using jQuery.
+1.  Finally, you may want to remove the columns section from the Grid's [columnMenu](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columnmenu). One way to do that is using the Kendo UI Grid's [columnMenuInit event](https://docs.telerik.com/kendo-ui/api/ui/grid/events/columnmenuinit), and removing it using jQuery.
 
     ```javascript
             function onColumnMenuInit(e){
@@ -146,6 +147,8 @@ Here's one approach you can take to add an external Kendo UI Menu with checkbox 
     ```
 
 #### Example
+
+The following example creates a Kendo UI Menu with checkbox items that control the visibility of each Grid column. Clicking a menu item calls `showColumn` or `hideColumn` and keeps the checkbox state in sync.
 
 ```dojo
     <ul id="columnMenu" style="width: 100px; margin-bottom: 5px"></ul>
@@ -164,9 +167,9 @@ Here's one approach you can take to add an external Kendo UI Menu with checkbox 
 
         $("#grid").kendoGrid({
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+              read: "https://demos.telerik.com/service/v2/odata/Orders"
             },
             schema: {
               model: {
@@ -294,11 +297,11 @@ Here's one approach you can take to add an external Kendo UI Menu with checkbox 
 ```
 
 ## See Also
-* [showColumn Method - Grid API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/showcolumn)
-* [hideColumn Method - Grid API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/hidecolumn)
-* [columns - Grid API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/fields/columns)
-* [columns.hidden - Grid API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.hidden)
-* [append method - Menu API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/menu/methods/append)
-* [select event - Menu API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/menu/events/select)
-* [columnMenu - Grid API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columnmenu)
-* [columnMenuInit Event - Grid API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/columnmenuinit)
+* [showColumn Method - Grid API Reference](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/showcolumn)
+* [hideColumn Method - Grid API Reference](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/hidecolumn)
+* [columns - Grid API Reference](https://docs.telerik.com/kendo-ui/api/ui/grid/fields/columns)
+* [columns.hidden - Grid API Reference](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnshidden)
+* [append method - Menu API Reference](https://docs.telerik.com/kendo-ui/api/ui/menu/methods/append)
+* [select event - Menu API Reference](https://docs.telerik.com/kendo-ui/api/ui/menu/events/select)
+* [columnMenu - Grid API Reference](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columnmenu)
+* [columnMenuInit Event - Grid API Reference](https://docs.telerik.com/kendo-ui/api/ui/grid/events/columnmenuinit)

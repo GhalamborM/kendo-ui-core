@@ -5,9 +5,9 @@ description: "Learn how to handle unique identifiers with Kendo UI for jQuery Me
 slug: howto_handleuniqueidentifiers_menu
 previous_url: /controls/navigation/menu/how-to/handle-unique-identifiers
 tags: telerik, kendo, jquery, menu, handle, unique, identifiers, with, items
-component: menu
 type: how-to
 res_type: kb
+components: ["menu"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Menu for jQuery</td>
+  <td>Progress® Kendo UI® Menu for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I handle unique identifiers with Kendo UI for jQuery Menu items?
 
 ## Solution
 
-Commonly, you are required to handle custom identifiers with click handlers or, as in this case, by using the [`select`](/api/javascript/ui/menu/events/select) event.
+Commonly, you are required to handle custom identifiers with click handlers or, as in this case, by using the [`select`](/api/ui/menu/events/select) event.
 
 To provide for the functionality, the Kendo UI Menu mainly uses the HTML elements that are rendered. That is why you can use custom HTML attributes to serve you as unique identifiers in your code.  
 
@@ -138,7 +138,7 @@ The following examples demonstrate how to handle a custom command attribute to a
 
 ## See Also
 
-* [Menu JavaScript API Reference](/api/javascript/ui/menu)
-* [How to Create Split Button]({% slug howto_createa_split_button_menu %})
-* [How to Use FontAwesome Icons]({% slug howto_use_fontawesome_icons_menu %})
+* [Menu JavaScript API Reference](/api/ui/menu)
+* [Create Split Button]({% slug howto_createa_split_button_menu %})
+* [Use FontAwesome Icons]({% slug howto_use_fontawesome_icons_menu %})
 

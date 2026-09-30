@@ -1,7 +1,8 @@
 ---
 title: Number Formatting
-page_title: Number Formatting | Kendo UI Globalization
+page_title: Number Formatting - Kendo UI Globalization
 description: "Learn how to use the number formatting methods to convert a number object to a human readable string using the Kendo UI culture specific settings."
+components: ["general"]
 previous_url: /framework/globalization/numberformatting
 slug: numberformatting_kendoui_globalization
 position: 5
@@ -11,9 +12,9 @@ position: 5
 
 The purpose of number formatting is to convert a `Number` object to a human readable string using the culture-specific settings.
 
-The [`kendo.format`](/api/javascript/kendo#format) and [`kendo.toString`](/api/javascript/kendo#tostring) methods support standard and custom numeric formats.
+The [`kendo.format`](/api/kendo#format) and [`kendo.toString`](/api/kendo#tostring) methods support standard and custom numeric formats.
 
-The following runnable example demonstrates how to format numbers by using the [`kendo.toString`](/api/javascript/kendo/methods/tostring) method:
+The following runnable example demonstrates how to format numbers by using the [`kendo.toString`](/api/kendo/methods/tostring) method:
 
 ```dojo
     <!-- Add the de-DE culture file -->
@@ -162,7 +163,7 @@ The following specifiers are supported by Kendo UI:
 * `";"`&mdash;The section separator defines sections with separate format strings for positive, negative, and zero numbers.
 * `"string"/'string'`&mdash;The literal string delimiter indicates that the enclosed characters will be copied to the result string.
 
-The following runnable example demonstrates how to use the [`kendo.toString`](/api/javascript/kendo/methods/tostring) method in the [`eventTemplate`](/api/javascript/ui/scheduler/configuration/eventtemplate) of the Scheduler:
+The following runnable example demonstrates how to use the [`kendo.toString`](/api/kendo/methods/tostring) method in the [`eventTemplate`](/api/ui/scheduler/configuration/eventtemplate) of the Scheduler:
 
 ```dojo
     <div>

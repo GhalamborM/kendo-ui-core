@@ -1,13 +1,13 @@
 ---
-title: Cancel Changes Per Row by Using the Incell Editing Mode of the Grid
-page_title: Cancel Changes for Specific Row in Incell Editing Mode | Kendo UI Grid for jQuery
-description: An example on how to cancel the changes for a specific Kendo UI Grid row when the Grid is in the incell editing mode.
+title: Cancel Changes per Row by Using the Incell Editing Mode of the Grid
+page_title: Cancel Changes for Specific Row in Incell Editing Mode - Kendo UI for jQuery Data Grid
+description: Learn how to cancel the changes for a specific Kendo UI Grid row when the Grid is in the incell editing mode.
 type: how-to
 slug: cancel-changes-for-specific-row-with-incell-editing
 tags: grid, editing
 ticketid: 1111657
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -30,7 +30,7 @@ component: grid
   <td>58.0.3029.110</td>
  </tr>
   <tr>
-  <td>Made With Version</td>
+  <td>Product Version</td>
   <td>2020.3.1021</td>
  </tr>
 </table>
@@ -59,11 +59,11 @@ The Kendo UI Grid does not provide a built-in solution for achieving this behavi
 
 For more details, refer to the following articles:
 
-* [https://docs.telerik.com/kendo-ui/api/javascript/data/datasource\/methods/getbyuid](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/getbyuid)
-* [https://docs.telerik.com/kendo-ui/api/javascript/data/datasource\/methods/cancelchanges](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/cancelchanges)
-* [https://docs.telerik.com/kendo-ui/api/javascript/ui/grid\/configuration/columns.command](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.command)
+* [https://docs.telerik.com/kendo-ui/api/data/datasource\/methods/getbyuid](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/getbyuid)
+* [https://docs.telerik.com/kendo-ui/api/data/datasource\/methods/cancelchanges](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/cancelchanges)
+* [https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnscommand](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnscommand)
 
-To resolve the resulting scroll-related issue which occurs after the refresh, [restore the scroll position by using a custom approach](https://docs.telerik.com/kendo-ui/controls/data-management/grid/appearance#restore-scroll-positions).
+To resolve the resulting scroll-related issue which occurs after the refresh, [restore the scroll position by using a custom approach](https://docs.telerik.com/kendo-ui/controls/grid/appearance#restore-scroll-positions).
 
 ````dojo
 <div id="example">
@@ -75,28 +75,30 @@ To resolve the resulting scroll-related issue which occurs after the refresh, [r
             left: 0,
             top: 0
           };
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core";
               dataSource = new kendo.data.DataSource({
                 transport: {
                   read:  {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
+                    url: crudServiceBaseUrl + "/Products"
                   },
                   update: {
                     url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
+                    type: "POST",
+                    contentType: "application/json"
                   },
                   destroy: {
                     url: crudServiceBaseUrl + "/Products/Destroy",
-                    dataType: "jsonp"
+                    type: "POST",
+                    contentType: "application/json"
                   },
                   create: {
                     url: crudServiceBaseUrl + "/Products/Create",
-                    dataType: "jsonp"
+                    type: "POST",
+                    contentType: "application/json"
                   },
                   parameterMap: function(options, operation) {
                     if (operation !== "read" && options.models) {
-                      return {models: kendo.stringify(options.models)};
+                      return kendo.stringify(options.models);
                     }
                   }
                 },

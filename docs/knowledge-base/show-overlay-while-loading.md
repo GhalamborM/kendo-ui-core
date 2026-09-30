@@ -5,9 +5,9 @@ description: "Learn how to show a loading indicator while the data of a Kendo UI
 previous_url: /controls/charts/how-to/show-overlay-while-loading, /controls/charts/how-to/appearance/show-overlay-while-loading
 slug: howto_showoverlaywhileloading_charts
 tags: chart, show, overlay, while, loading
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -39,9 +39,9 @@ Sometimes the loading of my Chart takes longer time than the user expects. How c
 
 For such scenarios, you can configure the Kendo UI Chart to show the progress of the process.
 
-The following example demonstrates how to display a loading indicator while the data of a Kendo UI Chart is loading. The loading indicator is cleared in the [`render`](/api/javascript/dataviz/ui/chart/events/render) event.
+The following example demonstrates how to display a loading indicator while the data of a Kendo UI Chart is loading. The loading indicator is cleared in the [`render`](/api/dataviz/ui/chart/events/render) event.
 
-> For Kendo UI versions prior to 2014.3.1119, replace it with the [`dataBound`](/api/javascript/dataviz/ui/chart/events/databound) event.
+> For Kendo UI versions prior to 2014.3.1119, replace it with the [`dataBound`](/api/dataviz/ui/chart/events/databound) event.
 
 ```dojo
     <div class="chart-wrap" style="position: relative;">
@@ -87,8 +87,8 @@ The following example demonstrates how to display a loading indicator while the 
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})

@@ -1,13 +1,13 @@
 ---
 title: Change the Column Names inside the Column Menu of the Grid
-description: An example on how to change the names of the columns inside the column menu of the Kendo UI Grid.
+description: Learn how to change the names of the columns inside the column menu of the Kendo UI Grid.
 type: how-to
-page_title: Alternate Column Names in Column Menu | Kendo UI Grid for jQuery
+page_title: Alternate Column Names in Column Menu - Kendo UI for jQuery Data Grid
 slug: grid-column-menu-change-text
 tags: grid, columnmenu, columns
 ticketid: 1135439
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1026 version</td>
  </tr>
 </table>
@@ -29,7 +29,7 @@ How can I change the names of the columns inside the column menu in the Grid?
 
 ## Solution
 
-1. In the [`columnMenuInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/columnmenuinit) event handler, get the list of the column names.
+1. In the [`columnMenuInit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/columnmenuinit) event handler, get the list of the column names.
 1. For each element, [`find`](https://api.jquery.com/find/) the inner `span`.
 1. Assign the new text value to the `textContent` of the [`lastChild`](https://developer.mozilla.org/en-US/docs/Web/API/Node/lastChild) element of the `span`.
 

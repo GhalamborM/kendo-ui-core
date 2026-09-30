@@ -1,12 +1,13 @@
 ---
-title: Show validation summary in Grid popup
-description: An example on how to show a validation summary in grid popup template instead of tooltips.
+title: Showing a Validation Summary in a Grid Popup
+description: An example on how to show a validation summary in a Grid popup template instead of tooltips when working with the {{ site.product }} Grid
 type: how-to
-page_title: Show validation errors summary in Grid editable popup
+page_title: Show Validation Errors Summary in an Editable Grid Popup
 slug: grid-popup-editing-show-validation-summary
 tags: grid, popup, editing, validation, tooltip, summary, list, instead, remove
 ticketid: 1411276
 res_type: kb
+components: ["general"]
 component: grid
 ---
 
@@ -15,80 +16,103 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Telerik® UI for ASP.NET MVC</td>
+  <td>{{ site.product }} Grid</td>
  </tr>
  <tr>
   <td>Created with Product Version</td>
-  <td>2019.1.220</td>
+  <td>2024.2.514</td>
  </tr>
 </table>
 
 ## Description
 
-I want to display the validation summary instead of tooltips in the grid popup edit template.
+How can I display the validation summary instead of tooltips in the Grid's Popup edit template?
 
 ## Solution
 
-The Kendo UI Grid with popup editing uses the Kendo UI Validator which is designed to show the errors as tooltips:
+The {{ site.product }} Grid configured for Popup editing uses a Validator that shows the error messages as tooltips:
 
-![{{ site.product_short }} image](images/edit-popup-validation.png)
+![{{ site.product_short }} Grid popup validation](images/edit-popup-validation.png)
 
-You can create a validation summary with a few lines of JavaScript.
+You can show a validation summary with a few lines of JavaScript.
 
-1. Override the `errorTemplate` of the editable internal widget which holds the validator
-1. Add an `Edit()` event handler and bind to the validate event of the validator
-1. Generate the Validation summary and append it to a predefined HTML element in your popup template
+1. Handle the [`Edit`](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/grideventbuilder#editsystemstring) event of the Grid.
+1. Get a reference to the [Kendo UI Validator](https://docs.telerik.com/kendo-ui/controls/validator/overview) and update its options by using the [`setOptions()`](https://docs.telerik.com/kendo-ui/api/ui/validator/methods/setoptions) method.
 
-```Index.cshtml
-    .Events(e => e.Edit("addValidationSummary"))
+```HtmlHelper
+    @(Html.Kendo().Grid <OrderViewModel>()
+        .Name("grid")
+        .Events(e => e.Edit("addValidationSummary"))
+        ...
+    )
+```
+{% if site.core %}
+```TagHelper
+    @addTagHelper *, Kendo.Mvc
+
+    <kendo-grid name="grid" on-edit="addValidationSummary">
+        <!-- Other configuration -->
+    </kendo-grid>
+```
+{% endif %}
+```JS scripts
     <script>
-        kendo.ui.Editable.fn.options.errorTemplate = "<span style='color:red;'>*</span>";
-
         function addValidationSummary(e) {
             var validator = e.container.data("kendoValidator");
-            validator.bind("validate", function (e) {
-                var errors = this.errors();
-                if (errors.length) {
-                    var html = "<ul>";
-                    for (var i = 0; i < errors.length; i++) {
-                        html += "<li>" + errors[i] + "</li>";
-                    }
-                    html += "</ul>";
-                    $("#errors").html($(html));
-                }
+            validator.setOptions({
+                errorTemplate: "", // Remove the "errorTemplate". This way, the tooltip will not show.
+                validationSummary: true // Enable the validation summary option.
             });
         }
     </script>
 ```
-```MyCustomPopup.cshtml
-    @model ProjectName.Models.Order
-    @using Kendo.Mvc.UI
-    <div id="errors" style="color:red;"></div>
-        <fieldset>
-            <legend>Order</legend>
-            @Html.HiddenFor(model => model.Id)
-            <div class="editor-label">
-                @Html.LabelFor(model => model.OrderDate)
-            </div>
-            <div class="editor-field">
-                @Html.Kendo().DatePickerFor(model => model.OrderDate)
-                @Html.ValidationMessageFor(model => model.OrderDate)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.CreatedBy)
-            </div>
-            <div class="editor-field">
-                @Html.Kendo().TextBoxFor(model => model.CreatedBy)
-                @Html.ValidationMessageFor(model => model.CreatedBy)
-            </div>
-        </fieldset>
+
+As a result, the error messages will be displayed as a list above the editors:
+
+![{{ site.product_short }} Grid popup validation summary](images/edit-popup-validation-summary.png)
+
+To keep the tooltips, as well, do not reset the "errorTemplate" option:
+
+```JS scripts
+    <script>
+        function addValidationSummary(e) {
+            var validator = e.container.data("kendoValidator");
+            validator.setOptions({
+                validationSummary: true
+            });
+        }
+    </script>
 ```
 
-This is the result:
+For more information on validation, refer to the following articles:
 
-![{{ site.product_short }} image](images/edit-popup-validation-summary.png)
+* [Show Server Validation Errors in a Grid Edit Popup]({% slug grid-popup-editing-show-server-validation-errors %})
+* [Validation in {{ site.product }}](https://docs.telerik.com/{{ site.platform }}/getting-started/helper-basics/validation)
+
+## More {{ site.framework }} Grid Resources
+
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+
+{% if site.core %}
+* [{{ site.framework }} DataGrid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
 
 ## See Also
 
-* [Show server validation errors in grid edit popup]({% slug grid-popup-editing-show-server-validation-errors %})
-* [MVC Validation](https://docs.telerik.com/aspnet-mvc/getting-started/helper-basics/validation)
+* [Client-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

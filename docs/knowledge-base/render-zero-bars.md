@@ -5,9 +5,9 @@ description: "Learn how to render an element for the bars with a zero value with
 previous_url: /controls/charts/how-to/render-zero-bars, /controls/charts/how-to/appearance/render-zero-bars
 slug: howto_renderzerobars_charts
 tags: chart, render, element, zero, chart, bars
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -39,7 +39,7 @@ How can I render bars with a zero value in the Chart?
 
 By default, these are not rendered because they have a zero size.
 
-To overwrite this limitation, refer to the following example. It demonstrates how to use the [`series.visual`](/api/javascript/dataviz/ui/chart/configuration/series.visual) function to render an element for zero bars.
+To overwrite this limitation, refer to the following example. It demonstrates how to use the [`series.visual`](/api/dataviz/ui/chart/configuration/series#seriesvisual) function to render an element for zero bars.
 
 ```dojo
     <div id="chart"></div>
@@ -79,8 +79,8 @@ To overwrite this limitation, refer to the following example. It demonstrates ho
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})

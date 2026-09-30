@@ -2,12 +2,13 @@
 title: Add Records from External Form
 description: How to Add Items from External Form
 type: how-to
-page_title: How to Add Items from External Form | Kendo UI Grid for jQuery
+page_title: How to Add Items from External Form - Kendo UI for jQuery Data Grid
 slug: grid-add-records-from-external-form
 position: 
 tags: 
 ticketid: 
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
 	<tbody>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -23,9 +24,11 @@ res_type: kb
 
 ## Description
 
-This sample demonstrates how you add a new record using an external input element.
+This sample demonstrates how to add a new record to the Grid using an external input element.
 
 ## Solution
+
+Place the Grid and a custom form in separate TabStrip tabs. In the form's submit handler, call the DataSource `add` method with the input value, then navigate to the last page to make the new record visible.
 
 ```dojo
   

@@ -2,6 +2,7 @@
 title: Filtering
 page_title: Filtering
 description: "Learn how the data filtering in the Telerik UI AutoComplete component for {{ site.framework }} works."
+components: ["autocomplete"]
 slug: htmlhelpers_autocomplete_filtering_aspnetcore
 position: 5
 ---
@@ -12,14 +13,14 @@ The {{ site.framework }} AutoComplete provides options for filtering its data an
 
 ## Server Filtering
 
-When using Server Filtering a reduced portion of the whole dataset is returned from the server. Displaying a subset of the whole data is useful when working with large datasets that contain thousands of records. In such cases, you can improve performance and loading times by defining a minimum filter length by using the [MinLength](/api/Kendo.Mvc.UI.Fluent/DropDownListBuilder#minlengthsystemdouble) option. For example, if you set MinLength to 3, the {{ site.product_short }} AutoComplete will not send a request to the remote endpoint and start filtering the dataset until the user enters at least three characters.
+When using Server Filtering a reduced portion of the whole dataset is returned from the server. Displaying a subset of the whole data is useful when working with large datasets that contain thousands of records. In such cases, you can improve performance and loading times by defining a minimum filter length by using the [MinLength](/api/kendo.mvc.ui.fluent/dropdownlistbuilder#minlengthsystemdouble) option. For example, if you set MinLength to 3, the {{ site.product_short }} AutoComplete will not send a request to the remote endpoint and start filtering the dataset until the user enters at least three characters.
 
 > When you apply server filtering, only the source of the AutoComplete is filtered. To page and filter the dataset, use the [virtualization]({% slug htmlhelpers_dropdownlist_virtualization_aspnetcore %}) feature.
 
 To configure the {{ site.product_short }} AutoComplete for Server Filtering:
 
 1. Set the `ServerFiltering` option of the DataSource component to `true`.
-1. Set the [`Filter`](/api/Kendo.Mvc.UI.Fluent/DropDownListBuilder#filterkendomvcuifiltertype) property of the AutoComplete.
+1. Set the [`Filter`](/api/kendo.mvc.ui.fluent/dropdownlistbuilder#filterkendomvcuifiltertype) property of the AutoComplete.
 
 The following example demonstrates how to configure AutoComplete for Server Filtering.
 
@@ -53,7 +54,7 @@ The following example demonstrates how to configure AutoComplete for Server Filt
 </kendo-autocomplete>
 ```
 {% endif %}
-```script
+```JS script
     <script>
         function onAdditionalData() {
             return {
@@ -122,7 +123,7 @@ For smaller sets of data, the {{ site.product_short }} AutoComplete also support
 {% endif %}
 ```Controller
     public JsonResult ServerFiltering_GetProducts()
-    {с
+    {
         using (var northwind = GetContext())
         {
             var products = northwind.Products.Select(product => new ProductViewModel

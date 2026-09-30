@@ -1,12 +1,13 @@
 ---
 title: Overview
 page_title: Sparkline Overview
-description: "Learn the basics when working with the Telerik UI Sparkline component for {{ site.framework }}."
+description: "The Telerik UI Sparkline component for {{ site.framework }} provides a compact chart component without the typical elements."
+components: ["sparkline"]
 slug: overview_sparklineshelper_aspnetcore
-position: 1
+position: 0
 ---
 
-# Sparkline Overview
+# {{ site.framework }} Sparkline Overview
 
 The Telerik UI Sparkline TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI Sparkline widget.
 
@@ -45,13 +46,28 @@ To create the Sparklines, add the component tags to the view and provide it with
             .Data(ViewBag.TemperatureData)
     )
 ```
+{% if site.core %}
+```TagHelper
+    <kendo-sparkline name="temp-log"
+                     data="@ViewBag.TemperatureData"
+                     type="SparklineType.Column">
+        <tooltip format="{0} &deg;C"></tooltip>
+    </kendo-sparkline>
+```
+{% endif %}
 
 ## Functionality and Features
 
-* [Data binding]({% slug overview_sparklinesdatabinding_aspnetcore %})
-* [Axes configuration]({% slug axesconfig_sparklines_aspnetcore %})
+* [Data binding]({% slug overview_sparklinesdatabinding_aspnetcore %})&mdash;You can bind the chart directly to a database.
+* [Axes configuration]({% slug axesconfig_sparklines_aspnetcore %})&mdash;You can customize the configuration of the axes.
+{% if site.core %}
+* [Razor Pages binding]({% slug htmlhelper_sparkline_razorpages_aspnetcore %})
+{% endif %}
 
 ## See Also
 
 * [Basic Usage of the Sparkline HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/sparklines/index)
+{% if site.core %}
+* [Sparkline in Razor Pages]({% slug htmlhelper_sparkline_razorpages_aspnetcore %})
+{% endif %}
 * [Server-Side API](/api/sparkline)

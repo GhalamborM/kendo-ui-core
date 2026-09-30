@@ -1,12 +1,13 @@
 ---
 title: Make Screen Readers Read Date and Time of Appointment Slots
-description: An example on how to configure the Kendo UI Scheduler so that the screen readers announce both the date and time of the selected slot.
+description: Learn how to configure the Kendo UI Scheduler so that the screen readers announce both the date and time of the selected slot.
 type: how-to
-page_title: Announce Dates and Times in Appointment Slot | Kendo UI Scheduler for jQuery
+page_title: Announce Dates and Times in Appointment Slot - Kendo UI Scheduler for jQuery
 slug: scheduler-screen-readers-announce-date-and-time
 tags: kendo-ui, kendo, scheduler, screen-reader, slot
 ticketid: 1159317
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
     <tr>
         <td>Product</td>
-        <td>Scheduler for Progress® Kendo UI®</td>
+        <td>Progress® Kendo UI® Scheduler for jQuery</td>
     </tr>
 </table>
 
@@ -26,7 +27,7 @@ How can I generate the `aria-label` to make the screen readers announce both the
 
 ## Solution
 
-Modify the `aria-label` attribute of the currently selected Scheduler slot by handling the [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler/events/change) event of the Scheduler.
+Modify the `aria-label` attribute of the currently selected Scheduler slot by handling the [`change`](https://docs.telerik.com/kendo-ui/api/ui/scheduler/events/change) event of the Scheduler.
 
 ```js
 change: function(e) {
@@ -66,8 +67,8 @@ The following example demonstrates the implementation of the suggested approach.
         }
       },
       selectable: true,
-      date: new Date("2013/6/13"),
-      startTime: new Date("2013/6/13 07:00 AM"),
+      date: new Date("2025/6/13"),
+      startTime: new Date("2025/6/13 07:00 AM"),
       height: 600,
       views: [
         "day",
@@ -82,24 +83,26 @@ The following example demonstrates the implementation of the suggested approach.
         batch: true,
         transport: {
           read: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks",
-            dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks"
           },
           update: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-            dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks/update",
+              type: "POST",
+              contentType: "application/json"
           },
           create: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-            dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks/create",
+              type: "POST",
+              contentType: "application/json"
           },
           destroy: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-            dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+              type: "POST",
+              contentType: "application/json"
           },
           parameterMap: function(options, operation) {
             if (operation !== "read" && options.models) {
-              return {models: kendo.stringify(options.models)};
+              return kendo.stringify(options.models);
             }
           }
         },
@@ -130,4 +133,4 @@ The following example demonstrates the implementation of the suggested approach.
 
 ## See Also
 
-* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler)
+* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/ui/scheduler)

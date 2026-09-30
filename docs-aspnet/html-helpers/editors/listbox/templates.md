@@ -2,6 +2,7 @@
 title: Item Templates
 page_title: Item Templates
 description: "Get started with the {{ site.product }} ListBox and learn how to customize its item templates."
+components: ["listbox"]
 previous_url: /helpers/editors/listbox/templates
 slug: htmlhelpers_listbox_templates_aspnetcore
 position: 3
@@ -9,7 +10,7 @@ position: 3
 
 # Item Templates
 
-The ListBox provides templates for its items that are passed as а function or string.
+The ListBox provides templates for its items that are passed as a function or string.
 
 ```HtmlHelper
     @(Html.Kendo().ListBox()
@@ -87,8 +88,95 @@ The ListBox provides templates for its items that are passed as а function or s
             <draggable enabled="true" placeholder="customPlaceholder"/>
     </kendo-listbox>
 ```
+```C# IndexController.cs
+    public class ListBoxController : Controller
+    {
+        private IProductService productService;
+
+        public ListBoxController(
+            IProductService service)
+        {
+            productService = service;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult GetCustomers()
+        {
+            var customers = Enumerable.Empty<CustomerViewModel>();
+
+            using (var northwind = GetContext())
+            {
+                customers = northwind.Customers.Select(customer => new CustomerViewModel
+                {
+                    CustomerID = customer.CustomerID,
+                    CompanyName = customer.CompanyName,
+                    ContactName = customer.ContactName,
+                    ContactTitle = customer.ContactTitle,
+                    Address = customer.Address,
+                    City = customer.City,
+                    Region = customer.Region,
+                    PostalCode = customer.PostalCode,
+                    Country = customer.Country,
+                    Phone = customer.Phone,
+                    Fax = customer.Fax,
+                    Bool = customer.Bool
+                }).ToList();
+            }
+
+            return Json(customers);
+        }
+    }
+```
+{% else %}
+```C# IndexController.cs
+    public class ListBoxController : Controller
+    {
+        private IProductService productService;
+
+        public ListBoxController(
+            IProductService service)
+        {
+            productService = service;
+        }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult GetCustomers()
+        {
+            var customers = Enumerable.Empty<CustomerViewModel>();
+
+            using (var northwind = GetContext())
+            {
+                customers = northwind.Customers.Select(customer => new CustomerViewModel
+                {
+                    CustomerID = customer.CustomerID,
+                    CompanyName = customer.CompanyName,
+                    ContactName = customer.ContactName,
+                    ContactTitle = customer.ContactTitle,
+                    Address = customer.Address,
+                    City = customer.City,
+                    Region = customer.Region,
+                    PostalCode = customer.PostalCode,
+                    Country = customer.Country,
+                    Phone = customer.Phone,
+                    Fax = customer.Fax,
+                    Bool = customer.Bool
+                }).ToList();
+            }
+
+            return Json(customers, JsonRequestBehavior.AllowGet);
+        }
+    }
+```
 {% endif %}
-``` scripts
+```JS scripts
     <script id="customer-item-template" type="text/x-kendo-template">
         <span class="k-state-default" style="background-image: url(@Url.Content("~/shared/web/Customers/")#:data.CustomerID#.jpg);"></span>
         <span class="k-state-default"><h3>#: data.ContactName #</h3><p>#: data.CompanyName #</p></span>
@@ -103,59 +191,7 @@ The ListBox provides templates for its items that are passed as а function or s
         }
     </script>
 ```
-``` IndexController.cs
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Kendo.Mvc.Examples.Models;
-    using Microsoft.AspNetCore.Mvc;
 
-    namespace Kendo.Mvc.Examples.Controllers
-    {
-        public partial class ListBoxController : BaseController
-        {
-            private IProductService productService;
-
-            public ListBoxController(
-                IProductService service)
-            {
-                productService = service;
-            }
-
-            [Demo]
-            public IActionResult Index()
-            {
-                return View();
-            }
-
-            public IActionResult GetCustomers()
-            {
-                var customers = Enumerable.Empty<CustomerViewModel>();
-
-                using (var northwind = GetContext())
-                {
-                    customers = northwind.Customers.Select(customer => new CustomerViewModel
-                    {
-                        CustomerID = customer.CustomerID,
-                        CompanyName = customer.CompanyName,
-                        ContactName = customer.ContactName,
-                        ContactTitle = customer.ContactTitle,
-                        Address = customer.Address,
-                        City = customer.City,
-                        Region = customer.Region,
-                        PostalCode = customer.PostalCode,
-                        Country = customer.Country,
-                        Phone = customer.Phone,
-                        Fax = customer.Fax,
-                        Bool = customer.Bool
-                    }).ToList();
-                }
-
-                return Json(customers);
-            }
-        }
-    }
-```
 
 ## See Also
 

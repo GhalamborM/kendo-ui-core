@@ -1,12 +1,12 @@
 ---
 title: Implement Calculated Columns with Batch Editing in Grids
-description: An example on how to implement a calculated column in a Kendo UI Grid for jQuery with enabled Batch (InCell) editing.
+description: Learn how to implement a calculated column in a Kendo UI Grid for jQuery with enabled Batch (InCell) editing.
 type: how-to
-page_title: Implement Calculated Columns from Multiple Fields in a Grid with the Batch Edit Mode Enabled | Kendo UI Grid for jQuery
+page_title: Implement Calculated Columns from Multiple Fields in a Grid with the Batch Edit Mode Enabled - Kendo UI for jQuery Data Grid
 slug: grid-calculated-column-with-batch-editing
 tags: grid, batch, incell, calculated
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
 </table>
 
@@ -42,32 +42,33 @@ To change the calculated value dynamically:
 
     <script>
     	$(document).ready(function () {
-    		var crudServiceBaseUrl = "//demos.telerik.com/kendo-ui/service",
-                dataSource = new kendo.data.DataSource({
-                	transport: {
-                        		read: {
-                        			url: crudServiceBaseUrl + "/Products",
-                        			dataType: "jsonp"
-                        		},
-                        		update: {
-                        			url: crudServiceBaseUrl + "/Products/Update",
-                        			dataType: "jsonp"
-                        		},
-                        		destroy: {
-                        			url: crudServiceBaseUrl + "/Products/Destroy",
-                        			dataType: "jsonp"
-                        		},
-                        		create: {
-                        			url: crudServiceBaseUrl + "/Products/Create",
-                        			dataType: "jsonp"
-                        		},
-                        		parameterMap: function (options, operation) {
-                        			if (operation !== "read" && options.models) {
-                        				return { models: kendo.stringify(options.models) };
-                        			}
-                        		}
-                        	},
-                        	batch: true,
+    		var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+				dataSource = new kendo.data.DataSource({
+							transport: {
+								read:  {
+									url: crudServiceBaseUrl + "/Products"
+								},
+								update: {
+									url: crudServiceBaseUrl + "/Products/Update",
+									type: "POST",
+									contentType: "application/json"
+								},
+								destroy: {
+									url: crudServiceBaseUrl + "/Products/Destroy",
+									type: "POST",
+									contentType: "application/json"
+								},
+								create: {
+									url: crudServiceBaseUrl + "/Products/Create",
+									type: "POST",
+									contentType: "application/json"
+								},
+								parameterMap: function(options, operation) {
+									if (operation !== "read" && options.models) {
+										return kendo.stringify(options.models);
+									}
+								}
+							},
                         	pageSize: 20,
                         	schema: {
                         		model: {

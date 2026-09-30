@@ -2,6 +2,7 @@
 title: RGB and HEX Formats
 page_title: RGB and HEX Formats
 description: "Learn more about the input formats of the Telerik UI ColorGradient component for {{ site.framework }}."
+components: ["colorgradient"]
 slug: htmlhelpers_rgb_hex_formats_colorgradient
 position: 2
 ---
@@ -46,4 +47,4 @@ The ColorGradient supports both RGB and HEX input formats. You can be specify th
 
 * [RGB and HEX formats of the ColorGradient (Demo)](https://demos.telerik.com/{{ site.platform }}/colorgradient/rgb-hex)
 * [Server-Side API](/api/colorgradient)
-* [Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/colorgradient)
+* [Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/colorgradient)

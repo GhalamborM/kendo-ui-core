@@ -1,13 +1,13 @@
 ---
 title: Hide the Vertical Scrollbar
-page_title:  Hide the Vertical Scrollbar | Kendo UI Grid for jQuery
-description: "An example on how to hide the vertical scrollbar when you do not need it in the Kendo UI Grid for jQuery."
+page_title:  Hide the Vertical Scrollbar - Kendo UI for jQuery Data Grid
+description: "Learn how to hide the vertical scrollbar when you do not need it in the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/Layout/hide-scrollbar-when-not-needed
 slug: howto_hide_vertical_scrollbar_grid
 tags: grid, hide, vertical, scrollbar, when, not, needed
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -68,9 +68,9 @@ $(function () {
 
     $("#grid").kendoGrid({
         dataSource: {
-            type: "odata",
+            type: "odata-v4",
             transport: {
-                read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
             },
             schema: {
                 model: {
@@ -118,4 +118,4 @@ $(function () {
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

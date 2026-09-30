@@ -1,12 +1,13 @@
 ---
 title: Use DropDownList as Boolean Filter in Grid
-description: An example on how to use a DropDownList to filter a Boolean column.
+description: Learn how to use a DropDownList to filter a Boolean column.
 type: how-to
-page_title: Filter Boolean Grid Column with DropDownList | Kendo UI Grid for jQuery
+page_title: Filter Boolean Grid Column with DropDownList - Kendo UI for jQuery Data Grid
 slug: grid-boolean-dropdownlist-filter
 tags: grid, boolean, filter, template, dropdownlist
 ticketid: 1403934
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Grid</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td> 
 	</tr>
 </table>
 
@@ -54,7 +55,7 @@ When you initialize a DropDownList widget in the filtering UI, the column will n
           }
     ```
 
-1. Use the [`filterMenuInit`](/api/javascript/ui/grid/events/filtermenuinit) event of the Grid to replace the default filter label with more appropriate text.
+1. Use the [`filterMenuInit`](/api/ui/grid/events/filtermenuinit) event of the Grid to replace the default filter label with more appropriate text.
 
     ```
           function onFilterMenuInit(e){
@@ -65,7 +66,7 @@ When you initialize a DropDownList widget in the filtering UI, the column will n
           }
     ```
 
-1. Use the [`filter`](/api/javascript/ui/grid/events/filter) event of the Grid to replace the string value in the generated filter expression with its Boolean equivalent.
+1. Use the [`filter`](/api/ui/grid/events/filter) event of the Grid to replace the string value in the generated filter expression with its Boolean equivalent.
 
     ```
           function onFilter(e){
@@ -91,8 +92,7 @@ The following example demonstrates the full implementation of the suggested appr
           dataSource: {
             transport: {
               read:  {
-                url: "https://demos.telerik.com/kendo-ui/service/Products",
-                dataType: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/Products"
               }
             },
             schema: {

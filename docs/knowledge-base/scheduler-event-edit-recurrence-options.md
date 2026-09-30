@@ -7,13 +7,14 @@ slug: scheduler-event-edit-recurrence-options
 tags: scheduler, event, edit, recurrence, custom, settings
 ticketid: 1470383
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler for jQuery</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -141,5 +142,5 @@ Prior to Kendo UI 2020 R3, the Scheduler RecurrenceEditor used a DropDownList. R
 
 ## See Also
 
-* [JavaScript API Reference of the Scheduler](/api/javascript/ui/scheduler)
+* [JavaScript API Reference of the Scheduler](/api/ui/scheduler)
 * [JavaScript API Reference of the ButtonGroup](api/javascript/ui/buttongroup)

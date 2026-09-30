@@ -7,7 +7,7 @@ slug: chart-cannot-pan-and-zoom-continuously-on-mobile
 tags: chart, mobile, svg-rendering
 ticketid: 1129220
 res_type: kb
-component: charts
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: charts
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -33,7 +33,7 @@ The Chart re-renders its SVG elements when the pan and zoom actions are executed
 
 ## Suggested Workarounds
 
-Kendo UI does not provide a built-in solution for avoiding this behavior. However, you can still work around the issue by using [canvas rendering](/api/javascript/dataviz/ui/chart/configuration/renderas) which does not re-render the Chart element on refreshing the page.
+Kendo UI does not provide a built-in solution for avoiding this behavior. However, you can still work around the issue by using [canvas rendering](/api/dataviz/ui/chart/configuration/renderas) which does not re-render the Chart element on refreshing the page.
 
 ```dojo
     <div id="chart"></div>

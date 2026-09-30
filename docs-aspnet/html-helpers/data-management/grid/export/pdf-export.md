@@ -2,13 +2,14 @@
 title: PDF Export
 page_title: PDF Export
 description: "Export the Telerik UI Grid for {{ site.framework }} to PDF."
+components: ["grid"]
 slug: pdfexport_gridhelper_aspnetcore
 position: 3
 ---
 {% if site.core %}
-    {% assign pdfbuilder = "GridPdfSettingsBuilder" %}
+    {% assign pdfbuilder = "gridpdfsettingsbuilder" %}
 {% else %}
-    {% assign pdfbuilder = "PDFSettingsBuilder" %}
+    {% assign pdfbuilder = "pdfsettingsbuilder" %}
 {% endif %}
 
 # PDF Export
@@ -30,11 +31,13 @@ With regard to its PDF export, the Grid enables you to:
 To enable PDF export:
 
 1. Include the corresponding toolbar command and set the export settings.
-    * [Toolbar configuration](/api/Kendo.Mvc.UI.Fluent/GridToolBarCommandFactory#pdf)
-    * [PDF export configuration](/api/Kendo.Mvc.UI.Fluent/{{ pdfbuilder }})
+    * [Toolbar configuration](/api/kendo.mvc.ui.fluent/gridtoolbarcommandfactory#pdf)
+    * [PDF export configuration](/api/kendo.mvc.ui.fluent/{{ pdfbuilder }})
 1. Include the Pako Deflate library in the page to enable compression.
 
-To initiate PDF export, press the **Toolbar** button or use the [Grid client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid) and call the [`saveAsPdf`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/saveaspdf) method.
+> Starting with v2023.3.1115 the Pako library is no longer distributed with the rest of the Kendo UI for jQuery scripts. You must use one of the official distribution channels such as `unpkg` instead.
+
+To initiate PDF export, press the **Toolbar** button or use the [Grid client-side API](https://docs.telerik.com/kendo-ui/api/ui/grid) and call the [`saveAsPdf`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/saveaspdf) method.
 
 > * By default, the Grid exports the current page of the data with sorting, filtering, grouping, and aggregates applied.
 > * The Grid uses the current column order, visibility, and dimensions to generate the PDF file.
@@ -43,7 +46,7 @@ The following example demonstrates how to enable the PDF export functionality of
 
 ```HtmlHelper
     <!-- Load Pako Deflate library to enable PDF compression -->
-    <script src="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/pako_deflate.min.js"></script>
+    <script src="https://unpkg.com/pako/dist/pako_deflate.min.js"></script>
     @(Html.Kendo().Grid<.ProductViewModel>()
         .Name("grid")
         .ToolBar(tools => tools.Pdf())
@@ -59,7 +62,7 @@ The following example demonstrates how to enable the PDF export functionality of
 {% if site.core %}
 ```TagHelper
     <!-- Load Pako Deflate library to enable PDF compression -->
-    <script src="https://kendo.cdn.telerik.com/2022.1.301/js/pako_deflate.min.js"></script>
+    <script src="https://unpkg.com/pako/dist/pako_deflate.min.js"></script>
 
     <kendo-grid name="grid">
         <toolbar>
@@ -77,7 +80,7 @@ The following example demonstrates how to enable the PDF export functionality of
 
 ## Exporting All Pages
 
-By default, the Grid exports only the current page of data. To export all pages, use the [`AllPages()`](/api/Kendo.Mvc.UI.Fluent/{{ pdfbuilder }}#allpagessystemboolean) method.
+By default, the Grid exports only the current page of data. To export all pages, use the [`AllPages()`](/api/kendo.mvc.ui.fluent/{{ pdfbuilder }}#allpagessystemboolean) method.
 
 > When the `AllPages()` method is used with and server paging (Ajax binding default), the Grid will make a `"read"` request for all data. If the data items are too many, the browser may become unresponsive. In such cases, use server-side export.
 
@@ -157,80 +160,67 @@ You can specify a paper size that will be applied to the whole document. The con
 
 ## Specifying Page Templates
 
-The Grid allows you to specify a page [`TemplateId`](/api/Kendo.Mvc.UI.Fluent/{{ pdfbuilder }}#templateidsystemstring) and use the template to position the content, add headers, footers, and other elements. The styling of the exported document is done by using CSS. During the PDF export, the template is positioned in a container with the specified paper size.
+The Grid allows you to specify a page [`TemplateId`](/api/kendo.mvc.ui.fluent/{{ pdfbuilder }}#templateidsystemstring) and use the template to position the content, add headers, footers, and other elements. The styling of the exported document is done by using CSS. During the PDF export, the template is positioned in a container with the specified paper size.
 
 > To use a page template, you have to set the paper size.
 
 The Grid supports the following page template variables:
-* `pageNumber`
-* `totalPages`
 
-    ```HtmlHelper
-        <style>
-            body {
-                font-family: "DejaVu Serif";
-                font-size: 12px;
-            }
+* `pageNum`&mdash;Specifies the current page number.
+* `totalPages`&mdash;Specifies the total number of pages.
 
-            .page-template {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-            }
-
-            .page-template .header {
-                position: absolute;
-                top: 30px;
-                left: 30px;
-                right: 30px;
-
-                border-bottom: 1px solid #888;
-
-                text-align: center;
-                font-size: 18px;
-            }
-
-            .page-template .footer {
-                position: absolute;
-                bottom: 30px;
-                left: 30px;
-                right: 30px;
-            }
-        </style>
-
-        <script type="x/kendo-template" id="page-template">
-            <div class="page-template">
-                <div class="header">
-                    Acme Inc.
-                </div>
-                <div class="footer">
-                    <div style="float: right">Page #: pageNum # of #: totalPages #</div>
-                </div>
+```JS Template
+    <script type="x/kendo-template" id="page-template">
+        <div class="page-template">
+            <div class="header">
+                Acme Inc.
             </div>
-        </script>
-
-        @(Html.Kendo().Grid<.ProductViewModel>()
-            .Name("grid")
-            .ToolBar(tools => tools.Pdf())
-            .Pdf(pdf => pdf
-                .AllPages()
-                .PaperSize("A4")
-                .Margin("2cm", "1cm", "1cm", "1cm")
-                .Landscape()
-                .RepeatHeaders()
-                .Scale(0.75)
-                .TemplateId("page-template")
-            )
-            .DataSource(dataSource => dataSource
-                .Ajax()
-                .Read(read => read.Action("Products_Read", "Home"))
-            )
+            <div class="footer">
+                <div style="float: right">Page #: pageNum # of #: totalPages #</div>
+            </div>
+        </div>
+    </script>
+```
+```HtmlHelper
+    @(Html.Kendo().Grid<.ProductViewModel>()
+        .Name("grid")
+        .ToolBar(tools => tools.Pdf())
+        .Pdf(pdf => pdf
+            .AllPages()
+            .PaperSize("A4")
+            .Margin("2cm", "1cm", "1cm", "1cm")
+            .Landscape()
+            .RepeatHeaders()
+            .Scale(0.75)
+            .TemplateId("page-template")
         )
-    ```
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Read(read => read.Action("Products_Read", "Home"))
+        )
+    )
+```
 {% if site.core %}
 ```TagHelper
+    <kendo-grid name="grid">
+        <toolbar>
+            <toolbar-button name="pdf"></toolbar-button>
+        </toolbar>
+        <pdf all-pages="true" landscape="true" paper-size="A4" scale="0.75" 
+            repeat-headers="true"
+            template-id="page-template">
+            <grid-pdf-margin top="2" right="1" bottom="1" left="1"  />
+        </pdf>
+        <datasource type="DataSourceTagHelperType.Ajax">
+            <transport>
+                <read url="@Url.Action("Products_Read","Home")" />
+            </transport>
+        </datasource>
+    </kendo-grid>
+```
+{% endif %}
+
+```CSS Styles
     <style>
         body {
             font-family: "DejaVu Serif";
@@ -259,38 +249,11 @@ The Grid supports the following page template variables:
             right: 30px;
         }
     </style>
-
-    <script type="x/kendo-template" id="page-template">
-        <div class="page-template">
-            <div class="header">
-                Acme Inc.
-            </div>
-            <div class="footer">
-                <div style="float: right">Page #: pageNum # of #: totalPages #</div>
-            </div>
-        </div>
-    </script>
-    <kendo-grid name="grid">
-        <toolbar>
-            <toolbar-button name="pdf"></toolbar-button>
-        </toolbar>
-        <pdf all-pages="true" landscape="true" paper-size="A4" scale="0.75" 
-            repeat-headers="true"
-            template-id="page-template">
-            <grid-pdf-margin top="2" right="1" bottom="1" left="1"  />
-        </pdf>
-        <datasource type="DataSourceTagHelperType.Ajax">
-            <transport>
-                <read url="@Url.Action("Products_Read","Home")" />
-            </transport>
-        </datasource>
-    </kendo-grid>
 ```
-{% endif %}
 
 ## Using Server Proxy
 
-Internet Explorer 9 and Safari do not support the option for saving a file and require the implementation of a [server proxy](https://docs.telerik.com/kendo-ui/framework/saving-files). To specify the server proxy URL, use the [`ProxyURL()`](/api/Kendo.Mvc.UI.Fluent/{{ pdfbuilder }}#proxyurlsystemstring) method.
+Internet Explorer 9 and Safari do not support the option for saving a file and require the implementation of a [server proxy](https://docs.telerik.com/kendo-ui/framework/saving-files). To specify the server proxy URL, use the [`ProxyURL()`](/api/kendo.mvc.ui.fluent/{{ pdfbuilder }}#proxyurlsystemstring) method.
 
 ```HtmlHelper
     @(Html.Kendo().Grid<.ProductViewModel>()
@@ -360,7 +323,7 @@ To send the generated file to a remote service, use the `ProxyURL()` and `ForceP
     </kendo-grid>
 ```
 {% endif %}
-```SampleProxy
+```C# SampleProxy
     [HttpPost]
     public ActionResult Pdf_Export_Save(string contentType, string base64, string fileName)
     {
@@ -392,15 +355,15 @@ The following example demonstrates how to handle custom fonts.
         // NOTE: Only required if the Kendo UI stylesheets are loaded
         // from a different origin, for example, kendo.cdn.telerik.com.
         kendo.pdf.defineFont({
-            "DejaVu Sans"             : "https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}    /styles/fonts/DejaVu/DejaVuSans.ttf",
-            "DejaVu Sans|Bold"        : "https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}    /styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
-            "DejaVu Sans|Bold|Italic" : "https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}    /styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
-            "DejaVu Sans|Italic"      : "https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}    /styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
+            "DejaVu Sans"             : "https://kendo.cdn.telerik.com/2022.3.1109/styles/fonts/DejaVu/DejaVuSans.ttf",
+            "DejaVu Sans|Bold"        : "https://kendo.cdn.telerik.com/2022.3.1109/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
+            "DejaVu Sans|Bold|Italic" : "https://kendo.cdn.telerik.com/2022.3.1109/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+            "DejaVu Sans|Italic"      : "https://kendo.cdn.telerik.com/2022.3.1109/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
         });
     </script>
 
     <!-- Load Pako ZLIB library to enable PDF compression -->
-    <script src="//kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/pako_deflate.min.js"></script>
+    <script src="https://unpkg.com/pako/dist/pako_deflate.min.js"></script>
 
     @(Html.Kendo().Grid<.ProductViewModel>()
         .Name("grid")
@@ -432,15 +395,15 @@ The following example demonstrates how to handle custom fonts.
         // NOTE: Only required if the Kendo UI stylesheets are loaded
         // from a different origin, for example, kendo.cdn.telerik.com.
         kendo.pdf.defineFont({
-            "DejaVu Sans"             : "https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}    /styles/fonts/DejaVu/DejaVuSans.ttf",
-            "DejaVu Sans|Bold"        : "https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}    /styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
-            "DejaVu Sans|Bold|Italic" : "https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}    /styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
-            "DejaVu Sans|Italic"      : "https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}    /styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
+            "DejaVu Sans"             : "https://kendo.cdn.telerik.com/2022.3.1109/styles/fonts/DejaVu/DejaVuSans.ttf",
+            "DejaVu Sans|Bold"        : "https://kendo.cdn.telerik.com/2022.3.1109/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
+            "DejaVu Sans|Bold|Italic" : "https://kendo.cdn.telerik.com/2022.3.1109/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+            "DejaVu Sans|Italic"      : "https://kendo.cdn.telerik.com/2022.3.1109/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
         });
     </script>
 
     <!-- Load Pako ZLIB library to enable PDF compression -->
-    <script src="//kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/pako_deflate.min.js"></script>
+    <script src="https://unpkg.com/pako/dist/pako_deflate.min.js"></script>
 
     <kendo-grid name="grid">
         <toolbar>
@@ -458,7 +421,7 @@ The following example demonstrates how to handle custom fonts.
 
 ## Exclude Column From Exporting
 
-In some scenarios, you might want to hide given column or multiple columns from being exported. This can be achieved using the [Exportable](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.exportable) setting.
+In some scenarios, you might want to hide given column or multiple columns from being exported. This can be achieved using the [Exportable](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns.exportable) setting.
 
 ```HtmlHelper
 columns.Bound(p => p.ProductName).Exportable(false);
@@ -491,6 +454,7 @@ It is also important to understand the difference between .Hidden() and .Visible
 
 ## Known Limitations
 
+* During export, the Grid initializes a new instance of its DataSource based on the original configuration. This triggers an additional `read` request to fetch the data, regardless of whether the [`AllPages`](#exporting-all-pages) option is enabled or disabled. The behavior ensures that the export process does not alter the state of the original DataSource.
 * All [known limitations](https://docs.telerik.com/kendo-ui/framework/drawing/limitations-browser-support) of the Kendo UI for jQuery HTML Drawing module apply.
 * Exporting a hierarchical Grid is not supported.
 * PDF export is not supported when the Grid has a locked (frozen) column enabled. If the algorithm decides to move a node to the next page, all DOM nodes that follow it will be also moved although there might be enough space for part of them on the current page.
@@ -505,6 +469,9 @@ It is also important to understand the difference between .Hidden() and .Visible
 
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
 * [Server-Side API](/api/grid)
 * [Rendering and Dimensions of the Grid component for {{ site.framework }}]({% slug width_grid_aspnetcore %})
 * [Adaptive Rendering of the Grid component for {{ site.framework }}]({% slug adaptive_rendering_gridhelper_aspnetcore %})

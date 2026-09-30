@@ -1,7 +1,8 @@
 ---
 title: Installing with Bower
-page_title: Installing with Bower | Download and Installation 
+page_title: Installing with Bower - Download and Installation 
 description: "Get started with Kendo UI for jQuery and install the commercial or the open-source Kendo UI distributions by using the Bower package manager."
+components: ["general"]
 previous_url: /install/bower, /intro/installation/overview-download
 slug: kendoui_bower_packages_kendoui_installation
 position: 30
@@ -17,15 +18,23 @@ Kendo UI for jQuery maintains the [commercial Kendo UI for jQuery (Kendo UI Prof
 
 All official releases, service packs, and internal builds are uploaded to both distribution packages.
 
+> As of R3 2023 Kendo UI bundles does not include the jQuery library in their `js` directories and you should install the jQuery bower package `bower install jquery` or use other source for the jQuery library.
+
 ### Commercial Distribution on Bower
 
-> The commercial Kendo UI Bower package is available only for commercial license holders. For more information, refer to the [list of the Kendo UI components and their bundle support]({% slug welcometo_kendoui %}#list-of-widgets).
+> The commercial Kendo UI Bower package is available only for commercial license holders. For more information, refer to the [list of the Kendo UI components and their bundle support]({% slug welcometo_kendoui %}#list-of-components).
 
 The commercial distribution package is available as a private GitHub repository. To access its content, active your subscription for Kendo UI for jQuery or DevCraft. Bower prompts you to enter your username and password during the installation and update processes. 
 
 During the installation of the Bower package, you may be requested to confirm your credentials more than once. For more information, refer to the Knowledge Base article on [how to store your username and password]({% slug troubleshoot_bower_storing_credentials %}).
 
-To install the commercial distribution package, run the `bower install https://bower.telerik.com/bower-kendo-ui.git` command. 
+To install the commercial distribution package, run the following command:
+
+```
+bower install https://bower.telerik.com/bower-kendo-ui.git --config.shallowCloneHosts="bower.telerik.com"
+```
+
+We recommend specifying **shallowCloneHosts** config key on bower install as enabling the bower shallow cloning speed up the download tremendously. 
 
 To check the available commercial distribution versions of the package, run the `bower info kendo-ui --verbose` command.
 
@@ -59,15 +68,15 @@ Once the scripts and styles are available in your project directory, you can use
     <title>Kendo UI with Bower</title>
 
     <link rel="stylesheet" href="bower_components\kendo-ui\styles\kendo.default-main.min.css">
-    <script src="bower_components\kendo-ui\js\jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="bower_components\jquery\dist\jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="bower_components\kendo-ui\js\kendo.all.min.js" type="text/javascript" charset="utf-8"></script>
   </head>
 </html>
 ```
 
-## 3. Add the HTML Element for Widget Initialization
+## 3. Add the HTML Element for Component Initialization
 
-Depending on the widget you require, you can initialize the Kendo UI controls from different elements. In this step, you will add a new `input` element from which a Kendo UI DropDownList will be created. 
+Depending on the component you require, you can initialize the Kendo UI controls from different elements. In this step, you will add a new `input` element from which a Kendo UI DropDownList will be created. 
 
 ```html
 <!DOCTYPE html>
@@ -77,7 +86,7 @@ Depending on the widget you require, you can initialize the Kendo UI controls fr
       <title>Kendo UI with Bower</title>
 
       <link rel="stylesheet" href="bower_components\kendo-ui\styles\kendo.default-main.min.css">
-      <script src="bower_components\kendo-ui\js\jquery.min.js" type="text/javascript" charset="utf-8"></script>
+      <script src="bower_components\jquery\dist\jquery.min.js" type="text/javascript" charset="utf-8"></script>
       <script src="bower_components\kendo-ui\js\kendo.all.min.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
@@ -86,7 +95,7 @@ Depending on the widget you require, you can initialize the Kendo UI controls fr
 </html>
 ```
 
-## 4. Initialize and Configure the Widget
+## 4. Initialize and Configure the Component
 
 The following example demonstrates how to initialize a DropDownList with some basic configuration.
 
@@ -98,7 +107,7 @@ The following example demonstrates how to initialize a DropDownList with some ba
       <title>Kendo UI with Bower</title>
 
       <link rel="stylesheet" href="bower_components\kendo-ui\styles\kendo.default-main.min.css">      
-      <script src="bower_components\kendo-ui\js\jquery.min.js" type="text/javascript" charset="utf-8"></script>
+      <script src="bower_components\jquery\dist\jquery.min.js" type="text/javascript" charset="utf-8"></script>
       <script src="bower_components\kendo-ui\js\kendo.all.min.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
@@ -121,15 +130,14 @@ The following example demonstrates how to initialize a DropDownList with some ba
 ## Next Steps
 
 * [Create Your Own Custom Bundles]({% slug include_only_what_you_need_kendoui_scripts %})
-* [The Widget DOM Element Structure]({% slug widgetwrapperandelement_references_gettingstarted %})
-* [Initialize Widgets as jQuery Plugins]({% slug initialize_widgets_using_jquery_plugins_installation %})
-* [Initialize Widgets with MVVM]({% slug mvvm_initialization_kendoui %})
+* [The Component DOM Element Structure]({% slug widgetwrapperandelement_references_gettingstarted %})
+* [Initialize Components as jQuery Plugins]({% slug initialize_widgets_using_jquery_plugins_installation %})
+* [Initialize Components with MVVM]({% slug mvvm_initialization_kendoui %})
 * [jQuery Version Support]({% slug jquerysupport_kendoui %})
 * [Web Browser Support]({% slug wbe_browserand_operating_system_support %})
 * [Operation System Support]({% slug ossupport_kendo %})
 * [PDF and Excel Export Support]({% slug export_support_kendoui %})
-* [Widget Script Dependencies]({% slug script_filesfor_barcodes_widgets %})
-* [Create Your Own Custom Widgets]({% slug createcustomkendouiwidgets_gettingstarted %})
+* [Create Your Own Custom Components]({% slug createcustomkendouiwidgets_gettingstarted %})
 
 ## See Also
 
@@ -141,4 +149,4 @@ The following example demonstrates how to initialize a DropDownList with some ba
 * [Installing Kendo UI with NPM]({% slug kendoui_npm_packages_kendoui_installation %})
 * [Installing Kendo UI with NuGet]({% slug kendoui_nuget_packages %})
 * [Getting Up and Running with Your Kendo UI Project (Guide)]({% slug getting_started_installation_kendoui %})
-* [Using Script License Code]({% slug using-license-code %})
+* [Licensing Overview]({% slug licensing-overview %})

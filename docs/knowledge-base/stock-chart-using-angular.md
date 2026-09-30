@@ -5,9 +5,9 @@ description: "Learn how to create a Kendo UI Stock Chart by using AngularJS."
 previous_url: /controls/charts/stockchart/how-to/stock-chart-using-angular, /controls/charts/how-to/various/stock-chart-using-angular
 slug: howto_createstockcharts_angularjs
 tags: chart, customize, themes
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -30,6 +30,8 @@ res_type: kb
   <td>JavaScript</td>
  </tr>
 </table>
+
+> Starting with R2 2022, the Kendo UI team officially drops the support for AngularJS 1.x through Kendo UI for jQuery. The AngularJS related files and functionality are removed from the bundles and distribution in R3 SP1 2023. The last version that contains the files is R3 2023.
 
 ## Description
 
@@ -41,7 +43,12 @@ The following example demonstrates how to create Kendo UI Stock Charts by using 
 
 > To run the example separately and resolve any CORS-related issues, use the **Open in Dojo** link.
 
+> The example loads Kendo UI 2023.3.1010 version.
+
 ```dojo
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/angular.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2023.3.1010/js/kendo.all.min.js"></script>
+
 <div id="example" ng-app="MyApp" ng-controller="MyCtrl">
   <div class="demo-section k-content">
     <div kendo-stock-chart k-data-source="dataSource"       
@@ -163,8 +170,8 @@ The following example demonstrates how to create Kendo UI Stock Charts by using 
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Create Dynamic Plot Bands]({% slug howto_createdynamicplotbands_charts %})
-* [How to Create Timeline Using Range Bars]({% slug howto_createtimeline_usingrangebars_charts %})
-* [How to Customize Chart Themes]({% slug howto_customizechartthemes_charts %})
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Create Dynamic Plot Bands]({% slug howto_createdynamicplotbands_charts %})
+* [Create Timeline Using Range Bars]({% slug howto_createtimeline_usingrangebars_charts %})
+* [Customize Chart Themes]({% slug howto_customizechartthemes_charts %})

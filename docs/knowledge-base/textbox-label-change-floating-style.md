@@ -1,12 +1,13 @@
 ---
-title: Change label style in TextBox 
-description: An example on how change the style of a textbox before and after floating of its label.
+title: Change the Label Style in the TextBox
+description: Learn how change the style of a textbox before and after floating of its label.
 type: how-to
-page_title: Change lable style before and after float | Kendo UI TextBox for jQuery
+page_title: Change the Lable Style before and after TextBox Float - Kendo UI TextBox for jQuery
 slug: textbox-label-change-floating-style
 tags: textbox, floating, style, before, after, empty, filled
 ticketid: 1498326
 res_type: kb
+components: ["textbox"]
 ---
 
 ## Environment
@@ -33,18 +34,18 @@ To achieve the desired behaviour, we will need both some JavaScript and CSS beca
 1. Add the style for the textbox when it is not focused but it is floating
 1. In the `change` event of the textbox, check if there is a value and toggle the style as required
 
-```
+```html
     <style>
         .k-floating-label-container {
           width: 100%;          
         }
-        
+
         .k-floating-label-container:not(.k-focus) {
           color: red; font-style: italic;
         }       
     </style>
 ```
-```
+```javascript
     change: function(e){
         if(this.value()){
             $(".k-floating-label-container").css({color: "black", fontStyle:"normal"});
@@ -85,15 +86,15 @@ To achieve the desired behaviour, we will need both some JavaScript and CSS beca
         .k-floating-label-container {
           width: 100%;          
         }
-        
+
         .k-floating-label-container:not(.k-focus) {
           color: red; font-style: italic;
         }
-       
+
       </style>
     </div>
 ```
 
 ## See Also
 
-* [API Reference of the change Event](/api/javascript/ui/textbox/events/change)
+* [API Reference of the change Event](/api/ui/textbox/events/change)

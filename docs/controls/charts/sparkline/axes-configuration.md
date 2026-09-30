@@ -1,14 +1,15 @@
 ---
 title: Axes Configuration
-page_title: jQuery Sparkline Charts Documentation | Axes Configuration
+page_title: jQuery Sparkline Charts Documentation - Axes Configuration
 description: "Get started with the jQuery Sparkline by Kendo UI and learn how to configure their axes."
+components: ["sparkline","chart"]
 slug: axes_kendoui_sparklinescharts
 position: 3
 ---
 
 # Axes Configuration
 
-The Sparkline widget is a categorical (discrete) chart and has an implicit category and a value axis.
+The Sparkline component is a categorical (discrete) chart and has an implicit category and a value axis.
 
 The axis orientation (horizontal or vertical) is inferred from the series type.
 
@@ -93,7 +94,7 @@ To determine a default base, use the smallest duration between categories.
 
 #### Manual Configuration
 
-You can also manually specify the [`baseUnit`](/api/javascript/dataviz/ui/chart/configuration/categoryaxis.baseunit).
+You can also manually specify the [`baseUnit`](/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxisbaseunit).
 
 The following options are valid:
 
@@ -107,7 +108,7 @@ The following options are valid:
 
 If two or more categories fall within a base unit, its values are aggregated to display a single point.
 
-  span id="sparkline"></span>
+    <span id="sparkline"></span>
     <script>
     $("#sparkline").kendoSparkline({
         series: [{
@@ -128,7 +129,7 @@ If two or more categories fall within a base unit, its values are aggregated to 
 
 The code from the previous example results in the following Sparkline chart. Note that values are displayed as are.
 
-![Sparkline with a date category axis](sparkline-category-date-axis.png)
+![Kendo UI for jQuery Sparkline with a date category axis](sparkline-category-date-axis.png)
 
 The following example demonstrates the Sparkline with its base unit changed to `"years"`.
 
@@ -145,7 +146,7 @@ The following example demonstrates the Sparkline with its base unit changed to `
 
 The following example demonstrates a Sparkline with a grouped date category axis. Note the way the Sparkline displays the maximum value for each year.
 
-![Sparkline with a grouped date category axis](sparkline-category-date-axis-grouped.png)
+![Kendo UI for jQuery Sparkline with a grouped date category axis](sparkline-category-date-axis-grouped.png)
 
 You can also change the aggregate function for each series.
 
@@ -210,4 +211,4 @@ You can configure each axis to display bands with different colors for predefine
 ## See Also
 
 * [Basic Usage of the Sparkline (Demo)](https://demos.telerik.com/kendo-ui/sparklines/index)
-* [JavaScript API Reference of the Sparkline](/api/javascript/dataviz/ui/sparkline)
+* [JavaScript API Reference of the Sparkline](/api/dataviz/ui/sparkline)

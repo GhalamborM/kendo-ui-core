@@ -1,7 +1,8 @@
 ---
 title: Visible
-page_title: Visible Binding | Kendo UI MVVM
+page_title: Visible Binding - Kendo UI MVVM
 description: "Learn how to hide or make visible the target DOM element or widget in correspondence with the View-model value by using the visible binding in Kendo UI MVVM."
+components: ["mvvm"]
 slug: visiblebinding_mvvm_kendoui
 ---
 

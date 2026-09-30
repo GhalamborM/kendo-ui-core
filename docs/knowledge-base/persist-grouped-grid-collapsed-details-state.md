@@ -1,13 +1,13 @@
 ---
 title: Persist Collapsed State of Grouped Records
-page_title: Persist Collapsed State | Kendo UI Grid for jQuery
-description: "An example on how to create persist the collapsed state of grouped records in the Kendo UI Grid for jQuery."
+page_title: Persist Collapsed State - Kendo UI for jQuery Data Grid
+description: "Learn how to create persist the collapsed state of grouped records in the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/persist-grouped-grid-collapsed-details-state, /controls/data-management/grid/how-to/state/persist-grouped-grid-collapsed-details-state
 slug: howto_persist_collapsed_stateof_grouped_records_grid
 tags: persist, collapsed, state, grid, grouped, records, data, items
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -37,7 +37,7 @@ How can I persist the collapsed state of grouped records in the Kendo UI Grid fo
 
 ## Solution
 
-The following example demonstrates how to persist the collapsed state of grouped records in a Grid. The approach utilizes the [collapseGroup](/api/javascript/ui/grid/methods/collapsegroup) method of the Grid.
+The following example demonstrates how to persist the collapsed state of grouped records in a Grid. The approach utilizes the [collapseGroup](/api/ui/grid/methods/collapsegroup) method of the Grid.
 
 ```dojo
       <button class="k-button" onclick="refreshGrid()">Refresh Grid</button>
@@ -48,8 +48,7 @@ The following example demonstrates how to persist the collapsed state of grouped
           dataSource = new kendo.data.DataSource({
             transport: {
               read:  {
-                url: "https://demos.telerik.com/kendo-ui/service/Products",
-                dataType: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/Products"
               }
             },
             pageSize: 20,
@@ -92,7 +91,7 @@ The following example demonstrates how to persist the collapsed state of grouped
 
       $(function () {
         var grid = $("#grid").data("kendoGrid");
-        grid.table.on("click", ".k-grouping-row .k-i-collapse, .k-grouping-row .k-i-expand", function (e) {
+        grid.table.on("click", ".k-grouping-row .k-svg-i-chevron-down, .k-grouping-row .k-svg-i-chevron-right", function (e) {
           var row = $(this).closest("tr"),
               groupKey = rowGroupKey(row, grid);
 
@@ -138,4 +137,4 @@ The following example demonstrates how to persist the collapsed state of grouped
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

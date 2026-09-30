@@ -2,6 +2,7 @@
 title: Templates
 page_title: Templates
 description: "Use templates and customize the rendering of the tasks of the Telerik UI Gantt component for {{ site.framework }}."
+components: ["gantt"]
 slug: htmlhelpers_gantt_templates_aspnetcore
 position: 6
 ---
@@ -58,5 +59,5 @@ For more information on the capabilities and syntax of the templates, refer to t
 ## See Also
 
 * [Task Templates in the Gantt HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/gantt/task-template)
-* [Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/gantt)
+* [Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/gantt)
 * [Server-Side API](/api/gantt)

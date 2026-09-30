@@ -5,9 +5,9 @@ description: "Learn how to aggregate data in Kendo UI Pie Charts."
 previous_url: /controls/charts/how-to/pie-chart-aggregates, /controls/charts/how-to/various/pie-chart-aggregates
 slug: howto_aggregatedata_piecharts
 tags: chart, aggregate, pie, data
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I aggregate Pie Chart data and override the sort order of the Chart cate
 
 ## Solution
 
-The following example demonstrates how to achieve this behavior by using the [dataSource aggregates](/api/javascript/data/datasource/configuration/aggregate).
+The following example demonstrates how to achieve this behavior by using the [dataSource aggregates](/api/data/datasource/configuration/aggregate).
 
 ```dojo
     <div id="piechart"></div>
@@ -105,8 +105,8 @@ The following example demonstrates how to achieve this behavior by using the [da
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
-* [How to Fit PDF Exported Chart to Page]({% slug howto_fitpdfexportedcharttopage_charts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Fit PDF Exported Chart to Page]({% slug howto_fitpdfexportedcharttopage_charts %})

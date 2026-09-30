@@ -1,13 +1,13 @@
 ---
 title: Filter Grid by Using the MultiSelect
-description: An example on how to customize the kendo UI Grid filter and use the Kendo UI MultiSelect widget.
+description: Learn how to customize the kendo UI Grid filter and use the Kendo UI MultiSelect widget.
 type: how-to
-page_title: Filter the Grid with the MultiSelect Widget | Kendo UI Grid for jQuery
+page_title: Filter the Grid with the MultiSelect Widget - Kendo UI for jQuery Data Grid
 slug: filter-grid-with-multi-select-widget
 tags: kendo ui, mvc, grid, multi, select, filter, custom,
 ticketid: 1129339
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-   <td>Progress Kendo UI version</td>
+   <td>Product Version</td>
    <td>Created with version 2017.3.913</td>
   </tr>
 </table>
@@ -48,9 +48,8 @@ How can I apply multiple filters in a Grid for a single field with the Kendo UI 
                   }
                 },
                 dataSource: {
-                  type: "odata",
                   transport: {
-                    read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                    read: "https://demos.telerik.com/service/v2/core/Customers"
                   },
                   pageSize: 20
                 },
@@ -65,7 +64,7 @@ How can I apply multiple filters in a Grid for a single field with the Kendo UI 
                 },
                 columns: [{
                   template: "<div class='customer-photo'" +
-                  "style='background-image: url(../content/web/Customers/#:data.CustomerID#.jpg);'></div>" +
+                  "style='background-image: url(https://demos.telerik.com/kendo-ui/content/web/Customers/#:data.CustomerID#.jpg);'></div>" +
                   "<div class='customer-name'>#: ContactName #</div>",
                   field: "ContactName",
                   title: "Contact Name",

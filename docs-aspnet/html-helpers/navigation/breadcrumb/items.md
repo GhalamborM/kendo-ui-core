@@ -2,6 +2,7 @@
 title: Items
 page_title: Items
 description: "Learn how to configure the items of the widget."
+components: ["breadcrumb"]
 slug: htmlhelpers_breadcrumb_aspnetcore_items
 position: 2
 ---
@@ -25,7 +26,7 @@ The following example demonstrates how the attributes of the Breadcrumb items ca
                 .Icon("home")
                 .ShowIcon(true)
                 .ItemClass("root")
-                .IconClass("root")
+                .IconClass("home")
                 .LinkClass("root");
             items.Add()
                 .Type(BreadcrumbItemType.Item)

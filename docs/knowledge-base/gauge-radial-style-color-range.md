@@ -1,12 +1,13 @@
 ---
 title: Configure the Colors of RadialGauge Ranges
-description: An example on how to change the styles of the Kendo UI RadialGauge range.
+description: Learn how to change the styles of the Kendo UI RadialGauge range.
 type: how-to
-page_title: Customize the Range Colors | Kendo UI Radial Gauge for jQuery
+page_title: Customize the Range Colors - Kendo UI Radial Gauge for jQuery
 slug: gauge-radial-style-color-range
 tags: gauge, radial, style, color, range
 ticketid: 1110105
 res_type: kb
+components: ["radialgauge"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Radial Gauge for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® RadialGauge for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -28,8 +29,8 @@ How can I configure the colors and range of the Kendo UI RadialGauge?
 
 ## Solution
 
-1. Determine the ranges by using the [`scale.ranges`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/radialgauge/configuration/scale.ranges) property of the RadialGauge.
-1. [Adjust the colors](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/radialgauge/configuration/scale.ranges#scale.ranges.color) for each range.
+1. Determine the ranges by using the [`scale.ranges`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/radialgauge/configuration/scale#scaleranges) property of the RadialGauge.
+1. [Adjust the colors](https://docs.telerik.com/kendo-ui/api/dataviz/ui/radialgauge/configuration/scale#scaleranges#scale.ranges.color) for each range.
 
 ```
           $("#gauge").kendoRadialGauge({
@@ -112,5 +113,5 @@ The following example demonstrates how to set the RadialGauge to display a serie
 ## See Also
 
 * [Scale Options Demo of the Kendo UI RadialGauge](https://demos.telerik.com/kendo-ui/radial-gauge/scale-options)
-* [API Reference of scale.ranges](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/radialgauge/configuration/scale.ranges)
-* [API Reference of scale.ranges.color](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/radialgauge/configuration/scale.ranges#scale.ranges.color)
+* [API Reference of scale.ranges](https://docs.telerik.com/kendo-ui/api/dataviz/ui/radialgauge/configuration/scale#scaleranges)
+* [API Reference of scale.ranges.color](https://docs.telerik.com/kendo-ui/api/dataviz/ui/radialgauge/configuration/scale#scaleranges#scale.ranges.color)

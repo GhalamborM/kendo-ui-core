@@ -5,9 +5,9 @@ description: "Learn how to dynamically calculate the height of the Kendo UI for 
 previous_url: /controls/scheduling/scheduler/how-to/dynamic-calc-of-height-in-mobile, /controls/scheduling/scheduler/how-to/appearance/dynamic-calc-of-height-in-mobile
 slug: howto_calculate_scheduler_height_dunamically_onmobile_scheduler
 tags: telerik, kendo, jquery, scheduler, calculate, height, dynamically, on, mobile 
-component: scheduler
 type: how-to
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler for jQuery</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -39,7 +39,7 @@ How can I dynamically calculate the height of the Kendo UI for jQuery Scheduler 
 
 The following example demonstrates how to achieve the desired scenario.
 
-```dojo
+```
 <div data-init="initLoginView" data-role="view" id="login"  data-stretch="true">
 <header data-role="header">
   <div data-role="navbar">
@@ -71,26 +71,28 @@ The following example demonstrates how to achieve the desired scenario.
           timezone: "Etc/UTC",
           dataSource: {
               batch: true,
-              transport: {
+              transport: {                  
                   read: {
-                      url: "https://demos.telerik.com/kendo-ui/service/tasks",
-                      dataType: "jsonp"
+                      url: "https://demos.telerik.com/service/v2/core/tasks"
                   },
                   update: {
-                      url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-                      dataType: "jsonp"
+                      url: "https://demos.telerik.com/service/v2/core/tasks/update",
+                      type: "POST",
+                      contentType: "application/json"
                   },
                   create: {
-                      url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-                      dataType: "jsonp"
+                      url: "https://demos.telerik.com/service/v2/core/tasks/create",
+                      type: "POST",
+                      contentType: "application/json"
                   },
                   destroy: {
-                      url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-                      dataType: "jsonp"
+                      url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+                      type: "POST",
+                      contentType: "application/json"
                   },
                   parameterMap: function(options, operation) {
                       if (operation !== "read" && options.models) {
-                          return {models: kendo.stringify(options.models)};
+                          return kendo.stringify(options.models);
                       }
                   }
               },
@@ -153,4 +155,4 @@ The following example demonstrates how to achieve the desired scenario.
 
 * [Basic Usage of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/index)
 * [Using the API of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/api)
-* [JavaScript API Reference of the Scheduler](/api/javascript/ui/scheduler)
+* [JavaScript API Reference of the Scheduler](/api/ui/scheduler)

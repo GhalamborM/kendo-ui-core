@@ -2,6 +2,7 @@
 title: Grid
 page_title: Grid Integration
 description: "Learn how to reorder Grid items when using the Telerik UI Sortable component for {{ site.framework }}."
+components: ["sortable"]
 slug: sortable_aspnetcore_integration_grid
 position: 1
 ---
@@ -14,7 +15,7 @@ You can use the [Telerik UI Sortable component for {{ site.framework }}](https:/
 
 * [Overview of the Telerik UI Sortable component for {{ site.framework }}]({% slug htmlhelpers_sortable_aspnetcore %})
 * [Overview of the Telerik UI Grid component for {{ site.framework }}]({% slug htmlhelpers_grid_aspnetcore_overview %})
-* [DataSource client-side API](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource#methods)
+* [DataSource client-side API](https://docs.telerik.com/kendo-ui/api/data/datasource#methods)
 
 ## Reordering of Sortable Items
 
@@ -22,7 +23,7 @@ The Sortable reorders the HTML DOM elements. It does not automatically update th
 
 ## Reordering of Grid Table Rows
 
-To reorder the table rows of the Grid, initialize the Sortable on the [`table` element](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/fields/table) of the Grid. Normally, the `filter` property of the Sortable selects all `tr` elements that are direct children of the table `tbody` element, for example, `filter: ">tbody >tr"`.
+To reorder the table rows of the Grid, initialize the Sortable on the [`table` element](https://docs.telerik.com/kendo-ui/api/ui/grid/fields/table) of the Grid. Normally, the `filter` property of the Sortable selects all `tr` elements that are direct children of the table `tbody` element, for example, `filter: ">tbody >tr"`.
 
 ## Setting the Hint in the Grid
 
@@ -142,7 +143,7 @@ If the editing functionality of the Grid is enabled, use a more specific filter 
 
 If the Grid is configured to display details, use a selector that matches only the master Grid rows, for example, `filter: ">tbody >tr.k-master-row"`. In this way, the detail rows will not be draggable.
 
-For more information on the Sortable events, refer to the [JavaScript API article on Sortable events](/api/sortable#eventssystemactionkendomvcuifluentsortableeventbuilder) and the [demo on integrating the Sortable and the Grid](https://demos.telerik.com/{{ site.platform }}/sortable/integration-grid).
+For more information on the Sortable events, refer to the [JavaScript API article on Sortable events](/api/kendo.mvc.ui.fluent/sortableeventbuilder) and the [demo on integrating the Sortable and the Grid](https://demos.telerik.com/{{ site.platform }}/sortable/integration-grid).
 
 The editing functionality of the Telerik UI Grid for {{ site.framework }} is rendered through its [inline](https://demos.telerik.com/{{ site.platform }}/grid/editing-inline), [popup](https://demos.telerik.com/{{ site.platform }}/grid/editing-popup), and [batch](https://demos.telerik.com/{{ site.platform }}/grid/editing) edit modes. The inline and popup modes are more common and easier to implement than the batch edit mode.
 
@@ -150,7 +151,9 @@ The editing functionality of the Telerik UI Grid for {{ site.framework }} is ren
 
 If you use the inline or the popup edit mode, set a more specific filter which excludes the item that is currently in edit mode.
 
+```JS
     .filter(">tbody >tr:not(.k-grid-edit-row)")
+```
 
 ### Using Grids in Batch Edit Mode
 
@@ -166,6 +169,7 @@ The `change` event of the Sortable fires after a row position is changed. You ca
 
 The following example demonstrates how to shift the position of the items in the DataSource.
 
+```JS
     // The change event handler of the Sortable.
     function onChange(e) {
         var grid = e.sender.element.data("kendoGrid"),
@@ -192,9 +196,11 @@ The following example demonstrates how to shift the position of the items in the
 
         grid.dataSource.sync(); // Submit the changes through the update transport and refresh the Grid.
     }
+```
 
 The following example demonstrates how to send the `newIndex` and `oldIndex` to the server.
 
+```JS
     // The change event handler of the Sortable.
     function onChange(e) {
         var grid = e.sender.element.data("kendoGrid"),
@@ -215,12 +221,13 @@ The following example demonstrates how to send the `newIndex` and `oldIndex` to 
             }
         });
     }
+```
 
 ## Known Limitations
 
 * The Sortable does not work as expected with a Grid that has its paging or virtual scrolling enabled.
 
-  The Sortable operates with the existing DOM. It is not aware of the Grid or of its DataSource. If paging or virtual scrolling are enabled, the Grid will render only the elements which belong to the current page. As a result, the sorting will be limited to the current page only.
+  The Sortable operates with the existing DOM. The component is not aware of the Grid or of its DataSource. If paging or virtual scrolling are enabled, the Grid will render only the elements which belong to the current page. As a result, the sorting will be limited to the current page only.
 
 * The Sortable does not work as expected with a grouped Grid.
 

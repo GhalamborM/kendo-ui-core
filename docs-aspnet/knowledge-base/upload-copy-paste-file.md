@@ -1,11 +1,12 @@
 ---
 title: Copy and Paste Files in the Upload
 page_title: Copy and Paste Files in the Upload
-description: "Learn how to copy and paste a file into the Telerik UI for {{ site.framework }} Upload component."
+description: Learn how to copy and paste a file into the Telerik UI for {{ site.framework }} Upload component.
 slug: upload-copy-paste-file
 tags: telerik, upload, copy, paste, files
 component: upload
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -31,7 +32,7 @@ How can I copy and paste a file into the {{ site.product }} Upload?
 1. To paste a copied file, handle the `paste` event of the container.
 1. To insert the newly pasted file, use the `DataTransfer` object within the handler.
 
-```Index.cshtml
+```Razor Index.cshtml
     @(Html.Kendo().Upload()
         .Name("files")
         .Async(a => a
@@ -45,7 +46,7 @@ How can I copy and paste a file into the {{ site.product }} Upload?
         Paste Area
     </div>
 ```
-```Script.js
+```JS script.js
     <script>
         $(function(){
             $(".paste-area").on("paste", function(e){
@@ -70,3 +71,32 @@ How can I copy and paste a file into the {{ site.product }} Upload?
 ```
 
 For the complete implementation of the suggested approach, refer to the following [Telerik REPL](https://netcorerepl.telerik.com/mmOsQJlh07s1j6qK25) example.
+
+## More {{ site.framework }} Upload Resources
+
+* [{{ site.framework }} Upload Documentation]({%slug htmlhelpers_upload_aspnetcore%})
+
+* [{{ site.framework }} Upload Demos](https://demos.telerik.com/{{ site.platform }}/upload)
+
+{% if site.core %}
+* [{{ site.framework }} Upload Product Page](https://www.telerik.com/aspnet-core-ui/upload)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Upload Product Page](https://www.telerik.com/aspnet-mvc/upload)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Telerik REPL: Copy and Paste Files in the Upload](https://netcorerepl.telerik.com/mmOsQJlh07s1j6qK25)
+* [Client-Side API Reference of the Upload for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/upload)
+* [Server-Side API Reference of the Upload for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/upload)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

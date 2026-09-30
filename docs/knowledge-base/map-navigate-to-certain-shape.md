@@ -1,13 +1,13 @@
 ---
 title: Navigate to certain shape
-description: An example on how to programmatically navigate to certain shape of the Kendo UI Map.
+description: Learn how to programmatically navigate to certain shape of the Kendo UI Map.
 type: how-to
-page_title: Set Different Colors for Markers Based on Field Value | Kendo UI Map for jQuery
+page_title: Set Different Colors for Markers Based on Field Value - Kendo UI Map for jQuery
 slug: map-navigate-to-certain-shape
 tags: map, kendo, shape, ui, navigate, zoom, programmatically
 ticketid: 1140119
 res_type: kb
-component: map
+components: ["map"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: map
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Map</td>
+  <td>Progress® Kendo UI® Map for jQuery</td>
  </tr>
  <tr>
   <td>Progress Kendo UI</td>  
@@ -33,7 +33,7 @@ How can I navigate and zoom to shape object with an shape object reference?
 
 The Kendo UI Map does not provide a built-in solution for achieving this behavior. However, you can still achieve it with some code.
 
-Find the shape object from the data source of the map, then calculate the center of the shape using its coordinates and navigate to the center of the shape using the [center method](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/map/methods/center).
+Find the shape object from the data source of the map, then calculate the center of the shape using its coordinates and navigate to the center of the shape using the [center method](https://docs.telerik.com/kendo-ui/api/dataviz/ui/map/methods/center).
 
 
 The following example demonstrates the full implementation of the approach.

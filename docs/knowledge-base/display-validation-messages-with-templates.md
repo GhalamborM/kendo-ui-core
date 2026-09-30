@@ -5,9 +5,9 @@ description: "Learn how to display validation messages when the Kendo UI Upload 
 slug: howto_display_validation_messages_with_templates
 previous_url: /controls/editors/upload/how-to/display-validation-messages-with-templates
 tags: telerik, kendo, jquery, upload, display, validation, messages, using, templates
-component: upload
 type: how-to
 res_type: kb
+components: ["upload"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Upload for jQuery</td>
+  <td>Progress® Kendo UI® Upload for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -90,7 +90,7 @@ The following example demonstrates how to add a `span` element to the template. 
 
 ## See Also
 
-* [JavaScript API Reference of the Upload](/api/javascript/ui/upload)
+* [JavaScript API Reference of the Upload](/api/ui/upload)
 * [Modes of Operation]({% slug modes_upload_widget %})
 * [Metadata]({% slug metadata_upload_widget %})
 

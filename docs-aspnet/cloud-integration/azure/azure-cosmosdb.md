@@ -2,11 +2,12 @@
 title: Azure CosmosDB
 page_title: Azure CosmosDB
 description: "Learn how to create an Azure CosmosDB table, and perform CRUD operations with the Telerik UI for {{ site.framework }} Grid."
+components: ["general"]
 slug: azure_cosmosdb_aspnetcore
 position: 2
 ---
 
-# Azure CosmosDB
+# Using {{ site.product }} with Azure CosmosDB
 
 Microsoft's **Azure CosmosDB** is a fully managed service, providing a NoSQL database for application development.
 
@@ -25,7 +26,7 @@ Before you start using the Grid with CosmosDB, you will need:
 To set-up an application that uses Azure CosmosDB, follow [Microsoft's step-by-step tutorial](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-dotnet-application). Alternatively, you can directly clone the source code from the tutorial available on the [Azure Samples repository on GitHub](https://github.com/Azure-Samples/cosmos-dotnet-core-todo-app).
 
 Once you have an application prepared to use Azure CosmosDB and a Cosmos DB table as demonstrated in [the tutorial](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-dotnet-application), add the URI and account key to the `appsettings.json` of the application.
-```
+```JS appsettings.json
 {
   "Logging": {
     "LogLevel": {
@@ -40,7 +41,7 @@ Once you have an application prepared to use Azure CosmosDB and a Cosmos DB tabl
     "ContainerName": "Item"
   }
 }
-``` 
+```
 
 Refer to [this section of the MSDN documentation](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-dotnet-application#create-an-azure-cosmos-account) for more information on where to find the URI and account key.
 
@@ -49,7 +50,7 @@ Refer to [this section of the MSDN documentation](https://docs.microsoft.com/en-
 ## Adding {{site.product}} to the Application
 
 {% if site.core %}
-Follow the [guidelines for adding {{site.product}} to an existing application]({% slug gettingstarted_aspnetmvc6_aspnetmvc %}):
+Follow the [guidelines for adding {{site.product}} to an existing application]({% slug gettingstartedtelerik_aspnetcore %}):
 {% else %}
 Follow the [guidelines for adding {{site.product}} to an existing application]({% slug manualsetup_aspnetmvc %}):
 {% endif %}
@@ -95,7 +96,7 @@ Follow the [guidelines for adding {{site.product}} to an existing application]({
                 .Read(read => read.Action("Read", "Item").Data("forgeryToken"))
                 .Update(update => update.Action("Update", "Item").Data("forgeryToken"))
                 .Destroy(update => update.Action("Destroy", "Item").Data("forgeryToken"))
-            ) 
+            )
         )
 
         <script type="text/javascript">
@@ -120,7 +121,7 @@ Follow the [guidelines for adding {{site.product}} to an existing application]({
     ```
 
 1. Use the already defined service and create the server-side CRUD endpoints to consume it.
-    ```Controller
+    ```C# Controller
         public class ItemController : Controller
         {
             private readonly ICosmosDbService _cosmosDbService;
@@ -182,7 +183,7 @@ Follow the [guidelines for adding {{site.product}} to an existing application]({
             }
         }
     ```
-    ```Service
+    ```C# Service
         public class CosmosDbService : ICosmosDbService
         {
             private Container _container;
@@ -194,7 +195,7 @@ Follow the [guidelines for adding {{site.product}} to an existing application]({
             {
                 this._container = dbClient.GetContainer(databaseName, containerName);
             }
-            
+
             public async Task AddItemAsync(Item item)
             {
                 await this._container.CreateItemAsync<Item>(item, new PartitionKey(item.Id));
@@ -213,7 +214,7 @@ Follow the [guidelines for adding {{site.product}} to an existing application]({
                     return response.Resource;
                 }
                 catch(CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
-                { 
+                {
                     return null;
                 }
 
@@ -226,7 +227,7 @@ Follow the [guidelines for adding {{site.product}} to an existing application]({
                 while (query.HasMoreResults)
                 {
                     var response = await query.ReadNextAsync();
-                    
+
                     results.AddRange(response.ToList());
                 }
 

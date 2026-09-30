@@ -1,13 +1,13 @@
 ---
 title: Resize the Grid by Dragging and Apply the New Size
 page_title: Resize via Drag Handle | Kendo UI Grid for jQuery
-description: "An example on how to resize the widget via drag handle and apply the new size."
+description: "Learn how to resize the widget via drag handle and apply the new size."
 previous_url: /controls/data-management/grid/how-to/Layout/resize-grid-with-handle
 slug: howto_resize_by_dragging_and_apply_the_new_size_grid
 tags: resize, grid, via, drag, dragging, handle, apply, new, size
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -92,9 +92,9 @@ The handler will be shown only at the bottom-right corner of the Grid after hove
     $(function(){
         var options = {
             dataSource: {
-                type: "odata",
+                type: "odata-v4",
                 transport: {
-                    read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                    read: "https://demos.telerik.com/service/v2/odata/Orders"
                 },
                 schema: {
                     model: {
@@ -179,4 +179,4 @@ The handler will be shown only at the bottom-right corner of the Grid after hove
 
 ## See Also
 
-* [Kendo UI Grid JavaScript API Reference](/api/javascript/ui/grid)
+* [Kendo UI Grid JavaScript API Reference](/api/ui/grid)

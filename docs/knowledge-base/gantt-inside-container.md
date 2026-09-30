@@ -2,11 +2,12 @@
 title: Gantt for ASP.NET MVC Initialized in Container Does Not Render Properly
 description: I want to properly display the Telerik UI for ASP.NET MVC Gantt chart when it is placed in an initially hidden container.
 type: troubleshooting
-page_title: Gantt Inside Hidden Container Does Not Properly Render | Kendo UI Gantt for ASP.NET MVC
+page_title: Gantt Inside Hidden Container Does Not Properly Render - Kendo UI Gantt for ASP.NET MVC
 slug: gantt-inside-container
 tags: kendo, kendoui, gantt, hiden, container
 ticketid: 1144634
 res_type: kb
+components: ["gantt"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Telerik UI for ASP.NET MVC Gantt</td>
+  <td>Progress® Telerik® UI Gantt for ASP.NET MVC</td>
  </tr>
 </table>
 
@@ -37,7 +38,7 @@ The Gantt was initialized in a hidden (`display: none;`) container.
     .Deferred()
     )
     ```
-1. Initialize the widget on the first [`activate`](https://docs.telerik.com/kendo-ui/api/javascript/ui/panelbar/events/activate) event of the PanelBarItem that contains it.
+1. Initialize the widget on the first [`activate`](https://docs.telerik.com/kendo-ui/api/ui/panelbar/events/activate) event of the PanelBarItem that contains it.
 
     ```JavaScript
     function onActivate(e) {
@@ -53,4 +54,4 @@ The Gantt was initialized in a hidden (`display: none;`) container.
 
 ## See Also
 
-* [API Reference of the Gantt](https://docs.telerik.com/kendo-ui/api/javascript/ui/gantt)
+* [API Reference of the Gantt](https://docs.telerik.com/kendo-ui/api/ui/gantt)

@@ -1,13 +1,13 @@
 ---
 title: Cancel Gantt Task Move If the New Start and End Do Not Pass Server Validation
-description: An example on how to perform server validation on the Kendo UI Gantt task move and cancel the new start and end if it fails.
+description: Learn how to perform server validation on the Kendo UI Gantt task move and cancel the new start and end if it fails.
 type: how-to
-page_title: Save Moved Task Position Only After Server Validation | Kendo UI Gantt for jQuery
+page_title: Save Moved Task Position Only After Server Validation - Kendo UI Gantt for jQuery
 slug: gantt-cancel-task-move-if-server-check-fails
 tags: kendo, kendoui, gantt, validation, move-task, cancel-move
 ticketid: 1138180
 res_type: kb
-component: gantt
+components: ["gantt"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: gantt
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Gantt</td>
+  <td>Progress® Kendo UI® Gantt for jQuery</td>
  </tr>
 </table>
 
@@ -28,7 +28,7 @@ How can I call the validation an AJAX request and, if the validation fails, to k
 
 ## Solution
 
-Perform a custom check on the server in the [`moveEnd`](https://docs.telerik.com/kendo-ui/api/javascript/ui/gantt/events/moveend) event of the Gantt. As a result, the default change is prevented and if the validation passes, the new start and end dates are saved for that task.  
+Perform a custom check on the server in the [`moveEnd`](https://docs.telerik.com/kendo-ui/api/ui/gantt/events/moveend) event of the Gantt. As a result, the default change is prevented and if the validation passes, the new start and end dates are saved for that task.  
 
 ```dojo
 <div id="gantt"></div>
@@ -51,7 +51,7 @@ Perform a custom check on the server in the [`moveEnd`](https://docs.telerik.com
       var task = e.task;
       var start = e.start;
       var end = e.end;
-      $.get("https://demos.telerik.com/kendo-ui/service/GanttTasks", function(data) {
+      $.get("https://demos.telerik.com/service/v2/core/GanttTasks", function(data) {
         var randomNumber = Math.floor(Math.random() * 2) + 1;
 
         // If validation passes save the updated task
@@ -60,7 +60,7 @@ Perform a custom check on the server in the [`moveEnd`](https://docs.telerik.com
           task.set('end', end);
           gantt.dataSource.sync();
         }
-      }, "jsonp");
+      });
     }
   });
 </script>
@@ -68,4 +68,4 @@ Perform a custom check on the server in the [`moveEnd`](https://docs.telerik.com
 
 ## See Also
 
-* [API Reference of the Gantt](https://docs.telerik.com/kendo-ui/api/javascript/ui/gantt)
+* [API Reference of the Gantt](https://docs.telerik.com/kendo-ui/api/ui/gantt)

@@ -5,9 +5,9 @@ description: "Learn how to move the shapes of a Kendo UI Diagram by pressing the
 slug: howto_move_shapes_with_arrow_keys
 previous_url: /controls/diagrams-and-maps/diagram/how-to/move-shapes-on-key-press
 tags: kendo, jquery, diagram, move, shapes, with, arrow, keys
-component: diagram
 type: how-to
 res_type: kb
+components: ["diagram"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Diagram for jQuery</td>
+  <td>Progress® Kendo UI® Diagram for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -115,6 +115,6 @@ To achieve this behavior:
 ## See Also
 
 * [Basic Usage of the Diagram (Demo)](https://demos.telerik.com/kendo-ui/diagram/index)
-* [JavaScript API Reference of the Diagram](/api/javascript/dataviz/ui/diagram)
-* [How to Pan with Mouse Wheel]({% slug howto_pan_with_mouse_wheel %})
-* [How to Drag and Drop on Existing Shapes]({% slug howto_draganddrop_onshapes_diagram %})
+* [JavaScript API Reference of the Diagram](/api/dataviz/ui/diagram)
+* [Pan with Mouse Wheel]({% slug howto_pan_with_mouse_wheel %})
+* [Drag and Drop on Existing Shapes]({% slug howto_draganddrop_onshapes_diagram %})

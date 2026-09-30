@@ -1,7 +1,8 @@
 ---
 title: Error Bars
-page_title: jQuery Chart Documentation | Error Bars
+page_title: jQuery Chart Documentation - Error Bars
 description: "Get started with the jQuery Chart by Kendo UI and learn how to configure its error bars."
+components: ["chart"]
 previous_url: /controls/charts/error-bars
 slug: errorbars_charts_widget
 ---
@@ -226,4 +227,4 @@ The following example demonstrates how to use different percentages for the low 
 ## See Also
 
 * [Using the API of the Chart (Demo)](https://demos.telerik.com/kendo-ui/chart-api/index)
-* [JavaScript API Reference of the Chart](/api/javascript/dataviz/ui/chart)
+* [JavaScript API Reference of the Chart](/api/dataviz/ui/chart)

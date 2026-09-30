@@ -1,79 +1,78 @@
 ---
 title:  Razor Pages
-page_title: Configure a Telerik UI DateRangePicker in Razor Pages.
-description: "An example on how to configure a DateRangePicker with a default value in Razor Pages."
+page_title: Razor Pages
+description: "Telerik UI DateRangePicker for {{ site.framework }} in a Razor Pages application."
 slug: htmlhelpers_daterangepicker_razorpage_aspnetcore
-position: 9
+components: ["daterangepicker"]
+position: 12
 ---
 
-# Razor Page
+# DateRangePicker in Razor Pages
 
-This article demonstrates how to set up the DateRangePicker component in a Razor Pages scenario and how to add a default value.
+This article describes how to seamlessly integrate and configure the Telerik UI DateRangePicker for {{ site.framework }} in Razor Pages applications.
 
-See the implementation details in the example below. For the full project with Razor Pages examples, visit our [GitHub repository](https://github.com/telerik/ui-for-aspnet-core-examples/tree/master/Telerik.Examples.RazorPages).
+@[template](/_contentTemplates/core/razor-pages-general-info.md#referencing-handler-methods)
 
-```tab-HtmlHelper(cshtml)
-@page
-@model Telerik.Examples.RazorPages.Pages.DateRangePicker.DateRangePickerDefaultValueModel
-@{
-    ViewData["Title"] = "DateRangePickerDefaultValue";
-}
+## Binding to a PageModel Property
 
-<div>
-    <h4>Select a date range</h4>
-    @(Html.Kendo().DateRangePicker()
-        .Name("daterangepicker")
-        .Range(r => r.Start(DateTime.Now).End(DateTime.Now.AddDays(10))) // Add a default value using the Range method.
-        .HtmlAttributes(new { style = "width: 100%", title = "daterangepicker" })
-    )
-</div>
+To bind the DateRangePicker to a property from the `PageModel`, follow the next steps:
 
-<style>
-    div {
-        text-align: center;
-    }
-</style>
-```
-{% if site.core %}
-```tab-TagHelper(cshtml)
-@page
-@model Telerik.Examples.RazorPages.Pages.DateRangePicker.DateRangePickerDefaultValueModel
-@{
-    ViewData["Title"] = "DateRangePickerDefaultValue";
-}
+1. Add a property to the `PageModel` that must bind to the DateRangePicker.
 
-<div>
-    <h4>Select a date range</h4>
-    <kendo-daterangepicker name="daterangepicker" title="daterangepicker" style="width: 100%;">
-             <range start="DateTime.Now" end="DateTime.Now.AddDays(10)"/>
-    </kendo-daterangepicker>
-</div>
-
-<style>
-    div {
-        text-align: center;
-    }
-</style>
-```
-{% endif %}
-
-```tab-PageModel(cshtml.cs)
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace Telerik.Examples.RazorPages.Pages.DateRangePicker
-{
-    public class DateRangePickerDefaultValueModel : PageModel
-    {
-        public void OnGet()
+    ```C# Index.cshtml.cs
+        public class IndexModel : PageModel
         {
-        }
-    }
-}
-```
+            [BindProperty]
+            public DateTime StartDate { get; set; }
 
-* [Server-Side API](/api/daterangepicker)
+            [BindProperty]
+            public DateTime EndDate { get; set; }
+
+            public void OnGet()
+            {
+                StartDate = DateTime.Now; // Assign values to the "StartDate" and "EndDate" properties, if needed.
+                EndDate = DateTime.Now.AddDays(3);
+            }
+        }
+    ```
+1. Declare the `PageModel` at the top of the page.
+
+    ```Razor
+        @page
+        @model IndexModel
+    ```
+
+1. Bind the component to the property using the `DateRangePickerFor()` configuration.
+
+    ```HtmlHelper
+        @page
+        @model IndexModel
+
+        @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+        @Html.AntiForgeryToken()
+        
+        @(Html.Kendo().DateRangePickerFor(m => m.StartDate, m => m.EndDate)
+            .Name("Dates")
+            .Range(r => r.Start(Model.StartDate).End(Model.EndDate))
+        )
+    ```
+    ```TagHelper
+        @page
+        @model IndexModel
+
+        @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+        @Html.AntiForgeryToken()
+        @addTagHelper *, Kendo.Mvc
+
+        <kendo-daterangepicker name="Dates" start-field="Model.StartDate" end-field="Model.EndDate">
+            <range start="Model.StartDate" end="Model.EndDate" />
+        </kendo-daterangepicker>
+    ```
+
+## See Also
+
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the DateRangePicker](https://docs.telerik.com/kendo-ui/api/ui/daterangepicker)
+* [Server-Side HtmlHelper API of the DateRangePicker](/api/daterangepicker)
+* [Server-Side TagHelper API of the DateRangePicker](/api/taghelpers/daterangepicker)
+* [Knowledge Base Section](/knowledge-base)

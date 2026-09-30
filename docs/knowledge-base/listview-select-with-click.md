@@ -1,12 +1,12 @@
 ---
 title: Select Items Only with Mouse
-description: An example on how to select multiple items in the Kendo UI ListView only with the mouse.
+description: Learn how to select multiple items in the Kendo UI ListView only with the mouse.
 type: how-to
-page_title: Select Multiple Items Only with Click | Kendo UI ListView for jQuery
+page_title: Select Multiple Items Only with Click - Kendo UI ListView for jQuery
 slug: listview-select-with-click
 tags: listview, select, item, items, click, mouse, only, deselect, single
 res_type: kb
-component: listview
+components: ["listview"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: listview
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ListView</td>
+  <td>Progress® Kendo UI® ListView for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created version 2018.1.117</td>
  </tr>
 </table>
@@ -31,13 +31,13 @@ How can I allow the users to select or deselect ListView items only with the mou
 1. Handle the `mousedown` event for the ListView component.
 1. Prevent the `click` event for the items in the ListView.
 1. Check the clicked target and if it is a ListView item, keep it in an array. If the item is already selected, remove it from the array.
-1. Call the [`select()`](https://docs.telerik.com/kendo-ui/api/javascript/ui/listview/methods/select) method with the populated array of items.
+1. Call the [`select()`](https://docs.telerik.com/kendo-ui/api/ui/listview/methods/select) method with the populated array of items.
 
 
 ```dojo
 <div class="demo-section k-content wide">
     <div id="listView"></div>
-    <div id="pager" class="k-pager-wrap"> </div>
+    <div id="pager" class="k-pager"> </div>
 </div>
 
 <script type="text/x-kendo-tmpl" id="template">
@@ -52,8 +52,7 @@ How can I allow the users to select or deselect ListView items only with the mou
         var dataSource = new kendo.data.DataSource({
             transport: {
                 read: {
-                    url: "https://demos.telerik.com/kendo-ui/service/Products",
-                    dataType: "jsonp"
+                    url: "https://demos.telerik.com/service/v2/core/Products"
                 }
             },
             pageSize: 15
@@ -144,7 +143,7 @@ How can I allow the users to select or deselect ListView items only with the mou
         text-transform: uppercase;
     }
 
-    .k-pager-wrap {
+    .k-pager {
         border-top: 0;
     }
 

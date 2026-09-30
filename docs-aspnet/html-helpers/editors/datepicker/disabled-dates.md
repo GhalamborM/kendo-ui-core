@@ -2,6 +2,7 @@
 title: Disabled Dates
 page_title: Disabled Dates
 description: "Get started with the {{ site.product }} DatePicker and learn how to disable specific dates in the widget."
+components: ["datepicker"]
 slug: htmlhelpers_datepicker_aspnetcore_disableddates
 position: 2
 ---
@@ -26,6 +27,21 @@ To disable dates by setting the days of the week, list the names of days that wi
         .DisableDates(DayOfWeek.Saturday, DayOfWeek.Sunday)
     )
 ```
+{% if site.core %}
+```TagHelper
+    <kendo-datepicker value="DateTime.Today" name="weekend-date-picker" disable-dates-handler="disableWeekend">
+    </kendo-datepicker>
+    <script>
+        function disableWeekend(date) {
+            if (date) {
+                var dayOfWeek = date.getDay();
+                var isWeekend = (dayOfWeek === 6) || (dayOfWeek === 0); // 6 = Saturday, 0 = Sunday
+                return isWeekend;
+            }
+        }
+    </script>
+```
+{% endif %}
 
 ## Adding a Function
 
@@ -37,6 +53,12 @@ To disable dates through using a function, set the return value for the date tha
         .DisableDates("disableDates")
     )
 ```
+{% if site.core %}
+```TagHelper
+    <kendo-datepicker value="new DateTime(2019,1,2)" name="national-date-picker" disable-dates-handler="disableDates">
+    </kendo-datepicker>
+```
+{% endif %}
 ```JavaScript
     <script>
         function disableDates(date) {

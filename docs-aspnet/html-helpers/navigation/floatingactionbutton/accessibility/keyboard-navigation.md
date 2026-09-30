@@ -2,6 +2,7 @@
 title:  Keyboard Navigation
 page_title: Keyboard Navigation
 description: "Learn how to use the keyboard navigation functionality of the Telerik UI FloatingActionButton component for {{ site.framework }}."
+components: ["floatingactionbutton"]
 slug: htmlhelpers_floatingactionbutton_keyboardnavigation_aspnetcore
 position: 2
 ---
@@ -13,5 +14,6 @@ The keyboard navigation of the FloatingActionButton is always available.
 For a complete example, refer to the [demo on keyboard navigation of the FloatingActionButton](https://demos.telerik.com/{{ site.platform }}/floatingactionbutton/keyboard-navigation)
 ## See Also
 
+* [Custom Keyboard Navigation in the FloatingActionButton for {{ site.framework }}]({% slug custom_keyboard_navigation_floatingactionbutton_htmlhelper %})
 * [Keyboard Navigation by the FloatingActionButton HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/floatingactionbutton/keyboard-navigation)
 * [Server-Side API](/api/floatingactionbutton)

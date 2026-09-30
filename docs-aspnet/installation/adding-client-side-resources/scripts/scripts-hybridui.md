@@ -3,15 +3,16 @@ comment: THIS FILE IS A COPY OF THE AUTO-GENERATED jQUERY file. TO UPDATE THE CO
 title: Hybrid UI
 page_title: Individual Scripts for Hybrid UI
 description: "Get started with Kendo UI for jQuery and find the list of required script files for the Kendo UI Hybrid UI"
+components: ["general"]
 previous_url: /getting-started/scripts/scripts-hybridui, /installation/scripts/scripts-hybridui
 slug: script_filesfor_hybridui_widgets
 ---
 
 # Individual Scripts for Hybrid UI
 
-The following table lists the individual script files for the hybrid Kendo UI widgets and framework components.&nbsp;&nbsp;
+The following table lists the individual script files for the hybrid Kendo UI components and framework utilities.&nbsp;&nbsp;
 
-| Widget | Individual Scripts | Comments |
+| Component | Individual Scripts | Comments |
 | :---   | :---         | :---     |
 | [ActionSheet](https://demos.telerik.com/kendo-ui/m/index#actionsheet/index) | jquery.js | |
 | | kendo.core.js | |
@@ -138,7 +139,7 @@ The following table lists the individual script files for the hybrid Kendo UI wi
 
 ## See Also
 
-+ [Scripts for Data Management Widgets]({% slug script_filesfor_datamanagement_widgets %})
++ [Scripts for Data Management Components]({% slug script_filesfor_datamanagement_widgets %})
 + [Scripts for Editors]({% slug script_filesfor_editors_widgets %})
 + [Scripts for Conversational UI]({% slug script_filesfor_conversationalui_widgets %})
 + [Scripts for Charts]({% slug script_filesfor_charts_widgets %})

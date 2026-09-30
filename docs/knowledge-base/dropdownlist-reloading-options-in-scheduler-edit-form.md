@@ -1,13 +1,13 @@
 ---
 title: Reload DropDownList Options in Scheduler Edit Form
-description: An example on how to change the items that are available in a resource DropDownList on a Scheduler edit form.
+description: Learn how to change the items that are available in a resource DropDownList on a Scheduler edit form.
 type: how-to
-page_title: Alter Available Data Placed on Scheduler Edit Form | Kendo UI DropDownList for jQuery
+page_title: Alter Available Data Placed on Scheduler Edit Form - Kendo UI DropDownList for jQuery
 slug: dropdownlist-reloading-options-in-scheduler-edit-form
 tags: kendoui, kendo, dropdownlist, scheduler, edit, data, options, change
 ticketid: 1118178
 res_type: kb
-component: dropdownlist
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: dropdownlist
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
 </table>
 
@@ -27,7 +27,7 @@ How can I get the instance of the second DropDownList to reload the data of the 
 
 ## Solution
 
-Implement an event handler for the [`edit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler/events/edit) event of the Scheduler. This function adds a [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdownlist/events/change) event handler to the first of the two DropDownLists. This `change` event handler successfully [changes the available options](https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdownlist/methods/setdatasource) in the second DropDownList by altering its DataSource.
+Implement an event handler for the [`edit`](https://docs.telerik.com/kendo-ui/api/ui/scheduler/events/edit) event of the Scheduler. This function adds a [`change`](https://docs.telerik.com/kendo-ui/api/ui/dropdownlist/events/change) event handler to the first of the two DropDownLists. This `change` event handler successfully [changes the available options](https://docs.telerik.com/kendo-ui/api/ui/dropdownlist/methods/setdatasource) in the second DropDownList by altering its DataSource.
 
 ```dojo
   <div id="example">
@@ -50,8 +50,8 @@ Implement an event handler for the [`edit`](https://docs.telerik.com/kendo-ui/ap
   		}
 
   		$("#scheduler").kendoScheduler({
-  			date: new Date("2013/6/13"),
-  			startTime: new Date("2013/6/13 07:00 AM"),
+  			date: new Date("2025/6/13"),
+  			startTime: new Date("2025/6/13 07:00 AM"),
   			height: 600,
   			views: [
   				"day",
@@ -64,26 +64,28 @@ Implement an event handler for the [`edit`](https://docs.telerik.com/kendo-ui/ap
   			timezone: "Etc/UTC",
   			dataSource: {
   				batch: true,
-  				transport: {
-  					read: {
-  						url: "https://demos.telerik.com/kendo-ui/service/tasks",
-  						dataType: "jsonp"
-  					},
-  					update: {
-  						url: "https://demos.telerik.com/kendo-ui/service/meetings/update",
-  						dataType: "jsonp"
-  					},
-  					create: {
-  						url: "https://demos.telerik.com/kendo-ui/service/meetings/create",
-  						dataType: "jsonp"
-  					},
-  					destroy: {
-  						url: "https://demos.telerik.com/kendo-ui/service/meetings/destroy",
-  						dataType: "jsonp"
-  					},
+  				transport: {  					
+                	read: {
+                	    url: "https://demos.telerik.com/service/v2/core/tasks"
+                	},
+                	update: {
+                	    url: "https://demos.telerik.com/service/v2/core/tasks/update",
+                	    type: "POST",
+                	    contentType: "application/json"
+                	},
+                	create: {
+                	    url: "https://demos.telerik.com/service/v2/core/tasks/create",
+                	    type: "POST",
+                	    contentType: "application/json"
+                	},
+                	destroy: {
+                	    url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+                	    type: "POST",
+                	    contentType: "application/json"
+                	},
   					parameterMap: function(options, operation) {
   						if (operation !== "read" && options.models) {
-  							return {models: kendo.stringify(options.models)};
+  							return kendo.stringify(options.models);
   						}
   					}
   				},
@@ -138,5 +140,5 @@ Implement an event handler for the [`edit`](https://docs.telerik.com/kendo-ui/ap
 
 ## See Also
 
-* [JavaScript API Reference of the DropDownList Events](https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdownlist#events)
-* [JavaScript API Demo of the Scheduler Events](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler#events)
+* [JavaScript API Reference of the DropDownList Events](https://docs.telerik.com/kendo-ui/api/ui/dropdownlist#events)
+* [JavaScript API Demo of the Scheduler Events](https://docs.telerik.com/kendo-ui/api/ui/scheduler#events)

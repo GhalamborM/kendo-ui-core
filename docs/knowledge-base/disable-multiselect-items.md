@@ -1,13 +1,13 @@
 ---
 title: Disable MultiSelect Options
-description: An example on how to disable a selection of certain options in a MultiSelect and prevent the drop-down from closing when the user clicks them.
+description: Learn how to disable a selection of certain options in a MultiSelect and prevent the drop-down from closing when the user clicks them.
 type: how-to
-page_title: Disable Items | Kendo UI MultiSelect for jQuery
+page_title: Disable Items - Kendo UI MultiSelect for jQuery
 slug: disabled-items-multiselect
 tags: multiselect, disabled, items, options, prevent, selection
 ticketid: 1363148
 res_type: kb
-component: multiselect
+components: ["multiselect"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: multiselect
 <table>
  <tr>
   <td>Product</td>
-  <td>MultiSelect for Progress&reg; Kendo UI&reg;</td>
+  <td>Progress® Kendo UI® MultiSelect for jQuery</td>
  </tr>
 </table>
 
@@ -25,7 +25,7 @@ How can I disable items in the MultiSelect while the drop-down list remains open
 
 ## Solution
 
-To prevent the selection, cancel the [`select`](https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect/events/select) event. To prevent the drop-down list from closing, set the [`autoClose`](https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect/configuration/autoclose) property.
+To prevent the selection, cancel the [`select`](https://docs.telerik.com/kendo-ui/api/ui/multiselect/events/select) event. To prevent the drop-down list from closing, set the [`autoClose`](https://docs.telerik.com/kendo-ui/api/ui/multiselect/configuration/autoclose) property.
 
 ```dojo
 <select id="select"></select>
@@ -38,7 +38,7 @@ To prevent the selection, cancel the [`select`](https://docs.telerik.com/kendo-u
                 //prevent selection by cancelling the event
                 e.preventDefault();
                 //prevent closing by setting the autoClose property
-                // https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect/configuration/autoclose
+                // https://docs.telerik.com/kendo-ui/api/ui/multiselect/configuration/autoclose
                 this.setOptions({autoClose: false});
               }
               else {

@@ -2,9 +2,10 @@
 title: Ajax Binding
 page_title: Ajax Binding
 description: "Learn how to implement Ajax Binding with Telerik UI ComboBox component for {{ site.framework }}."
+components: ["combobox"]
 previous_url: /helpers/editors/combobox/binding/ajax-binding
 slug: htmlhelpers_combobox_ajaxbinding_aspnetcore
-position: 2
+position: 3
 ---
 
 # Ajax Binding
@@ -21,13 +22,21 @@ You can configure the Telerik UI ComboBox for Ajax binding to the Northwind **Pr
         }
 
 1. Create a new action method and pass the **Products** table as JSON result.
-
+        {% if site.mvc %}
         public JsonResult GetProducts()
         {
             NorthwindDataContext northwind = new NorthwindDataContext();
 
             return Json(northwind.Products, JsonRequestBehavior.AllowGet);
         }
+        {% else %}
+        public JsonResult GetProducts()
+        {
+            NorthwindDataContext northwind = new NorthwindDataContext();
+
+            return Json(northwind.Products);
+        }
+        {% endif %}
 
 1. Add an Ajax-bound ComboBox.
 

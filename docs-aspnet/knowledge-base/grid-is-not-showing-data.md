@@ -7,6 +7,7 @@ slug: grid-is-not-showing-data
 tags: grid, data, core, aspnet, not showing, binding, loading, empty, no items, records, returned
 ticketid: 1112718
 res_type: kb
+components: ["general"]
 component: grid
 ---
 
@@ -15,7 +16,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Telerik® UI for ASP.NET Core</td>
+  <td>Grid for Progress® Telerik® UI for {{ site.framework }}</td>
  </tr>
 </table>
 
@@ -32,7 +33,7 @@ By default, the data in .NET Core is serialized in camelCase while the property 
 
 Edit the `ConfigureServices` method in the `Startup.cs` file.
 
-```
+```C#
     public void ConfigureServices(IServiceCollection services)
     {
         ...
@@ -47,6 +48,30 @@ Edit the `ConfigureServices` method in the `Startup.cs` file.
     }
 ```
 
+## More {{ site.framework }} Grid Resources
+
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+
+{% if site.core %}
+* [{{ site.framework }} DataGrid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
 ## See Also
 
-* [Getting Started with Telerik UI for ASP.NET Core](https://docs.telerik.com/aspnet-core/getting-started/first-steps)
+* [Client-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

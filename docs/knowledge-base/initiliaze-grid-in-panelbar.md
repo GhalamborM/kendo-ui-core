@@ -5,9 +5,9 @@ description: "Learn how to initialize the Grid inside the Kendo UI PanelBar by r
 slug: initialize_thegrid_panelbar_widget
 previous_url: /controls/navigation/panelbar/how-to/initiliaze-grid-in-panelbar
 tags: telerik, kendo, jquery, panelbar, initialize, grid
-component: panelbar
 type: how-to
 res_type: kb
+components: ["panelbar"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI PanelBar for jQuery</td>
+  <td>Progress® Kendo UI® PanelBar for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -93,4 +93,4 @@ The following example demonstrates how to use the `activate` event when initiali
 
 * [Basic Usage of the PanelBar (Demo)](https://demos.telerik.com/kendo-ui/panelbar/index)
 * [Using the API of the PanelBar (Demo)](https://demos.telerik.com/kendo-ui/panelbar/api)
-* [JavaScript API Reference of the PanelBar](/api/javascript/ui/panelbar)
+* [JavaScript API Reference of the PanelBar](/api/ui/panelbar)

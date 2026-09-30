@@ -1,11 +1,12 @@
 ---
-title: MultiSelect Select Many Elements When Shift Button is Hold Down  
+title: Selecting MultiSelect Items When Holding Shift Button
 description: How can I select one item in the MultiSelect and then, if the shift button is held down, select another item and all items between them?
 type: how-to
-page_title: MultiSelect Select Multiple Items
+page_title: Selecting MultiSelect Items When Holding Shift Button
 slug: multiselect-select-multiple-items-shift-is-down
 tags: multiselect, select, many, items, when, shift, key, button, hold
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -25,26 +26,26 @@ How can I select one item in the MultiSelect and then, if the shift button is he
 
 ## Solution
 
-* Set the [AutoClose(false)](https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect/configuration/autoclose) configuration.
+* Set the [AutoClose(false)](https://docs.telerik.com/kendo-ui/api/ui/multiselect/configuration/autoclose) configuration.
 
-* Set a handler for the [Select](https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect/events/select) event
+* Set a handler for the [Select](https://docs.telerik.com/kendo-ui/api/ui/multiselect/events/select) event
 
-```
+```Razor
 .Events(ev=>ev.Select("onSelect"))
 ```
 
 * Initialize a variable, the value of which will indicate that the shift button is down.
 
-```
+```JS
 var isShiftDown = false;
-        window.onmousemove = function (e) {
-            if (e.shiftKey) {
-                isShiftDown = true;
-            }
-            else {
-                isShiftDown = false;
-            }
-        }
+window.onmousemove = function (e) {
+    if (e.shiftKey) {
+        isShiftDown = true;
+    }
+    else {
+        isShiftDown = false;
+    }
+}
 ```
 
 * Initialize two variables that hold as value the indexes of the selected elements. After the first select get the index of the first element. If the shift button is held down get the offset-index for the second element.
@@ -53,7 +54,7 @@ var isShiftDown = false;
 
 * Check if the first index is smaller than the second one, if not change their values.
 
-```
+```JS
   if (firstIndex > secondIndex) { 
         var temp = firstIndex;
         firstIndex = secondIndex
@@ -62,7 +63,7 @@ var isShiftDown = false;
     }
 ```
 
-* Use the [value()](https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect/methods/value) method to set the new value of the MultiSelect as you pass the temporary array as a parameter.
+* Use the [value()](https://docs.telerik.com/kendo-ui/api/ui/multiselect/methods/value) method to set the new value of the MultiSelect as you pass the temporary array as a parameter.
 
 Example:
 
@@ -83,7 +84,7 @@ Example:
           )
         )
 ```
-```script.js
+```JS script.js
     var isShiftDown = false;
     window.onmousemove = function (e) {
         if (e.shiftKey) {
@@ -131,3 +132,31 @@ Example:
         }
     }
 ```
+
+## More {{ site.framework }} MultiSelect Resources
+
+* [{{ site.framework }} MultiSelect Documentation]({%slug htmlhelpers_multiselect_aspnetcore%})
+
+* [{{ site.framework }} MultiSelect Demos](https://demos.telerik.com/{{ site.platform }}/multiselect)
+
+{% if site.core %}
+* [{{ site.framework }} MultiSelect Product Page](https://www.telerik.com/aspnet-core-ui/multiselect)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} MultiSelect Product Page](https://www.telerik.com/aspnet-mvc/multiselect)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Client-Side API Reference of the MultiSelect for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/multiselect)
+* [Server-Side API Reference of the MultiSelect for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/multiselect)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

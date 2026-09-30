@@ -1,10 +1,11 @@
 ---
 title: Server Binding
-page_title: Server Binding | Telerik UI Grid HtmlHelper for ASP.NET MVC
+page_title: Server Binding - Telerik UI Grid HtmlHelper for ASP.NET MVC
 description: "Learn how to implement server binding with Telerik UI Grid HtmlHelper for ASP.NET MVC."
+components: ["grid"]
 previous_url: /helpers/grid/server-binding, /helpers/data-management/grid/server-binding
 slug: serverbinding_grid_aspnetmvc
-position: 5
+position: 4
 ---
 
 # Server Binding
@@ -32,6 +33,7 @@ The Grid supports the following client-side events when it is in server binding 
 > * The other client-side events, which are related to data-binding and CRUD data operations, will not be raised when the Grid is configured for server binding.
 > * Locked columns are not supported. To support locked columns, use [Ajax binding]({% slug htmlhelpers_grid_aspnetcore_ajaxbinding %}) instead.
 > * Showing or hiding of columns and reordering with the `GroupHeaderColumnTemplate` in server-binding scenarios is not supported. The reason is that in server-binding scenarios the Kendo UI for jQuery DataSource instance does not have groups and aggregates information. Therefore, the templates for the group rows cannot be compiled on the client side. If your project requires such a scenario, use [Ajax binding]({% slug htmlhelpers_grid_aspnetcore_ajaxbinding %}).
+> * Rows spanning is not supported. To support both rows and columns spanning, use [Ajax binding]({% slug htmlhelpers_grid_aspnetcore_ajaxbinding %}) instead and refer to the [Row and Column Spanning]({% slug grid_aspnetcore_spanning %}) article for configuration details.
 
 ## Getting Started
 
@@ -44,7 +46,7 @@ To bind the Grid to data, set its data source and render the view by using any o
 
 ## Binding to the View Model
 
-To download the Visual Studio Project, refer to [this GitHub repository](https://github.com/telerik/ui-for-aspnet-mvc-examples/tree/master/grid/server-binding).
+The example below demonstrates how to bind the Grid to a model.
 
 ```Controller
     public ActionResult Index()
@@ -158,18 +160,18 @@ The action method which renders the view that contains the Grid may need additio
 
 ## Setting Up the Sample Project
 
-1. Create a new ASP.NET MVC 5 application. If you have installed the [Telerik UI for ASP.NET MVC Visual Studio Extensions]({% slug overview_visualstudio_aspnetcore %}), create a Telerik UI for ASP.NET MVC application. Name the application `KendoGridServerBinding`. If you decided not to use the Telerik UI for ASP.NET MVC Visual Studio Extensions, follow the steps from the [introductory article]({% slug gettingstarted_aspnetmvc %}) to add Telerik UI for ASP.NET MVC to the application.
+1. Create a new ASP.NET MVC 5 application. If you have installed the [Telerik UI for ASP.NET MVC Visual Studio Extensions]({% slug overview_visualstudio_aspnetcore %}), create a Telerik UI for ASP.NET MVC application. Name the application `KendoGridServerBinding`. If you decided not to use the Telerik UI for ASP.NET MVC Visual Studio Extensions, follow the steps from the [introductory article]({% slug gettingstartedtelerik_cli_aspnetmvc %}) to add Telerik UI for ASP.NET MVC to the application.
 1. Add a new `Entity Framework Data Model`. Right-click the `~/Models` folder in the solution explorer and pick **Add new item**. Choose **Data** > **ADO.NET Entity Data Model** in the **Add New Item** dialog. Name the model `Northwind.edmx` and click **Next**. This starts the **Entity Data Model Wizard**.
 
     ![{{ site.product_short }} A new entity data model](../images/grid-entity-data-model.png)
 
-1.  Pick the **Generate from database** option and click **Next**. Configure a connection to the Northwind database. Click **Next**.
+1.  Pick the **EF Designer from database** option and click **Next**. Configure a connection to the Northwind database. Click **Next**.
 
-    ![{{ site.product_short }} Choosing the connection](../images/grid-entity-data-model.png)
+    ![{{ site.product_short }} Choosing the connection](../images/grid-binding-choose-data-connection.png)
 
 1. Choose the **Products** table from the `Which database objects do you want to include in your model?`. Leave all other options as they are set by default. Click **Finish**.
 
-    ![{{ site.product_short }} Choosing the Products table](../images/grid-database-objects.png)
+    ![{{ site.product_short }} Choosing the Products table in the database objects](../images/grid-binding-choose-database-objects.png)
 
 1. Open **HomeController.cs** and modify the `Index` action method.
 
@@ -182,6 +184,63 @@ The action method which renders the view that contains the Grid may need additio
             return View();
         }
 
+1. Modify the `Create` method as demonstrated in the following example.
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                productService.Create(product);
+
+                RouteValueDictionary routeValues = this.GridRouteValues();
+
+                return RedirectToAction("Index", routeValues);
+            }
+
+            return View("Index", productService.GetAll());
+        }
+
+1. Modify the `Update` method as demonstrated in the following example.
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Update(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                productService.Update(product);
+
+                RouteValueDictionary routeValues = this.GridRouteValues();
+
+                return RedirectToAction("Index", routeValues);
+            }
+
+            return View("Index", productService.GetAll());
+        }
+
+1. Modify the `Destroy` method as demonstrated in the following example.
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Destroy(int productID)
+        {
+            Product product = productService.GetAll().FirstOrDefault(p => p.ProductID == productID);
+
+            RouteValueDictionary routeValues;
+
+            if (product == null)
+            {
+                routeValues = this.GridRouteValues();
+
+                return RedirectToAction("Index", routeValues);
+            }
+
+            productService.Destroy(product);
+
+            routeValues = this.GridRouteValues();
+
+            return RedirectToAction("Index", routeValues);
+        }
+
 1. Add a Kendo UI Grid to the `Index` view.
 
     ```Razor
@@ -189,24 +248,39 @@ The action method which renders the view that contains the Grid may need additio
             .Name("grid")
             .Columns(columns =>
             {
-                // Create a column bound to the ProductID property.
                 columns.Bound(product => product.ProductID);
-                // Create a column bound to the ProductName property.
                 columns.Bound(product => product.ProductName);
-                // Create a column bound to the UnitsInStock property.
                 columns.Bound(product => product.UnitsInStock);
+                columns.Bound(product => product.Discontinued);
+                columns.Command(commands =>
+                {
+                    commands.Edit(); // The "edit" command will edit and update data items.
+                    commands.Destroy(); // The "destroy" command removes data items.
+                }).Title("Commands").Width(300);
             })
+            .ToolBar(commands => commands.Create())
             .Pageable() //Enable the paging.
             .Sortable() //Enable the sorting.
+            .DataSource(dataSource => dataSource
+                .Server()
+                // Specify that the ProductID property is the unique identifier of the model.
+                .Model(model => model.Id(p => p.ProductID))
+                .Create(create => create.Action("Create", "Home"))
+                .Update(update => update.Action("Update", "Home"))
+                .Destroy(destroy => destroy.Action("Destroy", "Home"))
+            )
         )
     ```
 
 1. Build and run the application.
 
-    ![{{ site.product_short }} The final result](../images/grid-bound-grid.png)
+    ![{{ site.product_short }} The final result is a Grid bound to data](../images/grid-bound-data.png)
 
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
 * [Binding the Grid HtmlHelper for ASP.NET MVC to Data (Demos)](https://demos.telerik.com/aspnet-mvc/grid/local-data-binding)
 * [Ajax Binding by the Grid HtmlHelper for ASP.NET MVC]({% slug htmlhelpers_grid_aspnetcore_ajaxbinding %})
 * [Server-Side API](/api/grid)

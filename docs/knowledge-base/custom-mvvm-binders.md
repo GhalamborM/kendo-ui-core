@@ -5,9 +5,9 @@ description: "Learn how to use custom MVVM binders for shapes and connections in
 slug: howto_custommvvmbidinders_diagram
 previous_url: /controls/diagrams-and-maps/diagram/how-to/custom-mvvm-binders
 tags: kendo, jquery, diagram, use, custom, mvvm, binders, for, shapes, and, connections
-component: diagram
 type: how-to
 res_type: kb
+components: ["diagram"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Diagram for jQuery</td>
+  <td>Progress® Kendo UI® Diagram for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -55,7 +55,7 @@ By using this approach, you can:
                    data-bind="source: shapesSource,
                               value: shapeId" />
             to:
-            <span class="k-input k-textbox k-input-solid k-input-md k-rounded-md">
+            <span class="k-input k-textbox">
               <input type="text" class="k-input-inner" data-bind="value: shapeText,
                                                             events: {
                                                               change: onShapeTextChange
@@ -66,9 +66,9 @@ By using this approach, you can:
                  data-shape-defaults='{"type": "circle","content":{"template": "#= name #"}, "width": "70", "height":"70", "hover":{"fill": "Orange"}}'
                  data-connection-defaults='{"stroke":{"color":"#979797","width":1},"type":"polyline","startCap":"FilledCircle","endCap":"ArrowEnd","content":{"template":"#= label#"}}'
                  data-bind="diagramShapes: shapesSource,
-                            diagramConnections: connectionsSource"  
+                            diagramConnections: connectionsSource"
                  style="height: 250px;" ></div>
-          <span class="k-input k-textbox k-input-solid k-input-md k-rounded-md">
+          <span class="k-input k-textbox">
             <input type="text" class="k-input-inner" data-bind="value: getShapes" style="width:100%;"/>
           </span>
         </div>
@@ -135,7 +135,7 @@ By using this approach, you can:
 ## See Also
 
 * [Basic Usage of the Diagram (Demo)](https://demos.telerik.com/kendo-ui/diagram/index)
-* [JavaScript API Reference of the Diagram](/api/javascript/dataviz/ui/diagram)
-* [How to Implement Local Data Editing]({% slug howto_editlocaladata_diagram %})
-* [How to Render External Content in Shapes]({% slug howto_renderexternalcontent_inshapes_diagram %})
-* [How to Wrap Text]({% slug howto_wraptext_diagram %})
+* [JavaScript API Reference of the Diagram](/api/dataviz/ui/diagram)
+* [Implement Local Data Editing]({% slug howto_editlocaladata_diagram %})
+* [Render External Content in Shapes]({% slug howto_renderexternalcontent_inshapes_diagram %})
+* [Wrap Text]({% slug howto_wraptext_diagram %})

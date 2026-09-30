@@ -1,8 +1,10 @@
-(function(f, define) {
-    define([ "./kendo.list", "./kendo.mobile.scroller", "./kendo.virtuallist", "./kendo.html.button" ], f);
-})(function() {
+import "./kendo.list.js";
+import "./kendo.mobile.scroller.js";
+import "./kendo.virtuallist.js";
+import "./kendo.html.button.js";
+import { addInputPrefixSuffixContainers } from "./utils/prefix-suffix-containers.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "combobox",
     name: "ComboBox",
     category: "web",
@@ -23,13 +25,13 @@ var __meta__ = {
 
 (function($, undefined) {
     var kendo = window.kendo,
+        encode = kendo.htmlEncode,
         ui = kendo.ui,
         html = kendo.html,
         List = ui.List,
         Select = ui.Select,
         caret = kendo.caret,
         support = kendo.support,
-        placeholderSupported = support.placeholder,
         activeElement = kendo._activeElement,
         keys = kendo.keys,
         ns = ".kendoComboBox",
@@ -39,7 +41,6 @@ var __meta__ = {
         DISABLED = "disabled",
         READONLY = "readonly",
         CHANGE = "change",
-        LOADING = "k-i-loading k-input-loading-icon",
         FOCUSED = "k-focus",
         STATEDISABLED = "k-disabled",
         ARIA_DISABLED = "aria-disabled",
@@ -65,7 +66,15 @@ var __meta__ = {
             options = that.options;
             element = that.element.on("focus" + ns, that._focusHandler.bind(that));
 
+            if (!kendo.isPresent(options.readonly) && element.attr("readonly")) {
+                 options.readonly = true;
+            }
+            else if (!kendo.isPresent(options.readonly)) {
+                 options.readonly = false;
+            }
+
             options.placeholder = options.placeholder || element.attr("placeholder");
+            options.inputMode = options.inputMode || element.attr("inputmode") || "text";
 
             that._reset();
 
@@ -88,12 +97,17 @@ var __meta__ = {
 
             that._oldIndex = that.selectedIndex = -1;
 
-            that._aria();
-
             that._initialIndex = options.index;
 
             that.requireValueMapper(that.options);
             that._initList();
+
+            // For VirtualList, the UL is created after data is bound, so we need to update aria-controls then
+            if (that.options.virtual) {
+                that.listView.one("listBound", function() { that._aria(); });
+            }
+
+            that.listView.bind("dataBound", function() { that._aria(); });
 
             that._cascade();
 
@@ -111,20 +125,27 @@ var __meta__ = {
                 }
             }
 
-            if (!text) {
-                that._placeholder();
-            }
-
             disabled = $(that.element).parents("fieldset").is(':disabled');
 
             if (disabled) {
                 that.enable(false);
             }
 
+            addInputPrefixSuffixContainers({ widget: that, wrapper: that.wrapper, options: that.options,
+                prefixInsertBefore: that.input,
+                suffixInsertAfter: that._clear.parent().length ? that._clear : that.input });
+
             kendo.notify(that);
             that._toggleCloseVisibility();
             that._applyCssClasses();
-        },
+
+            if (options.label) {
+                that._label();
+            }
+
+            that._aria();
+            Select.fn.endInit.call(this);
+},
 
         options: {
             name: "ComboBox",
@@ -136,6 +157,7 @@ var __meta__ = {
             delay: 200,
             dataTextField: "",
             dataValueField: "",
+            readonly: null,
             minLength: 1,
             enforceMinLength: false,
             height: 200,
@@ -146,19 +168,32 @@ var __meta__ = {
             cascadeFrom: "",
             cascadeFromField: "",
             cascadeFromParentField: "",
+            cascadeOnCustomValue: false,
             ignoreCase: true,
             animation: {},
             virtual: false,
             template: null,
-            groupTemplate: "#:data#",
-            fixedGroupTemplate: "#:data#",
+            groupTemplate: (data) => encode(data),
+            fixedGroupTemplate: (data) => encode(data),
+            prefixOptions: {
+                separator: true
+            },
+            suffixOptions: {
+                separator: true
+            },
             clearButton: true,
             syncValueAndText: true,
             autoWidth: false,
             popup: null,
-            size: "medium",
-            fillMode: "solid",
-            rounded: "medium"
+            size: undefined,
+            fillMode: undefined,
+            rounded: undefined,
+            label: null,
+            adaptiveTitle: null,
+            adaptiveSubtitle: null,
+            clearOnEscape: true,
+            _removeDataItems: true,
+            _shouldRefresh: true
         },
 
         events: [
@@ -170,7 +205,8 @@ var __meta__ = {
             "dataBinding",
             "dataBound",
             "cascade",
-            "set"
+            "set",
+            "kendoKeydown"
         ],
 
         setOptions: function(options) {
@@ -194,10 +230,80 @@ var __meta__ = {
             that.wrapper.off(ns);
             clearTimeout(that._pasteTimeout);
 
+            if (that.filterInput) {
+                that.filterInput.off(ns);
+            }
+
             that._arrow.off(CLICK + " " + MOUSEDOWN);
             that._clear.off(CLICK + " " + MOUSEDOWN);
 
             Select.fn.destroy.call(that);
+        },
+
+        _isEnabled: function() {
+            const that = this;
+            const element = that.element;
+
+            const isReadonly = element.prop(READONLY) || Boolean(that.element.attr("readonly"));
+            const isDisabled = element.prop(DISABLED) || Boolean(that.element.attr("disabled"));
+
+            return !isDisabled && !isReadonly;
+        },
+
+        _popup: function() {
+            const that = this;
+            Select.fn._popup.call(this);
+            that.popup.element.addClass("k-combobox-popup");
+        },
+
+        _onActionSheetCreate: function() {
+            var that = this;
+
+            that._unboundClick = true;
+            that.input
+                .on('click', that._arrowClick.bind(that));
+
+            if (that.filterInput) {
+                that.filterInput
+                    .on("keydown" + ns, that, that._keydown.bind(that))
+                    .on("input" + ns, that._search.bind(that))
+                    .on("paste" + ns, that._inputPaste.bind(that))
+                    .attr({
+                        "role": "combobox",
+                        "aria-expanded": false,
+                    });
+
+                that.popup.bind("activate", () => {
+                    that.filterInput.val(that.input.val());
+                    that.filterInput.trigger("focus");
+                });
+
+                that.popup.bind("deactivate", () => {
+                    that.input.trigger("focus");
+                });
+            }
+        },
+
+        _onCloseButtonPressed: function() {
+            var that = this;
+            var textField = that.options.dataTextField || "text";
+            var current = that.listView.focus();
+
+            if (!current) {
+                if (that._syncValueAndText() || that._isSelect) {
+                    if (!that.dataItem() || that.dataItem()[textField] !== that.input.val()) {
+                        var input = that.filterInput && activeElement() === that.filterInput[0] ? that.filterInput : that.input;
+                        that._accessor(input.val());
+                    }
+                }
+
+                if (that.options.highlightFirst) {
+                    that.listView.value(that.input.val());
+                    that._blur();
+                } else {
+                    that._oldText = that.text();
+                }
+            }
         },
 
         _isValueChanged: function(value) {
@@ -211,6 +317,10 @@ var __meta__ = {
             var hasText = text && text !== that._oldText && text !== that.options.placeholder;
             var index = that.selectedIndex;
             var isCustom = index === -1;
+
+            if (that.filterInput && activeElement() === that.filterInput[0] && isCustom && hasText) {
+                that.input.val(that.filterInput.val());
+            }
 
             if (!that.options.syncValueAndText && !that.value() && isCustom && hasText) {
                 that._old = "";
@@ -247,18 +357,29 @@ var __meta__ = {
         },
 
         _arrowClick: function() {
-            this._toggle();
+            const that = this;
+
+            if (that._isEnabled()) {
+                that._toggle();
+            } else {
+                that._toggle(false);
+            }
         },
 
         _inputFocus: function() {
-            this.wrapper.addClass(FOCUSED);
-            this._placeholder(false);
+            const that = this;
+
+            that.wrapper.addClass(FOCUSED);
         },
 
         _inputFocusout: function(e) {
             var that = this;
             var value = that.value();
-            var isClearButton = !$(e.relatedTarget).closest('.k-clear-value').length;
+            const isClearButton = !$(e.relatedTarget).closest('.k-clear-value').length || (!$(e.relatedTarget).is(that._clear) && $(e.relatedTarget).hasClass('k-clear-value'));
+
+            if (that.filterInput && e.relatedTarget === that.filterInput[0]) {
+                return;
+            }
 
             that._userTriggered = true;
             that.wrapper.removeClass(FOCUSED);
@@ -271,13 +392,13 @@ var __meta__ = {
 
             var item = that._focus();
             var dataItem = this.listView.dataItemByIndex(this.listView.getElementIndex(item));
+            var selectedIndex = that.select();
 
-            if (value !== that.value() && that.trigger("select", { dataItem: dataItem, item: item })) {
+            if (value !== that.value() && selectedIndex !== -1 && that.trigger("select", { dataItem: dataItem, item: item })) {
                 that.value(value);
                 return;
             }
 
-            that._placeholder();
             that._valueBeforeCascade = that._old;
 
             if (isClearButton) {
@@ -322,7 +443,7 @@ var __meta__ = {
                 clear.on(CLICK + " touchend" + ns, that._clearValue.bind(that));
 
                 that.input
-                    .on("keydown" + ns, that._keydown.bind(that))
+                    .on("keydown" + ns, that, that._keydown.bind(that))
                     .on("input" + ns, that._search.bind(that))
                     .on("paste" + ns, that._inputPaste.bind(that));
 
@@ -345,7 +466,7 @@ var __meta__ = {
             var that = this;
             var state = that._state;
             var isFiltered = that.dataSource.filter() ? that.dataSource.filter().filters.length > 0 : false;
-            var reinitialized = !that.ul.find(that.listView.focus()).length;
+            var reinitialized = !that._getUlElement().find(that.listView.focus()).length;
 
             if (that.popup.visible()) {
                 return;
@@ -404,7 +525,6 @@ var __meta__ = {
 
                 that._accessor(value);
                 that.input.val(text || that.input.val());
-                that._placeholder();
             } else if (that._oldIndex === -1) {
                 that._oldIndex = that.selectedIndex;
             }
@@ -484,7 +604,7 @@ var __meta__ = {
 
         _listBound: function() {
             var that = this;
-            var isActive = that.input[0] === activeElement();
+            var isActive = that.input[0] === activeElement() || that.filterInput && that.filterInput[0] === activeElement();
 
             var data = that.dataSource.flatView();
             var skip = that.listView.skip();
@@ -626,7 +746,6 @@ var __meta__ = {
             this._setDomInputValue(text);
             this._accessor(value !== undefined ? value : text, idx);
 
-            this._placeholder();
             this._triggerCascade();
         },
 
@@ -684,7 +803,7 @@ var __meta__ = {
 
             if (typeof word !== "string") {
                 if (word[0]) {
-                    word = that.dataSource.view()[List.inArray(word[0], that.ul[0])];
+                    word = that.dataSource.view()[List.inArray(word[0], that._getUlElement()[0])];
                 }
 
                 word = word ? that._text(word) : "";
@@ -716,7 +835,7 @@ var __meta__ = {
             text = text === null ? "" : text;
 
             var that = this;
-            var input = that.input[0];
+            var input = that.filterInput && that.filterInput[0] === activeElement() ? that.filterInput[0] : that.input[0];
             var ignoreCase = that.options.ignoreCase;
             var loweredText = text;
             var dataItem;
@@ -765,8 +884,12 @@ var __meta__ = {
                         that._accessor(text);
                     }
 
-                    that._cascadeTriggered = true;
-                    that._triggerCascade();
+                    if (that._isValueChanged(text)) {
+                        that._cascadeTriggered = true;
+                        that._triggerCascade();
+                    }
+
+                    that._refreshFloatingLabel();
                 }
 
                 that._prev = input.value;
@@ -812,7 +935,6 @@ var __meta__ = {
                     if (that.selectedIndex === -1 && (!listView._selectedDataItems || !listView._selectedDataItems.length)) {
                         that._accessor(value);
                         that.input.val(value);
-                        that._placeholder(true);
                     }
 
                     if (that._userTriggered) {
@@ -829,16 +951,9 @@ var __meta__ = {
                         that._state = STATE_ACCEPT;
                     }
                     that._toggleCloseVisibility();
-                });
-        },
 
-        _hideBusy: function() {
-            var that = this;
-            clearTimeout(that._busy);
-            that._arrowIcon.removeClass(LOADING);
-            that._focused.attr("aria-busy", false);
-            that._busy = null;
-            that._toggleCloseVisibility();
+                    that._refreshFloatingLabel();
+                });
         },
 
         _click: function(e) {
@@ -901,7 +1016,8 @@ var __meta__ = {
                 word = word.toLowerCase();
             }
 
-            if (!that.ul[0].firstChild) {
+            const ulElement = that._getUlElement();
+            if (!ulElement.length || !ulElement[0].firstChild) {
                 dataSource.one(CHANGE, function() {
                     if (dataSource.view()[0]) {
                         that.search(word);
@@ -947,11 +1063,10 @@ var __meta__ = {
 
             if (!input[0]) {
                 arrowBtn = html.renderButton('<button type="button" class="k-input-button" aria-label="expand combobox"></button>', {
-                    icon: "arrow-s",
+                    icon: "chevron-down",
                     size: options.size,
                     fillMode: options.fillMode,
                     shape: "none",
-                    rounded: "none",
                 });
 
                 wrapper.append('<input ' + name + 'class="k-input-inner" type="text" autocomplete="' + AUTOCOMPLETEVALUE + '"/>')
@@ -966,7 +1081,9 @@ var __meta__ = {
 
             maxLength = parseInt(this.element.prop("maxlength") || this.element.attr("maxlength"), 10);
             if (maxLength > -1) {
-                input[0].maxLength = maxLength;
+                if (!kendo.isPresent(ComboBox._isServerRendered) || !ComboBox._isServerRendered) {
+                    input[0].maxLength = maxLength;
+                }
             }
 
             input.addClass(element.className)
@@ -977,13 +1094,13 @@ var __meta__ = {
                 })
                 .attr({
                     "role": "combobox",
-                    "aria-expanded": false
+                    "aria-expanded": false,
+                    inputmode: options.inputMode
                 })
                 .show();
 
-            if (placeholderSupported) {
-                input.attr("placeholder", that.options.placeholder);
-            }
+            input.attr(kendo.attr("skip"), true);
+            input.attr("placeholder", that.options.placeholder);
 
             if (accessKey) {
                 element.accessKey = "";
@@ -996,7 +1113,7 @@ var __meta__ = {
                     "role": "button",
                     "tabIndex": -1
                 });
-            that._arrowIcon = that._arrow.find(".k-icon");
+            that._arrowIcon = that._arrow.find(".k-icon, .k-svg-icon");
         },
 
         _clearButton: function() {
@@ -1004,7 +1121,6 @@ var __meta__ = {
 
             if (this.options.clearButton) {
                 this._clear.insertAfter(this.input);
-                this.wrapper.addClass("k-combobox-clearable");
             }
         },
 
@@ -1022,8 +1138,14 @@ var __meta__ = {
 
             if (key === keys.HOME) {
                 that._firstItem();
+                if (that.popup.visible()) {
+                    e.stopPropagation();
+                }
             } else if (key === keys.END) {
                 that._lastItem();
+                if (that.popup.visible()) {
+                    e.stopPropagation();
+                }
             } else if (key === keys.ENTER || (key === keys.TAB && that.popup.visible())) {
                 var current = that.listView.focus();
                 var dataItem = that.dataItem();
@@ -1057,7 +1179,8 @@ var __meta__ = {
                 } else {
                     if (that._syncValueAndText() || that._isSelect) {
                         if (!that.dataItem() || that.dataItem()[textField] !== that.input.val()) {
-                            that._accessor(that.input.val());
+                            var input = that.filterInput && activeElement() === that.filterInput[0] ? that.filterInput : that.input;
+                            that._accessor(input.val());
                         }
                     }
 
@@ -1068,45 +1191,14 @@ var __meta__ = {
                         that._oldText = that.text();
                     }
                 }
-            } else if (key != keys.TAB && !that._move(e) && !isNonPrintableKey && !isFkey && !e.ctrlKey) {
-               that._search();
-            } else if (key === keys.ESC && !that.popup.visible() && that.text()) {
+            } else if (key != keys.TAB) {
+                if (that._move(e)) {
+                    e.stopPropagation();
+                } else if (!isNonPrintableKey && !isFkey && !e.ctrlKey) {
+                    that._search();
+                }
+            } else if (that.options.clearOnEscape && key === keys.ESC && !that.popup.visible() && that.text()) {
                 that._clearValue();
-            }
-        },
-
-        _placeholder: function(show) {
-            if (placeholderSupported) {
-                return;
-            }
-
-            var that = this,
-                input = that.input,
-                placeholder = that.options.placeholder,
-                value;
-
-            if (placeholder) {
-                value = that.value();
-
-                if (show === undefined) {
-                    show = !value;
-                }
-
-                input.toggleClass("k-readonly", show);
-
-                if (!show) {
-                    if (!value) {
-                        placeholder = "";
-                    } else {
-                        return;
-                    }
-                }
-
-                input.val(placeholder);
-
-                if (!placeholder && input[0] === activeElement()) {
-                    caret(input[0], 0, 0);
-                }
             }
         },
 
@@ -1183,7 +1275,6 @@ var __meta__ = {
             this._oldIndex = this.selectedIndex;
 
             this.listView.setValue(value);
-            this._placeholder();
 
             this._initialIndex = null;
             this._presetValue = true;
@@ -1196,8 +1287,11 @@ var __meta__ = {
         },
 
         _clearValue: function() {
+            var that = this;
+            var input = that.filterInput && that.filterInput[0] === activeElement() ? that.filterInput : that.input;
+
             Select.fn._clearValue.call(this);
-            this.input.trigger("focus");
+            input.trigger("focus");
         }
     });
 
@@ -1210,7 +1304,5 @@ var __meta__ = {
         values: kendo.cssProperties.roundedValues.concat([['full', 'full']])
     }]);
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

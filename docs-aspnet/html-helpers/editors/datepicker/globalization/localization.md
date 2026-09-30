@@ -2,13 +2,14 @@
 title: Localization
 page_title: Localization
 description: "Get started with the Telerik UI DatePicker for {{ site.framework }} and translate its messages for different culture locales."
+components: ["datepicker"]
 slug: localization_datepicker_aspnetcore
 position: 2
 ---
 
 # Localization
 
-The DatePicker provides options for localizing its user interface by utilizing its [`Culture`](/api/Kendo.Mvc.UI.Fluent/DatePickerBuilder#culturesystemstring) property.
+The DatePicker provides options for localizing its user interface by utilizing its [`Culture`](/api/kendo.mvc.ui.fluent/datepickerbuilder#culturesystemstring) property.
 
 To apply the desired culture, add a reference to the script file before the DateRangePicker is initialized and include the desired culture in the settings of the helper.
 

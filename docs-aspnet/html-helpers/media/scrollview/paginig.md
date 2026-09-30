@@ -2,6 +2,7 @@
 title: Paging
 page_title: Paging
 description: "Get started with the Telerik UI ScrollView component for {{ site.framework }} and learn how to enable its paging functionality."
+components: ["scrollview"]
 slug: htmlhelpers_scrollview_aspnetcore_paging
 position: 3
 ---
@@ -20,8 +21,8 @@ If the pager is set to `false`, the ScrollView will not display a pager.
                 .TemplateId("scrollview-template")
                 .DataSource(d =>
                         d.Custom()
-                          .Type("odata")
-                          .Transport(t => t.Read(r => r.Url("https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products")))
+                          .Type("odata-v4")
+                          .Transport(t => t.Read(r => r.Url("https://demos.telerik.com/service/v2/odata/Products")))
                           .ServerPaging(true)
                           .PageSize(3))
                 .HtmlAttributes(new { style = "height:600px; width:890px; max-width: 100%;" })
@@ -49,9 +50,9 @@ If the pager is set to `false`, the ScrollView will not display a pager.
                                         enable-pager="false"
                                         template-id="scrollview-template" 
                                         style="height:600px; width:890px; max-width: 100%;">
-        <datasource custom-type="odata" page-size="3" server-paging="true">
+        <datasource custom-type="odata-v4" page-size="3" server-paging="true">
             <transport>
-                <read url="https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products" />
+                <read url="https://demos.telerik.com/service/v2/odata/Products" />
             </transport>
         </datasource>
     </kendo-scrollview>
@@ -71,6 +72,63 @@ If the pager is set to `false`, the ScrollView will not display a pager.
             return "url(https://demos.telerik.com/kendo-ui/content/web/foods/" + id + ".jpg)";
         }
     </script>
+```
+{% endif %}
+
+## Using Overlay
+
+The ScrollView component provides the PagerOverlay property which sets an overlay background color for the pager. It can be configured to one of the three possible values:
+- `none` - no background overlay is set
+- `dark` - sets a dark-colored background overlay
+- `light` - sets a light-colored background overlay
+
+```HtmlHelper
+    <style>
+        h1 {
+            margin-top: 30%;
+            text-align:center;
+        }
+    </style>
+    @(Html.Kendo().ScrollView()
+            .Name("scrollView")
+            .PagerOverlay("dark")
+            .ContentHeight("100%")
+            .Items(x =>
+            {
+                x.Add().Content("<h1>One</h1>");
+                x.Add().Content("<h1>Two</h1>");
+                x.Add().Content("<h1>Three</h1>");
+            })
+            .HtmlAttributes(new { style = "height:748px; width:1022px; max-width: 100%;" })
+    )
+```
+{% if site.core %}
+```TagHelper
+   <kendo-scrollview name="scrollView" content-height="100%" pager-overlay="dark" style="height:600px; width:890px; max-width: 100%;">
+        <items>
+            <scrollview-item>
+                <content>
+                    <h1>One</h1>
+                </content>
+            </scrollview-item>
+            <scrollview-item>
+                <content>
+                    <h1>Two</h1>
+                </content>
+            </scrollview-item>
+            <scrollview-item>
+                <content>
+                    <h1>Three</h1>
+                </content>
+            </scrollview-item>
+        </items>
+    </kendo-scrollview>
+    <style>
+        h1 {
+            margin-top: 30%;
+            text-align:center;
+        }
+    </style>
 ```
 {% endif %}
 

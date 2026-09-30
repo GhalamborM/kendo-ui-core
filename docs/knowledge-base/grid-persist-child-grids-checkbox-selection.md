@@ -1,12 +1,13 @@
 ---
 title: Persist Checkbox Selection in Child Grids
-description: An example on how to persist the checkbox selection in the child Grids of the Kendo UI Grid.
+description: Learn how to persist the checkbox selection in the child Grids of the Kendo UI Grid.
 type: how-to
-page_title: Save Selected Rows During Paging in Child Grids | Kendo UI Grid for jQuery
+page_title: Save Selected Rows During Paging in Child Grids - Kendo UI for jQuery Data Grid
 slug: grid-persist-child-grids-checkbox-selection
 tags: grid, checkbox, selection, hierarchy, child, persist
 ticketid: 1150871
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -28,9 +29,9 @@ How can I persist the selected rows of the child Grids when I change the page of
 
 ## Solution
 
-1. Handle the [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/change) event of the child Grids.
+1. Handle the [`change`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/change) event of the child Grids.
 1. In the `change` event handler, use the internal `_selectedIds` property to save the selected IDs in a global array.
-1. Handle the [`detailInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/detailinit) event of the master Grids.
+1. Handle the [`detailInit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/detailinit) event of the master Grids.
 1. In the `detailInit` event handler, assign the recorded data from the global array to the `_selectedIds` property of the relevant child Grid.
 
 ```dojo
@@ -43,9 +44,9 @@ How can I persist the selected rows of the child Grids when I change the page of
 		$(document).ready(function() {
 			var element = $("#grid").kendoGrid({
 				dataSource: {
-					type: "odata",
+					type: "odata-v4",
 					transport: {
-						read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+						read: "https://demos.telerik.com/service/v2/odata/Employees"
 					},
 					pageSize: 6,
 					serverPaging: true,
@@ -96,9 +97,9 @@ How can I persist the selected rows of the child Grids when I change the page of
 		function detailInit(e) {
 			var childGrid = $("<div id=childGrid" + e.data.EmployeeID + "/>").appendTo(e.detailCell).kendoGrid({
 				dataSource: {
-					type: "odata",
+					type: "odata-v4",
 					transport: {
-						read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+						read: "https://demos.telerik.com/service/v2/odata/Orders"
 					},
 					serverPaging: true,
 					serverSorting: true,

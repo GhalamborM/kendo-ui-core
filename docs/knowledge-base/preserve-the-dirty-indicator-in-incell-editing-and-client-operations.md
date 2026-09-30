@@ -1,13 +1,13 @@
 ---
 title: Preserve Dirty Indicator in Incell Editing and Client Operations
-page_title: Preserve Dirty Indicator | Kendo UI Grid for jQuery
-description: "An example on how to preserve the dirty indicator in the incell editing mode of the Kendo UI Grid for jQueryss and during client operations."
+page_title: Preserve Dirty Indicator - Kendo UI for jQuery Data Grid
+description: "Learn how to preserve the dirty indicator in the incell editing mode of the Kendo UI Grid for jQueryss and during client operations."
 previous_url: /controls/data-management/grid/how-to/Editing/preserve-the-dirty-indicator-in-incell-editing-and-client-operations
 slug: howto_preserve_dirty_indicator_incell_editing_client_operations_grid
 tags: preserve, dirty, indicator, grid, incell, edit, mode, client, operations
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -46,28 +46,30 @@ The following example demonstrates how to achieve this behavior also in case new
 ```dojo
     <div id="grid"></div>
     <script>
-        var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-        dataSource = new kendo.data.DataSource({
-            transport: {
-                read:  {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
-                },
-                update: {
-                    url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
-                },
-                destroy: {
-                    url: crudServiceBaseUrl + "/Products/Destroy",
-                    dataType: "jsonp"
-                },
-                create: {
-                    url: crudServiceBaseUrl + "/Products/Create",
-                    dataType: "jsonp"
-                },
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+                dataSource = new kendo.data.DataSource({
+                    transport: {
+                        read:  {
+                            url: crudServiceBaseUrl + "/Products"
+                        },
+                        update: {
+                            url: crudServiceBaseUrl + "/Products/Update",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
+                        destroy: {
+                            url: crudServiceBaseUrl + "/Products/Destroy",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
+                        create: {
+                            url: crudServiceBaseUrl + "/Products/Create",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
                 parameterMap: function(options, operation) {
                     if (operation !== "read" && options.models) {
-                        return {models: kendo.stringify(options.models)};
+                        return kendo.stringify(options.models);
                     }
                 }
             },
@@ -124,4 +126,4 @@ The following example demonstrates how to achieve this behavior also in case new
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

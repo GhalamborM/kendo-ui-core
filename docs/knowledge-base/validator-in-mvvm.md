@@ -5,9 +5,9 @@ description: "Learn how to fully integrate the Kendo UI Validator in an MVVM sce
 slug: howto_addvalidatormvvm_validator
 previous_url: /controls/editors/validator/how-to/validator-in-mvvm
 tags: telerik, kendo, jquery, validator, add, to, mvvm
-component: validator
 type: how-to
 res_type: kb
+components: ["validator"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Validator for jQuery</td>
+  <td>Progress® Kendo UI® Validator for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I fully integrate the Kendo UI Validator in an MVVM scenario?
 
 ## Solution
 
-To achieve the desired scenario, use the [`change`](/api/javascript/data/observableobject/events/change) event of the `Observable` and the [`validate`](/api/javascript/ui/validator/methods/validate) method of the Validator.
+To achieve the desired scenario, use the [`change`](/api/data/observableobject/events/change) event of the `Observable` and the [`validate`](/api/ui/validator/methods/validate) method of the Validator.
 
 ```dojo
 <div id="example">
@@ -135,4 +135,4 @@ To achieve the desired scenario, use the [`change`](/api/javascript/data/observa
 ## See Also
 
 * [Basic Usage of the Validator (Demo)](https://demos.telerik.com/kendo-ui/validator/index)
-* [JavaScript API Reference of the Validator](/api/javascript/ui/validator)
+* [JavaScript API Reference of the Validator](/api/ui/validator)

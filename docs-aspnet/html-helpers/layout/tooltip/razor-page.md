@@ -1,18 +1,26 @@
 ---
-title: Razor Page
-page_title: Razor Page
+title: Razor Pages
+page_title: Razor Pages
 description: "An example on how to configure the Telerik UI Tooltip component for {{ site.framework }} in a Razor Page."
+components: ["tooltip"]
 slug: htmlhelpers_tooltip_aspnetcore_razor_page
 position: 3
 ---
 
-# Razor Page
+# Tooltip in Razor Pages
 
-This article demonstrates how to configure the Telerik UI Tooltip for {{ site.framework }} in a RazorPage scenario.
+Razor Pages is an alternative to the MVC pattern that makes page-focused coding easier and more productive. This approach consists of a `cshtml` file and a `cshtml.cs` file (by design, the two files have the same name). 
 
-For the full project with RazorPages examples, visit our [GitHub repository](https://github.com/telerik/ui-for-aspnet-core-examples/tree/master/Telerik.Examples.RazorPages).
+You can seamlessly integrate the Telerik UI Tooltip for {{ site.framework }} in Razor Pages applications.
 
-```tab-HtmlHelper(cshtml)        
+This article describes how to configure the Tooltip component in a Razor Pages scenario.
+
+For the complete project, refer to the [Tooltip in Razor Pages example](https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/Tooltip/TooltipIndex.cshtml).
+
+```HtmlHelper
+    @page
+    @model TooltipIndexModel
+
     @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
     @Html.AntiForgeryToken()
 
@@ -49,7 +57,10 @@ For the full project with RazorPages examples, visit our [GitHub repository](htt
     </script>
 	
 ```
-```tab-TagHelper(cshtml)        
+```TagHelper
+    @page
+    @model TooltipIndexModel
+
     @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
     @Html.AntiForgeryToken()
 
@@ -78,13 +89,21 @@ For the full project with RazorPages examples, visit our [GitHub repository](htt
             <img src="@Url.Content("~/Images/ScrollViewImages/image")#=target.data('id')#.jpg" alt="#=target.data('id')#"  width="500" height="500" />
         </div>
     </script>
-	
 ```
-```tab-PageModel(cshtml.cs)      
-	
+```C# PageModel
+public class TooltipIndexModel : PageModel
+{
     public void OnGet()
     {
 
     }
-    
+}   
 ```
+
+## See Also
+
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the Tooltip](https://www.telerik.com/kendo-jquery-ui/documentation/api/ui/tooltip)
+* [Server-Side HtmlHelper API of the Tooltip](/api/tooltip)
+* [Server-Side TagHelper API of the Tooltip](/api/taghelpers/tooltip)
+* [Knowledge Base Section](/knowledge-base)

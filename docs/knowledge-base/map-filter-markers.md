@@ -1,12 +1,13 @@
 ---
 title: Filter Map Markers Dynamically
-description: An example on how to dynamically filter the markers of the Kendo UI Map.
+description: Learn how to dynamically filter the markers of the Kendo UI Map.
 type: how-to
-page_title: Filter Marker Layer | Kendo UI Map for jQuery
+page_title: Filter Marker Layer - Kendo UI Map for jQuery
 slug: map-filter-markers
 previous_url: /knowledge-base/map_filter_markers
 tags: map, filter, markers
 res_type: kb
+components: ["map"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Map</td>
+		<td>Progress® Kendo UI® Map for jQuery</td>
 	</tr>
 </table>
 
@@ -42,16 +43,16 @@ The marker layer is added to the Map when the Map is initialized. To filter the 
                 zoom: 15,
                 layers: [{
                     type: "tile",
-                    urlTemplate: "http://#= subdomain #.tile2.opencyclemap.org/transport/#= zoom #/#= x #/#= y #.png",
+                    urlTemplate: "https://#= subdomain #.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png",
                     subdomains: ["a", "b", "c"],
-                    attribution: "&copy; <a href='http://osm.org/copyright'>OpenStreetMap contributors</a>." +
-                                 "Tiles courtesy of <a href='http://www.opencyclemap.org/'>Andy Allan</a>"
+                    attribution: "&copy; <a href='https://osm.org/copyright'>OpenStreetMap contributors</a>." +
+                    "Tiles courtesy of <a href='https://www.opencyclemap.org/'>Andy Allan</a>"
                 }, {
                     type: "marker",
                     dataSource: {
                         transport: {
                             read: {
-                                url: "../content/dataviz/map/store-locations.json",
+                                url: "https://demos.telerik.com/kendo-ui/content/dataviz/map/store-locations.json",
                                 dataType: "json"
                             }
                         },

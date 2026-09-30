@@ -2,6 +2,7 @@
 title: Data Series
 page_title: Data Series
 description: "Learn how to plot one or more specified data series in the Telerik UI Chart component for {{ site.framework }}."
+components: ["chart"]
 slug: htmlhelpers_charts_dataseries_aspnetcore
 ---
 
@@ -135,4 +136,4 @@ You can display series of different types in a single chart.
 ## See Also
 
 * [Using the API of the Chart HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/chart-api/index)
-* [Server-Side API](/api/chart)
+* [Server-Side API of the Chart for {{ site.framework }}](/api/chart)

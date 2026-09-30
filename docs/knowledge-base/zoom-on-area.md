@@ -5,9 +5,9 @@ description: "Learn how to center the Kendo UI Map view on a specified area."
 slug: howto_zoomonarea_map
 previous_url: /controls/diagrams-and-maps/map/how-to/zoom-on-area
 tags: kendo, jquery, map, zoom, on, area
-component: map
 type: how-to
 res_type: kb
+components: ["map"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Map for jQuery</td>
+  <td>Progress® Kendo UI® Map for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I center the map view on a specified area in the Kendo UI for jQuery Map
 
 ## Solution
 
-To define the area, use a set of markers. You can use any list of locations. Then, you need to build an [`extent`](/api/javascript/dataviz/map/extent) that encompasses all locations and [set it on the map as a visible area](/api/javascript/dataviz/ui/map/methods/extent).
+To define the area, use a set of markers. You can use any list of locations. Then, you need to build an [`extent`](/api/dataviz/map/extent) that encompasses all locations and [set it on the map as a visible area](/api/dataviz/ui/map/methods/extent).
 
 ```dojo
 <button id="center">Center on markers</button>
@@ -52,9 +52,9 @@ To define the area, use a set of markers. You can use any list of locations. The
     $("#map").kendoMap({
         layers: [{
             type: "tile",
-            urlTemplate: "http://#= subdomain #.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png",
+            urlTemplate: "https://#= subdomain #.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png",
             subdomains: ["a", "b", "c"],
-            attribution: "© <a href='http://osm.org/copyright'>OpenStreetMap contributors</a>."
+            attribution: "© <a href='https://osm.org/copyright'>OpenStreetMap contributors</a>."
         }, {
             type: "marker",
             dataSource: {
@@ -92,4 +92,4 @@ To define the area, use a set of markers. You can use any list of locations. The
 
 * [Basic Usage of the Map (Demo)](https://demos.telerik.com/kendo-ui/map/index)
 * [Using the API of the Map (Demo)](https://demos.telerik.com/kendo-ui/map/api)
-* [JavaScript API Reference of the Map](/api/javascript/dataviz/ui/map)
+* [JavaScript API Reference of the Map](/api/dataviz/ui/map)

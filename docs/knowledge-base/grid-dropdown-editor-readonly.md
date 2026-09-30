@@ -1,13 +1,13 @@
 ---
 title: Conditionally Make the DropDownList Editor Readonly
-description: An example on how to make the custom DropDownList editor readonly in the Kendo UI Grid.
+description: Learn how to make the custom DropDownList editor readonly in the Kendo UI Grid.
 type: how-to
 page_title: Disable the DropDownList Editor| Kendo UI Grid for jQuery
 slug: grid-dropdown-editor-readonly
 tags: grid, dropdownlist, readonly, editor
 ticketid: 1133104
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.913 version</td>
  </tr>
 </table>
@@ -29,8 +29,8 @@ How can I make the drop-down editor read-only based on a condition in the Kendo 
 
 ## Solution
 
-1. Handle the [`edit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/edit) event of the Grid.
-2. In  the event handler and based on a condition, use the [`readonly`](https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdownlist/methods/readonly) method.
+1. Handle the [`edit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/edit) event of the Grid.
+2. In  the event handler and based on a condition, use the [`readonly`](https://docs.telerik.com/kendo-ui/api/ui/dropdownlist/methods/readonly) method.
 
 ```dojo
 <script src="https://demos.telerik.com/kendo-ui/content/shared/js/products.js" type="text/javascript"></script>

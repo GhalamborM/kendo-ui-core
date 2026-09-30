@@ -1,13 +1,14 @@
 ---
 title: Overview
 page_title: Overview
-description: "Learn the basics when working with the Telerik UI DropDownList component for {{ site.framework }}."
+description: "Discover the Telerik UI DropDownList component for {{ site.framework }} and its features like virtualization, grouping, data binding options, and more."
+components: ["dropdownlist"]
 previous_url: /helpers/html-helpers/dropdownlist, /helpers/editors/dropdownlist/overview
 slug: htmlhelpers_dropdownlist_aspnetcore
 position: 0
 ---
 
-# DropDownList Overview
+# {{ site.framework }} DropDownList Overview
 
 {% if site.core %}
 The Telerik UI DropDownList TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI DropDownList widget.
@@ -51,7 +52,6 @@ The following example demonstrates how to define the DropDownList.
     </datasource>
 </kendo-dropdownlist>
 ```
-{% endif %}
 ```Controller
 
     public class DropDownListController : Controller
@@ -73,6 +73,34 @@ The following example demonstrates how to define the DropDownList.
         }
     }
 ```
+{% else %}
+```Controller
+
+    public class DropDownListController : Controller
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public JsonResult Products_Read()
+        {
+            var result = Enumerable.Range(0, 50).Select(i => new ProductViewModel
+            {
+                ProductID = "" + i,
+                ProductName = "Product " + i
+            });
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+    }
+```
+{% endif %}
+
+
+{% if site.core %}
+@[template](/_contentTemplates/core/declarative-initialization-note.md#declarative-initialization-note)
+{% endif %}
 
 ## Basic Configuration
 
@@ -81,22 +109,22 @@ The DropDownList configuration options are passed as attributes.
 {% if site.core %}
 ```HtmlHelper
     @(Html.Kendo().DropDownList()
-          .Name("products")
-          .DataTextField("ProductName")
-          .DataValueField("ProductID")
-          .HtmlAttributes(new { style = "width:100%;" })
-          .Filter(FilterType.Contains)
-          .DataSource(source => source
-              .Read(read => read.Action("GetProducts", "Home"))
-          )
+        .Name("products")
+        .DataTextField("ProductName")
+        .DataValueField("ProductID")
+        .HtmlAttributes(new { style = "width:100%;" })
+        .Filter(FilterType.Contains)
+        .DataSource(source => source
+            .Read(read => read.Action("GetProducts", "Home"))
+        )
     )
 ```
 ```TagHelper
     <kendo-dropdownlist name="products" filter="FilterType.Contains"
-                        placeholder="Select product"
-                        datatextfield="ProductName"
-                        datavaluefield="ProductID"
-                        style="width: 100%;">
+        placeholder="Select product"
+        datatextfield="ProductName"
+        datavaluefield="ProductID"
+        style="width: 100%;">
         <datasource>
             <transport>
                 <read url="@Url.Action("GetProducts", "Home")" />
@@ -147,7 +175,7 @@ The DropDownList configuration options are passed as attributes.
         {
             source.Read(read =>
             {
-                read.Action("Products_Read2", "DropDownList");
+                read.Action("Products_Read", "DropDownList");
             })
             .ServerFiltering(false);
         })
@@ -169,135 +197,54 @@ The DropDownList configuration options are passed as attributes.
         });
     </script>
 ```
+```Controller
+    public JsonResult Products_Read(string text)
+    {
+        using (var northwind = GetContext())
+        {
+            var products = northwind.Products.Select(product => new ProductViewModel
+            {
+                ProductID = product.ProductID,
+                ProductName = product.ProductName,
+                UnitPrice = product.UnitPrice.Value,
+                UnitsInStock = product.UnitsInStock.Value,
+                UnitsOnOrder = product.UnitsOnOrder.Value,
+                Discontinued = product.Discontinued
+            });
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                products = products.Where(p => p.ProductName.Contains(text));
+            }
+
+            return Json(products.ToList(), JsonRequestBehavior.AllowGet);
+        }
+    }
+```
 {% endif %}
 
 ## Functionality and Features
 
-* [Binding]({% slug htmlhelpers_dropdownlist_ajaxbinding_aspnetcore %})
-* [Grouping]({% slug htmlhelpers_dropdownlist_grouping_aspnetcore %})
-* [Virtualization]({% slug htmlhelpers_dropdownlist_virtualization_aspnetcore %})
-* [Templates]({% slug htmlhelpers_dropdownlist_templates_aspnetcore %})
-* [Accessibility]({% slug accessibility_aspnetcore_dropdownlist %})
+* [Binding]({% slug htmlhelpers_dropdownlist_ajaxbinding_aspnetcore %})&mdash;The DropDownList supports multiple data binding approaches: server, model, custom, and ajax binding. 
+* [Grouping]({% slug htmlhelpers_dropdownlist_grouping_aspnetcore %})&mdash;You can bind the DropDownList to grouped data sources.
+* [Virtualization]({% slug htmlhelpers_dropdownlist_virtualization_aspnetcore %})&mdash;The virtualization feature of the DropDownList allows you to display large datasets.
+* [Templates]({% slug htmlhelpers_dropdownlist_templates_aspnetcore %})&mdash;To control how the items, selected value, or a pop-up header are rendered, you can use the available templates.
+* [Accessibility]({% slug htmlhelpers_dropdownlist_accessibility %})&mdash;The DropDownList is accessible by screen readers and provides WAI-ARIA, Section 508, WCAG 2.2, and keyboard support.
 
-## Events
+>tip To learn more about the appearance, anatomy, and accessibility of the DropDownList, visit the [Progress Design System documentation](https://www.telerik.com/design-system/docs/components/dropdownlist/)&mdash;an information portal offering rich component usage guidelines, descriptions of the available style variables, and globalization support details.
 
-You can subscribe to all DropDownList events. For a complete example on basic DropDownList events, refer to the [demo on using the events of the DropDownList](https://demos.telerik.com/{{ site.platform }}/dropdownlist/events).
+## Next Steps
 
-### Handling by Handler Name
-
-The following example demonstrates how to subscribe to events by a handler name.
-
-```HtmlHelper
-    @(Html.Kendo().DropDownList()
-        .Name("dropdownlist")
-        .BindTo(new string[] { "Item1", "Item2", "Item3" })
-        .Events(e => e
-            .Select("dropdownlist_select")
-            .Change("dropdownlist_change")
-        )
-    )
-```
+* [Getting Started with the DropDownList]({% slug aspnetcore_dropdownlist_getting_started %})
 {% if site.core %}
-```TagHelper
-
-@{ 
-    var Items = new string[] { "Item1", "Item2", "Item3" };
-}
-
-<kendo-dropdownlist name="dropdownlist"
-                    bind-to="Items"
-                    on-select="dropdownlist_select"
-                    on-change="dropdownlist_change">
-</kendo-dropdownlist>
-```
+* [ASP.NET Core demo](https://demos.telerik.com/{{ site.platform }}/dropdownlist)
+* [Basic Usage of the DropDownList TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/dropdownlist/tag-helper)
+* [DropDownList in Razor Pages]({%slug htmlhelpers_dropdownlist_razorpage_aspnetcore%})
+{% else %}
+* [ASP.NET MVC DropDownList Overview Demo](https://demos.telerik.com/{{ site.platform }}/dropdownlist)
 {% endif %}
-```script.js
-    <script>
-    function dropdownlist_select() {
-        // Handle the select event.
-    }
-
-    function dropdownlist_change() {
-        // Handle the change event.
-    }
-    </script>
-```
-
-### Handling by Template Delegate
-
-The following example demonstrates how to subscribe to events by a template delegate.
-
-```HtmlHelper
-    @(Html.Kendo().DropDownList()
-        .Name("dropdownlist")
-        .BindTo(new string[] { "Item1", "Item2", "Item3" })
-        .Events(e => e
-            .Select(@<text>
-            function() {
-                // Handle the select event inline.
-            }
-            </text>)
-            .Change(@<text>
-            function() {
-                // Handle the change event inline.
-            }
-            </text>)
-        )
-    )
-```
-
-### Getting the current value
-
-The following example demonstrates how to get the current value of a Telerik UI DropDownList in the Change Event handler.
-
-```HtmlHelper
-    @(Html.Kendo().DropDownList()
-        .Name("dropdownlist")
-        .BindTo(new string[] { "Item1", "Item2", "Item3" })
-        .Events(e => e
-        .Change("dropdownlist_change") //Handle the "Change" event.
-        )
-    )
-```
-{% if site.core %}
-```TagHelper
-
-@{ 
-    var Items = new string[] { "Item1", "Item2", "Item3" };
-}
-
-<kendo-dropdownlist name="dropdownlist"
-                    bind-to="Items"
-                    on-change="dropdownlist_change">
-</kendo-dropdownlist>
-```
-{% endif %}
-```script.js
-    <script>
-        function dropdownlist_change(e) {
-            var ddl = e.sender; //Get an instance of the DropDownList.
-            var selectedValue = ddl.value(); //Get the current value.
-            console.log(selectedValue);
-        }
-    </script>
-```
-## Referencing Existing Instances
-
-To reference an existing Telerik UI DropDownList instance, use the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [DropDownList client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdownlist#methods) to control its behavior.
-
-        // Place the following after your Telerik UI DropDownList for {{ site.framework }} declaration.
-        <script>
-        $(function() {
-        // The Name() of the DropDownList is used to get its client-side instance.
-        var dropdownlist = $("#productDropDownList").data("kendoDropDownList");
-        });
-        </script>
 
 ## See Also
 
-* [Basic Usage of the DropDownList HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/dropdownlist)
-{% if site.core %}
-* [Basic Usage of the DropDownList TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/dropdownlist/tag-helper)
-{% endif %}
-* [Using the API of the DropDownList HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/dropdownlist/api)
-* [Server-Side API](/api/dropdownlist)
+* [Using the API of the DropDownList for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/dropdownlist/api)
+* [Knowledge Base Section](/knowledge-base)

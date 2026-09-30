@@ -2,11 +2,12 @@
 title: Customize Null Text for Checkbox Filter mode
 description: How to Customize Null Text for Checkbox Filter mode in Grid
 type: how-to
-page_title: Customize Null Text for Checkbox Filter mode in Grid | Kendo UI Grid for jQuery
+page_title: Customize Null Text for Checkbox Filter mode in Grid - Kendo UI for jQuery Data Grid
 slug: grid-customize-null-text-checkbox-filtering
 position:
 tags: grid, filter
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -28,9 +29,11 @@ How can I customize the null option's text in the Checkbox filter menu?
 
 ## Solution
 
-You can add the [columns.filterable.itemTemplate](/api/javascript/ui/grid/configuration/columns.filterable.itemtemplate) option and either change the text or completely hide the null value as an option:
+You can add the [columns.filterable.itemTemplate](/api/ui/grid/configuration/columns/filterable#columnsfilterableitemtemplate) option and either change the text or completely hide the null value as an option:
 
 ## Hide the null option from the filter menu
+
+The following example uses a custom `itemTemplate` that omits the checkbox item when the cell value is `null`, effectively hiding it from the filter list.
 
 ```dojo
     <div id="grid"></div>
@@ -92,6 +95,8 @@ You can add the [columns.filterable.itemTemplate](/api/javascript/ui/grid/config
 ```
 
 ## Customize null option text in the filter menu
+
+The following example uses a custom `itemTemplate` that replaces `null` cell values with the label **No Value** in the filter checkbox list.
 
 ```dojo
     <div id="grid"></div>

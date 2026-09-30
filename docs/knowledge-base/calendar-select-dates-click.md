@@ -1,12 +1,12 @@
 ---
 title: Select or Deselect Dates with Click Only
-page_title: Select Multiple Dates without Using the Ctrl Key | Kendo UI Calendar for jQuery
-description: An example on how to select multiple dates in the Kendo UI Calendar without holding the Ctrl key.
+page_title: Select Multiple Dates without Using the Ctrl Key - Kendo UI Calendar for jQuery
+description: Learn how to select multiple dates in the Kendo UI Calendar without holding the Ctrl key.
 type: how-to
 slug: calendar-select-dates-click
 tags: kendo, ui, calendar, select, range, dates, multiple, click, mouse, only, control, ctrl
 res_type: kb
-component: calendar
+components: ["calendar"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: calendar
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Calendar</td>
+  <td>Progress® Kendo UI® Calendar for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2018.1.226</td>
  </tr>
 </table>
@@ -31,7 +31,7 @@ How can I select or deselect multiple dates only by clicking them and without us
 
 1. Prevent the default click action for the Calendar dates.
 1. Get the clicked date and add it to a collection of the selected dates.
-1. Set the selected dates for the Calendar by using the [`selectDates`](https://docs.telerik.com/kendo-ui/api/javascript/ui/calendar/configuration/selectdates) method.
+1. Set the selected dates for the Calendar by using the [`selectDates`](https://docs.telerik.com/kendo-ui/api/ui/calendar/configuration/selectdates) method.
 
 ```dojo
 <div id="calendar"></div>
@@ -85,6 +85,6 @@ How can I select or deselect multiple dates only by clicking them and without us
 
 ## See Also
 
-* [API Reference of the DatePicker](https://docs.telerik.com/kendo-ui/api/javascript/ui/datepicker)
-* [API Reference of the DateTimePicker](https://docs.telerik.com/kendo-ui/api/javascript/ui/datetimepicker)
-* [API Reference of the Calendar](https://docs.telerik.com/kendo-ui/api/javascript/ui/calendar)
+* [API Reference of the DatePicker](https://docs.telerik.com/kendo-ui/api/ui/datepicker)
+* [API Reference of the DateTimePicker](https://docs.telerik.com/kendo-ui/api/ui/datetimepicker)
+* [API Reference of the Calendar](https://docs.telerik.com/kendo-ui/api/ui/calendar)

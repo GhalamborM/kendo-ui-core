@@ -1,7 +1,8 @@
 ---
 title: Heatmap
-page_title: jQuery Chart Documentation | Heatmap
+page_title: jQuery Chart Documentation - Heatmap
 description: "Learn how to create a Kendo UI Heatmap and use the different options it provides."
+components: ["chart"]
 slug: heatmapcharts_widget
 position: 12
 ---
@@ -61,7 +62,7 @@ The following example demonstrates how to configure a basic Heatmap.
 
 The following image shows a sample Heatmap.
 
-![A sample Heatmap](chart-heatmap.png)
+![Kendo UI for jQuery Heatmap Chart example](chart-heatmap.png)
 
 ## Setting the Marker Type
 
@@ -77,7 +78,7 @@ The default marker type of a Heatmap is `rect`. You can change this value by usi
 The available built-in options are:
 
 - `rect`—The markers appear as rectangles.
-- `roundedRect`—The markers appear as rounded rectangles with a configurable [border radius](/api/javascript/dataviz/ui/chart/configuration/series.markers.borderRadius).
+- `roundedRect`—The markers appear as rounded rectangles with a configurable [border radius](/api/dataviz/ui/chart/configuration/series/markers#seriesmarkersborderradius).
 - `circle`—The markers appear as circles.
 - `triangle`—The markers appear as triangles.
 
@@ -85,10 +86,10 @@ For a runnable example on the `markers` configuration, visit the [demo page for 
 
 The following image shows a sample Heatmap with circular markers.
 
-![A Heatmap with circle markers](chart-heatmap-circle-markers.png)
+![Kendo UI for jQuery Heatmap Chart with circle markers](chart-heatmap-circle-markers.png)
 
 ## See Also
 
 * [Overview of the Heatmap (Demo)](https://demos.telerik.com/kendo-ui/heatmap/index)
 * [Heatmap Markers (Demo)](https://demos.telerik.com/kendo-ui/heatmap/markers)
-* [JavaScript API Reference of the Chart](/api/javascript/dataviz/ui/chart)
+* [JavaScript API Reference of the Chart](/api/dataviz/ui/chart)

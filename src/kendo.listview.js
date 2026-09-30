@@ -1,6 +1,10 @@
-(function(f, define) {
-    define([ "./kendo.data", "./kendo.editable", "./kendo.selectable", "./kendo.pager" ], f);
-})(function() {
+// The current file development is no longer in active phase but the code will be kept as is.
+// Please be advised that we have discontinued the sync for this file with the commercial version of Kendo UI for jQuery.
+// To take advantage of new features please visit (https://www.telerik.com/kendo-jquery-ui) and consider upgrading to a commercial license.
+import "./kendo.data.js";
+import "./kendo.editable.js";
+import "./kendo.selectable.js";
+import "./kendo.pager.js";
 
 var __meta__ = {
     id: "listview",
@@ -36,6 +40,7 @@ var __meta__ = {
         Widget = kendo.ui.Widget,
         keys = kendo.keys,
         EMPTY_STRING = "",
+        EMPTY_STRING_TEMPLATE = () => EMPTY_STRING,
         DOT = ".",
         FOCUSSELECTOR = "> *:not(.k-loading-mask)",
         PROGRESS = "progress",
@@ -120,15 +125,16 @@ var __meta__ = {
 
         options: {
             name: "ListView",
+            ariaLabel: null,
             autoBind: true,
             selectable: false,
             navigatable: false,
             pageable: false,
             height: null,
-            template: EMPTY_STRING,
-            altTemplate: EMPTY_STRING,
-            editTemplate: EMPTY_STRING,
-            contentTemplate: "<div data-content='true' />",
+            template: EMPTY_STRING_TEMPLATE,
+            altTemplate: null,
+            editTemplate: null,
+            contentTemplate: () => "<div data-content='true' />",
             contentElement: "div",
             bordered: true,
             borders: "",
@@ -159,9 +165,9 @@ var __meta__ = {
         _templates: function() {
             var options = this.options;
 
-            this.template = kendo.template(options.template || EMPTY_STRING);
-            this.altTemplate = kendo.template(options.altTemplate || options.template);
-            this.editTemplate = kendo.template(options.editTemplate || EMPTY_STRING);
+            this.template = kendo.template(options.template || EMPTY_STRING_TEMPLATE);
+            this.altTemplate = kendo.template(options.altTemplate || options.template || EMPTY_STRING_TEMPLATE);
+            this.editTemplate = kendo.template(options.editTemplate || EMPTY_STRING_TEMPLATE);
         },
 
         _item: function(action) {
@@ -239,7 +245,7 @@ var __meta__ = {
             var options = this.options;
             var height = options.height;
 
-            this.element.addClass("k-widget k-listview");
+            this.element.addClass("k-listview");
 
 
             if (options.contentElement) {
@@ -259,7 +265,7 @@ var __meta__ = {
             var flex = options.flex;
             var grid = options.grid;
             var element = that.element;
-            var elementClassNames = ["k-widget", "k-listview"];
+            var elementClassNames = ["k-listview"];
             var content = that.content;
             var contentClassNames = ["k-listview-content"];
 
@@ -347,7 +353,7 @@ var __meta__ = {
                 template = that.template,
                 altTemplate = that.altTemplate,
                 options = that.options,
-                role = (options.selectable || options.navigatable) ? "option" : "listitem",
+                role = options.selectable ? "option" : "listitem",
                 active = activeElement(),
                 endlessAppend = that._endlessFetchInProgress,
                 index = endlessAppend ? that._skipRerenderItemsCount : 0,
@@ -363,17 +369,9 @@ var __meta__ = {
                     if (item.length > 0) {
                         idx = item.index();
 
-                        that.angular("cleanup", function() {
-                            return { elements: [ item ] };
-                        });
-
                         item.replaceWith(template(data));
                         item = that.items().eq(idx);
                         item.attr(kendo.attr("uid"), data.uid);
-
-                        that.angular("compile", function() {
-                            return { elements: [ item ], data: [ { dataItem: data } ] };
-                        });
 
                         that.trigger("itemChange", {
                             item: item,
@@ -388,8 +386,6 @@ var __meta__ = {
             if (that.trigger(DATABINDING, { action: e.action || "rebind", items: e.items, index: e.index })) {
                 return;
             }
-
-            that._angularItems("cleanup");
 
             if (!endlessAppend) {
                 that._destroyEditable();
@@ -447,7 +443,6 @@ var __meta__ = {
             }
 
             that._setContentHeight();
-            that._angularItems("compile");
 
             that._progress(false);
             that._endlessFetchInProgress = null;
@@ -456,27 +451,29 @@ var __meta__ = {
         },
 
         _ariaAttributes: function(length) {
-            var el = this.element,
+            var content = this.content,
                 options = this.options,
                 selectable = options.selectable;
 
-            if (length === 0) {
-                el.removeAttr(ARIA_ROLE);
-                el.removeAttr(ARIA_MULTISELECTABLE);
+            this._ariaLabelValue = this._ariaLabelValue || this.options.ariaLabel;
 
-                if (el.attr(ARIA_LABEL)) {
-                    this._ariaLabelValue = el.attr(ARIA_LABEL);
-                    el.removeAttr(ARIA_LABEL);
+            if (length === 0) {
+                content.removeAttr(ARIA_ROLE);
+                content.removeAttr(ARIA_MULTISELECTABLE);
+
+                if (content.attr(ARIA_LABEL)) {
+                    this._ariaLabelValue = content.attr(ARIA_LABEL);
+                    content.removeAttr(ARIA_LABEL);
                 }
             } else {
-                el.attr(ARIA_ROLE, (selectable || options.navigatable) ? "listbox" : "list");
+                content.attr(ARIA_ROLE, selectable ? "listbox" : "list");
 
                 if (selectable && kendo.ui.Selectable.parseOptions(selectable).multiple) {
-                    el.attr(ARIA_MULTISELECTABLE, true);
+                    content.attr(ARIA_MULTISELECTABLE, true);
                 }
 
                 if (this._ariaLabelValue) {
-                    el.attr(ARIA_LABEL, this._ariaLabelValue);
+                    content.attr(ARIA_LABEL, this._ariaLabelValue);
                 }
             }
         },
@@ -685,7 +682,7 @@ var __meta__ = {
                 content = that.content,
                 clickCallback = function(e) {
                     that.current($(e.currentTarget));
-                    if (!$(e.target).is(":button, a, :input, a > .k-icon, textarea")) {
+                    if (!$(e.target).is(":button, a, :input, a > .k-icon, a > k-svg-icon, textarea")) {
                         kendo.focusElement(element);
                     }
                 };
@@ -795,7 +792,7 @@ var __meta__ = {
                                 };
 
                                 that.one("dataBound", focusAgain);
-                            } else if (that.options.editTemplate !== "") {
+                            } else if (that.options.editTemplate) {
                                 that.edit(current);
                             }
                         }
@@ -859,7 +856,7 @@ var __meta__ = {
             var that = this,
                 editable = that.editable,
                 options = that.options,
-                role = (options.selectable || options.navigatable) ? "option" : "listitem",
+                role = options.selectable ? "option" : "listitem",
                 data,
                 item,
                 index,
@@ -869,10 +866,6 @@ var __meta__ = {
                 if (editable.element.index() % 2) {
                     template = that.altTemplate;
                 }
-
-                that.angular("cleanup", function() {
-                    return { elements: [ editable.element ] };
-                });
 
                 data = that._modelFromElement(editable.element);
                 that._destroyEditable();
@@ -887,10 +880,6 @@ var __meta__ = {
                 if (that._hasBindingTarget()) {
                     kendo.bind(item, data);
                 }
-
-                that.angular("compile", function() {
-                    return { elements: [ item ], data: [ { dataItem: data } ] };
-                });
             }
             return true;
         },
@@ -1045,6 +1034,3 @@ var __meta__ = {
     kendo.ui.plugin(ListView);
 })(window.kendo.jQuery);
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

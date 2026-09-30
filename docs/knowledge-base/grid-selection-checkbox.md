@@ -1,16 +1,31 @@
 ---
 title: Make Selection with Checkbox Column
-page_title:  Make Selection with Checkbox Column | Kendo UI Grid for jQuery
-description: "An example on how to select a row of the Kendo UI jQuery Grid with a checkbox column, preserve the selection and get the IDs of all selected items in the Kendo UI Grid for jQuery."
+page_title:  Make Selection with Checkbox Column - Kendo UI for jQuery Data Grid
+description: "Learn how to select a row of the Kendo UI jQuery Grid with a checkbox column, preserve the selection and get the IDs of all selected items in the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/Selection/grid-selection-checkbox
 slug: howto_make_selection_checkbox_column_grid
 tags: grid, make, preserve, selection, checkbox, column, get, ids, selected, items
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
-As of the Kendo UI R2 2017 SP1 release, the [selection of columns with checkboxes](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.selectable) is a built-in feature for
+## Environment
+
+<table>
+ <tr>
+  <td>Product</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
+ </tr>
+</table>
+
+## Description
+
+How can I select a row of the Data Grid with a checkbox column, preserve the selection and get the IDs of all selected items in the Grid?
+
+## Solution
+
+As of the Kendo UI R2 2017 SP1 release, the [selection of columns with checkboxes](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsselectable) is a built-in feature for
 the Grid.
 
 For earlier versions, refer to the following example. It demonstrates how to select a Grid row by using a checkbox, preserve the selection between pages, and get the IDs of the selected items from all pages.
@@ -21,30 +36,30 @@ For earlier versions, refer to the following example. It demonstrates how to sel
 <script>
     $(document).ready(function () {
         //DataSource definition
-        var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-        dataSource = new kendo.data.DataSource({
-            transport: {
-                read: {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
-                },
-                update: {
-                    url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
-                },
-                destroy: {
-                    url: crudServiceBaseUrl + "/Products/Destroy",
-                    dataType: "jsonp"
-                },
-                create: {
-                    url: crudServiceBaseUrl + "/Products/Create",
-                    dataType: "jsonp"
-                },
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+                dataSource = new kendo.data.DataSource({
+                    transport: {
+                        read:  {
+                            url: crudServiceBaseUrl + "/Products"
+                        },
+                        update: {
+                            url: crudServiceBaseUrl + "/Products/Update",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
+                        destroy: {
+                            url: crudServiceBaseUrl + "/Products/Destroy",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
+                        create: {
+                            url: crudServiceBaseUrl + "/Products/Create",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
                 parameterMap: function (options, operation) {
                     if (operation !== "read" && options.models) {
-                        return {
-                            models: kendo.stringify(options.models)
-                        };
+                        return kendo.stringify(options.models);
                     }
                 }
             },
@@ -95,8 +110,8 @@ For earlier versions, refer to the following example. It demonstrates how to sel
             toolbar: ["create"],
             columns: [
             //define template column with checkbox and attach click event handler
-            { 
-                template: "<input type='checkbox' class='k-checkbox k-checkbox-md k-rounded-md checkbox' />", 
+            {
+                template: "<input type='checkbox' class='k-checkbox checkbox' />",
                 width: 40,
                 attributes: {class: "k-text-center"}
             },
@@ -172,4 +187,4 @@ For earlier versions, refer to the following example. It demonstrates how to sel
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

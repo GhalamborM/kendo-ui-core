@@ -1,11 +1,11 @@
 ---
 title: Persist Grid Editor Template While Restoring State
-page_title: Persist Grid Editor Template While Restoring State with getOptions and setOptions methods | Kendo UI Grid for jQuery
-description: "An example on how to keep the editor template after restoring Grid options with getOptions and setOptions methods."
+page_title: Persist Grid Editor Template While Restoring State with getOptions and setOptions methods - Kendo UI for jQuery Data Grid
+description: "Learn how to keep the editor template after restoring Grid options with getOptions and setOptions methods."
 type: how-to
 tags: kendo, ui, grid, persist, editor, template, setOptions, getOptions, restore
 res_type: kb
-component: grid
+components: ["grid"]
 slug: howto_persist_editor_template__while_restoring_state
 ---
 
@@ -14,7 +14,7 @@ slug: howto_persist_editor_template__while_restoring_state
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -32,11 +32,11 @@ slug: howto_persist_editor_template__while_restoring_state
 
 ## Description
 
-How can I persist Grid Editor Template after Restoring State with [`setOptions`](/api/javascript/ui/grid/methods/setoptions)?
+How can I persist Grid Editor Template after Restoring State with [`setOptions`](/api/ui/grid/methods/setoptions)?
 
 ## Solution
 
-> As pointed out in the [`setOptions`](/api/javascript/ui/grid/methods/setoptions) API documentation `JSON.stringify()` cannot serialize function references (e.g. event handlers), so if stringification is used for the retrieved Grid state, all configuration fields, which represent function references, will be lost.
+> As pointed out in the [`setOptions`](/api/ui/grid/methods/setoptions) API documentation `JSON.stringify()` cannot serialize function references (e.g. event handlers), so if stringification is used for the retrieved Grid state, all configuration fields, which represent function references, will be lost.
 
 Specify the custom editor to the columns object before passing it to the `setOptions()` method.
 
@@ -45,9 +45,9 @@ Specify the custom editor to the columns object before passing it to the `setOpt
     <script src="https://demos.telerik.com/kendo-ui/content/shared/js/products.js"></script>
 
     <div class="box wide">
-      <button id="save"class="k-button k-button-solid-base k-button-solid k-button-md k-rounded-md" >Save State
+      <button id="save"class="k-button" >Save State
       </button>
-      <button id="load" class="k-button k-button-solid-base k-button-solid k-button-md k-rounded-md" >Load State
+      <button id="load" class="k-button" >Load State
       </button>
     </div>
 
@@ -127,9 +127,8 @@ Specify the custom editor to the columns object before passing it to the `setOpt
           dataTextField: "CategoryName",
           dataValueField: "CategoryID",
           dataSource: {
-            type: "odata",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
+              read: "https://demos.telerik.com/service/v2/core/Categories"
             }
           }
         });
@@ -139,4 +138,4 @@ Specify the custom editor to the columns object before passing it to the `setOpt
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

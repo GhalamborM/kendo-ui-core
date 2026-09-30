@@ -1,12 +1,12 @@
 ---
 title: PDF Export with Different Options
-description: An example on how to export some pages landscape and others portrait by using the Kendo UI Drawing API.
+description: Learn how to export some pages landscape and others portrait by using the Kendo UI Drawing API.
 type: how-to
-page_title: Set different PDF options for each page | Kendo UI Drawing Library
+page_title: Set different PDF options for each page - Kendo UI Drawing Library
 slug: pdf-export-different-options-for-each-page
 tags: pdf, export, different, options, drawing, api, pages, landscape, portrait, some, other
 res_type: kb
-component: drawing-api
+components: ["drawing-api"]
 ---
 
 ## Environment
@@ -14,11 +14,11 @@ component: drawing-api
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Drawing API</td>
+  <td>Progress® Kendo UI® Drawing API</td>
  </tr>
  <tr>
   <td>Created with Version</td>
-  <td>2016.3.1028</td>
+  <td>2024.2.514</td>
  </tr>
 </table>
 
@@ -59,3 +59,5 @@ How can I export some pages with landscape orientation and others with portrait 
       	});
     </script>
 ```
+
+>The PDF standard fonts cover only the basic ASCII character set. For more information refer to the [`Unicode and Embedded Fonts`](/framework/pdf/embedded-fonts) article.

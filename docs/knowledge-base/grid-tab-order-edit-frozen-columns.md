@@ -1,13 +1,13 @@
 ---
 title: Keep Tab Order on Edited Grid Row with Frozen Columns
-description: An example on how to keep the focus on edited inputs when the frozen columns functionality of the Kendo UI Grid is enabled.
+description: Learn how to keep the focus on edited inputs when the frozen columns functionality of the Kendo UI Grid is enabled.
 type: how-to
-page_title: Tab through Editors When Columns Are Frozen | Kendo UI Grid for jQuery
+page_title: Tab through Editors When Columns Are Frozen - Kendo UI for jQuery Data Grid
 slug: grid-tab-order-edit-frozen-columns
 tags: grid, frozen, columns, tab, order, focus, input, buttons, tabbing, tabindex
 ticketid: 1142004
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Made with version</td>
+  <td>Product Version</td>
   <td>2020.3.1021</td>
  </tr>
 </table>
@@ -34,7 +34,7 @@ The default order in which the browser focuses elements on the page cause the re
 
 To keep the tab order:
 
-1. Handle the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound) event of the Grid.
+1. Handle the [`dataBound`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound) event of the Grid.
 1. Get the reference of all **Edit** and **Delete** buttons.
 1. Increase the [`tabindex`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) attributes for the buttons.
 
@@ -43,31 +43,28 @@ To keep the tab order:
 
 <script>
     $(document).ready(function () {
-        var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-            dataSource = new kendo.data.DataSource({
-                transport: {
-                    read: {
-                        url: crudServiceBaseUrl + "/Products",
-                        dataType: "jsonp"
-                    },
-                    update: {
-                        url: crudServiceBaseUrl + "/Products/Update",
-                        dataType: "jsonp"
-                    },
-                    destroy: {
-                        url: crudServiceBaseUrl + "/Products/Destroy",
-                        dataType: "jsonp"
-                    },
-                    create: {
-                        url: crudServiceBaseUrl + "/Products/Create",
-                        dataType: "jsonp"
-                    },
-                    parameterMap: function (options, operation) {
-                        if (operation !== "read" && options.models) {
-                            return { models: kendo.stringify(options.models) };
-                        }
-                    }
-                },
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+              dataSource = new kendo.data.DataSource({
+                  transport: {
+                      read:  {
+                          url: crudServiceBaseUrl + "/Products"
+                      },
+                      update: {
+                          url: crudServiceBaseUrl + "/Products/Update",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      destroy: {
+                          url: crudServiceBaseUrl + "/Products/Destroy",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      create: {
+                          url: crudServiceBaseUrl + "/Products/Create",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                  },
                 batch: true,
                 pageSize: 20,
                 schema: {
@@ -96,11 +93,11 @@ To keep the tab order:
             filterable: true,
             columnMenu: true,
             dataBound: function (e) {
-                $(".k-grid-edit, .k-grid-delete").attr("tabindex", "1");
+                $(".k-grid-edit-command, .k-grid-remove-command").attr("tabindex", "1");
             },
             cancel: function (e) {
                 setTimeout(function () {
-                    $(".k-grid-edit, .k-grid-delete").attr("tabindex", "1");
+                    $(".k-grid-edit-command, .k-grid-remove-command").attr("tabindex", "1");
                 });
             },
             columns: [

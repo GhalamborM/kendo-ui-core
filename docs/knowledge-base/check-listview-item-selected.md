@@ -1,13 +1,13 @@
 ---
 title: Check If Particular ListView Item Is Selected
-description: An example on how to check if a particular item corresponds to a property of the selected items in the Kendo UI ListView.
+description: Learn how to check if a particular item corresponds to a property of the selected items in the Kendo UI ListView.
 type: how-to
-page_title: Check If Particular Item Is Selected | Kendo UI ListView for jQuery
+page_title: Check If a Specific Item Is Selected - Kendo UI ListView for jQuery
 slug: check-listview-item-selected
 tags: listview, item, selected, check
 ticketid: 1134915
 res_type: kb
-component: listview
+components: ["listview"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: listview
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ListView</td>
+  <td>Progress® Kendo UI® ListView for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -41,49 +41,37 @@ How can I check if a certain value corresponds to a DataItem property of the sel
 1. Access its corresponding DataItem and properties by getting their index.
 
 ```dojo
-<div id="example">
-
-      <div class="demo-section k-content wide">
-        <button onclick="checked()">Is <b>Queso Cabrales</b> selected?</button>
-        <div id="listView"></div>
-        <div id="pager" class="k-pager-wrap"> </div>
-      </div>
-
-      <div class="box wide">
-        <h4>Console Log</h4>
-        <div class="console"></div>
-      </div>
+ <div id="example">
+      <div id="listView"></div>
+      <div id="pager" class="k-pager"></div>
 
       <script type="text/x-kendo-tmpl" id="template">
         <div class="product">
-            <img src="../content/web/foods/#:ProductID#.jpg" alt="#:ProductName# image" />
+            <img src="https://demos.telerik.com/kendo-ui/content/web/foods/#:ProductID#.jpg" alt="#:ProductName# image" />
             <h3>#:ProductName#</h3>
         </div>
       </script>
 
-      <script>          
+      <script>
         function checked() {
           var Product = "Queso Cabrales",
-              listView = $("#listView").data("kendoListView"),
-              selected = listView.select();
+            listView = $("#listView").data("kendoListView"),
+            selected = listView.select();
 
-          for (let i = 0; i < selected.length; i++)
-          {
+          for (let i = 0; i < selected.length; i++) {
             var index = $(selected[i]).index(),
-                dataItem = listView.dataSource.view()[index];
-            if (dataItem.ProductName == Product)
-            {
+              dataItem = listView.dataSource.view()[index];
+            if (dataItem.ProductName == Product) {
               alert("Queso Cabrales is Selected");
             }
           }
         }
 
-        $(document).ready(function() {
+        $(document).ready(function () {
           var dataSource = new kendo.data.DataSource({
             transport: {
               read: {
-                url: "https://demos.telerik.com/kendo-ui/service/Products",
-                dataType: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/Products",
               }
             },
             pageSize: 15
@@ -102,23 +90,28 @@ How can I check if a certain value corresponds to a DataItem property of the sel
           });
 
           function onDataBound() {
-            kendoConsole.log("ListView data bound");
+            console.log("ListView data bound");
           }
 
           function onChange() {
             var data = dataSource.view(),
-                selected = $.map(this.select(), function(item) {
-                  return data[$(item).index()].ProductName;
-                });
+              selected = $.map(this.select(), function (item) {
+                return data[$(item).index()].ProductName;
+              });
 
-            kendoConsole.log("Selected: " + selected.length + " item(s), [" + selected.join(", ") + "]");
+            console.log(
+              "Selected: " +
+                selected.length +
+                " item(s), [" +
+                selected.join(", ") +
+                "]"
+            );
           }
         });
       </script>
 
       <style>
-        .product
-        {
+        .product {
           float: left;
           width: 220px;
           height: 110px;
@@ -126,29 +119,25 @@ How can I check if a certain value corresponds to a DataItem property of the sel
           padding: 5px;
           cursor: pointer;
         }
-        .product img
-        {
+        .product img {
           float: left;
           width: 110px;
           height: 110px;
         }
-        .product h3
-        {
+        .product h3 {
           margin: 0;
           padding: 10px 0 0 10px;
-          font-size: .9em;
+          font-size: 0.9em;
           overflow: hidden;
           font-weight: normal;
           float: left;
           max-width: 100px;
           text-transform: uppercase;
         }
-        .k-pager-wrap
-        {
+        .k-pager {
           border-top: 0;
         }
-        .demo-section .k-listview:after
-        {
+        .demo-section .k-listview:after {
           content: ".";
           display: block;
           height: 0;
@@ -161,4 +150,4 @@ How can I check if a certain value corresponds to a DataItem property of the sel
 
 ## See Also
 
-* [API Reference of the `select` Method](https://docs.telerik.com/kendo-ui/api/javascript/ui/listview/methods/select)
+* [API Reference of the `select` Method](https://docs.telerik.com/kendo-ui/api/ui/listview/methods/select)

@@ -1,12 +1,13 @@
 ---
 title: Add Image to Resource on Timeline View
-description: An example on how to insert an image on the Timeline view resources in the Kendo UI Scheduler.
+description: Learn how to insert an image on the Timeline view resources in the Kendo UI Scheduler.
 type: how-to
-page_title: Add Image to Resource on Timeline View | Kendo UI Scheduler for jQuery
+page_title: Add Image to Resource on Timeline View - Kendo UI Scheduler for jQuery
 slug: scheduler-timeline-view-resource-image
 tags: scheduler, timeline, view, resource, add, image
 ticketid: 1155292
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Scheduler for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
 </table>
 
@@ -70,8 +71,8 @@ Extend the view and override the functions that are responsible for rendering th
 
   $(function() {
     $("#scheduler").kendoScheduler({
-      date: new Date("2013/6/13"),
-      startTime: new Date("2013/6/13 07:00 AM"),
+      date: new Date("2025/6/13"),
+      startTime: new Date("2025/6/13 07:00 AM"),
       height: 600,
       views: [{
         type: "week",
@@ -82,26 +83,26 @@ Extend the view and override the functions that are responsible for rendering th
         batch: true,
         transport: {
           read: {
-            url: "https://demos.telerik.com/kendo-ui/service/meetings",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/meetings"
           },
           update: {
-            url: "https://demos.telerik.com/kendo-ui/service/meetings/update",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/meetings/update",
+            type: "POST",
+            contentType: "application/json"
           },
           create: {
-            url: "https://demos.telerik.com/kendo-ui/service/meetings/create",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/meetings/create",
+            type: "POST",
+             contentType: "application/json"
           },
           destroy: {
-            url: "https://demos.telerik.com/kendo-ui/service/meetings/destroy",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/meetings/destroy",
+            type: "POST",
+            contentType: "application/json"
           },
           parameterMap: function(options, operation) {
             if (operation !== "read" && options.models) {
-              return {
-                models: kendo.stringify(options.models)
-              };
+              return kendo.stringify(options.models);
             }
           }
         },
@@ -212,4 +213,4 @@ Extend the view and override the functions that are responsible for rendering th
 
 ## See Also
 
-* [Demo on Creating Custom Views through Inheriting Built-In Views](https://docs.telerik.com/kendo-ui/controls/scheduling/scheduler/how-to/custom-views/custom-view)
+* [Demo on Creating Custom Views through Inheriting Built-In Views](https://docs.telerik.com/kendo-ui/knowledge-base/custom-view)

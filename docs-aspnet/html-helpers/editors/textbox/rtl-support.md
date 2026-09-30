@@ -2,8 +2,9 @@
 title: RTL Support
 page_title: Right-to-Left Support
 description: "Use the Right-to-Left (RTL) feature of the TextBox component for {{ site.framework }} to render content for RTL languages."
+components: ["textbox"]
 slug: rtl_textbox_aspnetcore
-position: 3
+position: 6
 ---
 
 # Right-to-Left Support

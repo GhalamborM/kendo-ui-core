@@ -1,12 +1,13 @@
 ---
 title: Grid Foreign Key DropDown Editor with Filter TextBox
-description: An example on how to customize the built-in dropdownlist editor of the foreign key column to include a filter in the Kendo UI Grid.
+description: Learn how to customize the built-in dropdownlist editor of the foreign key column to include a filter in the Kendo UI Grid.
 type: how-to
-page_title: Grid Foreign Key DropDown Editor with Filter | Kendo UI Grid for jQuery
+page_title: Grid Foreign Key DropDown Editor with Filter - Kendo UI for jQuery Data Grid
 slug: grid-foreign-key-dropdown-with-filter
 tags: grid, fk, foreign, key, dropdown, filter, contains, search, custom, edit
 ticketid: 1148304
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Made with Version</td>
+  <td>Product Version</td>
   <td>2016.3 1028</td>
  </tr>
 </table>
@@ -25,11 +26,11 @@ res_type: kb
 
 ## Description
 
-How can I have a [`filter`](/api/javascript/ui/dropdownlist/configuration/filter) textbox in the dropdown list editor in the Grid foreign key column?
+How can I have a [`filter`](/api/ui/dropdownlist/configuration/filter) textbox in the dropdown list editor in the Grid foreign key column?
 
 ## Solution
 
-You may add the filter option in the [`edit`](/api/javascript/ui/grid/events/edit) event of the Kendo UI Grid when the automatically generated Kendo UI DropDownList is initialized.
+You may add the filter option in the [`edit`](/api/ui/grid/events/edit) event of the Kendo UI Grid when the automatically generated Kendo UI DropDownList is initialized.
 
 ```
   edit: function(e){

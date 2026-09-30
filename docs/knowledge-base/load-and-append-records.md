@@ -1,14 +1,23 @@
 ---
 title: Load and Append More Records While Scrolling Down
-page_title: Load and Append More Records | Kendo UI Grid for jQuery
-description: "An example on how to load and append more records as the user scrolls down the Kendo UI Grid for jQuery."
+page_title: Load and Append More Records - Kendo UI for jQuery Data Grid
+description: "Learn how to load and append more records as the user scrolls down the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/load-and-append-records, /controls/data-management/grid/how-to/binding/load-and-append-records
 slug: howto_loadand_append_morerecords_while_scrollingdown_grid
 tags: grid, load, append, records, while, scrolling
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
+
+## Environment
+
+<table>
+ <tr>
+  <td>Product</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
+ </tr>
+</table>
 
 > **Deprecated** The functionality is available out of the box. Check [`endless scrolling`]({% slug endless_scrolling_kendoui_grid_widget %})
 
@@ -35,9 +44,9 @@ To achieve this behavior:
 
         gridElement.kendoGrid({
             dataSource: {
-                type: "odata",
+                type: "odata-v4",
                 transport: {
-                    read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                    read: "https://demos.telerik.com/service/v2/odata/Orders"
                 },
                 schema: {
                     model: {
@@ -92,4 +101,4 @@ To achieve this behavior:
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

@@ -1,8 +1,6 @@
-(function(f, define) {
-    define([ "./kendo.data" ], f);
-})(function() {
+import "./kendo.data.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "data.signalr",
     name: "SignalR",
     category: "framework",
@@ -125,7 +123,5 @@ var __meta__ = {
     });
 
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

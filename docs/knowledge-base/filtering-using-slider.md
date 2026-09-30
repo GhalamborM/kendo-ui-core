@@ -5,9 +5,9 @@ description: "Learn how to filter the ListView datasource based on Kendo UI Slid
 slug: howto_filter_using_slider_selection_listview
 previous_url: /controls/data-management/listview/how-to/filtering-using-slider, /controls/editors/slider/how-to/filter-listview-using-slider
 tags: listview, filter, using, slider, selection
-component: listview
 type: how-to
 res_type: kb
+components: ["listview"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ListView for jQuery</td>
+  <td>Progress® Kendo UI® ListView for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -33,7 +33,7 @@ res_type: kb
 
 ## Description
 
-How can I filter the data source of the ListView based on a [`Slider`](/kendo-ui/controls/editors/rangeslider/overview) selection?
+How can I filter the data source of the ListView based on a [`Slider`](/controls/editors/rangeslider/overview) selection?
 
 ## Solution
 
@@ -84,8 +84,7 @@ The following example demonstrates how to achieve this behavior and display the 
       var dataSource = new kendo.data.DataSource({
         transport: {
           read: {
-            url: "https://demos.telerik.com/kendo-ui/service/Products",
-            dataType: "jsonp"
+            url: "https://demos.telerik.com/service/v2/core/Products"
           }
         },
         pageSize: 4
@@ -101,6 +100,6 @@ The following example demonstrates how to achieve this behavior and display the 
 
 ## See Also
 
-* [JavaScript API Reference of the ListView](/api/javascript/ui/listview)
-* [How to Persist Row Selection during Data Operations]({% slug howto_persists_row_selection_listview %})
-* [How to Reorder Using Drag-and-Drop and Kendo UI Touch]({% slug howto_reorder_using_draganddrop_kendouitouch_listview %})
+* [JavaScript API Reference of the ListView](/api/ui/listview)
+* [Persist Row Selection during Data Operations]({% slug howto_persists_row_selection_listview %})
+* [Reorder Using Drag-and-Drop and Kendo UI Touch]({% slug howto_reorder_using_draganddrop_kendouitouch_listview %})

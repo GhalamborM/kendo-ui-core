@@ -2,8 +2,9 @@
 title: Paging
 page_title: Paging
 description: "Learn how to enable the paging functionality of the Telerik UI Grid for {{ site.framework }}."
+components: ["grid"]
 slug: htmlhelpers_grid_aspnetcore_paging
-position: 6
+position: 8
 ---
 
 # Paging
@@ -242,8 +243,26 @@ Use as small page sizes as possible, because rendering too many records causes p
     ```
     {% endif %} 
 
+You can change the position of the Pager in the Grid. The available options for the positions are `top` and `bottom`.
+
+```JavaScript
+    <input type="checkbox" id="btnPagerPosition" />
+
+    $("#btnPagerPosition").change(function () {
+         var position = this.checked ? "top" : "bottom";
+         $("#grid").data("kendoGrid").setOptions({
+             pageable: {
+                 position: position
+             }
+         });
+    });
+```
+
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
 * [Paging by the Grid HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/grid/aggregates)
-* [Setting the Pager Visibility in the Grid HtmlHelper for {{ site.framework }}](https://demos.telerik.com/{{ site.platform }}/grid/pager-visibility)
+* [Pager Functionality in the Grid HtmlHelper for {{ site.framework }}](https://demos.telerik.com/{{ site.platform }}/grid/pager-functionality)
 * [Server-Side API](/api/grid)

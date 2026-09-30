@@ -2,21 +2,17 @@
 title: Data Binding
 page_title: Data Binding
 description: "Learn how to bind the Telerik UI StockChart component for {{ site.framework }} (MVC 6 or {{ site.framework }} MVC) to data."
+components: ["stockchart"]
 previous_url: /helpers/charts/stockchart/data-binding
 slug: databinding_stockchart_aspnetcore
 position: 2
 ---
-{% if site.core %}
-    {% assign DateField = "/api/Kendo.Mvc.UI.Fluent/StockChartBuilder#datefieldsystemstring" %}
-{% else %}
-    {% assign DateField = "/api/Kendo.Mvc.UI.Fluent/StockChartBuilder#datefieldsystemstring" %}
-{% endif %}
 
 # Data Binding
 
 The Telerik UI StockChart provides the [single data-source](#single-data-source-mode) and [master and navigator data-source](#master-and-navigator-data-source-mode) binding modes.
 
-In both modes, you have to set a [`DateField`]({{ DateField }}) to indicate the field that contains the date of the data item.
+In both modes, you have to set a [`DateField`](/api/kendo.mvc.ui.fluent/stockchartbuilder#datefieldsystemstring) to indicate the field that contains the date of the data item.
 
 > * The StockChart supports only binding to time series.
 > * Discrete categories and XY or Scatter series are not supported.
@@ -51,6 +47,41 @@ The following example demonstrates a StockChart in a single data-source binding 
         )
     )
 ```
+{% if site.core %}
+```TagHelper
+    <kendo-stockchart name="stockChartTag"
+            date-field="Date">
+        <chart-title text=" The Boeing Company \n (NYSE:BA)"></chart-title>
+        <datasource>
+            <transport>
+                <read  url="@Url.Action("_BoeingStockData", "Financial")"/>
+            </transport>
+             <schema>
+                <model>
+                    <fields>
+                        <field name="Date" type="date"></field>
+                        <field name="Close" type="number"></field>
+                        <field name="Volume" type="number"></field>
+                        <field name="Open" type="number"></field>
+                        <field name="High" type="number"></field>
+                        <field name="Low" type="number"></field>
+                        <field name="Symbol" type="string"></field>
+                    </fields>
+                </model>
+            </schema>
+        </datasource>
+        <series>
+            <series-item type="ChartSeriesType.Candlestick" open-field="Open" high-field="High" low-field="Low" close-field="Close"></series-item>
+        </series>
+        <navigator>
+            <navigator-series>
+                <series-item type="ChartSeriesType.Area" field="Close"></series-item>
+            </navigator-series>
+            <select from="new DateTime(2009,02,05)" to="new DateTime(2011,10,07)"></select>
+        </navigator>
+    </kendo-stockchart>
+```
+{% endif %}
 
 ## Master and Navigator Data-Source Mode
 
@@ -98,6 +129,46 @@ The following example demonstrates a StockChart in the master and navigator data
         )
     )
 ```
+{% if site.core %}
+```TagHelper
+    <kendo-stockchart name="stockChart"
+                      date-field="Date">
+        <chart-title text="The ACME Company"></chart-title>
+        <datasource type="DataSourceTagHelperType.Ajax">
+            <transport>
+                <read url="@Url.Action("_StockData", "Financial")" />
+            </transport>
+            <schema>
+                <model>
+                    <fields>
+                        <field name="Date" type="date"></field>
+                        <field name="Close" type="number"></field>
+                        <field name="Volume" type="number"></field>
+                        <field name="Open" type="number"></field>
+                        <field name="High" type="number"></field>
+                        <field name="Low" type="number"></field>
+                        <field name="Symbol" type="string"></field>
+                    </fields>
+                </model>
+            </schema>
+        </datasource>
+        <navigator>
+            <datasource type="DataSourceTagHelperType.Ajax">
+                <transport>
+                    <read url="@Url.Action("_StockData", "Financial")" />
+                </transport>
+            </datasource>
+            <navigator-series>
+                <series-item type="ChartSeriesType.Area" field="High"></series-item>
+            </navigator-series>
+            <select from="new DateTime(2017,02,05)" to="new DateTime(2019,10,07)"></select>
+        </navigator>
+        <series>
+            <series-item type="ChartSeriesType.Candlestick" open-field="Open" high-field="High" low-field="Low" close-field="Close"></series-item>
+        </series>
+    </kendo-stockchart>
+```
+{% endif %}
 
 The following example demonstrates a sample filter submitted by the StockChart for the main data source. The `filter` field is always `Date` regardless of the `DateField` setting.
 
@@ -119,9 +190,14 @@ The following example demonstrates a sample filter submitted by the StockChart f
     }
 ```
 
-
-
 ## See Also
 
-* [Basic Usage of the StockChart HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/financial/index)
-* [Server-Side API](/api/stockchart)
+* [Basic Usage of the StockChart HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/financial)
+{% if site.core %}
+* [StockChart in Razor Pages]({% slug htmlhelper_chart_razorpages_aspnetcore %})
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+{% endif %}
+* [Server-Side HtmlHelper API of the StockChart](/api/stockchart)
+{% if site.core %}
+* [Server-Side TagHelper API of the StockChart](/api/taghelpers/stockchart)
+{% endif %}

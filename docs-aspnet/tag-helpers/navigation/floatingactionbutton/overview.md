@@ -2,6 +2,7 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI FloatingActionButton TagHelper for ASP.NET Core."
+components: ["floatingactionbutton"]
 slug: taghelpers_floatingactionbutton_aspnetcore_overview
 position: 1
 ---
@@ -26,14 +27,13 @@ The following example demonstrates how to initialize the FloatingActionButton us
                                 align-offset-vertical="50"
                                 position-mode="FloatingActionButtonPositionMode.Absolute"
                                 icon="share"
-                                shape="FloatingActionButtonShape.Pill"
                                 size="FloatingActionButtonSize.Medium"
                                 theme-color="FloatingActionButtonThemeColor.Info"
                                 >
         <floatingactionbutton-items>
             <floatingactionbutton-item label="Download" icon="download" click="onItemClick"></floatingactionbutton-item>
             <floatingactionbutton-item label="Print" icon="print" click="onItemClick"></floatingactionbutton-item>
-            <floatingactionbutton-item label="Email" icon="email" click="onItemClick"></floatingactionbutton-item>
+            <floatingactionbutton-item label="Email" icon="envelop" click="onItemClick"></floatingactionbutton-item>
         </floatingactionbutton-items>
     </kendo-floatingactionbutton>
 ```
@@ -61,7 +61,7 @@ You can subscribe to all FloatingActionButton events.
         <floatingactionbutton-items>
             <floatingactionbutton-item label="Download" icon="download" click="onItemClick"></floatingactionbutton-item>
             <floatingactionbutton-item label="Print" icon="print" click="onItemClick"></floatingactionbutton-item>
-            <floatingactionbutton-item label="Email" icon="email" click="onItemClick"></floatingactionbutton-item>
+            <floatingactionbutton-item label="Email" icon="envelop" click="onItemClick"></floatingactionbutton-item>
         </floatingactionbutton-items>
     </kendo-floatingactionbutton>
 
@@ -69,7 +69,7 @@ You can subscribe to all FloatingActionButton events.
         function onClick(e){
             //handle the FloatingActionButton click event
         };
-        
+
         function onExpand(e){
             //handle the FloatingActionButton expand event
         };

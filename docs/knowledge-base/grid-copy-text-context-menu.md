@@ -1,12 +1,12 @@
 ---
 title: Copy Cell Content in Grid by Using Context Menu
-description: An example on how to use context menu for copying cell content in Kendo Grid.
+description: Learn how to use context menu for copying cell content in Kendo Grid.
 type: how-to
-page_title: Copy Text in Cells with Context Menu | Kendo UI Grid for jQuery
+page_title: Copy Text in Cells with Context Menu - Kendo UI for jQuery Data Grid
 slug: grid-copy-text-context-menu
 tags: kendoui, kendo, grid, column, content, copy, menu, selection
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
 </table>
 
@@ -28,7 +28,7 @@ How can I use the context menu to copy the contents of a Grid cell?
 
 1. Reference the third-party [clipboard.js library](https://clipboardjs.com/).
 1. Add the Kendo UI ContextMenu that targets the Grid component.
-1. Handle the [`select`](https://docs.telerik.com/kendo-ui/api/javascript/ui/contextmenu/events/select) events of the ContextMenu and push the cell content to the clipboard.
+1. Handle the [`select`](https://docs.telerik.com/kendo-ui/api/ui/contextmenu/events/select) events of the ContextMenu and push the cell content to the clipboard.
 
 ```dojo
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
@@ -41,31 +41,30 @@ How can I use the context menu to copy the contents of a Grid cell?
 <script>
     $(document).ready(function () {
 
-
-        var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
             dataSource = new kendo.data.DataSource({
                 transport: {
-                    read: {
-                        url: crudServiceBaseUrl + "/Products",
-                        dataType: "jsonp"
+                    read:  {
+                        url: crudServiceBaseUrl + "/Products"
                     },
                     update: {
                         url: crudServiceBaseUrl + "/Products/Update",
-                        dataType: "jsonp"
+                        type: "POST",
+                        contentType: "application/json"
                     },
                     destroy: {
                         url: crudServiceBaseUrl + "/Products/Destroy",
-                        dataType: "jsonp"
+                        type: "POST",
+                        contentType: "application/json"
                     },
                     create: {
                         url: crudServiceBaseUrl + "/Products/Create",
-                        dataType: "jsonp"
+                        type: "POST",
+                        contentType: "application/json"
                     },
-                    parameterMap: function (options, operation) {
+                    parameterMap: function(options, operation) {
                         if (operation !== "read" && options.models) {
-                            return {
-                                models: kendo.stringify(options.models)
-                            };
+                            return kendo.stringify(options.models);
                         }
                     }
                 },

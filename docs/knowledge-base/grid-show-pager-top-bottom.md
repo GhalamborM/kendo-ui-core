@@ -1,12 +1,12 @@
 ---
 title: Show Pager on Top and Bottom
-description: An example on how to show the Kendo UI Grid pager on top and bottom.
+description: Learn how to show the Kendo UI Grid pager on top and bottom.
 type: how-to
-page_title: Duplicate Pager | Kendo UI Grid for jQuery
+page_title: Duplicate Pager - Kendo UI for jQuery Data Grid
 slug: grid-show-pager-top-bottom
 tags: grid, pager, duplicate, top, bottom, multiply, clone
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2018.1.117</td>
  </tr>
 </table>
@@ -36,9 +36,8 @@ The following example demonstrates how you can duplicate and add the Pager above
     $(document).ready(function () {
         $("#grid").kendoGrid({
             dataSource: {
-                type: "odata",
                 transport: {
-                    read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                    read: "https://demos.telerik.com/service/v2/core/Customers"
                 },
                 pageSize: 20
             },
@@ -67,7 +66,7 @@ The following example demonstrates how you can duplicate and add the Pager above
 
 
         var grid = $("#grid").data("kendoGrid");
-        var wrapper = $('<div class="k-pager-wrap k-grid-pager pagerTop"/>').insertBefore(grid.element.children(".k-grid-header"));
+        var wrapper = $('<div class="k-pager k-grid-pager pagerTop"/>').insertBefore(grid.element.children(".k-grid-header"));
         grid.pagerTop = new kendo.ui.Pager(wrapper, $.extend({}, grid.options.pageable, { dataSource: grid.dataSource }));
         grid.element.height("").find(".pagerTop").css("border-width", "0 0 1px 0");
     });

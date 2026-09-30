@@ -1,12 +1,13 @@
 ---
 title: Print Agenda View On Multiple Pages
-description: An example on how to print the Kendo UI Scheduler on multiple pages when agenda view is selected.
+description: Learn how to print the Kendo UI Scheduler on multiple pages when agenda view is selected.
 type: how-to
-page_title: Print To PDF Agenda View On Multiple Pages | Kendo UI Scheduler for jQuery
+page_title: Print To PDF Agenda View On Multiple Pages - Kendo UI Scheduler for jQuery
 slug: scheduler-print-pdf-agenda-multiple-pages
 tags: kendo, kendoui, scheduler, agenda, pdf, multiple
 ticketid: 1133425
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
 </table>
 
@@ -29,9 +30,9 @@ How can I print the Kendo UI Scheduler on multiple pages when agenda view is sel
 1. As the first row becomes two rows height, you will need to fix the rowspan.
 
 ````dojo
-	<script src="http://kendo.cdn.telerik.com/2016.2.714/js/jszip.min.js"></script>
+	<script src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
     <!-- Load Pako ZLIB library to enable PDF compression -->
-    <script src="//kendo.cdn.telerik.com/2016.2.714/js/pako_deflate.min.js"></script>
+    <script src="https://unpkg.com/pako/dist/pako_deflate.min.js"></script>
     <div id="example">
       <button id="export" class="k-button">Export to PDF</button>
       <div id="scheduler"></div>
@@ -111,7 +112,7 @@ How can I print the Kendo UI Scheduler on multiple pages when agenda view is sel
         font-family: "DejaVu Sans", "Arial", sans-serif;
         font-size: .9em;
       }
-      
+
       html body .k-pdf-export .k-scheduler-content .k-scheduler-table tr > td:first-child {
         width: 172px;
       }
@@ -123,10 +124,10 @@ How can I print the Kendo UI Scheduler on multiple pages when agenda view is sel
       // NOTE: Only required if the Kendo UI stylesheets are loaded
       // from a different origin, e.g. cdn.kendostatic.com
       kendo.pdf.defineFont({
-        "DejaVu Sans"             : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans.ttf",
-        "DejaVu Sans|Bold"        : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
-        "DejaVu Sans|Bold|Italic" : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
-        "DejaVu Sans|Italic"      : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
+        "DejaVu Sans"             : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans.ttf",
+        "DejaVu Sans|Bold"        : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
+        "DejaVu Sans|Bold|Italic" : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+        "DejaVu Sans|Italic"      : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
       });
     </script>
 
@@ -1230,4 +1231,4 @@ How can I print the Kendo UI Scheduler on multiple pages when agenda view is sel
 
 ## See Also
 
-* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler)
+* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/ui/scheduler)

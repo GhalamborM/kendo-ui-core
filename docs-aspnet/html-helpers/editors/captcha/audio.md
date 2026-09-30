@@ -2,6 +2,7 @@
 title: Audio Content
 page_title: Audio Content
 description: "Learn how to configure the audio provider for the Telerik UI Captcha component for {{ site.framework }}."
+components: ["captcha"]
 slug: htmlhelpers_captcha_audio
 position: 4
 ---
@@ -40,15 +41,16 @@ The Telerik UI Catpcha server-side provider creates an audio file based on the c
 
 1. Send a request to the remote endpoint and include the Captcha's ID as an additional parameter.
 
-    ```
+    ```JS
     function audioHandler(args) {
-        args.success("@Url.Action("Audio")?captchaId=" + args.data.CaptchaID);
+        //pass the name of the action "Audio" and the name of the controller (in this case "Captcha") to the Url.Action method. Add captchaId as a parameter:
+        args.success("@Url.Action("Audio", "Captcha")?captchaId=" + args.data.CaptchaID);
     }
     ```
 
 1. Use the CaptchaHelper.SpeakText() method to create a [wav](https://docs.fileformat.com/audio/wav/) File. Return it to the client-side.
-
-    ```
+    {% if site.mvc %}
+    ```C#
     public ActionResult Audio(string captchaId)
     {
         CaptchaImage captcha = (CaptchaImage)Session["captcha" + captchaId];
@@ -63,6 +65,23 @@ The Telerik UI Catpcha server-side provider creates an audio file based on the c
         return File(bmpBytes, "audio/wav");
     }
     ```
+    {% else %}
+    ```C#
+    public ActionResult Audio(string captchaId)
+    {
+        var sessionValue = HttpContext.Session.GetString("captcha_" + captchaId);
+        CaptchaImage captcha = JsonConvert.DeserializeObject<CaptchaImage>(sessionValue);
+
+        byte[] bmpBytes;
+
+        using (MemoryStream audio = CaptchaHelper.SpeakText(captcha))
+        {
+            bmpBytes = audio.ToArray();
+        }
+        return File(bmpBytes, "audio/wav");
+    }
+    ```
+    {% endif %}
 
 1. The Telerik UI Captcha starts the voice-over of the image after the user clicks the `audio` button.
 

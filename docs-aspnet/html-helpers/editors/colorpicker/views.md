@@ -2,13 +2,18 @@
 title: Views
 page_title: Views
 description: "Learn more about the available views for the Telerik UI ColorPicker component for {{ site.framework }}."
+components: ["colorpicker"]
 slug: htmlhelpers_views_colorpickerhelper_aspnetcore
 position: 3
 ---
 
-# ColorPicker Views
+# Views
 
-As of R3 SP1 of 2021 for the {{ site.product }} ColorPicker has a new design. One of the introduced new features is the [`.Views()`](/api/Kendo.Mvc.UI.Fluent/ColorPickerBuilder#viewssystemstring) configuration. It allows you to choose between a `gradient` and a `palette` view. You can also choose which the default view would be through the [`.View()`](/api/Kendo.Mvc.UI.Fluent/ColorPickerBuilder#viewkendomvcuicolorpickerview) option.
+The [`Views()`](/api/kendo.mvc.ui.fluent/colorpickerbuilder#viewssystemstring) configuration allows you to choose between the `Gradient` and `Palette` views. Also, you can specify the initially selected view through the [`View()`](/api/kendo.mvc.ui.fluent/colorpickerbuilder#viewkendomvcuicolorpickerview) option.
+
+> The `Views()` configuration was introduced with the R3 2021 SP1 release.
+
+The following example shows how to enable the available ColorPicker views and define a default view that will be displayed when the component opens.
 
 ```HtmlHelper
     @(Html.Kendo().ColorPicker()
@@ -28,13 +33,13 @@ As of R3 SP1 of 2021 for the {{ site.product }} ColorPicker has a new design. On
 {% if site.core %}
 ```TagHelper
 @{
-    string[] views = new string[] { "gradient", "palette" };
+    string[] viewsList = new string[] { "gradient", "palette" };
 }
 
-<kendo-colorpicker name="PatetteColorPicker"   preview="false" view="palette" views="views">
+<kendo-colorpicker name="PatetteColorPicker" preview="false" view="palette" views="viewsList">
 </kendo-colorpicker>
 
-<kendo-colorpicker name="GradientColorPicker"   preview="false" view="gradient" views="views">
+<kendo-colorpicker name="GradientColorPicker" preview="false" view="gradient" views="viewsList">
 </kendo-colorpicker>
 ```
 {% endif %}
@@ -43,4 +48,4 @@ As of R3 SP1 of 2021 for the {{ site.product }} ColorPicker has a new design. On
 
 * [Views of the {{ site.product }} ColorPicker (Demo)](https://demos.telerik.com/{{ site.platform }}/colorpicker/views)
 * [Server-Side API](/api/colorpicker)
-* [Client-side API](/api/javascript/ui/colorpicker)
+* [Client-side API](https://docs.telerik.com/kendo-ui/api/ui/colorpicker)

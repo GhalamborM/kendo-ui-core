@@ -1,13 +1,13 @@
 ---
-title: How to Get the Row and Column Index of Failed Cell Validation in Spreadsheet
+title: Get the Row and Column Index of Failed Cell Validation in Spreadsheet
 description: An example on how to get the row and column index of failed cell validation in Spreadsheet.
 type: how-to
-page_title: How to Get the Row and Column Index of Failed Cell Validation in Spreadsheet | Kendo UI Tooltip for jQuery
+page_title: How to Get the Row and Column Index of Failed Cell Validation in Spreadsheet - Kendo UI Tooltip for jQuery
 slug: spreadsheet-row-column-index-fail-validation
 tags: kendo ui, spreadsheet, row, column, validation
 ticketid: 1534253
 res_type: kb
-component: spreadsheet
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: spreadsheet
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
  </tr>
 </table>
  
@@ -26,7 +26,7 @@ How to get the row and column index of the cell when the validation in the Sprea
 
 ## Solution
 
-Subscribe to the Spreadsheet [`change`](/api/javascript/ui/spreadsheet/events/change) event. In the event handler find the current `range`. Check the `validation` value for each cell.
+Subscribe to the Spreadsheet [`change`](/api/ui/spreadsheet/events/change) event. In the event handler find the current `range`. Check the `validation` value for each cell.
 
 ### DatePicker
 
@@ -49,7 +49,7 @@ The following example demonstrates how to get the row and column index of the ce
             sheetsbar: false,
             excel: {
               // Required to enable Excel Export in some browsers
-              proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+              proxyURL: "https://demos.telerik.com/service/v2/core/export"
             },
             sheets: [
               {
@@ -124,4 +124,4 @@ The following example demonstrates how to get the row and column index of the ce
 
 ## See Also
 
-* [Spreadsheet] API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet)
+* [Spreadsheet] API Reference](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet)

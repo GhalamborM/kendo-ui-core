@@ -7,6 +7,7 @@ slug: kendo-all-min-js-not-present-in-the-npm-distribution
 tags: npm, webpack
 ticketid: 1110344
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI for jQuery</td>
+  <td>Progress® Kendo UI® for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>

@@ -1,12 +1,13 @@
 ---
 title: Change CheckBox Color
-description: An example on how to add a new color style to the Kendo UI CheckBox by using CSS.
+description: Learn how to add a new color style to the Kendo UI CheckBox by using CSS.
 type: how-to
-page_title: Implement New Color Schemes with CSS Styling | Kendo UI CheckBox for jQuery
+page_title: Implement New Color Schemes with CSS Styling - Kendo UI CheckBox for jQuery
 slug: checkbox-background-color-style
 tags: checkbox, background, color, style
 ticketid: 1140909
 res_type: kb
+components: ["checkbox"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>CheckBox for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® CheckBox for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -134,4 +135,4 @@ The following example demonstrates how to render a list of CheckBoxes with a new
 
 ## See Also
 
-* [Demo on Styling CheckBoxes](https://demos.telerik.com/kendo-ui/styling/checkboxes)
+* [Demo on CheckBoxes Appearance](https://demos.telerik.com/kendo-ui/checkbox/appearance)

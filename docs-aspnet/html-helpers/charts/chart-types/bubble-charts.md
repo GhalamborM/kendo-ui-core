@@ -2,6 +2,7 @@
 title: Bubble Charts
 page_title: Bubble Charts
 description: "Learn how to create a Telerik UI Bubble Chart for {{ site.framework }} to visualize data points and how to set its properties."
+components: ["chart"]
 slug: bubblecharts_aspnetcore_htmlhelper
 ---
 
@@ -15,10 +16,7 @@ The Telerik UI Bubble Chart HtmlHelper for {{ site.framework }} is a server-side
 
 Bubble Charts display data as points with coordinates and sizes defined by the value of their items.
 
-* [Demo page for the Bubble Chart HtmlHelper](https://demos.telerik.com/{{ site.platform }}/bubble-charts/index)
-{% if site.core %}
-* [Demo page for the Bubble Chart TagHelper](https://demos.telerik.com/{{ site.platform }}/bubble-charts/tag-helper)
-{% endif %}
+* [Demo page for the Bubble Chart](https://demos.telerik.com/{{ site.platform }}/bubble-charts/index)
 
 ## Getting Started
 
@@ -74,6 +72,5 @@ The following example demonstrates how to create a Bubble Chart and visualizes s
 
 ## See Also
 
-* [Basic Usage of the Bubble Chart HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/bubble-charts/index)
-* [Basic Usage of the Bubble Chart TagHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/bubble-charts/tag-helper)
+* [Basic Usage of the Bubble Chart for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/bubble-charts/index)
 * [Server-Side API](/api/chart)

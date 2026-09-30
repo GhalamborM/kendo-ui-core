@@ -1,13 +1,13 @@
 ---
 title: Use Grid Edit Buttons with Icons Only and No Text
-description: An example on how to remove the text from the Edit buttons of a Kendo UI Grid and leave only the icons.
+description: Learn how to remove the text from the Edit buttons of a Kendo UI Grid and leave only the icons.
 type: how-to
-page_title: Use the Grid Edit Buttons only with Icons and without Text | Kendo UI Grid for jQuery
+page_title: Use the Grid Edit Buttons only with Icons and without Text - Kendo UI for jQuery Data Grid
 slug: grid-icon-only-buttons
 tags: grid, editing, buttons, kendo ui, icons
 ticketid: 663290
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>2017.2.504</td>
  </tr>
 </table>
@@ -29,7 +29,7 @@ How can I use the **Edit**, **Delete**, **Update**, **Cancel**, and **Add** butt
 
 ## Solution
 
-1. Set [`command.text`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.command.text) to a space.
+1. Set [`command.text`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns/command#columnscommandtext) to a space.
 
     ```
         columns: [
@@ -40,7 +40,7 @@ How can I use the **Edit**, **Delete**, **Update**, **Cancel**, and **Add** butt
         ]
     ```
 
-2. Set [`toolbar.text`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/toolbar.text) to a space.
+2. Set [`toolbar.text`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/toolbar#toolbartext) to a space.
 
     ```
         toolbar: [{name: "create", text: " "}]
@@ -54,18 +54,18 @@ How can I use the **Edit**, **Delete**, **Update**, **Cancel**, and **Add** butt
 
     ```
       .k-grid .k-grid-toolbar .k-grid-add,
-      .k-grid tbody .k-grid-edit,
-      .k-grid tbody .k-grid-update,
-      .k-grid tbody .k-grid-cancel,
-      .k-grid tbody .k-grid-delete {
+      .k-grid tbody .k-grid-edit-command,
+      .k-grid tbody .k-grid-save-command,
+      .k-grid tbody .k-grid-cancel-command,
+      .k-grid tbody .k-grid-remove-command {
         min-width: 0;
       }
 
       .k-grid .k-grid-toolbar .k-grid-add .k-icon,
-      .k-grid tbody .k-grid-edit .k-icon,
+      .k-grid tbody .k-grid-edit-command .k-icon,
       .k-grid tbody .k-grid-update .k-icon,
       .k-grid tbody .k-grid-cancel .k-icon,
-      .k-grid tbody .k-grid-delete .k-icon {
+      .k-grid tbody .k-grid-remove-command .k-icon {
         margin: 0;
       }
     ```
@@ -75,18 +75,18 @@ The following example demonstrates the full implementation of the suggested appr
 ```dojo
     <style>
       .k-grid .k-grid-toolbar .k-grid-add,
-      .k-grid tbody .k-grid-edit,
+      .k-grid tbody .k-grid-edit-command,
       .k-grid tbody .k-grid-update,
       .k-grid tbody .k-grid-cancel,
-      .k-grid tbody .k-grid-delete {
+      .k-grid tbody .k-grid-remove-command {
         min-width: 0;
       }
 
       .k-grid .k-grid-toolbar .k-grid-add .k-icon,
-      .k-grid tbody .k-grid-edit .k-icon,
+      .k-grid tbody .k-grid-edit-command .k-icon,
       .k-grid tbody .k-grid-update .k-icon,
       .k-grid tbody .k-grid-cancel .k-icon,
-      .k-grid tbody .k-grid-delete .k-icon {
+      .k-grid tbody .k-grid-remove-command .k-icon {
         margin: 0;
       }
 
@@ -96,30 +96,32 @@ The following example demonstrates the full implementation of the suggested appr
 
       <script>
         $(document).ready(function () {
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-              dataSource = new kendo.data.DataSource({
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+            dataSource = new kendo.data.DataSource({
                 transport: {
-                  read:  {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
-                  },
-                  update: {
-                    url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
-                  },
-                  destroy: {
-                    url: crudServiceBaseUrl + "/Products/Destroy",
-                    dataType: "jsonp"
-                  },
-                  create: {
-                    url: crudServiceBaseUrl + "/Products/Create",
-                    dataType: "jsonp"
-                  },
-                  parameterMap: function(options, operation) {
-                    if (operation !== "read" && options.models) {
-                      return {models: kendo.stringify(options.models)};
+                    read:  {
+                        url: crudServiceBaseUrl + "/Products"
+                    },
+                    update: {
+                        url: crudServiceBaseUrl + "/Products/Update",
+                        type: "POST",
+                		contentType: "application/json"
+                    },
+                    destroy: {
+                        url: crudServiceBaseUrl + "/Products/Destroy",
+                        type: "POST",
+                		contentType: "application/json"
+                    },
+                    create: {
+                        url: crudServiceBaseUrl + "/Products/Create",
+                        type: "POST",
+                		contentType: "application/json"
+                    },
+                    parameterMap: function(options, operation) {
+                        if (operation !== "read" && options.models) {
+                            return kendo.stringify(options.models);
+                        }
                     }
-                  }
                 },
                 batch: true,
                 pageSize: 10,

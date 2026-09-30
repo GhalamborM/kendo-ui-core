@@ -1,13 +1,13 @@
 ---
 title: Use FontAwesome Icons in the TreeView
 page_title: Use FontAwesome Icons in the TreeView
-description: "Learn how to use FontAwesome icons in the Kendo UI for jQuery TreeView widget."
+description: "Learn how to use FontAwesome icons in the Kendo UI for jQuery TreeView component."
 slug: howto_usefontawesomeicons_treeview
 previous_url: /controls/navigation/treeview/how-to/appearance/use-font-awesome-icons
 tags: telerik, kendo, jquery, treeview, use, fontawesome, icons
-component: treeview
 type: how-to
 res_type: kb
+components: ["treeview"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI TreeView for jQuery</td>
+  <td>Progress® Kendo UI® TreeView for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I use FontAwesome icons in the Kendo UI for jQuery TreeView?
 
 ## Solution
 
-The following example demonstrates how to use [FontAwesome icons](http://fortawesome.github.io/Font-Awesome/icons/) as TreeView sprite icons.
+The following example demonstrates how to use [FontAwesome icons](https://github.com/FortAwesome/Font-Awesome) as TreeView sprite icons.
 
 ```dojo
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -69,4 +69,4 @@ The following example demonstrates how to use [FontAwesome icons](http://fortawe
 
 * [Basic Usage of the TreeView (Demo)](https://demos.telerik.com/kendo-ui/treeview/index)
 * [Using the API of the TreeView (Demo)](https://demos.telerik.com/kendo-ui/treeview/api)
-* [JavaScript API Reference of the TreeView](/api/javascript/ui/treeview)
+* [JavaScript API Reference of the TreeView](/api/ui/treeview)

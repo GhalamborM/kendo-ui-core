@@ -2,6 +2,7 @@
 title: ModalView
 page_title: ModalView Overview
 description: "Learn the basics when working with the hybrid Telerik UI ModalView HtmlHelper for ASP.NET MVC."
+components: ["general"]
 previous_url: /helpers/hybrid/mobilemodalview/overview, /helpers/hybrid/mobilemodalview
 slug: overview_hybridmodalview_aspnetmvc
 ---
@@ -62,7 +63,7 @@ The ModalView presents a self-contained functionality in the context of the curr
 
 ## Events
 
-You can subscribe to all hybrid ModalView [events](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/view#events).
+You can subscribe to all hybrid ModalView [events](https://docs.telerik.com/kendo-ui/api/mobile/ui/view#events).
 
 The following example demonstrates how to subscribe to events by a handler name.
 
@@ -87,7 +88,7 @@ The following example demonstrates how to subscribe to events by a handler name.
 
 ## Referencing Existing Instances
 
-You can reference a hybrid ModalView instance by using the code from the following example. Once a reference is established, use the [hybrid ModalView client-side API](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/view#methods) to control its behavior.
+You can reference a hybrid ModalView instance by using the code from the following example. Once a reference is established, use the [hybrid ModalView client-side API](https://docs.telerik.com/kendo-ui/api/mobile/ui/view#methods) to control its behavior.
 
     @(Html.Kendo().MobileModalView()
             .Name("ModalView")
@@ -107,4 +108,4 @@ You can reference a hybrid ModalView instance by using the code from the followi
 
 ## See Also
 
-* [Hybrid ModalViewBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/MobileModalViewBuilder)
+* [Hybrid ModalViewBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/mobilemodalviewbuilder)

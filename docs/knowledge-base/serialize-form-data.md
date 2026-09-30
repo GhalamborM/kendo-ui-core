@@ -1,13 +1,13 @@
 ---
 title: Serialize Form Data during Async Upload
 page_title: Serialize Form Data during Async Upload 
-description: "Learn how to serialize form data with the Kendo UI Upload widget."
+description: "Learn how to serialize form data with the Kendo UI Upload component."
 slug: howto_serialize_form_data_upload
 previous_url: /controls/editors/upload/how-to/serialize-form-data
 tags: telerik, kendo, jquery, upload, serialize, form, data, during, async, upload
-component: upload
 type: how-to
 res_type: kb
+components: ["upload"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Upload for jQuery</td>
+  <td>Progress® Kendo UI® Upload for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I include a collection of form fields as [metadata]({% slug metadata_upl
 
 ## Solution
 
-The output from the commonly used [`jQuery.serializeArray`](https://api.jquery.com/serializeArray/) helper is not directly usable in the [`upload`](/api/javascript/ui/upload/events/upload) event and needs to be processed. The following example demonstrates how to achieve this.
+The output from the commonly used [`jQuery.serializeArray`](https://api.jquery.com/serializeArray/) helper is not directly usable in the [`upload`](/api/ui/upload/events/upload) event and needs to be processed. The following example demonstrates how to achieve this.
 
 
 
@@ -92,7 +92,7 @@ Content-Type: text/plain
 
 ## See Also
 
-* [JavaScript API Reference of the Upload](/api/javascript/ui/upload)
+* [JavaScript API Reference of the Upload](/api/ui/upload)
 * [Modes of Operation]({% slug modes_upload_widget %})
 * [Metadata]({% slug metadata_upload_widget %})
 

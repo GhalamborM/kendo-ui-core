@@ -1,12 +1,13 @@
 ---
 title: Cannot Install Kendo UI from Bower
-page_title: Having Problem with Bower Installation 
-description: Kendo UI fails to authenticate and install.
+page_title: Have a Problem with Bower Installation
+description: Kendo UI fails to authenticate and install when I'm using Bower.
 type: troubleshooting
 slug: bower-credentials-authentication-failed-kendo-ui-professional
 tags: bower, git, credentials, kendo, professional
 ticketid: 1116013
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI for jQuery</td>
+  <td>Progress® Kendo UI® for jQuery</td>
  </tr>
  <tr>
   <td>NodeJS</td>

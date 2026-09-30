@@ -2,6 +2,7 @@
 title: Timezones
 page_title: Timezones
 description: "Get started with the Scheduler component for {{ site.framework }} and learn how to configure its timezone."
+components: ["scheduler"]
 slug: htmlhelpers_scheduler_timezones_aspnetcore
 position: 5
 ---
@@ -18,8 +19,29 @@ To set a timezone to the Scheduler, set the `timezone` option. `timezone` indica
 > * When you bind the Scheduler to a remote service, keep the `timezone` option always set to, for example, `"Etc/UTC"`.
 > * When the `timezone` option of the Scheduler is not set, the current system timezone offset is used.
 > * The recommended `Date` format for sending and receiving Scheduler event dates is [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) with a **Z** zone designator (UTC date). The same format is used by the [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) method, which converts JavaScript `Date` objects to JSON strings.
+> The kendo.timezones.min.js file must be included in order to use timezones other than "Etc/UTC".
+> The complete list of the supported timezones is available in the [List of IANA time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) Wikipedia page.
 
-The following example demonstrates how to set `"Etc/UTC"` timezone to the Scheduler.
+## Culture and Timezone
+
+The thread culture and the event timezone are separate values. `CultureInfo.CurrentCulture.Name` and `CultureInfo.CurrentUICulture.Name` return culture names such as `en-US` or `fr-FR`. These values control formatting and localization, but they do not identify a timezone and should not be assigned to `StartTimezone`.
+
+Store or receive the event's IANA timezone identifier separately from the `DateTimeOffset` value. For example, map the event to UTC while preserving its timezone identifier:
+
+```C#
+Start = x.StartTime.UtcDateTime,
+StartTimezone = storedIanaTimezoneId
+```
+
+If the event is intentionally defined in UTC, use `"Etc/UTC"`. Do not use `x.StartTime.Offset` as `StartTimezone`. An offset such as `+02:00` describes only the offset at that moment and cannot identify the original timezone or its daylight-saving rules.
+
+When the timezone comes from the browser, obtain the IANA identifier on the client and send it to the server with the event data:
+
+```JavaScript
+const timeZone = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+```
+
+The following example demonstrates how to set "Etc/UTC" timezone to the Scheduler.
 
 ```HtmlHelper
     @(Html.Kendo().Scheduler<Kendo.Mvc.Examples.Models.Scheduler.MeetingViewModel>()
@@ -116,3 +138,4 @@ You can find a full working sample with Timezone defined and different cultures 
 ## See Also
 
 * [Server-Side API](/api/scheduler)
+* [Knowledge Base: Change Timezone in Scheduler Dynamically]({% slug scheduler-change-timezone %})

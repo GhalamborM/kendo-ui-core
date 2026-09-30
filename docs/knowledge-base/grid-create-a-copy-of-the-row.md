@@ -1,12 +1,13 @@
 ---
 title: Create Duplicate Grid Rows
-description: An example on how to create a copy of a Kendo UI Grid row.
+description: Learn how to create a copy of a Kendo UI Grid row.
 type: how-to
-page_title: Create Copies of Rows | Kendo UI Grid for jQuery
+page_title: Create Copies of Rows - Kendo UI for jQuery Data Grid
 slug: grid-create-a-copy-of-the-row
 tags: grid, copy, row
 ticketid: 1145126
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Grid</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td> 
 	</tr>
 </table>
 
@@ -34,6 +35,6 @@ How can I create a copy of a Grid row when the user clicks a button?
 
 For more information on how to implement the suggested approach, refer to the following examples:
 * [https://dojo.telerik.com/Oveja](https://dojo.telerik.com/Oveja)  
-* [https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/addrow](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/addrow)  
-* [https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/closecell](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/closecell)  
-* [https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.command.click](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.command.click)  
+* [https://docs.telerik.com/kendo-ui/api/ui/grid/methods/addrow](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/addrow)  
+* [https://docs.telerik.com/kendo-ui/api/ui/grid/methods/closecell](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/closecell)  
+* [https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns/command#columnscommandclick](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns/command#columnscommandclick)  

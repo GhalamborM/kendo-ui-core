@@ -2,11 +2,11 @@
 title: Change Resource for and Even Using ContextMenu
 description: An example of how to implement a Kendo UI ContextMenu, which allows the user to change an event resource in Kendo UI Scheduler Agenda view.
 type: how-to
-page_title: Change Resource for an Event with a ContextMenu | Kendo UI Scheduler for jQuery
+page_title: Change Resource for an Event with a ContextMenu - Kendo UI Scheduler for jQuery
 slug: scheduler-change-resource-for-event-using-contextmenu
 tags: kendo, scheduler, agenda-view, contextmenu, resources
 res_type: kb
-component: scheduler
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: scheduler
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
 </table>
 
@@ -23,6 +23,8 @@ component: scheduler
 How to implement a Kendo ContextMenu, which allows the user to change the resource assigned to a particular event in Kendo Scheduler Agenda view?
 
 ## Solution
+
+The following example initializes a Scheduler in Agenda view and attaches a ContextMenu to task elements. Selecting a menu item reads the `data-value` attribute, retrieves the matching data item by UID, and updates its `ownerId` field.
 
 ```dojo
   <div id="scheduler"></div>
@@ -35,8 +37,8 @@ How to implement a Kendo ContextMenu, which allows the user to change the resour
   <script>
     $(function() {
       var scheduler = $("#scheduler").kendoScheduler({
-        date: new Date("2013/6/23"),
-        startTime: new Date("2013/6/23 07:00 AM"),
+        date: new Date("2025/6/23"),
+        startTime: new Date("2025/6/23 07:00 AM"),
         height: 600,
         views: [{ type: "agenda" }],
         timezone: "Etc/UTC",
@@ -44,24 +46,26 @@ How to implement a Kendo ContextMenu, which allows the user to change the resour
           batch: true,
           transport: {
             read: {
-              url: "//demos.telerik.com/kendo-ui/service/tasks",
-              dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks"
             },
             update: {
-              url: "//demos.telerik.com/kendo-ui/service/tasks/update",
-              dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks/update",
+              type: "POST",
+              contentType: "application/json"
             },
             create: {
-              url: "//demos.telerik.com/kendo-ui/service/tasks/create",
-              dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks/create",
+               type: "POST",
+              contentType: "application/json"
             },
             destroy: {
-              url: "//demos.telerik.com/kendo-ui/service/tasks/destroy",
-              dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+              type: "POST",
+              contentType: "application/json"
             },
             parameterMap: function(options, operation) {
               if (operation !== "read" && options.models) {
-                return {models: kendo.stringify(options.models)};
+                return kendo.stringify(options.models);
               }
             }
           },
@@ -117,5 +121,5 @@ How to implement a Kendo ContextMenu, which allows the user to change the resour
 
 ## See Also
 
-* [Kendo Scheduler API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler)
-* [Kendo ContextMenu API Reference](https://docs.telerik.com/kendo-ui/api/javascript/ui/contextmenu)
+* [Kendo Scheduler API Reference](https://docs.telerik.com/kendo-ui/api/ui/scheduler)
+* [Kendo ContextMenu API Reference](https://docs.telerik.com/kendo-ui/api/ui/contextmenu)

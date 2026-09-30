@@ -1,13 +1,15 @@
-(function(f, define) {
-    define([ "./kendo.list", "./kendo.mobile.scroller", "./kendo.virtuallist", "./kendo.html.button" ], f);
-})(function() {
+import "./kendo.list.js";
+import "./kendo.mobile.scroller.js";
+import "./kendo.virtuallist.js";
+import "./kendo.html.button.js";
+import "./kendo.icons.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "dropdownlist",
     name: "DropDownList",
     category: "web",
     description: "The DropDownList widget displays a list of values and allows the selection of a single value from the list.",
-    depends: [ "list", "html.button" ],
+    depends: [ "list", "html.button", "icons" ],
     features: [ {
         id: "mobile-scroller",
         name: "Mobile scroller",
@@ -23,6 +25,7 @@ var __meta__ = {
 
 (function($, undefined) {
     var kendo = window.kendo,
+        encode = kendo.htmlEncode,
         ui = kendo.ui,
         html = kendo.html,
         List = ui.List,
@@ -45,7 +48,7 @@ var __meta__ = {
         TABINDEX = "tabindex",
         STATE_FILTER = "filter",
         STATE_ACCEPT = "accept",
-        MSG_INVALID_OPTION_LABEL = "The `optionLabel` option is not valid due to missing fields. Define a custom optionLabel as shown here http://docs.telerik.com/kendo-ui/api/javascript/ui/dropdownlist#configuration-optionLabel",
+        MSG_INVALID_OPTION_LABEL = "The `optionLabel` option is not valid due to missing fields. Define a custom optionLabel as shown here http://docs.telerik.com/kendo-ui/api/ui/dropdownlist#configuration-optionLabel",
         OPEN = "open",
         CLOSE = "close";
 
@@ -62,6 +65,13 @@ var __meta__ = {
 
             options = that.options;
             element = that.element.on("focus" + ns, that._focusHandler.bind(that));
+
+            if (!kendo.isPresent(options.readonly) && element.attr("readonly")) {
+                 options.readonly = true;
+            }
+            else if (!kendo.isPresent(options.readonly)) {
+                 options.readonly = false;
+            }
 
             that._focusInputHandler = that._focusInput.bind(that);
 
@@ -90,13 +100,13 @@ var __meta__ = {
 
             that._ignoreCase();
 
-            that._filterHeader();
+            if (options.label) {
+                this._label();
+            }
 
             that._aria();
 
             that._enable();
-
-            that._attachFocusHandlers();
 
             that._oldIndex = that.selectedIndex = -1;
 
@@ -108,8 +118,20 @@ var __meta__ = {
 
             that.requireValueMapper(that.options);
             that._initList();
-            that.listView.one("dataBound", that._attachAriaActiveDescendant.bind(that));
+            that._aria(); // Update aria-controls now that UL is available (for StaticList)
 
+            // For VirtualList, the UL is created after data is bound, so we need to update aria-controls again
+            if (that.options.virtual) {
+                that.listView.one("listBound", function() { that._aria(); });
+            }
+
+            that.listView.one("dataBound", that._attachAriaActiveDescendant.bind(that));
+            that.listView.bind("dataBound", () => {
+                that._refreshFloatingLabel();
+                that._aria();
+            });
+
+            that._initializingCascade = true;
             that._cascade();
 
             that.one("set", function(e) {
@@ -134,6 +156,13 @@ var __meta__ = {
 
                 that._textAccessor(text);
             }
+            if (options.autoBind && !that.listView.bound()) {
+                that.one("dataBound", function() {
+                    that._initializingCascade = false;
+                });
+            } else {
+                that._initializingCascade = false;
+            }
 
             disabled = $(that.element).parents("fieldset").is(':disabled');
 
@@ -145,12 +174,15 @@ var __meta__ = {
 
             kendo.notify(that);
             that._applyCssClasses();
+
+            Select.fn.endInit.call(that);
         },
 
         options: {
             name: "DropDownList",
             enabled: true,
             autoBind: true,
+            _allowFilterPaste: true, // Related to the paste functionality in the Grid. In certain cases the focus remains on the dropdownlist and the paste action is executed on it instead of the Grid.
             index: 0,
             text: null,
             value: null,
@@ -171,14 +203,19 @@ var __meta__ = {
             template: null,
             valueTemplate: null,
             optionLabelTemplate: null,
-            groupTemplate: "#:data#",
-            fixedGroupTemplate: "#:data#",
+            groupTemplate: (data) => encode(data),
+            fixedGroupTemplate: (data) => encode(data),
             autoWidth: false,
             popup: null,
             filterTitle: null,
-            size: "medium",
-            fillMode: "solid",
-            rounded: "medium"
+            readonly: null,
+            size: undefined,
+            fillMode: undefined,
+            rounded: undefined,
+            label: null,
+            popupFilter: true,
+            adaptiveTitle: null,
+            adaptiveSubtitle: null,
         },
 
         events: [
@@ -202,7 +239,8 @@ var __meta__ = {
             this._optionLabel();
             this._inputTemplate();
             this._accessors();
-            this._filterHeader();
+            this._removeFilterHeader();
+            this._addFilterHeader();
             this._enable();
             this._aria();
 
@@ -284,14 +322,16 @@ var __meta__ = {
         },
 
         _focusInput: function() {
-            this._focusElement(this.filterInput);
+            if (!this._hasActionSheet()) {
+                this._focusElement(this.filterInput);
+            }
         },
 
         _resizeFilterInput: function() {
             var filterInput = this.filterInput;
             var originalPrevent = this._prevent;
 
-            if (!filterInput) {
+            if (!filterInput || this._hasActionSheet()) {
                 return;
             }
 
@@ -301,7 +341,7 @@ var __meta__ = {
             this._prevent = true;
 
             filterInput.addClass("k-hidden");
-            filterInput.closest(".k-list-filter").css("width", this.popup.element.css("width"));
+            filterInput.closest(".k-list-filter").css("width", this.popup.element.width() - 1);
             filterInput.removeClass("k-hidden");
 
             if (isInputActive) {
@@ -352,7 +392,7 @@ var __meta__ = {
                     if (index.hasClass("k-list-optionlabel")) {
                         index = -1;
                     } else {
-                        index = $(that.items()).index(index);
+                        index = that.listView.getElementIndex(index);
                     }
                 } else if (that.hasOptionLabel()) {
                     index -= 1;
@@ -397,6 +437,7 @@ var __meta__ = {
                     return data === loweredText;
                 }).done(function() {
                     that._textAccessor(that.dataItem() || text);
+                    that._refreshFloatingLabel();
                 });
 
             } else {
@@ -448,6 +489,7 @@ var __meta__ = {
             listView.value(value).done(function() {
                 that._old = that._valueBeforeCascade = that._accessor();
                 that._oldIndex = that.selectedIndex;
+                that._refreshFloatingLabel();
             });
         },
 
@@ -468,15 +510,9 @@ var __meta__ = {
             }
 
             if (!template) {
-                template = "#:";
-
-                if (typeof optionLabel === "string") {
-                    template += "data";
-                } else {
-                    template += kendo.expr(options.dataTextField, "data");
-                }
-
-                template += "#";
+                template = (data) => (typeof optionLabel === "string" ?
+                    encode(data) :
+                    encode(kendo.getter(options.dataTextField)(data)));
             }
 
             if (typeof template !== "function") {
@@ -494,9 +530,6 @@ var __meta__ = {
                             .on(CLICKEVENTS, that._click.bind(that))
                             .on(HOVEREVENTS, that._toggleHover);
 
-            that.angular("compile", function() {
-                return { elements: that.optionLabel, data: [{ dataItem: that._optionLabelDataItem() }] };
-            });
         },
 
         _optionLabelText: function() {
@@ -605,7 +638,9 @@ var __meta__ = {
         },
 
         _filterPaste: function() {
-            this._search();
+            if (this.options._allowFilterPaste) {
+                this._search();
+            }
         },
 
         _attachFocusHandlers: function() {
@@ -629,12 +664,17 @@ var __meta__ = {
             this._prevent = false;
         },
 
-        _focusoutHandler: function() {
+        _focusoutHandler: function(e) {
             var that = this;
             var isIFrame = window.self !== window.top;
 
+            if (that.wrapper.find(e.relatedTarget).length > 0) {
+                return;
+            }
+
             if (!that._prevent) {
                 clearTimeout(that._typingTimeout);
+                that._typingTimeout = null;
 
                 if (support.mobileOS.ios && isIFrame) {
                     that._change();
@@ -649,8 +689,19 @@ var __meta__ = {
             }
         },
 
-        _wrapperMousedown: function() {
-            this._prevent = !!this.filterInput;
+        _wrapperMousedown: function(e) {
+            const that = this;
+            let condition = that.filterInput && !that._touchEnabled() ? e.currentTarget !== that.filterInput[0] : true;
+
+            if (that.popup && that._hasActionSheet()) {
+                condition = true;
+                that.popup.unbind("close");
+
+                that.popup.bind("close", function() {
+                    that._change();
+                });
+            }
+            that._prevent = condition;
         },
 
         _wrapperClick: function(e) {
@@ -692,9 +743,14 @@ var __meta__ = {
                     wrapper.on("input" + ns, that._search.bind(that));
                 }
 
+                if (!element.attr("aria-label")) {
+                    that._restoreAriaValue();
+                }
+
             } else if (disable) {
-                wrapper.removeAttr(TABINDEX);
+                wrapper.attr(TABINDEX, "-1");
                 dropDownWrapper.addClass(STATEDISABLED);
+                that._updateDisabledAriaValue();
             } else {
                 dropDownWrapper.removeClass(STATEDISABLED);
             }
@@ -756,6 +812,9 @@ var __meta__ = {
             handled = that._move(e);
 
             if (handled) {
+                if (key !== keys.TAB && key !== keys.ENTER && (key !== keys.ESC || isPopupVisible)) {
+                    e.stopPropagation();
+                }
                 return;
             }
 
@@ -887,8 +946,12 @@ var __meta__ = {
             that._search();
         },
 
-        _popupOpen: function() {
+        _popupOpen: function(e) {
             var popup = this.popup;
+
+            if (e.isDefaultPrevented() || this._hasActionSheet()) {
+                return;
+            }
 
             popup.wrapper = kendo.wrap(popup.element);
 
@@ -900,7 +963,13 @@ var __meta__ = {
 
         _popup: function() {
             Select.fn._popup.call(this);
+            this.popup.element.addClass("k-dropdownlist-popup");
             this.popup.one("open", this._popupOpen.bind(this));
+        },
+
+        _postCreatePopup: function() {
+            Select.fn._postCreatePopup.call(this);
+            this._attachFocusHandlers();
         },
 
         _getElementDataItem: function(element) {
@@ -934,12 +1003,16 @@ var __meta__ = {
             });
         },
 
+        _touchEnabled: function() {
+            return support.mobileOS && (support.touch || support.MSPointers || support.pointers);
+        },
+
         _focusElement: function(element) {
             var active = activeElement();
             var wrapper = this.wrapper;
             var filterInput = this.filterInput;
             var compareElement = element === filterInput ? wrapper : filterInput;
-            var touchEnabled = support.mobileOS && (support.touch || support.MSPointers || support.pointers);
+            var touchEnabled = this._touchEnabled();
 
             if (filterInput && filterInput[0] === element[0] && touchEnabled) {
                 return;
@@ -1206,6 +1279,57 @@ var __meta__ = {
             that._accessor(value, idx);
 
             that._triggerCascade();
+
+            // Keep aria accessible name in sync when disabled so screen readers can announce the selected value.
+            // This covers the case where _editable ran before data was available (enabled: false in options).
+            if (!that.element.attr("aria-label") && that.wrapper.hasClass(STATEDISABLED)) {
+                that._updateDisabledAriaValue();
+            }
+        },
+
+        _updateDisabledAriaValue: function() {
+            var that = this;
+            var element = that.element;
+            var wrapper = that.wrapper;
+
+            if (element.attr("aria-label")) {
+                return;
+            }
+
+            var text = that.text();
+            var existingLabelledBy = wrapper.attr("aria-labelledby");
+            var innerSpanId = wrapper.attr("aria-describedby");
+
+            if (existingLabelledBy) {
+                if (!wrapper.data("_origAriaLabelledBy")) {
+                    wrapper.data("_origAriaLabelledBy", existingLabelledBy);
+                }
+                if (text && innerSpanId && existingLabelledBy.indexOf(innerSpanId) === -1) {
+                    wrapper.attr("aria-labelledby", existingLabelledBy + " " + innerSpanId);
+                }
+            } else if (text) {
+                wrapper.attr("aria-label", text);
+            } else {
+                wrapper.removeAttr("aria-label");
+            }
+        },
+
+        _restoreAriaValue: function() {
+            var that = this;
+            var element = that.element;
+            var wrapper = that.wrapper;
+
+            if (element.attr("aria-label")) {
+                return;
+            }
+
+            var origLabelledBy = wrapper.data("_origAriaLabelledBy");
+            if (origLabelledBy !== undefined) {
+                wrapper.attr("aria-labelledby", origLabelledBy);
+                wrapper.removeData("_origAriaLabelledBy");
+            } else {
+                wrapper.removeAttr("aria-label");
+            }
         },
 
         _mobile: function() {
@@ -1216,41 +1340,6 @@ var __meta__ = {
 
             if (root.length && mobileOS) {
                 popup.options.animation.open.effects = (mobileOS.android || mobileOS.meego) ? "fadeIn" : (mobileOS.ios || mobileOS.wp) ? "slideIn:up" : popup.options.animation.open.effects;
-            }
-        },
-
-        _filterHeader: function() {
-            var filterTemplate = '<div class="k-list-filter">' +
-                '<span class="k-searchbox k-input k-input-md k-rounded-md k-input-solid" type="text" autocomplete="off">' +
-                    '<span class="k-input-icon k-icon k-i-search"></span>' +
-                '</span>' +
-            '</div>';
-
-            if (this.filterInput) {
-                this.filterInput
-                    .off(ns)
-                    .closest(".k-list-filter")
-                    .remove();
-
-                this.filterInput = null;
-            }
-
-            if (this._isFilterEnabled()) {
-                this.filterInput = $('<input class="k-input-inner" type="text" />')
-                    .attr({
-                        placeholder: this.element.attr("placeholder"),
-                        title: this.options.filterTitle || this.element.attr("title"),
-                        role: "searchbox",
-                        "aria-label": this.options.filterTitle,
-                        "aria-haspopup": "listbox",
-                        "aria-autocomplete": "list"
-                    });
-
-                this.list
-                    .parent()
-                    .prepend($(filterTemplate))
-                    .find(".k-searchbox")
-                    .append(this.filterInput);
             }
         },
 
@@ -1265,12 +1354,11 @@ var __meta__ = {
             span = wrapper.find(SELECTOR);
 
             if (!span[0]) {
-                arrowBtn = html.renderButton('<span role="button" class="k-input-button" aria-label="select"></span>', {
-                    icon: "arrow-s",
+                arrowBtn = html.renderButton('<button role="button" tabindex="-1" class="k-input-button" aria-label="select"></button>', {
+                    icon: "chevron-down",
                     size: options.size,
                     fillMode: options.fillMode,
                     shape: "none",
-                    rounded: "none"
                 });
 
                 wrapper.append('<span id="' + id + '" unselectable="on" class="k-input-inner">' +
@@ -1284,7 +1372,7 @@ var __meta__ = {
 
             that.span = span;
             that._arrow = wrapper.find(".k-input-button");
-            that._arrowIcon = that._arrow.find(".k-icon");
+            that._arrowIcon = that._arrow.find(".k-icon,.k-svg-icon");
         },
 
         _wrapper: function() {
@@ -1327,7 +1415,8 @@ var __meta__ = {
                 e.preventDefault();
             } else {
                 this.wrapper.attr("aria-expanded", true);
-                this.ul.attr("aria-hidden", false);
+                const ulElements = this.list.find(".k-list-ul");
+                ulElements.attr("aria-hidden", false);
             }
         },
 
@@ -1336,7 +1425,8 @@ var __meta__ = {
                 e.preventDefault();
             } else {
                 this.wrapper.attr("aria-expanded", false);
-                this.ul.attr("aria-hidden", true);
+                const ulElements = this.list.find(".k-list-ul");
+                ulElements.attr("aria-hidden", true);
             }
         },
 
@@ -1346,7 +1436,7 @@ var __meta__ = {
 
 
             if (!template) {
-                template = kendo.template('#:this._text(data)#', { useWithBlock: false }).bind(that);
+                template = (data) => encode(that._text(data));
             } else {
                 template = kendo.template(template);
             }
@@ -1357,7 +1447,7 @@ var __meta__ = {
                 try {
                     that.valueTemplate(that._optionLabelDataItem());
                 } catch (e) {
-                    throw new Error(MSG_INVALID_OPTION_LABEL);
+                    throw new Error(MSG_INVALID_OPTION_LABEL, { cause: e });
                 }
             }
         },
@@ -1392,23 +1482,12 @@ var __meta__ = {
                 }
             }
 
-            var getElements = function() {
-                return {
-                    elements: span.get(),
-                    data: [ { dataItem: dataItem } ]
-                };
-            };
-
-            this.angular("cleanup", getElements);
-
             try {
                 span.html(template(dataItem));
             } catch (e) {
                 //dataItem has missing fields required in custom template
                 span.html("");
             }
-
-            this.angular("compile", getElements);
         },
 
         _preselect: function(value, text) {
@@ -1487,7 +1566,5 @@ var __meta__ = {
         values: kendo.cssProperties.roundedValues.concat([['full', 'full']])
     }]);
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

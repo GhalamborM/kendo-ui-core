@@ -6,6 +6,7 @@ type: how-to
 slug: drawer-multi-level-hierarchy
 ticketid: 1560679
 res_type: kb
+components: ["drawer"]
 ---
 
 ## Environment
@@ -27,13 +28,15 @@ I examined the [Drawer Hierarchy](https://demos.telerik.com/kendo-ui/drawer/hier
 
 To achieve the desired scenario: 
 
-1. Create a function that will be used to add menus and submenus to the Drawer configuration.
-1. Attach a handler to the [`itemClick`](https://docs.telerik.com/kendo-ui/api/javascript/ui/drawer/events/itemclick) event of the Drawer.
+1. Create a function that will be used to add menus and submenus to the Drawer configuration. Use the `data-level` attribute to specify the hierarchy level of each item instead of adding `k-i-none` spans for indentation.
+1. Attach a handler to the [`itemClick`](https://docs.telerik.com/kendo-ui/api/ui/drawer/events/itemclick) event of the Drawer.
 1. The logic of the `itemClick` event will either expand or collapse the children of the menu that was clicked.
     - The `collapseAll` function collapses every descendant of the clicked menu.
     - The `getParentsRecursively` function retrieves all of the parents of the clicked submenu.
-1. Attach a handler to the [`hide`](https://docs.telerik.com/kendo-ui/api/javascript/ui/drawer/events/hide) event of the Drawer.
+1. Attach a handler to the [`hide`](https://docs.telerik.com/kendo-ui/api/ui/drawer/events/hide) event of the Drawer.
 1. The logic of the `hide` event will collapse all of the submenus.
+
+> **Note:** The hierarchy levels are determined by the Kendo themes and currently support levels from `0` to `5`. If no `data-level` attribute is specified, the Drawer will automatically set it to `0`.
 
 The following example demonstrates the full implementation of the approach.
 
@@ -159,12 +162,12 @@ The following example demonstrates the full implementation of the approach.
     <!-- END OF DRAWER CONTENT -->
 
     <script>
-       // Show the drawer when the "Show Drawer" button is clicked.
-       $("#show").on("click", function(e) {
+      // Show the drawer when the "Show Drawer" button is clicked.
+      $("#show").on("click", function(e) {
         var drawerInstance = $("#drawer").data().kendoDrawer;
         drawerInstance.show();
       });
-      
+
       // Hide the drawer when the "Hide Drawer" button is clicked.
       $("#hide").on("click", function(e) {
         var drawerInstance = $("#drawer").data().kendoDrawer;
@@ -182,26 +185,22 @@ The following example demonstrates the full implementation of the approach.
         icon - specifies an icon for the element.
         level - specifies the level on which the element is located. Example - Getting Started, Overview, Most Popular - level 0, Getting Started->Supported Themes - level 1, Getthing Started->Supported Themes->About Kendo UI - level 2, etc.
 
-        The level logic is used for indentation of the sub-menu items.
+        The level is specified using the data-level attribute for proper indentation of the sub-menu items.
         */
       function addItem(id, title, parent, isParent, icon, level) {
-        // Create the <li> element 
-        let liStart = `<li data-role='drawer-item' ${parent ? 'class=hidden' : ''} data-parent='${parent}' data-is-parent='${isParent}'>`;
+        // Create the <li> element with data-level attribute for hierarchy
+        let liStart = `<li data-role='drawer-item' ${parent ? 'class=hidden' : ''} data-parent='${parent}' data-is-parent='${isParent}' ${level > 0 ? `data-level='${level}'` : ''}>`;
         let liEnd = "</li>";
         let element = "";
-
-        // Check the level of nesting and add that many indentations for the submenu.
-        for(let i=0; i<level; i++) {
-          element += "<span class='k-icon k-i-none'></span>";
-        }
 
         // Add the element with its title and id.
         element += `<span class='k-icon ${icon}'></span><span class='k-item-text' data-id='${id}'>${title}</span>`;
 
         // Check if the element is a parent and add an icon for the expand arrow.
         if(isParent) {
-          element += "<span class='k-spacer'></span><span class='k-icon k-i-arrow-chevron-right'></span>";
+          element += "<span class='k-spacer'></span><span class='k-icon chevron-right'></span>";
         }
+
 
         // If the element is a parent, add a line separator too.
         let separator = isParent ? `<li data-role='drawer-separator' ${level > 0 ? "class='hidden'" : ""}></li>` : "";
@@ -215,17 +214,17 @@ The following example demonstrates the full implementation of the approach.
       $(document).ready(function () {
         $("#drawer").kendoDrawer({
           template: `<ul>
-      						${addItem("GettingStarted", "Getting Started", null, true, "k-i-information", 0)}
-                  ${addItem("ThemeSupport", "Supported Themes", "GettingStarted", true, "k-i-palette", 1)}
-                  ${addItem("Kendo", "About Kendo UI", "ThemeSupport", true, "k-i-question", 2)}
-                  ${addItem("FourthLevel", "Fourth Level Menu", "Kendo", false, "k-i-question", 3)}
-                  ${addItem("AnotherFourthLevel", "Another Fourth Menu", "Kendo", false, "k-i-question", 3)}
-                  ${addItem("Third ", "Third Menu", "Kendo", false, "k-i-question", 3)}
-                  ${addItem("Fourth", "Some Additional Menu", "Kendo", false, "k-i-question", 3)}
-                  ${addItem("Overview", "Overview", null, true, "k-i-zoom", 0)}
-                  ${addItem("About", "About Kendo UI", "Overview", false, "k-i-question", 1)}
-                  ${addItem("All", "All Kendo UI Components", "Overview", false, "k-i-js", 1)}
-                  ${addItem("Popular", "Most Popular Components", null, false, "k-i-style-builder", 0)}
+                  ${addItem("GettingStarted", "Getting Started", null, true, "information", 0)}
+                  ${addItem("ThemeSupport", "Supported Themes", "GettingStarted", true, "palette", 1)}
+                  ${addItem("Kendo", "About Kendo UI", "ThemeSupport", true, "question", 2)}
+                  ${addItem("FourthLevel", "Fourth Level Menu", "Kendo", false, "question", 3)}
+                  ${addItem("AnotherFourthLevel", "Another Fourth Menu", "Kendo", false, "question", 3)}
+                  ${addItem("Third ", "Third Menu", "Kendo", false, "question", 3)}
+                  ${addItem("Fourth", "Some Additional Menu", "Kendo", false, "question", 3)}
+                  ${addItem("Overview", "Overview", null, true, "zoom", 0)}
+                  ${addItem("About", "About Kendo UI", "Overview", false, "question", 1)}
+                  ${addItem("All", "All Kendo UI Components", "Overview", false, "js", 1)}
+                  ${addItem("Popular", "Most Popular Components", null, false, "border-radius", 0)}
       </ul>`,
           mode: "push",
           itemClick: onItemClick,
@@ -237,13 +236,31 @@ The following example demonstrates the full implementation of the approach.
           minHeight: 330,
           swipeToOpen: true,
           hide: onHide
-        });
+        });		
+		
+		    kendo.ui.icon($(".information"), { icon: 'info-circle' });
 
-        function onItemClick(e) {
+		    if($(".palette")){
+		    		kendo.ui.icon($(".palette"), { icon: 'palette' });
+		    }
+
+		    if($(".question")){
+		    	kendo.ui.icon($(".question"), { icon: 'question-circle' });
+		    }
+
+		    if($(".zoom")){
+		    		kendo.ui.icon($(".zoom"), { icon: 'zoom-in' });
+		    }
+
+		    if($(".js")){
+		    		kendo.ui.icon($(".js"), { icon: 'js' });
+		    }	
+
+        function onItemClick(e) {          
           if (!e.item.hasClass("k-drawer-separator")) {
             var drawerContainer = e.sender.drawerContainer;
-            var expandIcon = e.item.find("span.k-i-arrow-chevron-right");
-            var collapseIcon = e.item.find("span.k-i-arrow-chevron-down");
+            var expandIcon = e.item.find("span.chevron-right");
+            var collapseIcon = e.item.find("span.chevron-down");
             let id = e.item.find(".k-item-text").data("id");
             let children = drawerContainer.find("[data-parent='"+id+"']");
             // Hide the content of the current menu/submenu.
@@ -259,13 +276,15 @@ The following example demonstrates the full implementation of the approach.
                   $(x).prev().removeClass("hidden");
                 }
               });
-              expandIcon.removeClass("k-i-arrow-chevron-right").addClass("k-i-arrow-chevron-down");
+              expandIcon.removeClass("chevron-right").addClass("chevron-down");              
+        kendo.ui.icon($(".chevron-down"), { icon: 'chevron-down' });
             }
 
             // If the menu is expanded, collapse all of its children on click.
             if(collapseIcon.length) {
               collapseAll(children, collapseIcon, drawerContainer);
-              collapseIcon.addClass("k-i-arrow-chevron-right").removeClass("k-i-arrow-chevron-down");
+              collapseIcon.addClass("chevron-right").removeClass("chevron-down");
+              kendo.ui.icon($(".chevron-right"), { icon: 'chevron-right' });
             }
 
             // Retrieve all parents of the clicked element.
@@ -290,12 +309,16 @@ The following example demonstrates the full implementation of the approach.
 
             // Collapse all of the submenus when the drawer is hidden.
             collapseAll(children, null, container);
-            menu.find("span.k-i-arrow-chevron-down").addClass("k-i-arrow-chevron-right").removeClass("k-i-arrow-chevron-down");
+            menu.find("span.chevron-down").addClass("chevron-right").removeClass("chevron-down");
+            kendo.ui.icon($(".chevron-right"), { icon: 'chevron-right' });
           });
         }
 
         var drawerInstance = $("#drawer").data().kendoDrawer;
         drawerInstance.show();
+
+        kendo.ui.icon($(".chevron-right"), { icon: 'chevron-right' });
+
 
         // Collapses all children when a parent item is clicked or when the Drawer is hidden.
         function collapseAll(children, collapseIcon, drawerContainer) {
@@ -303,7 +326,7 @@ The following example demonstrates the full implementation of the approach.
             let isParent = $(x).data("is-parent");
 
             let id = $(x).find(".k-item-text").data("id");
-            collapseIcon = $(x).find("span.k-i-arrow-chevron-down");
+            collapseIcon = $(x).find("span.chevron-down");
             children = drawerContainer.find("[data-parent='"+id+"']");
 
             if(isParent) {
@@ -316,7 +339,11 @@ The following example demonstrates the full implementation of the approach.
               $(x).prev().addClass("hidden");
             }
 
-            collapseIcon.addClass("k-i-arrow-chevron-right").removeClass("k-i-arrow-chevron-down");
+            collapseIcon.addClass("chevron-right").removeClass("chevron-down");
+			if($(".chevron-right").length > 0){
+			kendo.ui.icon($(".chevron-right"), { icon: 'chevron-right' });
+			}
+            
           });
         }
 

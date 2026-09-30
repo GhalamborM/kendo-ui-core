@@ -1,0 +1,69 @@
+---
+title: CustomFilter
+page_title: Configuration, methods and events of Kendo UI Spreadsheet CustomFilter Instance object
+res_type: api
+---
+
+# kendo.spreadsheet.CustomFilter
+
+Represents a filter applied to a column of a given [range](/api/spreadsheet/range).  It may specify one or two criterion, comparison operator (equals, starts with, greater than etc.) and logical operator (and, or).
+
+## Methods
+
+### init
+
+The constructor of the filter.
+
+
+<div class="meta-api-description">
+How do I initialize a custom filter for Kendo UI spreadsheet data? Initialize and set up a custom filtering instance for spreadsheet data by constructing the filter object, configuring its initial state, enabling bindings, and preparing it to build, apply, or evaluate dynamic filter criteria; supports creating and instantiating customized filter logic, controlling filter setup, enabling custom conditions, and configuring parameters to tailor spreadsheet data filtering behavior.
+</div>
+
+#### Parameters
+
+##### options `Object`
+
+An object which may contain the following keys:
+
+* `logic` -  *string* - either `"and"` or `"or"`.
+* `criteria` - an *array* of objects, containing `operator` (String) and `value` (String|Date|Number) fields.
+
+The supported criteria operators are: `eq` (equal to), `neq` (not equal to), `lt` (less than), `lte` (less than or equal to), `gt` (greater than), `gte` (greater than or equal to).
+In addition, `startswith`, `endswith`, `contains`, `doesnotstartwith` and `doesnotendwith` are supported for cells that contain strings.
+
+
+#### Example - custom filter
+
+
+```
+    <div id="spreadsheet"></div>
+
+    <script type="text/javascript" charset="utf-8">
+
+        $("#spreadsheet").kendoSpreadsheet();
+
+        var spreadsheet = $("#spreadsheet").data("kendoSpreadsheet");
+
+        var sheet = spreadsheet.activeSheet();
+
+        var values = [
+            [ "C 1", "C 2", "C 3" ],
+            [ "John", 5, 6 ],
+            [ "Jane", 8, 9 ],
+            [ "Bruke", 3, 9 ]
+        ];
+
+        sheet.range("A1:C4").values(values);
+
+        var filter = new kendo.spreadsheet.CustomFilter({
+            logic: "or",
+            criteria: [
+                { operator: "startswith", value: "Jo" },
+                { operator: "startswith", value: "Ja" }
+            ]
+        });
+
+        sheet.range("A1:C4").filter([ { column: 0, filter: filter } ]);
+    </script>
+```
+

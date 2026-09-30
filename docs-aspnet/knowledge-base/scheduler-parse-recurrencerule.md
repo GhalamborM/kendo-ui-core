@@ -6,6 +6,7 @@ page_title: Parse Scheduler RecurrenceRule with ical.net
 slug: scheduler-parse-recurrencerule
 tags: aspnet, core, dotnet-core, scheduler, parse, recurrence, recurrencerule, ical
 res_type: kb
+components: ["general"]
 component: scheduler
 ---
 
@@ -20,16 +21,16 @@ component: scheduler
 
 ## Description
 
-How can I parse the RecurrenceRule of the Scheduler and get the dates of all the occurrences in a recurring event?
+How can I parse the `RecurrenceRule` of the Scheduler and get the dates of all the occurrences in a recurring event?
 
 ## Solution
 
-You can use the [ical.net](https://github.com/rianjs/ical.net) library to parse the RecurrenceRule. The example below demonstrates how this can be done in the `Create` action, which will be called when a new recurring event is added in the Scheduler. 
+You can use the [ical.net](https://github.com/rianjs/ical.net) library to parse the `RecurrenceRule`. The example below demonstrates how this can be done in the `Create` action, which will be called when a new recurring event is added in the Scheduler. 
 
-```Controler
+```C# Controler
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }
@@ -216,6 +217,30 @@ You can use the [ical.net](https://github.com/rianjs/ical.net) library to parse 
     }
 ```
 
+## More {{ site.framework }} Scheduler Resources
+
+* [{{ site.framework }} Scheduler Documentation]({%slug htmlhelpers_scheduler_aspnetcore%})
+
+* [{{ site.framework }} Scheduler Demos](https://demos.telerik.com/{{ site.platform }}/scheduler)
+
+{% if site.core %}
+* [{{ site.framework }} Scheduler Product Page](https://www.telerik.com/aspnet-core-ui/scheduler)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Scheduler Product Page](https://www.telerik.com/aspnet-mvc/scheduler)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
 ## See Also
 
-* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler)
+* [Client-Side API Reference of the Scheduler for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/scheduler)
+* [Server-Side API Reference of the Scheduler for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/scheduler)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

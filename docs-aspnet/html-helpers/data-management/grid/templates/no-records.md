@@ -2,6 +2,7 @@
 title: No Records Template
 page_title: Grid No Records Template
 description: "Learn how to set a no records template in the Grid component for {{ site.framework }} if the backend does not return any data."
+components: ["grid"]
 slug: htmlhelpers_norecordstemplate_grid
 ---
 
@@ -24,22 +25,8 @@ The following example demonstrates how to enable the default built-in `No Record
     </kendo-grid>
 ```
 {% endif %}
-The following example demonstrates how to define a custom `No Records` message. In this case, the custom message is be displayed centered inside the empty Grid's data area.
 
-```HtmlHelper
-    @(Html.Kendo().Grid<Order>()
-        .Name("Grid")
-        .NoRecords("string HTML template, automatically centered")
-    )
-```
-{% if site.core %}
-```TagHelper
-    <kendo-grid name="Grid">
-	    <no-records template="string HTML template, automatically centered" />
-    </kendo-grid>
-```
-{% endif %}
-The following example demonstrates how to define a non-centered custom `No Records` message. In this case, the custom message is displayed with no centering styles applied, which allows an easier and more advanced appearance customization through custom CSS code.
+The following example demonstrates how to define a custom `No Records` message. In this case, the custom message is displayed with no centering styles applied, which allows an easier and more advanced appearance customization through custom CSS code.
 
 ```HtmlHelper
     @(Html.Kendo().Grid<Order>()
@@ -79,6 +66,34 @@ The following example demonstrates how to define a custom `No Records` message w
 ```
 {% endif %}
 
+Another option is to use the `TemplateHandler()` option that returns the desired `No Records` message through a JavaScript function. For example, you can specify diffeent messages based on a condition.
+
+```HtmlHelper
+    @(Html.Kendo().Grid<Order>()
+        .Name("Grid")
+        .NoRecords(n => n.TemplateHandler("noRecordsMsg"))
+    )
+```
+{% if site.core %}
+```TagHelper
+    <kendo-grid name="Grid">
+	    <no-records template-handler="noRecordsMsg" />
+    </kendo-grid>
+```
+{% endif %}
+```JS scripts
+<script>
+    function noRecordsMsg() {
+        if(new Date() > new Date(2024,4,28)) { // Specify the required condition.
+            return "No new records.";
+        } else return "No items found.";
+    }
+</script>
+```
+
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
 * [Server-Side API](/api/datasource)

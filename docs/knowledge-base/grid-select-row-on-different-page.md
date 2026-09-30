@@ -1,13 +1,13 @@
 ---
 title: Dynamically Select a Row on Any Page in the Grid
-description: An example on how to select a row that may be placed on a different page in the Grid.
+description: Learn how to select a row that may be placed on a different page in the Grid.
 type: how-to
-page_title: Dynamically Select Row in Pageable Grid | Kendo UI Grid
+page_title: Dynamically Select Row in Pageable Grid - Kendo UI Grid
 slug: grid-select-row-on-different-page
 tags: grid, selection, paging
 ticketid: 1408857
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
 </table>
 
@@ -37,7 +37,7 @@ The following example demonstrates how to select a row on any page of a client-s
 
 ```dojo
     Select row with ID = <input id="numeric" /> (1-78)
-    <button id="searchBtn" class="k-button k-button-md k-rounded-md k-button-solid k-button-solid-base">Go</button>
+    <button id="searchBtn" class="k-button">Go</button>
     <div id="grid"></div>
     <script>
       function selectGridRow(searchedId, grid, idField){
@@ -96,9 +96,8 @@ The following example demonstrates how to select a row on any page of a client-s
 
         $("#grid").kendoGrid({
           dataSource: {
-            type: "odata",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products"
+              read: "https://demos.telerik.com/service/v2/core/Products"
             },
             schema: {
               model: {
@@ -142,15 +141,15 @@ The following example demonstrates how to select a row on any page of a client-s
         });
       });
     </script>
-    <style> 
+    <style>
       .k-numerictextbox
-      { 
+      {
         width: 250px;
-      } 
+      }
     </style>
 ```
 
 ## See Also
 
-* [kendo.data.Query](/api/javascript/data/query)
-* [Grid API reference](/api/javascript/ui/grid)
+* [kendo.data.Query](/api/data/query)
+* [Grid API reference](/api/ui/grid)

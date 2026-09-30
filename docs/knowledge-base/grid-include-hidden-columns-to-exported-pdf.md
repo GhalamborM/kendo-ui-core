@@ -1,12 +1,12 @@
 ---
 title: Include the Hidden Columns in the Exported PDF File
-description: An example on how to include the hidden columns in the exported PDF file in a Kendo UI Grid.
+description: Learn how to include the hidden columns in the exported PDF file in a Kendo UI Grid.
 type: how-to
-page_title: Export Hidden Columns in PDF | Kendo UI Grid for jQuery
+page_title: Export Hidden Columns in PDF - Kendo UI for jQuery Data Grid
 slug: grid-include-hidden-columns-to-exported-pdf
 tags: grid, export, pdf, iclude, hidden, column, columns, exported, file, add, insert
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2018.1.221</td>
  </tr>
 </table>
@@ -28,8 +28,8 @@ How can I include the hidden columns in the exported PDF file of the Grid?
 
 ## Solution
 
-1. Show the hidden columns by using the [`showColumn`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/showcolumn) method within the [`pdfExport`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/pdfexport) event handler.
-1. When the PDF export is done, hide the columns that are not intended to be visible by using the [`hideColumn`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/hidecolumn) method.
+1. Show the hidden columns by using the [`showColumn`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/showcolumn) method within the [`pdfExport`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/pdfexport) event handler.
+1. When the PDF export is done, hide the columns that are not intended to be visible by using the [`hideColumn`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/hidecolumn) method.
 
 ```dojo
       <div id="example">
@@ -62,9 +62,8 @@ How can I include the hidden columns in the exported PDF file of the Grid?
               scale: 0.8
             },
             dataSource: {
-              type: "odata",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                read: "https://demos.telerik.com/service/v2/core/Customers"
               },
               pageSize: 20
             },

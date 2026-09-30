@@ -1,15 +1,12 @@
-(function(f, define) {
-    define([
-        "./kendo.html.base"
-    ], f);
-})(function() {
+import "./kendo.html.base.js";
+import "./kendo.icons.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "html.button",
     name: "Html.Button",
     category: "web",
     description: "HTML rendering utility for Kendo UI for jQuery.",
-    depends: [ "html.base" ],
+    depends: [ "html.base", "icons" ],
     features: []
 };
 
@@ -36,7 +33,7 @@ var __meta__ = {
             HTMLBase.fn.init.call(that, element, options);
             that.wrapper = that.element.addClass(KBUTTON);
 
-            if (!that.element.attr("type")) {
+            if (!that.element.attr("type") && that.options.type) {
                 that.element.attr("type", that.options.type);
             }
 
@@ -51,10 +48,11 @@ var __meta__ = {
             iconClass: "",
             spriteCssClass: "",
             imageUrl: "",
-            size: "medium",
-            rounded: "medium",
-            fillMode: "solid",
-            themeColor: "base",
+            autoAriaLabel: false,
+            size: undefined,
+            rounded: undefined,
+            fillMode: undefined,
+            themeColor: undefined,
             stylingOptions: [ "size", "rounded", "fillMode", "themeColor" ]
         },
         iconElement: function() {
@@ -65,13 +63,14 @@ var __meta__ = {
                 iconClass = options.iconClass,
                 spriteCssClass = options.spriteCssClass,
                 imageUrl = options.imageUrl,
+                labelText,
                 span, img, isEmpty;
 
             if (spriteCssClass || imageUrl || icon || iconClass) {
                 isEmpty = true;
 
                 element.contents().filter(function() {
-                    return (!$(this).hasClass("k-sprite") && !$(this).hasClass("k-icon") && !$(this).hasClass("k-image"));
+                    return (!$(this).hasClass("k-sprite") && !$(this).hasClass("k-icon") && !$(this).hasClass("k-svg-icon") && !$(this).hasClass("k-image"));
                 }).each(function(idx, el) {
                     if (el.nodeType == 1 || el.nodeType == 3 && kendo.trim(el.nodeValue).length > 0) {
                         isEmpty = false;
@@ -81,6 +80,20 @@ var __meta__ = {
 
             if (isEmpty) {
                 that.element.addClass("k-icon-button");
+
+                if (options.autoAriaLabel !== false && !element.attr("aria-label")) {
+                    labelText = icon;
+
+                    if (!labelText && iconClass) {
+                        labelText = (iconClass.match(/k-i-([\w-]+)/) || [])[1];
+                    }
+
+                    if (labelText) {
+                        labelText = labelText.replace(/-/g, " ");
+                        labelText = labelText.charAt(0).toUpperCase() + labelText.slice(1);
+                        element.attr("aria-label", labelText);
+                    }
+                }
             }
 
             if (imageUrl) {
@@ -91,11 +104,13 @@ var __meta__ = {
                 img.attr("src", imageUrl);
                 img.addClass(KBUTTONICON);
             } else if (icon || iconClass) {
-                span = element.children("span.k-icon").first();
+                span = element.children("span.k-icon, span.k-svg-icon").first();
                 if (!span[0]) {
-                    span = $('<span></span>').prependTo(element);
+                    span = $(kendo.ui.icon({ icon, iconClass })).prependTo(element);
+                } else {
+                    kendo.ui.icon(span, { icon, iconClass });
                 }
-                span.attr("class", icon ? "k-icon k-i-" + icon : iconClass);
+
                 span.addClass(KBUTTONICON);
             } else if (spriteCssClass) {
                 span = element.children("span.k-sprite").first();
@@ -135,14 +150,15 @@ var __meta__ = {
 
     kendo.cssProperties.registerValues("HTMLButton", [{
         prop: "fillMode",
-        values: kendo.cssProperties.fillModeValues.concat(["link"])
+        values: kendo.cssProperties.fillModeValues.concat(["link", "clear"])
+    }, {
+        prop: "themeColor",
+        values: ['base', 'primary', 'secondary', 'tertiary', 'info', 'success', 'warning', 'error', 'inverse']
     }, {
         prop: "rounded",
         values: kendo.cssProperties.roundedValues.concat([['full', 'full']])
     }]);
 
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

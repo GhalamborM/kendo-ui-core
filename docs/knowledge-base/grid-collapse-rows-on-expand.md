@@ -1,12 +1,13 @@
 ---
 title: Expand One Grid Row Only at a Time
-description: An example on how to have only a single row expanded at a time in the Kendo UI Grid.
+description: Learn how to have only a single row expanded at a time in the Kendo UI Grid.
 type: how-to
-page_title: Collapse Other Rows on Row Expand | Kendo UI Grid for jQuery
+page_title: Collapse Other Rows on Row Expand - Kendo UI for jQuery Data Grid
 slug: grid-collapse-rows-on-expand
 tags: grid, hierarchy, collapse, expand
 ticketid: 1141804
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1026 version</td>
  </tr>
 </table>
@@ -29,8 +30,8 @@ How can I force the other rows to collapse when I expand a row in the Kendo UI G
 
 ## Solution
 
-1. Handle the [`detailExpand`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/detailexpand) event of the Grid.
-1. In the event handler, use the [`collapseRow`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/collapserow) method for every master row.
+1. Handle the [`detailExpand`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/detailexpand) event of the Grid.
+1. In the event handler, use the [`collapseRow`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/collapserow) method for every master row.
 
 ```dojo
 <div id="example">
@@ -40,9 +41,9 @@ How can I force the other rows to collapse when I expand a row in the Kendo UI G
         $(document).ready(function() {
             var element = $("#grid").kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                        read: "https://demos.telerik.com/service/v2/odata/Employees"
                     },
                     pageSize: 6,
                     serverPaging: true,
@@ -91,9 +92,9 @@ How can I force the other rows to collapse when I expand a row in the Kendo UI G
         function detailInit(e) {
             $("<div/>").appendTo(e.detailCell).kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                        read: "https://demos.telerik.com/service/v2/odata/Orders"
                     },
                     serverPaging: true,
                     serverSorting: true,

@@ -7,13 +7,14 @@ slug: dropdowntree-get-checked-treeview-nodes
 tags: dropdowntree, checked, treeview, node, recursion
 ticketid: 1408344
 res_type: kb
+components: ["spreadsheet"]
 ---
 
 ## Environment
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet for jQuery</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -35,7 +36,7 @@ How can I get all the checked nodes of the TreeView? I need to only get the pare
 ## Solution
 - Define the **getCheckedItems** method
   1. Add a new method called `getCheckedItems` to the TreeView
-  1. In its definition get the nodes of the TreeView by utilizing the `[view](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/view)` method of the `dataSource`
+  1. In its definition get the nodes of the TreeView by utilizing the `[view](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/view)` method of the `dataSource`
   1. Return **getCheckedNodes(nodes)**
 
 - Define **getCheckedNodes**s

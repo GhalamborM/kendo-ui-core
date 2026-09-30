@@ -2,13 +2,13 @@
 title: Filtering Is Not Properly Persisted after Saving and Loading the State of the Grid
 description: "The date filters of the Grid are not correctly persisted after kendo.stringify is applied."
 type: troubleshooting
-page_title: Filters Are Not Correctly Persisted After Saving and Loading the Grid State | Kendo UI Grid for jQuery
+page_title: Filters Are Not Correctly Persisted After Saving and Loading the Grid State - Kendo UI for jQuery Data Grid
 slug: grid-filters-are-not-correctly-persisted-after-saving-and-loading-the-grid-stateposition
 previous_url: /knowledge-base/the-grid-filters-are-not-correctly-persisted-after-saving-and-loading-the-grid-state
 tags: grid, filter, persist
 ticketid: 1126061
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -16,7 +16,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -57,9 +57,8 @@ Programmatically apply the time offset before the filter is set again.
         $(document).ready(function () {
           $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Meetings"
+                read: "https://demos.telerik.com/service/v2/core/Meetings"
               },
               pageSize: 20
             },

@@ -2,9 +2,10 @@
 title: Ajax Binding
 page_title: Ajax Binding
 description: "Learn how to implement Ajax Binding with Telerik UI MultiColumnComboBox component for {{ site.framework }}."
+components: ["multicolumncombobox"]
 previous_url: /helpers/editors/multicolumncombobox/binding/ajax-binding
 slug: htmlhelpers_multicolumncombobox_ajaxbinding_aspnetcore
-position: 2
+position: 3
 ---
 
 # Ajax Binding
@@ -13,11 +14,11 @@ The MultiColumnComboBox provides support for remote data binding by using a `Dat
 
 1. Create an action that returns the data as a JSON result.
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }
-
+        {% if site.core %}
         public JsonResult GetProductsAjax()
         {
             var products = Enumerable.Range(0, 500).Select(i => new ProductViewModel
@@ -28,6 +29,18 @@ The MultiColumnComboBox provides support for remote data binding by using a `Dat
 
             return Json(products);
         }
+        {% else %}
+        public JsonResult GetProductsAjax()
+        {
+            var products = Enumerable.Range(0, 500).Select(i => new ProductViewModel
+            {
+                ProductID = i,
+                ProductName = "ProductName" + i
+            });
+
+            return Json(products, JsonRequestBehavior.AllowGet);
+        }
+        {% endif %}
 
 1. Add the MultiColumnComboBox to the view and configure its DataSource to use remote data.
 

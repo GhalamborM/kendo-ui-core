@@ -1,12 +1,13 @@
 ---
 title: Remove Group Footer and Header Templates When One Record Is in the Group
-description: An example on how to remove the groupFooterTemplate and the groupHeaderTemplate when there is only one record in the group of the Kendo UI Grid.
+description: Learn how to remove the groupFooterTemplate and the groupHeaderTemplate when there is only one record in the group of the Kendo UI Grid.
 type: how-to
-page_title: Hide Group Details When Only One Record Is in the Group | Kendo UI Grid for jQuery
+page_title: Hide Group Details When Only One Record Is in the Group - Kendo UI for jQuery Data Grid
 slug: grid-group-remove-footer-header-one-record
 tags: grid, group, groupFooterTemplate, groupHeaderTemplate
 ticketid: 1143117
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1026 version</td>
  </tr>
 </table>
@@ -30,7 +31,7 @@ How can I hide the grouping details when there is only one record in the group o
 
 To hide the group header:
 
-1. In the [`groupHeaderTemplate`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.groupheadertemplate), implement an `if/else` condition.
+1. In the [`groupHeaderTemplate`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsgroupheadertemplate), implement an `if/else` condition.
 1. Based on it, display different templates.
 
     ```
@@ -39,8 +40,8 @@ To hide the group header:
 
 To hide the group footer:
 
-1. In the [`groupFooterTemplate`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.groupfootertemplate) implement an `if/else` condition. Based on it, add a class to the cell.
-1. In the [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound) event handler, select the class and [`hide`](https://api.jquery.com/hide/) the [`closest`](https://api.jquery.com/closest/) `.k-group-footer` row.
+1. In the [`groupFooterTemplate`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnsgroupfootertemplate) implement an `if/else` condition. Based on it, add a class to the cell.
+1. In the [`dataBound`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound) event handler, select the class and [`hide`](https://api.jquery.com/hide/) the [`closest`](https://api.jquery.com/closest/) `.k-group-footer` row.
 
     ```
     dataBound: function(e) {
@@ -60,9 +61,8 @@ To hide the group footer:
             $(document).ready(function() {
                 $("#grid").kendoGrid({
                     dataSource: {
-                        type: "odata",
                         transport: {
-                            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products"
+                            read: "https://demos.telerik.com/service/v2/core/Products"
                         },
                         schema: {
                             model: {

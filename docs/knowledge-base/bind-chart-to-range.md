@@ -1,13 +1,13 @@
 ---
 title: Bind Charts to Spreadsheet Data
 page_title: Bind Charts to Spreadsheet Data
-description: "Learn how to bind a Kendo UI Chart to the data of a Kendo UI Spreadsheet widget."
+description: "Learn how to bind a Kendo UI Chart to the data of a Kendo UI Spreadsheet component."
 slug: howto_bindcharttosheet_spreadsheet_widget
 pevious_url: /controls/charts/how-to/bind-chart-to-spreadsheet-data, /controls/charts/how-to/binding/bind-chart-to-spreadsheet-data, /controls/data-management/spreadsheet/how-to/bind-chart-to-range
 tags: kendo, jquery, spreadsheet, bind, chart, to, sheet, data
-component: spreadsheet
 type: how-to
 res_type: kb
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet for jQuery</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I extract data from the Kendo UI for jQuery Spreadsheet and render it in
 
 ## Solution
 
-The following example demonstrates how to extract the Spreadsheet data and populate a Kendo UI Chart with it. The Chart is updated on sheet upon a [`change`](/api/javascript/spreadsheet/sheet/events/change) event.
+The following example demonstrates how to extract the Spreadsheet data and populate a Kendo UI Chart with it. The Chart is updated on sheet upon a [`change`](/api/spreadsheet/sheet/events/change) event.
 
 ```dojo
 <style>
@@ -108,7 +108,7 @@ The following example demonstrates how to extract the Spreadsheet data and popul
 
     function bindChart(chart, sheet, range) {
         // Change will fire when the sheet data changes
-        // https://docs.telerik.com/kendo-ui/api/javascript/spreadsheet/sheet/events/change
+        // https://docs.telerik.com/kendo-ui/api/spreadsheet/sheet/events/change
         sheet.bind("change", function(e) {
             if (e.recalc) {
                update();
@@ -924,4 +924,4 @@ The following example demonstrates how to extract the Spreadsheet data and popul
 ## See Also
 
 * [Basic Usage of the Spreadsheet (Demo)](https://demos.telerik.com/kendo-ui/spreadsheet/index)
-* [Spreadsheet JavaScript API Reference](/api/javascript/ui/spreadsheet)
+* [Spreadsheet JavaScript API Reference](/api/ui/spreadsheet)

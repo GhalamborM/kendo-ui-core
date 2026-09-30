@@ -1,12 +1,12 @@
 ---
 title: Use Dynamic Editor in the Grid
-description: An example on how to use a dynamic editor in the Kendo UI Grid.
+description: Learn how to use a dynamic editor in the Kendo UI Grid.
 type: how-to
-page_title: Use Dynamic Editor | Kendo UI Grid for jQuery
+page_title: Use Dynamic Editor - Kendo UI for jQuery Data Grid
 slug: grid-use-dynamic-editor
 tags: grid, editor, dynamic, different, single, input, textbox
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2017.3.1026</td>
  </tr>
 </table>
@@ -28,7 +28,7 @@ How can I have a column whose editor depends on the value of the Grid record?
 
 ## Solution
 
-1. Place a condition within the [`columns.editor`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.editor) function.
+1. Place a condition within the [`columns.editor`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnseditor) function.
 1. Based on that condition, add the corresponding editor template.
 
 ```dojo

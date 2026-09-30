@@ -1,12 +1,13 @@
 ---
 title: Configure the CategoryAxis Labels of the Chart to Fit
-page_title: Prevent CategoryAxis Label Overlap | Kendo UI Chart for jQuery
-description: An example on how to display the CategoryAxis labels of the Kendo UI Chart without any overlapping.
+page_title: Prevent CategoryAxis Label Overlap - Kendo UI Chart for jQuery
+description: Learn how to display the CategoryAxis labels of the Kendo UI Chart without any overlapping.
 type: how-to
 slug: chart-category-axis-label-fit
 tags: chart, category, axis, label, fit
 ticketid: 1179489
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Chart for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Product Version</td>
@@ -37,9 +38,9 @@ To work around this issue, use any of the following approaches:
 
 ### Rotating the Labels
 
-By changing the angle using [categoryAxis.labels.rotation.angle](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryAxis.labels.rotation.angle), each category name can fit on the same line while not overlapping each other.
+By changing the angle using [categoryAxis.labels.rotation.angle](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryAxis.labels.rotation.angle), each category name can fit on the same line while not overlapping each other.
 
-You can fit the name of each category on the same line and avoid the overlap by changing the angle through the [`categoryAxis.labels.rotation.angle`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryAxis.labels.rotation.angle) setting.
+You can fit the name of each category on the same line and avoid the overlap by changing the angle through the [`categoryAxis.labels.rotation.angle`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryAxis.labels.rotation.angle) setting.
 
 ```
 $("#chart").kendoChart({
@@ -255,7 +256,7 @@ function labelsTemplate(e) {
 }
 ```
 
-The following example demonstrates how to render each label into a new line by using the [`categoryAxis.labels.template`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryAxis.labels.template) property.
+The following example demonstrates how to render each label into a new line by using the [`categoryAxis.labels.template`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryAxis.labels.template) property.
 
 ```dojo
     <div id="example">
@@ -439,7 +440,7 @@ The following example demonstrates how to render each label into a new line by u
 
 ### Reducing the Number of Displayed Labels
 
-You can decrease the number of labels that are shown by using the [`step`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryAxis.labels.step) and [`skip`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryAxis.labels.skip) properties.
+You can decrease the number of labels that are shown by using the [`step`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryAxis.labels.step) and [`skip`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryAxis.labels.skip) properties.
 
 ```
 $("#chart").kendoChart({
@@ -630,7 +631,7 @@ The following example demonstrates how to skip the first five labels and render 
 ## See Also
 
 * [Methods Demo of the Kendo UI Chart](https://demos.telerik.com/kendo-ui/chart-api/index)
-* [API Reference of categoryAxis.labels.rotation.angle](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryAxis.labels.rotation.angle)
-* [API Reference of categoryAxis.labels.template](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryAxis.labels.template)
-* [API Reference categoryAxis.labels.step](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryAxis.labels.step)
-* [API Reference of categoryAxis.labels.skip](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.labels#categoryAxis.labels.skip)
+* [API Reference of categoryAxis.labels.rotation.angle](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryAxis.labels.rotation.angle)
+* [API Reference of categoryAxis.labels.template](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryAxis.labels.template)
+* [API Reference categoryAxis.labels.step](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryAxis.labels.step)
+* [API Reference of categoryAxis.labels.skip](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxislabels#categoryAxis.labels.skip)

@@ -1,13 +1,13 @@
 ---
 title: Create Fixed Headers on Scroll
-page_title:  Create Fixed Headers on Scroll | Kendo UI Grid for jQuery
-description: "An example on how to create fixed headers on scroll in the Kendo UI Grid widget for jQuery."
+page_title:  Create Fixed Headers on Scroll - Kendo UI for jQuery Data Grid
+description: "Learn how to create fixed headers on scroll in the Kendo UI Grid widget for jQuery."
 previous_url: /controls/data-management/grid/how-to/Layout/fixed-headers-grid
 slug: howto_create_fixed_headers_grid
 tags: grid, fixed, header, scrolling
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -54,7 +54,6 @@ The following examples demonstrates the full code implementation.
 
 ```dojo
     <script src="https://demos.telerik.com/kendo-ui/content/shared/js/products.js"></script>
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/styles/kendo.flat.min.css"/>
     <h1>&darr; SCROLL &darr;</h1>
     <div id="products"></div>
 
@@ -106,9 +105,8 @@ The following examples demonstrates the full code implementation.
         $("#employees").kendoGrid({
           dataBound:onDataBound,
           dataSource: {
-            type: "odata",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+              read: "https://demos.telerik.com/service/v2/core/Customers"
             }
           },
           columns: [{
@@ -165,4 +163,4 @@ The following examples demonstrates the full code implementation.
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

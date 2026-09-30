@@ -2,6 +2,7 @@
 title: Validation
 page_title: Validation
 description: "Use the predefined and custom masks in the Telerik UI MaskedTextBox for {{ site.framework }}."
+components: ["maskedtextbox"]
 previous_url: /helpers/editors/maskedtextbox/mask-rules
 slug: validation_maskedtextbox_aspnetcore
 position: 3
@@ -15,7 +16,7 @@ The MaskedTextBox provides a set of predefined mask rules and enables you to mod
 
 ## Predefined Masks
 
-The MaskedTextBox has [a list of predefined mask rules](https://docs.telerik.com/kendo-ui/controls/editors/maskedtextbox/mask-rules) which can be used to validate its user input.
+The MaskedTextBox has [a list of predefined mask rules](https://docs.telerik.com/kendo-ui/controls/maskedtextbox/mask-rules) which can be used to validate its user input.
 
 The following example demonstrates how to set a `zip code` mask.
 

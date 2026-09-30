@@ -1,13 +1,13 @@
 ---
 title: Drag and Drop Map Markers
 page_title: Drag and Drop Map Markers
-description: "Learn how to integrate the Kendo UI Draggable widget with the Kendo UI Map widget."
+description: "Learn how to integrate the Kendo UI Draggable widget with the Kendo UI Map component."
 slug: howto_draganddropmarkers_map
 previous_url: /controls/diagrams-and-maps/map/how-to/drag-and-drop-markers
 tags: kendo, jquery, map, drag, and, drop, markers
-component: map
 type: how-to
 res_type: kb
+components: ["map"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Map for jQuery</td>
+  <td>Progress® Kendo UI® Map for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -55,9 +55,9 @@ You can drag and drop the markers within the visible area of the Map. The locati
         zoom: 15,
         layers: [{
             type: "tile",
-            urlTemplate: "http://#= subdomain #.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png",
+            urlTemplate: "https://#= subdomain #.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png",
             subdomains: ["a", "b", "c"],
-            attribution: "&copy; <a href='http://osm.org/copyright'>OpenStreetMap contributors</a>."
+            attribution: "&copy; <a href='https://osm.org/copyright'>OpenStreetMap contributors</a>."
             }, {
             type: "marker",
             dataSource: {
@@ -116,4 +116,4 @@ You can drag and drop the markers within the visible area of the Map. The locati
 
 * [Basic Usage of the Map (Demo)](https://demos.telerik.com/kendo-ui/map/index)
 * [Using the API of the Map (Demo)](https://demos.telerik.com/kendo-ui/map/api)
-* [JavaScript API Reference of the Map](/api/javascript/dataviz/ui/map)
+* [JavaScript API Reference of the Map](/api/dataviz/ui/map)

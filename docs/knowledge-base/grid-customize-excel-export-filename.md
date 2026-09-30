@@ -1,13 +1,13 @@
 ---
 title: Customize the Excel Export Filename of the Grid by Adding Current Date and Time
-description: An example on how to customize the Excel export filename of the Grid by adding the current date and time of generation.
+description: Learn how to customize the Excel export filename of the Grid by adding the current date and time of generation.
 type: how-to
-page_title: Add the Current Date and Time to the Excel Export Filename | Kendo UI Grid for jQuery
+page_title: Add the Current Date and Time to the Excel Export Filename - Kendo UI for jQuery Data Grid
 slug: grid-customize-excel-export-filename
 tags: grid, excel, export, datetime, customize, customize
 ticketid: 1130491
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
 </table>
 
@@ -26,7 +26,7 @@ How can I add the current date and time to the Excel export filename of the Gri
 
 ## Solution
 
-1. Use the [`excelExport`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/excelexport) event which has the workbook in its event data to rename it.
+1. Use the [`excelExport`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/excelexport) event which has the workbook in its event data to rename it.
 
 1. With the help of the [`kendo.toString()`](https://docs.telerik.com/kendo-ui/framework/globalization/dateformatting) method or another way to format the date, concatenate the date to the filename:
 

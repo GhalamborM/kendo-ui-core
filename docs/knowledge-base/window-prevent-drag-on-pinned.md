@@ -7,16 +7,17 @@ slug: window-prevent-drag-on-pinned
 tags: window, pinned, action, drag, prevent, default
 ticketid: 
 res_type: kb
+components: ["window"]
 ---
 
 ## Environment
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Window</td>
+  <td>Progress® Kendo UI® Window for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2021.1.330 version</td>
  </tr>
 </table>
@@ -25,8 +26,8 @@ res_type: kb
 How do I disable the drag event of the Window, when the pin action is active?
 
 ## Solution
-1. Set up the [Pin action](https://docs.telerik.com/kendo-ui/api/javascript/ui/window/configuration/actions)
-1. Subscribe to the [`dragstart`](https://docs.telerik.com/kendo-ui/api/javascript/ui/window/events/dragstart) event and define its handler
+1. Set up the [Pin action](https://docs.telerik.com/kendo-ui/api/ui/window/configuration/actions)
+1. Subscribe to the [`dragstart`](https://docs.telerik.com/kendo-ui/api/ui/window/events/dragstart) event and define its handler
 1. In the handler check whether **e.sender.options.pinned** is true
 1. If true prevent the event - **e.preventDefault()**
 
@@ -34,7 +35,7 @@ How do I disable the drag event of the Window, when the pin action is active?
         <div id="example">
             <div id="window">
                 <h4>Armchair 402</h4>
-                <div class="armchair"><img src="../content/web/window/armchair-402.png" alt="Armchair 402" /> Artek Alvar Aalto - Armchair 402</div>
+                <div class="armchair"><img src="https://demos.telerik.com/kendo-ui/content/web/window/armchair-402.png" alt="Armchair 402" /> Artek Alvar Aalto - Armchair 402</div>
                 <p>Alvar Aalto is one of the greatest names in modern architecture and design. Glassblowers at the iittala factory still meticulously handcraft the legendary vases that are variations on one theme, fluid organic shapes that let the end user decide the use. Interpretations of the shape in new colors and materials add to the growing Alvar Aalto Collection that remains true to his original design.</p>
 
                 

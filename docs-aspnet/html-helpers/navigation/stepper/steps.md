@@ -2,6 +2,7 @@
 title: Steps
 page_title: Steps
 description: "Learn how to configure the steps of the widget."
+components: ["stepper"]
 slug: htmlhelpers_stepper_aspnetcore_steps
 position: 2
 ---
@@ -20,8 +21,8 @@ The following example demonstrates how the set the configuration for the Steps o
         .Steps(s =>
         {
             s.Add().Label("First Step").Icon("home");
-            s.Add().Label("Second Step").Icon("attachment").Error(true);
-            s.Add().Label("Third Step").Icon("preview").Selected(true);
+            s.Add().Label("Second Step").Icon("paperclip").Error(true);
+            s.Add().Label("Third Step").Icon("eye").Selected(true);
             s.Add().Label("Last Step").Icon("save").Enabled(false);
         })
     )

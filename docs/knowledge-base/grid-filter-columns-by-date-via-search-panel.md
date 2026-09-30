@@ -2,11 +2,12 @@
 title: Filter Grid columns by date via Search Panel
 description: An example of how to filter columns by date via Search Panel in Kendo UI Grid for jQuery
 type: how-to
-page_title: Filter columns by date via Search Panel | Kendo UI Grid for jQuery
+page_title: Filter columns by date via Search Panel - Kendo UI for jQuery Data Grid
 slug: grid-filter-columns-by-date-via-search-panel
 tags: grid, search, panel, filter, date, format, columns
 ticketid: 1459985
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Grid for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Grid for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -34,8 +35,8 @@ How can I achieve a global search by date columns via the Search Panel?
 Search Panel works with strings, whereas the date type is an object. 
 To accomplish date type searching: 
 
-1. Add an additional field within the [`model`](/api/javascript/data/datasource/configuration/schema#schemamodel), that will represent a formatted date.
-2. Use the newly created field in [`search.fields`](/api/javascript/ui/grid/configuration/search.fields) configuration.
+1. Add an additional field within the [`model`](/api/data/datasource/configuration/schema#schemamodel), that will represent a formatted date.
+2. Use the newly created field in [`search.fields`](/api/ui/grid/configuration/search#searchfields) configuration.
 
 ```dojo
 

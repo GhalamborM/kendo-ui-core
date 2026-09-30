@@ -1,12 +1,13 @@
 ---
 title: Always Show Marker Tooltip
-description: An example on how to show labels on the map markers by utilizing their tooltips in the Kendo UI Map.
+description: Learn how to show labels on the map markers by utilizing their tooltips in the Kendo UI Map.
 type: how-to
-page_title: Always Show Marker Tooltips Like Labels | Kendo UI Map
+page_title: Always Show Marker Tooltips Like Labels - Kendo UI Map
 slug: map-marker-labels-from-always-shown-tooltips
 tags: map,show,always,marker,tooltip,label
 ticketid: 1412666
 res_type: kb
+components: ["map"]
 ---
 
 ## Environment
@@ -15,7 +16,7 @@ res_type: kb
     <tbody>
 	    <tr>
 	    	<td>Product</td>
-	    	<td>Map for Progress® Kendo UI®</td>
+	    	<td>Progress® Kendo UI® Map for jQuery</td>
 	    </tr>
     </tbody>
 </table>
@@ -28,7 +29,7 @@ The map markers in the Kendo UI Map have tooltips which the user can display by 
 ## Solution
 
 1. Loop the markers.
-1. After the Map initializes, in its [events](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/map#events), call the `.show()` method of their tooltips.
+1. After the Map initializes, in its [events](https://docs.telerik.com/kendo-ui/api/dataviz/ui/map#events), call the `.show()` method of their tooltips.
 
 ```dojo
 <div id="map"></div>
@@ -40,9 +41,9 @@ The map markers in the Kendo UI Map have tooltips which the user can display by 
 			zoom: 3,
 			layers: [{
 				type: "tile",
-				urlTemplate: "http://#= subdomain #.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png",
+				urlTemplate: "https://#= subdomain #.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png",
 				subdomains: ["a", "b", "c"],
-				attribution: "&copy; <a href='http://osm.org/copyright'>OpenStreetMap contributors</a>"
+				attribution: "&copy; <a href='https://osm.org/copyright'>OpenStreetMap contributors</a>"
 			}],
 			markerDefaults: { //make tooltips "sticky" by default
 				tooltip: {

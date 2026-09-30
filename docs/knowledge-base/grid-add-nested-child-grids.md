@@ -1,13 +1,13 @@
 ---
 title: Add nested child grids
-description: "An example on how to add nested child grids."
+description: "Learn how to add nested child grids."
 type: how-to
-page_title: Add nested Child Grids | Kendo UI Grid for jQuery
+page_title: Add nested Child Grids - Kendo UI for jQuery Data Grid
 slug: grid-add-nested-child-grids
 tags: grid, hierarchy, nested, child
 ticketid: 1528111
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2021.2.616 version</td>
  </tr>
 </table>
@@ -29,7 +29,7 @@ How can I add hierarchy of nested child grids in Kendo UI?
 
 ## Solution
 
-Handle the [`detailInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/detailinit) event of each parent Grid and initialize the next level of the Hierarchy in it.
+Handle the [`detailInit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/detailinit) event of each parent Grid and initialize the next level of the Hierarchy in it.
 
 ```dojo
 
@@ -40,9 +40,9 @@ Handle the [`detailInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/gr
         $(document).ready(function() {
           var element = $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                read: "https://demos.telerik.com/service/v2/odata/Employees"
               },
               pageSize: 6,
               serverPaging: true,
@@ -84,9 +84,9 @@ Handle the [`detailInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/gr
         function detailInit(e) {
           $("<div/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               serverPaging: true,
               serverSorting: true,
@@ -110,9 +110,9 @@ Handle the [`detailInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/gr
         function detailInitCustomers(e) {
           $("<div/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                read: "https://demos.telerik.com/service/v2/odata/Customers"
               },
               serverPaging: true,
               serverSorting: true,
@@ -134,7 +134,7 @@ Handle the [`detailInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/gr
         function detailInitOrdersByCustomers(e) {
           $("<div/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               schema: {
                 model: {
                   fields: {
@@ -146,7 +146,7 @@ Handle the [`detailInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/gr
                 }
               },
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               serverPaging: true,
               serverSorting: true,
@@ -170,9 +170,9 @@ Handle the [`detailInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/gr
         function detailInitShippers (e) {
           $("<div/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Shippers"
+                read: "https://demos.telerik.com/service/v2/odata/Shippers"
               },
               serverFiltering: true,
               filter: { field: "ShipperID", operator: "eq", value: e.data.ShipVia }

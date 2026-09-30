@@ -1,11 +1,12 @@
 ---
 title: Disable Months And Years
-page_title: Disable Months And Years | Kendo UI DatePicker for jQuery
-description: "An example demonstrating how to disable months and years in the DatePicker widget."
+page_title: Disable Months And Years - Kendo UI DatePicker for jQuery
+description: "An example demonstrating how to disable months and years in the DatePicker component."
 type: how-to
 slug: datepicker-disable-months-and-years
 tags: datepicker, disable, years, months, view, datetimepicker
 res_type: kb
+components: ["datepicker"]
 ---
 
 ## Environment
@@ -17,20 +18,20 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>DatePicker for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® DatePicker for jQuery</td>
 	</tr>
 </table>
 
 ## Description
 
-The [`disableDates`](/api/javascript/ui/datetimepicker/configuration/disabledates) configuration provides the functionality to disable certain days in the month view of the DatePicker. This article demonstates how to disable months and years as well.
+The [`disableDates`](/api/ui/datetimepicker/configuration/disabledates) configuration provides the functionality to disable certain days in the month view of the DatePicker. This article demonstates how to disable months and years as well.
 
 ## Solution
 
 1. Initialize two arrays that will hold the disabled months and years.
-1. Attach a handler to the [`open`](/api/javascript/ui/datepicker/events/open) event of the DatePicker.
+1. Attach a handler to the [`open`](/api/ui/datepicker/events/open) event of the DatePicker.
 1. Inside the `open` event, retrieve a reference to the underlying `Calendar` widget.
-1. Attach a handler to the [`navigate`](/api/javascript/ui/calendar/events/navigate) event of the `Calendar`.
+1. Attach a handler to the [`navigate`](/api/ui/calendar/events/navigate) event of the `Calendar`.
 1. Perform a conditional check to find out which view is currently open.
    * If the `year` view is open, iterate over the array of months.
    * If the `decade` view is open, iterate over the array of years.

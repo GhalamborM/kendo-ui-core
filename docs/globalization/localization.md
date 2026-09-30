@@ -1,7 +1,8 @@
 ---
 title: Localization
-page_title: Localization | Kendo UI Globalization
+page_title: Localization - Kendo UI Globalization
 description: "Learn how to use the Kendo UI localization files in order to change the default messages of widgets."
+components: ["general"]
 previous_url: /framework/localization/overview, /localization
 slug: overview_localization_kendoui
 position: 3
@@ -21,17 +22,19 @@ By default, all Kendo UI widgets display their messages in US English. To replac
 
 The following example demonstrates how to add the localization script to a document.
 
-    <script src="jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="kendo.all.min.js"></script>
     <script src="kendo.messages.bg-BG.js"></script>
 
 The following example demonstrates how to add the localization script to a document from the CDN.    
 
-    <script src="https://kendo.cdn.telerik.com/<version>/js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/<version>/js/kendo.all.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/<version>/js/messages/kendo.messages.bg-BG.min.js"></script>
 
 > Currently, translations are not available for every language and some of the localization files may be incomplete. For more information on where to find the full list of available translations, refer to the [section on contributing]({% slug overview_localization_kendoui%}#contribution).
+
+> Using HTML in the localization messages of the components is not supported. Localization messages are designed to use strings and no HTML can be passed to them.
 
 ## Creating New Localization Files
 
@@ -55,7 +58,7 @@ The following example demonstrates how to create a new localization file. The `k
 
 ### Localizing Widgets That Are Rendered by Server-Side Wrappers
 
-The server-side wrappers (helpers) render some of the markup and the respective messages that are needed for the widgets from the server. Applying the UI localization on the client side may not work as expected. Currently, the ASP.NET MVC wrappers come with localization resource files which work with the default localization mechanism provided by ASP.NET MVC. For more information, refer to the article on [globalization in ASP.NET MVC](/aspnet-mvc/globalization#localized-user-interface).
+The server-side wrappers (helpers) render some of the markup and the respective messages that are needed for the widgets from the server. Applying the UI localization on the client side may not work as expected. Currently, the ASP.NET MVC wrappers come with localization resource files which work with the default localization mechanism provided by ASP.NET MVC. For more information, refer to the article on [globalization in ASP.NET MVC](https://www.telerik.com/aspnet-mvc/documentation/globalization/overview).
 
 ### Changing the Language at Runtime in AngularJS Applications
 
@@ -74,5 +77,4 @@ If you notice any missing messages in the localization files or would like to ad
 ## See Also
 
 * [Localize the Grid Widget]({% slug localization_kendoui_grid_widget %})
-* [Globalization and Localization in Telerik UI for ASP.NET MVC](/aspnet-mvc/globalization)
-* [JSP API Reference on Localization of the Upload Widget](/api/jsp/upload/localization)
+* [Globalization and Localization in Telerik UI for ASP.NET MVC](https://www.telerik.com/aspnet-mvc/documentation/globalization/overview)

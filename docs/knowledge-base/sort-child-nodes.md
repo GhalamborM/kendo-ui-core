@@ -5,9 +5,9 @@ description: "Learn how to programmatically change the order of all Kendo UI for
 slug: howto_sortchildnodes_treeview
 previous_url: /controls/navigation/treeview/how-to/binding/sort-child-nodes
 tags: telerik, kendo, jquery, treeview, sort, child, nodes
-component: treeview
 type: how-to
 res_type: kb
+components: ["treeview"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI TreeView for jQuery</td>
+  <td>Progress® Kendo UI® TreeView for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -61,13 +61,12 @@ The following example demonstrates how to programmatically change the order of a
           }
         }
 
-        var serviceRoot = "//demos.telerik.com/kendo-ui/service";
+        var serviceRoot = "https://demos.telerik.com/service/v2/core";
         asc = new kendo.data.HierarchicalDataSource({
           sort: { field: "FullName", dir: "asc" },
           transport: {
             read: {
-              url: serviceRoot + "/Employees",
-              dataType: "jsonp"
+              url: serviceRoot + "/Employees"
             }
           },
           schema: {
@@ -81,8 +80,7 @@ The following example demonstrates how to programmatically change the order of a
           sort: { field: "FullName", dir: "desc" },
           transport: {
             read: {
-              url: serviceRoot + "/Employees",
-              dataType: "jsonp"
+              url: serviceRoot + "/Employees"
             }
           },
           schema: {
@@ -121,4 +119,4 @@ The following example demonstrates how to programmatically change the order of a
 
 * [Basic Usage of the TreeView (Demo)](https://demos.telerik.com/kendo-ui/treeview/index)
 * [Using the API of the TreeView (Demo)](https://demos.telerik.com/kendo-ui/treeview/api)
-* [JavaScript API Reference of the TreeView](/api/javascript/ui/treeview)
+* [JavaScript API Reference of the TreeView](/api/ui/treeview)

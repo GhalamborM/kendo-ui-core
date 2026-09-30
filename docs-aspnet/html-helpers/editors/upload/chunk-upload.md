@@ -2,6 +2,7 @@
 title: Chunk Upload
 page_title: Chunk Upload
 description: "Learn how to upload large files in chunks when using the Telerik UI Upload component for {{ site.framework }}."
+components: ["upload"]
 previous_url: /helpers/editors/upload/chunk-upload
 slug: htmlhelpers_upload_chunks_aspnetcore
 position: 3
@@ -46,7 +47,7 @@ To enable the chunk upload:
 {% if site.core %}
 1. Implement the server-side logic (that is, the `ChunkSave` action is assigned) which processes the file chunks and merges them into file:
 
-    ```
+    ```C#
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System;
@@ -59,15 +60,8 @@ To enable the chunk upload:
 
     namespace ProjectName.Controllers
     {
-      public partial class UploadController : Controller
+      public class UploadController : Controller
       {
-        public IWebHostingEnvironment WebHostEnvironment { get; set; }
-
-        public UploadController(IWebHostEnvironment webHostEnvironment)
-        {
-            WebHostEnvironment = webHostEnvironment;
-        }
-
         public class ChunkMetaData
         {
             public string UploadUid { get; set; }
@@ -103,7 +97,7 @@ To enable the chunk upload:
             }
         }
 
-        public ActionResult ChunkSave(IEnumerable<IFormFile> files, string metaData)
+        public async Task<ActionResult> ChunkSave(IEnumerable<IFormFile> files, string metaData)
         {
             if (metaData == null)
             {
@@ -163,7 +157,7 @@ To enable the chunk upload:
             return Content("");
         }
 
-        public ActionResult Save(IEnumerable<IFormFile> files)
+        public async Task<ActionResult> Save(IEnumerable<IFormFile> files)
         {
             // The Name of the Upload component is "files".
             if (files != null)
@@ -193,7 +187,7 @@ To enable the chunk upload:
 {% else %}
 1. Implement the server-side logic (that is, the `ChunkSave` action is assigned) which processes the file chunks and merges them into file:
 
-    ```
+    ```C#
     [DataContract]
     public class ChunkMetaData
     {

@@ -1,13 +1,13 @@
 ---
 title: Swap Alternate and Background Colors on Every Second Child Grid
-description: An example on how to change the background and the alternate color for child grids in the Kendo UI Grid.
+description: Learn how to change the background and the alternate color for child grids in the Kendo UI Grid.
 type: how-to
-page_title: Change the Alt and Background Colors in Hierarchy Grids | Kendo UI Grid for jQuery
+page_title: Change the Alt and Background Colors in Hierarchy Grids - Kendo UI for jQuery Data Grid
 slug: swap-alt-background-child-grids
 tags: kendo ui, mvc, grid, hierarchy, child grids, alt color
 ticketid: 1114254
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-   <td>Progress Kendo UI version</td>
+   <td>Product Version</td>
    <td>Tested up to version 2017.2 504</td>
   </tr>
 </table>
@@ -43,9 +43,9 @@ I have a multi-level, hierarchy Grid. The headers of the child grids are hidden.
     $(document).ready(function() {
         var element = $("#grid").kendoGrid({
             dataSource: {
-                type: "odata",
+                type: "odata-v4",
                 transport: {
-                    read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                    read: "https://demos.telerik.com/service/v2/odata/Employees"
                 },
                 pageSize: 6,
                 serverPaging: true,
@@ -84,9 +84,9 @@ I have a multi-level, hierarchy Grid. The headers of the child grids are hidden.
     function detailInit(e) {
         $("<div id='grid_" + e.data.EmployeeID + "'/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-                type: "odata",
+                type: "odata-v4",
                 transport: {
-                    read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                    read: "https://demos.telerik.com/service/v2/odata/Orders"
                 },
                 serverPaging: true,
                 serverSorting: true,

@@ -5,9 +5,9 @@ description: "Learn how to apply changes, visible only in the exported PDF."
 previous_url: /controls/charts/how-to/pdf-save-chart-with-different-settings, /charts/how-to/export/pdf-save-chart-with-different-settings
 slug: howto_apply_settings_for_PDF_only_charts
 tags: chart, apply, settings, for, exported, pdf, only
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -39,8 +39,8 @@ How can I apply changes that are visible in the Chart content that is exported i
 
 1. Create a empty `div` element that will be used to generate the Chart with the desired options on the export
 2. Generate the new Chart with the desired options
-3. In the [`render`](api/javascript/dataviz/ui/chart/events/render) event export the new Char with the [`saveAsPDF()`](/api/javascript/dataviz/ui/chart/methods/saveaspdf) method
-4. Remove the new Chart from the DOM with [`destroy()`](/api/javascript/dataviz/ui/chart/methods/destroy) method and remove the div element.
+3. In the [`render`](api/javascript/dataviz/ui/chart/events/render) event export the new Char with the [`saveAsPDF()`](/api/dataviz/ui/chart/methods/saveaspdf) method
+4. Remove the new Chart from the DOM with [`destroy()`](/api/dataviz/ui/chart/methods/destroy) method and remove the div element.
 
 The following example demonstrates how to achieve this behavior.
 
@@ -88,7 +88,7 @@ The following example demonstrates how to achieve this behavior.
           var options = {
             pdf: {
               fileName: "Kendo UI Chart Export.pdf",
-              proxyURL: "//demos.telerik.com/kendo-ui/service/export"
+              proxyURL: "https://demos.telerik.com/service/v2/core/export"
             },
             title: {
               text: "Gross domestic product growth \n /GDP annual %/",
@@ -151,23 +151,23 @@ The following example demonstrates how to achieve this behavior.
         // NOTE: Only required if the Kendo UI stylesheets are loaded
         // from a different origin, e.g. cdn.kendostatic.com
         kendo.pdf.defineFont({
-          "DejaVu Sans"             : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans.ttf",
-          "DejaVu Sans|Bold"        : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
-          "DejaVu Sans|Bold|Italic" : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
-          "DejaVu Sans|Italic"      : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
+          "DejaVu Sans"             : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans.ttf",
+          "DejaVu Sans|Bold"        : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
+          "DejaVu Sans|Bold|Italic" : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+          "DejaVu Sans|Italic"      : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
         });
       </script>
 
       <!-- Load Pako ZLIB library to enable PDF compression -->
-      <script src="//kendo.cdn.telerik.com/2016.2.504/js/pako_deflate.min.js"></script>
+      <script src="https://unpkg.com/pako/dist/pako_deflate.min.js"></script>
 
     </div>
 ```
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})

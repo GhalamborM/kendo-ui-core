@@ -1,12 +1,13 @@
 ---
 title: Dynamically Change the Page Size of the Grid to Adjust Its Height
-description: An example on how to change the page size of a Kendo UI Grid so that it displays as many rows as possible within the available height.
+description: Learn how to change the page size of a Kendo UI Grid so that it displays as many rows as possible within the available height.
 type: how-to
-page_title: Change the Page Size Dynamically and Adjust the Height | Kendo UI Grid for jQuery
+page_title: Change the Page Size Dynamically and Adjust the Height - Kendo UI for jQuery Data Grid
 slug: grid-pagesize-relative-to-height
 tags: grid, page, size, pagesize, height, adjust
 ticketid: 1156556
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -86,9 +87,8 @@ This solution adjusts the pageSize of the Grid dataSource only when the window i
 
   $("#grid").kendoGrid({
     dataSource: {
-      type: "odata",
       transport: {
-        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+        read: "https://demos.telerik.com/service/v2/core/Orders"
       },
       schema: {
         model: {
@@ -124,5 +124,5 @@ This solution adjusts the pageSize of the Grid dataSource only when the window i
 
 ## See Also
 
-* [API Reference of the pageSize Method](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/pagesize)
+* [API Reference of the pageSize Method](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/pagesize)
 * [API Reference of the jQuery resize Event](https://api.jquery.com/resize/)

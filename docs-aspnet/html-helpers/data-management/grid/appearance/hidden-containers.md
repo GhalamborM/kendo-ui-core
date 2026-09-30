@@ -2,6 +2,7 @@
 title: Hidden Containers
 page_title: Hidden Containers
 description: "Get started with the Telerik UI Grid component for {{ site.framework }} and learn how to handle the most common scenarios when initializing it in a hidden container."
+components: ["grid"]
 slug: hidden_containers_aspnetcore_grid
 position: 4
 ---
@@ -21,12 +22,12 @@ You can identify that the Grid is initialized in a hidden state if any of the fo
 
 To handle the behavior that is related to the initialization of the Grid inside a hidden container, use any of the following approaches:
 * Delay the initialization of the Grid or change the order in which various Kendo UI widgets are initialized, so that the Grid is initialized after its element becomes visible.
-* Execute the Kendo UI for jQuery [`resize()`](https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/resize) method after the Grid becomes visible.
+* Execute the Kendo UI for jQuery [`resize()`](https://docs.telerik.com/kendo-ui/api/kendo/methods/resize) method after the Grid becomes visible.
 * Instead of setting an overall height for the Grid in its configuration, define the height for the scrollable data area only. In this case, no height calculations are made.
 
   > This approach is applicable only if frozen columns and virtual scrolling are not used.
 
-    ```
+    ```CSS
       #GridID .k-grid-content
       {
           height: 270px;
@@ -37,12 +38,16 @@ To handle the behavior that is related to the initialization of the Grid inside 
 
   > This approach is applicable if virtual scrolling is enabled and the Kendo UI version is older than 2014.3.1119.
 
-    ```
+    ```JS
     $("#GridID").data("kendoGrid").dataSource.fetch();
     ```
 
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
+* [Initializing the Grid HtmlHelper for {{ site.framework }} in a TabStrip component]({% slug grid-initialize-in-tabstrip%})
 * [Scrolling by the Grid HtmlHelper for {{ site.framework }} (Demos)](https://demos.telerik.com/{{ site.platform }}/grid/virtualization-remote-data)
 * [Scroll Modes of the Grid HtmlHelper for {{ site.framework }}]({% slug htmlhelpers_grid_aspnetcore_scrolling %})
 * [Server-Side API](/api/grid)

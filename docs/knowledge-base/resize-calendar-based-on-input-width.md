@@ -1,13 +1,13 @@
 ---
 title: Resize the DatePicker Calendar Based on Input Width
 page_title: Resize the DatePicker Calendar Based on Input Width
-description: "An example on how to resize the nested calendar based on the width of the input element of the Kendo UI DatePicker widget."
+description: "Learn how to resize the nested calendar based on the width of the input element of the Kendo UI DatePicker component."
 slug: howto_use_resize_calendar_basedon_input_width_datepicker
 previous_url: /controls/editors/datepicker/how-to/resize-calendar-based-on-input-width
 tags: kendo, jquery, datepicker, resise, calendar, based, on, input, width
-component: datepicker
 type: how-to
 res_type: kb
+components: ["datepicker"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI DatePicker for jQuery</td>
+  <td>Progress® Kendo UI® DatePicker for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -42,9 +42,10 @@ The following example demonstrates how to achieve the desired scenario.
 ```dojo
     <div id="example">
       <div id="email-settings">
-        <input id="datepicker" value="10/10/2011" style="width:140px;" />
-        <input id="monthpicker" value="November 2011" style="width:180px" />
-      </div>
+       </div>
+       <input id="datepicker" value="10/10/2011" style="width:200px;" />
+       <input id="monthpicker" value="November 2011" style="width:190px" />
+      
       <script>
         $(document).ready(function() {
           // create DatePicker from input HTML element
@@ -80,9 +81,9 @@ The following example demonstrates how to achieve the desired scenario.
         #email-settings {
           height: 135px;
           width: 595px;
-          background: url('../content/web/datepicker/mailSettings.png') transparent no-repeat 0 0;
+          background: url('https://demos.telerik.com/kendo-ui/content/web/datepicker/mailSettings.png') transparent no-repeat 0 0;
         }
-        
+
         .k-calendar {
           overflow-x: scroll;
         }
@@ -92,10 +93,10 @@ The following example demonstrates how to achieve the desired scenario.
 
 ## See Also
 
-* [DatePicker JavaScript API Reference](/api/javascript/ui/datepicker)
-* [How to Create Date Masking]({% slug masks_kendoui_maskedtextbox_widget %})
-* [How to Globally Modify Default Options]({% slug howto_globally_modify_default_options_datepicker %})
-* [How to Hide the Default Button]({% slug howto_hide_default_button_datepicker %})
-* [How to Integrate DatePicker with DateJS Library]({% slug howto_integrate_withdatejs_library_datepicker %})
-* [How to Make Input Elements Read-Only]({% slug howto_make_input_elements_readonly_datepicker %})
-* [How to Persist Entered Dates]({% slug howto_persist_entered_dates_datepicker %})
+* [DatePicker JavaScript API Reference](/api/ui/datepicker)
+* [Create Date Masking]({% slug masks_kendoui_maskedtextbox_widget %})
+* [Globally Modify Default Options]({% slug howto_globally_modify_default_options_datepicker %})
+* [Hide the Default Button]({% slug howto_hide_default_button_datepicker %})
+* [Integrate DatePicker with DateJS Library]({% slug howto_integrate_withdatejs_library_datepicker %})
+* [Make Input Elements Read-Only]({% slug howto_make_input_elements_readonly_datepicker %})
+* [Persist Entered Dates]({% slug howto_persist_entered_dates_datepicker %})

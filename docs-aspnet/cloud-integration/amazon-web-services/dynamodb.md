@@ -2,11 +2,12 @@
 title: Amazon DynamoDB
 page_title: Amazon DynamoDB
 description: "Learn how to create an Amazon DynamoDB table, and perform CRUD operations with the Telerik UI for {{ site.framework }} Grid."
+components: ["general"]
 slug: aws_dynamodb_aspnetcore
 position: 4
 ---
 
-# Amazon DynamoDB
+# Using {{ site.framework }} with Amazon DynamoDB
 
 This tutorial shows how to create a table in [Amazon DynamoDB](https://aws.amazon.com/dynamodb/) and configure the Telerik UI for {{ site.framework }} Grid to perform remote CRUD (Create, Read, Update, Destroy) data operations in the DynamoDB table.
 
@@ -33,16 +34,16 @@ Once you have a user with the necessary permissions, you can proceed with config
 1. Load the Amazon AWS SDK script.
 1. Configure the AWS authentication by passing the user details to the `AWS.config.update` method.
 
-```
+```Razor
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kendo Grid DynamoDB Integration</title>
 
-  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{site.cdnVersion}}/styles/kendo.default-main.min.css">
+  <link rel="stylesheet" href=""https://kendo.cdn.telerik.com/themes/{{ site.themesCdnVersion }}/default/default-main.css">
 
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.221.1.min.js"></script>
-  <script src="https://kendo.cdn.telerik.com/{{site.cdnVersion}}/js/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://kendo.cdn.telerik.com/{{site.cdnVersion}}/js/kendo.all.min.js"></script>
   <script src="https://kendo.cdn.telerik.com/{{site.cdnVersion}}/js/kendo.aspnetmvc.min.js"></script>
 
@@ -61,7 +62,7 @@ Once you have a user with the necessary permissions, you can proceed with config
 
 1. In the view, add a `<button>`, which you can use to create a table in DynamoDB on click.
 
-	```
+	```Razor
 	<button class="k-button" id="btn">Click to create a 'Movies' table</button>
 	```
 
@@ -70,7 +71,7 @@ Once you have a user with the necessary permissions, you can proceed with config
 
     The declaration of the Grid and the view model it uses are shown in the example below.
 
-	```csharp
+	```View
     @(Html.Kendo().Grid<GridDynamoDB.Models.MovieViewModel>()
         .Name("grid")
         .Columns(columns =>

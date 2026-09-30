@@ -3,15 +3,16 @@ comment: THIS FILE IS A COPY OF THE AUTO-GENERATED jQUERY file. TO UPDATE THE CO
 title: Conversational UI
 page_title: Individual Scripts for Conversational UI
 description: "Get started with Kendo UI for jQuery and find the list of required script files for the Kendo UI Conversational UI"
+components: ["general"]
 previous_url: /getting-started/scripts/scripts-conversational-ui, /installation/scripts/scripts-conversational-ui
 slug: script_filesfor_conversationalui_widgets
 ---
 
 # Individual Scripts for Conversational UI
 
-The following table lists the individual script files for the Kendo UI conversational widgets.&nbsp;&nbsp;
+The following table lists the individual script files for the Kendo UI conversational components.&nbsp;&nbsp;
 
-| Widget | Individual Scripts | Comments |
+| Component | Individual Scripts | Comments |
 | :---   | :---         | :---     |
 | [Chat](https://demos.telerik.com/kendo-ui/chat/index) | jquery.js | |
 | | kendo.core.js | |
@@ -21,7 +22,7 @@ The following table lists the individual script files for the Kendo UI conversat
 
 ## See Also
 
-+ [Scripts for Data Management Widgets]({% slug script_filesfor_datamanagement_widgets %})
++ [Scripts for Data Management Components]({% slug script_filesfor_datamanagement_widgets %})
 + [Scripts for Editors]({% slug script_filesfor_editors_widgets %})
 + [Scripts for Charts]({% slug script_filesfor_charts_widgets %})
 + [Scripts for Gauges]({% slug script_filesfor_gauges_widgets %})

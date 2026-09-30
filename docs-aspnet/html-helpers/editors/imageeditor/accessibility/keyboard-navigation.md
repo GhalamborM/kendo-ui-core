@@ -2,6 +2,7 @@
 title: Keyboard Navigation
 page_title: Keyboard Navigation
 description: "Get started with the {{ site.product }} ImageEditor and learn about the accessibility support it provides through its keyboard navigation functionality."
+components: ["imageeditor"]
 slug: keynav_aspnetcore_imageeditor
 position: 2
 ---
@@ -14,5 +15,6 @@ For a complete example, refer to the [demo on keyboard navigation of the ImageEd
 
 ## See Also
 
+* [Custom Keyboard Navigation in the ImageEditor for {{ site.framework }}]({% slug custom_keyboard_navigation_imageeditor_htmlhelper %})
 * [Keyboard Navigation in the ImageEditor HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/imageeditor/keyboard-navigation)
-* [Accessibility in the ImageEditor HtmlHelper for {{ site.framework }}]({% slug accessibility_aspnetcore_imageeditor %})
+* [Accessibility in the ImageEditor HtmlHelper for {{ site.framework }}]({% slug htmlhelpers_imageeditor_accessibility %})

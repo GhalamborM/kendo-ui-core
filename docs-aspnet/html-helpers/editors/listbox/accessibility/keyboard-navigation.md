@@ -2,6 +2,7 @@
 title: Keyboard Navigation
 page_title: Keyboard Navigation
 description: "Configure the Telerik UI ListBox for {{ site.framework }} to enable keyboard navigation."
+components: ["listbox"]
 slug: htmlhelpers_listbox_navigation_aspnetcore
 position: 2
 ---
@@ -69,5 +70,6 @@ The following example demonstrates how to enable the key navigation in the ListB
 
 ## See Also
 
+* [Custom Keyboard Navigation in the ListBox for {{ site.framework }}]({% slug custom_keyboard_navigation_listbox_htmlhelper %})
 * [Keyboard Navigation by the ListBox HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/listbox/keyboard-navigation)
 * [Accessibility in {{ site.product }}]({% slug compliance_accessibility %})

@@ -1,10 +1,11 @@
 ---
 title: 2016 Releases
-page_title: 2016 Releases | Kendo UI Backwards Compatibility
+page_title: 2016 Releases - Kendo UI Backwards Compatibility
 description: "Learn about the breaking changes and backwards compatibility released by Kendo UI in 2016."
 previous_url: /changes-and-backward-compatibility, /install/changes-and-backward-compatibility, /backwards-compatibility/2016/2016-backward-compatibility
 slug: breakingchanges2016_kendoui
-position: 6
+components: ["general"]
+position: 10
 ---
 
 # 2016 Releases
@@ -41,7 +42,7 @@ The widget will not bind on `open` if `autoBind` is set to `false` and `minLengt
 
 **Validator**
 
-The email validation rule has been changed to match the [HTML5 specification suggests for browsers to use](https://html.spec.whatwg.org/multipage/forms.html#valid-e-mail-address). If the previous behavior is required, the email validation rule should be overridden by [specifying a custom rule](/controls/editors/validator/overview#custom-rules-for-validation) with the `email` key.
+The email validation rule has been changed to match the [HTML5 specification suggests for browsers to use](https://html.spec.whatwg.org/multipage/forms.html#valid-e-mail-address). If the previous behavior is required, the email validation rule should be overridden by [specifying a custom rule](/controls/validator/overview#custom-rules-for-validation) with the `email` key.
 
 **Chart**
 
@@ -64,7 +65,7 @@ The widget will use the `,` separator for the `recurrenceException` values to co
 
 **Scheduler**
 
-The widget will keep the selection state on `blur`. The change was introduced to behave similarly to the Kendo UI Grid. To bring the old behavior back, use the [`select`](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler/methods/select) method to clear the selection on `blur`.
+The widget will keep the selection state on `blur`. The change was introduced to behave similarly to the Kendo UI Grid. To bring the old behavior back, use the [`select`](https://docs.telerik.com/kendo-ui/api/ui/scheduler/methods/select) method to clear the selection on `blur`.
 
 ## Kendo UI 2016 Q1
 
@@ -72,7 +73,7 @@ Grunt was replaced with Gulp as the preferred build tool for Kendo UI. From now 
 
 **DropDownList/ComboBox/MultiSelect**
 
-The widget will clear the applied filter if the user decides to set a new value using the [`value`](/api/javascript/ui/dropdownlist/methods/value) method.
+The widget will clear the applied filter if the user decides to set a new value using the [`value`](/api/ui/dropdownlist/methods/value) method.
 
 **DropDownList/ComboBox**
 

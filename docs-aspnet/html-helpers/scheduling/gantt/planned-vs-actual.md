@@ -2,6 +2,7 @@
 title: Planned vs Actual
 page_title: Data Binding
 description: "Learn more about how the Telerik UI Gantt component for {{ site.framework }} displays planned and actual dates."
+components: ["gantt"]
 slug: htmlhelpers_gantt_planned_vs_actual_aspnetcore
 position: 4
 ---
@@ -79,4 +80,4 @@ Through the `Editable` configuration, you can allow or prevent editing of planne
 
 * [Planned vs Actual (Demo)](https://demos.telerik.com/{{ site.platform }}/gantt/planned-vs-actual)
 * [Using the API of the Gantt HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/gantt/api)
-* [Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/gantt)
+* [Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/gantt)

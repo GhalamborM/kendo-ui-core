@@ -2,6 +2,7 @@
 title: Summary-Tag Mode
 page_title: Summary-Tag Mode
 description: "Learn how to display single or multiple tags for the selected items for the Telerik UI MultiSelect component for {{ site.framework }}."
+components: ["multiselect"]
 slug: htmlhelpers_multiselect_tagmode_aspnetcore
 position: 5
 ---
@@ -10,7 +11,7 @@ position: 5
 
 The Telerik UI MultiSelect for {{ site.framework }} provides options for displaying the items as individual (multiple) tags and as a single, summary tag. 
 
-To display single or multiple tags for the selected items set the [`TagMode()`](/api/Kendo.Mvc.UI.Fluent/MultiSelectBuilder#tagmodekendomvcuimultiselecttagmode) configuration option:
+To display single or multiple tags for the selected items set the [`TagMode()`](/api/kendo.mvc.ui.fluent/multiselectbuilder#tagmodekendomvcuimultiselecttagmode) configuration option. Use the `multiple` option to render a tag for every selected value or the `single` option to render only one tag that shows the number of the selected values:
 
 ```HtmlHelper
     @(Html.Kendo().MultiSelect()
@@ -32,7 +33,7 @@ To display single or multiple tags for the selected items set the [`TagMode()`](
 {% if site.core %}
 ```TagHelper
     <kendo-multiselect name="products"
-                       tag-mode="@MultiSelectTagMode.Single"
+                       tag-mode="single"
                        datatextfield="ProductName"
                        datavaluefield="ProductId"
                        filter="FilterType.Contains">

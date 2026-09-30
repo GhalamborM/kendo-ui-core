@@ -5,9 +5,9 @@ description: "Learn how to expand the Kendo UI Splitter to a 100% height and mak
 previous_url: /kendo-ui-mvc/controls/layout/splitter/how-to/expand-splitter-to-100-height, /controls/layout/splitter/how-to/expand-splitter-to-100-height
 slug: howto_expandto100heightandautoresize_splitter
 tags: telerik, kendo, jquery, splitter, expand, to, 100%, percent, height, auto, resize  
-component: splitter
 type: how-to
 res_type: kb
+components: ["splitter"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Splitter for jQuery</td>
+  <td>Progress® Kendo UI® Splitter for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -228,4 +228,4 @@ The following example demonstrates a Kendo UI Splitter with a calculated height.
 
 * [Basic Usage of the Splitter (Demo)](https://demos.telerik.com/kendo-ui/splitter/index)
 * [Using the API of the Splitter (Demo)](https://demos.telerik.com/kendo-ui/splitter/api)
-* [JavaScript API Reference of the Splitter](/api/javascript/ui/splitter)
+* [JavaScript API Reference of the Splitter](/api/ui/splitter)

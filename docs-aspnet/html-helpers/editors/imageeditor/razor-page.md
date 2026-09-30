@@ -1,19 +1,26 @@
 ---
-title:  Razor Page
-page_title: Configure a submit ImageEditor in Razor Page.
+title:  Razor Pages
+page_title: Razor Pages
 description: "An example on how to configure the Telerik UI ImageEditor component for {{ site.framework }} in a Razor Page."
+components: ["imageeditor"]
 slug: htmlhelpers_imageeditor_razorpage_aspnetcore
-position: 3
+position: 4
 ---
 
-# Razor Page
+# ImageEditor in Razor Pages
 
-This article describes how to configure the Telerik UI ImageEditor for {{ site.framework }} in a RazorPage scenario.
+This article describes how to seamlessly integrate and configure the Telerik UI ImageEditor for {{ site.framework }} in Razor Pages applications.
 
-The example below demonstrates how to configure the ImageEditor to forward the content to a proxyURL in a RazorPage scenario even if the browser supports saving files locally. See the implementation details in the example below, and for the full project with RazorPages examples, visit our [GitHub repository](https://github.com/telerik/ui-for-aspnet-core-examples/tree/master/Telerik.Examples.RazorPages).
+@[template](/_contentTemplates/core/razor-pages-general-info.md#referencing-handler-methods)
 
-```tab-HtmlHelper(cshtml) 
-       
+## Saving Images Through a Proxy
+
+The example below demonstrates how to configure the ImageEditor to forward the content to a proxy URL in a Razor Pages scenario even if the browser supports saving files locally.
+
+```HtmlHelper
+    @page
+    @model ImageEditorIndexModel
+
     @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
     @Html.AntiForgeryToken()
 
@@ -29,19 +36,26 @@ The example below demonstrates how to configure the ImageEditor to forward the c
     )
 ```
 {% if site.core %}
-```tab-TagHelper(cshtml)
+```TagHelper
+    @page
+    @model ImageEditorIndexModel
 
     @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
     @Html.AntiForgeryToken()
     
     <kendo-imageeditor name="imageEditor" height="900" image-url="@Url.Content("~/image/2.jpg")">
         <save-as file-name="image.png" 
-                 force-proxy="true"
-                 proxy-url="@Url.Action("ImageEditorIndex","Save")"/>
+            force-proxy="true"
+            proxy-url="@Url.Page("ImageEditorIndex","Save")"/>
     </kendo-imageeditor>
 ```
 {% endif%}
-```tab-PageModel(cshtml.cs)      
+```C# PageModel
+ public class ImageEditorIndexModel : PageModel
+{       
+    public void OnGet()
+    {
+    }
 
     public IActionResult OnPostSave(string contentType, string base64, string fileName)
     {
@@ -49,10 +63,16 @@ The example below demonstrates how to configure the ImageEditor to forward the c
 
         return File(fileContents, contentType, fileName);
     }
+}
 ```
+
+For the complete project, refer to the [ImageEditor in Razor Pages example](https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/ImageEditor/ImageEditorIndex.cshtml).
 
 ## See Also
 
-* [Razor Pages Support]({% slug razor_pages_integration_aspnetmvc6_aspnetmvc %})
-* [ImageEditor Overview]({% slug htmlhelpers_imageeditor_aspnetcore %})
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the ImageEditor](https://docs.telerik.com/kendo-ui/api/ui/imageeditor)
+* [Server-Side HtmlHelper API of the ImageEditor](/api/imageeditor)
+* [Server-Side TagHelper API of the ImageEditor](/api/taghelpers/imageeditor)
+* [Knowledge Base Section](/knowledge-base)
 

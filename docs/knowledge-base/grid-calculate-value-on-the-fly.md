@@ -1,11 +1,12 @@
 ---
 title: Update Calculated Cell Value on the Fly
-description: An example on how to update the calculated cell on the fly in a Kendo UI Grid.
+description: Learn how to update the calculated cell on the fly in a Kendo UI Grid.
 type: how-to
-page_title: Update Calculated Cell Value on the Fly | Kendo UI Grid for jQuery
+page_title: Update Calculated Cell Value on the Fly - Kendo UI for jQuery Data Grid
 slug: grid-calculate-value-on-the-fly
 tags: grid, calculated, cell, value, dynamically, calculate, update, result
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -13,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
 </table>
 
@@ -23,7 +24,7 @@ How can I update the value of the calculated field as the users make changes?
 
 ## Solution
 
-1. Handle the [`edit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/edit) event of the Grid. In the event handler, get a reference to the editors for the respective fields.
+1. Handle the [`edit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/edit) event of the Grid. In the event handler, get a reference to the editors for the respective fields.
 1. In the `change` event of the editors, get the new value and use it to calculate the result.
 
 ```dojo

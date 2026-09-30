@@ -1,8 +1,6 @@
-(function(f, define) {
-    define([ "./kendo.core" ], f);
-})(function() {
+import "./kendo.core.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "data.odata",
     name: "OData",
     category: "framework",
@@ -110,9 +108,9 @@ var __meta__ = {
                 }
 
                 if (operator === "isnullorempty") {
-                    filter = kendo.format("{0} {1} null or {0} {1} ''", field, filter);
+                    filter = kendo.format("({0} {1} null or {0} {1} '')", field, filter);
                 } else if (operator === "isnotnullorempty") {
-                    filter = kendo.format("{0} {1} null and {0} {1} ''", field, filter);
+                    filter = kendo.format("({0} {1} null and {0} {1} '')", field, filter);
                 } else if (operator === "isnull" || operator === "isnotnull") {
                     filter = kendo.format("{0} {1} null", field, filter);
                 } else if (operator === "isempty" || operator === "isnotempty") {
@@ -368,7 +366,7 @@ var __meta__ = {
                 update: {
                     cache: true,
                     dataType: "json",
-                    contentType: "application/json", // to inform the server the the request body is JSON encoded
+                    contentType: "application/json", // to inform the server the request body is JSON encoded
                     type: "PUT" // can be PUT or MERGE
                 },
                 create: {
@@ -469,7 +467,7 @@ var __meta__ = {
                 update: {
                     cache: true,
                     dataType: "json",
-                    contentType: "application/json;IEEE754Compatible=true", // to inform the server the the request body is JSON encoded
+                    contentType: "application/json;IEEE754Compatible=true", // to inform the server the request body is JSON encoded
                     type: "PUT" // can be PUT or MERGE
                 },
                 create: {
@@ -548,7 +546,5 @@ var __meta__ = {
     });
 
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

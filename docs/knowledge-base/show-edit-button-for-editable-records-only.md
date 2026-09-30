@@ -1,13 +1,13 @@
 ---
 title: Show Edit Buttons for Editable Records Only
-page_title: Buttons for Editable Records | Kendo UI Grid for jQuery
-description: "An example on how to show edit buttons only for the editable records of the Kendo UI Grid for jQuery."
+page_title: Buttons for Editable Records - Kendo UI for jQuery Data Grid
+description: "Learn how to show edit buttons only for the editable records of the Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/Editing/show-edit-button-for-editable-records-only
 slug: howto_show_editfor_editable_records_only_grid
 tags: show, edit, buttons, editable, records, only
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -39,7 +39,7 @@ How can I show edit buttons only for the editable records of the Kendo UI Grid f
 
 The following example demonstrates how to show the **Edit** buttons in the Grid only for records which meet certain criteria.
 
-> For Kendo UI releases 2017 R1 or later use the built-in [`columns.command.visible`](/api/javascript/ui/grid/configuration/columns.command#columns.command.visible) function of the Grid instead.
+> For Kendo UI releases 2017 R1 or later use the built-in [`columns.command.visible`](/api/ui/grid/configuration/columns#columnscommand#columns.command.visible) function of the Grid instead.
 
 ```dojo
     <div id="example" class="k-content">
@@ -47,28 +47,30 @@ The following example demonstrates how to show the **Edit** buttons in the Grid 
 
       <script>
         $(document).ready(function () {
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-              dataSource = new kendo.data.DataSource({
-                transport: {
-                 read:  {
-                  url: crudServiceBaseUrl + "/Products",
-                   dataType: "jsonp"
-                  },
-                  update: {
-                  url: crudServiceBaseUrl + "/Products/Update",
-                   dataType: "jsonp"
-                  },
-                  destroy: {
-                  url: crudServiceBaseUrl + "/Products/Destroy",
-                   dataType: "jsonp"
-                  },
-                  create: {
-                  url: crudServiceBaseUrl + "/Products/Create",
-                   dataType: "jsonp"
-                  },
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+                dataSource = new kendo.data.DataSource({
+                    transport: {
+                        read:  {
+                            url: crudServiceBaseUrl + "/Products"
+                        },
+                        update: {
+                            url: crudServiceBaseUrl + "/Products/Update",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
+                        destroy: {
+                            url: crudServiceBaseUrl + "/Products/Destroy",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
+                        create: {
+                            url: crudServiceBaseUrl + "/Products/Create",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
                   parameterMap: function(options, operation) {
                     if (operation !== "read" && options.models) {
-                      return {models: kendo.stringify(options.models)};
+                      return kendo.stringify(options.models);
                     }
                   }
                  },
@@ -96,7 +98,7 @@ The following example demonstrates how to show the **Edit** buttons in the Grid 
                var trs = this.tbody.find('tr').each(function(){
                  var item = grid.dataItem($(this));
                  if( item.UnitPrice % 5 == 0) {
-                   $(this).find('.k-grid-edit,.k-grid-delete').hide();
+                   $(this).find('.k-grid-edit-command,.k-grid-remove-command').hide();
                  }
 
                });               
@@ -118,4 +120,4 @@ The following example demonstrates how to show the **Edit** buttons in the Grid 
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

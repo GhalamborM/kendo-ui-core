@@ -1,12 +1,12 @@
 ---
 title: Prevent invalid start/end date values in the Scheduler popup editor.
-description: An example on how to prevent the user from entering invalid start/end date values in the Kendo jQuery Scheduler popup editor.
+description: Learn how to prevent the user from entering invalid start/end date values in the Kendo jQuery Scheduler popup editor.
 type: how-to
-page_title: Prevent invalid start/end date values in the Scheduler popup editor | Kendo UI Scheduler for jQuery 
+page_title: Prevent invalid start/end date values in the Scheduler popup editor - Kendo UI Scheduler for jQuery
 slug: scheduler-start-end-invalid-input
 tags: scheduler, start, end, inputs, readonly, datepickers
 res_type: kb
-component: scheduler
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: scheduler
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
  <tr>
   <td>Kendo UI for jQuery</td>
@@ -38,14 +38,14 @@ Handle the [edit event](api/javascript/ui/scheduler/events/edit) and add "readon
     $(function() {
         function scheduler_edit(e) {
             // Make Start and End DateTimePickers INPUTS readonly, allowing date selection only through dropdowns
-        
+
             $("[name='start']").prop("readonly", true);
             $("[name='end']").prop("readonly", true);
         }
 
         $("#scheduler").kendoScheduler({
-            date: new Date("2013/6/13"),
-            startTime: new Date("2013/6/13 7:00"),
+            date: new Date("2025/6/13"),
+            startTime: new Date("2025/6/13 7:00"),
             height: 400,
             timezone: "Etc/UTC",
             views: [
@@ -61,24 +61,26 @@ Handle the [edit event](api/javascript/ui/scheduler/events/edit) and add "readon
                 batch: true,
                 transport: {
                     read: {
-                        url: "https://demos.telerik.com/kendo-ui/service/tasks",
-                        dataType: "jsonp"
+                        url: "https://demos.telerik.com/service/v2/core/tasks"
                     },
                     update: {
-                        url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-                        dataType: "jsonp"
+                        url: "https://demos.telerik.com/service/v2/core/tasks/update",
+                        type: "POST",
+                        contentType: "application/json"
                     },
                     create: {
-                        url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-                        dataType: "jsonp"
+                        url: "https://demos.telerik.com/service/v2/core/tasks/create",
+                        type: "POST",
+                        contentType: "application/json"
                     },
                     destroy: {
-                        url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-                        dataType: "jsonp"
+                        url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+                        type: "POST",
+                        contentType: "application/json"
                     },
                     parameterMap: function(options, operation) {
                         if (operation !== "read" && options.models) {
-                            return {models: kendo.stringify(options.models)};
+                            return kendo.stringify(options.models);
                         }
                     }
                 },
@@ -146,8 +148,8 @@ Handle the edit event and force the Start/End DatePickers to reject invalid date
         }
 
         $("#scheduler").kendoScheduler({
-          date: new Date("2013/6/13"),
-          startTime: new Date("2013/6/13 7:00"),
+          date: new Date("2025/6/13"),
+          startTime: new Date("2025/6/13 7:00"),
           height: 400,
           timezone: "Etc/UTC",
           edit: eventEdit,
@@ -165,25 +167,27 @@ Handle the edit event and force the Start/End DatePickers to reject invalid date
           dataSource: {
             batch: true,
             transport: {
-              read: {
-                url: "https://demos.telerik.com/kendo-ui/service/tasks",
-                dataType: "jsonp"
-              },
-              update: {
-                url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-                dataType: "jsonp"
-              },
-              create: {
-                url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-                dataType: "jsonp"
-              },
-              destroy: {
-                url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-                dataType: "jsonp"
-              },
+                read: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks"
+                },
+                update: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/update",
+                    type: "POST",
+                    contentType: "application/json"
+                },
+                create: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/create",
+                    type: "POST",
+                    contentType: "application/json"
+                },
+                destroy: {
+                    url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+                    type: "POST",
+                    contentType: "application/json"
+                },
               parameterMap: function (options, operation) {
                 if (operation !== "read" && options.models) {
-                  return { models: kendo.stringify(options.models) };
+                  return kendo.stringify(options.models);
                 }
               }
             },

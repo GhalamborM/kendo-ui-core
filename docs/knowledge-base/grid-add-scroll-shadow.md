@@ -1,12 +1,13 @@
 ---
 title: Add Scroll Shadow in Scrollable Grid
-description: An example on how to add top and bottom shadows on scroll to a Kendo UI Grid.
+description: Learn how to add top and bottom shadows on scroll to a Kendo UI Grid.
 type: how-to
-page_title: Add Top and Bottom Scroll Shadows | Kendo UI Grid for jQuery
+page_title: Add Top and Bottom Scroll Shadows - Kendo UI for jQuery Data Grid
 slug: grid-add-scroll-shadow
 tags: grid, shadow
 ticketid: 1365055
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-  		<td>Progress Kendo UI Grid</td>
+  		<td>Progress® Kendo UI® Grid for jQuery</td> 
 	</tr>
 	<tr>
-		<td>Progress Kendo UI version</td>
+		<td>Product Version</td>
 		<td>Tested up to version 2018.3.1017</td>
 	</tr>
 </table>
@@ -28,7 +29,7 @@ How can I add top and bottom scroll shadows which disappear when the Grid is scr
 
 ## Solution
 
-1. Handle the  [`dataBound`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/databound) event&mdash;in the event handler, [`wrap`](https://api.jquery.com/wrap/) the `.k-grid-element` in a `div` element and, depending on the scroll position and the height of the scrollable element, add classes to the `div`:
+1. Handle the  [`dataBound`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/databound) event&mdash;in the event handler, [`wrap`](https://api.jquery.com/wrap/) the `.k-grid-element` in a `div` element and, depending on the scroll position and the height of the scrollable element, add classes to the `div`:
 	1. If the height of the scrollable element is bigger than the fixed height of the table, add a bottom shadow.
 	1. When the element is scrolled down, add a top shadow.
 	1. When the element is scrolled to the very bottom, remove the bottom shadow.
@@ -83,9 +84,8 @@ How can I add top and bottom scroll shadows which disappear when the Grid is scr
       $(document).ready(function () {
         $("#grid").kendoGrid({
           dataSource: {
-            type: "odata",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+              read: "https://demos.telerik.com/service/v2/core/Customers"
             },
             pageSize: 20
           },

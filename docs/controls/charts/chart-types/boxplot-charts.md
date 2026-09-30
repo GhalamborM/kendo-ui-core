@@ -1,7 +1,8 @@
 ---
 title: Box Plot Charts
-page_title: jQuery Chart Documentation | Box Plot Charts
+page_title: jQuery Chart Documentation - Box Plot Charts
 description: "Learn how to create a Kendo UI Box Plot Chart and configure its options."
+components: ["chart"]
 slug: chart-types-box-plot
 ---
 
@@ -113,8 +114,8 @@ You can change the orientation of the Box Plot Chart by setting the series type 
 Outliers are values that appear outside the range between lower and upper values (inner fences). Based on their distance from the inner fences, the outliers in a box plot are mild and extreme. The Box Plot Chart renders them by default as crosses (mild) and circles (extreme).
 
 You can configure the outliers separately and customize them by using:
-* [`series.outliers`](/api/javascript/dataviz/ui/chart/configuration/series.outliers) for mild outliers.
-* [`series.extremes`](/api/javascript/dataviz/ui/chart/configuration/series.extremes) for extreme outliers.
+* [`series.outliers`](/api/dataviz/ui/chart/configuration/series#seriesoutliers) for mild outliers.
+* [`series.extremes`](/api/dataviz/ui/chart/configuration/series#seriesextremes) for extreme outliers.
 
 ```dojo
     <div id="chart"></div>
@@ -164,4 +165,4 @@ You can configure the outliers separately and customize them by using:
 ## See Also
 
 * [Basic Usage of the Box Plot Chart (Demo)](https://demos.telerik.com/kendo-ui/box-plot-charts/index)
-* [JavaScript API Reference of the Chart](/api/javascript/dataviz/ui/chart)
+* [JavaScript API Reference of the Chart](/api/dataviz/ui/chart)

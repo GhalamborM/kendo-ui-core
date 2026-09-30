@@ -1,11 +1,12 @@
 ---
-title: Use Kestrel in an ASP.NET Core application with dynamic Grid
+title: Using Kestrel in an ASP.NET Core Application with a Dynamic Grid
 description: An example on how to a dynamic Telerik UI for ASP.NET Core Grid HtmlHelper with an aplication using Kestrel
 type: how-to
-page_title: Dynamic Grid missing on the page after .NET Core update
+page_title: Dynamic Grid Missing on the Page after .NET Core Update
 slug: grid-dynamic-kestrel-troubleshoot
 tags: aspnet, core, dotnet-core, kendo, kendo-ui, grid, dynamic, kestrel, 3.1
 res_type: kb
+components: ["general"]
 ticketid: 1450544
 component: grid
 ---
@@ -22,12 +23,12 @@ component: grid
 
 ## Description
 
-After I upgraded `kendo.all.min.js` from v2019.3.1023 to v2020.1.114 and ASP.NET Core from 2.2 to 3.1 I have trouble with the dynamic creation of columns and datatypes.
-The functionality works on core 2.2 and doesn't work on core 3.1. The main problem is that there is no error reported server or client side. The response is just not rendering the grid.
+After I upgraded `kendo.all.min.js` from version 2019.3.1023 to version 2020.1.114 and ASP.NET Core from 2.2 to 3.1, I have troubles with the dynamic creation of columns and data types.
+The functionality works on core 2.2 and doesn't work on core 3.1. No error are reported on the server or client side but the response is not rendering the Grid.
 
 ## Solution
 
-After I deleted almost everything an error occured:
+After I deleted almost everything an error occurs:
 
 ```
     Synchronous operations are disallowed. Call WriteAsync or set AllowSynchronousIO to true instead.
@@ -35,9 +36,37 @@ After I deleted almost everything an error occured:
 
 It appears that .NET Core changed the defaults so you need to add the following code in `Startup.cs`:
 
-```
+```C#
     services.Configure<IISServerOptions>(options =>
     {
         options.AllowSynchronousIO = true;
     });
 ```
+
+## More {{ site.framework }} Grid Resources
+
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+
+{% if site.core %}
+* [{{ site.framework }} DataGrid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Client-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

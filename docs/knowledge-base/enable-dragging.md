@@ -5,9 +5,9 @@ description: "Learn how to enable the dragging of the handle of the Kendo UI for
 slug: howto_enable_dragging_switch
 previous_url: /controls/editors/switch/how-to/enable-dragging
 tags: telerik, kendo, jquery, switch, enable, dragging, drag, handle
-component: switch
 type: how-to
 res_type: kb
+components: ["switch"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Switch for jQuery</td>
+  <td>Progress® Kendo UI® Switch for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -115,4 +115,4 @@ The following example demonstrates how to enable the dragging of the Switch drag
 
 * [Basic Usage of the Switch (Demo)](https://demos.telerik.com/kendo-ui/switch/index)
 * [Using the API of the Switch (Demo)](https://demos.telerik.com/kendo-ui/switch/api)
-* [JavaScript API Reference of the Switch](/api/javascript/ui/switch)
+* [JavaScript API Reference of the Switch](/api/ui/switch)

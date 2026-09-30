@@ -1,7 +1,8 @@
 ---
 title: Display Album Details
-page_title: Display Album Details | Music Store Web App Tutorial
+page_title: Display Album Details - Music Store Web App Tutorial
 description: "Learn how to display the album details in the Kendo UI Music Store Web Application sample project by using Telerik UI for ASP.NET MVC."
+components: ["general"]
 slug: displayalbumdetails_muscistorewebapp_aspnetmvc
 position: 5
 ---

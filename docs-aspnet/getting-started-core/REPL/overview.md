@@ -2,12 +2,13 @@
 title: Overview
 page_title: Telerik REPL Overview
 description: Explore the Telerik REPL server playground tool and use it to write razor/C# code in the browser, run the code, and then share it.
+components: ["general"]
 slug: overview_repl_aspnetcore
 permalink: /getting-started/repl/overview
 position: 1
 ---
 
-## Telerik REPL for ASP.NET Core
+# Telerik REPL for ASP.NET Core
 
 [Telerik REPL](https://www.telerik.com/aspnet-core-ui/repl) is a server playground tool that allows you to write razor/C# code in the browser, see the result, and share your code. It is integrated with the [Telerik UI for ASP.NET Core demos](https://demos.telerik.com/aspnet-core/), which lets you modify a demo and immediately see the effect of your changes.
 
@@ -19,10 +20,10 @@ Telerik REPL saves you time—it requires no setup and has no prerequisites. You
 
 ## Features
 
-* Write, run, and save examples in Telerik REPL. 
+* Write, run, and save examples in Telerik REPL.
 * Share links to the examples that you save in Telerik REPL.
 * Edit the existing Telerik UI for ASP.NET Core demos—Telerik REPL is integrated with the demos and allows you to open and edit them. The models used in the demos are included and you can use them to bind the components to data.
-* Choose a theme that will be applied to the Telerik UI for ASP.NET Core components used in your example. 
+* Choose a theme that will be applied to the Telerik UI for ASP.NET Core components used in your example.
 * Share the created example as a link on a social media (Twitter, Facebook).
 
 ## Next Steps
@@ -33,4 +34,4 @@ Telerik REPL saves you time—it requires no setup and has no prerequisites. You
 
 ## See Also
 
-* [Getting Started with UI for ASP.NET Core]({% slug gettingstarted_aspnetmvc6_aspnetmvc %})
+* [Getting Started with UI for ASP.NET Core]({% slug gettingstartedtelerik_aspnetcore %})

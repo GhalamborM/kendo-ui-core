@@ -1,13 +1,13 @@
 ---
 title: Include a Column with Formulas When Exporting Grid to Excel
-description: An example on how to create an excel file that features formulas.
+description: Learn how to create an excel file that features formulas.
 type: how-to
-page_title: Exporting to Excel with Formulas | Kendo UI Grid for jQuery
+page_title: Exporting to Excel with Formulas - Kendo UI for jQuery Data Grid
 slug: grid-excel-export-formulas
 tags: excel, export, grid, formula, formulas, column, create, include, calculate, add, sum, total
 ticketid: 1433998
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
   <tr>
   <td>Created with version</td>
@@ -32,9 +32,9 @@ I have a requirement to export an Excel sheet with tabular data and equations wi
 
 You can alter the generated workbook to include a column with formulas by following the steps below:
 
-1. Add an [`excelExport`](/api/javascript/ui/grid/events/excelexport) event handler function to loop over the workbook.
+1. Add an [`excelExport`](/api/ui/grid/events/excelexport) event handler function to loop over the workbook.
 1. Add a header cell for the formula column.
-1. Generate the formula for all the next cells and add it as the [`sheets.rows.cells.formula`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.formula).
+1. Generate the formula for all the next cells and add it as the [`sheets.rows.cells.formula`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellsformula).
 
 ```
     excelExport: function(e) {
@@ -55,7 +55,7 @@ You can alter the generated workbook to include a column with formulas by follow
 ```
 
 ```dojo
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
+    <script src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
 
     <div id="grid" ></div>
     <script>
@@ -65,9 +65,8 @@ You can alter the generated workbook to include a column with formulas by follow
           allPages: true
         },
         dataSource: {
-          type: "odata",
           transport: {
-            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products"
+            read: "https://demos.telerik.com/service/v2/core/Products"
           },
           pageSize: 7
         },

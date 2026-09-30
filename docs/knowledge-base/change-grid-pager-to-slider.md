@@ -1,13 +1,13 @@
 ---
 title: Change Grid Pager to Slider
-page_title: Change Pager to Slider | Kendo UI Grid for jQuery
-description: "An example on how to change the default paging to a slider in a Kendo UI Grid for jQuery."
+page_title: Change Pager to Slider - Kendo UI for jQuery Data Grid
+description: "Learn how to change the default paging to a slider in a Kendo UI Grid for jQuery."
 previous_url: /controls/data-management/grid/how-to/Layout/change-grid-pager-to-slider, /controls/data-management/grid/how-to/Paging/change-grid-pager-to-slider
 slug: howto_change_grid_pager_to_slider
 tags: grid, pager, slider
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -33,11 +33,11 @@ How can I change the default pager of the Kendo UI Grid to a slider?
 
 ## Solution
 
-1. Remove the default pager buttons on the first [`dataBound`](/api/javascript/ui/grid/events/databound) event.
+1. Remove the default pager buttons on the first [`dataBound`](/api/ui/grid/events/databound) event.
 1. Create a Kendo UI Slider in their place.
-1. Change the page of the Grid DataSource on the [`change`](/api/javascript/ui/slider/events/change) event of the Slider.
+1. Change the page of the Grid DataSource on the [`change`](/api/ui/slider/events/change) event of the Slider.
 
-> When you apply this approach, the [`page`](/api/javascript/data/datasource/methods/page) method of the Grid does not fire.
+> When you apply this approach, the [`page`](/api/data/datasource/methods/page) method of the Grid does not fire.
 
 ```dojo
 <div id="grid"></div>
@@ -99,4 +99,4 @@ How can I change the default pager of the Kendo UI Grid to a slider?
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

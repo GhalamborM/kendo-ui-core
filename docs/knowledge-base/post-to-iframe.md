@@ -5,9 +5,9 @@ description: "Learn how to post to the iframe content of the Kendo UI Window."
 slug: howto_posttoiframe_window
 previous_url: /controls/layout/window/how-to/post-to-iframe
 tags: telerik, kendo, jquery, window, post, to, the, iframe, content, of
-component: window
 type: how-to
 res_type: kb
+components: ["window"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Window for jQuery</td>
+  <td>Progress® Kendo UI® Window for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -71,10 +71,10 @@ The example below demonstrates how to achieve the desired scenario.
 
 ## See Also
 
-* [Window JavaScript API Reference](/api/javascript/ui/window)
-* [How to Add Auto-Resizing Splitter]({% slug howto_addautoresizingsplitter_window %})
-* [How to Create Confirmation Dialog via Promises]({% slug howto_createconfirmationdialog_viapromises_window %})
-* [How to Display Loading Indicator over Window]({% slug howto_displayloadingindicator_overwindow_window %})
-* [How to Initialize the Grid]({% slug initialize_thegrid_window_widget %})
-* [How to Restrict Window Positioning]({% slug howto_restrictpositioning_window %})
+* [Window JavaScript API Reference](/api/ui/window)
+* [Add Auto-Resizing Splitter]({% slug howto_addautoresizingsplitter_window %})
+* [Create Confirmation Dialog via Promises]({% slug howto_createconfirmationdialog_viapromises_window %})
+* [Display Loading Indicator over Window]({% slug howto_displayloadingindicator_overwindow_window %})
+* [Initialize the Grid]({% slug initialize_thegrid_window_widget %})
+* [Restrict Window Positioning]({% slug howto_restrictpositioning_window %})
 

@@ -2,12 +2,13 @@
 title: Open Root Nodes of the TreeList
 description: Expand the root nodes of the Kendo UI TreeList when the page is loaded.
 type: how-to
-page_title: Expand the Parent Nodes | Kendo UI TreeList
+page_title: Expand the Parent Nodes - Kendo UI TreeList
 slug: treelist-rootnodes-expand-when-load
 position: 
 tags: treelist, expand, load, parent, node, rootnode, open
 ticketid: 1432660
 res_type: kb
+components: ["treelist"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>TreeList for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® TreeList for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -29,7 +30,7 @@ res_type: kb
 How can I expand all the root nodes of the Kendo UI TreeList when the component is loaded?
 
 ## Solution
-Use the [rootNodes](https://docs.telerik.com/kendo-ui/api/javascript/data/treelistdatasource/methods/rootnodes) method to get the array of all the root nodes and perform the [expand](https://docs.telerik.com/kendo-ui/api/javascript/ui/treelist/methods/expand) method on it. For example:
+Use the [rootNodes](https://docs.telerik.com/kendo-ui/api/data/treelistdatasource/methods/rootnodes) method to get the array of all the root nodes and perform the [expand](https://docs.telerik.com/kendo-ui/api/ui/treelist/methods/expand) method on it. For example:
 
 ```javascript
 var treelist1 = $("#treeList").data("kendoTreeList");
@@ -70,5 +71,5 @@ for(let i = 0; i < data.length; i++){
 ```
 
 ## See Also
-- [rootNodes](https://docs.telerik.com/kendo-ui/api/javascript/data/treelistdatasource/methods/rootnodes)
-- [expand](https://docs.telerik.com/kendo-ui/api/javascript/ui/treelist/methods/expand)
+- [rootNodes](https://docs.telerik.com/kendo-ui/api/data/treelistdatasource/methods/rootnodes)
+- [expand](https://docs.telerik.com/kendo-ui/api/ui/treelist/methods/expand)

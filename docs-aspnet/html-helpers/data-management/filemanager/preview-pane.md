@@ -2,6 +2,7 @@
 title: Preview Pane
 page_title: Preview Pane
 description: "Understand how you can easily enable, disable and customize the Preview Pane in the FileManager"
+components: ["filemanager"]
 slug: htmlhelpers_filemanager_aspnetcore_previewpane
 position: 6
 ---
@@ -139,6 +140,6 @@ The following example demonstrates a singleFileTemplate declaration in the FileM
 
 * [Overview of {{ site.product }} FileManager]({% slug htmlhelpers_filemanager_aspnetcore_overview %})
 * [Basic Usage of the {{ site.product }} FileManager (Demo)](https://demos.telerik.com/aspnet-core/filemanager/index)
-* [Client API section](https://docs.telerik.com/kendo-ui/api/javascript/ui/filemanager)
+* [Client API section](https://docs.telerik.com/kendo-ui/api/ui/filemanager)
 * [Sort in {{ site.product }} FileManager]({% slug htmlhelpers_filemanager_aspnetcore_sort %})
 * [Toolbar Commands in {{ site.product }} FileManager]({% slug htmlhelpers_filemanager_aspnetcore_toolbar %})

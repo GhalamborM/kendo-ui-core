@@ -1,11 +1,12 @@
 ---
 title: Export Strikethrough Text to Excel
-page_title: Export Strikethrough Text to Excel | Kendo UI Grid for jQuery
+page_title: Export Strikethrough Text to Excel - Kendo UI for jQuery Data Grid
 description: "An example demonstrating how to export cell values that have a strikethrough decoration."
 type: how-to
 slug: grid-excel-export-strikethrough-text
 tags: grid, excel, export, text, decoration, strike, strikethrough
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -17,7 +18,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -29,8 +30,8 @@ Certain values in my Grid have a strikethrough decoration applied with the `<s><
 
 > This approach appends a unicode character to the value of the cell. The exported text isn't just decorated, the strikethrough will be a part of the cell value.
 
-1. Use a [`template`](/api/javascript/ui/grid/configuration/columns.template) to render the strikethrough text in the Grid.
-1. Handle the [`excelExport`](/api/javascript/ui/grid/events/excelexport) event of the Grid.
+1. Use a [`template`](/api/ui/grid/configuration/columns#columnstemplate) to render the strikethrough text in the Grid.
+1. Handle the [`excelExport`](/api/ui/grid/events/excelexport) event of the Grid.
 1. Inside the `excelExport` event, generate an HTML string by using the template.
 1. Use a Regular expression to find if the cell value has the `<s></s>` tags.
 1. Append the `\u0336` unicode character before each character of the value.
@@ -52,8 +53,7 @@ Certain values in my Grid have a strikethrough decoration applied with the `<s><
         dataSource: {
           transport: {
             read: {
-              url: "https://demos.telerik.com/kendo-ui/service/products",
-              dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/products"
             }
           },
           pageSize: 10

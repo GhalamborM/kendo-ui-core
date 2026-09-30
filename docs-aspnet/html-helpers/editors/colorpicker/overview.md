@@ -2,12 +2,13 @@
 title: Overview
 page_title: Overview
 description: "Learn the basics when working with the Telerik UI ColorPicker component for {{ site.framework }}."
+components: ["colorpicker"]
 previous_url: /helpers/editors/colorpicker/overview
 slug: overview_colorpickerhelper_aspnetcore
-position: 1
+position: 0
 ---
 
-# ColorPicker Overview
+# {{ site.framework }} ColorPicker Overview
 
 {% if site.core %}
 The Telerik UI ColorPicker TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI ColorPicker widget.
@@ -41,9 +42,13 @@ The following example demonstrates how to define the ColorPicker.
 {% endif %}
 
 {% if site.core %}
+@[template](/_contentTemplates/core/declarative-initialization-note.md#declarative-initialization-note)
+{% endif %}
+
+
 ## Basic Configuration
 
-The following example demonstrates how to configure the TileSize, columns, change event, and palette colors.
+The following example demonstrates how to configure the tile size, columns, `Change` event, and palette colors.
 
 ```HtmlHelper
 
@@ -61,6 +66,7 @@ The following example demonstrates how to configure the TileSize, columns, chang
 			.Events(events => events.Change("preview"))
 		)
 ```
+{% if site.core %}
 ```TagHelper
 
 		@{
@@ -80,121 +86,27 @@ The following example demonstrates how to configure the TileSize, columns, chang
 
 ## Functionality and Features
 
-* [Views]({% slug htmlhelpers_views_colorpickerhelper_aspnetcore %})
-* [Contrast Tool]({% slug htmlhelpers_contrast_tool_colorpickerhelper_aspnetcore %})
-* [Formats]({% slug htmlhelpers_formats_colorpickerhelper_aspnetcore %})
+|Feature|Description|
+|-------|-----------|
+| [Appearance]({% slug appearance_colorpicker_aspnetcore %})| Customize the ColorPicker appearance by using the available options. |
+| [Views]({% slug htmlhelpers_views_colorpickerhelper_aspnetcore %})| The component allows you to choose between `gradient` or `palette` view types. |
+| [Contrast Tool]({% slug htmlhelpers_contrast_tool_colorpickerhelper_aspnetcore %})| The ColorPicker supports a contrast tool. |
+| [Formats]({% slug htmlhelpers_formats_colorpickerhelper_aspnetcore %})| Configure the ColorPicker input formats. |
+| [Palettes]({% slug palettes_colorpicker %})| Define a color palette that the user can pick from.  |
+| [Adaptive Mode]({% slug htmlhelpers_colorpicker_adaptive_mode_aspnetcore %})| The ColorPicker supports an adaptive mode that renders a mobile-friendly popup. |
+| [Events]({% slug events_colorpicker %})| The ColorPicker allows you to handle its events and implement any custom logic. |
+| [Accessibility]({% slug htmlhelpers_colorpicker_accessibility %})| The component is accessible for screen readers, supports WAI-ARIA attributes, and delivers [keyboard shortcuts]({% slug keynav_aspnetcore_colorpicker %}) for faster navigation. |
 
-## Events
+## Next Steps
 
-You can subscribe to all ColorPicker [events](https://docs.telerik.com/kendo-ui/api/javascript/ui/colorpicker#events). For a complete example on basic ColorPicker events, refer to the [demo on using the events of the ColorPicker](https://demos.telerik.com/{{ site.platform }}/colorpicker/events).
-
-### Handling by Handler Name
-
-The following example demonstrates how to subscribe to events by a handler name.
-
-```HtmlHelper
-    @(Html.Kendo().ColorPicker()
-        .Name("colorpicker")
-        .Events(e => e
-            .Open("colorpicker_open")
-            .Close("colorpicker_close")
-            .Select("colorpicker_select")
-            .Change("colorpicker_change")
-        )
-    )
-    <script>
-        // The ColorPicker instance is available as an e.sender or this.
-        function colorpicker_open(e) {
-            // Handle the open event.
-        }
-
-        function colorpicker_close(e) {
-            // Handle the close event.
-        }
-
-        function colorpicker_select(e) {
-            // Handle the select event.
-        }
-
-        function colorpicker_change(e) {
-            // Handle the change event.
-        }
-    </script>
-```
-{% if site.core %}
-```TagHelper
-        <kendo-colorpicker name="colorpicker" on-select="colorpicker_select" on-change="colorpicker_change" on-open="colorpicker_open" on-close="colorpicker_close">
-		</kendo-colorpicker>
-
-            <script>
-        // The ColorPicker instance is available as an e.sender or this.
-        function colorpicker_open(e) {
-            // Handle the open event.
-        }
-
-        function colorpicker_close(e) {
-            // Handle the close event.
-        }
-
-        function colorpicker_select(e) {
-            // Handle the select event.
-        }
-
-        function colorpicker_change(e) {
-            // Handle the change event.
-        }
-    </script>
-```
-{% endif %}
-
-### Handling by Template Delegate
-
-The following example demonstrates how to subscribe to events by a template delegate.
-
-```HtmlHelper
-    @(Html.Kendo().ColorPicker()
-          .Name("colorpicker")
-          .Events(e => e
-              .Open(@<text>
-                function(e) {
-                    //Handle the open event inline.
-                }
-              </text>)
-              .Close(@<text>
-                function(e) {
-                    //Handle the close event inline.
-                }
-                </text>)
-              .Select(@<text>
-                function(e) {
-                    //Handle the select event inline.
-                }
-                </text>)
-              .Change(@<text>
-                function(e) {
-                    //Handle the change event inline.
-                }
-                </text>)
-          )
-    )
-```
-
-## Referencing Existing Instances
-
-To reference an existing Kendo UI ColorPicker instance, use the [`jQuery.data()`](https://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [ColorPicker client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/colorpicker#methods) to control its behavior.
-
-        // Place the following after the ColorPicker for {{ site.framework }} declaration.
-        <script>
-        $(function() {
-            // The Name() of the ColorPicker is used to get its client-side instance.
-            var colorpicker = $("#colorpicker").data("kendoColorPicker");
-        });
-        </script>
-
-## See Also
-
+* [Getting Started with the ColorPicker ]({% slug aspnetcore_colorpicker_getting_started %})
 * [Basic Usage of the ColorPicker HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/colorpicker/index)
 {% if site.core %}
 * [Basic Usage of the ColorPicker TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/colorpicker/tag-helper)
+* [ColorPicker in Razor Pages]({% slug htmlhelpers_colorpicker_razorpage_aspnetcore %})
 {% endif %}
-* [Server-Side API](/api/colorpicker)
+
+## See Also
+
+* [Using the API of the ColorPicker for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/colorpicker/api)
+* [Knowledge Base Section](/knowledge-base)

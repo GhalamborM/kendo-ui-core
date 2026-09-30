@@ -1,12 +1,12 @@
 ---
 title: Filter ListBox Items
-description: An example on how to filter items to match the search conditions in a Kendo UI ListBox.
+description: Learn how to filter items to match the search conditions in a Kendo UI ListBox.
 type: how-to
-page_title: Filter Items to Match the Search Conditions | Kendo UI ListBox for jQuery
+page_title: Filter Items to Match the Search Conditions - Kendo UI ListBox for jQuery
 slug: listbox-how-to-filter-items
 tags: listbox, filter, search, contains, items
 res_type: kb
-component: listbox
+components: ["listbox"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: listbox
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ListBox</td>
+  <td>Progress® Kendo UI® ListBox for jQuery</td>
  </tr>
 </table>
 
@@ -28,10 +28,10 @@ Use an external input element as a search box. You can retrieve the string that 
 
 ````dojo
 <div class="demo-section k-content wide">
-       <input type='text' id='searchBox' class='k-input k-textbox k-input-solid k-input-md k-rounded-md' placeholder='search items' />
+       <input type='text' id='searchBox' class='k-input k-textbox' placeholder='search items' />
         <br />
         <br />
-        
+
           <select id="optional" style="width: 200px"></select>
           <select id="selected" style="width: 200px"></select>
         </div>
@@ -59,9 +59,8 @@ Use an external input element as a search box. You can retrieve the string that 
             },
             selectable: "multiple",
             dataSource: {
-              type: "odata",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                read: "https://demos.telerik.com/service/v2/core/Customers"
               }
             },
             dataTextField: "ContactName",
@@ -89,11 +88,11 @@ Use an external input element as a search box. You can retrieve the string that 
           });
         });
       </script>
-      <style> 
+      <style>
         .k-input
-        { 
+        {
           width: 250px;
-        } 
+        }
       </style>
 ````
 

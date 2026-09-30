@@ -1,10 +1,11 @@
 ---
-title: Validate Selection of Files for Upload
-page_title: Validate Selection of Files for Upload
-description: "An example on how to validate whether a file is selected for upload in the {{ site.product }} Upload by using the Kendo UI Validator."
+title: Validate a Selection of Files for Upload
+page_title: Validate a Selection of Files for Upload
+description: An example on how to validate whether a file is selected for upload in the {{ site.product }} Upload by using the Kendo UI Validator.
 type: how-to
 ticketid: 1547435
 res_type: kb
+components: ["general"]
 component: upload
 ---
 
@@ -67,7 +68,7 @@ How can I validate if a file is selected for upload when working with the {{ sit
             )
        )
        <span class="k-invalid-msg" data-for="files"></span>
-       <input type="submit" id="submitForm" class="k-button k-button-solid-base k-button-solid k-button-md k-rounded-md" />
+       <input type="submit" id="submitForm" class="k-button" />
     </form>
 ```
 **Validate** on form submission whilst preventing the default behavior.
@@ -88,7 +89,7 @@ How can I validate if a file is selected for upload when working with the {{ sit
 ```
 For the complete example, refer to the following [Telerik REPL](https://netcorerepl.telerik.com/wwYPwobp35zcEZ9d17) example:
 
-```Index.cshtml
+```Razor Index.cshtml
     <div id="validationSummary"></div>
 
     <form id="myForm" method="post">
@@ -105,7 +106,7 @@ For the complete example, refer to the following [Telerik REPL](https://netcorer
         <input type="submit" id="submitForm" />
     </form>
 ```
-```script.js
+```JS script.js
     <script>
           var validator = $("#myForm").kendoValidator({
                 rules: {
@@ -136,3 +137,31 @@ For the complete example, refer to the following [Telerik REPL](https://netcorer
         });
     </script>
 ```
+
+## More {{ site.framework }} Upload Resources
+
+* [{{ site.framework }} Upload Documentation]({%slug htmlhelpers_upload_aspnetcore%})
+
+* [{{ site.framework }} Upload Demos](https://demos.telerik.com/{{ site.platform }}/upload)
+
+{% if site.core %}
+* [{{ site.framework }} Upload Product Page](https://www.telerik.com/aspnet-core-ui/upload)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Upload Product Page](https://www.telerik.com/aspnet-mvc/upload)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Client-Side API Reference of the Upload for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/upload)
+* [Server-Side API Reference of the Upload for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/upload)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

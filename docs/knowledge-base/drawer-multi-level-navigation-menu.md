@@ -7,6 +7,7 @@ slug: drawer-multi-level-navigation-menu
 tags: telerik, kendo, jquery, drawer, create, multilevel, nav, navigation, menu 
 ticketid: 
 res_type: kb
+components: ["drawer"]
 ---
 
 ## Environment
@@ -29,10 +30,10 @@ You may need to create a multi-level menu in the Drawer similar to the one on th
 
 To achieve the desired scenario: 
 
-1. Add two separate `ul` elements to the [`template`](/api/javascript/ui/drawer/configuration/template) configuration of the Drawer.
+1. Add two separate `ul` elements to the [`template`](/api/ui/drawer/configuration/template) configuration of the Drawer.
 1. List all main menu options in the first `ul` element.
 1. Leave the second `ul` element empty.
-1. Attach a handler to the [`itemClick`](/api/javascript/ui/drawer/events/itemclick) event of the Drawer.
+1. Attach a handler to the [`itemClick`](/api/ui/drawer/events/itemclick) event of the Drawer.
 1. Inside the handling function, check which `ul` element is currently visible.
 1. If the main menu is currently visible, hide it and display one of the submenus.
 1. If a submenu has been activated, list the possible options in the second `ul` element.
@@ -45,7 +46,7 @@ To achieve the desired scenario:
                 <h6>
                     Kendo UI is a comprehensive HTML5 user interface framework for building interactive and
                     high-performance websites and applications.
-                    It comes with a library of 70+ UI widgets, an abundance of data-visualization gadgets,
+                    It comes with a library of 110+ UI widgets, an abundance of data-visualization gadgets,
                     client-side data source, and a built-in MVVM (Model-View-ViewModel) library.
                 </h6>
                 <h6>

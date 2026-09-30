@@ -1,13 +1,13 @@
 ---
 title: Define Checkbox Filtering with Search Box in Grid
-description: An example on how to show a multi-check filtering with a search box in the Kendo UI Grid.
+description: Learn how to show a multi-check filtering with a search box in the Kendo UI Grid.
 type: how-to
-page_title: Display Search with Multi-Check Filtering | Kendo UI Grid for jQuery
+page_title: Display Search with Multi-Check Filtering - Kendo UI for jQuery Data Grid
 slug: grid-multicheck-filtering-search-box
 tags: grid, multicheck, filtering, search box
 ticketid:
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1018 version</td>
  </tr>
 </table>
@@ -29,8 +29,8 @@ How can I show a search box when the checkbox filtering of a Kendo UI Grid is en
 
 ## Solution
 
-1. Set the [`columns.filterable.multi`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.filterable.multi) configuration to `true`.
-1. Set the [`columns.filterable.search`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.filterable.search) configuration to `true`.
+1. Set the [`columns.filterable.multi`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns/filterable#columnsfilterablemulti) configuration to `true`.
+1. Set the [`columns.filterable.search`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns/filterable#columnsfilterablesearch) configuration to `true`.
 
 ```dojo
 <div id="example">
@@ -40,9 +40,9 @@ How can I show a search box when the checkbox filtering of a Kendo UI Grid is en
         $(document).ready(function() {
             $("#grid").kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                        read: "https://demos.telerik.com/service/v2/odata/Orders"
                     },
                     schema: {
                         model: {

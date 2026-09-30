@@ -5,9 +5,9 @@ description: "Learn how to display time on the value axis of categorical Kendo U
 previous_url: /controls/charts/how-to/display-time-on-value-axis, /controls/charts/how-to/various/display-time-on-value-axis
 slug: howto_displaytimeonvalueaxis_charts
 tags: chart, display, time, on, value, axis
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -43,7 +43,7 @@ The `valueAxis` on categorical Kendo UI Charts supports the display of numbers o
 
 The following example demonstrates how to display time on the value axis of categorical Kendo UI Charts.
 
-```dojo
+```html
     <div id="chart"></div>
     <script>
       $("#chart").kendoChart({
@@ -68,8 +68,8 @@ The following example demonstrates how to display time on the value axis of cate
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})

@@ -2,6 +2,7 @@
 title: Endless Scrolling
 page_title: Endless Scrolling
 description: "Get started with the Telerik UI Grid component for {{ site.framework }} supporting endless scrolling mode suitable for displaying large number of items."
+components: ["grid"]
 slug: endless_scrolling_aspnetcore_grid
 position: 3
 ---
@@ -14,7 +15,7 @@ For a runnable example, refer to the [demo on endless scrolling of remote data i
 
 ## Getting Started
 
-To enable endless scrolling, set the [`Scrollable.Endless(true)`](/api/Kendo.Mvc.UI.Fluent/GridScrollSettingsBuilder#endlesssystemboolean) property to `true`.
+To enable endless scrolling, set the [`Scrollable.Endless(true)`](/api/kendo.mvc.ui.fluent/gridscrollsettingsbuilder#endlesssystemboolean) property to `true`.
 
 > For the functionality to work as expected, provide for the following requirements:
 > - Implement a vertical scrollbar.
@@ -60,9 +61,9 @@ If the Grid displays hierarchical data and an item gets expanded, it will not be
 
 ## Using with DataSource Operations
 
-When a filter, sort, or group is applied through the [`DataSource` methods](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource#methods) and not through the Grid UI, the scroll position will not be automatically reset.
+When a filter, sort, or group is applied through the [`DataSource` methods](https://docs.telerik.com/kendo-ui/api/data/datasource#methods) and not through the Grid UI, the scroll position will not be automatically reset.
 
-In such cases, you have to manually update the scroll position and [`pageSize`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/configuration/pagesize).
+In such cases, you have to manually update the scroll position and [`pageSize`](https://docs.telerik.com/kendo-ui/api/data/datasource/configuration/pagesize).
 
 ```HtmlHelper
     @(Html.Kendo().Grid<AspNetCoreGrid.Models.OrderViewModel>()
@@ -108,9 +109,13 @@ In such cases, you have to manually update the scroll position and [`pageSize`](
 
 ## Known Limitations
 
-Either enable endless scrolling or paging, and do not use both features simultaneously.
+* Either enable endless scrolling or paging, and do not use both features simultaneously.
+* [Scrolling to an item functionality]({% slug scrolling_to_item_aspnetcore_grid %}) is not supported in an endless scrollable Gird.
 
 ## See Also
 
+{% if site.core %}
+* [ASP.NET Core DataGrid Homepage](https://www.telerik.com/aspnet-core-ui/grid)
+{% endif %}
 * [Endless Scrolling of Remote Data by the Grid HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/grid/endless-scrolling-remote)
 * [Server-Side API](/api/grid)

@@ -1,12 +1,12 @@
 ---
 title: Use Both Standard and Checkbox Selection in Grid
-description: An example on how to use both standard and checkbox selection in a Kendo UI Grid.
+description: Learn how to use both standard and checkbox selection in a Kendo UI Grid.
 type: how-to
-page_title: Use Both Standard and Checkbox Selection | Kendo UI Grid for jQuery
+page_title: Use Both Standard and Checkbox Selection - Kendo UI for jQuery Data Grid
 slug: grid-use-both-standard-and-checkbox-selection
 tags: grid, selection, checkbox, standard, select, both, click, unselect, deselect
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with version 2020.3.1021</td>
  </tr>
 </table>
@@ -30,7 +30,7 @@ How can I use both standard and checkbox selection in the Grid?
 
 1. Enable the [checkbox selection](https://demos.telerik.com/kendo-ui/grid/checkbox-selection).
 1. Attach an event handler to the `click` event of the row.
-1. By using the [`select`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/select) method, select or deselect the rows.
+1. By using the [`select`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/select) method, select or deselect the rows.
 
 ```dojo
     <script src="https://demos.telerik.com/kendo-ui/content/shared/js/orders.js"></script>

@@ -2,7 +2,9 @@
 title: Pager Settings and Types
 page_title: Pager Settings and Types
 description: "Learn how to change the settings when working with the Telerik UI Pager component for {{ site.framework }}."
+components: ["pager"]
 slug: settings_pager_aspnet
+position: 2
 ---
 
 # Pager Settings and Types
@@ -58,7 +60,7 @@ The following settings enable you to determine which built-in pager elements wil
 
 ## See Also
 
-* [Pager Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/pager)
+* [Pager Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/pager)
 * [Pager Server-Side API](/api/pager)
 * [Responsive Pager]({% slug responsive_pager_aspnet  %})
 * [Pager Templates]({% slug templates_pager_aspnet %})

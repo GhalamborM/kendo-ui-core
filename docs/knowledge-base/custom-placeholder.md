@@ -1,13 +1,13 @@
 ---
 title: Show a Custom MaskedTextBox Placeholder on Blur
 page_title: Render a Custom MaskedTextBox Placeholder on Blur
-description: "Learn how to show a custom placeholder on blur in the Kendo UI MaskedTextBox widget."
+description: "Learn how to show a custom placeholder on blur in the Kendo UI MaskedTextBox component."
 slug: howto_show_custom_placeholderon_blur_maskedtextbox
 previous_url: /controls/editors/maskedtextbox/how-to/custom-placeholder
 tags: telerik, kendo, jquery, maskedtextbox, show, render, custom, placeholder, on, blur
-component: maskedtextbox
 type: how-to
 res_type: kb
+components: ["maskedtextbox"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI MaskedTextBox for jQuery</td>
+  <td>Progress® Kendo UI® MaskedTextBox for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -127,4 +127,4 @@ The following example demonstrates how to show custom text as a placeholder on `
 
 * [Basic Usage of the MaskedTextBox (Demo)](https://demos.telerik.com/kendo-ui/maskedtextbox/index)
 * [Using the API of the MaskedTextBox (Demo)](https://demos.telerik.com/kendo-ui/maskedtextbox/api)
-* [JavaScript API Reference of the MaskedTextBox](/api/javascript/ui/maskedtextbox)
+* [JavaScript API Reference of the MaskedTextBox](/api/ui/maskedtextbox)

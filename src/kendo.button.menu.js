@@ -1,13 +1,13 @@
-(function(f, define) {
-    define(["./kendo.core", "./kendo.popup"], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.popup.js";
+import "./kendo.icons.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "button.menu",
     name: "ButtonMenu",
     category: "web",
     description: "The popup Menu list part of the SplitButton and the DropDownButton",
-    depends: ["core", "popup"]
+    depends: ["core", "popup", "icons"]
 };
 
 (function($, undefined) {
@@ -16,6 +16,8 @@ var __meta__ = {
         NS = ".kendoButtonMenu",
         ui = kendo.ui,
         keys = kendo.keys,
+        encode = kendo.htmlEncode,
+        sanitizeLink = kendo.sanitizeLink,
         extend = $.extend,
 
         DOT = ".",
@@ -35,12 +37,23 @@ var __meta__ = {
         OPEN = "menuOpen",
         CLOSE = "menuClose",
         KEYDOWN = "keydown",
+        KENDO_KEYDOWN = "kendoKeydown",
+        FOCUS = "focus",
 
-        FOCUS = "focus";
+        DIRECTIONS = {
+            "down": {
+                origin: "bottom left",
+                position: "top left"
+            },
+            "up": {
+                origin: "top left",
+                position: "bottom left"
+            }
+        };
 
     var cssClasses = {
         popup: "k-menu-popup",
-        list: "k-group k-menu-group k-reset",
+        list: "k-menu-group",
         listItem: "k-item k-menu-item",
         menuItem: "k-menu-item",
         itemText: "k-menu-link-text",
@@ -62,14 +75,24 @@ var __meta__ = {
         spriteCssClass: null
     };
 
-    var IMAGE_TEMPLATE = "#if(imageUrl){#<img alt=\"icon\" class=\"" + cssClasses.image + "\" src=\"#:imageUrl#\" />#}#";
-    var SPRITE_TEMPLATE = "#if(spriteCssClass){#<span class=\"" + cssClasses.sprite + " #:spriteCssClass#\"></span>#}#";
-    var ICON_TEMPLATE = "#if(icon){#<span class=\"" + cssClasses.icon + " k-i-#:icon#\"></span>#}#";
-    var TEXT_TEMPLATE = "#if(text){#<span class=\"" + cssClasses.itemText + "\">#:text#</span>#}#";
+    var IMAGE_TEMPLATE = ({ imageUrl }) => `${imageUrl ? `<img alt="icon" class="${cssClasses.image}" src="${encode(imageUrl)}" />` : ''}`;
+    var SPRITE_TEMPLATE = ({ spriteCssClass }) => `${spriteCssClass ? `<span class="${cssClasses.sprite} ${encode(spriteCssClass)}"></span>` : ''}`;
+    var ICON_TEMPLATE = ({ icon }) => `${icon ? kendo.ui.icon(encode(icon)) : ''}`;
+    var TEXT_TEMPLATE = ({ text }) => `${text ? `<span class="${cssClasses.itemText}">${encode(text)}</span>` : ''}`;
 
-    var ITEM_TEMPLATE = "<span class=\"" + cssClasses.item + "\">" + IMAGE_TEMPLATE + SPRITE_TEMPLATE + ICON_TEMPLATE + TEXT_TEMPLATE + "</span>";
+    var ITEM_TEMPLATE = ({ imageUrl, spriteCssClass, icon, text }) => `<span class="${cssClasses.item}">` +
+                                                        `${IMAGE_TEMPLATE({ imageUrl })}` +
+                                                        `${SPRITE_TEMPLATE({ spriteCssClass })}` +
+                                                        `${ICON_TEMPLATE({ icon })}` +
+                                                        `${TEXT_TEMPLATE({ text })}` +
+                                                    `</span>`;
 
-    var LINK_TEMPLATE = "<a href=\"#:url#\" class=\"" + cssClasses.item + "\">" + IMAGE_TEMPLATE + SPRITE_TEMPLATE + ICON_TEMPLATE + TEXT_TEMPLATE + "</a>";
+    var LINK_TEMPLATE = ({ url, imageUrl, spriteCssClass, icon, text, attributes }) => `<a href="${sanitizeLink(url)}" ${attributes && attributes.target ? `target="${attributes.target}"` : ''} class="${cssClasses.item}">` +
+                                                    `${IMAGE_TEMPLATE({ imageUrl })}` +
+                                                    `${SPRITE_TEMPLATE({ spriteCssClass })}` +
+                                                    `${ICON_TEMPLATE({ icon })}` +
+                                                    `${TEXT_TEMPLATE({ text })}` +
+                                                `</a>`;
 
     function findFocusableSibling(element, dir) {
         var getSibling = dir === NEXT ? $.fn.next : $.fn.prev;
@@ -109,19 +132,22 @@ var __meta__ = {
             that._attachEvents();
 
             that._applyCssClasses(that.list);
-        },
+            Widget.fn.endInit.call(that);
+},
 
         options: {
             name: "ButtonMenu",
+            direction: "down",
             element: null,
             items: [],
-            size: "medium",
+            size: undefined,
         },
 
         events: [
             MENU_CLICK,
             OPEN,
-            CLOSE
+            CLOSE,
+            KENDO_KEYDOWN
         ],
 
         _renderList: function() {
@@ -136,17 +162,21 @@ var __meta__ = {
             that.list.attr(ID, id + "_buttonmenu");
 
             items.forEach(that._renderListItem.bind(that));
+
+            that.list.find(DOT + cssClasses.menuItem + ':first-child').addClass("k-first");
+            that.list.find(DOT + cssClasses.menuItem + ':last-child').addClass("k-last");
         },
 
         _renderListItem: function(item) {
             var that = this,
+                attributesId = item.attributes ? item.attributes.id : null,
                 id, menuItem;
 
             item = extend({}, baseItem, item, {
                 enabled: item.enable && item.enabled // backward compatibility: support both enable and enabled options.
             });
 
-            id = item.id || kendo.guid();
+            id = item.id || attributesId || kendo.guid();
             menuItem = $("<li id=\"" + id + "\" role=\"" + ROLE_MENU_ITEM + "\" class=\"" + cssClasses.listItem + "\">" + that._renderItemButton(item) + "</li>");
 
             if (item.click) {
@@ -154,6 +184,13 @@ var __meta__ = {
             }
 
             if (item.attributes) {
+                delete item.attributes.target;
+
+                if (item.attributes.class) {
+                    menuItem.addClass(item.attributes.class);
+                    delete item.attributes.class;
+                }
+
                 menuItem.attr(item.attributes);
             }
 
@@ -184,7 +221,8 @@ var __meta__ = {
 
         _initPopup: function() {
             var that = this,
-                options = that.options;
+                options = that.options,
+                direction = options.direction || "down";
 
             that._popup = new ui.Popup(that.element, extend({}, options.popup, {
                 anchor: that.mainButton,
@@ -195,7 +233,7 @@ var __meta__ = {
                 open: that._popupOpenHandler.bind(that),
                 close: that._popupCloseHandler.bind(that),
                 activate: that._popupExpandHandler.bind(that)
-            }));
+            }, DIRECTIONS[direction]));
         },
 
         _popupOpenHandler: function(ev) {
@@ -231,8 +269,6 @@ var __meta__ = {
         adjustPopupWidth: function(width) {
             var that = this;
 
-            that.element.addClass("k-split-wrapper");
-
             that.element.css({
                 "min-width": width
             });
@@ -243,10 +279,10 @@ var __meta__ = {
 
             that.list
                 .on(CLICK + NS, DOT + cssClasses.menuItem, that._click.bind(that))
-                .on(KEYDOWN + NS, DOT + cssClasses.menuItem, that.listItemKeydown.bind(that));
+                .on(KEYDOWN + NS, DOT + cssClasses.menuItem, that, that.listItemKeydown.bind(that));
 
             that.mainButton
-                .on(KEYDOWN + NS, that._keydown.bind(that));
+                .on(KEYDOWN + NS, that, that._keydown.bind(that));
         },
 
         _keydown: function(ev) {
@@ -257,7 +293,7 @@ var __meta__ = {
             }
 
             if (ev.altKey && ev.keyCode === keys.DOWN) {
-                that._popup.open();
+                that.open();
                 ev.preventDefault();
                 return;
             }
@@ -270,7 +306,7 @@ var __meta__ = {
             ev.preventDefault();
 
             if (ev.keyCode === keys.ESC || ev.keyCode === keys.TAB || (ev.altKey && ev.keyCode === keys.UP)) {
-                that._popup.close();
+                that.close();
                 that.mainButton.trigger(FOCUS);
             } else if (ev.keyCode === keys.DOWN) {
                 findFocusableSibling(li, NEXT).trigger(FOCUS);
@@ -344,6 +380,19 @@ var __meta__ = {
             this._hide(false, items);
         },
 
+        open: function() {
+            if (this.items().length === 0) {
+                return;
+            }
+
+            var visibleItems = this.items().filter(`:not(.${HIDDEN})`);
+            if (visibleItems.length === 0) {
+                return;
+            }
+
+            this._popup.open();
+        },
+
         close: function() {
             this._popup.close();
         },
@@ -381,9 +430,4 @@ var __meta__ = {
     ui.plugin(ButtonMenu);
 
 })(window.kendo.jQuery);
-
-return window.kendo;
-
-}, typeof define == "function" && define.amd ? define : function(a1, a2, a3) {
-    (a3 || a2)();
-});
+export default kendo;

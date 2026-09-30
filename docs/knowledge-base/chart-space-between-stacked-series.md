@@ -2,12 +2,13 @@
 title: Add Space Between the Stacked Series in the Kendo UI Column Chart
 description: Learn how to separate the stacked series in the Kendo UI Column Chart by adding some space.
 type: how-to
-page_title: Insert Space After Every Series | Kendo UI Chart
+page_title: Insert Space After Every Series - Kendo UI Chart
 slug: chart-space-between-stacked-series
 position: 
 tags: column, space, stack, white space, separate, chart, 100%, stacked, progressbar
 ticketid: 1454711
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -19,7 +20,7 @@ res_type: kb
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Chart for Progress® Kendo UI®</td>
+			<td>Progress® Kendo UI® Chart for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -29,7 +30,7 @@ res_type: kb
 How can I add space between the Stacked Series in the Kendo UI Column Chart?
 
 ## Solution
-In order to add space between two series of a Stacked Column Chart, use the [series.visual](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/series.visual) property:
+In order to add space between two series of a Stacked Column Chart, use the [series.visual](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/series#seriesvisual) property:
 
 ```javascript
 $("#chart").kendoChart({
@@ -61,6 +62,8 @@ function space(e) {
 }
 ```
 #### Example
+
+The following example demonstrates a Stacked Column Chart that uses the `space` visual function to render a visible gap between each stacked series segment.
 
 ```dojo
 <div id="example">
@@ -143,4 +146,4 @@ function space(e) {
 ```
 
 ## See Also
-- [series.visual](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/series.visual)
+- [series.visual](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/series#seriesvisual)

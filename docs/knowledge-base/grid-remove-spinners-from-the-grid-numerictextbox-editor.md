@@ -1,12 +1,13 @@
 ---
 title: Remove Up and Down Arrows from the Grid NumericTextBox Editors
-description: An example on how to remove the Up Arrow and Down Arrow from the Kendo UI Grid editor.
+description: Learn how to remove the Up Arrow and Down Arrow from the Kendo UI Grid editor.
 type: how-to
-page_title: Remove Spinners from the NumericTextbox Editor | Kendo UI Grid for jQuery
+page_title: Remove Spinners from the NumericTextbox Editor - Kendo UI for jQuery Data Grid
 slug: grid-remove-spinners-from-the-grid-numerictextbox-editor
 tags: grid, numerictextbox, spinners
 ticketid: 1142901
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,9 +15,9 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr> <tr>
-  <td>Made with version</td>
+  <td>Product Version</td>
   <td>2020.3.1021</td>
  </tr>
 </table>
@@ -28,7 +29,7 @@ How can I remove the spinners of the NumericTextBoxes which are used as default 
 
 ## Solution
 
-Set a custom editor for the numeric columns by using the [`column.editor`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.editor) property of the Grid.
+Set a custom editor for the numeric columns by using the [`column.editor`](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns#columnseditor) property of the Grid.
 
 ````dojo
     <div id="example">
@@ -36,28 +37,30 @@ Set a custom editor for the numeric columns by using the [`column.editor`](https
 
       <script>
         $(document).ready(function () {
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+         var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
               dataSource = new kendo.data.DataSource({
-                transport: {
-                  read:  {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
-                  },
-                  update: {
-                    url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
-                  },
-                  destroy: {
-                    url: crudServiceBaseUrl + "/Products/Destroy",
-                    dataType: "jsonp"
-                  },
-                  create: {
-                    url: crudServiceBaseUrl + "/Products/Create",
-                    dataType: "jsonp"
+                  transport: {
+                      read:  {
+                          url: crudServiceBaseUrl + "/Products"
+                      },
+                      update: {
+                          url: crudServiceBaseUrl + "/Products/Update",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      destroy: {
+                          url: crudServiceBaseUrl + "/Products/Destroy",
+                          type: "POST",
+                  		    contentType: "application/json"
+                      },
+                      create: {
+                          url: crudServiceBaseUrl + "/Products/Create",
+                          type: "POST",
+                  		    contentType: "application/json"
                   },
                   parameterMap: function(options, operation) {
                     if (operation !== "read" && options.models) {
-                      return {models: kendo.stringify(options.models)};
+                      return kendo.stringify(options.models);
                     }
                   }
                 },

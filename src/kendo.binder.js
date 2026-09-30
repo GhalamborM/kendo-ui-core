@@ -1,8 +1,7 @@
-(function(f, define) {
-    define([ "./kendo.core", "./kendo.data" ], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.data.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "binder",
     name: "MVVM",
     category: "framework",
@@ -13,6 +12,7 @@ var __meta__ = {
 
 (function($, undefined) {
     var kendo = window.kendo,
+        encode = kendo.htmlEncode,
         Observable = kendo.Observable,
         ObservableObject = kendo.data.ObservableObject,
         ObservableArray = kendo.data.ObservableArray,
@@ -536,17 +536,20 @@ var __meta__ = {
             if (!template) {
                 if (nodeName == "select") {
                     if (options.valueField || options.textField) {
-                        template = kendo.format('<option value="#:{0}#">#:{1}#</option>',
-                            options.valueField || options.textField, options.textField || options.valueField);
+                        template = (data) => {
+                            const valueAttr = kendo.getter(options.valueField || options.textField)(data);
+                            const innerText = kendo.getter(options.textField || options.valueField)(data);
+                            return `<option value="${encode(valueAttr)}">${encode(innerText)}</option>`;
+                        };
                     } else {
-                        template = "<option>#:data#</option>";
+                        template = (data) => `<option>${encode(data)}</option>`;
                     }
                 } else if (nodeName == "tbody") {
-                    template = "<tr><td>#:data#</td></tr>";
+                    template = (data) => `<tr><td>${encode(data)}</td></tr>`;
                 } else if (nodeName == "ul" || nodeName == "ol") {
-                    template = "<li>#:data#</li>";
+                    template = (data) => `<li>${encode(data)}</li>`;
                 } else {
-                    template = "#:data#";
+                    template = (data) => `${encode(data)}`;
                 }
                 template = kendo.template(template);
             }
@@ -977,10 +980,10 @@ var __meta__ = {
 
                     source = that.bindings[bindingName].get();
 
-                    if (widget[fieldName] instanceof kendo.data.DataSource && widget[fieldName] != source) {
+                    if (widget[fieldName] instanceof kendo.data.DataSource && widget[fieldName] != source && source) {
                         if (source instanceof kendo.data.DataSource) {
                             widget[setter](source);
-                        } else if (source && source._dataSource) {
+                        } else if (source._dataSource) {
                             widget[setter](source._dataSource);
                         } else {
                             select = kendo.ui.Select && widget instanceof kendo.ui.Select;
@@ -1029,17 +1032,19 @@ var __meta__ = {
 
                 handler = binding.get();
 
-                this.handlers[key] = function(e) {
-                    e.data = binding.source;
+                if (handler) {
+                    this.handlers[key] = function(e) {
+                        e.data = binding.source;
 
-                    handler(e);
+                        handler(e);
 
-                    if (e.data === binding.source) {
-                        delete e.data;
-                    }
-                };
+                        if (e.data === binding.source) {
+                            delete e.data;
+                        }
+                    };
 
-                this.widget.bind(key, this.handlers[key]);
+                    this.widget.bind(key, this.handlers[key]);
+                }
             },
 
             destroy: function() {
@@ -1064,10 +1069,16 @@ var __meta__ = {
             },
 
             refresh: function() {
+                var val = this.bindings[CHECKED].get();
+
                 if (this.element.type === "radio") {
-                    this.widget.check(this.bindings[CHECKED].get().toString() === this.value());
+                    if (val !== undefined) {
+                        this.widget.check(val.toString() === this.value());
+                    } else {
+                        this.widget.check(false);
+                    }
                 } else {
-                    this.widget.check(this.bindings[CHECKED].get() === true);
+                    this.widget.check(val === true);
                 }
             },
 
@@ -1178,11 +1189,15 @@ var __meta__ = {
                 Binder.fn.init.call(this, widget.element[0], bindings, options);
 
                 this.widget = widget;
+                this.readonly = this.element.readOnly;
             },
 
             refresh: function() {
                 if (this.widget.enable) {
                     this.widget.enable(this.bindings.enabled.get());
+                }
+                if (this.readonly && this.widget.readonly) {
+                    this.widget.readonly(this.readonly);
                 }
             }
         }),
@@ -1333,7 +1348,9 @@ var __meta__ = {
                             widget._preselect(value, text);
                         }
                     } else {
-                        widget.value(value);
+                       if (widget.options.name != "Upload") {
+                           widget.value(value);
+                       }
                     }
                 }
 
@@ -1845,8 +1862,8 @@ var __meta__ = {
         }
     });
 
-    function bindingTargetForRole(element, roles) {
-        var widget = kendo.initWidget(element, {}, roles);
+    function bindingTargetForRole(element, roles, source) {
+        var widget = kendo.initWidget(element, {}, roles, source);
 
         if (widget) {
             return new WidgetBindingTarget(widget);
@@ -1918,7 +1935,7 @@ var __meta__ = {
         }
 
         if (role) {
-            target = bindingTargetForRole(element, roles);
+            target = bindingTargetForRole(element, roles, source);
         }
 
         if (bind) {
@@ -2026,6 +2043,11 @@ var __meta__ = {
     }
 
     function unbindElementTree(element, destroyWidgets) {
+
+        if (!element) {
+            return;
+        }
+
         unbindElement(element, destroyWidgets);
 
         unbindElementChildren(element, destroyWidgets);
@@ -2126,8 +2148,5 @@ var __meta__ = {
     };
 
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

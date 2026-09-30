@@ -5,9 +5,9 @@ description: "Learn how to add custom actions to the undo-redo stack of the Kend
 slug: howto_modify_undoredo_stack
 previous_url: /controls/diagrams-and-maps/diagram/how-to/modify-undo-redo-stack
 tags: kendo, jquery, diagram, modify, undo, redo, stack
-component: diagram
 type: how-to
 res_type: kb
+components: ["diagram"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Diagram for jQuery</td>
+  <td>Progress® Kendo UI® Diagram for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -48,10 +48,10 @@ To achieve this behavior:
 
 ```dojo
 
-    <input type="button" value="Undo" onclick="undoChange(); return false;" class="k-button k-button-md k-rounded-md k-button-solid k-button-solid-base">
-    <input type="button" value="Redo" onclick="redoChange(); return false;" class="k-button k-button-md k-rounded-md k-button-solid k-button-solid-base">
+    <input type="button" value="Undo" onclick="undoChange(); return false;" class="k-button">
+    <input type="button" value="Redo" onclick="redoChange(); return false;" class="k-button">
     <div id="diagram" style="height: 400px"></div>
-    <input type="button" class="k-button k-button-md k-rounded-md k-button-solid k-button-solid-base" value="Change shape color" onclick="changeShape(); return false;">
+    <input type="button" class="k-button" value="Change shape color" onclick="changeShape(); return false;">
     <script>
         var diagram = $("#diagram").kendoDiagram({
             shapes: [
@@ -97,7 +97,7 @@ To achieve this behavior:
 ## See Also
 
 * [Basic Usage of the Diagram (Demo)](https://demos.telerik.com/kendo-ui/diagram/index)
-* [JavaScript API Reference of the Diagram](/api/javascript/dataviz/ui/diagram)
-* [How to Implement Local Data Editing]({% slug howto_editlocaladata_diagram %})
-* [How to Render External Content in Shapes]({% slug howto_renderexternalcontent_inshapes_diagram %})
-* [How to Wrap Text]({% slug howto_wraptext_diagram %})
+* [JavaScript API Reference of the Diagram](/api/dataviz/ui/diagram)
+* [Implement Local Data Editing]({% slug howto_editlocaladata_diagram %})
+* [Render External Content in Shapes]({% slug howto_renderexternalcontent_inshapes_diagram %})
+* [Wrap Text]({% slug howto_wraptext_diagram %})

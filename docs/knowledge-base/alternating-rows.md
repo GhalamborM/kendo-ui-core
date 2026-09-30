@@ -1,13 +1,13 @@
 ---
-title: Configure Color for Alternating Rows
-page_title: Configure Color for Alternating Rows | Kendo UI Grid for jQuery
-description: "An example on how to configure the background color for alternating rows in the Kendo UI Grid for jQuery."
+title: Set the Colors for Alternating Grid Rows
+page_title: Define the Color for Alternating Rows - jQuery Data Grid
+description: "Learn how to configure the background color for alternating rows in the Kendo UI Grid for jQuery component."
 previous_url: /controls/data-management/grid/how-to/excel/alternating-rows
 slug: howto_configure_color_alternating_rows_grid
 tags: grid, color, alternating, rows
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Preferred Language</td>
@@ -25,11 +25,11 @@ res_type: kb
 
 ## Description
 
-How can I customize the Excel document that the Grid generates during exporting?
+How can I customize the Excel document that the Data Grid generates during exporting?
 
 ## Solution
 
-To set the background color of the alternating rows, the demo uses the [`background`](/api/javascript/ooxml/workbook/configuration/sheets.rows.cells.background) option of the cell. For more information on how Excel documents work, refer to the [introductory help topic on Excel](/framework/excel/introduction#create-excel-document).
+To set the background color of the alternating rows, the demo uses the [`background`](/api/ooxml/workbook/configuration/sheets/rows/cells#sheetsrowscellsbackground) option of the cell. For more information on how Excel documents work, refer to the [introductory help topic on Excel](/framework/excel/introduction#create-excel-document).
 
 The following example demonstrates how to customize the Excel document that the Grid generates during exporting.
 
@@ -50,9 +50,9 @@ The following example demonstrates how to customize the Excel document that the 
           }
         },
         dataSource: {
-          type: "odata",
+          type: "odata-v4",
           transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products"
+              read: "https://demos.telerik.com/service/v2/odata/Products"
           },
           pageSize: 7
         },
@@ -69,4 +69,7 @@ The following example demonstrates how to customize the Excel document that the 
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)
+* [jQuery Data Grid Overview (Demo)](https://demos.telerik.com/kendo-ui/grid/index)
+* [Data Grid Overview (Documentation)]({% slug overview_kendoui_grid_widget %})
+* [Product Page of the jQuery Data Grid](https://www.telerik.com/kendo-jquery-ui/data-grid-(table))

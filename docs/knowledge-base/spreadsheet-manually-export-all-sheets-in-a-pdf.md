@@ -1,13 +1,13 @@
 ---
 title: Manually Export All Sheets in a Single PDF
-description: An example on how to manually export all Kendo UI Spreadsheet sheets in a single PDF.
+description: Learn how to manually export all Kendo UI Spreadsheet sheets in a single PDF.
 type: how-to
-page_title: Save Sheets on Separate Pages in the same PDF | Kendo UI Spreadsheet for jQuery
+page_title: Save Sheets on Separate Pages in the same PDF - Kendo UI Spreadsheet for jQuery
 slug: spreadsheet-manually-export-all-sheets-in-a-pdf
 tags: spreadsheet,pdf,drawing,single-pdf
 ticketid: 1143046
 res_type: kb
-component: spreadsheet
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -15,8 +15,8 @@ component: spreadsheet
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet</td>
-  <td>Progress Kendo UI PDF Export</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
+  <td>Progress® Kendo UI® PDF Export for jQuery</td>
  </tr>
 </table>
 
@@ -132,6 +132,6 @@ Use the `Spreadsheet.Sheet.draw()` method which is internally used by the Spread
 
 ## See Also
 
-* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet)
-* [API Reference of the Drawing Group](https://docs.telerik.com/kendo-ui/api/javascript/drawing/group)
-* [API Reference of the Drawing](https://docs.telerik.com/kendo-ui/api/javascript/drawing)
+* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet)
+* [API Reference of the Drawing Group](https://docs.telerik.com/kendo-ui/api/drawing/group)
+* [API Reference of the Drawing](https://docs.telerik.com/kendo-ui/api/drawing)

@@ -2,8 +2,9 @@
 title: Disabled Cells
 page_title: Spreadsheet Disabled Cells
 description: "Learn how to enable and disable cells for the Telerik UI Spreadsheet component for {{ site.framework }}."
+components: ["spreadsheet"]
 slug: htmlhelpers_spreadsheet_disabled_cells_aspnetcore
-position: 7
+position: 8
 ---
 
 # Disabled Cells
@@ -12,7 +13,7 @@ The Telerik UI Spreadsheet for {{ site.framework }} allows you to control the en
 
 ## Set Cell State at Initialization
 
-You can set the state of a cell during the initialization of the Spreadsheet for {{ site.framework }} by using the [`.Enable()`](/api/Kendo.Mvc.UI.Fluent/SpreadsheetSheetRowCellBuilder#enablesystemboolean) configuration option:
+You can set the state of a cell during the initialization of the Spreadsheet for {{ site.framework }} by using the [`.Enable()`](/api/kendo.mvc.ui.fluent/spreadsheetsheetrowcellbuilder#enablesystemboolean) configuration option:
 
 ```HtmlHelper
     @(Html.Kendo().Spreadsheet()
@@ -60,11 +61,11 @@ You can set the state of a cell during the initialization of the Spreadsheet for
 
 ## Set Cell State after Initialization
 
-You can set the state of a cell or range of cells after the initialization by using the [kendo.spreadsheet.Range client-side API](https://docs.telerik.com/kendo-ui/api/javascript/spreadsheet/range) and the [enable](https://docs.telerik.com/kendo-ui/api/javascript/spreadsheet/range/methods/enable) method.
+You can set the state of a cell or range of cells after the initialization by using the [kendo.spreadsheet.Range client-side API](https://docs.telerik.com/kendo-ui/api/spreadsheet/range) and the [enable](https://docs.telerik.com/kendo-ui/api/spreadsheet/range/methods/enable) method.
 
 The following example demosntrates how to toggle the state of cell `A1` on button click:
 
-```
+```JS
 $("#myButton").click(function () {
     var range = $("#spreadsheet").data("kendoSpreadsheet").activeSheet().range("A1");
     var enabled = range.enable();
@@ -81,6 +82,6 @@ $("#myButton").click(function () {
 ## See Also
 * [Disabled Cells of the Spreadsheet HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/spreadsheet/disabled-cells)
 * [Server-Side API](/api/spreadsheet)
-* [Spreadsheet Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet)
-* [kendo.spreadsheet.Sheet Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/spreadsheet/sheet)
-* [kendo.spreadsheet.Range Client-Side API](https://docs.telerik.com/kendo-ui/api/javascript/spreadsheet/range)
+* [Spreadsheet Client-Side API](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet)
+* [kendo.spreadsheet.Sheet Client-Side API](https://docs.telerik.com/kendo-ui/api/spreadsheet/sheet)
+* [kendo.spreadsheet.Range Client-Side API](https://docs.telerik.com/kendo-ui/api/spreadsheet/range)

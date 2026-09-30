@@ -1,12 +1,13 @@
 ---
 title: Make DropDownList Selection Mandatory Only If Data Exists
-description: An example on how to make the Kendo UI DropDownList a required field only if the user has data options to select from.
+description: Learn how to make the Kendo UI DropDownList a required field only if the user has data options to select from.
 type: how-to
-page_title: Make DropDownList Selection Mandatory Only If Data Exists | Kendo UI DropDownList for jQuery
+page_title: Make DropDownList Selection Mandatory Only If Data Exists - Kendo UI DropDownList for jQuery
 slug: dropdownlist-required-only-when-data-exists
 tags: dropdown, required, field, validation, conditional, change
 ticketid: 1364233
 res_type: kb
+components: ["dropdownlist"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Progress® Kendo UI® DropDownList for ASP.NET MVC</td>
+		<td>Progress® Telerik® UI DropDownList for ASP.NET MVC</td>
 	</tr>
 </table>
 
@@ -25,7 +26,7 @@ In some cases, the DropDownList has to be mandatory only when it presents some d
 
 ## Solution
 
-Use the [`dataBound` event](/api/javascript/ui/dropdownlist/events/databound) of the DropDownList to toggle the `required` or `data-val-required` attribute that triggers the required field validation depending on the data source of the DropDownList.
+Use the [`dataBound` event](/api/ui/dropdownlist/events/databound) of the DropDownList to toggle the `required` or `data-val-required` attribute that triggers the required field validation depending on the data source of the DropDownList.
 
 The attributes that will be used depend on the validation mode you use. For example, the `required` attribute works in a generic HTML page and the `data-val-required` attribute works with the Unobtrusive Validation used in ASP.NET.
 
@@ -141,7 +142,7 @@ public JsonResult Questions_GetClasses(string text)
 }
 ```
 
-The following code implements the simple model on which the previous example is based. 
+The following code implements the simple model on which the previous example is based.
 
 ```
 namespace SampleMvcApp.Models

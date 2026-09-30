@@ -1,7 +1,8 @@
 ---
 title: Overview
-page_title: Overview | Kendo UI Music Store Tutorial
+page_title: Overview - Music Store Web App and Dashboard Tutorial
 description: "Learn how to build the Kendo UI Music Store sample project by using Telerik UI for ASP.NET MVC."
+components: ["general"]
 slug: overview_muscistoretutorial_aspnetmvc
 position: 1
 ---

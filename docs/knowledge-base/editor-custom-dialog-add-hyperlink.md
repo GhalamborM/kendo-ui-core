@@ -1,20 +1,21 @@
 ---
 title: Create custom Window in Editor to Add a Hyperlink With Custom Classnames
-description: An example on how to create a custom dialog to add hyperlink with custom class in the Kendo UI Editor.
+description: Learn how to create a custom dialog to add hyperlink with custom class in the Kendo UI Editor.
 type: how-to
-page_title: Create Custom Window to Add Hyperlink With ClassName | Kendo UI Editor for jQuery
+page_title: Create Custom Window to Add Hyperlink With ClassName - Kendo UI Editor for jQuery
 slug: editor-custom-dialog-add-hyperlink
 tags: kendo, window, kendo-ui, editor, custom, dialog, hyperlink, class
 ticketid: 1536777
 res_type: kb
+components: ["editor"]
 ---
 
 ## Environment
 
-<table>	
+<table>
 	<tr>
 		<td>Product</td>
-		<td>Editor for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Editor for jQuery</td>
 	</tr>
 </table>
 
@@ -26,7 +27,7 @@ How can I create custom Window in Editor to add a hyperlink with custom class na
 ## Solution
 
 1. Create a custom Kendo UI for jQuery Window. In the Window content add an element and initialize a DropDownList that contains the needed class names.
-1. When the *Insert* button in the Window is clicked, check the DropDownList value and add the selected class to the hyperlink. 
+1. When the *Insert* button in the Window is clicked, check the DropDownList value and add the selected class to the hyperlink.
 
 ```dojo
     <div id="wnd">
@@ -98,7 +99,6 @@ How can I create custom Window in Editor to add a hyperlink with custom class na
 
 ## See Also
 
-* [API Reference of the Editor](https://docs.telerik.com/kendo-ui/api/javascript/ui/editor)
+* [API Reference of the Editor](https://docs.telerik.com/kendo-ui/api/ui/editor)
 * [Editor Create Custom Editor Tool]({ slug % editor-custom-tool % })
 * [Extend Editor Insert Hyperlink Dialog]({ slug % editor-extend-hyperlink-command-custom-class % })
-

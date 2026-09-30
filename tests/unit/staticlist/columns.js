@@ -1,0 +1,122 @@
+import '@progress/kendo-ui/src/kendo.list.js';
+
+let StaticList = kendo.ui.StaticList,
+    element;
+
+describe("kendo.ui.StaticList API", function() {
+    beforeEach(function() {
+        kendo.ns = "kendo-";
+        element = $("<div></div>").appendTo(Mocha.fixture);
+    });
+    afterEach(function() {
+        element.data("kendoStaticList").destroy();
+
+        kendo.support.touch = false;
+        kendo.support.mobileOS = false;
+        kendo.support.kineticScrollNeeded = false;
+        kendo.ns = "";
+    });
+
+    it("each column template shows text field if there is not field defined", function() {
+        let list = new StaticList(element, {
+            columns: [
+                {},
+            ],
+            dataTextField: "text",
+            dataSource: [{ id: 1, text: "item1" },
+            { id: 2, text: "item2" },
+            { id: 3, text: "item3" }]
+        });
+
+        assert.equal(list.templates.column0({ id: 1, text: "item1" }), "item1");
+    });
+
+    it("each column sets a new template", function() {
+        let list = new StaticList(element, {
+            columns: [
+                { field: "name" },
+                { field: "id" }
+            ],
+            dataTextField: "name",
+            dataSource: [{ id: 1, name: "item1" },
+            { id: 2, name: "item2" },
+            { id: 3, name: "item3" }]
+        });
+
+        assert.equal(list.templates.column0({ id: 1, name: "item1" }), "item1");
+        assert.equal(list.templates.column1({ id: 2, name: "item2" }), "2");
+    });
+
+    it("each custom template is applied", function() {
+        let list = new StaticList(element, {
+            columns: [
+                { field: "name", template: ({ name }) => `new ${kendo.htmlEncode(name)}` },
+                { field: "id" }
+            ],
+            dataTextField: "name",
+            dataSource: [{ id: 1, name: "item1" },
+            { id: 2, name: "item2" },
+            { id: 3, name: "item3" }]
+        });
+
+        assert.equal(list.templates.column0({ id: 1, name: "item1" }), "new item1");
+    });
+
+    it("setOptions re-create columns", function() {
+        let list = new StaticList(element, {
+            columns: [
+                { field: "name" }
+            ],
+            dataTextField: "name",
+            dataSource: [{ id: 1, name: "item1" },
+            { id: 2, name: "item2" },
+            { id: 3, name: "item3" }]
+        });
+
+        list.dataSource.read();
+        assert.equal(list.items().first().find("span").length, 1);
+        list.setOptions({
+            columns: [
+                { field: "name" },
+                { field: "id" }
+            ],
+        });
+
+        assert.equal(list.items().first().find("span").length, 2);
+    });
+
+    it("ul element should have k-table-list class when columns are defined", function() {
+        let list = new StaticList(element, {
+            columns: [
+                { field: "name" },
+                { field: "id" }
+            ],
+            dataTextField: "name",
+            dataSource: [{ id: 1, name: "item1" },
+            { id: 2, name: "item2" },
+            { id: 3, name: "item3" }]
+        });
+
+        list.dataSource.read();
+
+        let ul = list.content.find("ul");
+        assert.isOk(ul.hasClass("k-table-list"), "ul should have k-table-list class when columns are defined");
+        assert.isNotOk(ul.hasClass("k-list-ul"), "ul should NOT have k-list-ul class when columns are defined");
+    });
+
+    it("ul element should have k-list-ul class when no columns are defined", function() {
+        let list = new StaticList(element, {
+            dataTextField: "name",
+            dataSource: [{ id: 1, name: "item1" },
+            { id: 2, name: "item2" },
+            { id: 3, name: "item3" }]
+        });
+
+        list.dataSource.read();
+
+        let ul = list.content.find("ul");
+        assert.isOk(ul.hasClass("k-list-ul"), "ul should have k-list-ul class when no columns are defined");
+        assert.isNotOk(ul.hasClass("k-table-list"), "ul should NOT have k-table-list class when no columns are defined");
+    });
+
+});

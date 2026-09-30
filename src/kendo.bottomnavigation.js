@@ -1,13 +1,12 @@
-(function(f, define) {
-    define([ "./kendo.core" ], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.icons.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "bottomnavigation",
     name: "BottomNavigation",
     category: "web",
     description: "The BottomNavigation widget is a navigation element that allows movement between primary destinations in an app.",
-    depends: [ "core" ]
+    depends: [ "core", "icons" ]
 };
 
 (function($, undefined) {
@@ -25,7 +24,8 @@ var __meta__ = {
         K_POS = "k-pos-",
         DOT = ".",
 
-        SELECT = "select";
+        SELECT = "select",
+        KENDO_KEYDOWN = "kendoKeydown";
 
     var isString = function(value) {
         return typeof value === "string";
@@ -49,10 +49,10 @@ var __meta__ = {
     };
 
     var templates = {
-        item: template("<span class='" + bottomNavigationStyles.item + "'></span>"),
-        anchor: template("<a class='" + bottomNavigationStyles.item + "' href='#:url#'></a>"),
-        text: template("<span class='" + bottomNavigationStyles.text + "'>#=text#</span>"),
-        icon: template("<span class='" + bottomNavigationStyles.navIcon + "#if(icon){# k-icon k-i-#:icon# #}#'></span>")
+        item: template(() => `<span class="${bottomNavigationStyles.item}"></span>`),
+        anchor: template(({ url }) => `<a class="${bottomNavigationStyles.item}" href="${kendo.sanitizeLink(url)}"></a>`),
+        text: template(({ text }) => `<span class="${bottomNavigationStyles.text}" >${text}</span>`),
+        icon: template(({ icon }) => kendo.ui.icon($(`<span class="${bottomNavigationStyles.navIcon}"></span>`), { icon: icon, size: "xlarge" }))
     };
 
     var BottomNavigation = Widget.extend({
@@ -63,25 +63,34 @@ var __meta__ = {
 
             that.element = $(element);
 
+            // Backwards compatibility, so that we keep 'fill' as a legacy option
+            if (this.options.fillMode === null) {
+                this.options.fillMode = this.options.fill;
+            }
+
             that._updateCssClasses();
             that._items();
             that._bindEvents();
-        },
+            Widget.fn.endInit.call(that);
+},
 
         options: {
             name: "BottomNavigation",
             positionMode: "fixed",
             items: [],
-            themeColor: "primary",
+            themeColor: undefined,
             itemFlow: "vertical",
-            fill: "flat",
+            // Backwards compatibility, so that we keep 'fill' as a legacy option
+            fillMode: null,
+            fill: undefined,
             shadow: false,
             border: true,
             template: null
         },
 
         events: [
-            SELECT
+            SELECT,
+            KENDO_KEYDOWN
         ],
 
         destroy: function() {
@@ -120,12 +129,16 @@ var __meta__ = {
             });
 
             that.element.addClass(styles.widget);
-            that.element.addClass(kendo.getValidCssClass(PREFIX, "themeColor", options.themeColor));
-            that.element.addClass(kendo.getValidCssClass(PREFIX, "fill", options.fill));
             that.element.addClass(kendo.getValidCssClass(K_POS, "positionMode", options.positionMode));
             that.element.toggleClass(styles.border, options.border);
             that.element.toggleClass(styles.shadow, options.shadow);
             that._itemFlow(options.itemFlow);
+
+            if (!that.element.attr("aria-label")) {
+                that.element.attr("aria-label", "Bottom navigation");
+            }
+
+            that._applyCssClasses();
         },
 
         _itemFlow: function(orientation) {
@@ -161,16 +174,25 @@ var __meta__ = {
             var that = this,
                 itemTemplate = item.template || that.options.template,
                 isLink = item.url && isString(item.url),
+                attributes,
                 elm, icon;
+
+            attributes = extend({}, item.attributes);
+
+            if (item.enabled === false) {
+                attributes["aria-disabled"] = true;
+            }
+
+            if (item.selected === true) {
+                attributes["aria-current"] = true;
+            }
 
             elm = $(isLink ? template(templates.anchor)(item) : template(templates.item)(item));
 
             elm.toggleClass(bottomNavigationStyles.selected, item.selected === true)
                 .toggleClass(bottomNavigationStyles.disabled, item.enabled === false)
                 .addClass(item.cssClass)
-                .attr(extend({}, item.attributes, {
-                    "aria-disabled": item.enabled === false
-                }))
+                .attr(attributes)
                 .data(item.data);
 
             that._tabindex(elm);
@@ -189,12 +211,16 @@ var __meta__ = {
             }, item);
 
             icon = $(templates.icon(item)).addClass(item.iconClass);
+            icon.attr("aria-hidden", "true");
+            icon.find("svg").attr("aria-hidden", "true");
 
             elm.append(icon);
 
             if (item.text) {
                 item.text = item.encoded === false ? item.text : kendo.htmlEncode(item.text);
                 elm.append($(templates.text(item)));
+            } else if (item.icon && !elm.attr("aria-label")) {
+                elm.attr("aria-label", item.icon);
             }
 
             return elm;
@@ -206,7 +232,7 @@ var __meta__ = {
                 keydownProxy = that._keydown.bind(that);
 
             that.element.on("click" + NS, DOT + bottomNavigationStyles.item, clickProxy)
-                        .on("keydown" + NS, DOT + bottomNavigationStyles.item, keydownProxy);
+                        .on("keydown" + NS, DOT + bottomNavigationStyles.item, that, keydownProxy);
         },
 
         _click: function(ev) {
@@ -239,6 +265,10 @@ var __meta__ = {
             var that = this,
                 target = $(ev.target),
                 key = ev.keyCode;
+
+            if (!kendo.keyDownHandler(ev, that)) {
+                return;
+            }
 
             if (key === keys.ENTER || key === keys.SPACEBAR) {
                 if (that._isItem(target)) {
@@ -277,7 +307,14 @@ var __meta__ = {
 
             if (that._isItem(item)) {
                 selectedItem.removeClass(bottomNavigationStyles.selected);
+                selectedItem.removeAttr("aria-current");
                 $(item).toggleClass(bottomNavigationStyles.selected, state);
+
+                if (state) {
+                    $(item).attr("aria-current", "true");
+                } else {
+                    $(item).removeAttr("aria-current");
+                }
             }
         },
 
@@ -288,7 +325,12 @@ var __meta__ = {
 
             if (item && that._isItem(item)) {
                 $(item).toggleClass(bottomNavigationStyles.disabled, state);
-                $(item).attr("aria-disabled", state);
+
+                if (state) {
+                    $(item).attr("aria-disabled", "true");
+                } else {
+                    $(item).removeAttr("aria-disabled");
+                }
             }
         },
 
@@ -354,8 +396,13 @@ var __meta__ = {
     });
 
     ui.plugin(BottomNavigation);
+
+    kendo.cssProperties.registerPrefix("BottomNavigation", "k-bottom-nav-");
+
+    kendo.cssProperties.registerValues("BottomNavigation", [{
+        prop: "themeColor",
+        values: ['base', 'primary', 'secondary', 'tertiary', 'inverse']
+    }]);
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

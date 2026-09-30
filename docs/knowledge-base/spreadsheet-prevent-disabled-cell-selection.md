@@ -1,12 +1,13 @@
 ---
 title: Prevent selection for disabled cells in Spreadsheet
-description: An example on how to prevent the selection of disabled cells in the Kendo UI Spreadsheet.
+description: Learn how to prevent the selection of disabled cells in the Kendo UI Spreadsheet.
 type: how-to
-page_title: Prevent selection for disabled cells in Spreadsheet | Kendo UI Spreadsheet for jQuery
+page_title: Prevent selection for disabled cells in Spreadsheet - Kendo UI Spreadsheet for jQuery
 slug: spreadsheet-prevent-selection-disabled-cells
 tags: kendo, kendo-ui, spreadsheet, prevent, selection
 ticketid: 1152738
 res_type: kb
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Spreadsheet for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Spreadsheet for jQuery</td>
 	</tr>
 </table>
 
@@ -23,6 +24,8 @@ res_type: kb
 How to prevent the selection for disabled cells in the Spreadsheet?
 
 ## Solution
+
+The following example overrides `Sheet.prototype.select` to block selection on disabled cells, initializes a food-order Spreadsheet, and provides a **Disable / Enable 'Quantity' column** button that toggles the `enable` state of the `C3:C11` range.
 
 ```dojo
 <style>
@@ -43,7 +46,7 @@ How to prevent the selection for disabled cells in the Spreadsheet?
       </div>
       <div id="spreadsheet" style="width: 100%;"></div>
       <script>
-        kendo.spreadsheet.Sheet.fn.select = function (ref, changeActiveCell) {
+        kendo.spreadsheet.Sheet.prototype.select = function (ref, changeActiveCell) {
           var selectionState = this._selectionState();
 
           var expandedRef;
@@ -481,4 +484,4 @@ How to prevent the selection for disabled cells in the Spreadsheet?
 
 ## See Also
 
-* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet)
+* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet)

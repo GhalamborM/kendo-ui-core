@@ -4,9 +4,9 @@ page_title: Convert DataSource Filters to SQL Expression
 description: "Learn how to convert regular and nested filters to SQL expressions."
 slug: datasource-convert-to-sql-expression
 tags: telerik, kendo, jquery, grid, datasource, sql, expression, scheduler, treelist, where, filter, filters
-component: datasource
 type: how-to
 res_type: kb
+components: ["datasource"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI DataSource for jQuery</td>
+  <td>Progress® Kendo UI® DataSource for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -36,16 +36,16 @@ How can I convert the DataSource filters to an SQL expression?
 1. Loop through the datasource filters.
 1. Check if there are nested filters and use recursion to extract them.
 1. Retrieve a mapping by using the operator of the current filter.
-1. Check the type of the value. If it is a date, use the [`kendo.toString`](/api/javascript/kendo/methods/tostring) method to format it in the correct SQL datetime format.
-1. Use the [`kendo.format`](/api/javascript/kendo/methods/format) method to replace the placeholders in the mapping string with the field and value of the current filter.
+1. Check the type of the value. If it is a date, use the [`kendo.toString`](/api/kendo/methods/tostring) method to format it in the correct SQL datetime format.
+1. Use the [`kendo.format`](/api/kendo/methods/format) method to replace the placeholders in the mapping string with the field and value of the current filter.
 1. Finally, combine all of the filter strings into a single string.
 
-Once the SQL expression is generated, you can use a number of different approaches to send the string back to the server for further processing. For example, the [`data`](/api/javascript/data/datasource/configuration/transport.read#transportreaddata) option of the [`transport`](/api/javascript/data/datasource/configuration/transport) configurations.
+Once the SQL expression is generated, you can use a number of different approaches to send the string back to the server for further processing. For example, the [`data`](/api/data/datasource/configuration/transport#transportread#transportreaddata) option of the [`transport`](/api/data/datasource/configuration/transport) configurations.
 
 The following example showcases the complete solution integrated with a Kendo UI Grid:
 
 ```dojo
-    <button id="get" type="button" class="k-button k-button-md k-rounded-md k-button-solid k-button-solid-primary"><span class="k-button-text">Convert Filters to SQL Query</span></button>
+    <button id="get" type="button" class="k-button k-button-primary"><span class="k-button-text">Convert Filters to SQL Query</span></button>
     <div id="console" style='padding: 1em;'>
       <p>SELECT * FROM mytable</p>
       <p>WHERE <span id="console-filter" style='color: #205493;'></span></p>
@@ -126,9 +126,9 @@ The following example showcases the complete solution integrated with a Kendo UI
       $(document).ready(function() {
         $("#grid").kendoGrid({
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+              read: "https://demos.telerik.com/service/v2/odata/Orders"
             },
             filter: {
               logic: "and",

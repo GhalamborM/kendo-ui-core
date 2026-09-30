@@ -2,6 +2,7 @@
 title: Checked RadioButton
 page_title: Checked RadioButton
 description: "Enable the checked or unchecked state of the Telerik UI RadioButton for {{ site.framework }}."
+components: ["radiobutton"]
 previous_url: /helpers/navigation/radiobutton/checked-state
 slug: checkedstate_radiobutton_aspnetcore
 position: 3
@@ -30,4 +31,4 @@ The following example demonstrates how to use the `.Checked()` configuration opt
 ## See Also
 
 * [RadioButton Server-Side API](/api/radiobutton)
-* [RadioButtonBuilder Server-Side API](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/RadioButtonBuilder)
+* [RadioButtonBuilder Server-Side API](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/radiobuttonbuilder)

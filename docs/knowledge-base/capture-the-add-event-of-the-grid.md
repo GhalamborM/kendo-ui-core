@@ -1,14 +1,14 @@
 ---
 title: Capture the Event for Adding New Rows
-page_title: Capture the add Event | Kendo UI Grid for jQuery
-description: An example on how to capture the add event of the Kendo UI Grid.
+page_title: Capture the add Event - Kendo UI for jQuery Data Grid
+description: Learn how to capture the add event of the Kendo UI Grid.
 type: how-to
 slug: how-to-capture-the-add-event-of-the-grid
 previous_url: /knowledge-base/how-to-capture-the-add-event-of-the-grid
 tags: add, event, grid
 ticketid: 1097353
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -16,7 +16,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -31,7 +31,7 @@ component: grid
   <td>56</td>
  </tr>
   <tr>
-  <td>Made with version</td>
+  <td>Product Version</td>
   <td>2020.3.1021</td>
  </tr>
 </table>
@@ -54,28 +54,30 @@ Attach an event handler for the **Add New Row** button to the `dataBound` event 
 
        <script>
         $(document).ready(function () {
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core";
               dataSource = new kendo.data.DataSource({
                 transport: {
                   read:  {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
+                    url: crudServiceBaseUrl + "/Products"
                   },
                   update: {
                     url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
+                    type: "POST",
+                    contentType: "application/json"
                   },
                   destroy: {
                     url: crudServiceBaseUrl + "/Products/Destroy",
-                    dataType: "jsonp"
+                    type: "POST",
+                    contentType: "application/json"
                   },
                   create: {
                     url: crudServiceBaseUrl + "/Products/Create",
-                    dataType: "jsonp"
+                    type: "POST",
+                    contentType: "application/json"
                   },
                   parameterMap: function(options, operation) {
                     if (operation !== "read" && options.models) {
-                      return {models: kendo.stringify(options.models)};
+                      return kendo.stringify(options.models);
                     }
                   }
                 },

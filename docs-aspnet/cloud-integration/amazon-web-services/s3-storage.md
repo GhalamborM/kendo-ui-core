@@ -2,6 +2,7 @@
 title: Amazon S3
 page_title: Amazon S3 (Amazon Simple Storage Service)
 description: "Learn how to use the Telerik UI for {{ site.framework }} Upload component, to upload files to a bucket in Amazon S3"
+components: ["general"]
 slug: aws_s3_storage_aspnetcore
 position: 3
 ---
@@ -22,7 +23,7 @@ Refer to [Creating an AWS Account and a User]({% slug aws_getting_started_aspnet
 
 ## Creating and Configuring a New Bucket
 
-Data in Amazon S3 is stored in buckets. Before you can upload a file to Amazon S3, you need to create a bucket by using the AWS Management Console. You can learn how to do that in the [Creating a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html) article. 
+Data in Amazon S3 is stored in buckets. Before you can upload a file to Amazon S3, you need to create a bucket by using the AWS Management Console. You can learn how to do that in the [Creating a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html) article.
 
 >The example in this article uses the AWS Signature Version 2 (V2) signing process. This means that the bucket you will be uploading to must support Signature Version 2. In the bucket creation steps, you are prompted to specify the region the bucket resides in. The region determines whether V2 of the signing process is supported. See the list of regions that support V2 in the [Signature Version 2](https://docs.aws.amazon.com/general/latest/gr/signature-version-2.html) article.
 
@@ -32,7 +33,7 @@ Once you have created a new bucket, you need to configure it to accept Cross-ori
 
 The image below shows the minimum configuration needed for an application to upload files to the bucket.
 
-![{{ site.product_short }} Bucket CORS](../images/aws-s3-bucket-cors.png)
+![{{ site.product_short }} Amazon S3 Bucket CORS](../images/aws-s3-bucket-cors.png)
 
 The configuration is in JSON format:
 
@@ -53,44 +54,44 @@ The configuration is in JSON format:
 ]
 ```
 
-The `"http://localhost:62500"` address shown above is exemplary. Use the actual address of your application. Setting `"*"` as value of `AllowedOrigins` will allow any origin. 
+The `"http://localhost:62500"` address shown above is exemplary. Use the actual address of your application. Setting `"*"` as value of `AllowedOrigins` will allow any origin.
 
 ## User Permissions
 
 >If the purpose of the user is only to upload to the S3 storage, we recommend that you create a user with restricted permissions. In this case, the users policy only needs to allow two actions on the destination bucket: `PutObject` and `PutObjectAcl`. In the `Permissions` settings of the user, you can create a policy that includes only these two actions and apply the policy to the user.
 
-	Allow the PutObject and PutObjectAcl actions in the Visual Editor:
+Allow the PutObject and PutObjectAcl actions in the Visual Editor:
 
-	![{{ site.product_short }} Configure restricted permissions](../images/aws-permissions-restricted.png)
+![{{ site.product_short }} Amazon S3 configure restricted permissions](../images/aws-permissions-restricted.png)
 
-    The permissions configuration of the restricted user can be reviewed as JSON and should look like this: 
+The permissions configuration of the restricted user can be reviewed as JSON and should look like this:
 
-    ```js
-    {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Sid": "VisualEditor0",
-                "Effect": "Allow",
-                "Action": [
-                    "s3:PutObject",
-                    "s3:PutObjectAcl"
-                ],
-                "Resource": "arn:aws:s3:::mybucketname/*"
-            }
-        ]
-    }
-    ```
+```js
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl"
+            ],
+            "Resource": "arn:aws:s3:::mybucketname/*"
+        }
+    ]
+}
+```
 
-## Configuring the Application 
+## Configuring the Application
 
 ### Upload Authorization
 
-In your application, create a model and set up the S3 authorization as demonstrated below. 
+In your application, create a model and set up the S3 authorization as demonstrated below.
 
 The following server-side logic authorizes uploads by creating and signing temporary policies for each client:
 
-```
+```Controller
 public ActionResult Index()
 {
     var config = new S3Config
@@ -181,7 +182,7 @@ The policy sets restrictions on the destination, content type, and others. Any r
 
 Add the Upload component to the view and handle its `upload` and `select` events.
 
-```
+```View
 @(Html.Kendo().Upload()
     .Name("file")
     .Async(async => async

@@ -1,12 +1,13 @@
 ---
 title: Prevent Text Wrapping in the Grid
-description: An example on how to prevent text wrapping in the Kendo UI Grid.
+description: Learn how to prevent text wrapping in the Kendo UI Grid.
 type: how-to
-page_title: Prevent Text Wrapping | Kendo UI Grid for ASP.NET MVC
+page_title: Prevent Text Wrapping - Kendo UI Grid for ASP.NET MVC
 slug: grid-prevent-text-wrapping-in-the-grid
 tags: grid, wrap, prevent
 ticketid: 1141418
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for ASP.NET MVC</td>
+  <td>Progress® Telerik® UI Grid for ASP.NET MVC</td>
  </tr>
  <tr>
-  <td>Made with Version</td>
+  <td>Product Version</td>
   <td>2017.3.1026</td>
  </tr></table>
 
@@ -47,9 +48,9 @@ Use the following implementation to prevent wrapping in specific grid cells.
         $(document).ready(function() {
             $("#grid").kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                        read: "https://demos.telerik.com/service/v2/odata/Orders"
                     },
                     schema: {
                         model: {

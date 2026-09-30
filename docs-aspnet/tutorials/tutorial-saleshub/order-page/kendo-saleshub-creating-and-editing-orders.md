@@ -1,7 +1,8 @@
 ---
 title: Create and Edit Orders
-page_title: Create and Edit Orders | Kendo UI Sales Hub Tutorial
+page_title: Create and Edit Orders - Kendo UI Sales Hub Tutorial
 description: "Learn how to create and edit customer orders in the Kendo UI Sales Hub project by using Telerik UI for ASP.NET MVC."
+components: ["general"]
 previous_url: /kendo-ui/tutorials/asp.net/saleshub/order-page/kendo-saleshub-creating-and-editing-orders
 slug: createeditorders_saleshubtutorial_aspnetmvc
 position: 1
@@ -21,7 +22,7 @@ can be found in **Views/Order/_Order.cshtml**.
 
 ## Set Up the Basic Order Fields
 
-![{{ site.product_short }} kendo-saleshub-order-info-screenshot](images/kendo-saleshub-order-info-screenshot.png)
+![{{ site.product_short }} Kendo Saleshub Order Info](images/kendo-saleshub-order-info-screenshot.png)
 
 The first part of the form is where we declare the fields where the user can set the contract weight/amount,
 date, and the order number for the given order. For the sake of brevity, we'll only cover the fields which
@@ -65,7 +66,7 @@ as a parameter and will cause the extensions to generate the markup for the unde
 
 ## Set up the TabStrip
 
-![{{ site.product_short }} kendo-saleshub-order-tabstrip-screenshot](images/kendo-saleshub-order-tabstrip-screenshot.png)
+![{{ site.product_short }} Kendo Saleshub Order TabStrip](images/kendo-saleshub-order-tabstrip-screenshot.png)
 
 The next part of the Orders view is the [Kendo TabStrip](https://demos.telerik.com/kendo-ui/web/tabstrip/index.html), which contains
 the grids for Order details and notes.
@@ -182,7 +183,7 @@ the extensions that the grid will be bound against `OrderDetailViewModel`'s.
 Here we set up each column for the Grid. Calling `Filterable(false)` allows you to selectively choose when a column cannot be filtered by the user.
 
 Calling `ClientFooterTemplate` allows you to specify a footer which is displayed for the specified column. In our case these footer templates
-make use of the [DataSource aggregates](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/configuration/aggregate) that we set up, later on, in our DataSource. As the
+make use of the [DataSource aggregates](https://docs.telerik.com/kendo-ui/api/data/datasource/configuration/aggregate) that we set up, later on, in our DataSource. As the
 client footer templates are bound client-side we use [Kendo's template syntax](https://docs.telerik.com/kendo-ui/framework/templates/overview#template-syntax) to tell it which aggregate
 to display the result of (in our case we only bind against a `sum` aggregate).
 
@@ -295,7 +296,7 @@ DataSource.
 
 ## Set Up the PanelBar
 
-![{{ site.product_short }} kendo-saleshub-order-panelbar-screenshot](images/kendo-saleshub-order-panelbar-screenshot.png)
+![{{ site.product_short }} Kendo Saleshub Order PanelBar](images/kendo-saleshub-order-panelbar-screenshot.png)
 
 After the tabstrip containing the order details and order notes grid we have a [Kendo PanelBar](https://demos.telerik.com/kendo-ui/web/panelbar/index.html) which contains
 the fields for editing the payment terms of an Order, along with setting invoice comments.

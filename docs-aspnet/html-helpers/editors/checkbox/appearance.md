@@ -1,18 +1,15 @@
 ---
 title: Appearance
-page_title: "{{ site.framework }} CheckBox Documentation | CheckBox Appearance"
+page_title: Appearance
 description: "Learn how to customize the appearance of the Telerik UI CheckBox HtmlHelper for {{ site.framework }}."
+components: ["checkbox"]
 slug: checkbox_appearance
 position: 2
 ---
 
-# CheckBox Appearance
+# Appearance
 
-> As of the R1 2022 release, the CheckBox uses a brand new rendering.
-
-In this article, you will find information about the new appearance of the {{ site.product }} CheckBox.
-
-For additional information regarding the decision behind these changes, visit the [Components Rendering](https://docs.telerik.com/{{ site.platform }}/styles-and-layout/components-rendering-overview) article.
+In this article, you will find information about the styling options and rendering of the {{ site.product }} CheckBox.
 
 For a live example, refer to the [Appearance Demo of the CheckBox](https://demos.telerik.com/{{ site.platform }}/checkbox/appearance).
 
@@ -46,14 +43,10 @@ The following values are available for the `Size` option:
 - `Small`
 - `Medium`
 - `Large`
-- `None`
 
-The default size value is `Medium` and it is added as a class `k-checkbox-md` to the input element.
+> When not explicitly set, the applied theme controls the default size.
 
-```html
-<!-- default rendering -->
-<input type="checkbox" class="k-checkbox k-checkbox-md" id="checkBoxName"/>
-```
+> The `None` value is deprecated. Use custom CSS instead.
 
 ### Rounded
 
@@ -89,16 +82,15 @@ The following values are available for the `Rounded` option:
 - `Small`
 - `Medium`
 - `Large`
-- `None`
 
-The default value is `Medium` and it is added as a class `k-roundend-md` to the input element.
+> When not explicitly set, the applied theme controls the default border radius.
 
-```html
-<!-- default rendering -->
-<input type="checkbox" class="k-checkbox k-roundend-md" id="checkBoxName"/>
-```
+> The `None` value is deprecated. Use custom CSS instead.
+
+@[template](/_contentTemplates/components-rendering-section.md#components-rendering-section)
 
 ## See Also
 
+* [Components Appearance Overview]({% slug components_rendering_overview %})
 * [Appearance of the CheckBox HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/checkbox/appearance)
 * [Server-Side API](/api/checkbox)

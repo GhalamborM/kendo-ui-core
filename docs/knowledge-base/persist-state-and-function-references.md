@@ -1,14 +1,14 @@
 ---
 title: Persist Function References of Custom Command Buttons in the Grid
-description: An example on how to persist the function references of the custom command buttons in the Kendo UI Grid after serialization.
+description: Learn how to persist the function references of the custom command buttons in the Kendo UI Grid after serialization.
 type: how-to
-page_title: Persist the Command Button State and Function References | Kendo UI Grid for jQuery
+page_title: Persist the Command Button State and Function References - Kendo UI for jQuery Data Grid
 slug: persist-state-and-function-references
 previous_url: /knowledge-base/how-to-persist-state-and-function-references
 tags: grid, persist, state, function, reference
 ticketid: 1133697
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -16,7 +16,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -31,7 +31,7 @@ component: grid
   <td>Latest</td>
  </tr>
   <tr>
-  <td>Made with version</td>
+  <td>Product Version</td>
   <td>2017.3.913</td>
  </tr>
 </table>
@@ -43,7 +43,7 @@ How can I persist the function references of the custom command buttons in the K
 
 ## Solution
 
-Just before you pass the options to the [`setOptions`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/setoptions) method of the Grid, add the function reference to the parsed JSON file.
+Just before you pass the options to the [`setOptions`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/setoptions) method of the Grid, add the function reference to the parsed JSON file.
 
 ```dojo
     <div id="example">
@@ -57,9 +57,8 @@ Just before you pass the options to the [`setOptions`](https://docs.telerik.com/
         $(document).ready(function () {
           $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                read: "https://demos.telerik.com/service/v2/core/Customers"
               },
               pageSize: 20
             },

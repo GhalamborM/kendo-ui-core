@@ -2,6 +2,7 @@
 title: Cancellation Token
 page_title: Passing a Cancellation Token
 description: "Learn how to cancel an asynchronous call by passing additional parameter to the DataSource method."
+components: ["datasource"]
 slug: htmlhelper_datasource_cancellationtoken
 ---
 
@@ -39,7 +40,7 @@ In real-case scenarios, developers usually have also to consider other factors l
 You can find a full runnable sample with a Grid integration here:
 
 {% if site.mvc %}
-[Grid Sample with Cancellation Token](https://github.com/telerik/ui-for-aspnet-mvc-examples/tree/master/grid/grid-cancellationtoken/KendoGridCancellationToken)
+[Grid Sample with Cancellation Token](https://github.com/telerik/ui-for-aspnet-mvc-examples/tree/master/Telerik.Examples.Mvc/Telerik.Examples.Mvc/Areas/GridCancellationToken)
 {% endif %}
 
 {% if site.core %}

@@ -1,23 +1,24 @@
 ---
 title: Share Selection between MultiSelect and Grid
-description: An example on how to select rows from the MultiSelect in the Kendo UI Grid and choose values by selecting Grid rows in the MultiSelect.
+description: Learn how to select rows from the MultiSelect in the Kendo UI Grid and choose values by selecting Grid rows in the MultiSelect.
 type: how-to
-page_title: Select Rows From MultiSelect | Kendo UI Grid for jQuery
+page_title: Select Rows From MultiSelect - Kendo UI for jQuery Data Grid
 slug: grid-multiselect-share-selection
 tags: grid, multiselect, selection
 ticketid: 1144164
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
-  <td>Progress Kendo UI MultiSelect</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
+  <td>Progress® Kendo UI® MultiSelect for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1026 version</td>
  </tr>
 </table>
@@ -30,8 +31,8 @@ How can I select rows in the Grid by choosing values in the MultiSelect, and vic
 
 To share a selection between a MultiSelect and a Grid:
 
-1. In the [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect/events/change) event handler of the MultiSelect, based on the [`dataItems`](https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect/methods/dataitems), add the `k-selected` class and set the `checked` property of the checkbox for every row in the Grid.
-1. In the [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/change) event handler of the Grid, based on the [`select`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/methods/select) items, change the [`value`](https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect/methods/value) of the MultiSelect.
+1. In the [`change`](https://docs.telerik.com/kendo-ui/api/ui/multiselect/events/change) event handler of the MultiSelect, based on the [`dataItems`](https://docs.telerik.com/kendo-ui/api/ui/multiselect/methods/dataitems), add the `k-selected` class and set the `checked` property of the checkbox for every row in the Grid.
+1. In the [`change`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/change) event handler of the Grid, based on the [`select`](https://docs.telerik.com/kendo-ui/api/ui/grid/methods/select) items, change the [`value`](https://docs.telerik.com/kendo-ui/api/ui/multiselect/methods/value) of the MultiSelect.
 
     ```dojo
     <select id="multiselect" multiple="multiple"></select>
@@ -41,8 +42,7 @@ To share a selection between a MultiSelect and a Grid:
             dataSource: {
                 transport: {
                     read: {
-                        url: "https://demos.telerik.com/kendo-ui/service/products",
-                        dataType: "jsonp"
+                        url: "https://demos.telerik.com/service/v2/core/products"
                     }
                 }
             },
@@ -107,8 +107,7 @@ To share a selection between a MultiSelect and a Grid:
             dataSource: {
                 transport: {
                     read: {
-                        url: "https://demos.telerik.com/kendo-ui/service/products",
-                        dataType: "jsonp"
+                        url: "https://demos.telerik.com/service/v2/core/products"
                     }
                 }
             }

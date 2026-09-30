@@ -5,9 +5,9 @@ description: "Learn how to transform the content during export while applying th
 slug: howto_packfontsforpdfexport_drawingapi
 previous_url: /framework/drawing/how-to/pack-fonts-for-export
 tags: telerik, kendo, jquery, drawing, api, library, pack, fonts, for, pdf, export 
-component: drawing
 type: how-to
 res_type: kb
+components: ["drawing"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress® Kendo UI® Drawing Library</td>
+  <td>Progress® Kendo UI® Drawing API</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -57,5 +57,5 @@ For more information, refer to [the project on GitHub](https://github.com/teleri
 
 ## See Also
 
-* [PDF Options JavaScript API Reference](/api/javascript/drawing/pdfoptions)
+* [PDF Options JavaScript API Reference](/api/drawing/pdfoptions)
 * [Overview of the Drawing API]({% slug overview_kendoui_drawingapi %})

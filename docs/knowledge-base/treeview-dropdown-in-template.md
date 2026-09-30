@@ -1,11 +1,12 @@
 ---
 title: Initialize DropDownList in the TreeView Template
-description: An example on how to embed a Kendo UI DropDownList for jQuery in the node template of a Kendo UI TreeView for jQuery.
+description: Learn how to embed a Kendo UI DropDownList for jQuery in the node template of a Kendo UI TreeView for jQuery.
 type: how-to
-page_title: Create DropDownList in Node Template | Kendo UI TreeView for jQuery
+page_title: Create DropDownList in Node Template - Kendo UI TreeView for jQuery
 slug: treeview-dropdown-in-template
 tags: kendo, kendo-ui, treeview, dropdownlist, template
 res_type: kb
+components: ["treeview"]
 ticketid: 1176714
 ---
 
@@ -14,7 +15,7 @@ ticketid: 1176714
 <table>
     <tr>
         <td>Product</td>
-        <td>TreeView for Progress® Kendo UI®</td>
+        <td>Progress® Kendo UI® TreeView for jQuery</td>
     </tr>
 </table>
 
@@ -59,8 +60,7 @@ How can I place DropDownLists in the `<script>` of the TreeView template which w
     dropDownSource: new kendo.data.DataSource({
       transport: {
         read: {
-          url: "https://demos.telerik.com/kendo-ui/service/products",
-          dataType: "jsonp"
+          url: "https://demos.telerik.com/service/v2/core/products"
         }
       }
     }),
@@ -92,12 +92,11 @@ How can I place DropDownLists in the `<script>` of the TreeView template which w
 </script>
 
 <script>
-  var serviceRoot = "https://demos.telerik.com/kendo-ui/service";
+  var serviceRoot = "https://demos.telerik.com/service/v2/core";
   var homogeneous = new kendo.data.HierarchicalDataSource({
     transport: {
       read: {
-        url: serviceRoot + "/Employees",
-        dataType: "jsonp"
+        url: serviceRoot + "/Employees"
       }
     },
     schema: {
@@ -133,8 +132,7 @@ How can I place DropDownLists in the `<script>` of the TreeView template which w
             dataSource: {
               transport: {
                 read: {
-                  url: "https://demos.telerik.com/kendo-ui/service/products",
-                  dataType: "jsonp"
+                  url: "https://demos.telerik.com/service/v2/core/products"
                 }
               }
             }
@@ -148,4 +146,4 @@ How can I place DropDownLists in the `<script>` of the TreeView template which w
 
 ## See Also
 
-* [API Reference of the TreeView](https://docs.telerik.com/kendo-ui/api/javascript/ui/treeview).
+* [API Reference of the TreeView](https://docs.telerik.com/kendo-ui/api/ui/treeview).

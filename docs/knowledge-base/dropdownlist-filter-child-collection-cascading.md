@@ -1,12 +1,13 @@
 ---
 title: Cascade Based on Parent DataField
-description: An example on how to filter a child collection of Kendo UI DropDownLists based on a parent property that is not the dataValueField.
+description: Learn how to filter a child collection of Kendo UI DropDownLists based on a parent property that is not the dataValueField.
 type: how-to
-page_title: Filtering on Specific Parent Property | Kendo UI DropDownList
+page_title: Filtering on Specific Parent Property - Kendo UI DropDownList
 slug: dropdownlist-filter-child-collection-cascading
 tags: dropdownlist, filter, child, collection, cascading, datavaluefield, parent, datafield
 ticketid: 1412636
 res_type: kb
+components: ["dropdownlist"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>DropDownList for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® DropDownList for jQuery</td>
  </tr>
 
   <td>Product Version</td>
@@ -28,7 +29,7 @@ How can I filter my child collection based on a property that is not the parent 
 
 ## Solution
 
-You can filter a child collection by another `datafield` by using the [`cascadeFromParentField` property](https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdownlist/configuration/cascadefromparentfield).  
+You can filter a child collection by another `datafield` by using the [`cascadeFromParentField` property](https://docs.telerik.com/kendo-ui/api/ui/dropdownlist/configuration/cascadefromparentfield).  
 
 ```javascript
       $("#parent").kendoDropDownList({
@@ -87,4 +88,4 @@ You can filter a child collection by another `datafield` by using the [`cascadeF
 
 ## See Also
 
-* [API Reference of cascadeFromParentField](https://docs.telerik.com/kendo-ui/api/javascript/ui/dropdownlist/configuration/cascadefromparentfield)
+* [API Reference of cascadeFromParentField](https://docs.telerik.com/kendo-ui/api/ui/dropdownlist/configuration/cascadefromparentfield)

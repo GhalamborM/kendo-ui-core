@@ -1,7 +1,8 @@
 ---
 title: Tooltip
-page_title: jQuery Chart Documentation | Tooltip
+page_title: jQuery Chart Documentation - Tooltip
 description: "Get started with the jQuery Chart by Kendo UI and learn how to configure its tooltip, make it visible, and set its properties depending on your preferences."
+components: ["chart"]
 slug: tooltip_charts_widget
 previous_url: /controls/charts/tooltip
 ---
@@ -12,7 +13,7 @@ The Kendo UI Chart enables you to display details about the data point over whic
 
 The border of this tooltip matches the color of the series.
 
-![The Chart tooltip](../chart-tooltip.png)
+![Kendo UI for jQuery Chart tooltip](../chart-tooltip.png)
 
 ## Getting Started
 
@@ -85,4 +86,4 @@ The template provides access to all information associated with the point:
 ## See Also
 
 * [Using the API of the Chart (Demo)](https://demos.telerik.com/kendo-ui/chart-api/index)
-* [JavaScript API Reference of the Chart](/api/javascript/dataviz/ui/chart)
+* [JavaScript API Reference of the Chart](/api/dataviz/ui/chart)

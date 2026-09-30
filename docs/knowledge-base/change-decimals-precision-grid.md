@@ -1,13 +1,13 @@
 ---
 title: Change the Default Decimals Precision of a Numeric Column Filters in the Grid
-page_title: Change the Decimals Precision of the Numeric Filter | Kendo UI Grid for jQuery
-description: An example on how to change the culture default decimals precision in the filter NumericTextBox in the Kendo UI Grid.
+page_title: Change the Decimals Precision of the Numeric Filter - Kendo UI for jQuery Data Grid
+description: Learn how to change the culture default decimals precision in the filter NumericTextBox in the Kendo UI Grid.
 type: how-to
 slug: change-decimals-precision-grid
 tags: grid, filtering, numbers, decimals
 ticketid: 1131251, 1125621
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,10 +15,10 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.913 version</td>
  </tr>
 </table>
@@ -31,8 +31,8 @@ How can I change the default two decimals places in the numeric filters in a gri
 
 To change the decimals precision:
 
-1. Subscribe for the [`filterMenuInit`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/filtermenuinit) event of the Grid.
-1. In the `filterMenuInit` event handler, use [`setOptions`](https://docs.telerik.com/kendo-ui/api/javascript/ui/widget/methods/setoptions) method to set new values for the [`decimals`](https://docs.telerik.com/kendo-ui/api/javascript/ui/numerictextbox/configuration/decimals) and [`format`](https://docs.telerik.com/kendo-ui/api/javascript/ui/numerictextbox/configuration/format) configurations.
+1. Subscribe for the [`filterMenuInit`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/filtermenuinit) event of the Grid.
+1. In the `filterMenuInit` event handler, use [`setOptions`](https://docs.telerik.com/kendo-ui/api/ui/widget/methods/setoptions) method to set new values for the [`decimals`](https://docs.telerik.com/kendo-ui/api/ui/numerictextbox/configuration/decimals) and [`format`](https://docs.telerik.com/kendo-ui/api/ui/numerictextbox/configuration/format) configurations.
 
 ```dojo
 <div id="grid"></div>

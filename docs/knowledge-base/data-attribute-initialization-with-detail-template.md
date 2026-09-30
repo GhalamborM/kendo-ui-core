@@ -1,13 +1,13 @@
 ---
 title: Initialize Data Attribute with Detail Template
-page_title: Data Attribute Initialization | Kendo UI Grid for jQuery
-description: "An example on how to initialize a Kendo UI jQuery Grid widget by using data attributes and including a detail template."
+page_title: Data Attribute Initialization - Kendo UI for jQuery Data Grid
+description: "Learn how to initialize a Kendo UI jQuery Grid widget by using data attributes and including a detail template."
 previous_url: /controls/data-management/grid/how-to/data-attribute-initialization-with-detail-template, /web/grid/how-to/data-attribute-initialization-with-detail-template, /controls/data-management/grid/how-to/Templates/data-attribute-initialization-with-detail-template
 slug: howto_initialize_data_attributewith_detail_template_grid
 tags: grid, initialize, data, attribute, detail, template
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -46,9 +46,9 @@ The following example demonstrates how to initialize a Grid by using data attrib
          data-bind="source: dataSource, events: { dataBound: dataBound }"></div>
     <script>
       var dataSource = new kendo.data.DataSource({
-        type: "odata",
+        type: "odata-v4",
         transport: {
-          read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+          read: "https://demos.telerik.com/service/v2/odata/Employees"
         },
         pageSize: 6,
         serverPaging: true,
@@ -60,9 +60,9 @@ The following example demonstrates how to initialize a Grid by using data attrib
         detailInit: function (e) {
           $("<div/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               serverPaging: true,
               serverSorting: true,
@@ -91,4 +91,4 @@ The following example demonstrates how to initialize a Grid by using data attrib
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

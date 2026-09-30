@@ -2,6 +2,7 @@
 title: 100% Stacked and Grouped Bars
 page_title: 100% Stacked and Grouped Bars
 description: "Learn how to use the 100% Stacked and Grouped Bars of Telerik UI Bar Charts component for {{ site.framework }}."
+components: ["chart"]
 slug: barcharts_aspnetcore_htmlhelper_stacked100_and_grouped_bars
 ---
 
@@ -168,7 +169,7 @@ The following implementation demonstrates the code needed for setting the 100% S
 
 Overview of the 100% Stacked and Grouped Bars:
 
-![{{ site.product_short }} Stacked and Grouped Bars](images/groupedStacked100Bars.png)
+![{{ site.product_short }} Chart Stacked and Grouped Bars](images/groupedStacked100Bars.png)
 
 ## See Also
 * [Basic Usage of Bar Charts {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/bar-charts)

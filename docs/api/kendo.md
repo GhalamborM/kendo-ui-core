@@ -1,0 +1,2459 @@
+---
+title: kendo
+page_title: API Reference for methods and properties in Kendo UI Framework
+description: Examples and detailed explanation of Kendo UI methods and properties.
+previous_url: /api/introduction
+res_type: api
+---
+
+# kendo
+
+## Methods
+
+### alert
+Opens a [Kendo UI Alert](/api/ui/alert) popup. Similar to the native [window.alert()](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) method.
+
+
+<div class="meta-api-description">
+How do I display an alert message in a Kendo UI popup? Display a modal popup or dialog to show alert messages, notifications, or warnings that require user acknowledgment, similar to native browser alert functions; control, trigger, or invoke simple popup dialogs with an OK button for confirmations, information, or error messages; programmatically open modal alert windows for notifications, blocking interaction until users confirm by clicking OK, enabling straightforward message display, alerts, or prompts within applications.
+</div>
+
+#### Example - Open a Kendo UI Alert on the page
+
+    <script>
+        kendo.alert("This is an alert popup!");
+    </script>
+
+#### Parameters
+
+##### text `String`
+
+The text to be shown in the Alert popup.
+
+### antiForgeryTokens
+Returns an object that contains common
+[CSRF tokens](https://owasp.org/www-community/attacks/csrf)
+found on the page.
+
+These include tokens used by ASP.NET, Ruby on Rails and others.
+
+
+<div class="meta-api-description">
+How do I include CSRF tokens in AJAX requests with Kendo UI? Retrieve and manage cross-site request forgery tokens for secure AJAX calls or form submissions by accessing a collection of anti-forgery token names and values extracted automatically from the web page, enabling seamless inclusion of CSRF tokens in request headers or payloads to prevent unauthorized actions; supports tokens from common frameworks such as ASP.NET, Ruby on Rails, and similar security mechanisms to configure, enable, or set protection against CSRF attacks in client-server interactions.
+</div>
+
+#### Example - Send CSRF tokens in DataSource read request
+
+    <input type="hidden" name="__RequestVerificationToken" value="token" />
+    <script>
+    var dataSource = new kendo.data.DataSource({
+      transport: {
+        read: {
+          url: "https://demos.telerik.com/service/v2/core/products",
+          data: function() {
+            return kendo.antiForgeryTokens();
+          }
+        }
+      }
+    });
+
+    dataSource.fetch();
+    // check the request in the NetworkTab
+    </script>
+
+#### Returns
+`Object` An object that contains common CSRF tokens found on the page
+
+### bind
+Binds a HTML View to a View-Model and initializes Kendo UI widgets from DOM elements based on `data-role` attributes, similar to [`kendo.init()`](/api/kendo/methods/init).
+
+Model View ViewModel ([MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel)) is a design pattern which helps developers separate the Model from the View. The View-Model part of MVVM is responsible for
+exposing the data objects from the Model in such a way that those objects are easily consumed in the View.
+
+
+<div class="meta-api-description">
+How do I enable automatic data binding between HTML views and models in Kendo UI for jQuery? Configure or enable automatic connection between HTML views and data models by linking UI components to underlying data structures and event handlers, allowing declarative binding of elements marked with specific roles to relevant widgets, ensuring dynamic synchronization between model and interface, supporting initialization and updating of UI elements based on the view-model’s properties, methods, and observable data changes, facilitating MVVM patterns by scanning the DOM to activate interactive components with data binding and event wiring, making it possible to set up two-way data communication and initialize UI widgets dynamically from structured data definitions.
+</div>
+
+#### Example - bind a DOM element to a view model
+
+     <!-- View -->
+     <div id="view">
+       <!-- The value of the INPUT element is bound to the "firstName" field of the View-Model.
+       When the value changes so will the "firstName" field and vice versa.  -->
+       <label>First Name:<input data-bind="value: firstName" /></label>
+       <!-- The value of the INPUT element is bound to the "lastName" field of the View-Model.
+       When the value changes so will the "lastName" field and vice versa.   -->
+       <label>Last Name:<input data-bind="value: lastName" /></label>
+       <!-- The click event of the BUTTON element is bound to the "displayGreeting" method of the View-Model.
+       When the user clicks the button the "displayGreeting" method will be invoked.  -->
+       <button data-bind="click: displayGreeting">Display Greeting</button>
+     </div>
+     <script>
+       // View-Model
+       var viewModel = kendo.observable({
+          firstName: "John",
+          lastName: "Doe",
+          displayGreeting: function() {
+              // Get the current values of "firstName" and "lastName"
+              var firstName = this.get("firstName");
+              var lastName = this.get("lastName");
+              alert("Hello, " + firstName + " " + lastName + "!!!");
+          }
+       });
+
+       // Bind the View to the View-Model
+       kendo.bind($("#view"), viewModel);
+     </script>
+
+#### Parameters
+
+##### element `String|jQuery|Element`
+
+The root element(s) from which the binding starts. Can be a valid jQuery string selector, a DOM element or a jQuery object.
+All descendant elements are traversed.
+
+##### viewModel `Object|kendo.data.ObservableObject`
+
+The View-Model which the elements are bound to. Wrapped as an instance of `kendo.data.ObservableObject` if not already.
+
+##### namespace `Object` *(optional)*
+
+Optional namespace to look in when instantiating Kendo UI widgets. The valid namespaces are `kendo.ui` and `kendo.dataviz.ui`. If omitted
+`kendo.ui` will be used. Multiple namespaces can be passed.
+
+### confirm
+Opens a [Kendo UI Confirm](/api/ui/confirm) popup. Similar to the native [window.confirm()](https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm) method.
+
+
+<div class="meta-api-description">
+How to implement a customizable confirmation dialog in Kendo UI for jQuery? Open or trigger a customizable modal confirmation popup to display messages and capture user responses such as OK or Cancel, providing a promise-based interface for handling confirmation or cancellation outcomes through asynchronous callbacks, enabling dialog control similar to native confirm dialogs but with enhanced styling and interaction options for managing user decisions, confirmations, or prompts in web applications.
+</div>
+
+#### Example - Open a Kendo UI Confirm on the page
+
+    <script>
+        kendo.confirm("Confirm text");
+    </script>
+
+#### Parameters
+
+##### text `String`
+
+The text to be shown in the Confirm popup.
+
+#### Returns
+
+`Promise` a [jQuery promise instance](https://api.jquery.com/Types/#Promise), which can be used for callbacks, or passed to [jQuery.when](https://api.jquery.com/jQuery.when/). The jQuery Deferred object resolves to:
+
+* `done()` - when user has pressed the "OK" button;
+* `fail()` - when user has pressed the "Cancel" button.
+
+#### Example
+
+    <script>
+        kendo.confirm("Confirm text")
+            .done(function(){
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+                console.log("User accepted");
+            })
+            .fail(function(){
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+                console.log("User rejected");
+            });
+    </script>
+
+### culture
+
+Sets or gets the current culture. Uses the passed culture name to select a culture from the culture scripts that you have included and then sets the current culture.
+If there is no corresponding culture then the method will try to find culture which is equal to the country part of the culture name.
+If no culture is found the default one is used.
+
+> The culture must be set before any Kendo UI widgets that rely on it, are initialized.
+
+
+<div class="meta-api-description">
+How do I set the locale for Kendo UI widgets? Configure or retrieve the current locale or regional settings to control number formats, date formats, currency symbols, and parsing behaviors for UI components; set the language and cultural preferences using standard culture codes or language tags to ensure proper localization and formatting across widgets; automatically fall back to country-specific or default locales when exact matches are unavailable; manage and switch localization dynamically before initializing interface elements dependent on culture settings, enabling comprehensive internationalization support, formatting customization, and culture-aware data display in applications.
+</div>
+
+#### Example -  include a culture-specific JavaScript file and set the culture
+    <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/cultures/kendo.culture.en-GB.min.js"></script>
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.format("{0:c}", 99)); // outputs "$99.00" using the default en-US culture
+      kendo.culture("en-GB"); // change the culture
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.format("{0:c}", 99)); // outputs "£99.00"
+    </script>
+
+#### Get the current culture
+    <script>
+    var culture = kendo.culture();
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(culture.name); // outputs "en-US"
+    </script>
+
+#### Parameters
+
+##### culture `String`
+
+The culture to set.
+
+### destroy
+
+Finds all Kendo widgets that are children of the specified element and calls their destroy method.
+
+
+<div class="meta-api-description">
+How do I properly remove all Kendo UI components from a specific DOM element to prevent memory leaks? Remove or clean up all Kendo UI components inside a specific DOM element by finding every child widget or instance and triggering their destruction processes, including unbinding event listeners, releasing resources, clearing internal data, and fully tearing down Kendo-related elements to prevent memory leaks and ensure proper cleanup during component removal, page updates, or dynamic UI changes.
+</div>
+
+#### Example
+
+    <input id="autocomplete">
+    <script>
+    $("#autocomplete").kendoAutoComplete();
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log($("#autocomplete").data("kendoAutoComplete") != null); // outputs "true"
+      kendo.destroy(document.body);
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log($("#autocomplete").data("kendoAutoComplete") != null); // outputs "false"
+    </script>
+
+#### Parameters
+
+##### element `String|jQuery|Element`
+
+### format
+
+Replaces each format item in a specified string with the text equivalent of a corresponding object's value. Uses [toString](/api/kendo/methods/tostring) for every format item.
+
+
+<div class="meta-api-description">
+How to replace placeholders in strings with object properties using Kendo UI format method? Format strings by substituting placeholders with object properties or values, enabling dynamic text rendering, string interpolation, composing user-facing messages, or binding data into templates. Convert objects to strings using automatic stringification, replace indexed format tokens, control how variables appear in output text, and customize formatted output by injecting values into template strings. This covers scenarios like string templating, data-binding in UI components, generating dynamic messages, and transforming object data into readable text formats for display or logging purposes.
+</div>
+
+#### Parameters
+
+##### format `String`
+The format string.
+
+#### Returns
+`String` The formatted string.
+
+#### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.format("{0} - {1}", 12, 24));  // outputs "12 - 24"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.format("{0:c} - {1:c}", 12, 24)); // outputs "$12.00 - $24.00"
+    </script>
+
+#### See Also
+
+[Supported number formats](/framework/globalization/numberformatting)
+
+### guid
+
+Generates a random GUID (globally unique identifier).
+
+
+<div class="meta-api-description">
+How do I generate unique IDs for my Kendo UI elements? Generate unique global identifiers, random GUID strings, or universally unique IDs for DOM elements, data objects, client tokens, session keys, or correlation IDs using a method that creates collision-resistant identifiers suitable for client-side models, temporary keys, and request validation. This functionality supports producing distinct alphanumeric strings to enable unique element IDs, secure data record keys, or any scenario requiring guaranteed uniqueness across sessions or components. Configure, call, or generate unique random identifiers that follow standard GUID formats to ensure consistent, non-repeating identifiers for front-end applications and asynchronous operations.
+</div>
+
+#### Example
+    <script>
+    var value = kendo.guid();
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(value);
+    </script>
+
+#### Returns
+
+`String` The generated GUID.
+
+### htmlEncode
+
+Encodes HTML characters to entities.
+
+
+<div class="meta-api-description">
+How to prevent XSS vulnerabilities when inserting user input into a Kendo UI template? Convert or escape user input text by encoding HTML special characters like less-than, greater-than, ampersand, quotes, and apostrophes into safe HTML entities to prevent raw HTML injection, XSS vulnerabilities, and rendering issues when inserting dynamic content into the DOM; control or serialize strings for safe binding, template rendering, innerHTML or textContent updates, sanitize text inputs, and ensure that all embedded user-generated or external data is properly escaped to avoid unintended HTML parsing or script execution in web components or UI frameworks.
+</div>
+
+#### Example
+    <script>
+    var value = kendo.htmlEncode("<span>Hello</span>");
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(value);
+    </script>
+
+#### Parameters
+
+##### value `String`
+
+The string that needs to be HTML encoded.
+
+#### Returns
+
+`String` The encoded string.
+
+### init
+
+Instantiates Kendo UI widgets in a given DOM element based on role data attributes.
+
+
+<div class="meta-api-description">
+How do I dynamically initialize Kendo UI components in a container element? Initialize or set up UI components dynamically within a specific container element by scanning its descendants for data attributes or roles that declare components; programmatically enable, configure, or instantiate widgets inside a chosen DOM node to create interactive elements from markup or injected HTML content, supporting scenarios where components need to be initialized after DOM updates, partial page renders, or dynamic content injection by searching for relevant attributes to automatically generate the appropriate UI controls.
+</div>
+
+#### Example
+     <div id="view">
+        <div>
+            <input data-role="autocomplete" data-source="data" data-filter="startswith" data-placeholder="select country ..." />
+        </div>
+     </div>
+     <script>
+     var data = [ "Albania", "Andorra", "Armenia", "Austria", "Azerbaijan", "Belarus", "Belgium", "Bosnia & Herzegovina", "Bulgaria", "Croatia", "Cyprus"  ];
+
+     kendo.init($("#view"));
+     </script>
+
+#### Parameters
+
+##### element `String|jQuery|Element`
+
+The root element(s) from which the instantiation starts. Can be a valid jQuery string selector, a DOM element or a jQuery object. All descendant elements are traversed.
+
+##### namespace `Object` *(optional)*
+
+Optional namespace too look in when instantiating Kendo UI widgets. The valid namespaces are `kendo.ui` and `kendo.dataviz.ui`. If omitted
+`kendo.ui` will be used. Multiple namespaces can be passed.
+
+#### Example
+
+     <div id="view">
+        <div>
+            <input data-role="autocomplete" data-source="data" data-filter="startswith" data-placeholder="select country ..." />
+            <button data-role="button" data-click="foo">Foo</button>
+        </div>
+     </div>
+
+     <script>
+     function foo(e) {
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+         console.log(e.sender); // a button
+     }
+     var data = [ "Albania", "Andorra", "Armenia", "Austria", "Azerbaijan", "Belarus", "Belgium", "Bosnia & Herzegovina", "Bulgaria", "Croatia", "Cyprus"  ];
+
+     kendo.init($("#view"), kendo.ui);
+     </script>
+     
+### mediaQuery
+
+Enables you to handle media queries in JavaScript using the [MediaQueryList](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList) object. The method returns an object with the `mediaQueryList` field and the `onChange`, `onEnter`, `onLeave`, and `destroy` methods. The `onChange`, `onEnter` and `onLeave` methods accepts a callback function that will be executed when the media query is matched or not matched. The callback function will be passed a single argument - the [MediaQueryListEvent](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListEvent) instance and return the `mediaQuery` object that enables you to pipe more handlers.
+
+The `onChange` method will be executed when the media query is matched or not matched. The `onEnter` method will be executed when the media query is matched and when the `mediaQuery` is initialized and media is matched. The `onLeave` method will be executed when the media query is not matched.
+
+The `destroy` method will remove the event listeners and destroy the `MediaQueryList` instance. Note that developers should call the `destroy` method when the media query is no longer needed.
+
+You can modify the default [`media queries`](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries) for the adaptive components by modifying the breakpoints defined in `kendo.defaults.breakpoints`. The default break points are defined as:
+
+`kendo.defaults.breakpoints = { small: '(max-width: 700px)', medium: '(min-width: 700.1px) and (max-width: 768px)', large: '(min-width: 768.1px)' }`
+
+
+<div class="meta-api-description">
+How do I use Kendo UI's mediaQuery method to detect changes in screen width? Manage responsive design with JavaScript media query handling that enables detecting viewport or device width changes, triggering callbacks when a media query matches, stops matching, or initializes in matched state. Configure event listeners for entering, leaving, or changing media query conditions, with support for chaining handlers and cleanly removing listeners when no longer needed. Customize or override default breakpoint definitions for small, medium, and large screen sizes to adapt UI components dynamically based on screen width ranges. Monitor media query status with emitted events, enabling fine-grained control over responsive behavior, layout adjustments, or feature toggling as device characteristics shift.
+</div>
+
+#### Parameters
+
+##### media `String`
+
+The media query that will create the [MediaQueryList instance](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList).
+
+#### Returns
+
+`Object` with the `mediaQueryList` field and the `onChange`, `onEnter`, `onLeave` and `destroy` methods.
+
+#### Example - Using a string
+
+    <script>
+        const mediaQueryListener = kendo.mediaQuery('(max-width: 500px)')
+                                    .onEnter(() => {
+                                        console.log('entered 500px width');
+                                    });
+    </script>
+
+#### Example - Piping more handlers
+
+    <script>
+        const mediaQueryListener = kendo.mediaQuery('(min-width: 500px) and (max-width: 1000px)')
+                                    .onChange(() => {
+                                        console.log('changed screen width between 500px and 1000px');
+                                    })
+                                    .onEnter(() => {
+                                        console.log('entered screen width between 500px and 1000px');
+                                    })
+                                    .onEnter(() => {
+                                        // some other logic
+                                    })
+                                    .onLeave(() => {
+                                        console.log('left screen width between 500px and 1000px');
+                                    });
+    </script>
+
+#### Example - Destroying the media query listener
+
+    <script>
+        const mediaQueryListener = kendo.mediaQuery('(min-width: 500px) and (max-width: 1000px)')
+                                    .onEnter(() => {
+                                        console.log('entered screen width between 500px and 1000px');
+                                    });
+
+        mediaQueryListener.destroy();
+    </script>
+
+#### Example - Modify the default breakpoints for the adaptive components
+
+```dojo
+    <input id="dropdownlist"/>
+    <script>
+      let defaultBreakpoints = {
+        small: '(max-width: 2000px)',
+        medium: '(min-width: 2000px) and (max-width: 2800px)',
+        large: '(min-width: 2800px)'
+      }
+
+      kendo.setDefaults('breakpoints', defaultBreakpoints);
+
+      $("#dropdownlist").kendoDropDownList({
+        adaptiveMode:"auto",
+        dataSource: ["Item1", "Item2"],
+        value: "Item1"
+      });
+    </script>
+```
+
+
+### observableFileManagerData
+
+Creates an ObservableArray instance that is bound to a FileManagerDataSource. Required to bind a FileManagerDataSource-enabled widget (such as the Kendo UI FileManager) to a view-model.
+
+
+<div class="meta-api-description">
+How to synchronize file manager data with a view model in Kendo UI? Connect and synchronize file manager data with a view model by creating an observable data source that supports two-way binding and event-driven updates, enabling seamless integration between file management components and MVVM frameworks; configure, set up, or enable dynamic data synchronization so file lists, folders, and metadata stay in sync with your UI model, supporting scenarios like binding file explorer contents, reflecting file changes in real time, and updating views automatically as files are added, removed, or modified through an observable array or reactive data structure designed for file system integration in UI frameworks.
+</div>
+
+#### Example
+
+    <div id="example">      
+        <div name="files"               
+            data-role="filemanager"              
+            data-bind="source: localData"></div>
+    </div>
+    <script>
+        var myData = [{
+            name: "Folder",
+            isDirectory: true,
+            hasDirectories: false,
+            path: "Folder",
+            extension: "",
+            size: 0,
+            createdUtc: new Date(),
+            items: [
+                {
+                    name: "Image.jpg",
+                    isDirectory: false,
+                    hasDirectories: false,
+                    path: "Folder/Image.jpg",
+                    extension: ".jpg",
+                    size: 20,
+                    createdUtc: new Date(),
+                },
+                {
+                    name: "Image2.jpg",
+                    isDirectory: false,
+                    hasDirectories: false,
+                    path: "Folder/Image2.jpg",
+                    extension: ".jpg", 
+                    size: 20,
+                    createdUtc: new Date(),
+                }
+            ]}
+        ];
+        
+        var viewModel = kendo.observable({        
+            localData: kendo.observableFileManagerData(myData),
+        });
+
+        kendo.bind($("#example"), viewModel);
+    </script>
+
+#### Parameters
+
+##### array `Array`
+
+The array that will be converted to an ObservableArray.
+
+
+### observableHierarchy
+
+Creates an ObservableArray instance that is bound to a HierarchicalDataSource. Required to bind a HierarchicalDataSource-enabled widget (such as the Kendo UI TreeView) to a view-model.
+
+
+<div class="meta-api-description">
+How to create an observable collection from hierarchical data in Kendo UI? Create or generate an observable collection that reflects hierarchical or tree-structured data, converting nested data sources into observable arrays that maintain parent-child connections, enabling real-time updates, data binding, synchronization, and change tracking between hierarchical data sources and user interface components like tree views or nested lists. This method supports configuring observable data models from hierarchical datasets, facilitating the integration of structured, multi-level data into reactive view models for dynamic UI updates, binding data with parent-child relationships, and handling changes in nested collections automatically.
+</div>
+
+#### Example
+
+    <div data-role="treeview" data-bind="source: products"></div>
+    <script>
+    var viewModel = kendo.observable({
+      products: kendo.observableHierarchy([
+        {
+          text: "foo",
+          items: [
+            { text: "bar" }
+          ]
+        },
+        { text: "baz" }
+       ])
+    });
+    kendo.bind(document.body, viewModel);
+    </script>
+
+#### Parameters
+
+##### array `Array`
+
+The array that will be converted to an ObservableArray.
+
+### parseDate
+
+Parses as a formatted string as a `Date`. Also see [Date Parsing](/framework/globalization/dateparsing)
+
+
+<div class="meta-api-description">
+How do I convert a date string to a JavaScript Date object using Kendo.parseDate? Convert formatted date strings into JavaScript Date objects by parsing various user inputs, binding date values, or normalizing dates within applications; handle diverse date string formats, localized date inputs, custom date representations, and flexible parsing scenarios to reliably transform text-based dates into usable Date instances for processing, validation, or display in web development environments.
+</div>
+
+#### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseDate("2013/3/4 10:00 AM")); // outputs "Mon Mar 04 2013 10:00:00"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseDate("3/4/2013", "MM/dd/yyyy")); // outputs "Mon Mar 04 2013 00:00:00"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseDate("invalid")); // outputs "null"
+    </script>
+
+#### Parameters
+
+##### value `String`
+
+The string which should be parsed as `Date`.
+
+##### formats `String|Array` *(optional)*
+
+The format(s) that will be used to parse the date. If you do not explicitly state a date parsing format, the [standard date formats](/framework/globalization/dateformatting#standard) of the current culture will apply.
+
+For more information on the custom date parsing formats, refer to [this article](/framework/globalization/dateformatting#custom).
+
+##### culture `String` *(optional)*
+
+The culture used to parse the number. The current culture is used by default.
+
+#### Returns
+
+`Date` the parsed date. Returns `null` if the value cannot be parsed as a valid `Date`.
+
+### parseExactDate
+
+Parses a formatted string as a `Date`. The method returns `null` if the string doesn't match the format exactly. Also see [Date Parsing](/framework/globalization/dateparsing)
+
+
+<div class="meta-api-description">
+How do I convert date strings into JavaScript Date objects with exact format matching in Kendo UI? Convert date strings into JavaScript Date objects using strict, exact format matching that respects culture-specific date patterns, tokenized or custom-formatted inputs, precise date parsing, and format validation that returns null when the string does not conform exactly. This method enables setting, configuring, or enforcing exact date formats for reliable date conversion, ensuring no loose or fuzzy parsing errors, useful for localized date strings or scenarios where format precision and accurate date interpretation are critical.
+</div>
+
+#### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseExactDate("2013/3/4 10:00 AM")); // outputs "Mon Mar 04 2013 10:00:00"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseExactDate("3/4/2013", "MM/dd/yyyy")); // outputs "Mon Mar 04 2013 00:00:00"
+      // When the format is not matched, null is returned
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseExactDate("3/4/2013", "MM/dd/yy")); // outputs "null"
+      // Unlike kendo.parseDate, which tries to parse the string even though it's a different format:
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseDate("3/4/2013", "MM/dd/yy")); // Wed Mar 04 2020 00:00:00 GMT+0200"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseExactDate("invalid")); // outputs "null"
+    </script>
+
+#### Parameters
+
+##### value `String`
+
+The string which should be parsed as `Date`.
+
+##### formats `String|Array` *(optional)*
+
+The format(s) that will be used to parse the date. If you do not explicitly state a date parsing format, the [standard date formats](/framework/globalization/dateformatting#standard) of the current culture will apply. If you state a format, and the date string doesn't match the format exactly, `null` is returned.
+
+For more information on the custom date parsing formats, refer to [this article](/framework/globalization/dateformatting#custom).
+
+##### culture `String` *(optional)*
+
+The culture used to parse the number. The current culture is used by default.
+
+#### Returns
+
+`Date` the parsed date. Returns `null` if the value cannot be parsed as a valid `Date`.
+
+### parseFloat
+
+Parses a string as a floating point number.
+
+
+<div class="meta-api-description">
+How to convert string inputs into decimal numbers in Kendo UI? Convert string inputs, text values, JSON data, or user-entered numeric strings into decimal numbers, float values, or JavaScript floating-point types for calculations, sorting, filtering, comparisons, and data processing; parse textual or formatted numeric strings into precise floating-point numbers, enabling robust handling of numeric conversions, data binding, validation, and mathematical operations in JavaScript environments.
+</div>
+
+#### Example
+
+    <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/cultures/kendo.culture.de-DE.min.js"></script>
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseFloat("12.22")); // outputs "12.22"
+      kendo.culture("de-DE");
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseFloat("1.212,22 €")); // outputs "1212.22"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseFloat("invalid")); // outputs "null"
+    </script>
+
+#### Returns
+
+`Number` the parsed number. Returns `null` if the value cannot be parsed as a valid `Number`.
+
+#### Parameters
+
+##### value `String`
+
+The string which should be parsed as a `Number`.
+
+##### culture `String` *(optional)*
+
+The culture used to parse the number. The current culture is used by default.
+
+### parseInt
+
+Parses as a string as an integer.
+
+
+<div class="meta-api-description">
+How do I convert string values to integers using Kendo UI? Convert numeric strings to integers, parse string values into whole numbers, cast text-based numbers to integer format, enable string-to-integer transformation for data processing, form input validation, client-side calculations, and numeric conversion tasks, supporting scenarios where text containing digits needs to be interpreted and used as integer values in programming, binding, or numeric operations.
+</div>
+
+#### Example
+
+    <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/cultures/kendo.culture.de-DE.min.js"></script>
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseInt("12.22")); // outputs "12"
+      kendo.culture("de-DE");
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseInt("1.212,22 €")); // outputs 1212
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.parseInt("invalid")); // outputs "null"
+    </script>
+
+#### Returns
+
+`Number` the parsed number. Returns `null` if the value cannot be parsed as a valid `Number`.
+
+#### Parameters
+
+##### value `String`
+
+The string which should be parsed as `Number`.
+
+##### culture `String` *(optional)*
+
+The culture used to parse the number. The current culture is used by default.
+
+### parseColor
+
+Parse a color string to a Color object.  If the input is not valid throws an Error, unless the `noerror` argument is given.
+
+
+<div class="meta-api-description">
+How can I convert CSS color strings to standardized color objects in JavaScript? Convert, parse, decode, or normalize CSS color strings including hex codes, rgb, rgba, hsl, hsla, and named colors into standardized color objects for comparison, manipulation, or transformation. Enable error handling control to suppress exceptions when invalid color inputs occur, support validation of color formats for consistent color processing, and facilitate color conversion workflows in JavaScript environments. Use for extracting color data from strings, validating user input colors, or preparing colors for rendering, styling, or animation by generating reliable, uniform color representations.
+</div>
+
+#### Example
+
+    <script>
+    var red = kendo.parseColor("#ff0000");
+    </script>
+
+#### Parameters
+
+##### color `String`
+
+A string in one of the following (case-insensitive) CSS notations:
+
+- `#F00` (optionally without the sharp: `F00`)
+- `#FF0000` (optionally without the sharp: `FF0000`)
+- `rgb(255, 0, 0)`
+- `rgba(255, 0, 0, 1)`
+
+Particularly if this argument is `null` or the string `"transparent"` then this function will return `null`.
+
+##### noerror `Boolean`*(default: false)*
+
+If you pass `true` then this function will return `undefined` rather than throwing an error on invalid input.
+
+#### Returns
+
+`kendo.Color` A Color object.
+
+### prompt
+Opens a [Kendo UI Prompt](/api/ui/prompt) popup. Similar to the native [window.prompt()](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt) method.
+
+
+<div class="meta-api-description">
+How do I create a modal input dialog with Kendo UI's prompt function? Display a modal input dialog or popup that requests text input from the user, similar to the native prompt function but styled consistently with custom UI components, enabling developers to show a quick, interactive text box, gather user responses, capture typed values, and control modal dialogs for prompt interactions within their applications, with options to open, configure, and handle user input in a blocking or asynchronous manner.
+</div>
+
+#### Example - Open a Kendo UI Prompt on the page
+
+    <script>
+        kendo.prompt("Prompt text", "Default input text");
+    </script>
+
+#### Parameters
+
+##### text `String`
+
+The text to be shown in the Prompt popup.
+
+#### Parameters
+
+##### defaultValue `String`
+
+The default value that will be shown in the popup's input.
+
+#### Returns
+
+`Promise` a [jQuery promise instance](https://api.jquery.com/Types/#Promise), which can be used for callbacks, or passed to [jQuery.when](https://api.jquery.com/jQuery.when/). The jQuery Deferred object resolves to:
+
+* `done()` - when user has pressed the "OK" button and the `data` passed to the callback is the inputted text;
+* `fail()` - when user has pressed the "Cancel" button and the `data` passed to the callback is the inputted text.
+
+#### Example
+
+    <script>
+        kendo.prompt("Prompt text", "Default input text")
+            .done(function(data){
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+                console.log("User accepted with text: " + data);
+            })
+            .fail(function(data){
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+                console.log("User rejected with text: " + data);
+            });
+    </script>
+
+### proxyModelSetters
+
+Creates a wrapper object over the passed one, with get/set properties that set the original object `dirty` flag. Suitable for a scenario where a dataSource item is used in a third-party MVVM implementation, like AngularJS.
+
+
+<div class="meta-api-description">
+How to enable two-way binding with Kendo UI using proxy model setters? Enable synchronization between Kendo data items and external MVVM frameworks by creating wrapper objects that expose getter and setter properties for existing model items, automatically tracking changes and marking data as modified when values update; this ensures integration with third-party libraries like AngularJS by supporting two-way binding, change detection, data modification tracking, and consistent data source synchronization through proxying model setters.
+</div>
+
+#### Example
+
+    <script>
+    var dataSource = new kendo.data.DataSource({
+        data: [
+            { id: 1, name: "John Doe", age: 30 },
+            { id: 2, name: "Jane Smith", age: 25 }
+        ],
+        schema: {
+            model: {
+                id: "id",
+                fields: {
+                    name: { type: "string" },
+                    age: { type: "number" }
+                }
+            }
+        }
+    });
+
+    dataSource.read();
+    var model = dataSource.get(1);
+    var proxy = kendo.proxyModelSetters(model);
+    
+    // Changes to the proxy will mark the model as dirty
+    proxy.name = "Updated Name";
+    console.log(model.dirty); // true
+    </script>
+
+#### Parameters
+
+##### data `kendo.data.Model`
+
+The model that will be wrapped.
+
+### render
+
+Renders the specified template using the provided array.
+
+
+<div class="meta-api-description">
+How do I use Kendo UI's render method to dynamically generate HTML from a data array? Generate dynamic HTML output by applying templates to arrays or collections of data, enabling iteration over multiple items to produce repeated or batch-rendered markup. Configure or set rendering of template-driven content from data arrays, bind collections to templates for consistent output, and control how data items are transformed into HTML strings or fragments using flexible template execution methods. Enable automated rendering of lists, grids, or repeated structures by processing arrays with templates to create customized, data-bound markup efficiently.
+</div>
+
+#### Example
+    <ul></ul>
+    <script>
+    var template = kendo.template("<li>#: name #</li>");
+    var data = [ { name: "John Doe" }, { name: "Jane Doe" }];
+    var html = kendo.render(template, data);
+    $("ul").html(html);
+    </script>
+
+#### Parameters
+
+##### template `Function`
+
+The Kendo UI template which should be rendered. Create one via the [template](/api/kendo/methods/template) method.
+
+##### data `Array`
+
+The array of objects which contains the data that the template will render.
+
+### resize
+
+Finds all Kendo widgets that are children of the specified element and calls their `resize` method.
+
+
+<div class="meta-api-description">
+How do I force Kendo UI widgets to resize after window resizing in my application? Trigger or invoke layout recalculations and dimension updates on nested UI components after container resizing, DOM changes, or dynamic content modifications; force descendant widgets or elements to reflow, redraw, and adjust their sizes without full reinitialization, enabling responsive adjustments following AJAX content loads, manual DOM manipulations, or window resizing events; control child component resizing behavior, refresh their layouts, and ensure proper rendering and alignment in updated containers or changed viewports.
+</div>
+
+#### Example
+
+    <div class="chart-wrapper">
+       <div id="chart" style="width:100%"></div>
+    </div>
+    <script>
+        $(function() {
+            $("#chart").kendoChart({
+                title: {
+                    text: "Gross domestic product growth /GDP annual %/"
+                },
+                legend: {
+                    position: "bottom"
+                },
+                seriesDefaults: {
+                    type: "area"
+                },
+                series: [{
+                    name: "India",
+                    data: [3.907, 7.943, 7.848, 9.284, 9.263, 9.801, 3.890, 8.238, 9.552, 6.855]
+                }],
+                valueAxis: {
+                    labels: {
+                        format: "{0}%"
+                    },
+                    line: {
+                        visible: false
+                    },
+                    axisCrossingValue: -10
+                },
+                categoryAxis: {
+                    categories: [2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011],
+                    majorGridLines: {
+                        visible: false
+                    }
+                },
+                tooltip: {
+                    visible: true,
+                    format: "{0}%",
+                    template: "#= series.name #: #= value #"
+                }
+            });
+        });
+
+        $(window).on("resize", function() {
+          kendo.resize($(".chart-wrapper"));
+        });
+    </script>
+
+#### Parameters
+
+##### element `String|jQuery|Element`
+
+##### force `Boolean`*(default: false)*
+
+Determines whether the resizing routine should be executed even if the respective widget's outer dimensions have not changed. The parameter will be passed to the widget's `resize` method.
+
+### saveAs
+Saves a file with the specified name and content.
+A server "echo" proxy might be required, depending on browser capabilities.
+
+
+<div class="meta-api-description">
+How can I use saveAs in Kendo UI to download a dynamically generated file with a custom filename? Trigger file downloads or save generated files on the client side by configuring file names and content dynamically, enabling developers to export data, Blob objects, or binary streams as downloadable files across different browsers. Control file saving operations by specifying custom filenames, handling raw data payloads, and accounting for browser compatibility through optional server-side proxies or echo mechanisms to ensure the download completes smoothly regardless of environment. Enable exporting and downloading files directly from client-side scripts, streamlining saving processes for content generated within web apps, with flexibility to set file extensions, manage Blob data types, and support fallback strategies for browsers lacking native download support.
+</div>
+
+#### Parameters
+
+##### options `Object`
+Configuration options for the save operation.
+
+##### options.dataURI `String`
+The file contents encoded as a [Data URI](https://developer.mozilla.org/en-US/docs/Web/HTTP/data_URIs).
+
+Only base64-encoded Data URIs are supported.
+
+##### options.fileName `String`
+The desired file name.
+
+##### options.forceProxy `Boolean` *(default: false)*
+If set to true, the content will be forwarded to proxyURL even if the browser supports saving files locally.
+
+##### options.proxyURL `String` *(optional)*
+The URL of the server side proxy which will stream the file to the end user.
+
+A proxy will be used when the browser isn't capable of saving files locally.
+Such browsers are IE version 9 and lower and Safari.
+
+The developer is responsible for implementing the server-side proxy.
+
+When a proxy is used the `kendo.saveAs()` method includes any CSRF and anti-forgery tokens out of the box as long as they are present on the page. The logic internally uses the [`kendo.antiForgeryTokens()`](/api/kendo/methods/antiforgerytokens) method and adds that to the request data as it posts to the proxy.
+
+The proxy will receive a POST request with the following parameters in the request body:
+
+* `contentType`&mdash;This is the MIME type of the file.
+* `base64`&mdash;The `base-64`-encoded file content.
+* `fileName`&mdash;The file name as requested by the caller.
+* Any anti-forgery tokens if present on the page
+
+The proxy should return the decoded file with set `"Content-Disposition"` header.
+
+#### Example - Saving a text file
+    <script>
+        kendo.saveAs({
+            dataURI: "data:text/plain,Report title and text",
+            fileName: "report.txt"
+        });
+    </script>
+
+##### options.proxyTarget `String` *(default: "_self")*
+
+A name or keyword indicating where to display the document returned from the proxy.
+
+If you want to display the document in a new window or iframe,
+the proxy should set the "Content-Disposition" header to `inline; filename="<fileName.ext>"`.
+
+### setIcons
+
+Registers icon overrides globally or per component. The active `iconType` determines whether the override is rendered as an SVG or font icon.
+
+Overrides can be applied globally (affecting all components) or scoped to a specific component type. When scoped to a component, only instances of that component will use the overridden icon.
+
+
+<div class="meta-api-description">
+How do I replace or override SVG icons in Kendo UI components? Customize or swap SVG icons used by widgets globally or per component by providing a dictionary of icon names mapped to custom SVG icon objects containing name, viewBox, and content (SVG path data); configure icon replacements for specific components such as Grid, Menu, TreeView, or PanelBar by nesting overrides under the component name; apply custom branded icon sets, replace default chevrons, arrows, or action icons with organization-specific vector graphics across all Kendo UI widgets or target individual component types for selective icon customization.
+</div>
+
+#### Parameters
+
+##### dictionary `Object`
+
+An object whose keys are either icon names (for global overrides) or component names (for component-scoped overrides). Each value can be:
+
+* A **string** — the replacement icon name. In SVG mode it can reference a built-in Kendo UI SVG icon; in font mode it is used as the font icon name.
+* An **SVG icon object** with the following fields:
+    * `name` - The icon identifier (String).
+    * `viewBox` - The SVG viewBox attribute value (String), e.g. `"0 0 24 24"`.
+    * `content` - The SVG markup content (String), e.g. `"<path d='M8 5l8 7-8 7'/>"`.
+* A **nested object** mapping icon names to strings or SVG icon objects (for component-scoped overrides).
+#### Example - Override a specific icon globally using a built-in icon name
+
+    <script>
+        kendo.setIcons({
+            "chevron-right": "arrow-right"
+        });
+    </script>
+
+#### Example - Override icons for a specific component
+
+    <script>
+        kendo.setIcons({
+            grid: {
+                "chevron-right": "arrow-right"
+            },
+            menu: {
+                "chevron-right": "caret-alt-right",
+                "chevron-down": "caret-alt-down"
+            }
+        });
+    </script>
+
+#### Example - Override an icon with a custom SVG object
+
+    <script>
+        kendo.setIcons({
+            grid: {
+                "chevron-right": {
+                    name: "grid-chevron",
+                    viewBox: "0 0 24 24",
+                    content: '<path d="M8 5l8 7-8 7"/>'
+                }
+            }
+        });
+    </script>
+
+#### Example - Combine global and component-scoped overrides
+
+    <script>
+        kendo.setIcons({
+            // Global override - applies to all components
+            "plus": {
+                name: "custom-plus",
+                viewBox: "0 0 24 24",
+                content: '<path d="M12 2v20M2 12h20"/>'
+            },
+            // Component-scoped override - applies only to Grid
+            grid: {
+                "filter": {
+                    name: "grid-filter",
+                    viewBox: "0 0 24 24",
+                    content: '<path d="M3 4h18l-7 8v6l-4 2V12L3 4z"/>'
+                }
+            }
+        });
+    </script>
+
+### stringify
+
+Converts a JavaScript object to [JSON](https://en.wikipedia.org/wiki/JSON). Uses [JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) in browsers that support it.
+
+
+<div class="meta-api-description">
+How do I convert complex JavaScript objects to JSON strings using Kendo UI? Convert JavaScript objects, including nested structures, arrays, and primitive values, into JSON strings for serialization, data logging, API requests, or transferring data over networks; supports preparing objects for storage or transmission by encoding complex data into JSON format using the standard JSON serialization approach, leveraging browser-native JSON.stringify when present to ensure consistent and efficient string conversion usable in debugging, saving state, or sending structured data.
+</div>
+
+#### Parameters
+
+##### value `Object`
+
+The value to convert to a JSON string.
+
+#### Returns
+
+`String` The JSON representation of the value.
+
+#### Example
+
+    <script>
+    var json = kendo.stringify({ foo: "bar" });
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(json); // displays {"foo":"bar"}
+    </script>
+
+### template
+
+Compiles a template to a function that builds HTML. Useful when a template will be used several times.
+Templates offer way of creating HTML chunks. Options such as HTML encoding and compilation for optimal
+performance are available.
+
+
+<div class="meta-api-description">
+How do I compile a Kendo UI template into a JavaScript function to generate HTML output from input data? Generate reusable HTML snippets or dynamic markup by compiling templates into JavaScript functions that produce HTML output based on input data. Configure, set up, or enable template compilation for prebuilding reusable HTML chunks to enhance rendering efficiency, support data-driven markup generation, apply HTML encoding to secure output, and optimize template reuse across multiple UI components or views. Control how templates transform data into HTML strings for dynamic interfaces, leverage precompiled functions to reduce runtime overhead, and customize rendering logic with flexible templating approaches for consistent, maintainable HTML generation in web applications.
+</div>
+
+#### Example - Basic template
+
+    <span id="output"></span>
+    <script>
+    var template = kendo.template("Hello, #= firstName # #= lastName #");
+    var data = { firstName: "John", lastName: "Doe" };
+    $("#output").html(template(data));
+    </script>
+
+#### Example - encode HTML
+
+    <span id="output"></span>
+    <script>
+    var template = kendo.template("HTML tags are encoded: #: html #");
+    var data = { html: "<strong>lorem ipsum</strong>" };
+    $("#output").html(template(data));
+    </script>
+
+#### Example - use JavaScript in the template
+
+    <span id="output"></span>
+    <script>
+    var template = kendo.template("#if (foo) {# foo is true #}#");
+    var data = { foo: true };
+    $("#output").html(template(data));
+    </script>
+
+#### Example - escape sharp ("#") symbols in an inline template
+
+    <span id="output"></span>
+    <script>
+    var template = kendo.template("<a href='\\#'>link</a>");
+    $("#output").html(template({}));
+    </script>
+
+#### Example - escape sharp ("#") symbols in a template defined in a script element
+
+    <span id="output"></span>
+    <script type="text/x-kendo-template" id="template">
+    <a href="\#">link</a>
+    </script>
+    <script>
+    var template = kendo.template($("#template").html());
+    $("#output").html(template({}));
+    </script>
+
+#### Example - use a function in a template
+
+    <div id="example"></div>
+    <script id="javascriptTemplate" type="text/x-kendo-template">
+        <ul>
+        # for (var i = 0; i < data.length; i++) { #
+            <li>#= myCustomFunction(data[i]) #</li>
+        # } #
+        </ul>
+    </script>
+    <script type="text/javascript">
+        // Use a custom function inside the template and define it in the global JavaScript scope.
+        function myCustomFunction (str) {
+            return str.replace(".", " ");
+        }
+        // Get the external template definition by using a jQuery selector.
+        var template = kendo.template($("#javascriptTemplate").html());
+        // Create some dummy data.
+        var data = ["Todd.Holland", "Steve.Anglin", "Burke.Ballmer"];
+        var result = template(data); //Execute the template
+        $("#example").html(result); //Append the result
+    </script>
+
+#### Returns
+`Function` the compiled template as a JavaScript function. When called this function will return the generated HTML string.
+
+#### Parameters
+
+##### template `String`
+
+The template that will be compiled.
+
+##### options `Object` *(optional)*
+
+Template compilation options.
+
+##### options.paramName `String` *(default: "data")*
+
+The name of the parameter used by the generated function. Useful when `useWithBlock` is set to `false`.
+
+###### Example
+
+    var template = kendo.template("<strong>#: d.name #</strong>", { paramName: "d", useWithBlock: false });
+
+##### options.useWithBlock `Boolean` *(default: true)*
+
+Wraps the generated code in a `with` block. This allows the usage of unqualified fields in the template. Disabling the `with` block will improve
+the performance of the template.
+
+###### Example
+    var template = kendo.template("<strong>#: data.name #</strong>", { useWithBlock: false }); // Note that "data." is used to qualify the field
+
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(template({ name: "John Doe" })); // outputs "<strong>John Doe</strong>"
+
+### throttle
+
+Limits the number of calls to a function to one for a specified amount of time.
+
+
+<div class="meta-api-description">
+How can I limit the execution frequency of event handlers in Kendo UI for jQuery to prevent rapid triggers? Configure rate limiting and control execution frequency of functions or event handlers by applying throttling mechanisms that restrict calls to a maximum of one invocation per defined time interval, enabling you to manage debounce behavior, optimize performance by preventing rapid or repeated triggers of callbacks, limit function firing rate in scenarios like scroll, resize, or input events, and wrap original methods to ensure timely and efficient execution without overwhelming system resources.
+</div>
+
+#### Example
+
+    <script>
+      var throttled = kendo.throttle(function() {
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+          console.log("hey! " + new Date());
+      }, 100);
+
+      // will log two times "hey":
+      // (1) once for the first call
+      // (2) once for the last call, roughly 100ms after the first one
+      for (var i = 0; i < 10; i++) {
+          throttled();
+      }
+    </script>
+
+#### Parameters
+
+##### fn `Function`
+
+The function to be throttled.
+
+##### timeout `Number`
+
+The amount of time that needs to pass before a subsequent function call is made.
+
+#### Returns
+
+`Function` the throttled function
+
+### touchScroller
+
+Enables kinetic scrolling on touch devices
+
+
+<div class="meta-api-description">
+How do I enable kinetic scrolling on touch-enabled devices using Kendo UI's touchScroller method? Activate or configure smooth, kinetic, momentum-based scrolling for scrollable content on touch-enabled devices, enabling natural fling, swipe, pan, and deceleration effects to enhance user interactions. Implement touch-driven scroll behavior with methods that initialize and control momentum scrolling after component setup, supporting responsive gestures and fluid touch navigation on elements. Enable or manage touch momentum scrolling, kinetic swipe response, smooth deceleration, and flick scrolling to improve touch UX and control scrolling physics on mobile and tablet interfaces.
+</div>
+
+#### Example
+    <div id="scrollable" style="height: 200px">
+      Scrollable
+      <div style="height: 1000px">content</div>
+    </div>
+    <script>
+      kendo.touchScroller($("#scrollable"));
+    </script>
+
+#### Parameters
+
+##### element `String|jQuery|Element`
+
+The container element to enable scrolling for.
+
+### toString
+
+Formats a `Number` or `Date` using the specified format and the current culture.
+
+
+<div class="meta-api-description">
+How can I use Kendo UI's toString method to format a date in a culture-aware way? Format numbers or dates into localized strings using customizable format patterns, enabling developers to convert numeric values or date objects into readable text that respects current culture settings, regional formats, and internationalization preferences. This functionality supports configuring string output for currency, percentages, decimals, short or long date representations, and custom numeric patterns, helping to control how numeric and date data appear in user interfaces by applying culture-aware formatting rules and locale-specific symbols. Users often search for ways to display numbers or dates in a specific format, adjust output based on culture or locale, convert values to formatted strings, or implement internationalized number and date rendering in client-side applications.
+</div>
+
+#### Example
+    <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/cultures/kendo.culture.de-DE.min.js"></script>
+    <script>
+      // Format a number using standard number formats and default culture (en-US)
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(10.12, "n"));  // "10.12"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(10.12, "n0")); // "10"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(10.12, "n5")); // "10.12000"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(10.12, "c"));  // "$10.12"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(0.12, "p"));   // "12.00 %"
+
+      // Format a number using custom number formats
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(19.12, "00##")); // "0019"
+
+      // Format a number using standard number format and a specific culture de-DE (default culture is en-US)
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(10.12, "c", "de-DE")); // "10,12" €
+
+      // Format a date
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(new Date(2010, 9, 5), "yyyy/MM/dd" ));         // "2010/10/05"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(new Date(2010, 9, 5), "dddd MMMM d, yyyy" ));  // "Tuesday October 5, 2010"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(new Date(2010, 10, 10, 22, 12), "hh:mm tt" )); // "10:12 PM"
+    </script>
+
+#### Returns
+
+`String` the string representation of the formatted value.
+
+#### Parameters
+
+##### value `Date|Number`
+
+The `Date` or `Number` which should be formatted.
+
+##### format `String`
+
+The format string which should be used to format the value. [Number formatting](/framework/globalization/numberformatting) and [date formatting](/framework/globalization/dateformatting) depends on the current culture.
+
+##### culture `String` *(optional)*
+
+The name of the culture which should be used to format the value. [The culture should be registered on the page](/framework/globalization/overview#add culture scripts to the page).
+
+### unbind
+
+Unbinds a tree of HTML elements from a View-Model.
+
+
+<div class="meta-api-description">
+How do I stop Kendo UI from automatically updating a section of HTML elements? Remove or detach data bindings from a section of HTML elements to stop synchronization and automatic updates between the UI and its underlying data model, disconnecting view components from their bound data sources, disabling MVVM binding handlers and preventing further changes from propagating; useful for controlling or cleaning up dynamic interfaces, managing the lifecycle of bound elements, or resetting parts of a view to avoid stale data and ensure proper unbinding of model-view connections.
+</div>
+
+#### Example
+     <div id="view">
+       <label>First Name:<input data-bind="value: firstName" /></label>
+       <label>Last Name:<input data-bind="value: lastName" /></label>
+       <button data-bind="click: displayGreeting">Display Greeting</button>
+     </div>
+     <script>
+     var viewModel = kendo.observable({
+        firstName: "John",
+        lastName: "Doe",
+        displayGreeting: function() {
+            // Get the current values of "firstName" and "lastName"
+            var firstName = this.get("firstName");
+            var lastName = this.get("lastName");
+            alert("Hello, " + firstName + " " + lastName + "!!!");
+        }
+     });
+     kendo.bind($("#view"), viewModel);
+     // unbind the view model
+     kendo.unbind($("#view"));
+     </script>
+
+#### Parameters
+
+##### element `String|jQuery|Element`
+
+The root element(s) from which the unbinding starts. Can be a valid jQuery string selector, a DOM element or a jQuery object.
+All descendant elements are traversed.
+
+### unescape
+
+Decodes string from UTF-8 or a Unicode character set. Substitutes the native [`unescape`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/unescape) function, which should not be used according to the recommendations of the ECMA-262 standard.
+
+
+<div class="meta-api-description">
+How do I unescape encoded strings in JavaScript with Kendo UI? Convert encoded text by decoding percent-encoded strings, UTF-8 sequences, or Unicode escape patterns like \uXXXX back into readable characters; perform string unescaping, reversing URL encoding, or transforming escaped Unicode code points while replacing deprecated native unescape functions, handling character decoding, string normalization, and supporting safe parsing of encoded or escaped inputs in JavaScript and web applications.
+</div>
+
+#### Example
+    <script>
+        var result = kendo.unescape("This is a test: %97 %3f %D5 %e5 %U0107 %U123F %u39f5 %uDEe5");
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+        console.log(result);
+
+        var second = kendo.unescape("This is a test: %D1%88%D0%B5%D0%BB%D0%BB%D1%8B");
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+        console.log(second);
+    </script>
+
+#### Parameters
+
+##### value `String`
+
+The string that needs to be unescaped (decoded).
+
+#### Returns
+
+`String` The unescaped (decoded) string.
+
+### widgetInstance
+
+Returns a Kendo UI widget instance, attached to the provided element.
+This method can be used in scenarios when the page (e.g. a form) contains both generic HTML elements and Kendo UI widgets and the exact distribution is not clear.
+
+
+<div class="meta-api-description">
+How to get Kendo widget instance from an element? Retrieve or access the UI component instance linked to a specific element to inspect, interact with, or invoke methods on dynamic Kendo widgets embedded within pages mixing standard HTML and Kendo controls, enabling detection, state management, and manipulation of bound components regardless of uncertain layout or component distribution, facilitating queries like how to get or find widget references, obtain underlying objects, or call functions on Kendo elements within complex, mixed-content interfaces.
+</div>
+
+#### Parameters
+
+##### element `jQuery`
+
+The DOM element that may have a Kendo UI instance attached to it.
+
+##### suite `Object` *(optional)*
+
+**Optional**. The Kendo UI suite, that the widget is expected to be part of - `kendo.ui` (web widgets) or `kendo.dataviz.ui`. As of Q1 2014 you can also pass an array of suites.
+
+#### Returns
+
+`Object` The Kendo UI widget instance with all applicable methods and fields, if the instance is attached to the provided element.
+
+`undefined` otherwise
+
+#### Example - using kendo.widgetInstance()
+
+	// get element
+	var textbox = $("#myTextBox");
+	// get widget object
+	var widget = kendo.widgetInstance(textbox);
+	if (widget) {
+		// execute an API method
+		widget.value(/* ... */);
+	} else {
+		// execute generic jQuery method
+		textbox.val(/* ... */);
+	}
+
+## Fields
+
+### keys
+
+A dictionary of special keys' ASCII codes, which can be accessed by user-friendly names, instead of their numeric values.
+The collection includes only key codes, which are used by the Kendo UI widgets' source code.
+
+
+<div class="meta-api-description">
+How to identify keyboard events by name in Kendo UI for jQuery? Access and configure mappings between common keyboard key names and their corresponding numeric ASCII or key codes to identify, compare, or handle keyboard events in UI components, enabling detection of special keys like Enter, Escape, Arrow keys, and function keys by readable labels rather than raw numeric codes, facilitating keyboard event processing, custom shortcut implementation, and key event filtering across web applications using standardized key identification methods compatible with common event properties such as keyCode and which.
+</div>
+
+#### kendo.keys collection
+
+    kendo.keys = {
+        INSERT: 45,
+        DELETE: 46,
+        BACKSPACE: 8,
+        TAB: 9,
+        ENTER: 13,
+        ESC: 27,
+        LEFT: 37,
+        UP: 38,
+        RIGHT: 39,
+        DOWN: 40,
+        END: 35,
+        HOME: 36,
+        SPACEBAR: 32,
+        PAGEUP: 33,
+        PAGEDOWN: 34,
+        F2: 113,
+        F10: 121,
+        F12: 123,
+        NUMPAD_PLUS: 107,
+        NUMPAD_MINUS: 109,
+        NUMPAD_DOT: 110
+    }
+
+The key codes are especially helpful in keydown, keyup and keypress event handlers.
+
+#### Example
+
+    <input type="text" id="textbox" />
+    <script>
+    $("#textbox").on("keydown", function(e) {
+        // Check for specific keys using kendo.keys
+        if (e.keyCode === kendo.keys.ENTER) {
+            console.log("Enter key pressed");
+        } else if (e.keyCode === kendo.keys.ESC) {
+            console.log("Escape key pressed");
+            $(this).val("");
+        } else if (e.keyCode === kendo.keys.TAB) {
+            console.log("Tab key pressed");
+        } else if (e.keyCode === kendo.keys.DELETE || e.keyCode === kendo.keys.BACKSPACE) {
+            console.log("Delete or Backspace key pressed");
+        }
+    });
+    </script>
+
+#### kendo.keys usage example
+
+    function onMyKeyPress(e) {
+        // if ENTER key is pressed, do something
+        if (e.keyCode == kendo.keys.ENTER) {
+            // .....
+        }
+    }
+
+### support
+
+A range of useful supported by the current browser capabilities and features.
+
+<div class="meta-api-description">
+How to customize feature detection in Kendo UI for jQuery? Configure and control feature detection settings, capability queries, environment compatibility checks, and support options for various platforms and browsers. Enable or disable specific supports, customize adaptive behaviors based on detected features, manage fallback strategies for unsupported environments, and control how application functionality responds to differing runtime capabilities. Adjust detection mechanisms for device, browser, and API supports to ensure smooth operation and compatibility, improve responsiveness to platform differences, and fine-tune feature availability or polyfill application according to current support status.
+</div>
+
+#### Example
+
+    <div id="support-info"></div>
+    <script>
+    var supportInfo = kendo.support;
+    var html = "<h3>Browser Support Information:</h3>";
+    html += "<p>Touch support: " + supportInfo.touch + "</p>";
+    html += "<p>Pointer support: " + supportInfo.pointers + "</p>";
+    html += "<p>Hardware 3D support: " + supportInfo.hasHW3D + "</p>";
+    html += "<p>Native scrolling support: " + supportInfo.hasNativeScrolling + "</p>";
+    html += "<p>Device pixel ratio: " + supportInfo.devicePixelRatio + "</p>";
+    html += "<p>Placeholder support: " + supportInfo.placeholder + "</p>";
+    html += "<p>Scrollbar width: " + supportInfo.scrollbar() + "px</p>";
+    
+    $("#support-info").html(html);
+    </script>
+
+### support.touch `Boolean`
+Return true if the browser supports touch events.
+
+<div class="meta-api-description">
+How to detect touch capabilities in Kendo UI for jQuery? Detect touch capabilities and enable touch-based interactions by checking whether the browser environment supports touch events, finger gestures, tap actions, swipe motions, and multi-touch functionality, allowing developers to configure touch-friendly interfaces, enable mobile optimizations, implement gesture handlers, control touch responsiveness, and adapt user experience for touchscreen devices including smartphones, tablets, and touch-enabled laptops or monitors.
+</div>
+
+#### Example
+
+    <script>
+    if (kendo.support.touch) {
+        console.log("Touch events are supported");
+        // Enable touch-specific features
+    } else {
+        console.log("Touch events are not supported");
+        // Use mouse events instead
+    }
+    </script>
+
+### support.pointers `Boolean`
+Return true if the browser supports pointer events (IE10 and Metro apps currently).
+
+<div class="meta-api-description">
+How does Kendo UI support pointer events for various input methods? Identify unified input support for pointer events that handle mouse, touch, pen, and stylus interactions through a single event model, enabling cross-device compatibility, consistent input handling, multi-modal interaction support, and simplified event management for applications that need to work seamlessly across desktop, mobile, and hybrid devices with various input methods including cursor movement, touch gestures, and pressure-sensitive drawing.
+</div>
+
+#### Example
+
+    <script>
+    if (kendo.support.pointers) {
+        console.log("Pointer events are supported");
+        // Use pointer events for unified input handling
+    } else {
+        console.log("Pointer events are not supported");
+        // Fall back to touch and mouse events
+    }
+    </script>
+
+### support.scrollbar `Function`
+Checks for the browser scrollbar width, returns scrollbar width in pixels, 0 if no scrollbars available (e.g. in mobile).
+
+<div class="meta-api-description">
+How do I account for scrollbar variations in my responsive design using Kendo UI? Measure and calculate scrollbar dimensions to adjust layout spacing, account for browser chrome variations, handle responsive design calculations, control content positioning, manage overflow containers, and ensure consistent visual alignment by determining the pixel width of native scrollbars which varies across operating systems, browsers, and device types, supporting precise layout adjustments and preventing content shifting or misalignment issues.
+</div>
+
+#### Example
+
+    <script>
+    var scrollbarWidth = kendo.support.scrollbar();
+    console.log("Scrollbar width: " + scrollbarWidth + "px");
+    
+    // Adjust layout based on scrollbar width
+    if (scrollbarWidth > 0) {
+        $("#content").css("margin-right", scrollbarWidth + "px");
+    }
+    </script>
+
+### support.hasHW3D `Boolean`
+Return true if the browser supports 3D transitions and transforms.
+
+<div class="meta-api-description">
+What does Kendo UI's hasHW3D feature enable in terms of browser support? Enable hardware-accelerated 3D transformations and CSS transitions by detecting browser support for three-dimensional rendering capabilities, GPU acceleration, perspective effects, rotation matrices, translation depth, and transform3d properties, allowing developers to implement smooth animations, optimize performance through hardware acceleration, create immersive visual effects, and enhance user interfaces with modern 3D graphics while providing fallbacks for unsupported environments.
+</div>
+
+#### Example
+
+    <script>
+    if (kendo.support.hasHW3D) {
+        console.log("3D transforms are supported");
+        // Use 3D transforms for smooth animations
+        $("#element").css("transform", "translateZ(0)");
+    } else {
+        console.log("3D transforms are not supported");
+        // Use 2D transforms instead
+    }
+    </script>
+
+### support.hasNativeScrolling `Boolean`
+Returns true if the browser supports overflow-scrolling CSS property (currently only iOS 5+).
+
+<div class="meta-api-description">
+Is Kendo UI supporting native scrolling on iOS devices? Activate momentum scrolling and native touch scrolling behavior by detecting support for webkit-overflow-scrolling CSS property, enabling smooth kinetic scrolling effects, natural deceleration, bounce effects, and optimized touch interactions primarily on iOS devices, allowing developers to enhance mobile user experience with fluid scrolling containers, eliminate scroll lag, and provide native-feeling scroll behavior in web applications.
+</div>
+
+#### Example
+
+    <script>
+    if (kendo.support.hasNativeScrolling) {
+        console.log("Native scrolling is supported");
+        // Apply momentum scrolling
+        $("#scrollable").css("-webkit-overflow-scrolling", "touch");
+    } else {
+        console.log("Native scrolling is not supported");
+        // Use custom scrolling implementation
+    }
+    </script>
+
+### support.devicePixelRatio `Number` *(default: 1)*
+Returns the current device's Device to Pixel Ratio. Doesn't work in Windows Phone 8, where IE10 doesn't support it.
+
+<div class="meta-api-description">
+How to access device pixel ratio for high-density displays in Kendo UI? Optimize visual quality for high-density displays by accessing the device pixel ratio that indicates screen resolution scaling, retina display support, DPI settings, and pixel density multipliers, enabling adaptive image loading, crisp graphics rendering, responsive design adjustments, and enhanced visual fidelity on high-resolution screens including 4K monitors, retina displays, and mobile devices with varying pixel densities.
+</div>
+
+#### Example
+
+    <script>
+    var ratio = kendo.support.devicePixelRatio;
+    console.log("Device pixel ratio: " + ratio);
+    
+    // Adjust image quality for high DPI displays
+    if (ratio > 1) {
+        $("img").each(function() {
+            var src = $(this).attr("src");
+            $(this).attr("src", src.replace(".jpg", "@2x.jpg"));
+        });
+    }
+    </script>
+
+### support.placeholder `Boolean`
+Returns `true` if the browser supports input placeholders.
+
+<div class="meta-api-description">
+How to implement input field hints in Kendo UI for jQuery? Implement input field hints and form guidance by detecting native placeholder attribute support, enabling watermark text, input suggestions, field descriptions, and user assistance within form controls, allowing developers to provide contextual help, improve form usability, display example values, and guide user input while ensuring compatibility across browsers with appropriate fallbacks for older environments.
+</div>
+
+#### Example
+
+    <script>
+    if (kendo.support.placeholder) {
+        console.log("Placeholder is supported");
+        // Use native placeholder
+        $("#input").attr("placeholder", "Enter your name");
+    } else {
+        console.log("Placeholder is not supported");
+        // Implement custom placeholder
+        $("#input").val("Enter your name").addClass("placeholder");
+    }
+    </script>
+
+### support.zoomLevel `Number` *(default: 1)*
+Returns the current zoom level on a mobile browser (returns 1 on desktop).
+
+<div class="meta-api-description">
+How does Kendo UI detect mobile browser zoom levels? Adapt interface scaling and responsive behavior by detecting mobile browser zoom levels, viewport scaling, pinch-to-zoom states, and user magnification settings, enabling dynamic layout adjustments, touch target optimization, font size scaling, and user accessibility accommodations while maintaining usability across different zoom states and ensuring consistent user experience regardless of magnification preferences or visual accessibility needs.
+</div>
+
+#### Example
+
+    <script>
+    var zoomLevel = kendo.support.zoomLevel;
+    console.log("Current zoom level: " + zoomLevel);
+    
+    // Adjust UI elements based on zoom level
+    if (zoomLevel > 1) {
+        $("#toolbar").addClass("zoomed-in");
+        console.log("User has zoomed in");
+    }
+    </script>
+
+### support.mobileOS `Object`
+Returns a number of properties that identify the current mobile browser. Parses navigator.userAgent to do it. False on desktop.
+
+
+<div class="meta-api-description">
+How can I detect if the user is on an iOS device using Kendo UI? Identify the current mobile operating system and device type during runtime by analyzing the user agent string, enabling detection of specific mobile platforms, browsers, and versions while distinguishing mobile from desktop environments, supporting use cases such as conditionally enabling features, customizing behavior based on OS (like iOS, Android, Windows Phone), retrieving device-specific flags, performing runtime checks for mobile environments, and integrating adaptive functionality that depends on the client's mobile OS and browser details.
+</div>
+
+#### Example
+
+    <div id="mobile-info"></div>
+    <script>
+    var mobileOS = kendo.support.mobileOS;
+    var html = "<h3>Mobile OS Information:</h3>";
+    
+    if (mobileOS) {
+        html += "<p>Device: " + mobileOS.device + "</p>";
+        html += "<p>Tablet: " + (mobileOS.tablet || "false") + "</p>";
+        html += "<p>Browser: " + mobileOS.browser + "</p>";
+        html += "<p>OS Name: " + mobileOS.name + "</p>";
+        html += "<p>Major Version: " + mobileOS.majorVersion + "</p>";
+        html += "<p>Minor Version: " + mobileOS.minorVersion + "</p>";
+        html += "<p>Flat Version: " + mobileOS.flatVersion + "</p>";
+        html += "<p>App Mode: " + mobileOS.appMode + "</p>";
+        html += "<p>Cordova: " + mobileOS.cordova + "</p>";
+        
+        if (mobileOS.android) {
+            html += "<p>Running on Android device</p>";
+        } else if (mobileOS.ios) {
+            html += "<p>Running on iOS device</p>";
+        }
+    } else {
+        html += "<p>Not running on a mobile device</p>";
+    }
+    
+    $("#mobile-info").html(html);
+    </script>
+
+### support.mobileOS.device `String`
+Returns the current mobile device identifier, can be "fire", "android", "iphone", "ipad", "meego", "webos", "blackberry", "playbook", "wp", "windows".
+
+<div class="meta-api-description">
+How to detect iPhone and Android devices using Kendo.support.mobileOS.device? Identify specific mobile device types and hardware platforms by detecting device identifiers for smartphones, tablets, e-readers, and mobile operating systems, enabling targeted optimizations, device-specific features, platform adaptations, and customized user experiences across iPhone, iPad, Android devices, Kindle Fire, BlackBerry, Windows Phone, and other mobile platforms with appropriate styling, functionality, and performance adjustments.
+</div>
+
+#### Example
+
+    <script>
+    var mobileOS = kendo.support.mobileOS;
+    if (mobileOS) {
+        console.log("Device: " + mobileOS.device);
+        
+        if (mobileOS.device === "iphone" || mobileOS.device === "ipad") {
+            console.log("Running on iOS device");
+            // Apply iOS-specific styling
+        }
+    }
+    </script>
+
+### support.mobileOS.tablet `String` *(default: false)*
+Returns the current tablet identifier or false if the current device is not a tablet, can be "fire", "ipad", "playbook" or false.
+
+<div class="meta-api-description">
+How to detect tablet devices in Kendo UI for jQuery? Differentiate tablet devices from smartphones and desktop computers by detecting large-screen mobile devices, enabling tablet-optimized layouts, touch-friendly interfaces, expanded navigation patterns, and device-appropriate user experiences for iPad, Android tablets, Kindle Fire, BlackBerry PlayBook, and other tablet form factors with considerations for screen size, orientation, and touch interaction patterns.
+</div>
+
+#### Example
+
+    <script>
+    var mobileOS = kendo.support.mobileOS;
+    if (mobileOS && mobileOS.tablet) {
+        console.log("Running on tablet: " + mobileOS.tablet);
+        // Apply tablet-specific layout
+        $("body").addClass("tablet-layout");
+    } else {
+        console.log("Not running on a tablet");
+    }
+    </script>
+
+### support.mobileOS.browser `String` *(default: "default")*
+Returns the current browser identifier or "default" if the browser is the native one, can be "omini", "omobile", "firefox", "mobilesafari", "webkit", "ie", "default".
+
+<div class="meta-api-description">
+How to detect mobile browser engines and applications in Kendo UI? Detect mobile browser engines and applications to enable browser-specific optimizations, feature detection, rendering adjustments, and compatibility handling for Mobile Safari, Firefox Mobile, Opera Mini, Chrome Mobile, Internet Explorer Mobile, and native WebView components, allowing developers to implement browser-specific workarounds, performance optimizations, and feature polyfills based on mobile browsing environment.
+</div>
+
+#### Example
+
+    <script>
+    var mobileOS = kendo.support.mobileOS;
+    if (mobileOS) {
+        console.log("Mobile browser: " + mobileOS.browser);
+        
+        if (mobileOS.browser === "mobilesafari") {
+            console.log("Running in Mobile Safari");
+            // Apply Safari-specific workarounds
+        }
+    }
+    </script>
+
+### support.mobileOS.name `String`
+Returns the current os name identifier, can be "ios", "android", "blackberry", "windows", "webos", "meego". For convenience a property with the os name is also initialized,
+for instance:
+
+    if (kendo.support.mobileOS.android) {
+        // Do something in Android
+    }
+
+<div class="meta-api-description">
+How do I detect iOS in my Kendo UI application? Identify mobile operating systems and platform environments by detecting iOS, Android, BlackBerry, Windows Phone, WebOS, and MeeGo systems, enabling operating system specific features, platform optimizations, native integrations, API access patterns, and user interface adaptations while providing convenient boolean properties for quick platform checks and conditional logic based on mobile OS capabilities and limitations.
+</div>
+
+#### Example
+
+    <script>
+    var mobileOS = kendo.support.mobileOS;
+    if (mobileOS) {
+        console.log("OS name: " + mobileOS.name);
+        
+        // Use convenience properties
+        if (mobileOS.ios) {
+            console.log("Running on iOS");
+        } else if (mobileOS.android) {
+            console.log("Running on Android");
+        }
+    }
+    </script>
+
+### support.mobileOS.majorVersion `String`
+The current OS major version, e.g. "5" in iOS 5.1.
+
+<div class="meta-api-description">
+How do I detect major iOS versions in Kendo UI for jQuery? Access primary operating system version numbers for feature detection, API availability checks, compatibility testing, and version-specific optimizations across mobile platforms, enabling developers to implement progressive enhancement, feature gates, deprecation handling, and platform-specific functionality based on major OS releases like iOS 7, Android 4, or Windows Phone 8 with appropriate fallbacks and version targeting.
+</div>
+
+#### Example
+
+    <script>
+    var mobileOS = kendo.support.mobileOS;
+    if (mobileOS) {
+        console.log("Major version: " + mobileOS.majorVersion);
+        
+        if (mobileOS.ios && parseInt(mobileOS.majorVersion) >= 7) {
+            console.log("iOS 7 or higher detected");
+            // Use features available in iOS 7+
+        }
+    }
+    </script>
+
+### support.mobileOS.minorVersion `String`
+The current OS minor versions, e.g. "1.1" in iOS 5.1.1.
+
+<div class="meta-api-description">
+How to get minor version of mobile OS in Kendo UI for jQuery? Detect detailed operating system version information including point releases, security updates, and incremental improvements to enable precise compatibility checking, bug-specific workarounds, feature availability testing, and granular version targeting for mobile platforms with consideration for patch levels, security updates, and incremental feature additions across iOS, Android, and other mobile operating systems.
+</div>
+
+#### Example
+
+    <script>
+    var mobileOS = kendo.support.mobileOS;
+    if (mobileOS) {
+        console.log("Minor version: " + mobileOS.minorVersion);
+        console.log("Full version: " + mobileOS.majorVersion + "." + mobileOS.minorVersion);
+        
+        // Check for specific version requirements
+        if (mobileOS.android && mobileOS.majorVersion === "4" && parseFloat(mobileOS.minorVersion) >= 4) {
+            console.log("Android 4.4+ detected");
+        }
+    }
+    </script>
+
+### support.mobileOS.flatVersion `Number`
+A convenience property to allow easier version checks, for instance:
+
+    var os = kendo.support.mobileOS;
+    if (os.ios && os.flatVersion >= 400 && os.flatVersion < 500) {
+        // Do something in iOS 4.x
+    }
+
+<div class="meta-api-description">
+How do I compare mobile OS versions numerically in Kendo UI for jQuery? Simplify version comparisons and range checking through numeric version representation that enables mathematical operations, greater-than-less-than comparisons, version ranges, and conditional logic for mobile operating system versions, allowing developers to implement feature detection, compatibility checks, and version-based functionality without complex string parsing or version number manipulation.
+</div>
+
+#### Example
+
+    <script>
+    var mobileOS = kendo.support.mobileOS;
+    if (mobileOS) {
+        console.log("Flat version: " + mobileOS.flatVersion);
+        
+        // Easy version range checking
+        if (mobileOS.ios && mobileOS.flatVersion >= 800) {
+            console.log("iOS 8.0 or higher");
+            // Enable modern iOS features
+        } else if (mobileOS.android && mobileOS.flatVersion >= 440) {
+            console.log("Android 4.4 or higher");
+            // Enable modern Android features
+        }
+    }
+    </script>
+
+### support.mobileOS.appMode `Boolean`
+Returns true if running in application mode - pinned to desktop in iOS or running in PhoneGap/WebView.
+
+<div class="meta-api-description">
+How to detect if my Kendo UI app is running in standalone mode? Detect standalone web application mode, home screen installations, and native app containers by identifying when applications run outside browser chrome, in fullscreen mode, through PhoneGap wrappers, WebView components, or as progressive web apps, enabling native-like experiences, hiding browser UI elements, optimizing for app-style navigation, and providing seamless integration with device capabilities.
+</div>
+
+#### Example
+
+    <script>
+    var mobileOS = kendo.support.mobileOS;
+    if (mobileOS && mobileOS.appMode) {
+        console.log("Running in app mode");
+        // Hide browser chrome, adjust layout for full screen
+        $("body").addClass("app-mode");
+    } else {
+        console.log("Running in browser");
+    }
+    </script>
+
+### support.mobileOS.cordova `Boolean`
+Returns true if running in a Cordova/PhoneGap/Telerik AppBuilder application.
+
+<div class="meta-api-description">
+How to detect Cordova in Kendo UI for jQuery? Identify hybrid mobile application environments and cross-platform development frameworks by detecting Cordova, PhoneGap, or Telerik AppBuilder containers, enabling access to native device APIs, camera functionality, file systems, contacts, geolocation, and platform-specific features while maintaining web-based development approaches and ensuring proper initialization of hybrid app capabilities and device event handling.
+</div>
+
+#### Example
+
+    <script>
+    var mobileOS = kendo.support.mobileOS;
+    if (mobileOS && mobileOS.cordova) {
+        console.log("Running in Cordova/PhoneGap app");
+        // Enable device APIs, adjust for hybrid app environment
+        document.addEventListener("deviceready", function() {
+            console.log("Cordova device ready");
+        });
+    } else {
+        console.log("Not running in Cordova");
+    }
+    </script>
+
+### support.browser `Object`
+Convenience replacement for the now deprecated jQuery.browser. It returns an object with the browser identifier initialized as a boolean property and a version.
+The identifiers are identical to jQuery ones, e.g. "webkit", "opera", "msie", "edge" and "mozilla". In addition WebKit browsers will return their name e.g. "safari" and "chrome".
+
+
+<div class="meta-api-description">
+How can I detect the exact browser type of my users using Kendo.support.browser? Detect or identify the user’s browser type, vendor, and exact version number through an object that exposes boolean flags for common browser engines such as WebKit, Opera, Microsoft Internet Explorer (msie), Edge, and Mozilla, along with specific vendor names like Safari or Chrome for WebKit-based browsers. Enable browser detection to programmatically distinguish browser families, detect version details for compatibility checks, feature support queries, conditional scripting, or fallback strategies, replacing deprecated jQuery.browser usage with a modern, convenient interface to access browser identity and precise version information for client-side environment handling or adaptive behavior in web applications.
+</div>
+
+#### Example
+
+    <div id="browser-info"></div>
+    <script>
+    var browser = kendo.support.browser;
+    var html = "<h3>Browser Information:</h3>";
+    html += "<p>Browser version: " + browser.version + "</p>";
+    
+    if (browser.webkit) {
+        html += "<p>WebKit-based browser detected</p>";
+        if (browser.chrome) {
+            html += "<p>Google Chrome</p>";
+        } else if (browser.safari) {
+            html += "<p>Safari</p>";
+        }
+    } else if (browser.msie) {
+        html += "<p>Internet Explorer</p>";
+    } else if (browser.edge) {
+        html += "<p>Microsoft Edge</p>";
+    } else if (browser.mozilla) {
+        html += "<p>Mozilla Firefox</p>";
+    } else if (browser.opera) {
+        html += "<p>Opera</p>";
+    }
+    
+    $("#browser-info").html(html);
+    console.log("Full browser object:", kendo.stringify(browser));
+    </script>
+
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+        console.log(kendo.stringify(kendo.support.browser));
+        // Chrome will return this object: { "webkit": true, "chrome": true, "version": 37 }
+        // IE11 will return this one: { "msie": true, "version": 11 }
+    </script>
+
+### support.browser.version `Number`
+The current browser major version, e.g. "7" in Internet Explorer 7.
+
+<div class="meta-api-description">
+How do I determine the version of Internet Explorer being used in my application? Access browser version numbers for compatibility checking, feature detection, and progressive enhancement by identifying major release versions across Internet Explorer, Chrome, Firefox, Safari, Edge, and other browsers, enabling version-specific optimizations, polyfill applications, deprecation warnings, and targeted functionality based on browser capabilities, API support, and known limitations or improvements in specific browser releases.
+</div>
+
+#### Example
+
+    <script>
+    var browser = kendo.support.browser;
+    console.log("Browser version: " + browser.version);
+    
+    // Check for specific browser versions
+    if (browser.msie && browser.version < 9) {
+        console.log("Old Internet Explorer detected");
+        // Show upgrade message or apply polyfills
+    } else if (browser.chrome && browser.version >= 50) {
+        console.log("Modern Chrome detected");
+        // Use latest features
+    }
+    </script>
+
+### version `String`
+
+Returns the Kendo UI version as a string, for example `"2013.3.1119"` or `"2013.2.918"`, etc. In general, Kendo UI version identifiers provide the following information:
+
+* year in YYYY format (2013, 2012, etc);
+* major release as "1", "2" or "3" (derived from R1, R2 and R3). All service packs and internal builds, which come after a given major release, share the same major release number;
+* month and day of the release in Mdd format (November 19, September 18, etc);
+
+R3 service packs and internal builds may be released in the following year. In this case 12 is added to the month number, e.g. 13 means January, 14 means February and so on.
+For example `"2012.3.1315"` means a service pack (internal build) released after R3 **2012** on January 15, **2013**.
+
+The returned value does not indicate if the given Kendo UI version represents a major release, service pack, or the so-called internal (nightly) build.
+
+
+<div class="meta-api-description">
+How can I programmatically get the version of my installed Kendo UI component? Retrieve or check the component release version as a formatted string representing the runtime Kendo UI version, including release year, major release number, and month/day of release encoded in YYYY.M.DD or extended formats for service packs and internal builds, useful for detecting, comparing, logging, validating, or conditionally executing code based on specific framework versions, patch levels, hotfixes, or calendar dates, enabling developers to programmatically identify major releases, minor updates, or cumulative patches across different builds and deployment scenarios.
+</div>
+
+#### Example
+
+    <div id="version-info"></div>
+    <script>
+    var kendoVersion = kendo.version;
+    var html = "<h3>Kendo UI Version Information:</h3>";
+    html += "<p>Current version: " + kendoVersion + "</p>";
+    
+    // Parse version components
+    var parts = kendoVersion.split(".");
+    if (parts.length >= 3) {
+        html += "<p>Year: " + parts[0] + "</p>";
+        html += "<p>Release: R" + parts[1] + "</p>";
+        
+        var dateStr = parts[2];
+        if (dateStr.length >= 3) {
+            var month = parseInt(dateStr.substring(0, dateStr.length - 2));
+            var day = parseInt(dateStr.substring(dateStr.length - 2));
+            
+            // Handle R3 service packs in following year
+            if (month > 12) {
+                month = month - 12;
+                html += "<p>Service pack released in following year</p>";
+            }
+            
+            html += "<p>Release month: " + month + "</p>";
+            html += "<p>Release day: " + day + "</p>";
+        }
+    }
+    
+    $("#version-info").html(html);
+    console.log("Kendo UI Version:", kendoVersion);
+    </script>
+
+## Standard number formats
+
+#### *n*
+
+Formats the value as a number with decimal and thousand separators.
+
+##### Example
+
+    <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/cultures/kendo.culture.de-DE.min.js"></script>
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(1234.567, "n")); // outputs "1,234.57"
+    kendo.culture("de-DE");
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(1234.567, "n3")); //outputs "1.234,567"
+    </script>
+
+#### *c*
+
+Formats the value by adding the currency symbol.
+
+##### Example
+
+    <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/js/cultures/kendo.culture.de-DE.min.js"></script>
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(1234.567, "c")); // outputs "$1,234.57"
+    kendo.culture("de-DE");
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(1234.567, "c3")); // outputs "1.234,567 €"
+    </script>
+
+#### *p*
+
+Formats the value as percentage (the value is multiplied by 100).
+
+##### Example
+
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(0.222, "p")); // outputs "22.20 %"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(0.22, "p3")); // outputs "22.000 %"
+    </script>
+
+#### *e*
+
+Returns the value in exponential format.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(0.122, "e")); // outputs "1.22e-1"
+    </script>
+
+## Custom number formats
+
+Custom number formats can be created by using one or more custom numeric specifiers.
+
+#### Format Specifiers
+
+#### *0*
+
+Zero placeholder. Replaces the zero with the corresponding digit if one is present; otherwise, zero appears in the result string.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(1234.5678, "00000")); // outputs "01235"
+    </script>
+
+#### *#*
+
+Digit placeholder. Replaces the pound sign with the corresponding digit if one is present; otherwise, no digit appears in the result string.
+
+##### Example
+
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(1234.5678, "#####")); // outputs "1235"
+    </script>
+
+#### *.*
+
+Decimal placeholder. Determines the position of the decimal separator in the result string.
+
+##### Example
+
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(0.45678, "0.00")); // outputs "0.46"
+    </script>
+
+#### *,*
+
+Group separator. Inserts a group separator between each group of digits.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(12345678, "##,#")); // outputs "12,345,678"
+    </script>
+
+#### *%*
+
+Percentage. Multiplies a number by 100 and inserts a the percentage symbol (according to the current culture) in the result string.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(0.14, "#%")); // outputs "14%"
+    </script>
+
+#### *e*
+
+Exponential notation.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(0.45678, "e0")); // outputs "5e-1"
+    </script>
+
+#### *;*
+
+Section separator. Defines sections of separate format strings for positive, negative, and zero numbers.
+
+##### Example
+
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(3.14, "0.0;0.00")); // outputs "3.1"
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+      console.log(kendo.toString(-3.14, "0.0;-0.00")); // outputs "-3.14"
+    </script>
+
+#### *"string"|'string'*
+
+Literal string. Indicates literal strings which should be included in the result verbatim.
+
+##### Example
+
+## Standard date formats
+
+#### *d*
+
+Short date pattern.
+
+##### Example
+
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2000, 10, 6), "d")); // outputs "11/6/2000"
+    </script>
+
+#### *D*
+
+Long date pattern.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2000, 10, 6), "D")); // outputs "Monday, November 06, 2000"
+    </script>
+
+#### *F*
+
+Full date time pattern.
+
+##### Example
+
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2000, 10, 6), "F")); // outputs "Monday, November 06, 2000 12:00:00 AM"
+    </script>
+
+#### *g*
+
+General date/time pattern (short time).
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2000, 10, 6), "g")); // outputs "11/6/2000 12:00 AM"
+    </script>
+
+#### *G*
+
+General date/time pattern (long time).
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2000, 10, 6), "G")); // outputs "11/6/2000 12:00:00 AM"
+    </script>
+
+#### *m|M*
+
+Day of month pattern.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2000, 10, 6), "m")); // outputs "November 06"
+    </script>
+
+#### *u*
+
+Universal sortable date/time pattern
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2000, 10, 6), "u")); // outputs "2000-11-06 00:00:00Z"
+    </script>
+
+#### *y|Y*
+
+Month year pattern.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2000, 10, 6), "y")); // outputs "November, 2000"
+    </script>
+
+## Custom date formats
+Custom date formats can be created by using one or more custom date specifiers.
+
+#### Format Specifiers
+
+#### *d*
+
+The day of the month, from 1 to 31.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6), "yyyy/M/d")); // outputs "2013/6/6"
+    </script>
+
+#### *dd*
+
+The zero-padded day of the month - from 01 to 31.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6), "yyyy/M/dd")); // outputs "2013/6/06"
+    </script>
+
+#### *ddd*
+
+The abbreviated name of the day of the week.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6), "ddd,yyyy/M")); // outputs "Thu, 2013/6"
+    </script>
+
+#### *dddd*
+
+The full name of the day of the week.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6), "ddd,yyyy/M")); // outputs "Thursday, 2013/6"
+    </script>
+
+#### *f*
+
+The tenths of a second.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 5, 5, 5, 500), "f")); // outputs "5"
+    </script>
+
+#### *ff*
+
+The hundreds of a second.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 5, 5, 5, 500), "ff")); // outputs "50"
+    </script>
+
+#### *fff*
+
+The milliseconds.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 5, 5, 5, 500), "fff")); // outputs "500"
+    </script>
+
+#### *M*
+The month, from 1 to 12.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6), "yyyy/M/d")); // outputs "2013/6/6"
+    </script>
+
+#### *MM*
+
+The zero-padded month, from 01 to 12.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6), "yyyy/MM/d")); // outputs "2013/06/6"
+    </script>
+
+#### *MMM*
+The abbreviated name of the month.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6), "yyyy/MMM/d")); // outputs "2013/Jun/6"
+    </script>
+
+#### *MMMM*
+
+The full name of the month.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6), "yyyy/MMM/d")); // outputs "2013/June/6"
+    </script>
+
+#### *h*
+The hour, using 12-hour clock from 1 to 12.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 6, 0), "h")); // outputs "6"
+    </script>
+
+#### *hh*
+The zero-padded hour, using 12-hour clock from 01 to 12.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 6, 0), "h")); // outputs "06"
+    </script>
+
+#### *H*
+
+The hour, using 24-hour clock from 0 to 23.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 13, 0), "H")); // outputs "13"
+    </script>
+
+#### *HH*
+
+The zero-padded hour, using 24-hour clock from 00 to 23.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 6, 0), "HH")); // outputs "06"
+    </script>
+
+#### *m*
+
+The minute, from 0 to 59.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 6, 30), "m")); // outputs "30"
+    </script>
+
+#### *mm*
+
+The zero-padded minute, from 00 to 59.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 6, 5), "mm")); // outputs "05"
+    </script>
+
+#### *s*
+
+The second, from 0 to 59.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 6, 5, 5), "s")); // outputs "5"
+    </script>
+
+#### *ss*
+
+The zero-padded second, from 00 to 59.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 6, 5, 5), "ss")); // outputs "05"
+    </script>
+
+#### *tt*
+
+The AM/PM designator.
+
+##### Example
+    <script>
+	/* The result can be observed in the DevTools(F12) console of the browser. */
+    console.log(kendo.toString(new Date(2013, 5, 6, 13, 0), "HH tt")); // outputs "13 PM"
+    </script>

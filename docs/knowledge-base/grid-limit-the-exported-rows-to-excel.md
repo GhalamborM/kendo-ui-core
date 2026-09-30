@@ -1,12 +1,13 @@
 ---
 title: Export to Excel a Limited Number of Rows
-description: An example on how to limit the number of the Kendo UI Grid rows which are exported to Excel.
+description: Learn how to limit the number of the Kendo UI Grid rows which are exported to Excel.
 type: how-to
-page_title: Limit the Exported Rows to Excel | Kendo UI Grid for ASP.NET MVC
+page_title: Limit the Exported Rows to Excel - Kendo UI Grid for ASP.NET MVC
 slug: grid-limit-the-exported-rows-to-excel
 tags: grid, excel, export
 ticketid: 1146796
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Grid for ASP.NET MVC</td>
+		<td>Progress® Telerik® UI Grid for ASP.NET MVC</td>
 	</tr>
 </table>
 
@@ -29,7 +30,7 @@ How can I set a configurable limit to the number of the Grid rows that are expor
 
 ## Solution
 
-Split the array of the exported rows based on a value during the [`excelExport`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/excelexport) event.  
+Split the array of the exported rows based on a value during the [`excelExport`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/excelexport) event.  
 
 ```dojo
 <div id="grid"></div>

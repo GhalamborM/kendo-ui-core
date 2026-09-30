@@ -5,9 +5,9 @@ description: "Learn how to filter events between the start and the end of the cu
 previous_url: /controls/scheduling/scheduler/how-to/server-filtering, /controls/scheduling/scheduler/how-to/filtering/server-filtering
 slug: howto_server_filtering
 tags: telerik, kendo, jquery, scheduler, filter, events, on, the, server, between, start, end, of, current, view
-component: scheduler
 type: how-to
 res_type: kb
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler for jQuery</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -43,4 +43,4 @@ To achieve the desired scenario, refer to [this project](https://github.com/tele
 
 * [Basic Usage of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/index)
 * [Using the API of the Scheduler (Demo)](https://demos.telerik.com/kendo-ui/scheduler/api)
-* [JavaScript API Reference of the Scheduler](/api/javascript/ui/scheduler)
+* [JavaScript API Reference of the Scheduler](/api/ui/scheduler)

@@ -1,17 +1,26 @@
 ---
-title: Razor Page
-page_title: Razor Page
+title: Razor Pages
+page_title: Razor Pages
 description: "An example on how to configure the Telerik UI Toolbar component for {{ site.framework }} in a Razor Page."
+components: ["toolbar"]
 slug: htmlhelpers_toolbar_aspnetcore_razor_page
+position: 8
 ---
 
-# Razor Page
+# ToolBar in Razor Pages
 
-This article demonstrates how to add the Telerik UI Toolbar for {{ site.framework }} to a RazorPage.
+Razor Pages is an alternative to the MVC pattern that makes page-focused coding easier and more productive. This approach consists of a `cshtml` file and a `cshtml.cs` file (by design, the two files have the same name). 
 
-For the full project with RazorPages examples, visit our [GitHub repository](https://github.com/telerik/ui-for-aspnet-core-examples/tree/master/Telerik.Examples.RazorPages).
+You can seamlessly integrate the Telerik UI ToolBar for {{ site.framework }} in Razor Pages applications.
 
-```tab-HtmlHelper(csthml)        
+This article describes how to configure the ToolBar component in a Razor Pages scenario.
+
+For the complete project, refer to the [ToolBar in Razor Pages example](https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/Toolbar/ToolbarIndex.cshtml).
+
+```HtmlHelper
+    @page
+    @model ToolbarIndexModel
+
     @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
     @Html.AntiForgeryToken()
 
@@ -23,9 +32,9 @@ For the full project with RazorPages examples, visit our [GitHub repository](htt
             items.Add().Type(CommandType.Button).Text("Toggle Button").Togglable(true);
             items.Add().Type(CommandType.SplitButton).Text("Insert").MenuButtons(menuButtons =>
             {
-                menuButtons.Add().Text("Insert above").Icon("insert-up");
+                menuButtons.Add().Text("Insert above").Icon("insert-top");
                 menuButtons.Add().Text("Insert between").Icon("insert-middle");
-                menuButtons.Add().Text("Insert below").Icon("insert-down");
+                menuButtons.Add().Text("Insert below").Icon("insert-bottom");
             });
             items.Add().Type(CommandType.Separator);
             items.Add().Template("<label for='dropdown'>Format:</label>");
@@ -65,11 +74,16 @@ For the full project with RazorPages examples, visit our [GitHub repository](htt
             });
         });
     </script>
-	
 ```
 {% if site.core %}
-```tab-TagHelper(cshtml)
+```TagHelper
+    @page
+    @model ToolbarIndexModel
     @addTagHelper *, Kendo.Mvc
+
+    @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+    @Html.AntiForgeryToken()
+
     <kendo-toolbar name="ToolBar">
         <toolbar-items>
             <item text="Button" type="CommandType.Button" sprite-css-class="">
@@ -78,9 +92,9 @@ For the full project with RazorPages examples, visit our [GitHub repository](htt
             </item>
             <item text="Insert" type="CommandType.SplitButton">
                 <menu-buttons>
-                    <toolbar-button icon="insert-up" text="Insert above" />
+                    <toolbar-button icon="insert-top" text="Insert above" />
                     <toolbar-button icon="insert-middle" text="Insert between" />
-                    <toolbar-button icon="insert-down" text="Insert below" />
+                    <toolbar-button icon="insert-bottom" text="Insert below" />
                 </menu-buttons>
             </item>
             <item type="CommandType.Separator">
@@ -113,7 +127,7 @@ For the full project with RazorPages examples, visit our [GitHub repository](htt
             </item>
         </toolbar-items>
     </kendo-toolbar>
-    
+
     <script>
         $(document).ready(function () {
             $("#dropdown").kendoDropDownList({
@@ -132,11 +146,21 @@ For the full project with RazorPages examples, visit our [GitHub repository](htt
     </script>
 ```
 {% endif %}
-```tab-PageModel(cshtml.cs)      
-	
+```C# PageModel
+public class ToolbarIndexModel : PageModel
+{
     public void OnGet()
     {
 
     }
-    
+}
 ```
+
+## See Also
+
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the ToolBar](https://docs.telerik.com/kendo-ui/api/ui/toolbar)
+* [Server-Side HtmlHelper API of the ToolBar](/api/toolbar)
+* [Server-Side TagHelper API of the ToolBar](/api/taghelpers/toolbar)
+* [Knowledge Base Section](/knowledge-base)
+

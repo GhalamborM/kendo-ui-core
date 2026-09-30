@@ -1,13 +1,13 @@
 ---
 title: Resize and Expand Grid to 100% Height
-page_title: Resize and Expand to 100% Height | Kendo UI Grid for jQuery
-description: "An example on how to resize and expand it to 100% height when the parent container or browser window are resized too."
+page_title: Resize and Expand to 100% Height - Kendo UI for jQuery Data Grid
+description: "Learn how to resize and expand it to 100% height when the parent container or browser window are resized too."
 previous_url: /controls/data-management/grid/how-to/Layout/resize-grid-when-the-window-is-resized
 slug: howto_resize_whenthe_windowis_resized_grid
 tags: resize, expand, grids, 100%, height, when, parent, container, browser, window, resized
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -33,7 +33,7 @@ res_type: kb
 
 ## Description
 
-How can I resize and expand the Kendo UI Grid to a 100% height when the parent container or the browser window are resized too?
+How can I resize and expand the Kendo UI Grid to a 100% height when the parent container or the browser window are resized?
 
 ## Solution
 
@@ -83,9 +83,9 @@ The following example demonstrates how to resize the Kendo UI Grid together with
 
       $("#grid").kendoGrid({
         dataSource: {
-          type: "odata",
+          type: "odata-v4",
           transport: {
-            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+            read: "https://demos.telerik.com/service/v2/odata/Orders"
           },
           schema: {
             model: {
@@ -152,9 +152,9 @@ The following example demonstrates how to resize the Kendo UI Grid in a Kendo UI
 
       $("#grid").kendoGrid({
         dataSource: {
-          type: "odata",
+          type: "odata-v4",
           transport: {
-            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+            read: "https://demos.telerik.com/service/v2/odata/Orders"
           },
           schema: {
             model: {
@@ -224,9 +224,9 @@ The following example demonstrates how to resize the Kendo UI Grid in a Kendo UI
 
       $("#grid").kendoGrid({
         dataSource: {
-          type: "odata",
+          type: "odata-v4",
           transport: {
-            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+            read: "https://demos.telerik.com/service/v2/odata/Orders"
           },
           schema: {
             model: {
@@ -260,4 +260,4 @@ The following example demonstrates how to resize the Kendo UI Grid in a Kendo UI
 
 ## See Also
 
-* [Kendo UI Grid JavaScript API Reference](/api/javascript/ui/grid)
+* [Kendo UI Grid JavaScript API Reference](/api/ui/grid)

@@ -2,16 +2,17 @@
 title: Using CDN
 page_title: Using CDN
 description: "Get started with {{ site.product }} and install the helpers by using the Telerik UI CDN services."
+components: ["general"]
 previous_url: /getting-started/installation/cdn-service, /installation/cdn-service, /installation-mvc/adding-client-side-resources/cdn-service
 slug: cdnservices_core
-position: 5
+position: 2
 ---
 
-# Using CDN
+# Using CDN with {{ site.product }}
 
 The Kendo UI client-side resources like JavaScript files and CSS files are available online through the Kendo CDN service. Including the client-side resources in your project is essential because the Telerik UI helpers are wrappers over the [Kendo UI widgets](https://docs.telerik.com/kendo-ui/intro/first-steps).
 
-> As of the R3 2022 release, you must install a license file in your application in order to access the resources provided by the CDN service. For more information, check [Using Script License File]({% slug using_license_code %}).
+> As of the R3 2022 release, you must install a license file in your application to access the resources provided by the CDN service. For more information, check [Installing a License File]({% slug installation_license_key_aspnetcore %}).
 
 Only the official Kendo UI releases and serviced packs are uploaded to the CDN. Internal builds are not available on the CDN.
 
@@ -24,34 +25,80 @@ To access the Kendo UI CDN services, you can use either the HTTP or the HTTPS pr
 
 ## Understanding the CDN Structure
 
-The URLs of the Telerik CDN have the following structure:
+The URLs of the CDN service have the following structure:
 
-* `https://kendo.cdn.telerik.com/VERSION/js/FILENAME.min.js`
-* `https://kendo.cdn.telerik.com/VERSION/styles/FILENAME.min.css`
+* `https://kendo.cdn.telerik.com/themes/[THEMEVERSION]/default/[FILENAME]`&mdash;The `themes` folder contains the [`.css` files](#adding-the-required-css-files) of the SASS themes for {{ site.product }} versions after R1 2023 SP1.
+* `https://kendo.cdn.telerik.com/[VERSION]/styles/[FILENAME]`&mdash;The `styles` folder contains the [`.css` files](#adding-the-required-css-files) (SASS and LESS) for {{ site.product }} versions before R1 2023 SP1.
+* `https://kendo.cdn.telerik.com/[VERSION]/mjs/[FILENAME]`&mdash;The `mjs` folder contains the [JavaScript modules](#using-javascript-modules).
+* `https://kendo.cdn.telerik.com/[VERSION]/js/[FILENAME]`&mdash;The `js` folder contains the [bundled Kendo UI JavaScript files](#using-bundled-javascript).
 
-In the URL above, you must replace `VERSION` and `FILENAME` with the client-side resource that you need and its version. For example, to load version `{{ site.mvcCoreVersion }}` of the minified Kendo UI scripts and the related CSS files, use these URLs:
+In the sample URLs above, you must replace `[VERSION]`, [THEMEVERSION] and `[FILENAME]` with the client-side resource that you need and its version. For example, to load version `{{ site.mvcCoreVersion }}` of the Kendo JavaScript modules and the CSS files for the Kendo Default visual theme, use these URLs:
 
-* `https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/kendo.all.min.js`
-* `https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/styles/kendo.default-main.min.css`
+* `https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/mjs/kendo.all.js`
+* `https://kendo.cdn.telerik.com/themes/{{ site.themesCdnVersion }}/default/default-main.css`
 
-If you prefer the HTTP protocol, replace `https` with `http` in the URLs above.
+## Adding the Required CSS Files
+
+Adding the Kendo CSS files allows you to use the [Kendo UI visual themes]({% slug sassbasedthemes_overview %}). The `.css` files are available in the `themes` folder of the Kendo CDN URL&mdash;`https://kendo.cdn.telerik.com/themes/<version>/<theme>/<swatch>.css`.
+
+To load version `{{site.themesCdnVersion}}` of the desired visual theme, replace `[THEMEVERSION]` and `[FILENAME]` with their values, for example, `https://kendo.cdn.telerik.com/themes/{{ site.themesCdnVersion }}/default/default-main.css`.
+
+## Adding the Required JavaScript Files
+
+To import the JavaScript files required for the Telerik UI components, apply either of the following approaches:
+
+ * [Using the JavaScript modules](#using-javascript-modules)&mdash;[A new approach introduced with version `2022.3.1109`]({% slug core_ecmascript_overview %}).
+ * [Using the bundled JavaScript](#using-bundled-javascript)&mdash;The traditional way of including the Kendo UI scripts.
+
+### Using JavaScript Modules
+
+The [JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) are located in the `mjs` folder of the Kendo CDN URL&mdash;`https://kendo.cdn.telerik.com/[VERSION]/mjs/[FILENAME]`.
+
+To include a Kendo JavaScript module in your project:
+
+1. Use the `script` tag with the `type=module` attribute.
+1. Add a reference to the global `aspnetmvc.min.js` file.
+
+The two examples below demonstrate how to include individual component modules and all available component modules:
+
+* Including individual component modules.
+
+    ```html
+    <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/mjs/kendo.grid.js" type="module"></script> <!-- Include the Grid module. The rest of the dependencies required by the Grid will be loaded automatically. -->
+    <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/mjs/kendo.aspnetmvc.js" type="module"></script> <!-- Include the global `kendo.aspnetmvc.js` file. -->
+    ```
+
+* Including all available modules.
+
+    ```html
+    <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/mjs/kendo.all.js" type="module"></script> <!-- Include all Kendo UI modules. -->
+    <script src="https://kendo.cdn.telerik.com/{{ site.cdnVersion }}/mjs/kendo.aspnetmvc.js" type="module"></script> <!-- Include the global `kendo.aspnetmvc.js` file. -->
+    ```
+
+### Using Bundled JavaScript
+
+The Kendo UI JavaScript files for the traditional format are located in the `js` folder of the Kendo CDN URL&mdash;`https://kendo.cdn.telerik.com/[VERSION]/js/[FILENAME]`.
+
+To load version `{{site.cdnVersion}}` of the bundled Kendo JavaScript files, replace `[VERSION]` and `[FILENAME]` with their values, for example, `https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/kendo.all.min.js`.
 
 ## Using the CDN in Your Project
 
-> Replace the Kendo UI version from the following code snippets with the version of the product you are using&mdash;for example, `{{ site.mvcCoreVersion }}`.
+The following complete example demonstrates how to add the [CSS files](#adding-the-required-css-files) and the [bundled JavaScript](#using-bundled-javascript).
+
+>Replace the {{ site.product }} version in the script `src` attribute with the version of the product you are using&mdash;for example, `{{ site.mvcCoreVersion }}`. Replace the theme version in the stylesheet `href` attribute with the respective version of the theme you are using.
 
 {% if site.core %}
 1. Open the layout of the application. By default, it is `~\Views\Shared\_Layout.cshtml`.
 
 1. To add the Bootstrap theme files, insert a `link` tag within the `head` tag of the layout and include the style file or files.
 
-    ```
-        <link href="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/styles/kendo.bootstrap-main.min.css" rel="stylesheet" type="text/css" /> 
+    ```HTML
+         <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/{{ site.themesCdnVersion }}/bootstrap/bootstrap-main.css" />
     ```
 
 1. To add the JavaScript files, insert a `script` tag and include `kendo.all.min.js` and `kendo.aspnetmvc.min.js` after the jQuery script.
 
-    ```
+    ```HTML
         <script src="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/kendo.all.min.js"></script>
         <script src="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/kendo.aspnetmvc.min.js"></script>
     ```
@@ -59,24 +106,23 @@ If you prefer the HTTP protocol, replace `https` with `http` in the URLs above.
 {% else %}
 1. Open the layout of the application. By default, it is `~/Views/Shared/_Layout.cshtml` or `Site.master`, if using ASPX.
 
-1. To add the Bootstrap theme files, include the `kendo.common-bootstrap.min.css` and `kendo.bootstrap.min.css` files. Add a `link` tag within the `head` tag of the layout. For more information on the CSS files which are used by the predefined Less themes, refer to the documentation on the [Less-based themes](https://docs.telerik.com/kendo-ui/styles-and-layout/appearance-styling).
-
-        <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/styles/kendo.common-bootstrap.min.css" />
-        <link rel="stylesheet" href="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/styles/kendo.bootstrap.min.css" />
-
 1. To add the JavaScript files, insert a `script` tag and include `kendo.all.min.js` and `kendo.aspnetmvc.min.js` after the jQuery script.
 
+    ```HTML
         <script src="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/kendo.all.min.js"></script>
         <script src="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/kendo.aspnetmvc.min.js"></script>
+    ```
 
 1. If using the Telerik MVC Scheduler helper, include `kendo.timezones.min.js` after `kendo.all.min.js`.
 
+    ```HTML
         <script src="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/kendo.all.min.js"></script>
         <script src="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/kendo.timezones.min.js"></script>
         <script src="https://kendo.cdn.telerik.com/{{ site.mvcCoreVersion }}/js/kendo.aspnetmvc.min.js"></script>
+    ```
 {% endif %}
 
-1. Setup the License File by following the instructions in the [Using Script License File article]({% slug using_license_code %}).
+1. Setup the License File by following the instructions in the [Installing a License File]({% slug installation_license_key_aspnetcore %}).
 
 ## Troubleshooting
 
@@ -87,17 +133,14 @@ The following articles provide solutions to common issues related to the Telerik
 
 ## Next Steps
 
-* [Explore the helper script dependencies]({% slug script_filesfor_barcodes_widgets %})
-* [Check out the PDF and Excel export support]({% slug exportsupport_core %})
-
+* [Creating Your Own Custom Script Bundles]({% slug creating-custom-bundles %})
+* [Using ECMAScript Modules]({% slug core_ecmascript_overview %})
 ## See Also
 
 * [Including Client-Side Resources]({% slug copyclientresources_aspnetmvc6_aspnetmvc %})
 * [Installing {{ site.product }} with NuGet]({% slug nuget_install_aspnetmvc6_aspnetmvc %})
 {% if site.core %}
-* [First Steps on Visual Studio for Windows (Online Guide)]({% slug gettingstarted_aspnetmvc6_aspnetmvc %})
-* [First Steps on Visual Studio for Mac (Online Guide)]({% slug gettingstarted_firststeps_vsmac %})
-* [First Steps with CLI (Online Guide)]({% slug gettingstartedcli_aspnetmvc6_aspnetmvc %})
+* [Quick Start]({% slug gettingstartedtelerik_aspnetcore %})
 {% else %}
-* [First Steps on Visual Studio for Windows (Online Guide)]({% slug gettingstarted_aspnetmvc %})
+* [First Steps on Visual Studio for Windows (Online Guide)]({% slug gettingstartedtelerik_cli_aspnetmvc %})
 {% endif %}

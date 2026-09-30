@@ -2,11 +2,12 @@
 title: Overview
 page_title: Overview
 description: "Discover the Telerik UI Captcha component for {{ site.framework }} control, and learn how to start using it."
+components: ["captcha"]
 slug: htmlhelpers_captcha_overview
-position: 1
+position: 0
 ---
 
-# Captcha Overview
+# {{ site.framework }} Captcha Overview
 
 {% if site.core %}
 The Telerik UI Captcha TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI Captcha widget.
@@ -79,10 +80,10 @@ private string GetCaptchaText(string captchaId)
 
 ## Functionality and Features
 
-* [Captcha Server-side Provider]({% slug htmlhelpers_captcha_provider %})
-* [Validation]({% slug htmlhelpers_captcha_validation %})
-* [Audio Content]({% slug htmlhelpers_captcha_audio %})
-* [Accessibility]({% slug htmlhelpers_captcha_accessibility %})
+* [Captcha Server-side Provider]({% slug htmlhelpers_captcha_provider %})&mdash;You can implement a server-side provider for the Captcha component.
+* [Validation]({% slug htmlhelpers_captcha_validation %})&mdash;The Captcha offers validation capabilities.
+* [Audio Content]({% slug htmlhelpers_captcha_audio %})&mdash;You can present your own audio content to the user.
+* [Accessibility]({% slug htmlhelpers_captcha_accessibility %})&mdash;The Captcha and the entire Telerik toolset implement convenient accessibility features.
 
 ## Events
 
@@ -90,7 +91,7 @@ For a complete example on the Captcha's events, refer to the [demo on using the 
 
 ## Referencing Existing Instances
 
-To reference an existing Captcha instance, use the [`jQuery.data()`](https://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [Captcha client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/captcha#methods) to control its behavior.
+To reference an existing Captcha instance, use the [`jQuery.data()`](https://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [Captcha client-side API](https://docs.telerik.com/kendo-ui/api/ui/captcha#methods) to control its behavior.
 
 ```
     // Place the following after your Telerik UI Captcha for {{ site.framework }} declaration.
@@ -102,11 +103,15 @@ To reference an existing Captcha instance, use the [`jQuery.data()`](https://api
     </script>
 ```
 
+## Next Steps
+
+* [Getting Started with the Captcha]({% slug aspnetcore_captcha_getting_started %})
+* [Basic Usage of the Captcha for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/captcha/index)
+{% if site.core %}
+* [Captcha in Razor Pages]({% slug htmlhelpers_captcha_razorpage_aspnetcore %})
+{% endif %}
+
 ## See Also
 
-* [Basic Usage of the Captcha HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/captcha/index)
-{% if site.core %}
-* [Basic Usage of the Captcha TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/captcha/tag-helper)
-{% endif %}
-* [Using the API of the Captcha HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/captcha/api)
-* [Server-Side API](/api/captcha)
+* [Using the API of the Captcha (Demo)](https://demos.telerik.com/{{ site.platform }}/captcha/api)
+* [Knowledge Base Section](/knowledge-base)

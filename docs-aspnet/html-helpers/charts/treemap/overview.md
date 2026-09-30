@@ -2,12 +2,13 @@
 title: Overview
 page_title: TreeMap Overview
 description: "Learn the basics when working with the Telerik UI TreeMap component for {{ site.framework }}."
+components: ["treemap"]
 previous_url: /helpers/charts/treemap/overview
 slug: overview_treemaphelper_aspnetcore
-position: 1
+position: 0
 ---
 
-# TreeMap Overview
+# {{ site.framework }} TreeMap Overview
 
 The TreeMap displays hierarchical data in a traditional tree structure. TreeMaps also support different rendering types such us Squarified, Vertical, and Horizontal (slice and dice algorithm).
 
@@ -23,8 +24,7 @@ The Telerik UI TreeMap HtmlHelper for {{ site.framework }} is a server-side wrap
 
 To see the component in action, check the examples:
 
-* [Demo page for the TreeMap HtmlHelper](https://demos.telerik.com/{{ site.platform }}/treemap/index)
-* [Demo page for the TreeMap TagHelper](https://demos.telerik.com/aspnet-core/treemap/tag-helper)
+* [Demo page for the TreeMap](https://demos.telerik.com/{{ site.platform }}/treemap/index)
 
 ## Initializing the TreeMap
 
@@ -60,7 +60,7 @@ The following example demonstrates how to define a TreeMap by using the TreeMap 
     </kendo-treemap>
 ```
 {% endif %}
-```Controler
+```Controller
     public ActionResult Population_Read()
     {
         var result = new List<Population>();
@@ -125,94 +125,42 @@ You can also bind the `DataSource` to remote data. The following example demonst
 ```
 {% endif %}
 
+## Setting Custom Color Ranges
 
-## Events
-
-You can subscribe to all TreeMap [events](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/treemap#events).
-
-### Handling Events by Handler Name
-
-The following example demonstrates how to subscribe to events by a handler name.
+You can customize the TreeMap through the `Colors` configuration option by adding the desired color ranges:
 
 ```HtmlHelper
     @(Html.Kendo().TreeMap()
-            .Name("treemap")
-            .Events(events => events
-                .ItemCreated("onItemCreated")
-                .DataBound("onDataBound")
+        .Name("treeMap")
+        .DataSource(dataSource => dataSource
+            .Read(read => read
+                .Action("Population_Read", "TreeMap")
             )
-    )
-```
-{% if site.core %}
-```TagHelper
-
-@addTagHelper *, Kendo.Mvc
-    <kendo-treemap name="treemap" 
-                on-item-created="onItemCreated" 
-                on-data-bound="onDataBound">
-    </kendo-treemap>
-
-```
-{% endif %}
-```script.js
-
-    <script>
-        function onItemCreated(e) {
-            // The HTML element.
-            var element = e.element;
-            // The dataItem to which the element is bound.
-            var dataItem = e.sender.dataItem(e.element);
-        }
-
-        function onDataBound(e) {
-            // Handle the dataBound event.
-        }
-    </script>
-    
-```
-
-{% if site.core %}
-### Handling Events by Template Delegate
-
-The following example demonstrates how to subscribe to events by a template delegate.
-
-```HtmlHelper
-    @(Html.Kendo().TreeMap()
-            .Name("treemap")
-            .Events(e => e
-                .ItemCreated(@<text>
-                function(e) {
-                    // The HTML element.
-                    var element = e.element;
-                    // The dataItem to which the element is bound.
-                    var dataItem = e.sender.dataItem(e.element);
-                }
-                </text>)
-                .DataBound(@<text>
-                function(e) {
-                    // Handle the dataBound event.
-                }
-                </text>)
-            )
+            .Model(m => m.Children("Items"))
+        )
+        .Colors(color =>
+        {
+            color.AddRange("#0072c6", "#cbe2f3");
+            color.AddRange("#5db2ff", "#deeffe");
+            color.AddRange("#ff8f32", "#cbe7d0");
+            color.AddRange("#82ba00", "#e5f0cb");
+            color.AddRange("#ff8f32", "#fee8d5");
+            color.AddRange("#9e0a61", "#eccedf");
+            color.AddRange("#ac193d", "#eed0d7");
+        })
+        .ValueField("Value")
+        .TextField("Name")
     )
 ```
 
-{% endif %}
-
-## Referencing Existing Instances
-
-To reference an existing Kendo UI TreeMap instance, use the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [TreeMap client-side API](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/treemap#methods) to control its behavior.
-
-    // Place the following after the declaration of the TreeMap for {{ site.framework }}.
-    <script>
-        $(function() {
-            // The Name() of the TreeMap is used to get its client-side instance.
-            var treemap = $("#treemap").data("kendoTreeMap");
-        });
-    </script>
+## Next Steps
+* [Getting Started with the TreeMap]({% slug aspnetcore_treemap_getting_started %})
+* [Basic Usage of the TreeMap for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/treemap/index)
+* [TreeMap Events]({% slug events_treemap_aspnetcore %})
 
 ## See Also
-
-* [Basic Usage of the TreeMap HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/treemap/index)
-* [Basic Usage of the TreeMap TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/treemap/tag-helper)
+* [Basic Usage of the TreeMap for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/treemap/index)
+{% if site.core %}
+* [TreeMap in Razor Pages]({% slug razorpages_treemap_aspnetcore %})
+{% endif %}
 * [Server-Side API](/api/treemap)

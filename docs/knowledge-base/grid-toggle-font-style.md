@@ -1,12 +1,13 @@
 ---
 title: Toggle Font Styles in Grids
-description: An example on how to set a different time value as the start time of a TimePicker and change the order of the options in the list of the Kendo UI Grid.
+description: Learn how to set a different time value as the start time of a TimePicker and change the order of the options in the list of the Kendo UI Grid.
 type: how-to
-page_title: Toggle the Font Style | Kendo UI Grid for jQuery
+page_title: Toggle the Font Style - Kendo UI for jQuery Data Grid
 slug: grid-toggle-font-style
 tags: grid, toggle, font, style, body
 ticketid: 1154127
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -63,9 +64,8 @@ Use the `CSS` jQuery method and the `change` event of the radio button.
     $(document).ready(function() {
       $("#grid").kendoGrid({
         dataSource: {
-          type: "odata",
           transport: {
-            read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+            read: "https://demos.telerik.com/service/v2/core/Orders"
           },
           schema: {
             model: {

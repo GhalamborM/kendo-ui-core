@@ -1,12 +1,13 @@
 ---
 title: Define Decimals Property at Runtime in NumericTextBox
-description: An example on how to configure the precision of the Kendo UI NumericTextBox during runtime.
+description: Learn how to configure the precision of the Kendo UI NumericTextBox during runtime.
 type: how-to
-page_title: Change Decimal Placement at Runtime | Kendo UI NumericTextBox for jQuery
+page_title: Change Decimal Placement at Runtime - Kendo UI NumericTextBox for jQuery
 slug: numerictextbox-decimals-precision-runtime-change
 tags: numerictextbox, decimals, precision, runtime, change
 ticketid: 1383068
 res_type: kb
+components: ["numerictextbox"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>NumericTextBox for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® NumericTextBox for jQuery</td>
  </tr>
 
   <td>Product Version</td>
@@ -28,10 +29,10 @@ How can I change the `decimals` property of the Kendo UI NumericTextBox at runti
 
 ## Solution
 
-1. [Set the format](https://docs.telerik.com/kendo-ui/api/javascript/ui/numerictextbox/configuration/format) of the NumericTextBox initially to `n2`.
+1. [Set the format](https://docs.telerik.com/kendo-ui/api/ui/numerictextbox/configuration/format) of the NumericTextBox initially to `n2`.
 1. When an event has occurred, such as a button click, get a reference to the NumericTextBox.
-1. [Get the value](https://docs.telerik.com/kendo-ui/api/javascript/ui/numerictextbox/methods/value) of the NumericTextBox.
-1. By using [the `setOptions` method](https://docs.telerik.com/kendo-ui/api/javascript/ui/widget/methods/setoptions), configure the `value`, `format`, and [`decimals`](https://docs.telerik.com/kendo-ui/api/javascript/ui/numerictextbox/configuration/decimals) properties.
+1. [Get the value](https://docs.telerik.com/kendo-ui/api/ui/numerictextbox/methods/value) of the NumericTextBox.
+1. By using [the `setOptions` method](https://docs.telerik.com/kendo-ui/api/ui/widget/methods/setoptions), configure the `value`, `format`, and [`decimals`](https://docs.telerik.com/kendo-ui/api/ui/numerictextbox/configuration/decimals) properties.
 
 ```dojo
     <input id="numericTextBox1" />
@@ -55,7 +56,7 @@ How can I change the `decimals` property of the Kendo UI NumericTextBox at runti
 
 ## See Also
 
-* [API Reference of `format`](https://docs.telerik.com/kendo-ui/api/javascript/ui/numerictextbox/configuration/format)
-* [API Reference of `value`](https://docs.telerik.com/kendo-ui/api/javascript/ui/numerictextbox/methods/value)
-* [API Reference of `setOptions`](https://docs.telerik.com/kendo-ui/api/javascript/ui/widget/methods/setoptions)
-* [API Reference of `decimals`](https://docs.telerik.com/kendo-ui/api/javascript/ui/numerictextbox/configuration/decimals)
+* [API Reference of `format`](https://docs.telerik.com/kendo-ui/api/ui/numerictextbox/configuration/format)
+* [API Reference of `value`](https://docs.telerik.com/kendo-ui/api/ui/numerictextbox/methods/value)
+* [API Reference of `setOptions`](https://docs.telerik.com/kendo-ui/api/ui/widget/methods/setoptions)
+* [API Reference of `decimals`](https://docs.telerik.com/kendo-ui/api/ui/numerictextbox/configuration/decimals)

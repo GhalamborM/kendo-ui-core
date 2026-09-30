@@ -1,45 +1,245 @@
 ---
-title: The Telerik UI ListBox in RazorPages
-page_title: The Telerik UI ListBox in RazorPages
-description: "Telerik UI ListBox for {{ site.framework }} in a RazorPages application."
+title: Razor Pages
+page_title: Razor Pages
+description: "Telerik UI ListBox for {{ site.framework }} in a Razor Pages application."
 slug: razorpages_listBoxhelper_aspnetcore
-position: 1
+components: ["listbox"]
+position: 5
 ---
 
-# Telerik UI ListBox in RazorPages
+# ListBox in Razor Pages
 
-`RazorPage` is an alternative to the MVC pattern that makes page-focused coding easier and more productive. It consists of a `cshtml` file and a `cs` file (generally the two files have the same name). The Telerik UI ListBox for {{ site.framework }} can be integrated in such an application seamlessly.
+This article describes how to seamlessly integrate and configure the Telerik UI ListBox for {{ site.framework }} in Razor Pages applications.
 
-For a runnable example, refer to the [ListBox in RazorPages example](https://github.com/telerik/ui-for-aspnet-core-examples/tree/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/ListBox).
+> You can use any of the available [data binding approaches]({% slug htmlhelpers_listbox_databinding_aspnetcore %}#data-binding-approaches) to bind the component to data in a Razor Pages application.
 
-## Getting Started
+@[template](/_contentTemplates/core/razor-pages-general-info.md#referencing-handler-methods)
 
-To bind the Telerik UI ListBox to a data set  within a RazorPage:
+## Binding to Remote Data
 
-1. Setup the Read URL in the `DataSource`. The URL should refer the name of the method in the `PageModel`.
+The [DataSource]({% slug htmlhelpers_datasource_aspnetcore %}) component offers the most versatile data binding approach. To connect the ListBox to a data set retrieved from a remote endpoint in a Razor Pages application, proceed with the following steps:
+
+1. Specify the Read request URL in the `DataSource` configuration. The URL must refer to the method name in the `PageModel`.
 
     ```HtmlHelper
-        .DataSource(ds=>ds
-            .Read(r=>r.Url("/ListBox/ListBoxBinding?handler=ReadOptional"))
+        @page
+        @model IndexModel
+
+        @(Html.Kendo().ListBox()
+        .Name("optional")
+        .DataTextField("Text")
+        .DataValueField("Value")
+        .Toolbar(toolbar =>
+        {
+            toolbar.Position(ListBoxToolbarPosition.Right);
+            toolbar.Tools(tools => tools
+                .MoveUp()
+                .MoveDown()
+                .TransferTo()
+                .TransferFrom()
+                .TransferAllTo()
+                .TransferAllFrom()
+                .Remove()
+            );
+        })
+        .DataSource(ds => ds
+            .Read(r => r.Url(Url.Page("Index", "ReadOptional")).Data("forgeryToken"))
         )
+        .ConnectWith("selected")
+    )
+
+    @(Html.Kendo().ListBox()
+        .Name("selected")
+        .DataTextField("Text")
+        .DataValueField("Value")
+        .Selectable(ListBoxSelectable.Multiple)
+    )
     ```
     ```TagHelper
-    <datasource>
-        <transport>
-            <read url="/ListBox/ListBoxBinding?handler=ReadOptional"/>
-        </transport>
-    </datasource>
+        @page
+        @model IndexModel
+
+        @{
+            var tools = new string[] {
+                "moveUp",
+                "moveDown",
+                "transferTo",
+                "transferFrom",
+                "transferAllTo",
+                "transferAllFrom",
+                "remove"
+            };
+        }
+
+        <kendo-listbox name="optional" datatextfield="Text" datavaluefield="Value" connect-with="selected">
+            <datasource>
+                <transport>
+                    <read url="@Url.Page("Index", "ReadOptional")" data="forgeryToken"/>
+                </transport>
+            </datasource>
+            <toolbar position="ListBoxToolbarPosition.Right" tools="tools"/>
+        </kendo-listbox>
+
+        <kendo-listbox name="selected" datatextfield="Text" datavaluefield="Value" selectable="ListBoxSelectable.Multiple" />
     ```
 
-1. Within the `.cs` file, introduce an ActionMethod to return the data set:
-
+1. Add an `AntiForgeryToken` at the top of the page.
     ```
-        public JsonResult OnGetReadOptional()
+        @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+        @Html.AntiForgeryToken()
+    ```
+
+1. Send the `AntiForgeryToken` with the Read request.
+
+    ```JS
+        <script>
+            function forgeryToken() {
+                return kendo.antiForgeryTokens();
+            }
+        </script>
+    ```
+
+    Additional parameters can also be supplied.
+
+    ```JS
+        <script>
+            function forgeryToken() {
+                return {
+                    __RequestVerificationToken: kendo.antiForgeryTokens().__RequestVerificationToken,
+                    additionalParameter: "test"
+                }
+            }
+        </script>
+    ```
+
+1. Within the `cshtml.cs` file, add a handler method for the Read operation that returns the dataset.
+
+    ```C# Index.cshtml.cs
+    public class IndexModel : PageModel
+    {
+        public static IList<SelectListItem> items;
+
+        public void OnGet()
         {
-            return new JsonResult(ListBoxItems);
+            if (items == null)
+            {
+                items = new List<SelectListItem>();
+                Enumerable.Range(1, 5).ToList().ForEach(f => items.Add(new SelectListItem
+                {
+                    Value = "" + f,
+                    Text = "Text " + f
+                }));
+            }
+        }
+
+        public JsonResult OnPostReadOptional()()
+        {
+            return new JsonResult(items);
+        }
+    }
+    ```
+
+For the complete project, refer to the [ListBox in Razor Pages example](https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/ListBox/ListBoxBinding.cshtml).
+
+## Binding to a PageModel Property
+
+To bind the ListBox to a property from the `PageModel`, follow the next steps:
+
+1. Add a property to the `PageModel` that holds the data collection that must be loaded in the ListBox.
+
+    ```C#
+        public class ListBoxPageModel : PageModel
+        {
+            [BindProperty]
+            public IList<SelectListItem> items { get; set; }
+
+            public void OnGet()
+            {
+                if (items == null)
+                {
+                    items = new List<SelectListItem>();
+                    Enumerable.Range(1, 5).ToList()
+                        .ForEach(f => items.Add(new SelectListItem
+                        {
+                            Value = "" + f,
+                            Text = "Text " + f
+                        })
+                    );
+                }
+            }
         }
     ```
 
+1. Declare the `PageModel` at the top of the page.
+
+    ```
+        @model ListBoxPageModel
+    ```
+
+1. Bind the ListBox to the collection property and disable the server data operations (`ServerOperations(false)`).
+
+    ```HtmlHelper
+        @page
+        @model ListBoxPageModel
+
+        @(Html.Kendo().ListBox(Model.items)
+            .Name("optional")
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .Toolbar(toolbar =>
+            {
+                toolbar.Position(ListBoxToolbarPosition.Right);
+                toolbar.Tools(tools => tools
+                    .MoveUp()
+                    .MoveDown()
+                    .TransferTo()
+                    .TransferFrom()
+                    .TransferAllTo()
+                    .TransferAllFrom()
+                    .Remove()
+                );
+            })
+            .ConnectWith("selected")
+        )
+
+        @(Html.Kendo().ListBox()
+            .Name("selected")
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .Selectable(ListBoxSelectable.Multiple)
+            .BindTo(new List<SelectListItem>())
+        )
+    ```
+    ```TagHelper
+        @page
+        @model ListBoxPageModel
+
+        @{
+            var tools = new string[] {
+                "moveUp",
+                "moveDown",
+                "transferTo",
+                "transferFrom",
+                "transferAllTo",
+                "transferAllFrom",
+                "remove"
+            };
+
+            var selectedItems = new List<SelectListItem>();
+        }
+
+        <kendo-listbox name="optional" datatextfield="Text" datavaluefield="Value" connect-with="selected" bind-to="@Model.items">
+            <toolbar position="ListBoxToolbarPosition.Right" tools="tools"/>
+        </kendo-listbox>
+
+        <kendo-listbox name="selected" datatextfield="Text" datavaluefield="Value" selectable="ListBoxSelectable.Multiple" bind-to="selectedItems"/>
+    ```
+
+
 ## See Also
 
-* [Server-Side API](/api/listbox)
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the ListBox](https://docs.telerik.com/kendo-ui/api/ui/listbox)
+* [Server-Side HtmlHelper API of the ListBox](/api/listbox)
+* [Server-Side TagHelper API of the ListBox](/api/taghelpers/listbox)
+* [Knowledge Base Section](/knowledge-base)

@@ -2,23 +2,23 @@
 title: CRUD Operations
 page_title: CRUD Operations
 description: "Learn how to use the create, read, update, and delete CRUD operations with the Telerik UI Editor component for {{ site.framework }}."
+components: ["editor"]
 slug: htmlhelpers_crud_editor_aspnetcore
-position: 8
+position: 9
 ---
 
 # CRUD Operations
 
 The following example demonstrates how to save, read, update and delete a text data content in a local database using the Editor component.
 
-{% if site.core %}
-For a runnable project, refer to [this GitHub repository](https://github.com/telerik/ui-for-aspnet-core-examples). The previously linked example assumes you have a {{ site.product }} and Entity framework installed and a local database set up.
-{% endif %}
+For a runnable project, refer to [this GitHub repository](https://github.com/telerik/ui-for-aspnet-core-examples). The previously linked example assumes you have Telerik UI for ASP.NET Core and Entity framework installed and a local database set up.
 
-> This code has no applied XSS attack prevention and it is the responsibility of the developer to manage these security risks. For more information, refer to the article on [preventing cross-site scripting](https://docs.telerik.com/kendo-ui/controls/editors/editor/preventing-xss).
+
+> This code has no applied XSS attack prevention and it is the responsibility of the developer to manage these security risks. For more information, refer to the article on [preventing cross-site scripting](https://docs.telerik.com/kendo-ui/controls/editor/preventing-xss).
 
 The following example demonstrates how to define the database model.
 
-```
+```C#
 public class EditorDataContext : DbContext
 {
     public EditorDataContext(DbContextOptions<EditorDataContext> options)

@@ -1,7 +1,8 @@
 ---
 title: Content Security Policy
-page_title: Content Security Policy | Working with Widgets 
+page_title: Content Security Policy - Working with Components 
 description: "Learn more about the Content Security Policy (CSP) mode and how to work with it in Kendo UI for jQuery controls."
+components: ["general"]
 slug: troubleshooting_content_security_policy_kendoui
 previous_url: /troubleshoot/content-security-policy
 position: 70
@@ -11,14 +12,33 @@ position: 70
 
 If the strict `Content-Security-Policy` (CSP) mode is enabled, it disables the following browser features by default:
 
-* Inline JavaScript, such as `<script></script>`, or DOM event attributes, such as `onclick`, are blocked. All script code must reside in separate files that are served from a white-listed domain.
-
+* Inline JavaScript, such as `<script></script>`, or DOM event attributes, such as `onclick`, are blocked. All script code must live in separate files that are served from a safe-listed domain.
 * Dynamic code evaluation through `eval()` and string arguments for both `setTimeout` and `setInterval` are blocked.
 
-## Working with Kendo UI for jQuery
+## Kendo UI for jQuery Version 2024 Q4 and Later
 
-Kendo UI for jQuery uses `eval()` calls for its templates to work internally. Thus, Kendo UI for jQuery does not currently support the strict CSP mode.
+Starting with the [2024.4.1112 (2024 Q4)](https://www.telerik.com/support/whats-new/kendo-ui/release-history/kendo-ui-for-jquery-2024-4-1112-(2024-q4)) release, all Kendo UI for jQuery components are CSP compliant. 
 
-If CSP is enabled for a Kendo UI application, you have to add at least the `unsafe-eval` keyword as a part of the `meta` tag that is used for enabling the CSP mode.
+
+## Kendo UI for jQuery Versions between R1 2023 and 2024 Q4
+
+The Kendo UI for jQuery R1 2023 release addresses the `unsafe-eval` directive for all components except for the [Spreadsheet]({% slug overview_spreadsheet_widget %}). The rest of the Kendo UI components and internal mechanisms have been rewritten to discard the usage of the `eval()` and `new Function()` calls.
+
+To avoid including the `unsafe-eval` keyword in the `meta` tag of your project pages, in this way preventing the components from being dependent on `unsafe-eval`, you must rewrite all [inline]({% slug getting_started_inline_templates %}) and [external]({% slug getting_started_external_templates %}) templates into [CSP-compatible]({% slug csp_templates %}) functional templates.
+
+The engine for the [inline]({% slug getting_started_inline_templates %}) and [external]({% slug getting_started_external_templates %}) templates will remain available. However, if you are using the previous template syntax, you must include the `unsafe-eval` directive in the `meta` tag.
+
+## Kendo UI for jQuery Versions before R1 2023
+
+The Kendo UI for jQuery releases before R1 2023 one use `eval()` calls for their templates to work internally. Thus, in these previous versions, Kendo UI for jQuery does not support the strict CSP mode.
+
+If CSP is enabled for a Kendo UI application, you have to add the `unsafe-eval` keyword as a part of the `meta` tag that is used for enabling the CSP mode.
 
     <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-eval' 'self' https://kendo.cdn.telerik.com;">
+
+
+## See Also 
+
+* [Getting Started with Content Security Policy (CSP-Compatible) Templates]({% slug csp_templates %})
+* [Templates Essentials]({% slug essentials_templates %})
+* [Templates Demos](https://demos.telerik.com/kendo-ui/templates/index)

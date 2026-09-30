@@ -1,14 +1,14 @@
 ---
 title: Display Details of Hierarchical Grid in Window
-description: An example on how to use a window to display details of a hierarchical Grid.
+description: Learn how to use a window to display details of a hierarchical Grid.
 type: how-to
-page_title: Show Details of Hierarchical Grids in a Window | Kendo UI Grid for jQuery
+page_title: Show Details of Hierarchical Grids in a Window - Kendo UI for jQuery Data Grid
 slug: show-details-in-window-from-hierarchical-grid
 tags: grid, hierarchical, window, details
 previous_url: /knowledge-base/how-to-show-details-in-window-from-hierarchical-grid
 ticketid: 1132144
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -16,7 +16,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -57,9 +57,9 @@ Create a custom command which changes the content of the Window based on the cur
         $(document).ready(function() {
           var element = $("#grid").kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                read: "https://demos.telerik.com/service/v2/odata/Employees"
               },
               pageSize: 6,
               serverPaging: true,
@@ -111,9 +111,9 @@ Create a custom command which changes the content of the Window based on the cur
         function detailInit(e) {
           $("<div/>").appendTo(e.detailCell).kendoGrid({
             dataSource: {
-              type: "odata",
+              type: "odata-v4",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                read: "https://demos.telerik.com/service/v2/odata/Orders"
               },
               serverPaging: true,
               serverSorting: true,

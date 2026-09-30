@@ -2,6 +2,7 @@
 title: Icons
 page_title: Icons
 description: "Learn how to configure the icons of the items and the delimiters of the widget."
+components: ["stepper"]
 slug: htmlhelpers_stepper_aspnetcore_icons
 position: 3
 ---
@@ -24,7 +25,7 @@ The following example demonstrates how to configure different icons.
         .Steps(s =>
         {
             s.Add().Label("First Step").Icon("home");
-            s.Add().Label("Second Step").Icon("attachment");
+            s.Add().Label("Second Step").Icon("paperclip");
             s.Add().Label("Last Step").Icon("save");
         })
     )
@@ -34,7 +35,7 @@ The following example demonstrates how to configure different icons.
     <kendo-stepper name="stepper">
         <steps>
             <step label="First" icon="home"></step>
-            <step label="Second" icon="attachment"></step>
+            <step label="Second" icon="paperclip"></step>
             <step label="Third" icon="save"></step>
         </steps>
     </kendo-stepper>

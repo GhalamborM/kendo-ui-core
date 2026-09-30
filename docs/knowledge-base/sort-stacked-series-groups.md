@@ -5,9 +5,9 @@ description: "Learn how to sort the stacked series in a grouped Kendo UI Chart."
 previous_url: /controls/charts/how-to/sort-stacked-series-groups, /controls/charts/how-to/sorting/sort-stacked-series-groups
 slug: howto_sortstackedseriesinagroupedchart_charts
 tags: chart, sort, stacked, series, in, grouped, charts
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -41,7 +41,7 @@ The order of the stacked series in a grouped chart cannot be set through the `so
 
 The reason for this behavior is that the grouping overrides the sort order as part of its implementation. In effect, the sort order is respected only within the resulting groups. Still, you can influence the final order of the stacked series as follows:
 
-* Collect the stack values in an array. The stackValue can be obtained from the [labels.template](/api/javascript/dataviz/ui/chart/configuration/series.labels.template).
+* Collect the stack values in an array. The stackValue can be obtained from the [labels.template](/api/dataviz/ui/chart/configuration/series/labels#serieslabelstemplate).
 * [Sort the categories]({% slug howto_sortcategorisinagroupedchart_charts %}) based on the stack values array.
 
 The following example demonstrates how to sort stacked series values in a grouped Kendo UI Chart.
@@ -137,8 +137,8 @@ The following example demonstrates how to sort stacked series values in a groupe
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Sort Categories in Grouped Charts]({% slug howto_sortcategorisinagroupedchart_charts %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Sort Categories in Grouped Charts]({% slug howto_sortcategorisinagroupedchart_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})

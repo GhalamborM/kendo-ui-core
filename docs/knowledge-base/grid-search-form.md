@@ -1,13 +1,13 @@
 ---
 title: Grid External Search Form
-description: An example on how to implement an external search form for the Kendo UI Grid.
+description: Learn how to implement an external search form for the Kendo UI Grid.
 type: how-to
-page_title: Search Form for Grid | Kendo UI Grid for jQuery
+page_title: Search Form for Grid - Kendo UI for jQuery Data Grid
 slug: grid-search-form
 tags: kendoui, kendo, grid, search, panel, form, external, filter, before, load
 res_type: kb
+components: ["grid"]
 ticketid: 1148195
-component: grid
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
   <td>Created with version</td>
   <td>2017.3.1026</td>
  </tr>
@@ -29,9 +29,9 @@ I want to implement a search form that accepts search criteria before populating
 
 The most common way of implementing such functionality is the following:
 
-1. Set the [`autoBind`](/api/javascript/ui/grid/configuration/autobind) Kendo UI Grid property to `false`
+1. Set the [`autoBind`](/api/ui/grid/configuration/autobind) Kendo UI Grid property to `false`
 1. Add a click handler to some button to be executed when the filter criteria is submitted
-1. Get the Kendo UI Grid instance and filter the data source with the [`filter()`](/api/javascript/data/datasource/methods/filter) method.
+1. Get the Kendo UI Grid instance and filter the data source with the [`filter()`](/api/data/datasource/methods/filter) method.
 
 ```dojo
     <div id="example">
@@ -62,9 +62,9 @@ The most common way of implementing such functionality is the following:
         var grid = $("#grid").kendoGrid({
           autoBind:false,
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             transport: {
-              read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+              read: "https://demos.telerik.com/service/v2/odata/Orders"
             },
             schema: {
               model: {

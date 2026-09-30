@@ -1,14 +1,14 @@
 ---
 title: Persist the Resizing of the Last Grid Row When Virtual Scrolling Is Enabled
-description: An example on how to resize the Kendo UI Grid when its last row is hidden behind the scrollbar.
+description: Learn how to resize the Kendo UI Grid when its last row is hidden behind the scrollbar.
 type: how-to
-page_title: Resize the Grid When the Last Row Is Hidden behind the Scrollbar | Kendo UI Grid for jQuery
+page_title: Resize the Grid When the Last Row Is Hidden behind the Scrollbar - Kendo UI for jQuery Data Grid
 slug: resize-the-grid-when-the-last-row-is-hidden-behind-the-scrollbar
 previous_url: /knowledge-base/how-to-resize-the-grid-when-the-last-row-is-hidden-behind-the-scrollbar
 tags: grid, virtualization, scroll, resize
 ticketid: 1134254
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -16,7 +16,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -31,7 +31,7 @@ component: grid
   <td>61</td>
  </tr>
   <tr>
-  <td>Made with version</td>
+  <td>Product Version</td>
   <td>2017.3.913</td>
  </tr>
 </table>
@@ -47,7 +47,7 @@ How can I persist the resizing of the last row in the Kendo UI Grid when virtual
 
 The reason for this issue is that the scrollbar is not part of the initial Grid height.
 
-To ensure that the row will be visible, programmatically resize the Grid after the [column resizing](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/columnresize).
+To ensure that the row will be visible, programmatically resize the Grid after the [column resizing](https://docs.telerik.com/kendo-ui/api/ui/grid/events/columnresize).
 
 ```dojo
 <div id="grid" style="height: 380px;width:400px"></div>

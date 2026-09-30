@@ -1,12 +1,13 @@
 ---
 title: Remove Dirty Indicator when Value Is in Original State
-description: An example on how to remove the dirty indicator when the value is put back to the original state in the Kendo UI Grid.
+description: Learn how to remove the dirty indicator when the value is put back to the original state in the Kendo UI Grid.
 type: how-to
-page_title: Remove Dirty Flag When Cell Value Is Changed to Original | Kendo UI Grid for jQuery
+page_title: Remove Dirty Flag When Cell Value Is Changed to Original - Kendo UI for jQuery Data Grid
 slug: grid-remove-dirty-indicator-when-value-is-original-state
 tags: grid, dirty, editing, batch
 ticketid: 1156822
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -28,7 +29,7 @@ How can I remove the dirty indicators from the cells when the user changes the v
 
 ## Solution
 
-To remove the dirty indicators, handle the [`save`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/save) event&mdash;in the event handler:
+To remove the dirty indicators, handle the [`save`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/save) event&mdash;in the event handler:
 
 1. Use the internal `_pristineForModel` method to get the original values.
 1. If the changed value is equal to the original value, `delete` the field from the `dirtyFields` object of the `model`.
@@ -40,30 +41,30 @@ To remove the dirty indicators, handle the [`save`](https://docs.telerik.com/ken
 
 	<script>
 		$(document).ready(function() {
-			var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
-				dataSource = new kendo.data.DataSource({
-					transport: {
-						read: {
-							url: crudServiceBaseUrl + "/Products",
-							dataType: "jsonp"
-						},
-						update: {
-							url: crudServiceBaseUrl + "/Products/Update",
-							dataType: "jsonp"
-						},
-						destroy: {
-							url: crudServiceBaseUrl + "/Products/Destroy",
-							dataType: "jsonp"
-						},
-						create: {
-							url: crudServiceBaseUrl + "/Products/Create",
-							dataType: "jsonp"
-						},
+			var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+                dataSource = new kendo.data.DataSource({
+                    transport: {
+                        read:  {
+                            url: crudServiceBaseUrl + "/Products"
+                        },
+                        update: {
+                            url: crudServiceBaseUrl + "/Products/Update",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
+                        destroy: {
+                            url: crudServiceBaseUrl + "/Products/Destroy",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
+                        create: {
+                            url: crudServiceBaseUrl + "/Products/Create",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
 						parameterMap: function(options, operation) {
 							if (operation !== "read" && options.models) {
-								return {
-									models: kendo.stringify(options.models)
-								};
+								return kendo.stringify(options.models);
 							}
 						}
 					},

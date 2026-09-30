@@ -1,5 +1,5 @@
-(function($, undefined) {
-    /* FlatColorPicker messages */
+﻿(function($, undefined) {
+    /* FlatColorPicker messages  */
 
     if (kendo.ui.FlatColorPicker) {
         kendo.ui.FlatColorPicker.prototype.options.messages =
@@ -237,21 +237,21 @@
                     },
                     moveConfirm: {
                         title: "تأكيد النسخ أو النقل",
-                        content: "<p style='text-align: center;'>هل أنت متأكد من إتمام النسخ أو الحذف؟</p>",
+                        content: "<p class='k-text-center'>هل أنت متأكد من إتمام النسخ أو الحذف؟</p>",
                         okText: "نسخ",
                         cancel: "نقل",
                         close: "إغلاق"
                     },
                     deleteConfirm: {
                         title: "تأكيد الحذف",
-                        content: "<p style='text-align: center;'>هل أنت متأكد من حذف الملفات المحددة؟?</br>لا يمكنك التراجع عن هذا الإجراء.</p>",
+                        content: "<p class='k-text-center'>هل أنت متأكد من حذف الملفات المحددة؟?<br/>لا يمكنك التراجع عن هذا الإجراء.</p>",
                         okText: "حذف",
                         cancel: "إلغاء",
                         close: "إغلاق"
                     },
                     renamePrompt: {
                         title: "إعادة التسمية",
-                        content: "<p style='text-align: center;'>أدخل اسم ملف جديد</p>",
+                        content: "<p class='k-text-center'>أدخل اسم ملف جديد</p>",
                         okText: "إعادة التسمية",
                         cancel: "إلغاء",
                         close: "إغلاق"
@@ -479,6 +479,7 @@
                     "cancel": "إلغاء التغييرات",
                     "canceledit": "إلغاء",
                     "create": "إضافة سجل جديد",
+                    "add": "إضافة سجل جديد",
                     "destroy": "حذف",
                     "edit": "تعديل",
                     "excel": "Excel تصدير إلى",
@@ -667,6 +668,9 @@
             $.extend(true, kendo.ui.RecurrenceEditor.prototype.options.messages, {
                 "repeat": "تكرار",
                 "recurrenceEditorTitle": "محرر التكرار",
+                "removeRecurrence": "إزالة التكرار",
+                "cancel": "إلغاء",
+                "update": "حفظ",
                 "frequencies": {
                     "never": "ابداً",
                     "hourly": "كل ساعة",
@@ -723,6 +727,13 @@
                     "day": "يوم",
                     "weekday": "يوم من أيام الأسبوع",
                     "weekend": "يوم عطلة نهاية الأسبوع"
+                },
+                "makeRecurring": "اجعله متكرراً",
+                "summary": {
+                  "on": "في",
+                  "onThe": "في",
+                  "onDay": "في اليوم",
+                  "until": "حتى"
                 }
             });
     }
@@ -790,6 +801,7 @@
                 "showFullDay": "عرض كامل لليوم",
                 "showWorkDay": "عرض ساعات العمل",
                 "today": "اليوم",
+                "create": "حدث جديد",
                 "save": "حفظ",
                 "cancel": "إلغاء",
                 "destroy": "حذف",
@@ -814,6 +826,7 @@
                     "deleteWindowSeries": "حذف السلسلة",
                     "deleteRecurringConfirmation": "هل أنت متأكد من حذف هذا الحدث؟",
                     "deleteSeriesConfirmation": "هل أنت متأكد حذف السلسلة بأكملها؟",
+                    "resetSeriesConfirmation": "هل أنت متأكد أنك تريد إعادة تعيين السلسلة بأكملها؟",
                     "editWindowTitle": "تعديل العنصر المتكرر",
                     "editWindowOccurrence": "تعديل الحدث الحالي",
                     "editWindowSeries": "تعديل السلسلة",
@@ -826,6 +839,13 @@
                     "end": "إنهاء",
                     "allDayEvent": "حدث اليوم بأكمله",
                     "description": "وصف",
+                    "descriptionPlaceholder": "أضف وصفًا",
+                    "from": "من",
+                    "to": "إلى",
+                    "cancelTimezoneReset": "لا",
+                    "resetTimezone": "نعم",
+                    "resetTimezoneConfirmation": "هل أنت متأكد أنك تريد إعادة تعيين المنطقة الزمنية؟",
+                    "resetTimezoneWindowTitle": "إعادة تعيين المنطقة الزمنية",
                     "repeat": "تكرار",
                     "timezone": " ",
                     "startTimezone": "بدء نظام التوقيت",
@@ -835,7 +855,9 @@
                     "timezoneEditorButton": "المنطقة الزمنية",
                     "timezoneTitle": "المناطق الزمنية",
                     "noTimezone": "بلا نظام توقيت",
-                    "editorTitle": "حدث"
+                    "editorTitle": "حدث",
+                    "newEvent": "حدث جديد",
+                    "editEvent": "تحرير الحدث"
                 },
                 "search": "بحث..."
             });
@@ -893,7 +915,7 @@
                 "alignmentDialog": {
                     "title": "المحاذاة",
                     "buttons": {
-                        "justtifyLeft": "محاذاة إلى اليسار",
+                        "justifyLeft": "محاذاة إلى اليسار",
                         "justifyCenter": "وسط",
                         "justifyRight": "محاذاة إلي اليمين",
                         "justifyFull": "ضبط",
@@ -1083,7 +1105,7 @@
                 "addRowBelow": "أضف صف إلي الأسفل",
                 "alignment": "محاذاة",
                 "alignmentButtons": {
-                    "justtifyLeft": "محاذاة إلي اليسار",
+                    "justifyLeft": "محاذاة إلي اليسار",
                     "justifyCenter": "وسط",
                     "justifyRight": "محاذاة إلي اليمين",
                     "justifyFull": "ضبط",
@@ -1537,4 +1559,188 @@
                 collapse: "طي"
             });
     }
+
+    /* ColorGradient messages */
+
+    if (kendo.ui.ColorGradient) {
+
+        kendo.ui.ColorGradient.prototype.options.messages =
+            $.extend(true, kendo.ui.ColorGradient.prototype.options.messages, {
+                "contrastRatio": "نسبة التباين:",
+                "fail": "فشل",
+                "pass": "نجاح",
+                "hex": "HEX",
+                "toggleFormat": "تبديل الصيغة",
+                "red": "أحمر",
+                "green": "أخضر",
+                "blue": "أزرق",
+                "alpha": "ألفا"
+            });
+
+    }
+
+    /* PivotConfiguratorV2 messages */
+
+    if (kendo.ui.PivotConfiguratorV2) {
+
+        kendo.ui.PivotConfiguratorV2.prototype.options.messages =
+            $.extend(true, kendo.ui.PivotConfiguratorV2.prototype.options.messages, {
+                "title": "إعدادات",
+                "cancelButtonText": "إلغاء",
+                "applyButtonText": "تطبيق",
+                "measures": "اختر بعض الحقول لبدء الإعداد",
+                "columns": "اختر بعض الحقول لبدء الإعداد",
+                "rows": "اختر بعض الحقول لبدء الإعداد"
+            });
+
+    }
+
+    /* PivotFieldMenuV2 messages */
+
+    if (kendo.ui.PivotFieldMenuV2) {
+
+        kendo.ui.PivotFieldMenuV2.prototype.options.messages =
+            $.extend(true, kendo.ui.PivotFieldMenuV2.prototype.options.messages, {
+                "apply": "تطبيق",
+                "sortAscending": "ترتيب تصاعدي",
+                "sortDescending": "ترتيب تنازلي",
+                "filterFields": "تصفية الحقول",
+                "filter": "تصفية",
+                "include": "تضمين الحقول...",
+                "clear": "مسح",
+                "reset": "إعادة تعيين",
+                "moveToColumns": "نقل إلى الأعمدة",
+                "moveToRows": "نقل إلى الصفوف",
+                "movePrevious": "نقل للسابق",
+                "moveNext": "نقل للتالي",
+                "filterOperatorsDropDownLabel": "عوامل تصفية المنطقة",
+                "filterValueTextBoxLabel": "قيمة تصفية المنطقة",
+                "operators": {
+                    "contains": "يحتوي على",
+                    "doesnotcontain": "لا يحتوي على",
+                    "startswith": "يبدأ بـ",
+                    "endswith": "ينتهي بـ",
+                    "eq": "يساوي",
+                    "neq": "لا يساوي"
+                }
+            });
+
+    }
+
+    /* TimePicker */
+
+    /* TimePicker */
+
+    if (kendo.ui.TimePicker) {
+
+        kendo.ui.TimePicker.prototype.options.messages =
+            $.extend(true, kendo.ui.TimePicker.prototype.options.messages, {
+                "set": "تعيين",
+                "cancel": "إلغاء",
+                "hour": "ساعة",
+                "minute": "دقيقة",
+                "second": "ثانية",
+                "millisecond": "ميلي ثانية",
+                "now": "الآن"
+            });
+
+    }
+
+    /* DateTimePicker */
+
+    /* DateTimePicker */
+
+    if (kendo.ui.DateTimePicker) {
+
+        kendo.ui.DateTimePicker.prototype.options.messages =
+            $.extend(true, kendo.ui.DateTimePicker.prototype.options.messages, {
+                "set": "تعيين",
+                "cancel": "إلغاء",
+                "hour": "ساعة",
+                "minute": "دقيقة",
+                "second": "ثانية",
+                "millisecond": "ميلي ثانية",
+                "now": "الآن",
+                "date": "التاريخ",
+                "time": "الوقت",
+                "today": "اليوم",
+                "weekColumnHeader": ""
+            });
+
+    }
+
+    /* Map messages */
+
+    if (kendo.dataviz.ui.Map) {
+
+        kendo.dataviz.ui.Map.prototype.options.messages =
+            $.extend(true, kendo.dataviz.ui.Map.prototype.options.messages, {
+                "tileTitle": "عنوان الخريطة"
+            });
+
+    }
+
+    /* Sankey messages */
+
+    if (kendo.dataviz.ui.Sankey) {
+
+        kendo.dataviz.ui.Sankey.prototype.options.messages =
+            $.extend(true, kendo.dataviz.ui.Sankey.prototype.options.messages, {
+                "tooltipUnits": "{0} وحدات"
+            });
+
+    }
+
+    /* Chart messages */
+
+    if (kendo.dataviz.ui.Chart) {
+
+        kendo.dataviz.ui.Chart.prototype.options.messages =
+            $.extend(true, kendo.dataviz.ui.Chart.prototype.options.messages, {
+                "noData": "لا تتوفر بيانات"
+            });
+
+    }
+
+
+/* ToolCall messages */
+
+if (kendo.ui.ToolCall) {
+    kendo.ui.ToolCall.prototype.options.messages =
+    $.extend(true, kendo.ui.ToolCall.prototype.options.messages,{
+        "states": {
+            "active": "نشط",
+            "completed": "مكتمل",
+            "awaitingApproval": "في انتظار الموافقة",
+            "error": "خطأ"
+        },
+        "approve": "موافقة",
+        "reject": "رفض",
+        "parametersLabel": "المعاملات",
+        "resultLabel": "النتيجة"
+    });
+}
+
+/* Citation messages */
+
+if (kendo.ui.Citation) {
+    kendo.ui.Citation.prototype.options.messages =
+    $.extend(true, kendo.ui.Citation.prototype.options.messages,{
+        "previousSourceAction": "المصدر السابق",
+        "nextSourceAction": "المصدر التالي"
+    });
+}
+
+/* Checkpoint messages */
+
+if (kendo.ui.Checkpoint) {
+    kendo.ui.Checkpoint.prototype.options.messages =
+    $.extend(true, kendo.ui.Checkpoint.prototype.options.messages,{
+        "startOver": "البدء من جديد",
+        "restore": "استعادة نقطة التحقق",
+        "redo": "إعادة",
+        "checkpointRestoredText": "تم استعادة نقطة التحقق"
+    });
+}
+
 })(window.kendo.jQuery);

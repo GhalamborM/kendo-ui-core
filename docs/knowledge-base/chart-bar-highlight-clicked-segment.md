@@ -1,12 +1,13 @@
 ---
 title: Highlight Clicked Bar Chart Segments
-page_title: Highlight Bar on Click | Kendo UI Chart for jQuery
-description: An example on how to highlight the clicked bar segment in the Kendo UI Bar Chart.
+page_title: Highlight Bar on Click - Kendo UI Chart for jQuery
+description: Learn how to highlight the clicked bar segment in the Kendo UI Bar Chart.
 type: how-to
 slug: chart-bar-highlight-clicked-segment
 tags: chart, bar, highlight, click, series
 ticketid: 1152454
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Chart for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Chart for jQuery</td>
 	</tr>
 </table>
 
@@ -28,7 +29,7 @@ How can I highlight the clicked bar in the Kendo UI Bar Chart?
 
 ## Solution
 
-Handle the [`seriesClick`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/events/seriesclick) event&mdash;in the event handler, add a custom style class to the desired HTML elements.
+Handle the [`seriesClick`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/events/seriesclick) event&mdash;in the event handler, add a custom style class to the desired HTML elements.
 
 ```dojo
 <style>
@@ -40,7 +41,7 @@ Handle the [`seriesClick`](https://docs.telerik.com/kendo-ui/api/javascript/data
 </style>
 <div id="example">
 	<div class="demo-section k-content wide">
-		<div id="chart" style="background: center no-repeat url('../content/shared/styles/world-map.png');"></div>
+		<div id="chart" style="background: center no-repeat url('https://demos.telerik.com/kendo-ui/content/shared/styles/world-map.png');"></div>
 	</div>
 	<script>
 		function createChart() {

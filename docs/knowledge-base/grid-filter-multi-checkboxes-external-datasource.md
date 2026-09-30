@@ -1,12 +1,13 @@
 ---
 title: Filter Multi Checkboxes Based on Previous Filters in Grid
-description: An example on how to display the valid possibilities in the multi-checkboxes filter list based on the previous filters in the Kendo UI Grid.
+description: Learn how to display the valid possibilities in the multi-checkboxes filter list based on the previous filters in the Kendo UI Grid.
 type: how-to
-page_title: Make Multi Checkboxes Filter Display Valid Possibilities Only | Kendo UI Grid for jQuery
+page_title: Make Multi Checkboxes Filter Display Valid Possibilities Only - Kendo UI for jQuery Data Grid
 slug: grid-filter-multi-checkboxes-external-datasource
 tags: grid, filter, multi, checkboxes, datasource
 ticketid: 1138899
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Updated with the 2021.3.914 version</td>
  </tr>
 </table>
@@ -28,7 +29,7 @@ How can I display only the valid possibilities in the multi-checkbox filter base
 
 ## Solution
 
-Use an external Kendo UI dataSource and assign it both to the [Grid](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/datasource) and the [filters](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/columns.filterable.datasource).
+Use an external Kendo UI dataSource and assign it both to the [Grid](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/datasource) and the [filters](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/columns/filterable#columnsfilterabledatasource).
 
 ```dojo
 <script src="https://demos.telerik.com/kendo-ui/content/shared/js/products.js"></script>

@@ -2,6 +2,7 @@
 title: ScrollView
 page_title: ScrollView Overview
 description: "Learn the basics when working with the hybrid Telerik UI ScrollView HtmlHelper for ASP.NET MVC."
+components: ["general"]
 previous_url: /helpers/hybrid/mobilescrollview/overview, /helpers/hybrid/mobilescrollview
 slug: overview_hybridscrollview_aspnetmvc
 ---
@@ -64,7 +65,7 @@ The ScrollView enables the user to scroll the content that is wider than the scr
 
 ## Events
 
-You can subscribe to all hybrid ScrollView [events](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/scrollview#events).
+You can subscribe to all hybrid ScrollView [events](https://docs.telerik.com/kendo-ui/api/mobile/ui/scrollview#events).
 
 The following example demonstrates how to subscribe to events by a handler name.
 
@@ -88,7 +89,7 @@ The following example demonstrates how to subscribe to events by a handler name.
 
 ## Referencing Existing Instances
 
-You can reference a hybrid ScrollView instance by using the code from the following example. Once a reference is established, use the [hybrid ScrollView client-side API](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/scrollview#methods) to control its behavior.
+You can reference a hybrid ScrollView instance by using the code from the following example. Once a reference is established, use the [hybrid ScrollView client-side API](https://docs.telerik.com/kendo-ui/api/mobile/ui/scrollview#methods) to control its behavior.
 
     @(Html.Kendo().MobileScrollView()
             .Name("scrollView")
@@ -107,4 +108,4 @@ You can reference a hybrid ScrollView instance by using the code from the follow
 
 ## See Also
 
-* [Hybrid ScrollViewBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/MobileScrollViewBuilder)
+* [Hybrid ScrollViewBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/mobilescrollviewbuilder)

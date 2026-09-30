@@ -1,12 +1,12 @@
 ---
 title: Persist Selection Upon Retrieving New Data with Remotely Bound TreeList 
-page_title: Persist Selected Rows | Kendo UI TreeList for jQuery
-description: "An example on how to persist the selected rows of the remotely bound Kendo UI TreeList for jQuery upon retrieving new data."
+page_title: Persist Selected Rows - Kendo UI TreeList for jQuery
+description: "Learn how to persist the selected rows of the remotely bound Kendo UI TreeList for jQuery upon retrieving new data."
 slug: howto_persist_selected_rows_remote_bound_treelist
 tags: persist, selected, rows, treelist, remote, bind
-component: treelist
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -36,20 +36,19 @@ How can I persist the selected rows of Kendo UI TreeList for jQuery bound to a r
 
 ## Solution
 
-Store the ids of the selected items whenever the user selects a row and then within the [`dataBound`](/api/javascript/ui/treelist/events/databound) event handler restore the selected rows.
+Store the ids of the selected items whenever the user selects a row and then within the [`dataBound`](/api/ui/treelist/events/databound) event handler restore the selected rows.
 
 
 ```dojo
       <div id="treelist"></div>
       <script>
         $(document).ready(function () {
-          var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service";
+          var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core";
 
           var dataSource = new kendo.data.TreeListDataSource({
             transport: {
               read: {
-                url: crudServiceBaseUrl + "/EmployeeDirectory",
-                dataType: "jsonp"
+                url: crudServiceBaseUrl + "/EmployeeDirectory"
               }
             },
             schema: {
@@ -100,4 +99,4 @@ Store the ids of the selected items whenever the user selects a row and then wit
 
 ## See Also
 
-* [JavaScript API Reference of the TreeList](/api/javascript/ui/treelist)
+* [JavaScript API Reference of the TreeList](/api/ui/treelist)

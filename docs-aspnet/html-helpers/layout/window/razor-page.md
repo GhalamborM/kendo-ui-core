@@ -1,18 +1,26 @@
 ---
-title:  Razor Page
-page_title: Configure a Window in Razor Page.
-description: "An example on how to configure the Telerik UI Window component for {{ site.framework }} in a Razor Page."
+title: Razor Pages
+page_title: Razor Pages
+description: "An example on how to configure the Telerik UI Window component for {{ site.framework }} in a Razor Pages."
 slug: htmlhelpers_window_razorpage_aspnetcore
-position: 8
+components: ["window"]
+position: 12
 ---
 
-# Razor Page
+# Window in Razor Pages
 
-This article describes how to configure the Telerik UI Window for {{ site.framework }} in a RazorPage scenario.
+This article describes how to seamlessly integrate and configure the Telerik UI Window for {{ site.framework }} in Razor Pages applications.
 
-The example below demonstrates how to load content in Window from the server. See the implementation details in the example below, and for the full project with RazorPages examples, visit our [GitHub repository](https://github.com/telerik/ui-for-aspnet-core-examples/tree/master/Telerik.Examples.RazorPages).
+@[template](/_contentTemplates/core/razor-pages-general-info.md#referencing-handler-methods)
 
-```tab-HtmlHelper(cshtml)  	
+## Binding Content to PageModel Property
+
+The following example demonstrates how to configure the Window content based on properties from the `PageModel`.
+
+```HtmlHelper
+	@page
+	@model WindowIndexModel
+
 	@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
 	@Html.AntiForgeryToken()
 
@@ -33,7 +41,10 @@ The example below demonstrates how to load content in Window from the server. Se
 	)
 ```
 {% if site.core %}
-```tab-TagHelper(cshtml)
+```TagHelper
+	@page
+	@model WindowIndexModel
+
  	@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
 	@Html.AntiForgeryToken()
 
@@ -46,17 +57,24 @@ The example below demonstrates how to load content in Window from the server. Se
 	</kendo-window>
 ```
 {% endif %}
-```tab-PageModel(cshtml.cs)      
-
+```C# PageModel
+public class WindowIndexModel : PageModel
+{
     public string Text = String.Empty;
     public void OnGet()
     {
         Text = "Lorem ipsum dolor sit amet...";
     }
+}
 ```
+
+For the complete project, refer to the [Window in Razor Pages example](https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.RazorPages/Telerik.Examples.RazorPages/Pages/Window/WindowIndex.cshtml).
 
 ## See Also
 
-* [Razor Pages Support]({% slug razor_pages_integration_aspnetmvc6_aspnetmvc %})
-* [Window Overview]({% slug htmlhelpers_window_aspnetcore %})
+* [Using Telerik UI for ASP.NET Core in Razor Pages](https://docs.telerik.com/aspnet-core/getting-started/razor-pages#using-telerik-ui-for-aspnet-core-in-razor-pages)
+* [Client-Side API of the Window](https://www.telerik.com/kendo-jquery-ui/documentation/api/ui/window)
+* [Server-Side HtmlHelper API of the Window](/api/window)
+* [Server-Side TagHelper API of the Window](/api/taghelpers/window)
+* [Knowledge Base Section](/knowledge-base)
 

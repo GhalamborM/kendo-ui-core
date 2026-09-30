@@ -5,9 +5,9 @@ description: "Learn how to draw freely on the surface of a Kendo UI Chart with s
 previous_url: /controls/charts/how-to/draw-on-scatter-plots, /controls/charts/how-to/appearance/draw-on-scatter-plots
 slug: howto_drawonscatterplotssurface_charts
 tags: chart, draw, scatter, plots, surface
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -40,7 +40,7 @@ How can I freely draw on the surface of a Kendo UI Chart with scatter series?
 To achieve this behavior:
 
 1. Draw a rectangle with gradient fill on a scatter plot at specified coordinates.
-2. Create custom elements in the [`render` event](/api/javascript/dataviz/ui/chart/events/render) to ensure they survive redraws.
+2. Create custom elements in the [`render` event](/api/dataviz/ui/chart/events/render) to ensure they survive redraws.
 
 For a list of all available drawing primitives, refer to the introductory article on the [Drawing API]({% slug overview_kendoui_drawingapi %}).
 
@@ -105,8 +105,8 @@ The following example demonstrates how to draw freely on the Scatter plot surfac
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
-* [How to Fit PDF Exported Chart to Page]({% slug howto_fitpdfexportedcharttopage_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Fit PDF Exported Chart to Page]({% slug howto_fitpdfexportedcharttopage_charts %})

@@ -1,12 +1,13 @@
 ---
 title: Scroll Parent Grid during Child Grid Navigation
-description: An example on how to scroll the parent Kendo UI Grid while navigating through the child Kendo UI Grid.
+description: Learn how to scroll the parent Kendo UI Grid while navigating through the child Kendo UI Grid.
 type: how-to
-page_title: Change Master-Grid Scrolling Position during Child-Grid Navigation | Kendo UI Grid for jQuery
+page_title: Change Master-Grid Scrolling Position during Child-Grid Navigation - Kendo UI for jQuery Data Grid
 slug: grid-change-master-grid-scrolling-from-child
 tags: grid, scrolling, master, child, hierarchy, navigation
 ticketid: 1160388
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Grid for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Grid for jQuery</td>
 	</tr>
 </table>
 
@@ -28,7 +29,7 @@ How can I change the scrolling position of the master Grid during the navigation
 
 ## Solution
 
-1. Handle the [`navigate`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/navigate) event of the child Grid.
+1. Handle the [`navigate`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/navigate) event of the child Grid.
 1. In the `navigate` event handler, based on the `offset` of the element, manually scroll the container of the parent Grid.
 
 ```dojo
@@ -39,9 +40,9 @@ How can I change the scrolling position of the master Grid during the navigation
         $(document).ready(function() {
             var element = $("#grid").kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                        read: "https://demos.telerik.com/service/v2/odata/Employees"
                     },
                     pageSize: 9,
                     serverPaging: true,
@@ -83,9 +84,9 @@ How can I change the scrolling position of the master Grid during the navigation
         function detailInit(e) {
             $("<div/>").appendTo(e.detailCell).kendoGrid({
                 dataSource: {
-                    type: "odata",
+                    type: "odata-v4",
                     transport: {
-                        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                        read: "https://demos.telerik.com/service/v2/odata/Orders"
                     },
                     serverPaging: true,
                     serverSorting: true,

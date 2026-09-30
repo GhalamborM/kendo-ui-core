@@ -2,6 +2,7 @@
 title: Templates
 page_title: Templates
 description: "Get started with the Telerik UI PivotGridV2 HtmlHelper for {{ site.framework }} and learn about the available template options."
+components: ["pivotgridv2"]
 slug: htmlhelpers_pivotgridv2_aspnetcore_templates
 position: 5
 ---
@@ -16,12 +17,14 @@ The available types of PivotGridV2 templates are:
 * [Data cell template](#data-cell-template)
 * [Column header template](#column-header-template)
 * [Row header template](#row-header-template)
+* [KPI Status Template](#kpi-status-template)
+* [KPI Trend Template](#kpi-trend-template)
 
 For a live example, see the [PivotGridV2 Templates](https://demos.telerik.com/{{ site.platform }}/pivotgridv2/templates) demo.
 
 ## Data Cell Template
 
-The data cell template is the [template](https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/template) which renders the content of the data cell. By default, it renders the `fmtValue` formatted value of the data item.
+The data cell template is the [template](https://docs.telerik.com/kendo-ui/api/kendo/methods/template) which renders the content of the data cell. By default, it renders the `fmtValue` formatted value of the data item.
 
 In the data cell template, you can access the following fields:
 * `columnTuple`&mdash;The tuple of the corresponding column header cell.
@@ -45,7 +48,7 @@ In the data cell template, you can access the following fields:
     </kendo-pivotgridv2>
 ````
 {% endif %}
-```Template
+```JS Template
     <script id="dataCellTemplate" type="text/x-kendo-tmpl">
         # var columnMember = columnTuple ? columnTuple.members[0] : { children: [] }; #
         # var rowMember = rowTuple ? rowTuple.members[0] : { children: [] }; #
@@ -61,7 +64,7 @@ In the data cell template, you can access the following fields:
 
 ## Column Header Template
 
-The column header template is the [template](https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/template) which renders the content of the column header cell. By default, it renders the caption of the tuple member.
+The column header template is the [template](https://docs.telerik.com/kendo-ui/api/kendo/methods/template) which renders the content of the column header cell. By default, it renders the caption of the tuple member.
 
 In the column header template, you can access the following fields:
 * `member`&mdash;The member of the corresponding column header cell.
@@ -83,7 +86,7 @@ In the column header template, you can access the following fields:
     </kendo-pivotgridv2>
 ````
 {% endif %}
-```Template
+```JS Template
     <script id="headerTemplate" type="text/x-kendo-tmpl">
         # if (!member.children.length) { #
             <em>#: member.caption #</em>
@@ -95,7 +98,7 @@ In the column header template, you can access the following fields:
 
 ## Row Header Template
 
-The row header template is the [template](https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/template) which renders the content of the row header cell. By default, it renders the caption of the tuple member.
+The row header template is the [template](https://docs.telerik.com/kendo-ui/api/kendo/methods/template) which renders the content of the row header cell. By default, it renders the caption of the tuple member.
 
 In the row header template, you can access the following fields:
 * `member`&mdash;The member of the corresponding column header cell.
@@ -117,7 +120,7 @@ In the row header template, you can access the following fields:
     </kendo-pivotgridv2>
 ````
 {% endif %}
-```Template
+```JS Template
     <script id="headerTemplate" type="text/x-kendo-tmpl">
         # if (!member.children.length) { #
             <em>#: member.caption #</em>
@@ -127,6 +130,145 @@ In the row header template, you can access the following fields:
     </script>
 ```
 
+## KPI Status Template
+
+The [template](https://docs.telerik.com/kendo-ui/api/kendo/methods/template) which renders the content of the `KPI Status` value. By default renders "open", "hold" and "denied" status icons.
+
+The fields which can be used in the template are:
+
+* `columnTuple`&mdash;the tuple of the corresponding column header cell
+* `rowTuple`&mdash;the tuple of the corresponding row header cell
+* `measure`&mdash;the value of the data cell measure
+* `dataItem`&mdash;the data item itself
+
+```HtmlHelper
+    @(Html.Kendo().PivotGridV2()
+        .Name("pivotgrid")
+        .ColumnWidth(200)
+        .Height(580)
+        .KpiStatusTemplateId("kpiStatusTemplate")
+        .DataSource(dataSource => dataSource
+        .Xmla()
+        .Columns(columns => {
+            columns.Add("[Date].[Calendar]").Expand(true);
+            columns.Add("[Product].[Category]");
+        })
+        .Rows(rows => rows.Add("[Geography].[City]"))
+        .Measures(measures => measures.Values(v => {
+            v.Add().Name("[Measures].[Internet Revenue Status]").Type("status");
+        }))
+        .Transport(transport => transport
+            .Connection(connection => connection
+                .Catalog("Adventure Works DW 2008R2")
+                .Cube("Adventure Works"))
+                .Read("https://demos.telerik.com/service/v2/olap/msmdpump.dll")
+            )
+        )
+    )
+```
+{% if site.core %}
+```TagHelper
+    <kendo-pivotgridv2 name="pivotgrid" column-width="200" height="580" kpi-status-template-id="kpiStatusTemplate">
+        <pivot-datasource type="PivotDataSourceType.Xmla">
+            <columns>
+                <pivot-datasource-column name="[Date].[Calendar]" expand="true"></pivot-datasource-column>
+                <pivot-datasource-column name="[Product].[Category]"></pivot-datasource-column>
+            </columns>
+            <rows>
+                <row name="[Geography].[City]" expand="true"></row>
+            </rows>
+            <measures values=@(new string[] {"[Measures].[Internet Revenue Status]"} )>
+            </measures>
+            <transport read-url="https://demos.telerik.com/service/v2/olap/msmdpump.dll">
+                <connection catalog="Adventure Works DW 2008R2" cube="Adventure Works"></connection>
+            </transport>
+        </pivot-datasource>
+    </kendo-pivotgridv2>
+````
+{% endif %}
+```JS Template
+    <script id="kpiStatusTemplate" type="text/x-kendo-tmpl">
+        # if (!dataItem) { #
+            <em>N/A</em>
+        # } else if(parseInt(dataItem.value) > 0) { #
+            <em>Open</em>
+        # } else if(parseInt(dataItem.value) < 0) { #
+            <em>Hold</em>
+        # } else { #
+            <strong>Denied</strong>
+        # } #
+    </script>
+```
+
+## KPI Trend Template
+
+The [template](https://docs.telerik.com/kendo-ui/api/kendo/methods/template) which renders the content of the `KPI Trend` value. By default renders "increase", "decrease" and "equal" status icons.
+
+The fields which can be used in the template are:
+
+* `columnTuple`&mdash;the tuple of the corresponding column header cell
+* `rowTuple`&mdash;the tuple of the corresponding row header cell
+* `measure`&mdash;the value of the data cell measure
+* `dataItem`&mdash;the data item itself
+
+```HtmlHelper
+    @(Html.Kendo().PivotGridV2()
+        .Name("pivotgrid")
+        .ColumnWidth(200)
+        .Height(580)
+        .KpiTrendTemplateId("kpiTrendTemplate")
+        .DataSource(dataSource => dataSource
+        .Xmla()
+        .Columns(columns => {
+            columns.Add("[Date].[Calendar]").Expand(true);
+            columns.Add("[Product].[Category]");
+        })
+        .Rows(rows => rows.Add("[Geography].[City]"))
+        .Measures(measures => measures.Values(v => {
+            v.Add().Name("[Measures].[Internet Revenue Trend]").Type("trend");
+        }))
+        .Transport(transport => transport
+            .Connection(connection => connection
+                .Catalog("Adventure Works DW 2008R2")
+                .Cube("Adventure Works"))
+                .Read("https://demos.telerik.com/service/v2/olap/msmdpump.dll")
+            )
+        )
+    )
+```
+{% if site.core %}
+```TagHelper
+    <kendo-pivotgridv2 name="pivotgrid" column-width="200" height="580" kpi-trend-template-id="kpiTrendTemplate">
+        <pivot-datasource type="PivotDataSourceType.Xmla">
+            <columns>
+                <pivot-datasource-column name="[Date].[Calendar]" expand="true"></pivot-datasource-column>
+                <pivot-datasource-column name="[Product].[Category]"></pivot-datasource-column>
+            </columns>
+            <rows>
+                <row name="[Geography].[City]" expand="true"></row>
+            </rows>
+            <measures values=@(new string[] {"[Measures].[Internet Revenue Trend]"} )>
+            </measures>
+            <transport read-url="https://demos.telerik.com/service/v2/olap/msmdpump.dll">
+                <connection catalog="Adventure Works DW 2008R2" cube="Adventure Works"></connection>
+            </transport>
+        </pivot-datasource>
+    </kendo-pivotgridv2>
+````
+{% endif %}
+```JS Template
+    <script id="kpiTrendTemplate" type="text/x-kendo-tmpl">
+        # if (!dataItem) { #
+            <em>N/A</em>
+        # } else if(parseInt(dataItem.value) > 0) { #
+            <em>Increase</em>
+        # } else if(parseInt(dataItem.value) < 0) { #
+            <em>Decrease</em>
+        # } else { #
+            <strong>Equal</strong>
+        # } #
+    </script>
+```
 
 ## See Also
 

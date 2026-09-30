@@ -1,13 +1,14 @@
 ---
 title: Overview
 page_title: Overview
-description: "Learn the basics when working with the Telerik UI MultiSelect component for {{ site.framework }}."
+description: "The Telerik UI MultiSelect component for {{ site.framework }} enables users to select multiple items, supports local and remote data binding, and provides templates for easier customization."
+components: ["multiselect"]
 previous_url: /helpers/html-helpers/multiselect, /helpers/editors/multiselect/overview
 slug: htmlhelpers_multiselect_aspnetcore
-position: 1
+position: 0
 ---
 
-# MultiSelect Overview
+# {{ site.framework }} MultiSelect Overview
 
 {% if site.core %}
 The Telerik UI MultiSelect TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI MultiSelect widget.
@@ -55,7 +56,6 @@ The following example demonstrates how to define the MultiSelect.
            </datasource>
     </kendo-multiselect>
 ```
-{% endif %}
 ```Controller
     public class MultiSelectController : Controller
     {
@@ -88,10 +88,49 @@ The following example demonstrates how to define the MultiSelect.
         }
     }
 ```
+{% else %}
+```Controller
+    public class MultiSelectController : Controller
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public JsonResult Products_Read(string text)
+        {
+            var result = GetProducts();
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                result = result.Where(p => p.ProductName.Contains(text)).ToList();
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        private static IEnumerable<ProductViewModel> GetProducts()
+        {
+            var result = Enumerable.Range(0, 50).Select(i => new ProductViewModel
+            {
+                ProductID = "" + i,
+                ProductName = "Product " + i
+            });
+
+            return result;
+        }
+    }
+```
+{% endif %}
+
+
+{% if site.core %}
+@[template](/_contentTemplates/core/declarative-initialization-note.md#declarative-initialization-note)
+{% endif %}
 
 ## Basic Configuration
 
-The following example demonstrates the basic configuration of the MultiSelect. To get a reference to an existing Telerik UI MultiSelect instance, use the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [MultiSelect client-side API](https://docs.telerik.com/kendo-ui/api/javascript/ui/multiselect#methods) to control its behavior.
+The following example demonstrates the basic configuration of the MultiSelect. To get a reference to an existing Telerik UI MultiSelect instance, use the [`jQuery.data()`](http://api.jquery.com/jQuery.data/) configuration option. Once a reference is established, use the [MultiSelect client-side API](https://docs.telerik.com/kendo-ui/api/ui/multiselect#methods) to control its behavior.
 
 ```HtmlHelper
     @(Html.Kendo().MultiSelect()
@@ -138,7 +177,7 @@ The following example demonstrates the basic configuration of the MultiSelect. T
                        item-template="<span class=product-id-id> #= ProductID #</span> #= ProductName #"
                        value='new[] {2, 7}'
                        height="520"
-                       tag-mode="@MultiSelectTagMode.Single"
+                       tag-mode="single"
                        on-change="onChange"
                        on-select="onSelect"
                        on-deselect="OnDeselect"
@@ -164,101 +203,14 @@ The following example demonstrates the basic configuration of the MultiSelect. T
 
 ## Functionality and Features
 
-* [Binding]({% slug htmlhelpers_multiselect_databinding_aspnetcore %})
-* [Grouping]({% slug htmlhelpers_multiselect_grouping_aspnetcore %})
-* [Virtualization]({% slug htmlhelpers_multiselect_virtualization_aspnetcore %})
-* [Templates]({% slug htmlhelpers_multiselect_templates_aspnetcore %})
-* [Accessibility]({% slug accessibility_aspnetcore_multiselect %})
+* [Binding]({% slug htmlhelpers_multiselect_databinding_aspnetcore %})—The MultiSelect supports remote and local binding to data.
+* [Grouping]({% slug htmlhelpers_multiselect_grouping_aspnetcore %})—The built-in grouping features allows you to arrange the items in separate sets. 
+* [Virtualization]({% slug htmlhelpers_multiselect_virtualization_aspnetcore %})—To improve the performance when displaying a large number of records, take advantage of the MultiSelect virtualization.
+* [Templates]({% slug htmlhelpers_multiselect_templates_aspnetcore %})—The templates allow you to customize the rendering of the items, tags, and pop-up header.
+* [Select All]({% slug htmlhelpers_multiselect_selectall_aspnetcore %})—The Select All feature renders a sticky header that allows users to select or deselect all items at once.
+* [Accessibility]({% slug htmlhelpers_multiselect_accessibility %})—The MultiSelect is accessible by screen readers and provides WAI-ARIA, Section 508, WCAG 2.2, and keyboard support.
 
-## Events
-
-You can subscribe to all MultiSelect [events](/api/multiselect). For a complete example on basic MultiSelect events, refer to the [demo on using the events of the MultiSelect](https://demos.telerik.com/{{ site.platform }}/multiselect/events).
-
-### Handling by Handler Name
-
-The following example demonstrates how to subscribe to events by a handler name.
-
-```HtmlHelper
-    @(Html.Kendo().MultiSelect()
-        .Name("multiselect")
-        .BindTo(new string[] { "Item1", "Item2", "Item3" })
-        .Events(e => e
-            .Select("multiselect_select")
-            .Change("multiselect_change")
-        )
-    )
-    <script>
-        function multiselect_select() {
-            // Handle the select event.
-        }
-
-        function multiselect_change() {
-            // Handle the change event.
-        }
-    </script>
-```
-{% if site.core %}
-```TagHelper
-    @{
-        var multiSelect_data = new string[] { "Item1", "Item2", "Item3" };
-    }
-
-    <kendo-multiselect name="multiselect"
-                       on-select="multiselect_select"
-                       on-change="multiselect_change"
-                       bind-to="multiSelect_data">
-    </kendo-multiselect>
-    <script>
-        function multiselect_select() {
-            // Handle the select event.
-        }
-
-        function multiselect_change() {
-            // Handle the change event.
-        }
-    </script>
-```
-{% endif %}
-
-### Handling by Template Delegate
-
-The following example demonstrates how to subscribe to events by a template delegate.
-
-```HtmlHelper
-    @(Html.Kendo().MultiSelect()
-        .Name("multiselect")
-        .BindTo(new string[] { "Item1", "Item2", "Item3" })
-        .Events(e => e
-            .Select(@<text>
-                function() {
-                    // Handle the select event inline.
-                }
-            </text>)
-            .Change(@<text>
-                function() {
-                    // Handle the change event inline.
-                }
-            </text>)
-        )
-    )
-```
-{% if site.core %}
-```TagHelper
-    @{
-        var multiSelect_data = new string[] { "Item1", "Item2", "Item3" };
-    }
-
-    <kendo-multiselect name="multiselect"
-                       on-select="function() {
-                           // Handle the select event inline.
-                       }"
-                       on-change="function() {
-                          // Handle the change event inline.
-                       }"
-                       bind-to="multiSelect_data">
-    </kendo-multiselect>
-```
-{% endif %}
+>tip To learn more about the appearance, anatomy, and accessibility of the MultiSelect, visit the [Progress Design System documentation](https://www.telerik.com/design-system/docs/components/multiselect/)—an information portal offering rich component usage guidelines, descriptions of the available style variables, and globalization support details.
 
 ### MultiSelect Down Arrow
 
@@ -300,11 +252,16 @@ To enable the down arrow for toggling the popup container as in the Telerik UI D
 ```
 {% endif %}
 
-## See Also
+## Next Steps
 
-* [Basic Usage by the MultiSelect HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/multiselect/index)
+* [Getting Started with the MultiSelect]({% slug aspnetcore_multiselect_getting_started %})
+* [Basic Usage of the MultiSelect HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/multiselect/index)
 {% if site.core %}
 * [Basic Usage of the MultiSelect TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/multiselect/tag-helper)
+* [MultiSelect in Razor Pages]({% slug htmlhelpers_multiselect_razorpage_aspnetcore %})
 {% endif %}
-* [Using the API of the MultiSelect HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/multiselect/api)
-* [Server-Side API](/api/multiselect)
+
+## See Also
+
+* [Using the API of the MultiSelect for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/multiselect/api)
+* [Knowledge Base Section](/knowledge-base)

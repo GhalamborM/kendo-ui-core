@@ -2,9 +2,10 @@
 title: Model Binding
 page_title: Model Binding
 description: "Implement model binding in the Telerik UI RadioButton for {{ site.framework }}."
+components: ["radiobutton"]
 previous_url: /helpers/navigation/radiobutton/model-binding
 slug: modelbinding_radiobutton_aspnetcore
-position: 4
+position: 5
 ---
 
 # Model Binding
@@ -13,19 +14,21 @@ You can bind a Telerik UI RadioButton to a model.
 
 1. Create a new action method and pass the instance of the model to the View.
 
-        public class RadioButtonModel
-        {
-            public bool IAgreeProp { get; set; }
-        }
+    ```C#
+    public class RadioButtonModel
+    {
+        public bool IAgreeProp { get; set; }
+    }
 
-        public partial class ButtonController : Controller
+    public partial class ButtonController : Controller
+    {
+        public ActionResult RadioButton()
         {
-            public ActionResult RadioButton()
-            {
-                RadioButtonModel myModel = new RadioButtonModel() { IAgreeProp = false };
-                return View(myModel);
-            }
+            RadioButtonModel myModel = new RadioButtonModel() { IAgreeProp = false };
+            return View(myModel);
         }
+    }
+    ```
 
 1. Make your view strongly typed.
 
@@ -49,4 +52,4 @@ You can bind a Telerik UI RadioButton to a model.
 ## See Also
 
 * [RadioButton Server-Side API](/api/radiobutton)
-* [RadioButtonBuilder Server-Side API](https://docs.telerik.com/{{ site.platform }}/api/Kendo.Mvc.UI.Fluent/RadioButtonBuilder)
+* [RadioButtonBuilder Server-Side API](https://docs.telerik.com/{{ site.platform }}/api/kendo.mvc.ui.fluent/radiobuttonbuilder)

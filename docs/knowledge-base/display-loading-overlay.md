@@ -5,9 +5,9 @@ description: "Learn how to display a Kendo-UI-style loading indicator over the c
 slug: howto_displayloadingindicator_overwindow_window
 previous_url: /controls/layout/window/how-to/display-loading-overlay
 tags: telerik, kendo, jquery, window, display, loading, indicator, over, above
-component: window
 type: how-to
 res_type: kb
+components: ["window"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Window for jQuery</td>
+  <td>Progress® Kendo UI® Window for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -33,7 +33,7 @@ res_type: kb
 
 ## Description
 
-How can I display a [Kendo-UI-style loading indicator](/api/javascript/ui/ui/methods/progress) over the Window content area while (or before) a remote request is made?
+How can I display a [Kendo-UI-style loading indicator](/api/ui/ui/methods/progress) over the Window content area while (or before) a remote request is made?
 
 ## Solution
 
@@ -81,10 +81,10 @@ The following example demonstrates how to achieve the desired scenario.
 
 ## See Also
 
-* [Window JavaScript API Reference](/api/javascript/ui/window)
-* [How to Add **Close** Button inside Modal Windows]({% slug howto_addclosebutton_insidemodalwindows_window %})
-* [How to Cascade Open Windows]({% slug howto_cascadeopenwindows_window %})
-* [How to Post to Iframe]({% slug howto_posttoiframe_window %})
-* [How to Use Custom Action Icons]({% slug howto_customactionicons_window %})
+* [Window JavaScript API Reference](/api/ui/window)
+* [Add **Close** Button inside Modal Windows]({% slug howto_addclosebutton_insidemodalwindows_window %})
+* [Cascade Open Windows]({% slug howto_cascadeopenwindows_window %})
+* [Post to Iframe]({% slug howto_posttoiframe_window %})
+* [Use Custom Action Icons]({% slug howto_customactionicons_window %})
 
 

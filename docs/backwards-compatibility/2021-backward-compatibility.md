@@ -1,9 +1,10 @@
 ---
 title: 2021 Releases
-page_title: 2021 Releases | Kendo UI Backwards Compatibility
+page_title: 2021 Releases - Kendo UI Backwards Compatibility
 description: "Learn about the breaking changes and backwards compatibility released by Kendo UI in 2021."
 slug: breakingchanges2021_kendoui
-position: 1
+components: ["general"]
+position: 5
 ---
 
 # 2021 Releases
@@ -14,7 +15,7 @@ This article lists the breaking or important changes in the 2021 releases of Ken
 
 **ColorPicker**
 
-As of the end of 2021, the ColorPicker has a new design. As a result, some new features were introduced. If you prefer the old design of the widget, refer to [this section from our documentation](https://docs.telerik.com/kendo-ui/controls/editors/colorpicker/overview#old-design-of-the-colorpicker).
+As of the end of 2021, the ColorPicker has a new design. As a result, some new features were introduced. If you prefer the old design of the widget, refer to [this section from our documentation](https://docs.telerik.com/kendo-ui/controls/colorpicker/overview#old-design-of-the-colorpicker).
 
 ## Kendo UI 2021 R3
 
@@ -62,7 +63,7 @@ toolbar: ["excel", "pdf", "search"],
 
 **Window**
 
-In previous versions, when setting the [`height`](/api/javascript/ui/window/configuration/height) option, the total height of the Window was equal to the specified value plus the title bar height. As of 2021 R1, the Window now sets the height by also taking into account the title bar height and including it in the calculation. Thus, if height is specified to 200 pixels, this means that the full Window height will be 200 pixels. This change improves the Window behavior and allows for correctly specifying the height of the Window in percentage.
+In previous versions, when setting the [`height`](/api/ui/window/configuration/height) option, the total height of the Window was equal to the specified value plus the title bar height. As of 2021 R1, the Window now sets the height by also taking into account the title bar height and including it in the calculation. Thus, if height is specified to 200 pixels, this means that the full Window height will be 200 pixels. This change improves the Window behavior and allows for correctly specifying the height of the Window in percentage.
 
 This change will affect Window instances that have height specified explicitly (height will be reduced with the title bar height). Reverting to the previous state is possible by increasing the height accordingly:
 

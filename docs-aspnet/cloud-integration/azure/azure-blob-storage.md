@@ -2,11 +2,12 @@
 title: Azure Blob Storage
 page_title: Azure Blob Storage
 description: "Learn how to use the Telerik UI for {{ site.framework }} Upload component, to upload files to Azure Blob Storage"
+components: ["general"]
 slug: azure_blob_storage_aspnetcore
 position: 3
 ---
 
-# Azure Blob Storage
+# Using {{ site.product }} with Azure Blob Storage
 
 The **Azure Blob Storage** is Microsoft's object storage solution for the cloud. The Blob storage is optimized for storing massive amounts of unstructured data (data that doesn't adhere to a particular data model or definition, such as text or binary data).
 
@@ -28,13 +29,13 @@ After you create the Storage Container, set the permission level. This allows yo
 1. Navigate to your storage account and select the container under **Data Storage** > **Containers**.
 1. Click on **Change access level** and select the desired access level:
 
-![{{ site.product_short }} Access Level](../images/azure-blob-storage-container-access.png)
+![{{ site.product_short }} Azure Access Level](../images/azure-blob-storage-container-access.png)
 
 ## Configuring the Web Application
 
 Add the Azure account and the Azure Storage Container details to the `appsettings.json` of the application as they will be used to access the Container.
 
-```
+```js
 {
   "ApplicationInsights": {
     "InstrumentationKey": ""
@@ -60,7 +61,7 @@ Add the Azure account and the Azure Storage Container details to the `appsetting
 
 You can find the account key and connection string by navigating to your storage account&mdash;under **Security + networking** > **Access Keys**
 
-![{{ site.product_short }} Access Keys](../images/azure-blob-storage-access-keys.png)
+![{{ site.product_short }} Azure Access Keys](../images/azure-blob-storage-access-keys.png)
 
 ## Adding the Upload and ListView on the Client
 
@@ -131,7 +132,7 @@ The following server-side logic demonstrates the server-side configuration of th
 * The `Save` and `Remove` endpoints of the Upload component demonstrate the configuration required to save uploaded images in the Azure Storage Container or remove them, respectively.
 * The `GetImageDetails` action method demonstrates the configuration for the ListView endpoint.
 
-```ImagesController
+```C# ImagesController
     public class ImagesController : Controller
     {
         private readonly AzureStorageConfig storageConfig = null;
@@ -281,7 +282,7 @@ The following server-side logic demonstrates the server-side configuration of th
         }
     }
 ```
-```AzureStorageConfig
+```C# AzureStorageConfig
     public class AzureStorageConfig
     {
         public string AccountName { get; set; }

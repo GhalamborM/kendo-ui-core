@@ -1,12 +1,13 @@
 ---
 title: Create Header and Footer Rows for a Spreadsheet with DataSource
-description: An example on how to insert a custom header and footer in a Kendo UI Spreadsheet sheet and load its data with a DataSource from a remote call.
+description: Learn how to insert a custom header and footer in a Kendo UI Spreadsheet sheet and load its data with a DataSource from a remote call.
 type: how-to
-page_title: Insert Custom Header and Footer in Spreadsheet with DataSource | Kendo UI Spreadsheet for jQuery
+page_title: Insert Custom Header and Footer in Spreadsheet with DataSource - Kendo UI Spreadsheet for jQuery
 slug: spreadsheet-with-datasource-insert-header-and-footer
 tags: kendo, kendoui, spreadsheet, datasource, footer, header
 ticketid: 1140923
 res_type: kb
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
  </tr>
 </table>
 
@@ -27,9 +28,9 @@ How can I have additional header and footer rows that are not part of the return
 ## Solution
 
 1. Manually insert the header and the footer by using the client-side API of the Spreadsheet.
-1. Handle the [`requestEnd`](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/events/requestend) event of the DataSource.
+1. Handle the [`requestEnd`](https://docs.telerik.com/kendo-ui/api/data/datasource/events/requestend) event of the DataSource.
 
-    The header row is inserted through the [`Sheet.insertRow()`](https://docs.telerik.com/kendo-ui/api/javascript/spreadsheet/sheet/methods/insertrow) method. Then, the range for the row is retrieved through [`Sheet.range()`](https://docs.telerik.com/kendo-ui/api/javascript/spreadsheet/sheet/methods/range). The values are set [`Range.values()`](https://docs.telerik.com/kendo-ui/api/javascript/spreadsheet/range/methods/values).
+    The header row is inserted through the [`Sheet.insertRow()`](https://docs.telerik.com/kendo-ui/api/spreadsheet/sheet/methods/insertrow) method. Then, the range for the row is retrieved through [`Sheet.range()`](https://docs.telerik.com/kendo-ui/api/spreadsheet/sheet/methods/range). The values are set [`Range.values()`](https://docs.telerik.com/kendo-ui/api/spreadsheet/range/methods/values).
 
 > This approach is not applicable if the data is edited and saved by using the other DataSource transport methods (`Update`, `Create`, and `Destroy`). Such scenarios do not support the insertion of a custom header or footer.
 
@@ -38,7 +39,7 @@ How can I have additional header and footer rows that are not part of the return
 
 <script>
   $(function() {
-    var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service";
+    var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core";
 
     function onRequestEnd(e) {
       // Check the request type
@@ -65,8 +66,7 @@ How can I have additional header and footer rows that are not part of the return
       requestEnd: onRequestEnd,
       transport: {
         read:  {
-          url: crudServiceBaseUrl + "/Products",
-          dataType: "jsonp"
+          url: crudServiceBaseUrl + "/Products"
         }
       },
       schema: {
@@ -128,5 +128,5 @@ How can I have additional header and footer rows that are not part of the return
 
 ## See Also
 
-* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet)
-* [API Reference of the DataSource](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource)
+* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet)
+* [API Reference of the DataSource](https://docs.telerik.com/kendo-ui/api/data/datasource)

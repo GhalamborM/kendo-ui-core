@@ -2,9 +2,10 @@
 title: Ajax Binding
 page_title: Ajax Binding
 description: "Learn how to implement Ajax Binding with Telerik UI MultiSelect component for {{ site.framework }}."
+components: ["multiselect"]
 previous_url: /helpers/editors/multiselect/binding/ajax-binding
 slug: htmlhelpers_multiselect_ajaxbinding_aspnetcore
-position: 2
+position: 3
 ---
 
 # Ajax Binding
@@ -15,19 +16,27 @@ You can configure the Telerik UI MultiSelect for Ajax binding to the Northwind *
 
 1. Create an action method which renders the view.
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }
 
 1. Create a new action method and pass the **Products** table as JSON result.
-
+        {% if site.mvc %}
         public JsonResult GetProducts()
         {
             NorthwindDataContext northwind = new NorthwindDataContext();
 
             return Json(northwind.Products, JsonRequestBehavior.AllowGet);
         }
+        {% else %}
+        public JsonResult GetProducts()
+        {
+            NorthwindDataContext northwind = new NorthwindDataContext();
+
+            return Json(northwind.Products);
+        }
+        {% endif %}
 
 1. Add an Ajax-bound MultiSelect.
 

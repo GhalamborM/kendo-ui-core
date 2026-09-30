@@ -2,6 +2,7 @@
 title: Advanced Export
 page_title: Advanced Export
 description: "Get started with the Telerik UI Diagram for {{ site.framework }} and learn how to set its advanced export functionality."
+components: ["diagram"]
 slug: htmlhelpers_diagram_aspnetcore_export
 position: 2
 ---
@@ -37,7 +38,31 @@ The Telerik UI Diagram for {{ site.framework }} provides options for exporting i
           .Events(events => events.DataBound("onDataBound"))
     )
 ```
-``` JavaScript-export
+{% if site.core %}
+```TagHelper
+    <button class='export-pdf k-button'>Export as PDF</button>
+    <button class='export-img k-button'>Export as Image</button>
+    <button class='export-svg k-button'>Export as SVG</button>
+
+    <kendo-diagram name="diagram" on-data-bound="onDataBound">
+        <hierarchical-datasource server-operation="false">
+            <transport>
+                <read url="@Url.Action("Export_Read", "Diagram")" />
+            </transport>
+            <schema>
+                <hierarchical-model children="Items"></hierarchical-model>
+            </schema>
+        </hierarchical-datasource>
+        <editable enabled="false" />
+        <layout type="DiagramLayoutType.Layered"></layout>
+        <shape-defaults visual="visualTemplate"></shape-defaults>
+        <connection-defaults>
+            <stroke color="#979797" width="2" />
+        </connection-defaults>
+    </kendo-diagram>
+```
+{% endif %}
+```JS JavaScript-export
     <script>
         $(".export-pdf").click(function () {
             var diagram = $("#diagram").getKendoDiagram();
@@ -71,7 +96,7 @@ The Telerik UI Diagram for {{ site.framework }} provides options for exporting i
         });
     </script>
 ```
-``` JavaScript-Template
+```JS JavaScript-Template
     <script>
         function visualTemplate(options) {
             var dataviz = kendo.dataviz;

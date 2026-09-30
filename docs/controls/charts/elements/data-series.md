@@ -1,7 +1,8 @@
 ---
 title: Data Series
-page_title: jQuery Chart Documentation | Data Series
+page_title: jQuery Chart Documentation - Data Series
 description: "Get started with the jQuery Chart by Kendo UI and learn how to plot one or more specified data series."
+components: ["chart"]
 previous_url: /controls/charts/series
 slug: seriestypeofcharts_widget
 ---
@@ -89,4 +90,4 @@ You can display series of different types in a single chart.
 ## See Also
 
 * [Using the API of the Chart (Demo)](https://demos.telerik.com/kendo-ui/chart-api/index)
-* [JavaScript API Reference of the Chart](/api/javascript/dataviz/ui/chart)
+* [JavaScript API Reference of the Chart](/api/dataviz/ui/chart)

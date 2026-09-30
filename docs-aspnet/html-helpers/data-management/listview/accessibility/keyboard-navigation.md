@@ -2,6 +2,7 @@
 title: Keyboard Navigation
 page_title: Keyboard Navigation
 description: "Configure the Telerik UI ListView for {{ site.framework }} to enable keyboard navigation."
+components: ["listview"]
 slug: htmlhelpers_listview_aspnetcore_navigation
 position: 6
 ---
@@ -23,7 +24,17 @@ The following example demonstrates how to enable the key navigation in the ListV
         .HtmlAttributes(new { style="height:350px;" })
     )
 ```
-```Template
+{% if site.core %}
+```TagHelper
+    <kendo-listview name="productListView"
+                    tag-name="div"
+                    template-id="template"
+                    style="height:350px;"
+                    navigatable="true">
+    </kendo-listview>
+```
+{% endif %}
+```JS Template
     <script type="text/x-kendo-tmpl" id="template">
         <div class="product">
             <h3>#=ProductName#</h3>
@@ -37,5 +48,6 @@ The following example demonstrates how to enable the key navigation in the ListV
 
 ## See Also
 
+* [Custom Keyboard Navigation in the ListView for {{ site.framework }}]({% slug custom_keyboard_navigation_listview_htmlhelper %})
 * [Keyboard Navigation by the ListView HtmlHelper for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/listview/keyboard-navigation)
 * [Server-Side API](/api/listview)

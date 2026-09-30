@@ -2,9 +2,10 @@
 title: Security Trimming
 page_title: Security Trimming
 description: "Use the built-in security trimming functionality of the Telerik UI Menu component for {{ site.framework }}"
-previous_url: /helpers/navigation/menu/security-trimming
+components: ["menu"]
+previous_url: /helpers/navigation/menu/security-trimming, /helpers/navigation/menu/how-to/enable-security-trimming, /html-helpers/navigation/menu/how-to/enable-security-trimming
 slug: securitytrimming_menu_aspnetmvc
-position: 3
+position: 4
 ---
 
 # Security Trimming
@@ -19,7 +20,7 @@ The Menu hides an item if the [`OnAuthorization`](http://msdn.microsoft.com/en-u
 [`HttpUnauthorizedResult`](http://msdn.microsoft.com/en-us/library/system.web.mvc.httpunauthorizedresult.aspx).
 
 
-[This GitHub project](https://github.com/telerik/ui-for-aspnet-mvc-examples/tree/master/menu/security-trimming) is representing the usage of the `AuthorizeAttribute`.
+[This GitHub project](https://github.com/telerik/ui-for-aspnet-mvc-examples/tree/master/Telerik.Examples.Mvc/Telerik.Examples.Mvc/Areas/MenuSecurityTrimming) is representing the usage of the `AuthorizeAttribute`.
 {% endif %}
 
 {% if site.core %}
@@ -34,9 +35,10 @@ For more information, refer to the article on [ASP.NET Core Authorization](https
 The security trimming functionality can be enabled through the `SecurityTrimming` property.
 
 ```HtmlHelper
-    Html.Kendo().Menu()
+    @(Html.Kendo().Menu()
         .Name("MainMenu")
         .SecurityTrimming(true)
+    )
 ```
 {% if site.core %}
 ```TagHelper
@@ -50,14 +52,14 @@ The security trimming functionality can be enabled through the `SecurityTrimming
 
 {% if site.mvc %}
 * [Basic Usage of the Menu HtmlHelper for ASP.NET MVC (Demo)](https://demos.telerik.com/aspnet-mvc/menu)
-* [MenuItemBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/MenuItemBuilder)
-* [MenuBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/MenuBuilder)
+* [MenuItemBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/menuitembuilder)
+* [MenuBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/menubuilder)
 * [Menu Server-Side API](/api/menu)
 {% endif %}
 
 {%if site.core%}
 * [Basic Usage of the Menu HtmlHelper for ASP.NET MVC (Demo)](https://demos.telerik.com/aspnet-core/menu)
-* [MenuItemBuilder Server-Side API](https://docs.telerik.com/aspnet-core/api/Kendo.Mvc.UI.Fluent/MenuItemBuilder)
-* [MenuBuilder Server-Side API](https://docs.telerik.com/aspnet-core/api/Kendo.Mvc.UI.Fluent/MenuBuilder)
+* [MenuItemBuilder Server-Side API](https://docs.telerik.com/aspnet-core/api/kendo.mvc.ui.fluent/menuitembuilder)
+* [MenuBuilder Server-Side API](https://docs.telerik.com/aspnet-core/api/kendo.mvc.ui.fluent/menubuilder)
 * [Menu Server-Side API](https://docs.telerik.com/aspnet-core/api/menu)
 {% endif %}

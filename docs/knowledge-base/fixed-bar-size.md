@@ -5,9 +5,9 @@ description: "Learn how to use bars of a fixed size when working with the Kendo 
 previous_url: /controls/charts/how-to/fixed-bar-size, /controls/charts/how-to/appearance/fixed-bar-size
 slug: howto_usefixedbarsize_charts
 tags: chart, customize, themes
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart for jQuery</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I set the size of the default drawing element of the Chart bars to the s
 
 ## Solution
 
-The following example demonstrates how to use the [`series.visual`](/api/javascript/dataviz/ui/chart/configuration/series.visual) function to scale the default drawing element of the bars and achieve this behavior.
+The following example demonstrates how to use the [`series.visual`](/api/dataviz/ui/chart/configuration/series#seriesvisual) function to scale the default drawing element of the bars and achieve this behavior.
 
 ```dojo
     <div id="chart"></div>
@@ -62,8 +62,8 @@ The following example demonstrates how to use the [`series.visual`](/api/javascr
 
 ## See Also
 
-* [Chart JavaScript API Reference](/api/javascript/dataviz/ui/chart)
+* [Chart JavaScript API Reference](/api/dataviz/ui/chart)
 * [Drawing API]({% slug overview_kendoui_drawingapi %})
-* [How to Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
-* [How to Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
-* [How to Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})
+* [Aggregate Data in Pie Charts]({% slug howto_aggregatedata_piecharts %})
+* [Draw on Scatter Plots Surface]({% slug howto_drawonscatterplotssurface_charts %})
+* [Expand Clickable Area of Points]({% slug howto_extendclickableareaofpoints_charts %})

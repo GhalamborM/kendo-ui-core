@@ -6,20 +6,20 @@ page_title: Filter hierarchy
 slug: filter-model-with-collection
 tags: filter, collection, nested, multiselect, custom, operator, grid, hierarchy, array, column
 ticketid: 1500740
-component: filter
 res_type: kb
+components: ["filter"]
 ---
 
 ## Environment
 <table>
 	<tbody>
 		<tr>
-			<td>Created withProduct Version</td>
+			<td>Product Version</td>
 			<td>2020.3.1118</td>
 		</tr>
 		<tr>
 			<td>Product</td>
-			<td>Progress® Kendo UI® Filter</td>
+			<td>Progress® Kendo UI® Filter for jQuery</td>
 		</tr>
 	</tbody>
 </table>
@@ -169,9 +169,8 @@ This means that a custom operator and custom filter handler is required. Current
             dataTextField: "CompanyName",
             dataValueField: "SupplierID",
             dataSource: {
-              type: "odata",
               transport: {
-                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Suppliers"
+                read: "https://demos.telerik.com/service/v2/core/Suppliers"
               }
             }
           });

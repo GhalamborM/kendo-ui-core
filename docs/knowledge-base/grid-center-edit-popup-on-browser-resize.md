@@ -1,13 +1,13 @@
 ---
 title: Keep Popup Editor Centered on Browser Resize in Grid
-description: An example on how to center the edit popup window of the Kendo UI Grid on resize.
+description: Learn how to center the edit popup window of the Kendo UI Grid on resize.
 type: how-to
-page_title: Keep the Edit Popup Always Centered | Kendo UI Grid for ASP.NET MVC
+page_title: Keep the Edit Popup Always Centered - Kendo UI Grid for ASP.NET MVC
 slug: grid-center-edit-popup-on-browser-resize
 tags: grid, popup, edit, kendo, resize, browser, modal, re-size, window, re-center
 ticketid: 1138443
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for ASP.NET MVC</td>
+  <td>Progress® Telerik® UI Grid for ASP.NET MVC</td>
  </tr>
 </table>
 
@@ -30,7 +30,7 @@ How can I keep the popup editor centered (like a modal window) when the browser 
 
 1. Add a handler on the browser window `onresize` event.
 1. Find the Kendo UI Window instance.
-1. Center it programmatically by using the [`center()`](https://docs.telerik.com/kendo-ui/api/javascript/ui/window/methods/center) method.
+1. Center it programmatically by using the [`center()`](https://docs.telerik.com/kendo-ui/api/ui/window/methods/center) method.
 
 ```
 window.onresize = function () {  

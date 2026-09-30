@@ -1,13 +1,13 @@
 ---
 title: Prevent Adding Custom ComboBox Values
 page_title: Prevent Adding Custom ComboBox Values
-description: "Learn how to prevent adding custom values to a Kendo UI ComboBox widget."
+description: "Learn how to prevent adding custom values to a Kendo UI ComboBox component."
 previous_url: /controls/editors/combobox/how-to/prevent-custom-values, /controls/editors/combobox/how-to/customize/prevent-custom-values
 slug: howto_prevent_adding_custom_values_combobox
 tags: telerik, kendo, jquery, combobox, prevent, adding, custom, values
-component: combobox
 type: how-to
 res_type: kb
+components: ["combobox"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ComboBox for jQuery</td>
+  <td>Progress® Kendo UI® ComboBox for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -56,11 +56,11 @@ The following example demonstrates how to achieve the desired scenario.
           autoBind: false,
           minLength: 3,
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             serverFiltering: true,
             transport: {
               read: {
-                url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Products",
+                url: "https://demos.telerik.com/service/v2/odata/Products",
               }
             }
           },
@@ -86,10 +86,10 @@ The following example demonstrates how to achieve the desired scenario.
 
 ## See Also
 
-* [ComboBox JavaScript API Reference](/api/javascript/ui/combobox)
-* [How to Bypass Boundary Detection]({% slug howto_bypass_boudary_detection_combobox %})
-* [How to Configure Deferred Value Binding]({% slug howto_configure_deffered_value_binding_combobox %})
-* [How to Implement Cascading with Local Data]({% slug howto_implement_cascading_local_data_combobox %})
-* [How to Make Visible Input Readonly]({% slug howto_make_visible_inputs_readonly_combobox %})
-* [How to Open ComboBox When onFocus is Triggered]({% slug howto_open_onfocus_combobox %})
-* [How to Underline Matched Search]({% slug howto_underline_matched_search_combobox %})
+* [ComboBox JavaScript API Reference](/api/ui/combobox)
+* [Bypass Boundary Detection]({% slug howto_bypass_boudary_detection_combobox %})
+* [Configure Deferred Value Binding]({% slug howto_configure_deffered_value_binding_combobox %})
+* [Implement Cascading with Local Data]({% slug howto_implement_cascading_local_data_combobox %})
+* [Make Visible Input Readonly]({% slug howto_make_visible_inputs_readonly_combobox %})
+* [Open ComboBox When onFocus is Triggered]({% slug howto_open_onfocus_combobox %})
+* [Underline Matched Search]({% slug howto_underline_matched_search_combobox %})

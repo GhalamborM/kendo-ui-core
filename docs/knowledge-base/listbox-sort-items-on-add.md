@@ -1,12 +1,13 @@
 ---
 title: Sort ListBox Items on Add
-description: An example on how to sort the Kendo UI ListBox items when a new one is added.
+description: Learn how to sort the Kendo UI ListBox items when a new one is added.
 type: how-to
-page_title: Sort Items on Adding a New One | Kendo UI ListBox for jQuery
+page_title: Sort Items on Adding a New One - Kendo UI ListBox for jQuery
 slug: listbox-sort-items-on-add
 tags: listbox, sort, items, order, drag, add, new, drop
 ticketid: 1141126
 res_type: kb
+components: ["listbox"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ListBox</td>
+  <td>Progress® Kendo UI® ListBox for jQuery</td>
  </tr>
  <tr>
   <td>Created with version</td>
@@ -29,9 +30,9 @@ How can I sort the items between connected ListBoxes when I move items from one 
 
 ## Solution
 
-1. To initially order the items, specify the [`sort`](/api/javascript/data/datasource/configuration/sort) option of the DataSource component.
-1. To sort the items when the user drops a new item, handle the [`add`](/api/javascript/ui/listbox/events/add) event and prevent the default behavior.
-1. Manually add the item to the respective DataSource and call the [`sort()`](/api/javascript/data/datasource/methods/sort) method.
+1. To initially order the items, specify the [`sort`](/api/data/datasource/configuration/sort) option of the DataSource component.
+1. To sort the items when the user drops a new item, handle the [`add`](/api/ui/listbox/events/add) event and prevent the default behavior.
+1. Manually add the item to the respective DataSource and call the [`sort()`](/api/data/datasource/methods/sort) method.
 
 ```dojo
 <div id="example" role="application">
@@ -46,21 +47,20 @@ How can I sort the items between connected ListBoxes when I move items from one 
 
 <script>
     $(document).ready(function () {
-        var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service";
-        var dataSource = new kendo.data.DataSource({
-            serverFiltering: false,
-            transport: {
-                read: {
-                    url: crudServiceBaseUrl + "/Products",
-                    dataType: "jsonp"
-                },
-                update: {
-                    url: crudServiceBaseUrl + "/Products/Update",
-                    dataType: "jsonp"
-                },
+        var crudServiceBaseUrl = "https://demos.telerik.com/service/v2/core",
+                dataSource = new kendo.data.DataSource({
+                    transport: {
+                        read:  {
+                            url: crudServiceBaseUrl + "/Products"
+                        },
+                        update: {
+                            url: crudServiceBaseUrl + "/Products/Update",
+                            type: "POST",
+                    		contentType: "application/json"
+                        },
                 parameterMap: function (options, operation) {
                     if (operation !== "read" && options.models) {
-                        return { models: kendo.stringify(options.models) };
+                        return kendo.stringify(options.models);
                     }
                 }
             },

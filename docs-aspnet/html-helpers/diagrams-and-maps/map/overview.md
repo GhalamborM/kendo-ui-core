@@ -1,13 +1,14 @@
 ---
 title: Overview
-page_title: Overview
+page_title: Map Overview
 description: "Learn the basics when working with the Telerik UI Map component for {{ site.framework }}."
+components: ["map"]
 previous_url: /helpers/html-helpers/map, /helpers/diagrams-and-maps/map/overview
 slug: htmlhelpers_map_aspnetcore
-position: 1
+position: 0
 ---
 
-# Map Overview
+# {{ site.framework }} Map Overview
 
 {% if site.core %}
 The Telerik UI Map TagHelper and HtmlHelper for {{ site.framework }} are server-side wrappers for the Kendo UI Map widget.
@@ -71,17 +72,27 @@ The following example demonstrates how to define the Map.
         </markers>
     </kendo-map>
 ```
-{% endif %}
 ```Controller
-    public partial class MapController : BaseController
+    public partial class MapController : Controller
     {
-        [Demo]
         public IActionResult Index()
         {
             return View();
         }
     }
 ```
+{% else %}
+```Controller
+    public partial class MapController : Controller
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+    }
+```
+{% endif %}
+
 
 ## Basic Configuration
 
@@ -168,53 +179,12 @@ The following example demonstrates the basic configuration for the Map component
 ```
 {% endif %}
 
-## Events
+## Next Steps
 
-For a complete example on basic Map events, refer to the [demo on using the events of the Map](https://demos.telerik.com/{{ site.platform }}/map/events).
-
-```HtmlHelper
-    @(Html.Kendo().Map()
-        .Name("map")
-        .Layers(layers =>
-        {
-            layers.Add()
-                .Type(MapLayerType.Tile)
-                .UrlTemplate("http://#= subdomain #.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png")
-                .Subdomains("a", "b", "c");
-        })
-        .Events(e => e
-            .Reset("mapReset")
-        )
-    )
-    <script>
-        function mapReset(e) {
-            // Handle the reset event.
-        }
-    </script>
-```
-{% if site.core %}
-```TagHelper
-    @{
-        var subdomains = new string[] { "a", "b", "c" };
-    }
-
-    <kendo-map name="map" on-reset="mapReset">
-        <layers>
-            <layer type="MapLayerType.Tile"
-                   url-template="https://#= subdomain #.tile.openstreetmap.org/#= zoom #/#= x #/#= y #.png"
-                   subdomains="subdomains"
-                   attribution="&copy; <a href='https://osm.org/copyright'>OpenStreetMap contributors</a>">
-            </layer>
-        </layers>
-    </kendo-map>
-    
-    <script>
-        function mapReset(e) {
-            // Handle the reset event.
-        }
-    </script>
-```
-{% endif %}
+* [Getting Started with the Map]({% slug aspnetcore_map_getting_started %})
+* [Basic Usage of the Map for {{ site.framework }} (Demo)](https://demos.telerik.com/{{ site.platform }}/map/index)
+* [Azure Tile Layout of the Map for {{ site.framework }}]({% slug azure-tiles %})
+* [Map Events]({% slug events_map_aspnetcore %})
 
 ## See Also
 
@@ -222,4 +192,4 @@ For a complete example on basic Map events, refer to the [demo on using the even
 {% if site.core %}
 * [Basic Usage of the Map TagHelper for ASP.NET Core (Demo)](https://demos.telerik.com/aspnet-core/map/tag-helper)
 {% endif %}
-* [Server-Side API](/api/map)
+* [Server-Side API of the Map for {{ site.framework }}](/api/map)

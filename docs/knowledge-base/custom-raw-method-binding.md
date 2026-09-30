@@ -5,9 +5,9 @@ description: "Learn how to use custom MVVM bindings to retrieve unmasked widget 
 slug: howto_use_custommvvm_bindingto_setmodel_value_maskedtextbox
 previous_url: /controls/editors/maskedtextbox/how-to/MVVM/custom-raw-method-binding
 tags: telerik, kendo, jquery, maskedtextbox, use, custom, mvvm, binding, to, set, the, model, unmasked, value
-component: maskedtextbox
 type: how-to
 res_type: kb
+components: ["maskedtextbox"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI MaskedTextBox for jQuery</td>
+  <td>Progress® Kendo UI® MaskedTextBox for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -91,4 +91,4 @@ The following example demonstrates how to implement [a custom MVVM binding]({% s
 
 * [Basic Usage of the MaskedTextBox (Demo)](https://demos.telerik.com/kendo-ui/maskedtextbox/index)
 * [Using the API of the MaskedTextBox (Demo)](https://demos.telerik.com/kendo-ui/maskedtextbox/api)
-* [JavaScript API Reference of the MaskedTextBox](/api/javascript/ui/maskedtextbox)
+* [JavaScript API Reference of the MaskedTextBox](/api/ui/maskedtextbox)

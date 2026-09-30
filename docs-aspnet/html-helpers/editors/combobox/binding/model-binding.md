@@ -2,6 +2,7 @@
 title:  Model Binding
 page_title: Model Binding
 description: "Learn how to implement Model Binding with Telerik UI ComboBox component for {{ site.framework }}."
+components: ["combobox"]
 previous_url: /helpers/editors/combobox/binding/model-binding
 slug: htmlhelpers_combobox_modelbinding_aspnetcore
 position: 6
@@ -17,7 +18,7 @@ Local data is the data that is available on the client when the ComboBox is init
 
 1. Pass the data to the view through `ViewData`.
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
             ViewData["products"] = GetProducts();
 
@@ -75,7 +76,7 @@ You can configure the ComboBox to get its data from a remote source by making an
 
 1. Create an action that returns the data as a JSON result.
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View(new ProductViewModel
             {
@@ -83,7 +84,7 @@ You can configure the ComboBox to get its data from a remote source by making an
                 ProductName = "ProductName4"
             });
         }
-
+        {% if site.mvc %}
         public JsonResult GetProductsAjax()
         {
             var products = Enumerable.Range(0, 500).Select(i => new ProductViewModel
@@ -94,6 +95,18 @@ You can configure the ComboBox to get its data from a remote source by making an
 
             return Json(products, JsonRequestBehavior.AllowGet);
         }
+        {% else %}
+        public JsonResult GetProductsAjax()
+        {
+            var products = Enumerable.Range(0, 500).Select(i => new ProductViewModel
+            {
+                ProductID = i,
+                ProductName = "ProductName" + i
+            });
+
+            return Json(products);
+        }
+        {% endif %}
 
 
 1. Add the ComboBox to the view and configure its DataSource to use remote data.

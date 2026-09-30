@@ -1,13 +1,13 @@
 ---
 title: Drag and Drop Images in the Editor
 page_title: Drag and Drop Images in the Editor
-description: "Learn how drag and drop images in the Kendo UI Editor widget."
+description: "Learn how drag and drop images in the Kendo UI Editor component."
 previous_url: /controls/editors/editor/how-to/drag-and-drop-images, /controls/editors/editor/how-to/customize/drag-and-drop-images
 slug: howto_drag_and_drop_images_editor
 tags: telerik, kendo, jquery, editor, drag, and, drop, images
-component: editor
 type: how-to
 res_type: kb
+components: ["editor"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Editor for jQuery</td>
+  <td>Progress® Kendo UI® Editor for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -37,7 +37,7 @@ How can I drag and drop images in the Kendo UI for jQuery Editor?
 
 ## Solution
 
-The following example demonstrates how to achieve the desired scenario. As an image source, the demo uses a TreeView. However, you can use any custom HTML markup in combination with the [Kendo UI Drag and Drop framework](https://demos.telerik.com/kendo-ui/web/dragdrop/index.html).
+The following example demonstrates how to achieve the desired scenario. As an image source, the demo uses a TreeView. However, you can use any custom HTML markup in combination with the [Kendo UI Drag and Drop framework](https://demos.telerik.com/kendo-ui/dragdrop/index).
 
 ```dojo
   <style>
@@ -152,4 +152,4 @@ The following example demonstrates how to achieve the desired scenario. As an im
 
 * [Basic Usage of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/index)
 * [Using the API of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/api)
-* [JavaScript API Reference of the Editor](/api/javascript/ui/editor)
+* [JavaScript API Reference of the Editor](/api/ui/editor)

@@ -3,15 +3,16 @@ comment: THIS FILE IS A COPY OF THE AUTO-GENERATED jQUERY file. TO UPDATE THE CO
 title: PDF
 page_title: Individual Scripts for PDF
 description: "Get started with Kendo UI for jQuery and find the list of required script files for the Kendo UI PDF"
+components: ["general"]
 previous_url: /getting-started/scripts/scripts-pdf, /installation/scripts/scripts-pdf
 slug: script_filesfor_pdf
 ---
 
 # Individual Scripts for PDF
 
-The following table lists the individual script files for the Kendo UI PDF export framework and wigets.&nbsp;&nbsp;
+The following table lists the individual script files for the Kendo UI PDF export framework and components.&nbsp;&nbsp;
 
-| Widget | Individual Scripts | Comments |
+| Component | Individual Scripts | Comments |
 | :---   | :---         | :---     |
 | [PDFViewer](https://demos.telerik.com/kendo-ui/pdfviewer/index) | jquery.js | |
 | | kendo.core.js | |
@@ -19,13 +20,31 @@ The following table lists the individual script files for the Kendo UI PDF expor
 | | kendo.draganddrop.js | |
 | | kendo.popup.js | |
 | | kendo.window.js | |
+| | kendo.floatinglabel.js | |
+| | kendo.textbox.js | |
 | | kendo.dialog.js | |
+| | kendo.html.base.js | |
+| | kendo.html.button.js | |
+| | kendo.button.menu.js | |
+| | kendo.splitbutton.js | |
+| | kendo.dropdownbutton.js | |
 | | kendo.toolbar.js | |
+| | kendo.fx.js | |
+| | kendo.mobile.scroller.js | |
+| | kendo.upload.js | |
+| | kendo.data.js | |
+| | kendo.list.js | |
+| | kendo.combobox.js | |
+| | kendo.color.js | |
+| | kendo.drawing.js | |
+| | kendo.binder.js | |
+| | kendo.dropdownlist.js | |
+| | kendo.numerictextbox.js | |
 | | kendo.pdfviewer.js | |
 
 ## See Also
 
-+ [Scripts for Data Management Widgets]({% slug script_filesfor_datamanagement_widgets %})
++ [Scripts for Data Management Components]({% slug script_filesfor_datamanagement_widgets %})
 + [Scripts for Editors]({% slug script_filesfor_editors_widgets %})
 + [Scripts for Conversational UI]({% slug script_filesfor_conversationalui_widgets %})
 + [Scripts for Charts]({% slug script_filesfor_charts_widgets %})

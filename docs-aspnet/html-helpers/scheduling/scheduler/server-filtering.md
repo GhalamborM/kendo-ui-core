@@ -1,7 +1,8 @@
 ---
 title: Server Filtering
-page_title: Server f=Filtering
+page_title: Server Filtering
 description: "Get started with the Scheduler component for {{ site.framework }} and learn how to configure the component to work with server-side filtering."
+components: ["scheduler"]
 slug: htmlhelpers_scheduler_server_filtering_aspnetcore
 position: 7
 ---
@@ -12,7 +13,7 @@ This article explains how to implement server-side filtering for the Scheduler c
 
 The server-side filtering allows the user to load only the events that are part of the currently loaded View without the need to fetch all the available data from the datasource. The server-side filtering approach is very useful for situations where there are a lot of events/meetings in the database allowing us to fetch the needed data only - leading to better performance and faster loading.
 
-The code snippets below are extracted from a demo project of Scheduler with Server Filtering in {{ site.framework }} that can be downloaded from  [this repository]({% if site.core %}https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.Mvc/Telerik.Examples.Mvc/Views/Scheduler/SchedulerServerFiltering.cshtml{% else %}https://github.com/telerik/ui-for-aspnet-mvc-examples/tree/master/scheduler/scheduler-server-filtering{% endif %}). The current article discussed the more difficult steps of the server filtering implementation. For more details, please refer to the above-linked repository.
+The code snippets below are extracted from a demo project of Scheduler with Server Filtering in {{ site.framework }} that can be downloaded from  [this repository]({% if site.core %}https://github.com/telerik/ui-for-aspnet-core-examples/blob/master/Telerik.Examples.Mvc/Telerik.Examples.Mvc/Views/Scheduler/SchedulerServerFiltering.cshtml{% else %}https://github.com/telerik/ui-for-aspnet-mvc-examples/tree/master/Telerik.Examples.Mvc/Telerik.Examples.Mvc/Areas/SchedulerServerFiltering{% endif %}). The current article discussed the more difficult steps of the server filtering implementation. For more details, please refer to the above-linked repository.
 
 ## Initializing the Scheduler
 
@@ -121,7 +122,7 @@ To be sure that the server will return only the events visible in the current Sc
 
 Here is a function that returns the current timespan boundries:
 
-```
+```JS
 function getAdditionalData() {
     var scheduler = $("#scheduler").data("kendoScheduler");
 
@@ -153,7 +154,7 @@ function getAdditionalData() {
 
 Once the result of the getAdditionalData function is passed to the server it receives it in the ``range`` variable in the below Read method definition:
 
-```Razor
+```C#
 public virtual JsonResult Read([DataSourceRequest] DataSourceRequest request, FilterRange range)
 {
     var data = taskService.GetRange(range.Start, range.End);
@@ -165,7 +166,7 @@ The Start and End properties of the range object are then passed to the GetRange
 
 Here is the definition of the GetRange method:
 
-```Razor
+```C#
 public virtual IEnumerable<TaskViewModel> GetRange(DateTime start, DateTime end)
 {
     var result = GetAll().ToList().Where(t => (t.RecurrenceRule != null || (t.Start >= start && t.Start <= end) || (t.End >= start && t.End <= end)));

@@ -1,12 +1,13 @@
 ---
-title: Add z-index to series of a Chart
-page_title: Add z-index to series of a Chart | Kendo UI Chart for jQuery
-description: An example on how to show a marker of a Chart over the other series.
+title: Add a Z Index to the Chart Series
+page_title: Add a Z Index to the Series of a Chart - Kendo UI Chart for jQuery
+description: Learn how to show a marker of a Chart over the other series.
 type: how-to
 slug: chart-z-index
 tags: chart, z-index
 ticketid: 1492618
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Chart for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
 	 <td>Product Version</td>
@@ -30,11 +31,11 @@ How can I change the default stacking order of series in Chart?
 
 1. On dataBound, execute a JavaScript function for setting the options of the series.
 2. Iterate by series.
-3. Conditionally set the [`z-index`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/series.zindex) to the required series.
+3. Conditionally set the [`z-index`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/series#serieszindex) to the required series.
 
 ```dojo
 <div id="content" class="k-content">
-      
+
             <div id="chart2"
                  data-role="chart"
                  data-chart-area="{height: 200, width: 500, margin:{top: 10, right: 20, bottom: 20, left: 20}}"
@@ -254,7 +255,7 @@ var chartData = {
     ]
 };
 
-     
+
       var chartDs2 = new kendo.data.DataSource({
     data: chartData,
     schema: {
@@ -284,7 +285,7 @@ var chartData = {
 });
 var setMarkers = function (series) {
   for (var i = 0; i < series.length; i++) {
-    
+
     if (series[i].data[0]) {
         series[i].markers = {
         size: function (e) {

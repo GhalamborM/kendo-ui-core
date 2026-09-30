@@ -1,12 +1,12 @@
 ---
 title: Create Stock Chart Navigator in Categorical Charts
-page_title: Create Stock Chart Navigator in Categorical Charts | Kendo UI Chart for jQuery
-description: "An example on how to create stock chart navigator in categorical charts in the Kendo UI Chart for jQuery."
+page_title: Create Stock Chart Navigator in Categorical Charts - Kendo UI Chart for jQuery
+description: "Learn how to create stock chart navigator in categorical charts in the Kendo UI Chart for jQuery."
 slug: howto_stock_navigator_categorical_charts
 tags: chart, navigator, stock, categorical, linechart
-component: chart
 type: how-to
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Chart</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
@@ -36,7 +36,7 @@ How can I implement a stock navigator inside a convetional categorical chart suc
 
 ## Solution
 
-Your project might require you to create a secondary chart that should show a subset of data from the main chart. The secondary chart will be created based on the selected categories from the main chart, therefore, the [chart.categoryAxis.select option](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/chart/configuration/categoryaxis.select#categoryaxisselect) has to be added.
+Your project might require you to create a secondary chart that should show a subset of data from the main chart. The secondary chart will be created based on the selected categories from the main chart, therefore, the [chart.categoryAxis.select option](https://docs.telerik.com/kendo-ui/api/dataviz/ui/chart/configuration/categoryaxis#categoryaxisselect#categoryaxisselect) has to be added.
 
 After the user interacts with the selector, recreate the secondary chart in order to depict the newly selected subset of data.
 
@@ -187,7 +187,7 @@ The following example demonstrates how to implement a stock navigator with the c
           });
         }
 
-        function onSelectEnd(e) { 
+        function onSelectEnd(e) {
          setTimeout(function(){ // ensure that the selection has finished before rendering the seconary chart
             formatRange(e)
           });
@@ -220,4 +220,4 @@ The following example demonstrates how to implement a stock navigator with the c
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/dataviz/ui/chart)
+* [JavaScript API Reference of the Data Grid](/api/dataviz/ui/chart)

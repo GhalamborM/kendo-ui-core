@@ -1,13 +1,13 @@
 ---
-title: Implement Batch Editing with OData
-page_title: Apply Batch Editing with OData | Kendo UI Grid for jQuery
-description: "An example on how to implement batch editing when binding the Kendo UI Grid for jQuery to an OData service."
+title: Implement Batch Editing in the Grid with OData
+page_title: Apply Batch Editing with OData in the Data Grid - Kendo UI for jQuery Data Grid
+description: "Learn how to implement batch editing when binding the Kendo UI Grid for jQuery to an OData service."
 previous_url: /controls/data-management/grid/how-to/Editing/batch-editing-odata
 slug: howto_batch_editing_odata_grid
 tags: grid, batch, editing, odata
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Preferred Language</td>
@@ -31,9 +31,9 @@ How can I use the batch edit mode of the Kendo UI Grid when binding to oData?
 
 Use a third-party library. To submit the actual request, the following example uses [Batch.js library by Pavel Volgarev](https://github.com/volpav/batchjs). For more information, refer to [Batch Processing](http://www.odata.org/documentation/odata-version-3-0/batch-processing/) in the oData 3.0 documentation.
 
-> The scenario uses an experimental `transport.submit` Data Source option. It is not yet included as an officially supported API call.
+> The example is outdated. You can review the [jQuery Grid Batch Editing OData-v4 Demo](https://demos.telerik.com/kendo-ui/grid/odatav4) demonstrating how to configure the Grid for `odata-v4` and batch editing.
 
-```dojo
+```
     <div id="grid"></div>
     <script>
       $(document).ready(function () {
@@ -41,7 +41,7 @@ Use a third-party library. To submit the actual request, the following example u
         function queueCreated(requests, items) {
           for (var i = 0; i < items.length; i++) {
             requests.push({
-              url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers",
+              url: "https://demos.telerik.com/service/v2/core/Customers",
               type: "POST",
               data: items[i]
             });
@@ -54,7 +54,7 @@ Use a third-party library. To submit the actual request, the following example u
         function queueUpdated(requests, items) {
           for (var i = 0; i < items.length; i++) {
             requests.push({
-              url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers/" +
+              url: "https://demos.telerik.com/service/v2/core/Customers/" +
               items[i].CustomerID,
               type: "PUT",
               data: items[i]
@@ -65,7 +65,7 @@ Use a third-party library. To submit the actual request, the following example u
         function queueDestroyed(requests, items) {
           for (var i = 0; i < items.length; i++) {
             requests.push({
-              url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers/" +
+              url: "https://demos.telerik.com/service/v2/odata/Customers/" +
               items[i].CustomerID,
               type: "DELETE"
             });
@@ -74,7 +74,7 @@ Use a third-party library. To submit the actual request, the following example u
 
         $("#grid").kendoGrid({
           dataSource: {
-            type: "odata",
+            type: "odata-v4",
             batch: true,
             transport: {
               // Not an official feature, but it's close to being one.
@@ -89,7 +89,7 @@ Use a third-party library. To submit the actual request, the following example u
                 // Check out the network tab on "Save Changes".
                 $.ajaxBatch({
                   // Note that this service doesn't actually support batching.
-                  url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Batch",
+                  url: "https://demos.telerik.com/service/v2/odata/Batch",
                   data: requests
                 })
                   .done(function() {
@@ -104,10 +104,9 @@ Use a third-party library. To submit the actual request, the following example u
               read: function(e) {
                 var data = kendo.data.transports.odata.parameterMap(e.data, "read");
                 $.ajax({
-                  url: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers",
-                  dataType: "jsonp",
+                  url: "https://demos.telerik.com/service/v2/odata/Customers",                  
                   data: data,
-                  jsonp: "$callback"
+                  json: "$callback"
                 })
                   .done(e.success)
                   .fail(e.error);
@@ -156,4 +155,4 @@ Use a third-party library. To submit the actual request, the following example u
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)

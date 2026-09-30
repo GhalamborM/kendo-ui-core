@@ -1,12 +1,13 @@
 ---
 title: Scale Diagram to Fit Container upon Resizing
-description: An example on how to scale Kendo UI Diagram to fit its container upon resizing
+description: Learn how to scale Kendo UI Diagram to fit its container upon resizing
 type: how-to
-page_title: Scale Diagram to Fit its Container upon Resizing | Kendo UI Diagram for jQuery
+page_title: Scale Diagram to Fit its Container upon Resizing - Kendo UI Diagram for jQuery
 slug: scale-diagram-to-fit-container-upon-resizing
 tags: diagram, scale, resize
 ticketid: 1492478
 res_type: kb
+components: ["diagram"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI Diagram</td>
+		<td>Progress® Kendo UI® Diagram for jQuery</td>
 	</tr>
 </table>
 
@@ -25,7 +26,7 @@ How can I scale Kendo UI Diagram to fit its container upon resizing?
 
 ## Solution
 
-Create a method to dynamically calculate the Diagram viewport dimensions and scale the Diagram accordingly. Use the [`zoom()`](/api/javascript/dataviz/ui/diagram/methods/zoom) method of the Diagram.
+Create a method to dynamically calculate the Diagram viewport dimensions and scale the Diagram accordingly. Use the [`zoom()`](/api/dataviz/ui/diagram/methods/zoom) method of the Diagram.
 
 ```dojo
 <div class="diagram-wrapper">
@@ -89,6 +90,6 @@ Create a method to dynamically calculate the Diagram viewport dimensions and sca
 ```
 ## See Also
 
-* [Diagram Overview](https://docs.telerik.com/kendo-ui/controls/diagrams-and-maps/diagram/overview)
-* [Persist Shape Properties](https://docs.telerik.com/kendo-ui/controls/diagrams-and-maps/diagram/how-to/persist-shape-properties)
-* [Diagram Layout](https://docs.telerik.com/kendo-ui/controls/diagrams-and-maps/diagram/layout)
+* [Diagram Overview](https://docs.telerik.com/kendo-ui/controls/diagram/overview)
+* [Persist Shape Properties](https://docs.telerik.com/kendo-ui//knowledge-base/persist-shape-properties)
+* [Diagram Layout](https://docs.telerik.com/kendo-ui/controls/diagram/layout)

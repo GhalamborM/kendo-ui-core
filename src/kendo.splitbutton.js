@@ -1,8 +1,7 @@
-(function(f, define) {
-    define(["./kendo.html.button", "./kendo.button.menu"], f);
-})(function() {
+import "./kendo.html.button.js";
+import "./kendo.button.menu.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "splitbutton",
     name: "SplitButton",
     category: "web",
@@ -26,7 +25,6 @@ var __meta__ = {
         ARIA_HASPOPUP = "aria-haspopup",
         ARIA_DISABLED = "aria-disabled",
         ARIA_CONTROLS = "aria-controls",
-        ARIA_LABEL = "aria-label",
         ARIA_EXPANDED = "aria-expanded",
 
         DISABLED = "disabled",
@@ -49,6 +47,7 @@ var __meta__ = {
         init: function(element, options) {
             var that = this;
 
+            options = options || {};
             options.enabled = options.enabled !== false && !$(element).prop(DISABLED);
             Widget.fn.init.call(that, element, options);
 
@@ -65,19 +64,20 @@ var __meta__ = {
             kendo.notify(that);
 
             that._applyCssClasses();
-        },
+            Widget.fn.endInit.call(that);
+},
 
         options: {
             name: "SplitButton",
             enabled: true,
             items: [],
-            rounded: "medium",
-            size: "medium",
-            fillMode: "solid",
-            themeColor: "base",
+            rounded: undefined,
+            size: undefined,
+            fillMode: undefined,
+            themeColor: undefined,
             icon: null,
             popup: null,
-            arrowIcon: "arrow-s",
+            arrowIcon: "chevron-down",
             messages: {
                 labelSuffix: "splitbutton"
             }
@@ -98,7 +98,7 @@ var __meta__ = {
                 .wrap("<div id=\"" + wrapperId + "\" class=\"" + cssClasses.widget + "\"></div>")
                 .parent(".k-split-button");
 
-            that.arrowButton = $("<button tabindex=\"-1\" aria-label=\"arrow-button\" class=\"k-split-button-arrow\"></button>").appendTo(that.wrapper);
+            that.arrowButton = $("<button tabindex=\"-1\" aria-label=\"Toggle dropdown\" class=\"k-split-button-arrow\"></button>").appendTo(that.wrapper);
         },
 
         _applyCssClasses: function() {
@@ -153,6 +153,7 @@ var __meta__ = {
             delete options.text;
             delete options.imageUrl;
             delete options.click;
+            delete options.iconClass;
 
             html.renderButton(that.arrowButton, options);
         },
@@ -160,15 +161,16 @@ var __meta__ = {
         _aria: function() {
             var that = this,
                 element = that.element,
+                arrowButton = that.arrowButton,
                 menu = that.menu;
 
-            element.attr(ARIA_HASPOPUP, menu ? "menu" : null);
-            element.attr(ARIA_EXPANDED, menu ? false : null);
-            element.attr(ARIA_CONTROLS, menu ? menu.list.attr(ID) : null);
+            element.attr(ARIA_HASPOPUP, null);
+            element.attr(ARIA_EXPANDED, null);
+            element.attr(ARIA_CONTROLS, null);
 
-            if (!element.attr(ARIA_LABEL)) {
-                element.attr(ARIA_LABEL, element.text() + " " + that.options.messages.labelSuffix);
-            }
+            arrowButton.attr(ARIA_HASPOPUP, null);
+            arrowButton.attr(ARIA_EXPANDED, menu ? false : null);
+            arrowButton.attr(ARIA_CONTROLS, menu ? menu.list.attr(ID) : null);
         },
 
         _renderMenu: function() {
@@ -203,7 +205,7 @@ var __meta__ = {
             }
 
             ev.sender.adjustPopupWidth(computedWidth);
-            that.element.attr(ARIA_EXPANDED, true);
+            that.arrowButton.attr(ARIA_EXPANDED, true);
         },
 
         menuCloseHandler: function(ev) {
@@ -215,7 +217,7 @@ var __meta__ = {
                 return;
             }
 
-            that.element.attr(ARIA_EXPANDED, false);
+            that.arrowButton.attr(ARIA_EXPANDED, false);
             that.element.trigger(FOCUS);
         },
 
@@ -270,17 +272,12 @@ var __meta__ = {
             this.element.add(this.arrowButton)
                 .toggleClass(DISABLEDSTATE, !enable);
 
-            if (enable) {
-                this.element.removeAttr(ARIA_DISABLED);
-            } else {
-                this.element.attr(ARIA_DISABLED, !enable);
-            }
-
             if (!soft) {
                 this.element.attr(DISABLED, !enable);
             }
 
             this.arrowButton.attr(DISABLED, !enable);
+            this.arrowButton.attr(ARIA_DISABLED, enable ? null : true);
         },
 
         enable: function(enable, menuItem, soft) {
@@ -318,11 +315,15 @@ var __meta__ = {
         },
 
         open: function() {
-            this.menu._popup.open();
+            this.menu.open();
         },
 
         close: function() {
-            this.menu._popup.close();
+            this.menu.close();
+
+            if (!this.menu._popup.visible()) {
+                this.arrowButton.attr(ARIA_EXPANDED, false);
+            }
         },
 
         items: function() {
@@ -347,7 +348,9 @@ var __meta__ = {
         destroy: function() {
             var that = this;
 
-            that.menu.destroy();
+            if (that.menu) {
+                that.menu.destroy();
+            }
 
             that.element.off(NS);
 
@@ -358,6 +361,9 @@ var __meta__ = {
     kendo.cssProperties.registerPrefix("SplitButton", "k-splitbutton-");
 
     kendo.cssProperties.registerValues("SplitButton", [{
+        prop: "themeColor",
+        values: ['base', 'primary', 'secondary', 'tertiary', 'info', 'success', 'warning', 'error', 'inverse']
+    }, {
         prop: "rounded",
         values: kendo.cssProperties.roundedValues.concat([["full", "full"]])
     }]);
@@ -365,9 +371,5 @@ var __meta__ = {
     ui.plugin(SplitButton);
 
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == "function" && define.amd ? define : function(a1, a2, a3) {
-    (a3 || a2)();
-});

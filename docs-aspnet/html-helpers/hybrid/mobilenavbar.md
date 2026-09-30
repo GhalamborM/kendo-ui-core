@@ -2,6 +2,7 @@
 title: NavBar
 page_title: NavBar Overview
 description: "Learn the basics when working with the hybrid Telerik UI NavBar HtmlHelper for ASP.NET MVC."
+components: ["general"]
 previous_url: /helpers/hybrid/mobilelanavbar/overview, /helpers/hybrid/mobilenavbar
 slug: overview_hybridnavbar_aspnetmvc
 ---
@@ -52,7 +53,7 @@ The NavBar displays an application navigation bar. It provides options for showi
 
 ## Referencing Existing Instances
 
-You can reference a hybrid NavBar instance by using the code from the following example. Once a reference is established, use the [hybrid NavBar client-side API](https://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/navbar#methods) to control its behavior.
+You can reference a hybrid NavBar instance by using the code from the following example. Once a reference is established, use the [hybrid NavBar client-side API](https://docs.telerik.com/kendo-ui/api/mobile/ui/navbar#methods) to control its behavior.
 
     @(Html.Kendo().MobileView()
         .Name("navbar-home")
@@ -79,4 +80,4 @@ You can reference a hybrid NavBar instance by using the code from the following 
 
 ## See Also
 
-* [Hybrid NavBarBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/Kendo.Mvc.UI.Fluent/MobileNavBarBuilder)
+* [Hybrid NavBarBuilder Server-Side API](https://docs.telerik.com/aspnet-mvc/api/kendo.mvc.ui.fluent/mobilenavbarbuilder)

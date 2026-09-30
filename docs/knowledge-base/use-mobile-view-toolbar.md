@@ -1,13 +1,13 @@
 ---
 title: Use the Mobile View of the ToolBar
 page_title: Use the Mobile View of the ToolBar
-description: "Learn how to use the mobile view of the Kendo UI for jQuery ToolBar widget."
+description: "Learn how to use the mobile view of the Kendo UI for jQuery ToolBar component."
 slug: howto_usemobileview_toolbar
 previous_url: /controls/navigation/toolbar/how-to/use-mobile-view-toolbar
 tags: telerik, kendo, jquery, toolbar, use, the, mobile, view
-component: toolbar
 type: how-to
 res_type: kb
+components: ["toolbar"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI ToolBar for jQuery</td>
+  <td>Progress® Kendo UI® ToolBar for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -47,7 +47,7 @@ The example below demonstrates how to use the mobile view of the Toolbar. It is 
 
 
 
-```dojo
+```
 <div id="toolbar"></div>
 <script>
   $("#toolbar").kendoToolBar({
@@ -65,6 +65,6 @@ The example below demonstrates how to use the mobile view of the Toolbar. It is 
 
 ## See Also
 
-* [ToolBar JavaScript API Reference](/api/javascript/ui/toolbar)
-* [How to Close ToolBar Popup Manually]({% slug howto_closetoolbarpopupmanually_toolbar %})
-* [How to Develop and Register Custom ToolBar Tools]({% slug howto_customtool_toolbar %})
+* [ToolBar JavaScript API Reference](/api/ui/toolbar)
+* [Close ToolBar Popup Manually]({% slug howto_closetoolbarpopupmanually_toolbar %})
+* [Develop and Register Custom ToolBar Tools]({% slug howto_customtool_toolbar %})

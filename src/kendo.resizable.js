@@ -1,12 +1,11 @@
-(function(f, define) {
-    define([ "./kendo.core", "./kendo.draganddrop" ], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.draganddrop.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "resizable",
     name: "Resizable",
     category: "framework",
-    depends: [ "core", "draganddrop" ],
+    depends: ["core", "draganddrop"],
     advanced: true
 };
 
@@ -39,11 +38,13 @@ var __meta__ = {
                 drag: that._resize.bind(that),
                 dragcancel: that._cancel.bind(that),
                 dragstart: that._start.bind(that),
-                dragend: that._stop.bind(that)
+                dragend: that._dragend.bind(that),
+                clickMoveClick: options.clickMoveClick
             });
 
             that.userEvents = that.draggable.userEvents;
-        },
+            Widget.fn.endInit.call(that);
+},
 
         events: [
             RESIZE,
@@ -53,7 +54,8 @@ var __meta__ = {
 
         options: {
             name: "Resizable",
-            orientation: HORIZONTAL
+            orientation: HORIZONTAL,
+            clickMoveClick: false
         },
 
         resize: function() {
@@ -89,8 +91,8 @@ var __meta__ = {
                 that.hint.css({
                     position: "absolute"
                 })
-                .css(that._position, that._initialElementPosition)
-                .appendTo(that.element);
+                    .css(that._position, that._initialElementPosition)
+                    .appendTo(that.element);
             }
 
             that.trigger(START, e);
@@ -113,14 +115,19 @@ var __meta__ = {
 
             if (that.hint) {
                 that.hint.toggleClass(that.options.invalidClass || "", position == maxPosition || position == minPosition)
-                         .css(that._position, position);
+                    .css(that._position, position);
             }
 
             that.resizing = true;
             that.trigger(RESIZE, extend(e, { position: position }));
         },
 
-        _stop: function(e) {
+        _dragend: function(e) {
+            this._stop();
+            this.trigger(RESIZEEND, extend(e, { position: this.position }));
+        },
+
+        _stop: function() {
             var that = this;
 
             if (that.hint) {
@@ -128,7 +135,6 @@ var __meta__ = {
             }
 
             that.resizing = false;
-            that.trigger(RESIZEEND, extend(e, { position: that.position }));
             $(document.body).css("cursor", "");
         },
 
@@ -138,7 +144,7 @@ var __meta__ = {
             if (that.hint) {
                 that.position = undefined;
                 that.hint.css(that._position, that._initialElementPosition);
-                that._stop(e);
+                that._stop();
             }
         },
 
@@ -189,7 +195,5 @@ var __meta__ = {
     kendo.ui.plugin(Resizable);
 
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

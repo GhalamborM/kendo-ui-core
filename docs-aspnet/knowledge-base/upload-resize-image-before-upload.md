@@ -1,12 +1,13 @@
 ---
-title: Resize Images before Upload
-description: An example on how to resize an image that is selected by the user before it is uploaded to the server in the Telerik UI Upload for ASP.NET Core.
+title: Resizing Images before Upload
+description: An example on how to resize an image that is selected by the user before it is uploaded to the server in the {{ site.product }} Upload.
 type: how-to
 page_title: Resize Images before They Are Uploaded
 slug: upload-resize-image-before-upload
 tags: upload, resize, image, client, before, upload
 ticketid: 1381676
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Upload for Progress® Telerik® UI for ASP.NET Core</td>
+		<td>{{ site.product }} Upload</td>
 	</tr>
 </table>
 
@@ -27,11 +28,11 @@ I am using the Upload for uploading photos that were taken with a phone. How can
 To achieve client-side resizing of images, use the `<canvas>` and `Image` elements for fetching a `blob` that will be part of the POST data to the server.
 
 1. Use the [async mode](https://demos.telerik.com/kendo-ui/upload/async) of the Upload.
-1. Disable the [automatic upload](https://docs.telerik.com/kendo-ui/api/javascript/ui/upload/configuration/async.autoupload).
-1. Hook to the [`select`](https://docs.telerik.com/kendo-ui/api/javascript/ui/upload/events/select) event.
+1. Disable the [automatic upload](https://docs.telerik.com/kendo-ui/api/ui/upload/configuration/async.autoupload).
+1. Hook to the [`select`](https://docs.telerik.com/kendo-ui/api/ui/upload/events/select) event.
 1. Use a timetout to start the resizing logic and prevent errors with the built-in Upload logic.
 1. When you have the resized blob, create a `File` from it and replace the data in the Kendo UI Upload with the new data (file and its size).
-1. Once resizing is done, initiate an upload through the [`upload`](https://docs.telerik.com/kendo-ui/api/javascript/ui/upload/methods/upload) method so that the files reach the controller.
+1. Once resizing is done, initiate an upload through the [`upload`](https://docs.telerik.com/kendo-ui/api/ui/upload/methods/upload) method so that the files reach the controller.
 
 ```CSHTML
 @(Html.Kendo().Upload()
@@ -121,6 +122,7 @@ To achieve client-side resizing of images, use the `<canvas>` and `Image` elemen
 
 The following example demonstrates how to configure the controller. The controller is expected only to save the file but you may also add server resizing logic to ensure that the file matches the project requirements.
 
+{% if site.core %}
 ```C#
 public class ResizeFileController : Controller
 {
@@ -167,9 +169,69 @@ public class ResizeFileController : Controller
 	}
 }
 ```
+{% else %}
+```C#
+public class ResizeFileController : Controller
+{
+	public ActionResult Index()
+    {
+        return View();
+    }
+
+	public ActionResult SaveAsync(IEnumerable<HttpPostedFileBase> files)
+	{
+		// The Name of the Upload component is "files"
+		if (files != null)
+		{
+			foreach (var file in files)
+			{
+				// Some browsers send file names with full path.
+				// We are only interested in the file name.
+				var fileName = Path.GetFileName(file.FileName);
+				var physicalPath = Path.Combine(Server.MapPath("~/App_Data"), fileName);
+
+				// Implement the server validation before saving. The current example is a rudimentary one.
+				file.SaveAs(physicalPath);
+			}
+		}
+
+		// Return an empty string to signify success
+		return Content("");
+	}
+}
+```
+{% endif %}
 
 ## Notes
 
 * The Upload does not offer such a feature out of the box and the suggested workaround may have side effects or provoke issues, especially with a wider variety of images users can upload.
 * The automatic upload is disabled because the resizing of images on the client is asynchronous.
 * You may want to refactor the code to fit your coding standards. A few available comments denote areas that can be improved.
+
+## More {{ site.framework }} Upload Resources
+
+* [{{ site.framework }} Upload Documentation]({%slug htmlhelpers_upload_aspnetcore%})
+
+* [{{ site.framework }} Upload Demos](https://demos.telerik.com/{{ site.platform }}/upload)
+
+{% if site.core %}
+* [{{ site.framework }} Upload Product Page](https://www.telerik.com/aspnet-core-ui/upload)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Upload Product Page](https://www.telerik.com/aspnet-mvc/upload)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Client-Side API Reference of the Upload for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/upload)
+* [Server-Side API Reference of the Upload for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/upload)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

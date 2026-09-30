@@ -1,12 +1,12 @@
 ---
 title: Prevent Multiple Selection in the DropDownTree
-description: An example on how to prevent multiple selection in the Kendo UI Editor.
+description: Learn how to prevent multiple selection in the Kendo UI Editor.
 type: how-to
-page_title: Prevent Multiple Selection | Kendo UI Editor for jQuery
+page_title: Prevent Multiple Selection - Kendo UI Editor for jQuery
 slug: dropdowntree-prevent-multiple-selection
 tags: dropdowntree, prevent, multiple, selection
 res_type: kb
-component: dropdowntree
+components: ["dropdowntree"]
 ---
 
 ## Environment
@@ -14,10 +14,10 @@ component: dropdowntree
 <table>
  <tr>
   <td>Product</td>
-  <td>Kendo UI DropDownTree</td>
+  <td>Progress® Kendo UI® DropDownTree for jQuery</td>
  </tr>
  <tr>
-  <td>Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2019.1.220 version</td>
  </tr>
 </table>
@@ -82,4 +82,4 @@ How can I prevent multiple selection in the DropDownTree?
 
 ## See Also
 
-* [DropDownTree API Reference](/api/javascript/ui/dropdowntree)
+* [DropDownTree API Reference](/api/ui/dropdowntree)

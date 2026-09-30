@@ -1,12 +1,13 @@
 ---
-title: Implement Excel-Like Filter Menus
-page_title: AutoComplete for Current Filter
-description: "Learn how to filter the Telerik UI Grid for {{ site.framework }} by using AutoComplete and by showing results from the current Grid filter."
+title: Implementing Excel-Like Filter Menus in the Grid
+page_title: Using AutoComplete for the Current Grid Filter
+description: "Learn how to filter the Telerik UI Grid for {{ site.framework }} by using the AutoComplete component and by showing results from the current Grid filter."
 slug: grid-with-excel-like-filter
 tags: grid, similar, excel, filter, menus, using, autocomplete, showing, results, current, filtering
 component: grid
 type: how-to
 res_type: kb
+components: ["general"]
 ticked-id: 1544703
 ---
 
@@ -33,7 +34,7 @@ ticked-id: 1544703
 
 ## Description
 
-How can I filter the Kendo UI Grid {{ site.framework }} UI by using AutoComplete and by showing results from the current Grid filter?
+How can I filter the {{ site.product }} Grid by using AutoComplete and by showing results from the current Grid filter?
 
 ## Solution
 
@@ -50,9 +51,9 @@ The following example demonstrates how to set the Grid with an **Excel-like** fi
         )
     )
 ```
-* Set the commmon DataSource for the columns that will be filtered through the [`Filterable`](https://docs.telerik.com/aspnet-core/api/Kendo.Mvc.UI.Fluent/GridBoundColumnFilterableBuilder#kendomvcuifluentgridboundcolumnfilterablebuilder) configuration method.
+* Set the commmon DataSource for the columns that will be filtered through the [`Filterable`](https://docs.telerik.com/aspnet-core/api/kendo.mvc.ui.fluent/gridboundcolumnfilterablebuilder#kendomvcuifluentgridboundcolumnfilterablebuilder) configuration method.
 
-```
+```Razor
     .Columns(columns =>
     {
         columns.Bound(p => p.ProductName).Filterable(ftb => ftb.Multi(true).DataSource("dataSourceShared"));
@@ -64,7 +65,7 @@ The following example demonstrates how to set the Grid with an **Excel-like** fi
 ```
 * Initialize a function to remove the duplicate data items from the shared dataSource when filtering.
 
-```
+```JS
     function removeDuplicates(items, field) {
          var getter = function (item) { return item[field] },
              result = [],
@@ -81,9 +82,9 @@ The following example demonstrates how to set the Grid with an **Excel-like** fi
          return result;
     }
 ```
-* Sort and set unique items in the [`FilterMenuInit`](https://docs.telerik.com/aspnet-core/api/Kendo.Mvc.UI.Fluent/GridEventBuilder#filtermenuinitsystemstring) event whilst removing the duplicate data items.
+* Sort and set unique items in the [`FilterMenuInit`](https://docs.telerik.com/aspnet-core/api/kendo.mvc.ui.fluent/grideventbuilder#filtermenuinitsystemstring) event whilst removing the duplicate data items.
 
-```
+```Razor
     .Events(events => events.FilterMenuInit("onFilterMenuInit"))
     
     function onFilterMenuInit(e) {
@@ -95,13 +96,51 @@ The following example demonstrates how to set the Grid with an **Excel-like** fi
         })
     }
 ```
-* Update the data items by subscribing to the [`Change`](https://docs.telerik.com/aspnet-core/api/Kendo.Mvc.UI.Fluent/DataSourceEventBuilder#changesystemstring) event of the DataSource.
-```
+* Update the data items by subscribing to the [`Change`](https://docs.telerik.com/aspnet-core/api/kendo.mvc.ui.fluent/datasourceeventbuilder#changesystemstring) event of the DataSource.
+```JS
     function onChange(e) {
             dataSourceShared.data(e.items);
     }
 ```
+
+{% if site.mvc %}
+To review the comlete example, refer to the [project on how to use an Excel-like filter in the Telerik UI Grid](https://github.com/telerik/ui-for-aspnet-mvc-examples/tree/master/Telerik.Examples.Mvc/Telerik.Examples.Mvc/Areas/GridFilterExcelLike) in ASP.NET MVC applications.
+{% else %}
+
 To observe this behavior, refer to the following [Telerik REPL](https://netcorerepl.telerik.com/wvPmkPvy30Ei9kbn39) and:
 
 1. Filter the **Product Name** column.
 2. Open the **Unit Price** column. Note that the values are filtered based on the currently applied filter on the **Product Name** column.
+
+{% endif %}
+
+## More {{ site.framework }} Grid Resources
+
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+
+{% if site.core %}
+* [{{ site.framework }} DataGrid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Client-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+{% if site.core %}
+* [Server-Side TagHelper API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/taghelpers/grid)
+{% endif %}
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

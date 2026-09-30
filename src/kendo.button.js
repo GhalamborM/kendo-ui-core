@@ -1,8 +1,8 @@
-(function(f, define) {
-    define(["./kendo.core", "./kendo.badge", "./kendo.html.button"], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.badge.js";
+import "./kendo.html.button.js";
 
-    var __meta__ = {
+    export const __meta__ = {
         id: "button",
         name: "Button",
         category: "web",
@@ -24,7 +24,8 @@
             DISABLED = "disabled",
             DISABLEDSTATE = "k-disabled",
             FOCUSEDSTATE = "k-focus",
-            ACTIVESTATE = "k-active";
+            ACTIVESTATE = "k-active",
+            KENDO_KEYDOWN = "kendoKeydown";
 
         var BUTTON_DEFAULTS = {
             icon: "",
@@ -44,9 +45,11 @@
                 element = that.wrapper = that.element;
                 options = that.options;
 
-                html.renderButton(element, $.extend({}, options));
+                html.renderButton(element, $.extend({}, options, { autoAriaLabel: true }));
 
-                element.attr("role", "button");
+                if (!that._isNativeButton()) {
+                    element.attr("role", "button");
+                }
 
                 options.enable = options.enable && options.enabled && !element.attr(DISABLED);
                 that.enable(options.enable);
@@ -61,13 +64,14 @@
                     .on(CLICK + NS, that._click.bind(that))
                     .on("focus" + NS, that._focus.bind(that))
                     .on("blur" + NS, that._blur.bind(that))
-                    .on("keydown" + NS, that._keydown.bind(that))
+                    .on("keydown" + NS, that, that._keydown.bind(that))
                     .on("keyup" + NS, that._removeActive.bind(that))
                     .on(MOUSEDOWN + NS, that._addActive.bind(that))
                     .on(MOUSEUP + NS + " " + MOUSEOUT + NS, that._removeActive.bind(that));
 
                 kendo.notify(that);
-            },
+                Widget.fn.endInit.call(that);
+},
 
             destroy: function() {
                 var that = this;
@@ -82,7 +86,8 @@
             },
 
             events: [
-                CLICK
+                CLICK,
+                KENDO_KEYDOWN
             ],
 
             options: {
@@ -94,11 +99,11 @@
                 spriteCssClass: "",
                 imageUrl: "",
                 badge: null,
-                size: "medium",
+                size: undefined,
                 shape: "rectangle",
-                rounded: "medium",
-                fillMode: "solid",
-                themeColor: "base"
+                rounded: undefined,
+                fillMode: undefined,
+                themeColor: undefined
             },
 
             _isNativeButton: function() {
@@ -107,7 +112,11 @@
 
             _click: function(e) {
                 if (this.options.enable) {
-                    if (this.trigger(CLICK, { event: e })) {
+                    if (this.trigger(CLICK, {
+                        event: e,
+                        id: this.element.attr("id"),
+                        target: this.element
+                    })) {
                         e.preventDefault();
                     }
                 }
@@ -161,9 +170,21 @@
 
                 enable = !!enable;
                 that.options.enable = enable;
-                element.toggleClass(DISABLEDSTATE, !enable)
-                    .attr("aria-disabled", !enable)
-                    .attr(DISABLED, !enable);
+                element.toggleClass(DISABLEDSTATE, !enable);
+
+                if (that._isNativeButton()) {
+                    element.attr(DISABLED, !enable);
+
+                    if (enable) {
+                        element.removeAttr("aria-disabled");
+                    } else {
+                        element.attr("aria-disabled", true);
+                    }
+                } else {
+                    element
+                        .attr("aria-disabled", !enable)
+                        .attr(DISABLED, !enable);
+                }
 
                 if (enable) {
                     that._tabindex();
@@ -175,9 +196,9 @@
                 } catch (err) {}
             },
 
-            _badge: function() {
+            _badge: function(options) {
                 var that = this;
-                var badgeOptions = that.options.badge;
+                var badgeOptions = options || that.options.badge;
                 var badgeEelement;
 
                 if (badgeOptions === null || badgeOptions === undefined) {
@@ -217,7 +238,10 @@
 
         kendo.cssProperties.registerValues("Button", [{
             prop: "fillMode",
-            values: kendo.cssProperties.fillModeValues.concat(["link"])
+            values: kendo.cssProperties.fillModeValues.concat(["link", "clear"])
+        }, {
+            prop: "themeColor",
+            values: ['base', 'primary', 'secondary', 'tertiary', 'info', 'success', 'warning', 'error', 'inverse']
         }, {
             prop: "rounded",
             values: kendo.cssProperties.roundedValues.concat([['full', 'full']])
@@ -226,7 +250,5 @@
         kendo.ui.plugin(Button);
 
     })(window.kendo.jQuery);
+export default kendo;
 
-    return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

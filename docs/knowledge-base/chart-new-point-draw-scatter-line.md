@@ -2,11 +2,12 @@
 title: Add New Points to a Scatter Line Chart
 description: An example demonstrating how to dynamically draw points onto a Kendo UI Scatter Line Chart
 type: how-to
-page_title: Inserting Points into Scatter Line Chart | Kendo UI Chart for jQuery
+page_title: Inserting Points into Scatter Line Chart - Kendo UI Chart for jQuery
 slug: chart-new-point-draw-scatter-line
 tags: chart, new, point, draw, scatter, line
 ticketid: 1398949
 res_type: kb
+components: ["chart"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Chart for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Chart for jQuery</td>
  </tr>
 
   <td>Product Version</td>
@@ -30,12 +31,12 @@ How can I dynamically add points to a new series into a Kendo UI Scatter Line Ch
 
 As an example of the desired scenario, enable the user to input information into two Kendo UI NumericTextBoxes (X and Y values) and click a button to add the point:
 
-1. During the [`click` event](/api/javascript/ui/button/events/click), reference the Chart, its options, and the two NumericTextBoxes.  
-1. Get the [values of the NumericTextBoxes](/api/javascript/ui/numerictextbox/methods/value).  
+1. During the [`click` event](/api/ui/button/events/click), reference the Chart, its options, and the two NumericTextBoxes.  
+1. Get the [values of the NumericTextBoxes](/api/ui/numerictextbox/methods/value).  
 1. Create a series if it has not been created yet.
 1. Push the new values into a global array.
 1. Set the new series data to the array.
-1. Call the [`redraw` method of the Chart](/api/javascript/dataviz/ui/chart/methods/redraw).
+1. Call the [`redraw` method of the Chart](/api/dataviz/ui/chart/methods/redraw).
 
 ```javascript
 var myarray = [];

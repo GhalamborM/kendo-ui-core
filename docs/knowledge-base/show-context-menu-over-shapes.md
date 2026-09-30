@@ -5,9 +5,9 @@ description: "Learn how to show a context menu over the shapes of a Kendo UI Dia
 slug: howto_show_context_menu_over_shapes
 previous_url: /controls/diagrams-and-maps/diagram/how-to/show-context-menu-over-shapes
 tags: kendo, jquery, diagram, show, context, menu, over, shapes
-component: diagram
 type: how-to
 res_type: kb
+components: ["diagram"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Diagram for jQuery</td>
+  <td>Progress® Kendo UI® Diagram for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -40,8 +40,8 @@ How can I show a Kendo UI ContextMenu when pressing the right button of the mous
 To achieve this behavior:
 
 1. Initialize a [Kendo UI ContextMenu]({% slug overview_kendoui_contextmenu_widget %}) setting its target as the ID of the Diagram and filter it by a `g` element.
-2. Handle the [`open` event](/api/javascript/ui/contextmenu/events/open) of the ContextMenu. If the target is a connection, it is possible to cancel the event. If the target is a shape, it is possible to store the `dataItem` in a variable.
-3. Handle the [`select` event](/api/javascript/ui/contextmenu/events/select) of the ContextMenu where you can perform a custom action based on the context of the shape.
+2. Handle the [`open` event](/api/ui/contextmenu/events/open) of the ContextMenu. If the target is a connection, it is possible to cancel the event. If the target is a shape, it is possible to store the `dataItem` in a variable.
+3. Handle the [`select` event](/api/ui/contextmenu/events/select) of the ContextMenu where you can perform a custom action based on the context of the shape.
 
 ```dojo
 
@@ -193,8 +193,8 @@ To achieve this behavior:
 ## See Also
 
 * [Basic Usage of the Diagram (Demo)](https://demos.telerik.com/kendo-ui/diagram/index)
-* [JavaScript API Reference of the Diagram](/api/javascript/dataviz/ui/diagram)
-* [How to Implement Local Data Editing]({% slug howto_editlocaladata_diagram %})
-* [How to Render External Content in Shapes]({% slug howto_renderexternalcontent_inshapes_diagram %})
-* [How to Wrap Text]({% slug howto_wraptext_diagram %})
+* [JavaScript API Reference of the Diagram](/api/dataviz/ui/diagram)
+* [Implement Local Data Editing]({% slug howto_editlocaladata_diagram %})
+* [Render External Content in Shapes]({% slug howto_renderexternalcontent_inshapes_diagram %})
+* [Wrap Text]({% slug howto_wraptext_diagram %})
 * [Load shapes from context menu]({% slug diagram-add-shapes-from-context-menu %})

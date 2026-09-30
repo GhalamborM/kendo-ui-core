@@ -1,12 +1,13 @@
 ---
 title: Scroll to Selected Row
-description: An example on how to scroll to the selected row in the Kendo UI Grid.
+description: Learn how to scroll to the selected row in the Kendo UI Grid.
 type: how-to
-page_title: Force Scrolling to Selected Element | Kendo UI Grid for jQuery
+page_title: Force Scrolling to Selected Element - Kendo UI for jQuery Data Grid
 slug: grid-scroll-selected-row
 tags: grid, scroll, select
 ticketid: 1141172
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,10 +15,10 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
-  <td>Progress Kendo UI version</td>
+  <td>Product Version</td>
   <td>Created with the 2017.3.1026 version</td>
  </tr>
 </table>
@@ -30,7 +31,7 @@ How can I scroll the Kendo UI Grid when a row is selected?
 
 To programmatically scroll the Grid:
 
-1. Handle the [`change`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/change) event.
+1. Handle the [`change`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/change) event.
 1. Calculate the distance.
 1. In an [`animate`](https://api.jquery.com/animate/) effect, use the [`scrollTop`](https://api.jquery.com/scrollTop/) of the `.k-grid-content` element.
 

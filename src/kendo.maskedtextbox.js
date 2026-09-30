@@ -1,13 +1,14 @@
-(function(f, define) {
-    define([ "./kendo.core", "./kendo.floatinglabel" ], f);
-})(function() {
+import "./kendo.core.js";
+import "./kendo.floatinglabel.js";
+import "./kendo.icons.js";
+import { addInputPrefixSuffixContainers } from "./utils/prefix-suffix-containers.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "maskedtextbox",
     name: "MaskedTextBox",
     category: "web",
     description: "The MaskedTextBox widget allows to specify a mask type on an input field.",
-    depends: ["core", "floatinglabel"]
+    depends: ["core", "floatinglabel", "icons"]
 };
 
 (function($, undefined) {
@@ -23,6 +24,7 @@ var __meta__ = {
     var setTimeout = window.setTimeout;
 
     var LABELCLASSES = "k-label k-input-label";
+    var FLOATINGLABELCLASS = "k-floating-label";
     var STATEDISABLED = "k-disabled";
     var STATEINVALID = "k-invalid";
     var FOCUSED = "k-focus";
@@ -32,6 +34,7 @@ var __meta__ = {
     var MOUSEUP = "mouseup";
     var DROP = "drop";
     var KEYDOWN = "keydown";
+    var KENDO_KEYDOWN = "kendoKeydown";
     var PASTE = "paste";
     var INPUT = "input";
 
@@ -65,10 +68,12 @@ var __meta__ = {
             that._wrapper();
             that._tokenize();
             that._form();
+            that.options.inputMode = that.options.inputMode || element.attr("inputmode") || "text";
 
             that.element
                 .addClass("k-input-inner")
                 .attr("autocomplete", "off")
+                .attr("inputmode", that.options.inputMode)
                 .on("focus" + NS, function() {
                     var value = DOMElement.value;
 
@@ -112,14 +117,21 @@ var __meta__ = {
                 that.readonly(element.is("[readonly]"));
             }
 
-            that.value(that.options.value || element.val());
+            that._validationIcon = $(kendo.ui.icon({ icon: "exclamation-circle", iconClass: "k-input-validation-icon k-hidden" })).insertAfter(element);
 
-            that._validationIcon = $("<span class='k-input-validation-icon k-icon k-i-warning k-hidden'></span>").insertAfter(element);
+            that.value(that.options.value || element.val());
 
             that._label();
             that._applyCssClasses();
+
+            addInputPrefixSuffixContainers({ widget: that, wrapper: that.wrapper, options: that.options, suffixInsertAfter: that._validationIcon });
+            if (that.floatingLabel) {
+                that.floatingLabel.refresh();
+            }
+
             kendo.notify(that);
-        },
+            Widget.fn.endInit.call(that);
+},
 
         options: {
             name: "MaskedTextBox",
@@ -131,13 +143,20 @@ var __meta__ = {
             value: "",
             mask: "",
             label: null,
-            size: "medium",
-            fillMode: "solid",
-            rounded: "medium"
+            size: undefined,
+            fillMode: undefined,
+            rounded: undefined,
+            prefixOptions: {
+                separator: true
+            },
+            suffixOptions: {
+                separator: true
+            }
         },
 
         events: [
-            CHANGE
+            CHANGE,
+            KENDO_KEYDOWN
         ],
 
         rules: {
@@ -224,6 +243,10 @@ var __meta__ = {
                     this._togglePrompt();
                 }
             }
+
+            if (this.floatingLabel) {
+                this.floatingLabel.refresh();
+            }
         },
 
         _togglePrompt: function(show) {
@@ -263,7 +286,7 @@ var __meta__ = {
             });
 
             if (that.floatingLabel) {
-                that.floatingLabel.enable(enable = enable === undefined ? true : enable);
+                that.floatingLabel.enable(enable);
             }
         },
 
@@ -271,11 +294,8 @@ var __meta__ = {
             var that = this;
 
             if (that._maskLength) {
-                if (that.options.$angular) {//detach "input" event in angular scenario to keep the ng-model consistent and updated only when the change event of the textbox is raised.
-                    that.element.off(INPUT);
-                }
                 that.element
-                    .on(ns(KEYDOWN), that._keydown.bind(that))
+                    .on(ns(KEYDOWN), that, that._keydown.bind(that))
                     .on(ns(DROP), that._drop.bind(that))
                     .on(ns(CHANGE), that._trackChange.bind(that))
                     .on(INPUT_EVENT_NAME, that._inputHandler.bind(that));
@@ -453,6 +473,10 @@ var __meta__ = {
         },
 
         _keydown: function(e) {
+            if (e.preventKendoKeydown) {
+                return;
+            }
+
             var key = e.keyCode;
 
             this.__backward = key === keys.BACKSPACE;
@@ -621,7 +645,7 @@ var __meta__ = {
                     element.attr("id", id);
                 }
 
-                that._inputLabel = $("<label class='" + LABELCLASSES + "' for='" + id + "'>" + labelText + "</label>'").insertBefore(that.wrapper);
+                that._inputLabel = $("<label class='" + (floating ? FLOATINGLABELCLASS : LABELCLASSES) + "' for='" + id + "'>" + labelText + "</label>'")[floating ? "insertAfter" : "insertBefore"](that.wrapper);
             }
         },
 
@@ -675,7 +699,7 @@ var __meta__ = {
             var numberFormat = kendo.getCulture(this.options.culture).numberFormat;
             var rules = this._rules;
 
-            for (; idx < length; idx++) {
+            while (idx < length) {
                 chr = maskChars[idx];
                 rule = rules[chr];
 
@@ -701,6 +725,7 @@ var __meta__ = {
                         tokenIdx += 1;
                     }
                 }
+                idx++;
             }
 
             this.tokens = tokens;
@@ -724,7 +749,5 @@ var __meta__ = {
     ui.plugin(MaskedTextBox);
 
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

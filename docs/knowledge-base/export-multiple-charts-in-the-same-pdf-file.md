@@ -1,13 +1,13 @@
 ---
 title: Export Multiple Charts in the Same PDF File
-description: "An example on how to export multiple Kendo UI Charts in the same PDF file."
+description: "Learn how to export multiple Kendo UI Charts in the same PDF file."
 type: how-to
-page_title: Export Multiple Charts in the Same PDF File | Kendo UI Grid for jQuery
+page_title: Export Multiple Charts in the Same PDF File - Kendo UI for jQuery Data Grid
 slug: export-multiple-charts-in-the-same-pdf-file
 tags: kendo ui, jquery, pdf, multiple, charts, same, file
 ticketid: 1131735
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid for jQuery</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Preferred Language</td>
@@ -30,9 +30,9 @@ How can I export many Charts in the same PDF file?
 ## Solution
 
 1. Add a wrapper element for all Charts.
-1. Convert the wrapper to a Drawing API scene by using the [`drawDOM`](/api/javascript/drawing/methods/drawdom) method.
-1. Render the result as a PDF file with the [`exportPDF`](/api/javascript/drawing/methods/exportpdf) method.
-1. Save the file with the [`saveAs`](/api/javascript/kendo/methods/saveas) method.
+1. Convert the wrapper to a Drawing API scene by using the [`drawDOM`](/api/drawing/methods/drawdom) method.
+1. Render the result as a PDF file with the [`exportPDF`](/api/drawing/methods/exportpdf) method.
+1. Save the file with the [`saveAs`](/api/kendo/methods/saveas) method.
 
 ```dojo
     <div class="demo-section wide">
@@ -231,8 +231,8 @@ How can I export many Charts in the same PDF file?
               field: "Close"
             },
             select: {
-              from: "2009/02/05",
-              to: "2011/10/07"
+              from: "2021/02/05",
+              to: "2023/10/07"
             }
           }
         });
@@ -274,4 +274,4 @@ How can I export many Charts in the same PDF file?
     </style>
 ```
 
-* [JavaScript API Reference of the Chart](/api/javascript/ui/chart)
+* [JavaScript API Reference of the Chart](/api/dataviz/ui/chart)

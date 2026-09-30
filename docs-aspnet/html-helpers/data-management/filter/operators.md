@@ -2,6 +2,7 @@
 title: Setting the Operators
 page_title: Setting the Operators
 description: "Get started with the Telerik UI Filter component for {{ site.framework }} and learn how to select its available filter operators."
+components: ["filter"]
 previous_url: /helpers/data-management/filter/operators
 slug: htmlhelpers_filter_aspnetcore_choose_operators
 position: 2
@@ -73,11 +74,12 @@ The following example demonstrates how to set the `equals` and `contains` filter
     });
 </script>
 ```
+{% if site.core %}
 ```Controller
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 
-public class FilterController : BaseController
+public class FilterController : Controller
 {
     public IActionResult GetPeople([DataSourceRequest]DataSourceRequest request)
     {
@@ -96,6 +98,31 @@ public class FilterController : BaseController
     }
 }
 ```
+{% else %}
+```Controller
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+
+public class FilterController : Controller
+{
+    public ActionResult GetPeople([DataSourceRequest]DataSourceRequest request)
+    {
+        var people = new List<SampleData>() {
+             new SampleData()  { Name = "Jane Doe", Age = 25, IsOnLeave = false },
+             new SampleData() { Name = "John Doe", Age = 33, IsOnLeave = true },
+             new SampleData() { Name = "John Smith", Age = 37, IsOnLeave = true },
+             new SampleData() { Name = "Nathan Doe", Age = 42, IsOnLeave = false }
+        };
+        return Json(people.ToDataSourceResult(request));
+    }
+
+    public ActionResult Index()
+    {
+        return View();
+    }
+}
+```
+{% endif %}
 ```Model
 public class SampleData
 {
@@ -104,6 +131,24 @@ public class SampleData
     public bool IsOnLeave { get; set; }
 }
 ```
+
+{% if site.core %}
+## Custom Operators with TagHelpers
+
+To define a custom operator with TagHelpers, nest the `<filter-custom-operator>` tag directly inside one of the type-specific operator tags: `<filter-operators-string>`, `<filter-operators-number>`, `<filter-operators-date>`, or `<filter-operators-boolean>`. The type-specific operator tag must be nested inside `<operators>`.
+
+```TagHelper
+<kendo-filter name="filter">
+    <operators>
+        <filter-operators-string>
+            <filter-custom-operator name="customOperator" text="Custom operator" handler="customOperatorHandler" />
+        </filter-operators-string>
+    </operators>
+</kendo-filter>
+```
+
+The current TagHelper implementation supports one `<filter-custom-operator>` per type-specific operator tag. If you add multiple custom operator tags to the same type-specific tag, the last one replaces the preceding definitions. The fluent API also supports one custom operator per type.
+{% endif %}
 
 ## See Also
 

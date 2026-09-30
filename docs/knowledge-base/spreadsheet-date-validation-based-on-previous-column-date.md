@@ -1,13 +1,13 @@
 ---
 title: Validate Spreadsheet Dates Based on Previous Column Date
-description: An example on how to validate a date in the Kendo UI Spreadsheet based on the previous column date.
+description: Learn how to validate a date in the Kendo UI Spreadsheet based on the previous column date.
 type: how-to
-page_title: Date Validation Based on Previous Column Value | Kendo UI Spreadsheet for jQuery
+page_title: Date Validation Based on Previous Column Value - Kendo UI Spreadsheet for jQuery
 slug: spreadsheet-date-validation-based-on-previous-column-date
 tags: kendo, kendo-ui, spreadsheet, validation, date, previous-column
 ticketid: 1149122
 res_type: kb
-component: spreadsheet
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: spreadsheet
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Spreadsheet</td>
+  <td>Progress® Kendo UI® Spreadsheet for jQuery</td>
  </tr>
 </table>
 
@@ -69,4 +69,4 @@ Configure the [cell validation](https://demos.telerik.com/kendo-ui/spreadsheet/v
 
 ## See Also
 
-* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet)
+* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet)

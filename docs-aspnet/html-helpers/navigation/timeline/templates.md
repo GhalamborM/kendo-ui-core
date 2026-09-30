@@ -2,6 +2,7 @@
 title: Templates
 page_title: Timeline Templates
 description: "Event templates in the Telerik UI Timeline component for {{ site.framework }}."
+components: ["timeline"]
 previous_url: /helpers/navigation/timeline/templates
 slug: templates_htmlhelpers_timeline_aspnetcore
 position: 6
@@ -40,26 +41,26 @@ The following example shows how you can customize the template of the timeline -
                 <p>#= data.Description #</p>
                 <div class="imageContainer">
                     # for (var i = 0; i < data.Images.length; i++) { #
-                        <img src="#= data.Images[i].src #" class="k-card-image">
+                        <img src="#= data.Images[i].src #" class="k-card-media">
                     # } #
                 </div>
             </div>
         </div>
         <p>I was with #=data.Friends#</p>
-        <div class="k-card-actions">
+        <div class="k-actions k-card-actions">
             <a class="k-button k-flat k-primary" href="#= data.Actions[0].url #" target="_blank">#= data.Actions[0].text #</a>
         </div>
     </script>
 ```
 {% if site.core %}
 ```TagHelper
-    <kendo-timeline name="Timeline" 
-                    orientation="horizontal" 
+    <kendo-timeline name="Timeline"
+                    orientation="horizontal"
                     date-format="MMMM yyyy"
-                    datadatefield="EventDate" 
-                    datatitlefield="Title" 
-                    datasubtitlefield="Subtitle" 
-                    datadescriptionfield="Description" 
+                    datadatefield="EventDate"
+                    datatitlefield="Title"
+                    datasubtitlefield="Subtitle"
+                    datadescriptionfield="Description"
                     dataactionsfield="Actions"
                     dataimagesfield="Images"
                     event-template-id="eventTemplate">
@@ -79,7 +80,7 @@ The following example shows how you can customize the template of the timeline -
             </schema>
         </datasource>
     </kendo-timeline>
-    
+
     <script id="eventTemplate" type="text/x-kendo-template">
         <div class="k-card-header">
             <h5 class="k-card-title">#= data.Title #</h5>
@@ -90,13 +91,13 @@ The following example shows how you can customize the template of the timeline -
                 <p>#= data.Description #</p>
                 <div class="imageContainer">
                     # for (var i = 0; i < data.Images.length; i++) { #
-                        <img src="#= data.Images[i].src #" class="k-card-image">
+                        <img src="#= data.Images[i].src #" class="k-card-media">
                     # } #
                 </div>
             </div>
         </div>
         <p>I was with #=data.Friends#</p>
-        <div class="k-card-actions">
+        <div class="k-actions k-card-actions">
             <a class="k-button k-flat k-primary" href="#= data.Actions[0].url #" target="_blank">#= data.Actions[0].text #</a>
         </div>
     </script>
@@ -176,4 +177,4 @@ public class TimelineEventActionModel
 
 
 * [Templates in the Timeline (Demo)](https://demos.telerik.com/{{ site.platform }}/timeline/templates)
-* [JavaScript API Reference of the Timeline](https://docs.telerik.com/kendo-ui/api/javascript/ui/timeline)
+* [JavaScript API Reference of the Timeline](https://docs.telerik.com/kendo-ui/api/ui/timeline)

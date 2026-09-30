@@ -2,6 +2,7 @@
 title: PDF Export
 page_title: PDF Export
 description: "Get started with the Telerik UI Diagram for {{ site.framework }} learn how to set the PDF export functionality."
+components: ["diagram"]
 slug: htmlhelpers_diagram_aspnetcore_pdf_export
 position: 1
 ---
@@ -21,7 +22,7 @@ To enable PDF export in the Diagram:
 ```HTML
     <button class='export-pdf k-button'>Save as PDF</button>
 ```
-```JavaScrtipt
+```JS
     <script>
         $(".export-pdf").click(function () {
             $("#diagram").getKendoDiagram().saveAsPDF();
@@ -31,7 +32,7 @@ To enable PDF export in the Diagram:
 
 1. Include the Pako Deflate library in the page to enable compression.
 
-To enable PDF export in the Diagram through code, call the [`saveAsPdf`](https://docs.telerik.com/kendo-ui/api/javascript/dataviz/ui/diagram/methods/saveaspdf) method.
+To enable PDF export in the Diagram through code, call the [`saveAsPdf`](https://docs.telerik.com/kendo-ui/api/dataviz/ui/diagram/methods/saveaspdf) method.
 
 ```HtmlHelper
 
@@ -64,6 +65,27 @@ To enable PDF export in the Diagram through code, call the [`saveAsPdf`](https:/
     )
 
 ```
+{% if site.core %}
+```TagHelper
+    <kendo-diagram name="diagram" on-data-bound="onDataBound">
+        <pdf file-name="Kendo UI Diagram Export.pdf" proxy-url="@Url.Action("Pdf_Export_Save", "Diagram" )" />
+        <hierarchical-datasource server-operation="false">
+            <transport>
+                <read url="@Url.Action("Pdf_Export_Read", "Diagram")" />
+            </transport>
+            <schema>
+                <hierarchical-model children="Items"></hierarchical-model>
+            </schema>
+        </hierarchical-datasource>
+        <editable enabled="false" />
+        <layout type="DiagramLayoutType.Layered"></layout>
+        <shape-defaults visual="visualTemplate"></shape-defaults>
+        <connection-defaults>
+            <stroke color="#979797" width="2" />
+        </connection-defaults>
+    </kendo-diagram>
+```
+{% endif %}
 ```JavaScript
     <script>
         $(".export-pdf").click(function () {

@@ -2,6 +2,7 @@
 title: Week Number Column
 page_title: Week Number Column
 description: "Get started with the {{ site.product }} DatePicker and learn how to render a column for the number of weeks within the current month."
+components: ["datepicker"]
 slug: htmlhelpers_datepicker_aspnetcore_weeknumbercolumn
 position: 7
 ---
@@ -10,7 +11,7 @@ position: 7
 
 The DatePicker provides options for rendering a column which displays the number of the weeks within the current **Month** view.
 
-To render the week number column, enable the [`WeekNumber`](/api/Kendo.Mvc.UI.Fluent/DatePickerBuilder#weeknumbersystemboolean) property.
+To render the week number column, enable the [`WeekNumber`](/api/kendo.mvc.ui.fluent/datepickerbuilder#weeknumbersystemboolean) property.
 
 ```HtmlHelper
     @(Html.Kendo().DatePicker()

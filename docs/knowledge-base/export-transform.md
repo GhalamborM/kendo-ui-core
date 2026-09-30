@@ -1,13 +1,13 @@
 ---
 title: Apply Drawing API Transformations during Export
-page_title: Apply Drawing API Library Transformations during Export 
+page_title: Apply Drawing API Library Transformations during Export
 description: "Learn how to transform the content during export while applying the Kendo UI Drawing API."
 slug: howto_applytransformationsduringexport_drawingapi
 previous_url: /framework/drawing/how-to/export-transform
 tags: telerik, kendo, jquery, drawing, api, library, apply, transformations, during, export
-component: drawing
 type: how-to
 res_type: kb
+components: ["drawing"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress® Kendo UI® Drawing Library</td>
+  <td>Progress® Kendo UI® Drawing API</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -39,10 +39,10 @@ How can I apply geometric transformations during export while applying the Kendo
 
 The following example demonstrates how to produce a PNG image of a page section at 4x the original resolution and applies an uniform 2x scale on the X and Y dimensions. The operation is carried out while the content is still represented in a vector form and no loss of quality occurs.
 
-For more information, refer to the article on [transformation API](/api/javascript/geometry/transformation/methods/scale).
+For more information, refer to the article on [transformation API](/api/geometry/transformation/methods/scale).
 
 ```dojo
-    <button type="button" class="export-img k-button k-button-md k-rounded-md k-button-solid k-button-solid-base">
+    <button type="button" class="export-img k-button">
       <span class="k-button-text">Export as Image</span>
     </button>
     <div class="content">
@@ -102,7 +102,7 @@ For more information, refer to the article on [transformation API](/api/javascri
           kendo.saveAs({
             dataURI: data,
             fileName: "Map.png",
-            proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+            proxyURL: "https://demos.telerik.com/service/v2/core/export"
           });
         });
       });
@@ -111,5 +111,5 @@ For more information, refer to the article on [transformation API](/api/javascri
 
 ## See Also
 
-* [JavaScript API Reference: kendo.drawing.surface](/api/javascript/drawing/surface)
-* [JavaScript API Reference: kendo.geometry.Transformation](/api/javascript/geometry/transformation)
+* [JavaScript API Reference: kendo.drawing.surface](/api/drawing/surface)
+* [JavaScript API Reference: kendo.geometry.Transformation](/api/geometry/transformation)

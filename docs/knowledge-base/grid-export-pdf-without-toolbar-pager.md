@@ -1,12 +1,13 @@
 ---
 title: Exclude Toolbar and Pager from Grid PDF Export
-description: An example on how to export the Kendo UI Grid to PDF without the toolbar and pager.
+description: Learn how to export the Kendo UI Grid to PDF without the toolbar and pager.
 type: how-to
-page_title: Exclude Toolbar and Pager from PDF Export | Kendo UI Grid for jQuery
+page_title: Exclude Toolbar and Pager from PDF Export - Kendo UI for jQuery Data Grid
 slug: grid-export-pdf-without-toolbar-pager
 tags: grid, export, pdf, toolbar, pager, ignore, exclude, columnmenu, column, menu, filter, icon
 ticketid: 1143253
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -46,7 +47,7 @@ Use the following CSS rules.
 
 ```css
 .k-pdf-export .k-grid-toolbar,
-.k-pdf-export .k-pager-wrap
+.k-pdf-export .k-pager
 {
   display: none;
 }
@@ -54,7 +55,7 @@ Use the following CSS rules.
 - Filter Menu icon
 
 ```css
-  .k-pdf-export .k-grid-filter {
+  .k-pdf-export .k-grid-filter-menu {
     display:none;
   }
 ```
@@ -62,7 +63,7 @@ Use the following CSS rules.
 - Column Menu icon
 
 ```css
-  .k-pdf-export .k-header-column-menu {
+  .k-pdf-export .k-grid-column-menu {
     display:none;
   }
 ```
@@ -84,7 +85,7 @@ The following example demonstrates the outcome of the suggested approach.
   <script id="rowTemplate" type="text/x-kendo-tmpl">
     <tr data-uid="#: uid #">
       <td class="photo">
-        <img src="../content/web/Employees/#: EmployeeID #.jpg" alt="#: EmployeeID #" />
+        <img src="https://demos.telerik.com/kendo-ui/content/web/Employees/#: EmployeeID #.jpg" alt="#: EmployeeID #" />
       </td>
       <td class="details">
         <span class="name">#: FirstName# #: LastName# </span>
@@ -101,7 +102,7 @@ The following example demonstrates the outcome of the suggested approach.
   <script id="altRowTemplate" type="text/x-kendo-tmpl">
     <tr class="k-alt" data-uid="#: uid #">
       <td class="photo">
-        <img src="../content/web/Employees/#: data.EmployeeID #.jpg" alt="#: EmployeeID #" />
+        <img src="https://demos.telerik.com/kendo-ui/content/web/Employees/#: data.EmployeeID #.jpg" alt="#: EmployeeID #" />
       </td>
       <td class="details">
         <span class="name">#: FirstName# #: LastName# </span>
@@ -127,7 +128,7 @@ The following example demonstrates the outcome of the suggested approach.
 
     /* Hide the Grid header and pager during export */
     .k-pdf-export .k-grid-toolbar,
-    .k-pdf-export .k-pager-wrap
+    .k-pdf-export .k-pager
     {
       display: none;
     }
@@ -139,15 +140,15 @@ The following example demonstrates the outcome of the suggested approach.
     // NOTE: Only required if the Kendo UI stylesheets are loaded
     // from a different origin, e.g. cdn.kendostatic.com
     kendo.pdf.defineFont({
-      "DejaVu Sans"             : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans.ttf",
-      "DejaVu Sans|Bold"        : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
-      "DejaVu Sans|Bold|Italic" : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
-      "DejaVu Sans|Italic"      : "//kendo.cdn.telerik.com/2014.3.1314/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
+      "DejaVu Sans"             : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans.ttf",
+      "DejaVu Sans|Bold"        : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Bold.ttf",
+      "DejaVu Sans|Bold|Italic" : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+      "DejaVu Sans|Italic"      : "//kendo.cdn.telerik.com/2023.1.117/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf"
     });
   </script>
 
   <!-- Load Pako ZLIB library to enable PDF compression -->
-  <script src="//kendo.cdn.telerik.com/2016.1.112/js/pako_deflate.min.js"></script>
+  <script src="https://unpkg.com/pako/dist/pako_deflate.min.js"></script>
 
   <script>
     $("#grid").kendoGrid({
@@ -155,14 +156,13 @@ The following example demonstrates the outcome of the suggested approach.
       pdf: {
         allPages: true,
         fileName: "Kendo UI Grid Export.pdf",
-        proxyURL: "//demos.telerik.com/kendo-ui/service/export"
+        proxyURL: "https://demos.telerik.com/service/v2/core/export"
       },
       toolbar: kendo.template($("#template").html()),
       dataSource: {
-        type: "odata",
         transport: {
           read: {
-            url: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Employees",
+            url: "https://demos.telerik.com/service/v2/core/Employees",
           }
         },
         pageSize: 5
@@ -224,7 +224,7 @@ The following example demonstrates the outcome of the suggested approach.
 
 ## See Also
 
-* [Exporting the Kendo UI Grid to PDF](https://docs.telerik.com/kendo-ui/controls/data-management/grid/export/pdf-export)
+* [Exporting the Kendo UI Grid to PDF](https://docs.telerik.com/kendo-ui/controls/grid/export/pdf-export)
 * [Change Column Widths during PDF Export]({% slug grid-pdf-export-change-column-widths %})
 * [Exclude Certain Columns from the Exported PDF File]({% slug grid-exclude-columns-from-exported-pdf %})
 * [Show hidden columns during PDF Export]({% slug grid-pdf-show-hidden-columns %})

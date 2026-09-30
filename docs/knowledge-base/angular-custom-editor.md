@@ -1,13 +1,13 @@
 ---
-title: Create Custom Editors in AngularJS
-page_title: Create Custom Editors in AngularJS | Kendo UI Grid for jQuery
-description: "An example on how to create custom editors in the Kendo UI Grid by using AngularJS."
+title: Create Custom Grid Editors in AngularJS
+page_title: Create Custom Editors When Using AngularJS - jQuery Data Grid
+description: "Learn how to create custom editors in the Kendo UI Data Grid by using AngularJS."
 previous_url: /controls/data-management/grid/how-to/AngularJS/angular-custom-editor
 slug: howto_create_custom_editors_grid
 tags: grid, create, custom, editors, angularjs
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress AngularJS Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
  </tr>
  <tr>
   <td>Preferred Language</td>
@@ -27,15 +27,21 @@ res_type: kb
  </tr>
 </table>
 
+> Starting with R2 2022, the Kendo UI team officially drops the support for AngularJS 1.x through Kendo UI for jQuery. The AngularJS related files and functionality are removed from the bundles and distribution in R3 SP1 2023. The last version that contains the files is R3 2023.
+
 ## Description
 
 How can I create a custom editor in the Kendo UI Grid in AngularJS applications?
 
 ## Solution
 
-The following example demonstrates how to create a custom editor in the [Grid](https://www.telerik.com/kendo-ui/grid) in AngularJS applications.
+The following example demonstrates how to create a custom editor in the [Data Grid](https://www.telerik.com/kendo-ui/grid) in AngularJS applications.
 
-```dojo
+> The example loads Kendo UI 2023.3.1010 version.
+
+```
+  <script src="https://kendo.cdn.telerik.com/2023.3.1010/js/angular.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2023.3.1010/js/kendo.all.min.js"></script>
   <script src="https://demos.telerik.com/kendo-ui/content/shared/js/products.js"></script>
   <div id="example" ng-app="KendoDemos">
     <div ng-controller="MyCtrl">
@@ -64,9 +70,9 @@ The following example demonstrates how to create a custom editor in the [Grid](h
       });
 
       $scope.ddlDataSource = new kendo.data.DataSource({
-        type: "odata",
+        type: "odata-v4",
         transport: {
-          read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
+          read: "https://demos.telerik.com/service/v2/odata/Categories"
         }
       });
 
@@ -95,4 +101,7 @@ The following example demonstrates how to create a custom editor in the [Grid](h
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid)
+* [jQuery Data Grid Overview (Demo)](https://demos.telerik.com/kendo-ui/grid/index)
+* [Data Grid Overview (Documentation)]({% slug overview_kendoui_grid_widget %})
+* [Product Page of the jQuery Data Grid](https://www.telerik.com/kendo-jquery-ui/data-grid-(table))

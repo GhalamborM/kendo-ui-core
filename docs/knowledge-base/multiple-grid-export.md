@@ -1,13 +1,13 @@
 ---
 title: Export Multiple Grids
-page_title: Export Multiple Grids | Kendo UI Grid for jQuery
-description: "An example on how to export two kendo UI Grids for jQuery in the same Excel document."
+page_title: Export Multiple Grids - Kendo UI for jQuery Data Grid
+description: "Learn how to export two kendo UI Grids for jQuery in the same Excel document."
 previous_url: /controls/data-management/grid/how-to/excel/multiple-grid-export
 slug: howto_export_excel_multiple_grids_grid
 tags: export, multiple, grids, same, excel, document
-component: grid
 type: how-to
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td> 
  </tr>
  <tr>
   <td>Operating System</td>
@@ -74,11 +74,13 @@ Each Grid is exported in a separate Excel sheet. For additional information abou
         sheets: sheets
       });
 
-      // save the new workbook,b
-      kendo.saveAs({
-        dataURI: workbook.toDataURL(),
-        fileName: "ProductsAndOrders.xlsx"
-      })
+      // save the new workbook
+      workbook.toDataURLAsync().then(function(dataURL) {
+          kendo.saveAs({
+            dataURI: dataURL,
+            fileName: "ProductsAndOrders.xlsx"
+          });
+      });
     });
   });
 
@@ -86,8 +88,7 @@ Each Grid is exported in a separate Excel sheet. For additional information abou
     dataSource: {
       transport: {
         read: {
-          url: "https://demos.telerik.com/kendo-ui/service/Products",
-          dataType: "jsonp"
+          url: "https://demos.telerik.com/service/v2/core/Products"
         }
       },
       pageSize: 20
@@ -103,9 +104,9 @@ Each Grid is exported in a separate Excel sheet. For additional information abou
 
   $("#orders").kendoGrid({
     dataSource: {
-      type: "odata",
+      type: "odata-v4",
       transport: {
-        read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+        read: "https://demos.telerik.com/service/v2/odata/Orders"
       },
       pageSize: 20,
       serverPaging: true
@@ -128,4 +129,4 @@ Each Grid is exported in a separate Excel sheet. For additional information abou
 
 ## See Also
 
-* [JavaScript API Reference of the Grid](/api/javascript/ui/grid/configuration/excel)
+* [JavaScript API Reference of the Data Grid](/api/ui/grid/configuration/excel)

@@ -1,11 +1,12 @@
 ---
 title: Show Confirmation in TreeList When Doing Drag-and-Drop
-description: An example on how to show a confirmation dialog before changing the position of a dropped row in the Kendo UI TreeList.
+description: Learn how to show a confirmation dialog before changing the position of a dropped row in the Kendo UI TreeList.
 type: how-to
-page_title: Show Confirmation for Dragged and Dropped Items | Kendo UI TreeList for jQuery
+page_title: Show Confirmation for Dragged and Dropped Items - Kendo UI TreeList for jQuery
 slug: treelist-show-confirmation-on-drop
 ticketid: 1130225
 res_type: kb
+components: ["treelist"]
 ---
 
 ## Environment
@@ -13,7 +14,7 @@ res_type: kb
 <table>
 	<tr>
 		<td>Product</td>
-		<td>Progress Kendo UI TreeList</td>
+		<td>Progress® Kendo UI® TreeList for jQuery</td>
 	</tr>
 	<tr>
 		<td>Product Version</td>
@@ -40,19 +41,18 @@ The dialog confirmation is an asynchronous action. To add it during the drag-and
 
       <script id="photo-template" type="text/x-kendo-template">
                <div class='employee-photo'
-                    style='background-image: url(../content/web/treelist/people/#:data.EmployeeID#.jpg);'></div>
+                    style='background-image: url(https://demos.telerik.com/kendo-ui/content/web/treelist/people/#:data.EmployeeID#.jpg);'></div>
                <div class='employee-name'>#: FirstName #</div>
       </script>
 
       <script>
-        var service = "https://demos.telerik.com/kendo-ui/service";
+        var service = "https://demos.telerik.com/service/v2/core";
 
         $("#treelist").kendoTreeList({
           dataSource: {
             transport: {
               read: {
-                url: service + "/EmployeeDirectory/All",
-                dataType: "jsonp"
+                url: service + "/EmployeeDirectory/All"
               }
             },
             schema: {

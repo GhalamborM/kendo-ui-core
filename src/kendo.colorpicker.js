@@ -1,27 +1,23 @@
-(function(f, define) {
-    define([
-        "./kendo.core",
-        "./kendo.color",
-        "./kendo.popup",
-        "./kendo.slider",
-        "./kendo.userevents",
-        "./kendo.button",
-        "./kendo.binder",
-        "./kendo.textbox",
-        "./kendo.numerictextbox",
-        "./kendo.html.button",
+import "./kendo.core.js";
+import "./kendo.color.js";
+import "./kendo.popup.js";
+import "./kendo.slider.js";
+import "./kendo.userevents.js";
+import "./kendo.button.js";
+import "./kendo.binder.js";
+import "./kendo.textbox.js";
+import "./kendo.numerictextbox.js";
+import "./kendo.html.button.js";
+import "./colorpicker/colorselector.js";
+import "./colorpicker/flatcolorpicker.js";
+import "./kendo.actionsheet.js";
 
-        "./colorpicker/colorselector",
-        "./colorpicker/flatcolorpicker"
-    ], f);
-})(function() {
-
-var __meta__ = {
+export const __meta__ = {
     id: "colorpicker",
     name: "Color tools",
     category: "web",
     description: "Color selection widgets",
-    depends: [ "core", "color", "popup", "slider", "userevents", "button", "binder", "textbox", "numerictextbox", "html.button" ]
+    depends: [ "core", "color", "popup", "slider", "userevents", "button", "binder", "textbox", "numerictextbox", "html.button", "icons", "actionsheet" ]
 };
 
 (function($, undefined) {
@@ -51,7 +47,7 @@ var __meta__ = {
             blue: "Blue",
             alpha: "Alpha",
             gradient: "Gradient view",
-            palette: "Palette view"
+            palette: "Palette view",
         },
         NS = ".kendoColorTools",
         CLICK_NS = "click" + NS,
@@ -74,16 +70,11 @@ var __meta__ = {
             options = that.options = kendo.deepExtend({}, that.options, options);
             element = that.element;
 
-            var value = element.attr("value") || element.val();
-            if (value) {
-                value = parseColor(value, true);
-            } else {
-                value = parseColor(options.value, true);
-            }
+            let value = parseColor(options.value || element.attr("value") || element.val(), true);
             that._value = options.value = value;
 
             var _buttonHtml = kendo.html.renderButton('<button class="k-input-button" unselectable="on" aria-label="select" tabindex="-1"></button>', $.extend({}, that.options, {
-                icon: "arrow-s"
+                icon: "chevron-down"
             }));
 
             var content = that._inputWrapper = that.wrapper = $(that._template($.extend({}, that.options, {
@@ -114,9 +105,20 @@ var __meta__ = {
                 }
             });
 
+            that._bindMediaQueries();
             that._updateUI(value);
-        },
+            Widget.fn.endInit.call(that);
+},
         destroy: function() {
+            if (this.smallMQL) {
+                this.smallMQL.destroy();
+            }
+            if (this.mediumMQL) {
+                this.mediumMQL.destroy();
+            }
+            if (this.largeMQL) {
+                this.largeMQL.destroy();
+            }
             this.wrapper.off(NS).find("*").off(NS);
             if (this._popup) {
                 this._selector.destroy();
@@ -150,7 +152,7 @@ var __meta__ = {
                     .on("mouseleave" + NS, function() { wrapper.removeClass("k-hover"); })
                     .on("focus" + NS, function() { wrapper.addClass("k-focus"); })
                     .on("blur" + NS, function() { wrapper.removeClass("k-focus"); })
-                    .on(KEYDOWN_NS, bind(that._keydown, that))
+                    .on(KEYDOWN_NS, that, bind(that._keydown, that))
                     .on(CLICK_NS, ".k-input-button", bind(that.toggle, that))
                     .on(CLICK_NS, ".k-input-inner", function() {
                         that.trigger("activate");
@@ -160,17 +162,122 @@ var __meta__ = {
             }
         },
 
-        _template: kendo.template(
-            '<span role="textbox" aria-haspopup="true" class="k-colorpicker k-picker k-icon-picker">' +
-                '<span  class="k-input-inner">' +
-                    '<span class="k-value-icon k-color-preview #: toolIcon ? "k-icon-color-preview" : "" #">' +
-                        '# if (toolIcon) { #' +
-                        '<span class="k-color-preview-icon k-icon #= toolIcon #"></span>' +
-                        '# } #' +
+        _adaptiveView: function() {
+            const that = this;
+
+            if (!that._popup) {
+                that._getPopup();
+            } else if (!that._popup.fullscreen) {
+                that._popup.destroy();
+                that._popup = null;
+                that._getPopup();
+            } else if (!that._showAdaptiveView) {
+                that._popup.wrapper && that._popup.wrapper.remove();
+                that._popup.destroy();
+                that._popup = null;
+            }
+
+            that._toggleAdaptiveModeSizeClasses(that._showAdaptiveView);
+        },
+
+        _toggleSizeClassesForElement: function(element, size, className) {
+            if (element && element.length) {
+                if (element.data("handler") && element.data("handler")._addSizeClass) {
+                    if (size) {
+                        return element.data("handler")._addSizeClass(size);
+                    }
+
+                    return element.data("handler")._addSizeClass();
+                }
+
+                if (!element.is("." + className)) {
+                    element = element.closest("." + className);
+                }
+
+                element.removeClass(`${className}-sm ${className}-md ${className}-lg`);
+
+                if (size) {
+                    element.addClass(`${className}-${size}`);
+                }
+            }
+        },
+
+        _toggleAdaptiveModeSizeClasses: function(toggle) {
+            const that = this;
+            const wrapper = that._popup && that._popup.wrapper;
+            const adaptiveSize = "large";
+
+            const classes = {
+                flatColorPicker: "k-coloreditor",
+                colorGradient: "k-colorgradient",
+                colorPalette: "k-colorpalette",
+            };
+
+            const flatColorPicker = wrapper && wrapper.length && wrapper.find("." + classes.flatColorPicker);
+            const colorGradient = wrapper && wrapper.length && wrapper.find("." + classes.colorGradient);
+            const colorPalette = wrapper && wrapper.length && wrapper.find("." + classes.colorPalette);
+
+            if (toggle) {
+                that._toggleSizeClassesForElement(flatColorPicker, adaptiveSize);
+                that._toggleSizeClassesForElement(colorGradient, adaptiveSize);
+                that._toggleSizeClassesForElement(colorPalette, adaptiveSize);
+
+            } else {
+                that._toggleSizeClassesForElement(flatColorPicker);
+                that._toggleSizeClassesForElement(colorGradient);
+                that._toggleSizeClassesForElement(colorPalette);
+            }
+        },
+
+        _bindMediaQueries: function() {
+            const that = this;
+            const isAdaptive = that.options.adaptiveMode === "auto";
+
+            if (isAdaptive) {
+                that.largeMQL = kendo.mediaQuery("large");
+                that.mediumMQL = kendo.mediaQuery("medium");
+                that.smallMQL = kendo.mediaQuery("small");
+
+                that.smallMQL
+                    .onEnter(() => {
+                        that._showAdaptiveView = true;
+
+                        that._adaptiveView();
+                        that._popup.fullscreen(true);
+                    });
+
+                that.mediumMQL
+                    .onEnter(() => {
+                        that._showAdaptiveView = true;
+
+                        that._adaptiveView();
+                        that._popup.fullscreen(false);
+                    });
+
+                that.largeMQL
+                    .onEnter(() => {
+                        that._showAdaptiveView = false;
+
+                        that._adaptiveView();
+                    });
+            } else {
+                that.smallMQL && that.smallMQL.destroy();
+                that.mediumMQL && that.mediumMQL.destroy();
+                that.largeMQL && that.largeMQL.destroy();
+
+                that._showAdaptiveView = false;
+            }
+        },
+
+        _template: kendo.template(({ toolIcon, _buttonHtml }) =>
+           '<span role="combobox" aria-haspopup="dialog" aria-expanded="false" class="k-colorpicker k-picker k-icon-picker">' +
+                '<span class="k-input-inner">' +
+                    `<span class="k-value-icon k-color-preview ${toolIcon ? 'k-icon-color-preview' : ''}">` +
+                        (toolIcon ? kendo.ui.icon({ icon: toolIcon, iconClass: "k-color-preview-icon" }) : '') +
                         '<span class="k-color-preview-mask"></span>' +
                     '</span>' +
                 '</span >' +
-                '#= _buttonHtml #' +
+                _buttonHtml +
             '</span>'
         ),
 
@@ -185,6 +292,7 @@ var __meta__ = {
             messages: MESSAGES,
             opacity: false,
             buttons: true,
+            buttonsTemplate: null,
             preview: true,
             clearButton: false,
             input: true,
@@ -193,13 +301,16 @@ var __meta__ = {
             view: "gradient",
             views: ["gradient", "palette"],
             backgroundColor: null,
-            ARIATemplate: 'Current selected color is #=data || "none"#',
-            size: "medium",
-            rounded: "medium",
-            fillMode: "solid"
+            ARIATemplate: (data) => `Current selected color is ${data || "none"}`,
+            size: undefined,
+            rounded: undefined,
+            fillMode: undefined,
+            adaptiveMode: "none",
+            adaptiveTitle: null,
+            adaptiveSubtitle: null,
         },
 
-        events: [ "activate", "change", "select", "open", "close" ],
+        events: [ "activate", "change", "select", "open", "close", "kendoKeydown" ],
 
         open: function() {
             if (!this.element.prop("disabled")) {
@@ -207,7 +318,10 @@ var __meta__ = {
             }
         },
         close: function() {
-            var selOptions = (this._selector && this._selector.options) || {};
+            if (!this._popup) {
+                return;
+            }
+            const selOptions = (this._selector && this._selector.options) || {};
             selOptions._closing = true;
             this._getPopup().close();
 
@@ -304,14 +418,78 @@ var __meta__ = {
                     this._selector._keydown(ev);
                 }
                 preventDefault(ev);
+                if (key !== KEYS.ENTER) {
+                    ev.stopPropagation();
+                }
             }
             else if (key == KEYS.ENTER || key == KEYS.DOWN) {
                 this.open();
                 preventDefault(ev);
+                if (key !== KEYS.ENTER) {
+                    ev.stopPropagation();
+                }
             }
         },
+
+        _actionFooterButtons: function() {
+            const that = this;
+
+            let buttons;
+            if (that.options.buttonsTemplate) {
+                buttons = kendo.template(that.options.buttonsTemplate);
+
+                return buttons;
+            } else {
+                buttons = [
+                    {
+                        command: "cancel",
+                        text: "Cancel",
+                        size: "large",
+                        fillMode: that.options.fillMode,
+                    },
+                    {
+                        command: "apply",
+                        text: "Apply",
+                        size: "large",
+                        fillMode: that.options.fillMode,
+                        themeColor: "primary"
+                    }
+                ];
+                let buttonsHtml = "";
+
+                buttons.forEach(buttonOptions => {
+                    const command = buttonOptions.command;
+                    const text = buttonOptions.text;
+
+                    delete buttonOptions.command;
+                    delete buttonOptions.text;
+
+                    buttonsHtml += kendo.html.renderButton(`<button data-command=${command}>${text}</button>`, buttonOptions);
+                });
+
+                return buttonsHtml;
+            }
+        },
+
+        _actionSheetApply: function() {
+            const that = this._selector;
+            if (that._clearColor) {
+                that._select(null);
+            } else {
+                that._select(that._view.color());
+            }
+        },
+
+        _actionSheetCancel: function() {
+            const that = this._selector;
+            delete that._clearColor;
+            that._updateUI(that.color());
+            that._cancel();
+        },
+
         _getPopup: function() {
             var that = this, popup = that._popup;
+            const isAdaptive = that._showAdaptiveView;
 
             if (!popup) {
                 var options = that.options;
@@ -319,7 +497,9 @@ var __meta__ = {
 
                 selectorType = FlatColorPicker;
 
-                options.autoupdate = options.buttons !== true;
+                options.autoupdate = options.buttons !== true && !isAdaptive;
+                options._showAdaptiveView = isAdaptive;
+
                 delete options.select;
                 delete options.change;
                 delete options.cancel;
@@ -328,28 +508,60 @@ var __meta__ = {
 
                 var id = kendo.guid();
 
-                var selectorWrapper = $('<div id="' + id + '" class="k-colorpicker-popup"></div>').appendTo(document.body);
-                var selector = that._selector = new selectorType($('<div></div>').appendTo(selectorWrapper), options);
+                var selectorWrapper = $(`<div id="${id}" class=${ !isAdaptive ? "k-colorpicker-popup" : ''}></div>`).appendTo(document.body);
+                var selector = that._selector = new selectorType($('<div></div>').appendTo(selectorWrapper), { ...options, buttons: !isAdaptive && options.buttons, value: isAdaptive ? that._value : that.options.value });
 
-                that.wrapper.attr("aria-owns", id);
+                that.wrapper.attr("aria-controls", id);
 
-                that._popup = popup = selectorWrapper.kendoPopup({
-                    anchor: that.wrapper,
-                    adjustSize: { width: 5, height: 0 }
-                }).data("kendoPopup");
+                if (isAdaptive) {
+                    that._popup = popup = selectorWrapper.kendoActionSheet({
+                        adaptive: true,
+                        closeButton: {
+                            icon: "check",
+                            themeColor: "primary",
+                        },
+                        hideOverflowContent: true,
+                        title: options.adaptiveTitle ? kendo.htmlEncode(options.adaptiveTitle) : "Choose Color",
+                        subtitle: options.adaptiveSubtitle ? kendo.htmlEncode(options.adaptiveSubtitle) : "",
+                        footerTemplate: that._actionFooterButtons(),
+                    }).data("kendoActionSheet");
+
+                    popup._footer.addClass("k-actions k-actions-horizontal k-actions-stretched");
+
+                    popup._footer.on("click", "button[data-command]", function(e) {
+                        const command = $(e.currentTarget).data("command");
+
+                        switch (command) {
+                            case "apply":
+                                that._actionSheetApply();
+                                break;
+
+                            case "cancel":
+                                that._actionSheetCancel();
+                                break;
+                        }
+                    });
+                } else {
+                    that._popup = popup = selectorWrapper.kendoPopup({
+                        anchor: that.wrapper,
+                        adjustSize: { width: 5, height: 0 }
+                    }).data("kendoPopup");
+                }
+
+                selectorWrapper.on(KEYDOWN_NS, that, $.noop);
 
                 selector.bind({
                     select: function(ev) {
                         that._updateUI(parseColor(ev.value), true);
                     },
                     change: function(ev) {
-                        if (that.options.buttons) {
+                        if (that.options.buttons || isAdaptive) {
                             that._select(selector.color());
                         } else {
                             that._updateUI(parseColor(ev.value), true);
                         }
 
-                        if (that.options.buttons || (that._selector.options.view === "palette" && that.options.closeOnSelect)) {
+                        if ((that.options.buttons || isAdaptive) || (that._selector.options.view === "palette" && that.options.closeOnSelect)) {
                             that.close();
                         }
                     },
@@ -367,7 +579,7 @@ var __meta__ = {
 
                         var color = selector.color();
 
-                        if (!that.options.buttons) {
+                        if (!that.options.buttons || !isAdaptive) {
                             that._select(color);
                         } else {
                             that._select(that.color());
@@ -379,9 +591,11 @@ var __meta__ = {
                             that._cachedHue = color.h;
                         }
 
+                        const parentSelector = isAdaptive ? ".k-actionsheet" : ".k-colorpicker-popup";
+
                         var clickedOutside = event &&
                             event instanceof MouseEvent &&
-                            $(event.target).parents(".k-colorpicker-popup").length === 0;
+                            $(event.target).parents(parentSelector).length === 0;
 
                         if (!clickedOutside) {
                             setTimeout(function() {
@@ -390,17 +604,24 @@ var __meta__ = {
                                 }
                             }, 0);
                         }
+
+                        that.wrapper.attr("aria-expanded", false);
                     },
                     open: function(ev) {
                         if (that.trigger("open")) {
                             ev.preventDefault();
                         } else {
                             that.wrapper.addClass("k-focus");
+                            that.wrapper.attr("aria-expanded", true);
                         }
                     },
                     activate: function() {
                         var hsvColor,
                             selectedColor = that.color();
+
+                        if (isAdaptive) {
+                            resizeSliders(selector);
+                        }
 
                         if (selectedColor) {
                             selectedColor = selectedColor.toHSV();
@@ -417,6 +638,20 @@ var __meta__ = {
             return popup;
         }
     });
+
+    function resizeSliders(selectorInstance) {
+        const view = selectorInstance._view;
+
+        if (view) {
+            if (view._hueSlider) {
+                view._hueSlider.resize();
+            }
+
+            if (view._opacitySlider) {
+                view._opacitySlider.resize();
+            }
+        }
+    }
 
     function preventDefault(ev) { ev.preventDefault(); }
 
@@ -436,7 +671,5 @@ var __meta__ = {
     }]);
 
 })(window.kendo.jQuery);
+export default kendo;
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });

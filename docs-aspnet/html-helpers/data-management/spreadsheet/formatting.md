@@ -2,6 +2,7 @@
 title: Cell Formatting
 page_title: Spreadsheet
 description: "Learn how to format cells in the Telerik UI Spreadsheet component for {{ site.framework }}."
+components: ["spreadsheet"]
 slug: htmlhelpers_spreadsheet_formatting_aspnetcore
 position: 4
 ---
@@ -12,7 +13,7 @@ The Spreadsheet supports cell-formatting options such as formatting of strings, 
 
 ## Strings
 
-While the format strings are compatible with the [Excel number formats](https://support.office.com/en-au/article/Create-or-delete-a-custom-number-format-78f2a361-936b-4c03-8772-09fab54be7f4), some [notable exceptions](#differences-to-excel) still exist. A format string consists of one or more sections that are separated by semicolons. Optionally, a section specifies a color and a condition.
+While the format strings are compatible with the [Excel number formats](https://support.office.com/en-au/article/Create-or-delete-a-custom-number-format-78f2a361-936b-4c03-8772-09fab54be7f4), some exceptions still exist. A format string consists of one or more sections that are separated by semicolons. Optionally, a section specifies a color and a condition.
 
 The following example demonstrates how to display a number with up to three decimals.
 
@@ -939,7 +940,7 @@ The default format strings that are shown in the formatting drop-down are stored
 | dateTime          | Format values as date-time.                                                   |
 | duration          | Format as an elapsed duration in hours, minutes, or seconds.                  |
 
-You can use these formats with the [`range` format method](https://docs.telerik.com/kendo-ui/api/javascript/spreadsheet/range/methods/format) in the following way: `sheet.range("A1").format(kendo.spreadsheet.formats.currency)`.
+You can use these formats with the [`range` format method](https://docs.telerik.com/kendo-ui/api/spreadsheet/range/methods/format) in the following way: `sheet.range("A1").format(kendo.spreadsheet.formats.currency)`.
 
 ## Text and Numbers
 

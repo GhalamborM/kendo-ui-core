@@ -1,7 +1,8 @@
 ---
 title: Pie Charts
-page_title: jQuery Chart Documentation | Pie Charts
+page_title: jQuery Chart Documentation - Pie Charts
 description: "Learn how to create a Kendo UI Pie Chart and specify its point value, category label, and other properties."
+components: ["chart"]
 slug: pietypecharts_widget
 ---
 
@@ -56,11 +57,11 @@ The following example demonstrates how to define a single series of type `"pie"`
     });
 
 
-![A sample Pie Chart](chart-pie.png)
+![Kendo UI for jQuery Pie Chart Overview](chart-pie-overview.png)
 
 ## Auto-Fit Labels
 
-Use the Series [autoFit option](/api/javascript/dataviz/ui/chart/configuration/series.autofit) to avoid clipping of the labels' content.
+Use the Series [autoFit option](/api/dataviz/ui/chart/configuration/series#seriesautofit) to avoid clipping of the labels' content.
 
 ```dojo
     <div id="chart" style="width: 200px;"></div>
@@ -117,17 +118,17 @@ The Pie Chart supports the following gradient options:
 
 * (Default) `roundedBevel`
 
-    ![A Pie Chart with roundedBevel overlay](chart-pie-overlay-roundbevel.png)
+    ![Kendo UI for jQuery Pie Chart with roundedBevel overlay](chart-pie-overlay-roundbevel.png)
 
 * `sharpBevel`
 
-    ![A Pie Chart with sharpBevel overlay](chart-pie-overlay-sharpbevel.png)
+    ![Kendo UI for jQuery Pie Chart with sharpBevel overlay](chart-pie-overlay-sharpbevel.png)
 
 * `none`
 
-    ![A Pie Chart with no overlay](chart-pie-overlay-none.png)
+    ![Kendo UI for jQuery Pie Chart with no overlay](chart-pie-overlay-none.png)
 
 ## See Also
 
 * [Basic Usage of the Pie Chart (Demo)](https://demos.telerik.com/kendo-ui/pie-charts/index)
-* [JavaScript API Reference of the Chart](/api/javascript/dataviz/ui/chart)
+* [JavaScript API Reference of the Chart](/api/dataviz/ui/chart)

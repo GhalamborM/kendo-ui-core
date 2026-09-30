@@ -1,12 +1,13 @@
 ---
-title: Implement a custom Pager for a Telerik UI Grid
-description: An example on how to add a Pager with different custom functionalities and styles.
+title: Implementing a Custom Pager in a Grid
+description: An example on how to add a Pager with various custom functionalities and styles when using the {{ site.product }} Grid.
 type: how-to
-page_title: Implement a custom Pager for a Telerik UI Grid
+page_title: Implement a Custom Pager in a Grid
 slug: grid-custom-pager-placed-outside
 tags: grid, pager, custom, input, numeric, outside
 ticketid: 1570031
 res_type: kb
+components: ["general"]
 component: grid
 ---
 
@@ -15,7 +16,7 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Grid for Progress® Telerik® UI for ASP.NET MVC</td>
+  <td>{{ site.product }} Grid</td>
  </tr>
  <tr>
   <td>Created with Product Version</td>
@@ -41,8 +42,8 @@ I want to implement:
 1. Implement a span element for the right arrow with classes: "k-icon k-i-chevron-right".
 1. Implement a span element for the Pager Total info with id "total".
 1. Handle the click event of the left arrow.
-1. In the event handler, get the current [page](https://docs.telerik.com/kendo-ui/api/javascript/data/datasource/methods/page). Set the previous page to the [dataSource](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/configuration/datasource) of the Grid by using the current page. Change the value of the numeric.
-1. Handle the [Change Event](https://docs.telerik.com/kendo-ui/api/javascript/ui/numerictextbox/events/change) of the NumericTextBox. It is fired even when clicking outside of the input, so it is perfect for the case.
+1. In the event handler, get the current [page](https://docs.telerik.com/kendo-ui/api/data/datasource/methods/page). Set the previous page to the [dataSource](https://docs.telerik.com/kendo-ui/api/ui/grid/configuration/datasource) of the Grid by using the current page. Change the value of the numeric.
+1. Handle the [Change Event](https://docs.telerik.com/kendo-ui/api/ui/numerictextbox/events/change) of the NumericTextBox. It is fired even when clicking outside of the input, so it is perfect for the case.
 1. In the Change Event handler, get the current value of the numeric and apply it to the Grid.
 1. Handle the click event of the right arrow.
 1. In the event handler, get the current page. Set the next page to the dataSource of the Grid by using the current page. Change the value of the numeric checking if the total pages are less or equal to the "next page".
@@ -143,8 +144,32 @@ I want to implement:
     }
 ```
 
+## More {{ site.framework }} Grid Resources
+
+* [{{ site.framework }} Grid Documentation]({%slug htmlhelpers_grid_aspnetcore_overview%})
+
+* [{{ site.framework }} Grid Demos](https://demos.telerik.com/{{ site.platform }}/grid/index)
+
+* [{{ site.framework }} Grid Paging Demo](https://demos.telerik.com/{{ site.platform }}/grid/paging)
+
+{% if site.core %}
+* [{{ site.framework }} DataGrid Product Page](https://www.telerik.com/aspnet-core-ui/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} Grid Product Page](https://www.telerik.com/aspnet-mvc/grid)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
 ## See Also
 
-* [Overview Demo of the Telerik UI Grid for ASP.NET MVC](https://demos.telerik.com/aspnet-mvc/grid)
-* [Paging Demo of the Telerik UI Grid for ASP.NET MVC](https://demos.telerik.com/aspnet-mvc/grid/paging)
-* [Overview Demo of the Telerik UI Pager for ASP.NET MVC](https://demos.telerik.com/aspnet-mvc/pager)
+* [Client-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/grid)
+* [Server-Side API Reference of the Grid for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/grid)
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

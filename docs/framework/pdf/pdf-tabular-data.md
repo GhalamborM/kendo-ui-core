@@ -1,7 +1,8 @@
 ---
 title: Exporting Tabular Data to PDF
-page_title: Exporting Tabular Data to PDF | Kendo UI Drawing Library
+page_title: Exporting Tabular Data to PDF - Kendo UI Drawing Library
 description: "Learn how to export a wide Kendo UI Grid into PDF."
+components: ["general"]
 slug: tabulardata_drawingapi
 position: 5
 ---
@@ -54,9 +55,8 @@ To control the generated table, use any of the following options:
   $(document).ready(function() {
     window.grid = $("#grid").kendoGrid({
       dataSource: {
-        type: "odata",
         transport: {
-          read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+          read: "https://demos.telerik.com/service/v2/core/Orders"
         },
         schema: {
           model: {
@@ -119,6 +119,6 @@ To control the generated table, use any of the following options:
 ## See Also
 
 * [Overview of the Drawing Library]({% slug overview_kendoui_drawingapi %})
-* [Drawing Basic Shapes]({% slug basicshapes_drawingapi %})
+* [Getting Started with the Drawing Library]({% slug getting_started_kendoui_drawing %})
 * [Exporting Drawings to PDF]({% slug pdfderawingexport_drawingapi %})
 * [Drawing DOM Elements]({% slug drawingofhtmlelements_drawingapi %})

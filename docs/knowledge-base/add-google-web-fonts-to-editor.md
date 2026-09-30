@@ -1,13 +1,13 @@
 ---
 title: Add Google WebFonts to the Editor
-page_title: Add Google WebFonts to the Editor
-description: "Learn how to add Google WebFonts in the Kendo UI Editor widget."
+page_title: Implement Google WebFonts - jQuery Editor
+description: "Learn how to add Google WebFonts in the Kendo UI for jQuery Editor component."
 previous_url: /controls/editors/editor/how-to/add-google-web-fonts-to-editor, /controls/editors/editor/how-to/appearance/add-google-web-fonts-to-editor
 slug: howto_add_google_webfonts_editor
 tags: telerik, kendo, jquery, editor, add, google, webfonts
-component: editor
 type: how-to
 res_type: kb
+components: ["editor"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Editor for jQuery</td>
+  <td>Progress® Kendo UI® Editor for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -60,7 +60,7 @@ The following example demonstrates how to achieve the desired scenario.
 		</p>
     </textarea>
 	<script>
-		// Add Google Web Fonts to font name drop-down.
+		// Add Google Web Fonts to the font name drop-down.
 		var editor = $("#editor").kendoEditor({
       tools: ["fontName"],
 		  fontName: [].concat(
@@ -79,10 +79,10 @@ The following example demonstrates how to achieve the desired scenario.
 		// Load Google Web Font in the editing area.
 		$(editor.data("kendoEditor").body)
 		  .prevAll("head")
-			.append("<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet'>")
-			.append("<link href='http://fonts.googleapis.com/css?family=Griffy' rel='stylesheet' type='text/css'>")
-			.append("<link href='http://fonts.googleapis.com/css?family=Jacques+Francois+Shadow' rel='stylesheet' type='text/css'>")
-			.append("<link href='http://fonts.googleapis.com/css?family=Fascinate' rel='stylesheet' type='text/css'>");
+			.append("<link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet'>")
+			.append("<link href='https://fonts.googleapis.com/css?family=Griffy' rel='stylesheet' type='text/css'>")
+			.append("<link href='https://fonts.googleapis.com/css?family=Jacques+Francois+Shadow' rel='stylesheet' type='text/css'>")
+			.append("<link href='https://fonts.googleapis.com/css?family=Fascinate' rel='stylesheet' type='text/css'>");
 	</script>
 ```
 
@@ -90,4 +90,5 @@ The following example demonstrates how to achieve the desired scenario.
 
 * [Basic Usage of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/index)
 * [Using the API of the Editor (Demo)](https://demos.telerik.com/kendo-ui/editor/api)
-* [JavaScript API Reference of the Editor](/api/javascript/ui/editor)
+* [JavaScript API Reference of the Editor](/api/ui/editor)
+* [jQuery Rich Text Editor Product Page](https://www.telerik.com/kendo-jquery-ui/rich-text-editor)

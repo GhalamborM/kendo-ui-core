@@ -1,12 +1,13 @@
 ---
-title: Exporting to Excel - auto row height for wrapped cells
-description: An example on how to adjust the row height in Excel when the cells are wrapped
+title: Set an Automatic Row Height for Wrapped Cells When Exporting to Excel
+description: Learn how to adjust the row height in Excel when the cells are wrapped
 type: how-to
-page_title: Auto Row Height for Wrapped Cells - Excel Export | Kendo ooxml Workbook for jQuery
+page_title: Auto Row Height for Wrapped Cells - Excel Export - Kendo ooxml Workbook for jQuery
 slug: excel-export-set-row-height-to-auto
 tags: workbook, excel, export, rows, wrapped, cells, auto, adjust
 ticketid: 1142435
 res_type: kb
+components: ["general"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Workbook for Progress® Kendo UI®</td>
+  <td>Progress® Kendo UI® Workbook for jQuery</td>
  </tr>
 </table>
 
@@ -24,7 +25,7 @@ How do I set the row height for wrapped cells?  The rows are keeping their defau
 
 ## Solution
 
-The Kendo UI OOXML Workbook rows cannot be set to use automatic height. Unless height is provided as a number, the default [row height](/api/javascript/ooxml/workbook/configuration/sheets.rows.height) will be used.
+The Kendo UI OOXML Workbook rows cannot be set to use automatic height. Unless height is provided as a number, the default [row height](/api/ooxml/workbook/configuration/sheets/rows#sheetsrowsheight) will be used.
 
 If you wish to have rows of different heights, you would need to calculate the row height of that particular row before pushing it to the rows array.
 
@@ -94,7 +95,12 @@ Here is some example logic that can be used:
               rows: rows
             }]
           });
-          kendo.saveAs({dataURI: workbook.toDataURL(), fileName: "Test.xlsx"});
+          workbook.toDataURLAsync().then(function(dataURL) {
+            kendo.saveAs({
+     		 dataURI: dataURL,
+     		 fileName: "Test.xlsx"
+    	   });
+          });
         }
 
         function generateModel(data) {

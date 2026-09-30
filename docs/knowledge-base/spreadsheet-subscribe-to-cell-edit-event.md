@@ -1,12 +1,13 @@
 ---
 title: Subscribe to the Edit Event of a Spreadsheet Cell
-description: An example on how to subscribe to the edit event of the cell in the Kendo UI Spreadsheet.
+description: Learn how to subscribe to the edit event of the cell in the Kendo UI Spreadsheet.
 type: how-to
-page_title: Subscribe to the Edit Event of the Cell | Kendo UI Spreadsheet for jQuery
+page_title: Subscribe to the Edit Event of the Cell - Kendo UI Spreadsheet for jQuery
 slug: spreadsheet-subscribe-to-cell-edit-event
 tags: kendo, kendo-ui, spreadsheet, subscribe, cell, edit, event
 ticketid: 1154659
 res_type: kb
+components: ["spreadsheet"]
 ---
 
 ## Environment
@@ -18,7 +19,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>Spreadsheet for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® Spreadsheet for jQuery</td>
 	</tr>
 </table>
 
@@ -54,4 +55,4 @@ Utilize the `select` event of the Spreadsheet to subscribe to the `activate` eve
 
 ## See Also
 
-* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/javascript/ui/spreadsheet)
+* [API Reference of the Spreadsheet](https://docs.telerik.com/kendo-ui/api/ui/spreadsheet)

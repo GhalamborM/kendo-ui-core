@@ -1,8 +1,7 @@
-(function(f, define) {
-    define(["./kendo.html.button", "./kendo.button.menu"], f);
-})(function() {
+import "./kendo.html.button.js";
+import "./kendo.button.menu.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "dropdownbutton",
     name: "DropDownButton",
     category: "web",
@@ -40,7 +39,7 @@ var __meta__ = {
         FOCUS = "focus";
 
     var cssClasses = {
-        menuButton: "k-menu-button"
+        menuButton: "k-menu-button",
     };
 
     var DropDownButton = Widget.extend({
@@ -64,16 +63,19 @@ var __meta__ = {
             kendo.notify(that);
 
             that._applyCssClasses();
-        },
+            Widget.fn.endInit.call(that);
+},
 
         options: {
             name: "DropDownButton",
+            direction: "down",
             enabled: true,
             items: [],
-            rounded: "medium",
-            size: "medium",
-            fillMode: "solid",
-            themeColor: "base",
+            rounded: undefined,
+            size: undefined,
+            fillMode: undefined,
+            themeColor: undefined,
+            showArrowButton: false,
             icon: null,
             popup: null,
             messages: {
@@ -98,6 +100,19 @@ var __meta__ = {
             that.element.addClass(cssClasses.menuButton);
 
             html.renderButton(that.element, options);
+
+            if (that.options.showArrowButton) {
+                $("<span></span>")
+                    .addClass("k-button-arrow")
+                    .addClass("k-menu-button-arrow")
+                    .append(kendo.ui.icon(kendo.htmlEncode("chevron-down")))
+                    .appendTo(that.element);
+            } else {
+                const arrowButton = that.element.find(".k-button-arrow");
+                if (arrowButton) {
+                    arrowButton.remove();
+                }
+            }
         },
 
         _aria: function() {
@@ -121,10 +136,6 @@ var __meta__ = {
 
             delete options.click;
             delete options.name;
-
-            if (!options.items.length) {
-                return;
-            }
 
             that.menu = menu.appendTo(document.body).kendoButtonMenu(extend({
                 mainButton: that.element,
@@ -242,11 +253,11 @@ var __meta__ = {
         },
 
         open: function() {
-            this.menu._popup.open();
+            this.menu.open();
         },
 
         close: function() {
-            this.menu._popup.close();
+            this.menu.close();
         },
 
         items: function() {
@@ -282,9 +293,4 @@ var __meta__ = {
     ui.plugin(DropDownButton);
 
 })(window.kendo.jQuery);
-
-return window.kendo;
-
-}, typeof define == "function" && define.amd ? define : function(a1, a2, a3) {
-    (a3 || a2)();
-});
+export default kendo;

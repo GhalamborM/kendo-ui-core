@@ -1,13 +1,13 @@
 ---
 title: Export Custom Headers to Excel in Grid
-description: An example on how to add an extra row to the Excel Export for custom Kendo UI Grid headers.
+description: Learn how to add an extra row to the Excel Export for custom Kendo UI Grid headers.
 type: how-to
-page_title: Add Custom Headers When Exporting to Excel | Kendo UI Grid for jQuery
+page_title: Add Custom Headers When Exporting to Excel - Kendo UI for jQuery Data Grid
 slug: grid-excel-export-custom-headers
 tags: grid, excel, export, custom, headers, kendo
 ticketid: 1081450
 res_type: kb
-component: grid
+components: ["grid"]
 ---
 
 ## Environment
@@ -15,8 +15,8 @@ component: grid
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Grid</td>
-  <td>Progress Kendo UI Excel Export</td>
+  <td>Progress® Kendo UI® Grid for jQuery</td>
+  <td>Progress® Kendo UI® Excel Export for jQuery</td>
  </tr>
 </table>
 
@@ -33,11 +33,11 @@ Does the Grid export only the already existing data in it?
 
 ## Solution
 
-The Grid triggers an [`excelExport`](https://docs.telerik.com/kendo-ui/api/javascript/ui/grid/events/excelexport) event which contains the workbook as part of the event data.
+The Grid triggers an [`excelExport`](https://docs.telerik.com/kendo-ui/api/ui/grid/events/excelexport) event which contains the workbook as part of the event data.
 
 The example demonstrates how to export additional information to Excel by implementing the following actions:
 
-1. Change the name of the sheet by using the [`sheets.name`](https://docs.telerik.com/kendo-ui/api/javascript/ooxml/workbook/configuration/sheets.name) configuration property. For example, `sheets[0].name = "Orders";`.
+1. Change the name of the sheet by using the [`sheets.name`](https://docs.telerik.com/kendo-ui/api/ooxml/workbook/configuration/sheets#sheetsname) configuration property. For example, `sheets[0].name = "Orders";`.
 1. Insert a new row of cells which contains the custom headers at position `0`.
 1. Style the new headers with a new background color, font size, horizontal alignment, and row height.
 
@@ -52,7 +52,7 @@ The example demonstrates how to export additional information to Excel by implem
                 toolbar: ["excel"],
                 excel: {
                   fileName: "Kendo UI Grid Export.xlsx",
-                  proxyURL: "//demos.telerik.com/kendo-ui/service/export",
+                  proxyURL: "https://demos.telerik.com/service/v2/core/export",
                   filterable: true
                 },
                 excelExport: function(e){
@@ -78,9 +78,8 @@ The example demonstrates how to export additional information to Excel by implem
                   sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 70});
                 },
                 dataSource: {
-                  type: "odata",
                   transport: {
-                    read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
+                    read: "https://demos.telerik.com/service/v2/core/Orders"
                   },
                   schema: {
                     model: {
@@ -125,6 +124,6 @@ The example demonstrates how to export additional information to Excel by implem
 
 ## See Also
 
-* [Workbook API reference](https://docs.telerik.com/kendo-ui/api/javascript/ooxml/workbook)
-* [Complete List of Configurable Cell Options](https://docs.telerik.com/kendo-ui/api/javascript/ooxml/workbook/configuration/sheets.rows.cells)
+* [Workbook API reference](https://docs.telerik.com/kendo-ui/api/ooxml/workbook)
+* [Complete List of Configurable Cell Options](https://docs.telerik.com/kendo-ui/api/ooxml/workbook/configuration/sheets/rows#sheetsrowscells)
 * [More Information on Appearance](https://docs.telerik.com/kendo-ui/framework/excel/appearance)

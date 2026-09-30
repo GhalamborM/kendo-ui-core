@@ -1,13 +1,13 @@
 ---
 title: Highlight Selected Shapes in Diagram
-description: An example on how to change the color of selected shapes in order to highlight them.
+description: Learn how to change the color of selected shapes in order to highlight them.
 type: how-to
-page_title: Change the Color of Selected Shapes | Kendo UI Diagram for jQuery
+page_title: Change the Color of Selected Shapes - Kendo UI Diagram for jQuery
 slug: diagram-highlight-selected-shapes
 tags: diagram, selection, shapes
 ticketid: 1338877
 res_type: kb
-component: diagram
+components: ["diagram"]
 ---
 
 ## Environment
@@ -15,7 +15,7 @@ component: diagram
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Diagram</td>
+  <td>Progress® Kendo UI® Diagram for jQuery</td>
  </tr>
 </table>
 
@@ -46,9 +46,9 @@ How can I change the color of shapes in the Diagram when the user performs selec
       }
   	```
 
-    The shape visual is applied through the [`shapeDefaults.visual`](/api/javascript/dataviz/ui/diagram/configuration/shapedefaults.visual) property.
+    The shape visual is applied through the [`shapeDefaults.visual`](/api/dataviz/ui/diagram/configuration/shapedefaults#shapedefaultsvisual) property.
 
-1. Handle the [`select` event](/api/javascript/dataviz/ui/diagram/events/select) and trigger a redraw of the Diagram shapes.
+1. Handle the [`select` event](/api/dataviz/ui/diagram/events/select) and trigger a redraw of the Diagram shapes.
 
   	```
       select: function(e) {

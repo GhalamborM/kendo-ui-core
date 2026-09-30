@@ -5,9 +5,9 @@ description: "Learn how to disable the content scrolling of the Kendo UI for jQu
 slug: howto_disablecontentscrolling_tabstrip
 previous_url: /controls/navigation/tabstrip/how-to/disable-content-scrolling
 tags: telerik, kendo, jquery, tabstrip, disable, content, scrolling
-component: tabstrip
 type: how-to
 res_type: kb
+components: ["tabstrip"]
 ---
 
 ## Environment
@@ -15,14 +15,14 @@ res_type: kb
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI TabStrip for jQuery</td>
+  <td>Progress® Kendo UI® TabStrip for jQuery</td>
  </tr>
  <tr>
   <td>Operating System</td>
   <td>Windows 10 64bit</td>
  </tr>
  <tr>
-  <td>Visual Studio version</td>
+  <td>Visual Studio Version</td>
   <td>Visual Studio 2017</td>
  </tr>
  <tr>
@@ -128,8 +128,8 @@ The example below demonstrates how to disable content scrolling for a specific T
 
 ## See Also
 
-* [TabStrip JavaScript API Reference](/api/javascript/ui/tabstrip)
-* [How to Initialize the Grid in Kendo UI TabStrip]({% slug initialize_thegrid_tabstrip_widget %})
-* [How to Save Content Scroll Position]({% slug howto_savecontentscrollposition_tabstrip %})
+* [TabStrip JavaScript API Reference](/api/ui/tabstrip)
+* [Initialize the Grid in Kendo UI TabStrip]({% slug initialize_thegrid_tabstrip_widget %})
+* [Save Content Scroll Position]({% slug howto_savecontentscrollposition_tabstrip %})
 
 

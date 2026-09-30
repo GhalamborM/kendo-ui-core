@@ -1,8 +1,4 @@
-(function(f, define){
-    define([
-        "../kendo.core"
-    ], f);
-})(function(){
+import "../kendo.core.js";
 
 (function($, undefined){
     // WARNING: removing the following jshint declaration and turning
@@ -34,22 +30,6 @@
         };
     }
 
-    function relative(array, element, delta) {
-        array = Array.prototype.slice.call(array);
-        var n = array.length;
-        var pos = array.indexOf(element);
-        if (pos < 0) {
-            return delta < 0 ? array[n - 1] : array[0];
-        }
-        pos += delta;
-        if (pos < 0) {
-            pos += n;
-        } else {
-            pos %= n;
-        }
-        return array[pos];
-    }
-
     var ColorPalette = ColorSelector.extend({
         init: function(element, options) {
             var that = this;
@@ -73,7 +53,8 @@
             that.wrapper.attr("aria-label", that._ariaTemplate(that.value() || ""));
 
             that._attachEvents();
-        },
+            ColorSelector.fn.endInit.call(that);
+},
         focus: function(){
             if (this.wrapper && !this.wrapper.is("[unselectable='on']")) {
                 this.wrapper.trigger("focus");
@@ -83,7 +64,8 @@
             name: "ColorPalette",
             columns: 10,
             tileSize: null,
-            palette: "basic"
+            palette: "basic",
+            size: undefined,
         },
         _attachEvents: function() {
             var that = this;
@@ -91,7 +73,7 @@
             that.wrapper.on(CLICK_NS, DOT + TILE_CLASS, function(ev){
                 that._select(ev.currentTarget);
             })
-            .on(KEYDOWN_NS, bind(that._keydown, that))
+            .on(KEYDOWN_NS, that, bind(that._keydown, that))
             .on(BLUR_NS, function(){
                 that.wrapper.find(DOT + TILE_CLASS).removeClass(ITEMSFOCUSEDCLASS);
             })
@@ -145,6 +127,7 @@
                 items = wrapper.find(DOT + TILE_CLASS),
                 current = items.filter(DOT + ITEMSFOCUSEDCLASS).get(0) || items.filter(DOT + ITEMSELECTEDCLASS).get(0),
                 keyCode = e.keyCode,
+                currentParentSibling,
                 index;
 
             if (current) {
@@ -156,9 +139,11 @@
             } else if (keyCode == KEYS.RIGHT) {
                 newCurrent = current ? current.nextSibling : items[0];
             } else if (keyCode == KEYS.DOWN) {
-                newCurrent = current ? (current.parentNode.nextSibling ? current.parentNode.nextSibling.children[index] : null) : items[0];
+                currentParentSibling = current && current.parentNode.nextSibling ? current.parentNode.nextSibling.children[index] : null
+                newCurrent = current ? currentParentSibling : items[0];
             } else if (keyCode == KEYS.UP) {
-                newCurrent = current ? (current.parentNode.previousSibling ? current.parentNode.previousSibling.children[index] : null) : items.get[items.length - 1];
+                currentParentSibling = current && current.parentNode.previousSibling ? current.parentNode.previousSibling.children[index] : null;
+                newCurrent = current ? currentParentSibling : items.get[items.length - 1];
             } else if (keyCode == KEYS.ENTER) {
                 preventDefault(e);
                 if (current) {
@@ -168,6 +153,7 @@
                 }
             } else if (keyCode == KEYS.ESC) {
                 this._cancel();
+                e.stopPropagation();
             }
 
             if (newCurrent && newCurrent.nodeType !== 1) {
@@ -176,7 +162,7 @@
 
             if (newCurrent) {
                 preventDefault(e);
-
+                e.stopPropagation();
                 this._current(newCurrent);
             }
         },
@@ -202,20 +188,28 @@
             items.removeClass(ITEMSELECTEDCLASS).removeAttr("aria-selected");
             item.addClass(ITEMSELECTEDCLASS).attr("aria-selected", true);
         },
-        _template: kendo.template(
-            '<div class="k-colorpalette-table-wrap">' +
-            '<table class="k-colorpalette-table k-palette" role="presentation"><tr role="row">' +
-              '# for (var i = 0; i < colors.length; ++i) { #' +
-                '# var selected = colors[i].equals(value); #' +
-                '# if (i && i % columns == 0) { # </tr><tr role="row"> # } #' +
-                '<td role="gridcell" unselectable="on" style="background-color:#= colors[i].toCss() #"' +
-                    '#= selected ? " aria-selected=true" : "" # ' +
-                    '#=(id && i === 0) ? "id=\\""+id+"\\" " : "" # ' +
-                    'class="k-colorpalette-tile#= selected ? " ' + ITEMSELECTEDCLASS + '" : "" #" ' +
-                    'aria-label="#= colors[i].toCss() #"></td>' +
-              '# } #' +
-            '</tr></table></div>'
-        ),
+        _template: kendo.template(({colors, columns, tileSize, value, id}) => {
+            let startPart = '<table class="k-colorpalette-table" role="none"><tr role="row">';
+
+            let cellElements = "";
+            for (var i = 0; i < colors.length; ++i) {
+                let selected = colors[i].equals(value);
+                if (i && i % columns == 0) {
+                    cellElements += '</tr><tr role="row">';
+                }
+
+                cellElements +=
+                `<td role="gridcell" unselectable="on" ${kendo.attr("style-background-color")}="${colors[i].toCss()}"` +
+                    `${selected ? " aria-selected=true" : ""} ` +
+                    `${(id && i === 0) ? 'id=\\"' + id + '\\" ' : '' } ` +
+
+                    `class="k-colorpalette-tile${selected ? " " + ITEMSELECTEDCLASS : ""}" ` +
+                    `aria-label="${colors[i].toCss()}"></td>`;
+            }
+
+            let endPart = '</tr></table>';
+            return startPart + cellElements + endPart;
+        }),
         _tileSize: function() {
             var tileSize = this.options.tileSize,
                 width, height;
@@ -255,10 +249,34 @@
                 this.wrapper.attr("aria-label", this._ariaTemplate(this.value() || ""));
             }
         },
+        _addSizeClass: function(specificSize) {
+            const options = this.options;
+
+            this.wrapper.removeClass("k-colorpalette-lg k-colorpalette-md k-colorpalette-sm");
+            let size = specificSize || options.size;
+
+            if (size) {
+                let sizeClass = "k-colorpalette-";
+
+                switch (size) {
+                    case "large":
+                        sizeClass += "lg";
+                        break;
+                    case "small":
+                        sizeClass += "sm";
+                        break;
+                    default:
+                        sizeClass += "md";
+                        break;
+                }
+                this.wrapper.addClass(sizeClass);
+            }
+        },
         _wrapper: function() {
             var options = this.options,
                 colors = this._colors(),
-                wrapper;
+                wrapper,
+                templateElement;
 
             if (this.element.is("input")) {
                 wrapper = this.element.addClass("k-hidden").wrap("<div>").parent();
@@ -266,18 +284,22 @@
                 wrapper = this.element;
             }
 
+            templateElement = $(this._template({
+                colors: colors,
+                columns: options.columns,
+                tileSize: options.tileSize,
+                value: this._value,
+                id: options.ariaId
+            }));
+
+            kendo.applyStylesFromKendoAttributes(templateElement, ["background-color"]);
             wrapper.addClass("k-colorpalette")
                 .attr("role", "grid")
-                .append($(this._template({
-                    colors: colors,
-                    columns: options.columns,
-                    tileSize: options.tileSize,
-                    value: this._value,
-                    id: options.ariaId
-                })))
+                .append(templateElement)
                 .attr("tabindex", this._tabIndex);
 
             this.wrapper = wrapper;
+            this._addSizeClass();
             this._tileSize();
         }
     });
@@ -288,6 +310,3 @@
 
 })(window.kendo.jQuery);
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3){ (a3 || a2)(); });

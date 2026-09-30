@@ -1,11 +1,12 @@
 ---
 title: Asynchronously Clone TreeView Nodes and All Their Children
-description: An example on how to asynchronously clone a Kendo UI TreeView node together with all its children.
+description: Learn how to asynchronously clone a Kendo UI TreeView node together with all its children.
 type: how-to
-page_title: Clone TreeView Nodes and All Their Children | Kendo UI TreeView for jQuery
+page_title: Clone TreeView Nodes and All Their Children - Kendo UI TreeView for jQuery
 slug: treeview-clone-node-async
 tags: kendo, kendo-ui, treeview, clone, node, all, children
 res_type: kb
+components: ["treeview"]
 ---
 
 ## Environment
@@ -17,7 +18,7 @@ res_type: kb
 	</tr>
 	<tr>
 		<td>Product</td>
-		<td>TreeView for Progress® Kendo UI®</td>
+		<td>Progress® Kendo UI® TreeView for jQuery</td>
 	</tr>
 </table>
 
@@ -27,7 +28,7 @@ How can I copy a TreeView node along with all its children when `loadOnDemand` i
 
 ## Solution
 
-Asynchronously load the child nodes in the child data source by using the [`load()`](https://docs.telerik.com/kendo-ui/api/javascript/data/node/methods/load) method of the node.
+Asynchronously load the child nodes in the child data source by using the [`load()`](https://docs.telerik.com/kendo-ui/api/data/node/methods/load) method of the node.
 
 ```dojo
 <div id="content">
@@ -40,8 +41,7 @@ $(document).ready(function() {
     var homogeneous = new kendo.data.HierarchicalDataSource({
         transport: {
             read: {
-                url: "https://demos.telerik.com/kendo-ui/service/Employees",
-                dataType: "jsonp"
+                url: "https://demos.telerik.com/service/v2/core/Employees"
             }
         },
         schema: {
@@ -125,4 +125,4 @@ $(document).ready(function() {
 
 ## See Also
 
-* [API Reference of the TreeView](https://docs.telerik.com/kendo-ui/api/javascript/ui/treeview).
+* [API Reference of the TreeView](https://docs.telerik.com/kendo-ui/api/ui/treeview).

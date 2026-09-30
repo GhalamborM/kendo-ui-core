@@ -1,12 +1,12 @@
 ---
 title: Dynamically Change the Displayed Grouping in Scheduler
-description: An example on how to change the groups in a Kendo UI Scheduler to reflect the selected resource values.
+description: Learn how to change the groups in a Kendo UI Scheduler to reflect the selected resource values.
 type: how-to
-page_title: Dynamically Change Grouping Resources | Kendo UI Scheduler for jQuery
+page_title: Dynamically Change Grouping Resources - Kendo UI Scheduler for jQuery
 slug: scheduler-dynamically-change-grouping-options
 tags: kendo, kendoui, scheduler, grouping, resources, dynamic, change
 res_type: kb
-component: scheduler
+components: ["scheduler"]
 ---
 
 ## Environment
@@ -14,7 +14,7 @@ component: scheduler
 <table>
  <tr>
   <td>Product</td>
-  <td>Progress Kendo UI Scheduler</td>
+  <td>Progress® Kendo UI® Scheduler for jQuery</td>
  </tr>
 </table>
 
@@ -44,8 +44,8 @@ How can I change the displayed groups in a Kendo UI Scheduler to reflect the sel
 <script>
   $(function() {
     $("#scheduler").kendoScheduler({
-      date: new Date("2013/6/13"),
-      startTime: new Date("2013/6/13 07:00 AM"),
+      date: new Date("2025/6/13"),
+      startTime: new Date("2025/6/13 07:00 AM"),
       height: 600,
       views: [
         "day",
@@ -60,24 +60,26 @@ How can I change the displayed groups in a Kendo UI Scheduler to reflect the sel
         batch: true,
         transport: {
           read: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks",
-            dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks"
           },
           update: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
-            dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks/update",
+              type: "POST",
+              contentType: "application/json"
           },
           create: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/create",
-            dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks/create",
+              type: "POST",
+              contentType: "application/json"
           },
           destroy: {
-            url: "https://demos.telerik.com/kendo-ui/service/tasks/destroy",
-            dataType: "jsonp"
+              url: "https://demos.telerik.com/service/v2/core/tasks/destroy",
+              type: "POST",
+              contentType: "application/json"
           },
           parameterMap: function(options, operation) {
             if (operation !== "read" && options.models) {
-              return {models: kendo.stringify(options.models)};
+              return kendo.stringify(options.models);
             }
           }
         },
@@ -179,4 +181,4 @@ How can I change the displayed groups in a Kendo UI Scheduler to reflect the sel
 
 ## See Also
 
-* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/javascript/ui/scheduler).
+* [API Reference of the Scheduler](https://docs.telerik.com/kendo-ui/api/ui/scheduler).

@@ -1,12 +1,13 @@
 ---
 title: Display Warning on Save in Kendo UI Grid
-description: An example on how to display a warning message when leaving an edit cell.
+description: Learn how to display a warning message when leaving an edit cell.
 type: how-to
 page_title: Incell Editing Display a Warning Message on Save
 slug: grid-incell-editing-display-message-on-save
 tags: grid, incell, edit, save, warning, message, leave, cell
 ticketid: 1145326
 res_type: kb
+components: ["grid"]
 ---
 
 ## Environment
@@ -14,7 +15,7 @@ res_type: kb
 <table>
 	<tbody>
 		<tr>
-			<td>Created with Product Version</td>
+			<td>Product Version</td>
 			<td>2017.3 1026</td>
 		</tr>
 		<tr>
@@ -31,9 +32,9 @@ I am using in-cell batch editing.  We would like to display a warning message if
 
 ## Solution
 
-You can use the Kendo UI Grid [`save`](/api/javascript/ui/grid/events/save) event and the event data that it reveals and then open the cell for editing with the [`editCell()`](/api/javascript/ui/grid/methods/editcell) method:
+You can use the Kendo UI Grid [`save`](/api/ui/grid/events/save) event and the event data that it reveals and then open the cell for editing with the [`editCell()`](/api/ui/grid/methods/editcell) method:
 
-- Using [`kendo.alert()`](/api/javascript/kendo/methods/alert)
+- Using [`kendo.alert()`](/api/kendo/methods/alert)
 
 ```
     save: function(e) {

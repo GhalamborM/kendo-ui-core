@@ -1,0 +1,306 @@
+---
+title: Using PDFViewer with PDF.js Version 4.x.x or Later
+description: Learn how to configure the Telerik UI for {{ site.framework }} PDFViewer to use PDF.js version 4.x.x for PDF processing.
+type: how-to
+page_title: Configuring the PDFViewer component to use PDF.js version 4.x.x
+slug: pdfviewer-pdfjs-script-workarounds
+tags: pdfviewer, pdf.js, version, 4.x.x, processing, script
+res_type: kb
+components: ["general"]
+---
+
+## Environment
+<table>
+	<tbody>
+		<tr>
+			<td>Product Version</td>
+			<td>2024.4.1112 or later</td>
+		</tr>
+		<tr>
+			<td>Product</td>
+			<td>PDFViewer for Progress® Telerik® {{ site.product_short }}</td>
+		</tr>
+	</tbody>
+</table>
+
+## Description
+The {% if site.core %}<a href="https://www.telerik.com/support/whats-new/aspnet-core-ui/release-history/telerik-ui-for-asp-net-core-2024-4-1112-(2024-q4)" target="_blank">2024 Q4 November release (version 2024.4.1112)</a>{% else%}<a href="https://www.telerik.com/support/whats-new/aspnet-mvc/release-history/telerik-ui-for-asp-net-mvc-2024-4-1112-(2024-q4)" target="_blank">2024 Q4 November release (version 2024.4.1112)</a>{% endif %} introduced a new common engine for the PDFViewer component and support for the latest <a href="https://mozilla.github.io/pdf.js/" target="_blank">PDF.js library version 4. x.x</a>. Since PDF.js 4 (versions 4.x.x) uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules" target="_blank">ECMAScript modules</a>, the required Kendo UI scripts must be included as modules as well.
+
+The {{ site.product }} versions before 2024.4.1112 are not compatible with PDF.js version 4.x. You must use either PDF.js version 2.x or 3.x. For reference, the example below shows the PDFViewer configured for PDF.js processing when using versions before 2024.4.1112.
+
+```HtmlHelper
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.js"></script>
+    <script>
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.worker.js';
+    </script>
+
+    @(Html.Kendo().PDFViewer()
+        .Name("pdfviewer")
+        .PdfjsProcessing(pdf => pdf
+            .File("")
+        )
+        .Height(1200)
+    )
+```
+{% if site.core %}
+```TagHelper
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.js"></script>
+    <script>
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.worker.js';
+    </script>
+
+    <kendo-pdfviewer name="pdfviewer" height="1200">
+        <pdfjs-processing file="@Url.Content("")" />
+    </kendo-pdfviewer>
+```
+{% endif %}
+
+When upgrading to version 2024.4.1112 or later, including the [required Kendo UI scripts]({% slug copyclientresources_aspnetmvc6_aspnetmvc%}) by adding `type="module"` in the script tags will throw the following client-side error:
+![Kendo script, defined as a module, is not defined when the PDFViewer is initialized.](images/pdfviewer-kendo-module-error.png)
+
+However, adding the scripts without `type="module"` is also not an option because the PDF.js library requires module scripts:
+![PDF.js scripts are not added](images/pdfviewer-pdfjs-error.png)
+
+## Solution
+
+Apply any of the following approaches when using {{ site.product }} PDFViewer (version 2024.4.1112 or later):
+
+{% if site.core %}
+For current Telerik UI for ASP.NET Core NuGet applications, PDFViewer module loading does not require a client-side license script. Use the `telerik-license.txt` file and the `Telerik.Licensing` package as described in [Setting Up Your License Key]({% slug installation_license_key_aspnetcore %}). Do not create or reference `telerik-license.js`, `kendo-ui-license.js`, or `KendoLicensing.setScriptKey` for this licensing workflow.
+
+When using the partial-view approach, include only the PDFViewer module files that are present in the client resources for your product version. Module files can differ between releases, so do not add a missing `kendo.pdfviewer-common.cmn.chunk.js` file unless it is included in your distribution.
+{% endif %}
+
+- [Using RenderAsModule option for module-based script initialization](#using-renderasmodule-for-module-based-script-initialization)
+- [Using the Telerik CLI to set up the Telerik environment](#using-the-telerik-cli-to-set-up-the-telerik-environment)
+- [Loading the PDFViewer through a partial View](#loading-pdfviewer-through-a-partial-view)
+- [Using `kendo.aspnetmvc.ready.min.js` script](#using-kendoaspnetmvcreadyminjs-script)
+- [Compiling the PDF.js scripts to UMD modules](#compiling-pdfjs-scripts-to-umd-modules)
+- [Loading Kendo UI scripts twice](#loading-kendo-ui-scripts-twice)
+
+### Using the Telerik CLI to Set Up the Telerik Environment
+
+The [Telerik CLI]({% slug installation_cli %}) can prepare the Telerik environment before you configure the PDFViewer. Install the CLI and run the setup command for your product:
+
+```SH
+dotnet tool install -g Telerik.CLI
+```
+{% if site.core %}
+```SH.skip-repl
+telerik setup aspnetcore
+```
+{% else %}
+```SH.skip-repl
+telerik setup aspnetmvc
+```
+{% endif %}
+
+The setup command logs in the CLI, downloads the `telerik-license.txt` file, and configures the Telerik NuGet feed. It does not configure PDF.js or change the script loading mode. You must still apply one of the PDFViewer solutions below, including the `type="module"` attributes and the `RenderAsModule` option when you use PDF.js 4.x.x.
+
+### Using RenderAsModule for Module-Based Script Initialization
+
+The recommended solution is to include the required Kendo UI scripts as modules and enable the `RenderAsModule` option, which will add `type="module"` to the initialization scripts of all Telerik UI components in the application.
+
+Also, it is important to ensure that `type="module"` is added to all script tags that contain custom logic related to the Telerik UI components.
+
+{% if site.core %}
+```C# Program.cs
+    builder.Services.AddKendo(x => x.RenderAsModule = true);
+```
+{% else %}
+```C# Global.asax
+    KendoMvc.Setup(options =>
+    {
+        options.RenderAsModule = true;
+    });
+```
+{% endif %}
+```Razor _Layout
+    <link href="https://kendo.cdn.telerik.com/themes/10.0.1/default/default-ocean-blue.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.mjs" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.worker.mjs" type="module"></script>
+    <script src="https://cdn.kendostatic.com/2024.4.1112/js/kendo.all.min.js" type="module"></script>
+    <script src="https://cdn.kendostatic.com/2024.4.1112/js/kendo.aspnetmvc.min.js" type="module"></script>
+```
+```HtmlHelper
+    @(Html.Kendo().PDFViewer()
+        .Name("pdfviewer")
+        .PdfjsProcessing(pdf => pdf.File(""))
+        .Height(800)
+    )
+
+    <script type="module">
+        $(document).ready(() => {
+            var pdfviewer = $('#pdfviewer').data('kendoPdfViewer');
+            console.log(pdfviewer);
+        })  
+    </script>
+```
+{% if site.core %}
+```TagHelper
+    <kendo-pdfviewer name="pdfviewer" height="800">
+        <pdfjs-processing file="@Url.Content("")" />
+    </kendo-pdfviewer>
+
+    <script type="module">
+        $(document).ready(() => {
+            var pdfviewer = $('#pdfviewer').data('kendoPdfViewer');
+            console.log(pdfviewer);
+        })
+    </script>
+```
+{% endif %}
+
+### Loading PDFViewer Through a Partial View
+
+You can load the PDFViewer declaration through a partial View and include only the specific component's script files:
+
+1. Keep the `_Layout.cshtml` unchanged:
+
+    ```Razor _Layout.cshtml
+        <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/10.0.1/default/default-ocean-blue.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2024.4.1112/js/kendo.all.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2024.4.1112/js/kendo.aspnetmvc.min.js"></script>
+    ```
+
+1. Create a partial View that contains the PDFViewer and include the PDF.js scripts along with the `kendo.pdfviewer-common.cmn.chunk.js` and `kendo.pdfviewer.js` script files (as modules):
+
+    ```Razor PDFViewer.cshtml_HtmlHelper
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.mjs" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.worker.mjs" type="module"></script>
+        <script src="https://kendo.cdn.telerik.com/2024.4.1112/mjs/kendo.pdfviewer-common.cmn.chunk.js" type="module"></script>
+        <script src="https://kendo.cdn.telerik.com/2024.4.1112/mjs/kendo.pdfviewer.js" type="module"></script>
+
+        @(Html.Kendo().PDFViewer()
+            .Name("pdfviewer")
+            .PdfjsProcessing(pdf => pdf.File(""))
+            .Height(1200)
+        )
+    ```
+    {% if site.core %}
+    ```Razor PDFViewer.cshtml_TagHelper
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.mjs" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.worker.mjs" type="module"></script>
+        <script src="https://kendo.cdn.telerik.com/2024.4.1112/mjs/kendo.pdfviewer-common.cmn.chunk.js" type="module"></script>
+        <script src="https://kendo.cdn.telerik.com/2024.4.1112/mjs/kendo.pdfviewer.js" type="module"></script>
+
+        <kendo-pdfviewer name="pdfviewer1" height="1200">
+            <pdfjs-processing />
+        </kendo-pdfviewer>
+    ```
+    {% endif %}
+
+1. Insert the partial View where needed:
+
+    ```Razor Index.cshtml
+    @{
+        ViewBag.Title = "Home Page";
+    }
+
+    <partial name="PDFViewer" />
+    ```
+
+### Using kendo.aspnetmvc.ready.min.js script
+
+To avoid enabling the `RenderAsModule` option, you can include the `kendo.aspnetmvc.ready.min.js` script before the `kendo.all.min.js` file. All Kendo UI script files must be included as modules, as well. The `kendo.aspnetmvc.ready.min.js` is available in the {% if site.core %}`telerik.ui.for.aspnetcore.2024.4.1112.commercial`{% else %}`telerik.ui.for.aspnetmvc.2024.4.1112.commercial`{% endif %} archive. Starting with version Q2 2025, the file is available through the [Kendo CDN service]({% slug cdnservices_core%}), as well.
+
+```Razor _Layout.cshtml
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/10.0.1/default/default-ocean-blue.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.mjs" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.worker.mjs" type="module"></script>
+
+    <script src="/lib/kendo/2024.4.1112/js/kendo.aspnetmvc.ready.min.js"></script> <!-- Include this script to be able to load kendo.all.js and kendo.aspnetmvc.js with type="module" and avoid setting up RenderAsModule() option in the app. -->
+
+    <script src="https://kendo.cdn.telerik.com/2024.4.1112/js/kendo.all.min.js" type="module"></script>
+    <script src="https://kendo.cdn.telerik.com/2024.4.1112/js/kendo.aspnetmvc.min.js" type="module"></script>
+```
+
+### Compiling PDF.js Scripts to UMD Modules
+
+Theoretically, you can download the PDF.js scripts and use a JS bundler tool like [webpack](https://webpack.js.org/) to compile them to UMD modules.
+
+### Loading Kendo UI Scripts Twice
+
+Another workaround is to include the Kendo UI scripts twice—with and without `type="module"`:
+
+```HtmlHelper
+    <link href="https://kendo.cdn.telerik.com/themes/10.0.1/default/default-ocean-blue.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Add the Kendo UI scripts in standard fashion. -->
+    <script src="https://cdn.kendostatic.com/2024.4.1112/js/kendo.all.min.js"></script>
+    <script src="https://cdn.kendostatic.com/2024.4.1112/js/kendo.aspnetmvc.min.js"></script>
+
+    <!-- Add the "pdf.mjs" and "pdf.worker.mjs" module scripts. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.mjs" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.worker.mjs" type="module"></script>
+
+    <!-- Add the Kendo UI script as a module afterwards -->
+    <script src="https://cdn.kendostatic.com/2024.4.1112/js/kendo.all.min.js" type="module"></script>
+
+    @(Html.Kendo().PDFViewer().Name("pdfviewer")
+        .PdfjsProcessing(pdf => pdf.File(@Url.Content("../sample.pdf")))
+            .Height(1200)
+        )
+    @(Html.Kendo().DateTimePicker().Name("picker"))
+```
+{% if site.core %}
+```TagHelper
+    <link href="https://kendo.cdn.telerik.com/themes/10.0.1/default/default-ocean-blue.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Add the Kendo UI scripts in standard fashion. -->
+    <script src="https://cdn.kendostatic.com/2024.4.1112/js/kendo.all.min.js"></script>
+    <script src="https://cdn.kendostatic.com/2024.4.1112/js/kendo.aspnetmvc.min.js"></script>
+
+    <!-- Add the "pdf.mjs" and "pdf.worker.mjs" module scripts. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.mjs" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.3.136/pdf.worker.mjs" type="module"></script>
+
+    <!-- Add the Kendo UI script as a module afterwards -->
+    <script src="https://cdn.kendostatic.com/2024.4.1112/js/kendo.all.min.js" type="module"></script>
+
+    <kendo-pdfviewer name="pdfviewer" height="1200">
+        <pdfjs-processing file-url="@Url.Content("../sample.pdf")" />
+    </kendo-pdfviewer>
+
+    <kendo-datetimepicker name="picker"/>
+```
+{% endif %}
+
+## More {{ site.framework }} PDFViewer Resources
+
+* [{{ site.framework }} PDFViewer Documentation]({%slug htmlhelpers_pdfviewer_aspnetcore%})
+
+* [{{ site.framework }} PDFViewer Demos](https://demos.telerik.com/{{ site.platform }}/pdfviewer/index)
+
+{% if site.core %}
+* [{{ site.framework }} PDFViewer Product Page](https://www.telerik.com/aspnet-core-ui/pdf-viewer)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiforcore%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-core-ui)
+
+{% else %}
+* [{{ site.framework }} PDFViewer Product Page](https://www.telerik.com/aspnet-mvc/pdf-viewer)
+
+* [Telerik UI for {{ site.framework }} Video Onboarding Course (Free for trial users and license holders)]({%slug virtualclass_uiformvc%})
+
+* [Telerik UI for {{ site.framework }} Forums](https://www.telerik.com/forums/aspnet-mvc)
+{% endif %}
+
+## See Also
+
+* [Client-Side API Reference of the PDFViewer for {{ site.framework }}](https://docs.telerik.com/kendo-ui/api/ui/pdfviewer)
+* [Server-Side API Reference of the PDFViewer for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/pdfviewer)
+{% if site.core %}
+* [Server-Side TagHelper API Reference of the PDFViewer for {{ site.framework }}](https://docs.telerik.com/{{ site.platform }}/api/taghelpers/pdfviewer)
+{% endif %}
+* [Telerik UI for {{ site.framework }} Breaking Changes]({%slug breakingchanges_2023%})
+* [Telerik UI for {{ site.framework }} Knowledge Base](https://docs.telerik.com/{{ site.platform }}/knowledge-base)

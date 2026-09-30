@@ -1,8 +1,6 @@
-(function(f, define) {
-    define([ "./kendo.core" ], f);
-})(function() {
+import "./kendo.core.js";
 
-var __meta__ = {
+export const __meta__ = {
     id: "router",
     name: "Router",
     category: "framework",
@@ -353,6 +351,7 @@ var __meta__ = {
     kendo.absoluteURL = absoluteURL;
     kendo.history = new History();
 })(window.kendo.jQuery);
+export default kendo;
 
 (function() {
     var kendo = window.kendo,
@@ -467,7 +466,7 @@ var __meta__ = {
                 root: that.root
             });
 
-            // eslint-disable-next-line no-undef
+
             var initEventObject = { url: history.current || "/", preventDefault: $.noop };
 
             if (!that.trigger(INIT, initEventObject)) {
@@ -536,6 +535,3 @@ var __meta__ = {
     kendo.Router = Router;
 })();
 
-return window.kendo;
-
-}, typeof define == 'function' && define.amd ? define : function(a1, a2, a3) { (a3 || a2)(); });
